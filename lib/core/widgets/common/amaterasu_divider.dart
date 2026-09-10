@@ -1,8 +1,8 @@
 ﻿import 'package:flutter/material.dart';
-import '../../theme/atlas_colors.dart';
-class AtlasDivider extends StatelessWidget {
+import '../../theme/Amaterasu_colors.dart';
+class AmaterasuDivider extends StatelessWidget {
   final String text;
-  const AtlasDivider({
+  const AmaterasuDivider({
     super.key,
     this.text = "oppure",
   });
@@ -12,7 +12,7 @@ class AtlasDivider extends StatelessWidget {
       children: [
         const Expanded(
           child: Divider(
-            color: AtlasColors.border,
+            color: AmaterasuColors.border,
           ),
         ),
         Padding(
@@ -22,16 +22,17 @@ class AtlasDivider extends StatelessWidget {
           child: Text(
             text,
             style: const TextStyle(
-              color: AtlasColors.white54,
+              color: AmaterasuColors.white54,
             ),
           ),
         ),
         const Expanded(
           child: Divider(
-            color: AtlasColors.border,
+            color: AmaterasuColors.border,
           ),
         ),
       ],
     );
   }
 }
+

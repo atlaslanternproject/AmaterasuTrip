@@ -1,8 +1,8 @@
 ﻿import 'package:flutter/material.dart';
-import '../../theme/atlas_colors.dart';
-class AtlasBackground extends StatelessWidget {
+import '../../theme/Amaterasu_colors.dart';
+class AmaterasuBackground extends StatelessWidget {
   final Widget child;
-  const AtlasBackground({
+  const AmaterasuBackground({
     super.key,
     required this.child,
   });
@@ -16,9 +16,9 @@ class AtlasBackground extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            AtlasColors.background,
-            AtlasColors.backgroundSecondary,
-            AtlasColors.background,
+            AmaterasuColors.background,
+            AmaterasuColors.backgroundSecondary,
+            AmaterasuColors.background,
           ],
         ),
       ),
@@ -26,3 +26,4 @@ class AtlasBackground extends StatelessWidget {
     );
   }
 }
+

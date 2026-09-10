@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
-import '../../../../core/widgets/layout/atlas_background.dart';
-import '../../../../core/widgets/layout/atlas_hero.dart';
+import '../../../../core/widgets/layout/Amaterasu_background.dart';
+import '../../../../core/widgets/layout/Amaterasu_hero.dart';
 import '../widgets/login_card.dart';
 class AuthPage extends StatelessWidget {
   const AuthPage({
@@ -9,7 +9,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AtlasBackground(
+      body: AmaterasuBackground(
         child: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -22,7 +22,7 @@ class AuthPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const AtlasHero(),
+                        const AmaterasuHero(),
                         const SizedBox(height: 12),
                         const LoginCard(),
                         const SizedBox(height: 40),
@@ -38,3 +38,4 @@ class AuthPage extends StatelessWidget {
     );
   }
 }
+

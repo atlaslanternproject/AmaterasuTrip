@@ -14,7 +14,8 @@ void main() async {
   );
   runApp(
     const ProviderScope(
-      child: AtlasLanternApp(),
+      child: AmaterasuTripApp(),
     ),
   );
 }
+

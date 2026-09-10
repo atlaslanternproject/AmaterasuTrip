@@ -1,20 +1,20 @@
 ﻿import 'package:flutter/material.dart';
-import '../../theme/atlas_colors.dart';
-import '../../theme/atlas_radius.dart';
-class AtlasPasswordField extends StatefulWidget {
+import '../../theme/Amaterasu_colors.dart';
+import '../../theme/Amaterasu_radius.dart';
+class AmaterasuPasswordField extends StatefulWidget {
   final TextEditingController? controller;
   final String hintText;
-  const AtlasPasswordField({
+  const AmaterasuPasswordField({
     super.key,
     this.controller,
     this.hintText = "Password",
   });
   @override
-  State<AtlasPasswordField> createState() =>
-      _AtlasPasswordFieldState();
+  State<AmaterasuPasswordField> createState() =>
+      _AmaterasuPasswordFieldState();
 }
-class _AtlasPasswordFieldState
-    extends State<AtlasPasswordField> {
+class _AmaterasuPasswordFieldState
+    extends State<AmaterasuPasswordField> {
   bool _obscure = true;
   @override
   Widget build(BuildContext context) {
@@ -22,16 +22,16 @@ class _AtlasPasswordFieldState
       controller: widget.controller,
       obscureText: _obscure,
       style: const TextStyle(
-        color: AtlasColors.white,
+        color: AmaterasuColors.white,
       ),
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: const TextStyle(
-          color: AtlasColors.white54,
+          color: AmaterasuColors.white54,
         ),
         prefixIcon: const Icon(
           Icons.lock_outline,
-          color: AtlasColors.white54,
+          color: AmaterasuColors.white54,
         ),
         suffixIcon: IconButton(
           onPressed: () {
@@ -44,29 +44,29 @@ class _AtlasPasswordFieldState
                 ? Icons.visibility_off
                 : Icons.visibility,
 
-            color: AtlasColors.white54,
+            color: AmaterasuColors.white54,
           ),
         ),
         filled: true,
-        fillColor: AtlasColors.card,
+        fillColor: AmaterasuColors.card,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            AtlasRadius.md,
+            AmaterasuRadius.md,
           ),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            AtlasRadius.md,
+            AmaterasuRadius.md,
           ),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            AtlasRadius.md,
+            AmaterasuRadius.md,
           ),
           borderSide: const BorderSide(
-            color: AtlasColors.primary,
+            color: AmaterasuColors.primary,
             width: 1.5,
           ),
         ),
@@ -74,3 +74,4 @@ class _AtlasPasswordFieldState
     );
   }
 }
+

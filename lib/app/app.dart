@@ -1,14 +1,16 @@
 ﻿import 'package:flutter/material.dart';
 import 'router.dart';
 import '../core/theme/app_theme.dart';
-class AtlasLanternApp extends StatelessWidget {
-  const AtlasLanternApp({super.key});
+class AmaterasuTripApp extends StatelessWidget {
+  const AmaterasuTripApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'AtlasLantern',
+      title: 'AmaterasuTrip',
       theme: appTheme,
-      routerConfig: atlasRouter,
+      routerConfig: amaterasuRouter,
     );
   }
 }
+
+

@@ -3,13 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
-import '../../../../core/widgets/buttons/atlas_discord_button.dart';
-import '../../../../core/widgets/buttons/atlas_google_button.dart';
-import '../../../../core/widgets/buttons/atlas_primary_button.dart';
-import '../../../../core/widgets/cards/atlas_card.dart';
-import '../../../../core/widgets/common/atlas_divider.dart';
-import '../../../../core/widgets/inputs/atlas_password_field.dart';
-import '../../../../core/widgets/inputs/atlas_text_field.dart';
+import '../../../../core/widgets/buttons/Amaterasu_discord_button.dart';
+import '../../../../core/widgets/buttons/Amaterasu_google_button.dart';
+import '../../../../core/widgets/buttons/Amaterasu_primary_button.dart';
+import '../../../../core/widgets/cards/Amaterasu_card.dart';
+import '../../../../core/widgets/common/Amaterasu_divider.dart';
+import '../../../../core/widgets/inputs/Amaterasu_password_field.dart';
+import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
 import '../../../../core/storage/remember_me_storage.dart';
 class LoginCard extends ConsumerStatefulWidget {
   const LoginCard({super.key});
@@ -37,6 +37,9 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       loginError = null;
     });
     try {
+      debugPrint(
+        "LOGIN: inizio"
+      );
       await RememberMeStorage.save(rememberMe);
       debugPrint(
         "REMEMBER SALVATO: $rememberMe",
@@ -89,7 +92,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
   }
   @override
   Widget build(BuildContext context) {
-    return AtlasCard(
+    return AmaterasuCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -102,7 +105,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
             ),
           ),
           const SizedBox(height: 24),
-          AtlasTextField(
+          AmaterasuTextField(
             hintText: 'Immettere Email o Username',
             controller: emailController,
             prefixIcon: Icons.person_outline,
@@ -113,7 +116,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
             },
           ),
           const SizedBox(height: 16),
-          AtlasPasswordField(
+          AmaterasuPasswordField(
             hintText: 'Password',
             controller: passwordController,
           ),
@@ -207,7 +210,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
               ),
             ),
           const SizedBox(height: 16),
-          AtlasPrimaryButton(
+          AmaterasuPrimaryButton(
             text: loading
                 ? 'Accesso...'
                 : 'Accedi',
@@ -216,15 +219,15 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 : login,
           ),
           const SizedBox(height: 20),
-          const AtlasDivider(),
+          const AmaterasuDivider(),
           const SizedBox(height: 20),
-          AtlasGoogleButton(
+          AmaterasuGoogleButton(
             onPressed: () {
               context.go('/google-auth');
             },             
           ),
           const SizedBox(height: 12),
-          const AtlasDiscordButton(),
+          const AmaterasuDiscordButton(),
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
@@ -239,3 +242,4 @@ class _LoginCardState extends ConsumerState<LoginCard> {
     );
   }
 }
+

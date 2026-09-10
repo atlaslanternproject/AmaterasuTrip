@@ -1,17 +1,17 @@
 ﻿import 'package:flutter/material.dart';
-import 'atlas_primary_button.dart';
-class AtlasGoogleButton extends StatelessWidget {
+import 'Amaterasu_primary_button.dart';
+class AmaterasuDiscordButton extends StatelessWidget {
   final VoidCallback? onPressed;
-  const AtlasGoogleButton({
+  const AmaterasuDiscordButton({
     super.key,
     this.onPressed,
   });
   @override
   Widget build(BuildContext context) {
-    return AtlasPrimaryButton(
-      text: "Accedi con Google",
+    return AmaterasuPrimaryButton(
+      text: "Accedi con Discord",
       icon: Image.asset(
-        'assets/icons/google.png',
+        'assets/icons/discord.png',
         width: 22,
         height: 22,
       ),
@@ -19,3 +19,4 @@ class AtlasGoogleButton extends StatelessWidget {
     );
   }
 }
+

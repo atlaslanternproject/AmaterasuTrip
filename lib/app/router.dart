@@ -7,7 +7,7 @@ import '../features/auth/presentation/pages/verify_email_page.dart';
 import '../features/auth/presentation/pages/create_username_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../features/auth/presentation/pages/google_auth.dart';
-final atlasRouter = GoRouter(
+final amaterasuRouter = GoRouter(
   initialLocation: '/',
   redirect:(context, state) async {
     final user = FirebaseAuth.instance.currentUser;
@@ -16,7 +16,7 @@ final atlasRouter = GoRouter(
       return null;
     }
     final playerDoc = await FirebaseFirestore.instance
-      .collection('/players')
+      .collection('/viaggiatori')
       .doc(user.uid)
       .get();
       if (!playerDoc.exists) {
@@ -71,3 +71,5 @@ final atlasRouter = GoRouter(
     ),
   ],
 );
+
+

@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AtlasLantern'),
+        title: const Text('AmaterasuTrip'),
         centerTitle: true,
       ),
       body: Center(
@@ -44,3 +44,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+

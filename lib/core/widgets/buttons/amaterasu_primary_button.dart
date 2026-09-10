@@ -1,12 +1,12 @@
 ﻿import 'package:flutter/material.dart';
-import '../../theme/atlas_colors.dart';
-import '../../theme/atlas_radius.dart';
-class AtlasPrimaryButton extends StatelessWidget {
+import '../../theme/Amaterasu_colors.dart';
+import '../../theme/Amaterasu_radius.dart';
+class AmaterasuPrimaryButton extends StatelessWidget {
   final String text;
   final Widget? icon;
   final VoidCallback? onPressed;
   final bool loading;
-  const AtlasPrimaryButton({
+  const AmaterasuPrimaryButton({
   super.key,
   required this.text,
   required this.onPressed,
@@ -21,11 +21,11 @@ class AtlasPrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: loading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AtlasColors.primary,
+          backgroundColor: AmaterasuColors.primary,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-              AtlasRadius.md,
+              AmaterasuRadius.md,
             ),
           ),
         ),
@@ -59,3 +59,4 @@ class AtlasPrimaryButton extends StatelessWidget {
     );
   }
 }
+

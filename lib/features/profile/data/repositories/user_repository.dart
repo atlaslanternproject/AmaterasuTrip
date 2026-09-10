@@ -17,7 +17,7 @@ class UserRepository {
         username.trim().toLowerCase();
     if (normalizedUsername.isEmpty) {
       throw Exception(
-        'Username non puÃ² essere vuoto',
+        'Username non può² essere vuoto',
       );
     }
     final usernameRef =
@@ -28,7 +28,7 @@ class UserRepository {
         await usernameRef.get();
     if (existingUsername.exists) {
       throw Exception(
-        'Username giÃ  in uso',
+        'Username già  in uso',
       );
     }
 // crea indice username
@@ -39,7 +39,7 @@ class UserRepository {
     });
 // crea profilo giocatore
     await _firestore
-        .collection('players')
+        .collection('viaggiatori')
         .doc(user.uid)
         .set({
       'username': username.trim(),
@@ -54,7 +54,7 @@ class UserRepository {
     final normalizedUsername =
         username.trim().toLowerCase();
     final snapshot = await _firestore
-        .collection('players')
+        .collection('viaggiatori')
         .where('usernameLower',
             isEqualTo: normalizedUsername)
         .limit(1)
@@ -69,7 +69,7 @@ class UserRepository {
   }) async {
     final snapshot =
       await _firestore
-        .collection('players')
+        .collection('viaggiatori')
         .doc(uid)
         .get();
     if (!snapshot.exists) {

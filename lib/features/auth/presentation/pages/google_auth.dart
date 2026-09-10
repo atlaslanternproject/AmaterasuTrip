@@ -37,7 +37,7 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
       debugPrint("UID: ${user.uid}");
       debugPrint("EMAIL: ${user.email}");
       final playerDoc = await FirebaseFirestore.instance
-          .collection('players')
+          .collection('viaggiatori')
           .doc(user.uid)
           .get();
       if (!mounted) return;

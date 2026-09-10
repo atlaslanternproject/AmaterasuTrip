@@ -1,10 +1,10 @@
 ﻿import 'package:flutter/material.dart';
-import '../../theme/atlas_colors.dart';
-import '../../theme/atlas_radius.dart';
-import '../../theme/atlas_spacing.dart';
-class AtlasCard extends StatelessWidget {
+import '../../theme/Amaterasu_colors.dart';
+import '../../theme/Amaterasu_radius.dart';
+import '../../theme/Amaterasu_spacing.dart';
+class AmaterasuCard extends StatelessWidget {
   final Widget child;
-  const AtlasCard({
+  const AmaterasuCard({
     super.key,
     required this.child,
   });
@@ -15,18 +15,19 @@ class AtlasCard extends StatelessWidget {
         horizontal: 20,
       ),
       padding: const EdgeInsets.all(
-        AtlasSpacing.lg,
+        AmaterasuSpacing.lg,
       ),
       decoration: BoxDecoration(
-        color: AtlasColors.card,
+        color: AmaterasuColors.card,
         borderRadius: BorderRadius.circular(
-          AtlasRadius.lg,
+          AmaterasuRadius.lg,
         ),
         border: Border.all(
-          color: AtlasColors.border,
+          color: AmaterasuColors.border,
         ),
       ),
       child: child,
     );
   }
 }
+

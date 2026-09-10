@@ -1,9 +1,9 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/widgets/layout/atlas_background.dart';
-import '../../../../core/widgets/layout/atlas_hero.dart';
-import '../../../../core/widgets/buttons/atlas_primary_button.dart';
+import '../../../../core/widgets/layout/Amaterasu_background.dart';
+import '../../../../core/widgets/layout/Amaterasu_hero.dart';
+import '../../../../core/widgets/buttons/Amaterasu_primary_button.dart';
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({
     super.key,
@@ -51,12 +51,12 @@ class _VerifyEmailPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AtlasBackground(
+      body: AmaterasuBackground(
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const AtlasHero(),
+                const AmaterasuHero(),
                 const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -129,7 +129,7 @@ class _VerifyEmailPageState
                           ),
                           const SizedBox(height: 16),
                         ],
-                        AtlasPrimaryButton(
+                        AmaterasuPrimaryButton(
                           text:
                               "Ho verificato",
                           onPressed:
@@ -156,3 +156,4 @@ class _VerifyEmailPageState
     );
   }
 }
+

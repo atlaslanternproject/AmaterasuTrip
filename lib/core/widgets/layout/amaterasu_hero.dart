@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
-class AtlasHero extends StatelessWidget {
-  const AtlasHero({
+class AmaterasuHero extends StatelessWidget {
+  const AmaterasuHero({
     super.key,
   });
   @override
@@ -18,3 +18,4 @@ class AtlasHero extends StatelessWidget {
     );
   }
 }
+
