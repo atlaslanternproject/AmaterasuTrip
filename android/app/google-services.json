@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "189662926755",
+    "project_id": "amaterasutrip",
+    "storage_bucket": "amaterasutrip.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189662926755:android:e011004f5976e7b000ac16",
+        "android_client_info": {
+          "package_name": "com.example.amaterasutrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189662926755-vpu4mfao0vmsor1kipj4s4rs2c1dsdc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYzTuGb6KKlJzyKxhZ1Y1VXWThO1It8aw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189662926755-vpu4mfao0vmsor1kipj4s4rs2c1dsdc2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

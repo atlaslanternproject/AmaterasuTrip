@@ -1,0 +1,14 @@
+﻿import 'package:flutter/material.dart';
+import 'router.dart';
+import '../core/theme/app_theme.dart';
+class AtlasLanternApp extends StatelessWidget {
+  const AtlasLanternApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'AtlasLantern',
+      theme: appTheme,
+      routerConfig: atlasRouter,
+    );
+  }
+}
