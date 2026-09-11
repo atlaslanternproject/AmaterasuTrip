@@ -1,0 +1,10 @@
+{
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": ".*\\.arb$",
+        "cmd": "dart run tool/check_l10n.dart"
+      }
+    ]
+  }
+}
