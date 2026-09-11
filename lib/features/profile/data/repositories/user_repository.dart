@@ -27,8 +27,8 @@ class UserRepository {
     final existingUsername =
         await usernameRef.get();
     if (existingUsername.exists) {
-      throw Exception(
-        'Username già  in uso',
+      throw FirebaseAuthException(
+        code: 'username-already-in-use',
       );
     }
 // crea indice username

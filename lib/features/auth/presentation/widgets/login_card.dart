@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../../../../core/widgets/buttons/Amaterasu_discord_button.dart';
 import '../../../../core/widgets/buttons/Amaterasu_google_button.dart';
 import '../../../../core/widgets/buttons/Amaterasu_primary_button.dart';
@@ -37,9 +38,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       loginError = null;
     });
     try {
-      debugPrint(
-        "LOGIN: inizio"
-      );
+      debugPrint("LOGIN: inizio");
       await RememberMeStorage.save(rememberMe);
       debugPrint(
         "REMEMBER SALVATO: $rememberMe",
@@ -71,16 +70,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       );
       if (!mounted) return;
       setState(() {
-        loginError = switch (e.code) {
-          'user-not-found' =>
-            'Nessun avventuriero trovato con queste credenziali.',
-          'wrong-password' =>
-            'La parola segreta non apre la porta della taverna.',
-          'invalid-email' =>
-            'Questa email non sembra valida.',
-          _ =>
-            'Accesso negato. Riprova.',
-        };
+        loginError = e.code;
       });
     } finally {
       if (mounted) {
@@ -90,15 +80,27 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       }
     }
   }
+  String getLoginErrorMessage(
+    AppLocalizations l10n,
+    String errorCode,
+  ) {
+    return switch (errorCode) {
+      'user-not-found' => l10n.authLoginErrorUserNotFound,
+      'wrong-password' => l10n.authLoginErrorWrongPassword,
+      'invalid-email' => l10n.authLoginErrorInvalidEmail,
+      _ => l10n.authLoginErrorGeneric,
+    };
+  }
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AmaterasuCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
-            'Bentornato',
-            style: TextStyle(
+          Text(
+            l10n.authWelcomeBack,
+            style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -106,7 +108,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
           ),
           const SizedBox(height: 24),
           AmaterasuTextField(
-            hintText: 'Immettere Email o Username',
+            hintText: l10n.authEmailOrUsernameHint,
             controller: emailController,
             prefixIcon: Icons.person_outline,
             onChanged: (_) {
@@ -117,7 +119,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
           ),
           const SizedBox(height: 16),
           AmaterasuPasswordField(
-            hintText: 'Password',
+            hintText: l10n.authPasswordHint,
             controller: passwordController,
           ),
           Align(
@@ -128,42 +130,49 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text(
-                        "Recupera password",
+                      title: Text(
+                        l10n.authForgotPassword,
                       ),
                       content: TextField(
                         controller: resetEmailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(hintText: "Inserisci Email "),
+                        decoration: InputDecoration(
+                          hintText: l10n.authInsertEmail,
+                        ),
                       ),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text("Annulla"),
+                          child: Text(
+                            l10n.authCancel,
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
                             try {
-                              await FirebaseAuth.instance.sendPasswordResetEmail(
+                              await FirebaseAuth.instance
+                                  .sendPasswordResetEmail(
                                 email: resetEmailController.text.trim(),
                               );
                               if (!context.mounted) return;
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("ðŸ“œ Abbiamo inviato una pergamena per recuperare la password.",
+                                SnackBar(
+                                  content: Text(
+                                    l10n.authPasswordResetEmailSent,
                                   ),
                                 ),
-                              );  
+                              );
                             } on FirebaseAuthException catch (e) {
-                              debugPrint("RESET PASSWORD ERRORE: ${e.code}",
+                              debugPrint(
+                                "RESET PASSWORD ERRORE: ${e.code}",
                               );
                             }
                           },
-                          child: const Text(
-                            "Continua",
+                          child: Text(
+                            l10n.authContinue,
                           ),
                         ),
                       ],
@@ -171,8 +180,8 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                   },
                 );
               },
-              child: const Text(
-                "Password dimenticata?",
+              child: Text(
+                l10n.authForgotPasswordQuestion,
               ),
             ),
           ),
@@ -186,9 +195,9 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                   });
                 },
               ),
-              const Text(
-                'Rimani connesso',
-                style: TextStyle(
+              Text(
+                l10n.authStaySignedIn,
+                style: const TextStyle(
                   color: Colors.white70,
                 ),
               ),
@@ -203,7 +212,10 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                loginError!,
+                getLoginErrorMessage(
+                  l10n,
+                  loginError!,
+                ),
                 style: const TextStyle(
                   color: Colors.white,
                 ),
@@ -212,8 +224,8 @@ class _LoginCardState extends ConsumerState<LoginCard> {
           const SizedBox(height: 16),
           AmaterasuPrimaryButton(
             text: loading
-                ? 'Accesso...'
-                : 'Accedi',
+                ? l10n.authSigningIn
+                : l10n.authSignIn,
             onPressed: loading
                 ? null
                 : login,
@@ -224,7 +236,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
           AmaterasuGoogleButton(
             onPressed: () {
               context.go('/google-auth');
-            },             
+            },
           ),
           const SizedBox(height: 12),
           const AmaterasuDiscordButton(),
@@ -233,8 +245,8 @@ class _LoginCardState extends ConsumerState<LoginCard> {
             onPressed: () {
               context.go('/register');
             },
-            child: const Text(
-              "Non hai un account? Registrati",
+            child: Text(
+              l10n.authNoAccountRegister,
             ),
           ),
         ],
@@ -242,4 +254,3 @@ class _LoginCardState extends ConsumerState<LoginCard> {
     );
   }
 }
-

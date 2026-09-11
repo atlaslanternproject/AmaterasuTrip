@@ -10,6 +10,7 @@ import '../../../../core/widgets/cards/Amaterasu_card.dart';
 import '../../../../core/widgets/common/Amaterasu_divider.dart';
 import '../../../../core/widgets/inputs/Amaterasu_password_field.dart';
 import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
+import '../../../../l10n/app_localizations.dart';
 class RegisterCard extends ConsumerStatefulWidget {
   const RegisterCard({
     super.key,
@@ -33,13 +34,14 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
   }
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AmaterasuCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
-            "Crea il tuo account",
-            style: TextStyle(
+          Text(
+            l10n.authCreateAccount,
+            style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -47,7 +49,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
           ),
           const SizedBox(height: 24),
           AmaterasuTextField(
-            hintText: "Username",
+            hintText: l10n.authUsernameHint,
             controller: usernameController,
             prefixIcon: Icons.person_outline,
             onChanged: (_) {
@@ -58,7 +60,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
           ),
           const SizedBox(height: 16),
           AmaterasuTextField(
-            hintText: "Email",
+            hintText: l10n.authEmailHint,
             controller: emailController,
             keyboardType: TextInputType.emailAddress,
             prefixIcon: Icons.email_outlined,
@@ -70,12 +72,12 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
           ),
           const SizedBox(height: 16),
           AmaterasuPasswordField(
-            hintText: "Password",
+            hintText: l10n.authPasswordHint,
             controller: passwordController,
           ),
           const SizedBox(height: 16),
           AmaterasuPasswordField(
-           hintText: "Conferma password",
+            hintText: l10n.authConfirmPasswordHint,
             controller: confirmPasswordController,
           ),
           const SizedBox(height: 8),
@@ -111,7 +113,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
             const SizedBox(height: 16),
           ],
           AmaterasuPrimaryButton(
-            text: "Registrati",
+            text: l10n.authRegister,
             onPressed: () async {
               setState(() {
                 registerError = null;
@@ -121,16 +123,14 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
                   passwordController.text.isEmpty ||
                   confirmPasswordController.text.isEmpty) {
                 setState(() {
-                  registerError =
-                      "âš ï¸ Compila tutti i campi richiesti.";
+                  registerError = l10n.authRegisterFillFields;
                 });
                 return;
               }
               if (passwordController.text !=
                   confirmPasswordController.text) {
                 setState(() {
-                  registerError =
-                      "âš ï¸ Le due parole segrete non coincidono.";
+                  registerError = l10n.authRegisterPasswordsMismatch;
                 });
                 return;
               }
@@ -153,13 +153,13 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
                 setState(() {
                   registerError = switch (e.code) {
                     'email-already-in-use' =>
-                      "âš ï¸ Un avventuriero Ã¨ giÃ  registrato con questa pergamena.",
+                      l10n.authRegisterEmailAlreadyInUse,
                     'weak-password' =>
-                      "âš ï¸ La parola segreta Ã¨ troppo debole.",
+                      l10n.authRegisterWeakPassword,
                     'invalid-email' =>
-                      "âš ï¸ Il corvo non riesce a raggiungere questo indirizzo.",
+                      l10n.authRegisterInvalidEmail,
                     _ =>
-                      "âš ï¸ Impossibile completare la registrazione.",
+                      l10n.authRegisterGenericError,
                   };
                 });
               }
@@ -182,8 +182,8 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
             onPressed: () {
               context.go('/');
             },
-            child: const Text(
-              "Hai giÃ  un account? Accedi",
+            child: Text(
+              l10n.authAlreadyHaveAccountSignIn,
             ),
           ),
         ],
@@ -191,4 +191,3 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
     );
   }
 }
-

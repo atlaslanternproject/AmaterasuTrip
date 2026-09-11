@@ -4,16 +4,15 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/layout/Amaterasu_background.dart';
 import '../../../../core/widgets/layout/Amaterasu_hero.dart';
 import '../../../../core/widgets/buttons/Amaterasu_primary_button.dart';
+import '../../../../l10n/app_localizations.dart';
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({
     super.key,
   });
   @override
-  State<VerifyEmailPage> createState() =>
-      _VerifyEmailPageState();
+  State<VerifyEmailPage> createState() => _VerifyEmailPageState();
 }
-class _VerifyEmailPageState
-    extends State<VerifyEmailPage> {
+class _VerifyEmailPageState extends State<VerifyEmailPage> {
   String? verifyError;
   Future<void> checkVerification() async {
     final user = FirebaseAuth.instance.currentUser;
@@ -30,9 +29,11 @@ class _VerifyEmailPageState
       if (!mounted) return;
       context.go('/');
     } else {
+      if (!mounted) return;
+      final l10n = AppLocalizations.of(context)!;
       setState(() {
         verifyError =
-            "âš ï¸ La pergamena non risulta ancora firmata. Controlla la tua email.";
+            l10n.authVerifyEmailNotVerified;
       });
     }
   }
@@ -43,13 +44,16 @@ class _VerifyEmailPageState
       return;
     }
     await user.sendEmailVerification();
+    if (!mounted) return;
+    final l10n = AppLocalizations.of(context)!;
     setState(() {
       verifyError =
-          "ðŸ“œ Nuova pergamena inviata. Controlla la tua casella email.";
+          l10n.authVerifyEmailSent;
     });
   }
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: AmaterasuBackground(
         child: SafeArea(
@@ -79,23 +83,20 @@ class _VerifyEmailPageState
                           size: 72,
                         ),
                         const SizedBox(height: 24),
-                        const Text(
-                          "Verifica il tuo indirizzo email",
-                          textAlign:
-                              TextAlign.center,
-                          style: TextStyle(
+                        Text(
+                          l10n.authVerifyEmailTitle,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 26,
-                            fontWeight:
-                                FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 18),
-                        const Text(
-                          "Abbiamo inviato una email di verifica al tuo indirizzo.\n\nAprila e conferma il tuo account prima di entrare nella Taverna.",
-                          textAlign:
-                              TextAlign.center,
-                          style: TextStyle(
+                        Text(
+                          l10n.authVerifyEmailDescription,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
                             color: Colors.white70,
                             fontSize: 16,
                             height: 1.5,
@@ -115,32 +116,29 @@ class _VerifyEmailPageState
                               border: Border.all(
                                 color:
                                     Colors.redAccent.withValues(
-                                      alpha: 0.40,
-                                    ),
+                                  alpha: 0.40,
+                                ),
                               ),
                             ),
                             child: Text(
                               verifyError!,
-                              style:
-                                  const TextStyle(
-                                    color: Colors.white,
-                                  ),
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 16),
                         ],
                         AmaterasuPrimaryButton(
                           text:
-                              "Ho verificato",
-                          onPressed:
-                              checkVerification,
+                              l10n.authVerifyEmailConfirmed,
+                          onPressed: checkVerification,
                         ),
                         const SizedBox(height: 12),
                         TextButton(
-                          onPressed:
-                              resendEmail,
-                          child: const Text(
-                            "Reinvia email",
+                          onPressed: resendEmail,
+                          child: Text(
+                            l10n.authVerifyEmailResend,
                           ),
                         ),
                       ],
@@ -156,4 +154,3 @@ class _VerifyEmailPageState
     );
   }
 }
-

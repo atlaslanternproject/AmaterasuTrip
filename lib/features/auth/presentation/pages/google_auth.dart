@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 class GoogleAuth extends ConsumerStatefulWidget {
   const GoogleAuth({super.key});
   @override
@@ -13,12 +14,12 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _login();
     });
   }
   Future<void> _login() async {
+    final l10n = AppLocalizations.of(context)!;
     try {
       final credential = await ref
           .read(authControllerProvider)
@@ -53,23 +54,24 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
       debugPrint(e.toString());
       if (!mounted) return;
       setState(() {
-        error = "Impossibile completare l'accesso con Google.";
+        error = l10n.authGoogleSignInError;
       });
     }
   }
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: Center(
         child: error == null
-            ? const Column(
+            ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 24),
+                  const CircularProgressIndicator(),
+                  const SizedBox(height: 24),
                   Text(
-                    "Accesso con Google...",
-                    style: TextStyle(fontSize: 18),
+                    l10n.authGoogleSigningIn,
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ],
               )
@@ -86,7 +88,7 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
                   const SizedBox(height: 24),
                   ElevatedButton(
                     onPressed: null,
-                    child: Text("Riprova"),
+                    child: Text(l10n.authRetry),
                   ),
                 ],
               ),

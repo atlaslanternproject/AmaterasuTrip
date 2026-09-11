@@ -1,0 +1,12 @@
+arb-dir: lib/l10n
+template-arb-file: app_it.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+# COMMENTO:
+# Per aggiungere una nuova lingua:
+# 1. Creare un nuovo file dentro lib/l10n/
+#    usando il formato app_XX.arb (es. app_fr.arb per il francese).
+# 2. Inserire nel nuovo file ESATTAMENTE le stesse chiavi presenti in app_it.arb.
+# 3. Tradurre solamente i valori delle chiavi.
+# 4. Il controllo automatico di localizzazione verificherà che tutte le lingue
+#    abbiano esattamente le stesse chiavi.

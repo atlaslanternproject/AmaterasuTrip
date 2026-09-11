@@ -35,8 +35,7 @@ class AuthController {
           );
       if (foundEmail == null) {
         throw FirebaseAuthException(
-          code: 'user_not_found',
-          message: 'Nessun utente trovato con questo username',
+          code: 'user-not-found',
         );
       }
       email = foundEmail;

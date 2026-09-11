@@ -7,7 +7,7 @@ class AmaterasuPasswordField extends StatefulWidget {
   const AmaterasuPasswordField({
     super.key,
     this.controller,
-    this.hintText = "Password",
+    required this.hintText,
   });
   @override
   State<AmaterasuPasswordField> createState() =>
@@ -43,7 +43,6 @@ class _AmaterasuPasswordFieldState
             _obscure
                 ? Icons.visibility_off
                 : Icons.visibility,
-
             color: AmaterasuColors.white54,
           ),
         ),
@@ -74,4 +73,3 @@ class _AmaterasuPasswordFieldState
     );
   }
 }
-

@@ -1,4 +1,5 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'Amaterasu_primary_button.dart';
 class AmaterasuDiscordButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -8,8 +9,9 @@ class AmaterasuDiscordButton extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AmaterasuPrimaryButton(
-      text: "Accedi con Discord",
+      text: l10n.commonDiscordSignIn,
       icon: Image.asset(
         'assets/icons/discord.png',
         width: 22,
@@ -19,4 +21,3 @@ class AmaterasuDiscordButton extends StatelessWidget {
     );
   }
 }
-
