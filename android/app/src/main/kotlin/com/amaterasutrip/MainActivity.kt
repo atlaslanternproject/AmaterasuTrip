@@ -1,4 +1,4 @@
-package com.example.amaterasutrip
+package com.amaterasutrip
 
 import io.flutter.embedding.android.FlutterActivity
 

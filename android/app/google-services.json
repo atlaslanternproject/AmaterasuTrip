@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:189662926755:android:e011004f5976e7b000ac16",
+        "mobilesdk_app_id": "1:189662926755:android:b1434d2dae8076ec00ac16",
         "android_client_info": {
-          "package_name": "com.example.amaterasutrip"
+          "package_name": "com.amaterasutrip"
         }
       },
       "oauth_client": [
@@ -29,6 +29,57 @@
             {
               "client_id": "189662926755-vpu4mfao0vmsor1kipj4s4rs2c1dsdc2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "189662926755-og7mp573rpcepos1hsho6bl0jmtdi9uk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.amaterasutrip"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189662926755:android:e011004f5976e7b000ac16",
+        "android_client_info": {
+          "package_name": "com.example.amaterasutrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189662926755-o4o27579jn7r1rj9d6qteli8vfh5vk6s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.amaterasutrip",
+            "certificate_hash": "1b3164a800f5c5e7685bfb24dcf556122f17b4a0"
+          }
+        },
+        {
+          "client_id": "189662926755-vpu4mfao0vmsor1kipj4s4rs2c1dsdc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYzTuGb6KKlJzyKxhZ1Y1VXWThO1It8aw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189662926755-vpu4mfao0vmsor1kipj4s4rs2c1dsdc2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "189662926755-og7mp573rpcepos1hsho6bl0jmtdi9uk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.amaterasutrip"
+              }
             }
           ]
         }
