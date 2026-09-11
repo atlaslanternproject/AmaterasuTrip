@@ -508,6 +508,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get bottomBarSettings;
+
+  /// No description provided for @appName.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu Trip'**
+  String get appName;
+
+  /// No description provided for @loginCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Login completed!'**
+  String get loginCompleted;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name:'**
+  String get name;
+
+  /// No description provided for @noName.
+  ///
+  /// In en, this message translates to:
+  /// **'No name'**
+  String get noName;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email:'**
+  String get email;
+
+  /// No description provided for @noEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'No email'**
+  String get noEmail;
+
+  /// No description provided for @uid.
+  ///
+  /// In en, this message translates to:
+  /// **'UID:'**
+  String get uid;
+
+  /// No description provided for @logoutTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Test logout'**
+  String get logoutTest;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

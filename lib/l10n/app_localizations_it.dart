@@ -224,4 +224,28 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get bottomBarSettings => 'Impostazioni';
+
+  @override
+  String get appName => 'Amaterasu Trip';
+
+  @override
+  String get loginCompleted => 'Login completato!';
+
+  @override
+  String get name => 'Nome:';
+
+  @override
+  String get noName => 'Nessun nome';
+
+  @override
+  String get email => 'Email:';
+
+  @override
+  String get noEmail => 'Nessuna email';
+
+  @override
+  String get uid => 'UID:';
+
+  @override
+  String get logoutTest => 'Logout test';
 }

@@ -17,7 +17,7 @@ import '../features/settings/presentation/pages/account_page.dart';
 import '../features/settings/presentation/pages/privacy_page.dart';
 import '../features/settings/presentation/pages/data_sync_page.dart';
 import '../features/settings/presentation/pages/information_page.dart';
-import 'main_shell.dart';
+
 
 
 
@@ -77,96 +77,77 @@ final amaterasuRouter = GoRouter(
     // =========================
     // APP PRINCIPALE
     // =========================
-    ShellRoute(
-      builder: (context, state, child) {
-        return MainShell(child: child);
+    GoRoute(
+      path: '/home',
+      builder: (context, state) {
+        return const HomePage();
       },
-      routes: [
-        // HOME
-        GoRoute(
-          path: '/home',
-          builder: (context, state) {
-            return const HomePage();
-          },
-        ),
-        // VIAGGI
-        GoRoute(
-          path: '/trips',
-          builder: (context, state) {
-            return const TripsPage();
-          },
-        ),
-        // ESPLORA
-        GoRoute(
-          path: '/explore',
-          builder: (context, state) {
-            return const ExplorePage();
-          },
-        ),
-        // RICORDI
-        GoRoute(
-          path: '/memories',
-          builder: (context, state) {
-            return const MemoriesPage();
-          },
-        ),
-        // IMPOSTAZIONI
-        GoRoute(
-          path: '/settings',
-          builder: (context, state) {
-            return const SettingsPage();
-          },
-        ),
-        // IMPOSTAZIONI → PROFILO
-        GoRoute(
-          path: '/settings/profile',
-          builder: (context, state) {
-            return const ProfilePage();
-          },
-        ),
-        // IMPOSTAZIONI → LINGUA
-        GoRoute(
-          path: '/settings/language',
-          builder: (context, state) {
-            return const LanguagePage();
-          },
-        ),
-        // IMPOSTAZIONI → NOTIFICHE
-        GoRoute(
-          path: '/settings/notifications',
-          builder: (context, state) {
-            return const NotificationsPage();
-          },
-        ),
-        // IMPOSTAZIONI → ACCOUNT
-        GoRoute(
-          path: '/settings/account',
-          builder: (context, state) {
-            return const AccountPage();
-          },
-        ),
-        // IMPOSTAZIONI → PRIVACY
-        GoRoute(
-          path: '/settings/privacy',
-          builder: (context, state) {
-            return const PrivacyPage();
-          },
-        ),
-        // IMPOSTAZIONI → DATI ONLINE/OFFLINE
-        GoRoute(
-          path: '/settings/data-sync',
-          builder: (context, state) {
-            return const DataSyncPage();
-          },
-        ),
-        // IMPOSTAZIONI → INFORMAZIONI
-        GoRoute(
-          path: '/settings/information',
-          builder: (context, state) {
-            return const InformationPage();
-          },
-        ),
-      ],
+    ),
+    GoRoute(
+      path: '/trips',
+      builder: (context, state) {
+        return const TripsPage();
+      },
+    ),
+    GoRoute(
+      path: '/explore',
+      builder: (context, state) {
+        return const ExplorePage();
+      },
+    ),
+    GoRoute(
+      path: '/memories',
+      builder: (context, state) {
+        return const MemoriesPage();
+      },
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) {
+        return const SettingsPage();
+      },
+    ),
+    GoRoute(
+      path: '/settings/profile',
+      builder: (context, state) {
+        return const ProfilePage();
+      },
+    ),
+    GoRoute(
+      path: '/settings/language',
+      builder: (context, state) {
+        return const LanguagePage();
+      },
+    ),
+    GoRoute(
+      path: '/settings/notifications',
+      builder: (context, state) {
+        return const NotificationsPage();
+      },
+    ),
+    GoRoute(
+      path: '/settings/account',
+      builder: (context, state) {
+        return const AccountPage();
+      },
+    ),
+    GoRoute(
+      path: '/settings/privacy',
+      builder: (context, state) {
+        return const PrivacyPage();
+      },
+    ),
+    GoRoute(
+      path: '/settings/data-sync',
+      builder: (context, state) {
+        return const DataSyncPage();
+      },
+    ),
+    GoRoute(
+      path: '/settings/information',
+      builder: (context, state) {
+        return const InformationPage();
+      },
     ),
   ],
 );

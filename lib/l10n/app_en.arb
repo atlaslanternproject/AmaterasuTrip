@@ -74,5 +74,13 @@
   },
   "bottomBarHome": "Home",
   "bottomBarTrips": "Trips",
-  "bottomBarSettings": "Settings"
+  "bottomBarSettings": "Settings",
+  "appName": "Amaterasu Trip",
+  "loginCompleted": "Login completed!",
+  "name": "Name:",
+  "noName": "No name",
+  "email": "Email:",
+  "noEmail": "No email",
+  "uid": "UID:",
+  "logoutTest": "Test logout"
 }

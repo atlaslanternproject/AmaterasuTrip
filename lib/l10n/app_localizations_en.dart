@@ -224,4 +224,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bottomBarSettings => 'Settings';
+
+  @override
+  String get appName => 'Amaterasu Trip';
+
+  @override
+  String get loginCompleted => 'Login completed!';
+
+  @override
+  String get name => 'Name:';
+
+  @override
+  String get noName => 'No name';
+
+  @override
+  String get email => 'Email:';
+
+  @override
+  String get noEmail => 'No email';
+
+  @override
+  String get uid => 'UID:';
+
+  @override
+  String get logoutTest => 'Test logout';
 }
