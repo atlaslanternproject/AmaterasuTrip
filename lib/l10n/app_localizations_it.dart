@@ -9,6 +9,9 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
+  String get settingsLanguage => 'Lingua';
+
+  @override
   String get authWelcomeBack => 'Bentornato';
 
   @override
@@ -178,4 +181,47 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get homeLogoutTest => 'Logout test';
+
+  @override
+  String get settingsProfile => 'Profilo';
+
+  @override
+  String get settingsNotifications => 'Notifiche';
+
+  @override
+  String get settingsAccount => 'Account';
+
+  @override
+  String get settingsPrivacy => 'Privacy';
+
+  @override
+  String get settingsDataSync => 'Dati online/offline';
+
+  @override
+  String get settingsInformation => 'Informazioni';
+
+  @override
+  String get settingsPlaceholder => 'Questa sezione sarà disponibile prossimamente.';
+
+  @override
+  String settingsLanguageName(String languageCode) {
+    String _temp0 = intl.Intl.selectLogic(
+      languageCode,
+      {
+        'it': 'Italiano',
+        'en': 'Inglese',
+        'other': 'Lingua',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get bottomBarHome => 'Home';
+
+  @override
+  String get bottomBarTrips => 'Viaggi';
+
+  @override
+  String get bottomBarSettings => 'Impostazioni';
 }

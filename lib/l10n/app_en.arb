@@ -57,5 +57,22 @@
   "homeEmail": "Email:",
   "homeNoEmail": "No email",
   "homeUid": "UID:",
-  "homeLogoutTest": "Test logout"
+  "homeLogoutTest": "Test logout",
+  "settingsProfile": "Profile",
+  "settingsNotifications": "Notifications",
+  "settingsAccount": "Account",
+  "settingsPrivacy": "Privacy",
+  "settingsDataSync": "Online/offline data",
+  "settingsInformation": "Information",
+  "settingsPlaceholder": "This section will be available soon.",
+  "settingsLanguageName": "{languageCode, select, it {Italian} en {English} other {Language}}",
+  "@settingsLanguageName": {
+    "description": "Name of a language displayed using the current app language.",
+    "placeholders": {
+      "languageCode": {}
+    }
+  },
+  "bottomBarHome": "Home",
+  "bottomBarTrips": "Trips",
+  "bottomBarSettings": "Settings"
 }

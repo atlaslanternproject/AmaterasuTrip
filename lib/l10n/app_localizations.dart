@@ -95,6 +95,12 @@ abstract class AppLocalizations {
     Locale('it')
   ];
 
+  /// No description provided for @settingsLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settingsLanguage;
+
   /// No description provided for @authWelcomeBack.
   ///
   /// In en, this message translates to:
@@ -436,6 +442,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Test logout'**
   String get homeLogoutTest;
+
+  /// No description provided for @settingsProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get settingsProfile;
+
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get settingsNotifications;
+
+  /// No description provided for @settingsAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get settingsAccount;
+
+  /// No description provided for @settingsPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get settingsPrivacy;
+
+  /// No description provided for @settingsDataSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Online/offline data'**
+  String get settingsDataSync;
+
+  /// No description provided for @settingsInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get settingsInformation;
+
+  /// No description provided for @settingsPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'This section will be available soon.'**
+  String get settingsPlaceholder;
+
+  /// Name of a language displayed using the current app language.
+  ///
+  /// In en, this message translates to:
+  /// **'{languageCode, select, it {Italian} en {English} other {Language}}'**
+  String settingsLanguageName(String languageCode);
+
+  /// No description provided for @bottomBarHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get bottomBarHome;
+
+  /// No description provided for @bottomBarTrips.
+  ///
+  /// In en, this message translates to:
+  /// **'Trips'**
+  String get bottomBarTrips;
+
+  /// No description provided for @bottomBarSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get bottomBarSettings;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
