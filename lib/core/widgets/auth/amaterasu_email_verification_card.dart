@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:amaterasutrip/core/widgets/buttons/Amaterasu_primary_button.dart';
 
 class AmaterasuEmailVerificationCard extends StatelessWidget {
@@ -9,6 +10,8 @@ class AmaterasuEmailVerificationCard extends StatelessWidget {
   final String? message;
   final VoidCallback onConfirmed;
   final VoidCallback onResend;
+  final bool compact;
+
   const AmaterasuEmailVerificationCard({
     super.key,
     required this.title,
@@ -18,44 +21,47 @@ class AmaterasuEmailVerificationCard extends StatelessWidget {
     required this.onConfirmed,
     required this.onResend,
     this.message,
+    this.compact = false,
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(compact ? 16 : 24),
       decoration: BoxDecoration(
         color: const Color(0xFF1C1E26),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(
+          Icon(
             Icons.mark_email_read_outlined,
             color: Colors.amber,
-            size: 72,
+            size: compact ? 48 : 72,
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: compact ? 14 : 24),
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 26,
+              fontSize: compact ? 20 : 26,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 18),
+          SizedBox(height: compact ? 12 : 18),
           Text(
             description,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white70,
-              fontSize: 16,
-              height: 1.5,
+              fontSize: compact ? 14 : 16,
+              height: compact ? 1.35 : 1.5,
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: compact ? 14 : 20),
           if (message != null) ...[
             Container(
               padding: const EdgeInsets.all(12),
@@ -74,7 +80,7 @@ class AmaterasuEmailVerificationCard extends StatelessWidget {
             const SizedBox(height: 16),
           ],
           AmaterasuPrimaryButton(text: confirmedText, onPressed: onConfirmed),
-          const SizedBox(height: 12),
+          SizedBox(height: compact ? 8 : 12),
           TextButton(onPressed: onResend, child: Text(resendText)),
         ],
       ),

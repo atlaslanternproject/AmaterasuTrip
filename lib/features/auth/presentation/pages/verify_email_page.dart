@@ -68,6 +68,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     message: verifyError,
                     onConfirmed: checkVerification,
                     onResend: resendEmail,
+                    compact: true,
                   ),
                 ),
                 const SizedBox(height: 40),
