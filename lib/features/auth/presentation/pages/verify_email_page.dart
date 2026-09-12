@@ -1,17 +1,17 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/widgets/layout/Amaterasu_background.dart';
 import '../../../../core/widgets/layout/Amaterasu_hero.dart';
-import '../../../../core/widgets/buttons/Amaterasu_primary_button.dart';
+import '../../../../core/widgets/auth/amaterasu_email_verification_card.dart';
 import '../../../../l10n/app_localizations.dart';
+
 class VerifyEmailPage extends StatefulWidget {
-  const VerifyEmailPage({
-    super.key,
-  });
+  const VerifyEmailPage({super.key});
   @override
   State<VerifyEmailPage> createState() => _VerifyEmailPageState();
 }
+
 class _VerifyEmailPageState extends State<VerifyEmailPage> {
   String? verifyError;
   Future<void> checkVerification() async {
@@ -20,26 +20,22 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       return;
     }
     await user.reload();
-    final updatedUser =
-        FirebaseAuth.instance.currentUser;
+    final updatedUser = FirebaseAuth.instance.currentUser;
     if (updatedUser?.emailVerified ?? false) {
-      debugPrint(
-        "EMAIL VERIFICATA",
-      );
+      debugPrint("EMAIL VERIFICATA");
       if (!mounted) return;
       context.go('/');
     } else {
       if (!mounted) return;
       final l10n = AppLocalizations.of(context)!;
       setState(() {
-        verifyError =
-            l10n.authVerifyEmailNotVerified;
+        verifyError = l10n.authVerifyEmailNotVerified;
       });
     }
   }
+
   Future<void> resendEmail() async {
-    final user =
-        FirebaseAuth.instance.currentUser;
+    final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       return;
     }
@@ -47,10 +43,10 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     if (!mounted) return;
     final l10n = AppLocalizations.of(context)!;
     setState(() {
-      verifyError =
-          l10n.authVerifyEmailSent;
+      verifyError = l10n.authVerifyEmailSent;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -63,86 +59,15 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 const AmaterasuHero(),
                 const SizedBox(height: 24),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1C1E26),
-                      borderRadius:
-                          BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.stretch,
-                      children: [
-                        const Icon(
-                          Icons.mark_email_read_outlined,
-                          color: Colors.amber,
-                          size: 72,
-                        ),
-                        const SizedBox(height: 24),
-                        Text(
-                          l10n.authVerifyEmailTitle,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 18),
-                        Text(
-                          l10n.authVerifyEmailDescription,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 16,
-                            height: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        if (verifyError != null) ...[
-                          Container(
-                            padding:
-                                const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.red.withValues(
-                                alpha: 0.12,
-                              ),
-                              borderRadius:
-                                  BorderRadius.circular(12),
-                              border: Border.all(
-                                color:
-                                    Colors.redAccent.withValues(
-                                  alpha: 0.40,
-                                ),
-                              ),
-                            ),
-                            child: Text(
-                              verifyError!,
-                              style: const TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                        ],
-                        AmaterasuPrimaryButton(
-                          text:
-                              l10n.authVerifyEmailConfirmed,
-                          onPressed: checkVerification,
-                        ),
-                        const SizedBox(height: 12),
-                        TextButton(
-                          onPressed: resendEmail,
-                          child: Text(
-                            l10n.authVerifyEmailResend,
-                          ),
-                        ),
-                      ],
-                    ),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: AmaterasuEmailVerificationCard(
+                    title: l10n.authVerifyEmailTitle,
+                    description: l10n.authVerifyEmailDescription,
+                    confirmedText: l10n.authVerifyEmailConfirmed,
+                    resendText: l10n.authVerifyEmailResend,
+                    message: verifyError,
+                    onConfirmed: checkVerification,
+                    onResend: resendEmail,
                   ),
                 ),
                 const SizedBox(height: 40),

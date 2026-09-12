@@ -41,19 +41,17 @@ class _ChangeEmailVerificationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(l10n.authVerifyEmailTitle),
-      content: Text(l10n.authVerifyEmailDescription),
-      actions: [
-        TextButton(
-          onPressed: onResend,
-          child: Text(l10n.authVerifyEmailResend),
-        ),
-        FilledButton(
-          onPressed: onVerified,
-          child: Text(l10n.authVerifyEmailConfirmed),
-        ),
-      ],
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+      child: AmaterasuEmailVerificationCard(
+        title: l10n.authVerifyEmailTitle,
+        description: l10n.authVerifyEmailDescription,
+        confirmedText: l10n.authVerifyEmailConfirmed,
+        resendText: l10n.authVerifyEmailResend,
+        onConfirmed: onVerified,
+        onResend: onResend,
+      ),
     );
   }
 }

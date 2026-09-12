@@ -4,6 +4,9 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
   bool _loading = false;
   bool _verified = false;
 
+  String? _pendingNewEmail;
+  String? _pendingPassword;
+
   @override
   void initState() {
     super.initState();
@@ -86,7 +89,9 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
       builder: (_) => _ChangeEmailWarningDialog(l10n: l10n),
     );
 
-    if (!mounted || confirmed != true) return;
+    if (!mounted || confirmed != true) {
+      return;
+    }
 
     final result = await showDialog<_ChangeEmailResult>(
       context: context,
@@ -94,7 +99,9 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
       builder: (_) => _ChangeEmailDialog(l10n: l10n),
     );
 
-    if (!mounted || result == null) return;
+    if (!mounted || result == null) {
+      return;
+    }
 
     if (result.password.isEmpty || result.newEmail.isEmpty) {
       return;
@@ -114,14 +121,24 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
     });
 
     try {
+      _pendingNewEmail = newEmail.trim().toLowerCase();
+
+      _pendingPassword = password;
+
       await ref
           .read(authControllerProvider)
           .changeEmail(currentPassword: password, newEmail: newEmail);
 
       if (!mounted) return;
 
+      setState(() {
+        _loading = false;
+      });
+
       await _showEmailVerificationDialog();
     } on FirebaseAuthException catch (error) {
+      _clearPendingEmailChange();
+
       if (!mounted) return;
 
       ScaffoldMessenger.of(context)
@@ -129,7 +146,7 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
         ..showSnackBar(
           SnackBar(content: Text(_firebaseErrorMessage(error, l10n))),
         );
-    } finally {
+
       if (mounted) {
         setState(() {
           _loading = false;
@@ -158,39 +175,90 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
     if (_loading) return;
 
     final l10n = AppLocalizations.of(context)!;
+
     final controller = ref.read(authControllerProvider);
+
+    final pendingEmail = _pendingNewEmail?.trim().toLowerCase();
+
+    final pendingPassword = _pendingPassword;
+
+    if (pendingEmail == null || pendingPassword == null) {
+      return;
+    }
 
     setState(() {
       _loading = true;
     });
 
     try {
-      await controller.reloadCurrentUser();
+      debugPrint('CHECK EMAIL: START');
 
-      final user = controller.currentUser;
+      try {
+        await controller.reloadCurrentUser();
 
-      if (user?.emailVerified ?? false) {
-        if (!mounted) return;
+        final currentEmail = controller.currentUser?.email
+            ?.trim()
+            .toLowerCase();
 
-        Navigator.of(context).pop();
+        debugPrint('CHECK EMAIL: RELOAD OK');
 
-        await controller.logout();
+        debugPrint('CURRENT FIREBASE EMAIL: $currentEmail');
 
-        if (!mounted) return;
+        debugPrint('PENDING NEW EMAIL: $pendingEmail');
 
-        context.go('/');
+        if (currentEmail != pendingEmail) {
+          if (!mounted) return;
 
-        return;
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(content: Text(l10n.authVerifyEmailNotVerified)),
+            );
+
+          return;
+        }
+      } on FirebaseAuthException catch (error) {
+        debugPrint('CHECK EMAIL: RELOAD ERROR: ${error.code}');
+
+        if (error.code != 'user-token-expired') {
+          rethrow;
+        }
+
+        debugPrint('CHECK EMAIL: TOKEN EXPIRED - RELOGIN');
+
+        await controller.login(email: pendingEmail, password: pendingPassword);
+
+        debugPrint('CHECK EMAIL: RELOGIN OK');
       }
+
+      final authenticatedEmail = controller.currentUser?.email
+          ?.trim()
+          .toLowerCase();
+
+      if (authenticatedEmail != pendingEmail) {
+        throw FirebaseAuthException(code: 'email-change-not-applied');
+      }
+
+      debugPrint('CHECK EMAIL: AUTH EMAIL CONFIRMED');
+
+      await controller.updateFirestoreEmail(email: pendingEmail);
+
+      debugPrint('CHECK EMAIL: FIRESTORE UPDATED');
+
+      _clearPendingEmailChange();
 
       if (!mounted) return;
 
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(content: Text(l10n.authVerifyEmailNotVerified)),
-        );
+      Navigator.of(context).pop();
+
+      await controller.logout();
+
+      if (!mounted) return;
+
+      context.go('/');
     } on FirebaseAuthException catch (error) {
+      debugPrint('CHECK EMAIL ERROR: ${error.code}');
+
       if (!mounted) return;
 
       ScaffoldMessenger.of(context)
@@ -198,6 +266,14 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
         ..showSnackBar(
           SnackBar(content: Text(_firebaseErrorMessage(error, l10n))),
         );
+    } catch (error) {
+      debugPrint('CHECK EMAIL GENERAL ERROR: $error');
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.accountEmailErrorGeneric)));
     } finally {
       if (mounted) {
         setState(() {
@@ -239,6 +315,11 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
         });
       }
     }
+  }
+
+  void _clearPendingEmailChange() {
+    _pendingNewEmail = null;
+    _pendingPassword = null;
   }
 
   String _firebaseErrorMessage(
