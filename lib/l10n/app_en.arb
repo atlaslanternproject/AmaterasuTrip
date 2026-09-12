@@ -139,5 +139,34 @@
   "accountLogoutTitle": "Log out of Amaterasu Trip?",
   "accountLogoutDescription": "Your session will be closed on this device.",
   "accountLogoutStay": "Stay",
-  "accountLogoutConfirm": "Log out"
+  "accountLogoutConfirm": "Log out",
+  "accountPasswordChangeDescription": "Change the password associated with your account",
+  "accountPasswordRecoverSubtitle": "Send an email to reset your password",
+  "accountPasswordCurrent": "Current password",
+  "accountPasswordNew": "New password",
+  "accountPasswordConfirmNew": "Confirm new password",
+  "accountPasswordConfirmChange": "Change password",
+  "accountPasswordChanging": "Changing...",
+  "accountPasswordChanged": "Password changed successfully.",
+  "accountPasswordSendReset": "Send email",
+  "accountPasswordRecoverDescription": "We'll send a password reset email to {email}.",
+  "@accountPasswordRecoverDescription": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "accountPasswordResetSent": "Password recovery email sent. Check your inbox and also your Spam or Junk folder.",
+  "accountPasswordManagedByProvider": "This account does not use an Amaterasu Trip password. Your password is managed by the provider you used to sign in.",
+  "accountPasswordErrorEmptyFields": "Please fill in all fields.",
+  "accountPasswordErrorWeak": "The new password must be at least 6 characters long.",
+  "accountPasswordErrorMismatch": "The new passwords do not match.",
+  "accountPasswordErrorSamePassword": "The new password must be different from your current password.",
+  "accountPasswordErrorWrongCurrent": "The current password is incorrect.",
+  "accountPasswordErrorRecentLogin": "For security reasons, please sign in again and try again.",
+  "accountPasswordErrorTooManyRequests": "Too many requests have been made. Please try again later.",
+  "accountPasswordErrorUserNotFound": "The account could not be found.",
+  "accountPasswordErrorNoEmail": "No email address is available for this account.",
+  "accountPasswordErrorGeneric": "The operation could not be completed."
 }

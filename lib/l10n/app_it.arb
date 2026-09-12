@@ -139,5 +139,34 @@
   "accountLogoutTitle": "Uscire da Amaterasu Trip?",
   "accountLogoutDescription": "La sessione verrà chiusa su questo dispositivo.",
   "accountLogoutStay": "Resta",
-  "accountLogoutConfirm": "Esci"
+  "accountLogoutConfirm": "Esci",
+  "accountPasswordChangeDescription": "Modifica la password associata al tuo account",
+  "accountPasswordRecoverSubtitle": "Invia un'email per reimpostare la password",
+  "accountPasswordCurrent": "Password attuale",
+  "accountPasswordNew": "Nuova password",
+  "accountPasswordConfirmNew": "Conferma nuova password",
+  "accountPasswordConfirmChange": "Cambia password",
+  "accountPasswordChanging": "Modifica...",
+  "accountPasswordChanged": "Password modificata correttamente.",
+  "accountPasswordSendReset": "Invia email",
+  "accountPasswordRecoverDescription": "Invieremo un'email per reimpostare la password a {email}.",
+  "@accountPasswordRecoverDescription": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "accountPasswordResetSent": "Email per il recupero password inviata. Controlla la tua casella email e anche la cartella Spam o Posta indesiderata.",
+  "accountPasswordManagedByProvider": "Questo account non utilizza una password Amaterasu Trip. La password è gestita dal provider con cui hai effettuato l'accesso.",
+  "accountPasswordErrorEmptyFields": "Compila tutti i campi.",
+  "accountPasswordErrorWeak": "La nuova password deve contenere almeno 6 caratteri.",
+  "accountPasswordErrorMismatch": "Le nuove password non coincidono.",
+  "accountPasswordErrorSamePassword": "La nuova password deve essere diversa da quella attuale.",
+  "accountPasswordErrorWrongCurrent": "La password attuale non è corretta.",
+  "accountPasswordErrorRecentLogin": "Per motivi di sicurezza, effettua nuovamente l'accesso e riprova.",
+  "accountPasswordErrorTooManyRequests": "Sono state effettuate troppe richieste. Riprova più tardi.",
+  "accountPasswordErrorUserNotFound": "Non è stato possibile trovare l'account.",
+  "accountPasswordErrorNoEmail": "Non è disponibile un indirizzo email per questo account.",
+  "accountPasswordErrorGeneric": "Non è stato possibile completare l'operazione."
 }

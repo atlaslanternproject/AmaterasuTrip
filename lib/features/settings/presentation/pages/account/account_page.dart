@@ -1,19 +1,37 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_email_page.dart';
+import 'package:amaterasutrip/features/settings/presentation/pages/account/account_password_page.dart';
+import 'package:amaterasutrip/features/settings/providers/account_provider_access.dart';
+
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
+
   @override
   State<AccountPage> createState() => _AccountPageState();
 }
+
 class _AccountPageState extends State<AccountPage> {
   bool _emailExpanded = false;
+  bool _passwordExpanded = false;
+
   static const Color _backgroundColor = Color(0xFF100C0A);
   static const Color _titleColor = Color(0xFFF2E7D5);
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final user = FirebaseAuth.instance.currentUser;
+
+    final canManageEmail = AccountProviderAccess.isEmailManagementEnabled(user);
+
+    final canManagePassword = AccountProviderAccess.isPasswordManagementEnabled(
+      user,
+    );
+
     return Scaffold(
       backgroundColor: _backgroundColor,
       appBar: AppBar(
@@ -35,22 +53,36 @@ class _AccountPageState extends State<AccountPage> {
             icon: Icons.email_outlined,
             title: l10n.accountEmail,
             subtitle: l10n.accountEmailSubtitle,
-            isExpanded: _emailExpanded,
+            enabled: canManageEmail,
+            isExpanded: canManageEmail && _emailExpanded,
             onTap: () {
+              if (!canManageEmail) {
+                return;
+              }
+
               setState(() {
                 _emailExpanded = !_emailExpanded;
               });
             },
-            children: const [
-              AccountEmailPage(),
-            ],
+            children: const [AccountEmailPage()],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
             icon: Icons.password_outlined,
             title: l10n.accountPassword,
             subtitle: l10n.accountPasswordSubtitle,
-            onTap: () {},
+            enabled: canManagePassword,
+            isExpanded: canManagePassword && _passwordExpanded,
+            onTap: () {
+              if (!canManagePassword) {
+                return;
+              }
+
+              setState(() {
+                _passwordExpanded = !_passwordExpanded;
+              });
+            },
+            children: const [AccountPasswordPage()],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(

@@ -419,4 +419,72 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get accountLogoutConfirm => 'Esci';
+
+  @override
+  String get accountPasswordChangeDescription => 'Modifica la password associata al tuo account';
+
+  @override
+  String get accountPasswordRecoverSubtitle => 'Invia un\'email per reimpostare la password';
+
+  @override
+  String get accountPasswordCurrent => 'Password attuale';
+
+  @override
+  String get accountPasswordNew => 'Nuova password';
+
+  @override
+  String get accountPasswordConfirmNew => 'Conferma nuova password';
+
+  @override
+  String get accountPasswordConfirmChange => 'Cambia password';
+
+  @override
+  String get accountPasswordChanging => 'Modifica...';
+
+  @override
+  String get accountPasswordChanged => 'Password modificata correttamente.';
+
+  @override
+  String get accountPasswordSendReset => 'Invia email';
+
+  @override
+  String accountPasswordRecoverDescription(String email) {
+    return 'Invieremo un\'email per reimpostare la password a $email.';
+  }
+
+  @override
+  String get accountPasswordResetSent => 'Email per il recupero password inviata. Controlla la tua casella email e anche la cartella Spam o Posta indesiderata.';
+
+  @override
+  String get accountPasswordManagedByProvider => 'Questo account non utilizza una password Amaterasu Trip. La password è gestita dal provider con cui hai effettuato l\'accesso.';
+
+  @override
+  String get accountPasswordErrorEmptyFields => 'Compila tutti i campi.';
+
+  @override
+  String get accountPasswordErrorWeak => 'La nuova password deve contenere almeno 6 caratteri.';
+
+  @override
+  String get accountPasswordErrorMismatch => 'Le nuove password non coincidono.';
+
+  @override
+  String get accountPasswordErrorSamePassword => 'La nuova password deve essere diversa da quella attuale.';
+
+  @override
+  String get accountPasswordErrorWrongCurrent => 'La password attuale non è corretta.';
+
+  @override
+  String get accountPasswordErrorRecentLogin => 'Per motivi di sicurezza, effettua nuovamente l\'accesso e riprova.';
+
+  @override
+  String get accountPasswordErrorTooManyRequests => 'Sono state effettuate troppe richieste. Riprova più tardi.';
+
+  @override
+  String get accountPasswordErrorUserNotFound => 'Non è stato possibile trovare l\'account.';
+
+  @override
+  String get accountPasswordErrorNoEmail => 'Non è disponibile un indirizzo email per questo account.';
+
+  @override
+  String get accountPasswordErrorGeneric => 'Non è stato possibile completare l\'operazione.';
 }

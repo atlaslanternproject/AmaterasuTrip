@@ -898,6 +898,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log out'**
   String get accountLogoutConfirm;
+
+  /// No description provided for @accountPasswordChangeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Change the password associated with your account'**
+  String get accountPasswordChangeDescription;
+
+  /// No description provided for @accountPasswordRecoverSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send an email to reset your password'**
+  String get accountPasswordRecoverSubtitle;
+
+  /// No description provided for @accountPasswordCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get accountPasswordCurrent;
+
+  /// No description provided for @accountPasswordNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get accountPasswordNew;
+
+  /// No description provided for @accountPasswordConfirmNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm new password'**
+  String get accountPasswordConfirmNew;
+
+  /// No description provided for @accountPasswordConfirmChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get accountPasswordConfirmChange;
+
+  /// No description provided for @accountPasswordChanging.
+  ///
+  /// In en, this message translates to:
+  /// **'Changing...'**
+  String get accountPasswordChanging;
+
+  /// No description provided for @accountPasswordChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed successfully.'**
+  String get accountPasswordChanged;
+
+  /// No description provided for @accountPasswordSendReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Send email'**
+  String get accountPasswordSendReset;
+
+  /// No description provided for @accountPasswordRecoverDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll send a password reset email to {email}.'**
+  String accountPasswordRecoverDescription(String email);
+
+  /// No description provided for @accountPasswordResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Password recovery email sent. Check your inbox and also your Spam or Junk folder.'**
+  String get accountPasswordResetSent;
+
+  /// No description provided for @accountPasswordManagedByProvider.
+  ///
+  /// In en, this message translates to:
+  /// **'This account does not use an Amaterasu Trip password. Your password is managed by the provider you used to sign in.'**
+  String get accountPasswordManagedByProvider;
+
+  /// No description provided for @accountPasswordErrorEmptyFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill in all fields.'**
+  String get accountPasswordErrorEmptyFields;
+
+  /// No description provided for @accountPasswordErrorWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'The new password must be at least 6 characters long.'**
+  String get accountPasswordErrorWeak;
+
+  /// No description provided for @accountPasswordErrorMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The new passwords do not match.'**
+  String get accountPasswordErrorMismatch;
+
+  /// No description provided for @accountPasswordErrorSamePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The new password must be different from your current password.'**
+  String get accountPasswordErrorSamePassword;
+
+  /// No description provided for @accountPasswordErrorWrongCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'The current password is incorrect.'**
+  String get accountPasswordErrorWrongCurrent;
+
+  /// No description provided for @accountPasswordErrorRecentLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'For security reasons, please sign in again and try again.'**
+  String get accountPasswordErrorRecentLogin;
+
+  /// No description provided for @accountPasswordErrorTooManyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many requests have been made. Please try again later.'**
+  String get accountPasswordErrorTooManyRequests;
+
+  /// No description provided for @accountPasswordErrorUserNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'The account could not be found.'**
+  String get accountPasswordErrorUserNotFound;
+
+  /// No description provided for @accountPasswordErrorNoEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'No email address is available for this account.'**
+  String get accountPasswordErrorNoEmail;
+
+  /// No description provided for @accountPasswordErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'The operation could not be completed.'**
+  String get accountPasswordErrorGeneric;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
