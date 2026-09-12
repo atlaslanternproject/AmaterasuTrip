@@ -610,6 +610,258 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm'**
   String get confirm;
+
+  /// No description provided for @accountEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get accountEmail;
+
+  /// No description provided for @accountEmailSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your email address'**
+  String get accountEmailSubtitle;
+
+  /// No description provided for @accountEmailCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address'**
+  String get accountEmailCurrent;
+
+  /// No description provided for @accountEmailVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Email verified'**
+  String get accountEmailVerified;
+
+  /// No description provided for @accountEmailNotVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Email not verified'**
+  String get accountEmailNotVerified;
+
+  /// No description provided for @accountEmailVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify email'**
+  String get accountEmailVerify;
+
+  /// No description provided for @accountEmailResendVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend verification email'**
+  String get accountEmailResendVerification;
+
+  /// No description provided for @accountEmailChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change email'**
+  String get accountEmailChange;
+
+  /// No description provided for @accountEmailNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New email address'**
+  String get accountEmailNew;
+
+  /// No description provided for @accountEmailConfirmChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm email change'**
+  String get accountEmailConfirmChange;
+
+  /// No description provided for @accountPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get accountPassword;
+
+  /// No description provided for @accountPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your password'**
+  String get accountPasswordSubtitle;
+
+  /// No description provided for @accountPasswordChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get accountPasswordChange;
+
+  /// No description provided for @accountPasswordRecover.
+  ///
+  /// In en, this message translates to:
+  /// **'Recover password'**
+  String get accountPasswordRecover;
+
+  /// No description provided for @accountLinkedAccounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked accounts'**
+  String get accountLinkedAccounts;
+
+  /// No description provided for @accountLinkedAccountsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your linked accounts'**
+  String get accountLinkedAccountsSubtitle;
+
+  /// No description provided for @accountLinkedGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Google'**
+  String get accountLinkedGoogle;
+
+  /// No description provided for @accountLinkedOtherProviders.
+  ///
+  /// In en, this message translates to:
+  /// **'Other providers'**
+  String get accountLinkedOtherProviders;
+
+  /// No description provided for @accountLinkedConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get accountLinkedConnected;
+
+  /// No description provided for @accountLinkedNotConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not connected'**
+  String get accountLinkedNotConnected;
+
+  /// No description provided for @accountSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Session'**
+  String get accountSession;
+
+  /// No description provided for @accountSessionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage access to your account'**
+  String get accountSessionSubtitle;
+
+  /// No description provided for @accountSessionActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active sessions'**
+  String get accountSessionActive;
+
+  /// No description provided for @accountSessionSignOutAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out of all devices'**
+  String get accountSessionSignOutAll;
+
+  /// No description provided for @accountDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get accountDelete;
+
+  /// No description provided for @accountDeleteDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting your account is permanent and will result in the loss of associated data.'**
+  String get accountDeleteDescription;
+
+  /// No description provided for @accountDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm account deletion'**
+  String get accountDeleteConfirm;
+
+  /// No description provided for @accountLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get accountLogout;
+
+  /// No description provided for @accountEmailCurrentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get accountEmailCurrentPassword;
+
+  /// No description provided for @accountEmailVerificationSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification email sent. Also check your Spam or Junk folder.'**
+  String get accountEmailVerificationSent;
+
+  /// No description provided for @accountEmailChangeVerificationSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent a verification email to the new address. Also check your Spam or Junk folder.'**
+  String get accountEmailChangeVerificationSent;
+
+  /// No description provided for @accountEmailVerifiedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your email address is verified.'**
+  String get accountEmailVerifiedDescription;
+
+  /// No description provided for @accountEmailChangeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Change the email address associated with your account.'**
+  String get accountEmailChangeDescription;
+
+  /// No description provided for @accountEmailUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address unavailable'**
+  String get accountEmailUnavailable;
+
+  /// No description provided for @accountEmailErrorInvalidPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The current password is incorrect.'**
+  String get accountEmailErrorInvalidPassword;
+
+  /// No description provided for @accountEmailErrorAlreadyInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'This email address is already associated with an account.'**
+  String get accountEmailErrorAlreadyInUse;
+
+  /// No description provided for @accountEmailErrorInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email address.'**
+  String get accountEmailErrorInvalidEmail;
+
+  /// No description provided for @accountEmailErrorRecentLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'For security reasons, please sign in again and try again.'**
+  String get accountEmailErrorRecentLogin;
+
+  /// No description provided for @accountEmailErrorTooManyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many requests have been made. Please try again later.'**
+  String get accountEmailErrorTooManyRequests;
+
+  /// No description provided for @accountEmailErrorUserNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'The account could not be found.'**
+  String get accountEmailErrorUserNotFound;
+
+  /// No description provided for @accountEmailErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'The operation could not be completed.'**
+  String get accountEmailErrorGeneric;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

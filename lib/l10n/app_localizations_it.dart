@@ -275,4 +275,130 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get confirm => 'Conferma';
+
+  @override
+  String get accountEmail => 'Email';
+
+  @override
+  String get accountEmailSubtitle => 'Gestisci il tuo indirizzo email';
+
+  @override
+  String get accountEmailCurrent => 'Indirizzo email';
+
+  @override
+  String get accountEmailVerified => 'Email verificata';
+
+  @override
+  String get accountEmailNotVerified => 'Email non verificata';
+
+  @override
+  String get accountEmailVerify => 'Verifica email';
+
+  @override
+  String get accountEmailResendVerification => 'Reinvia email di verifica';
+
+  @override
+  String get accountEmailChange => 'Modifica email';
+
+  @override
+  String get accountEmailNew => 'Nuovo indirizzo email';
+
+  @override
+  String get accountEmailConfirmChange => 'Conferma modifica email';
+
+  @override
+  String get accountPassword => 'Password';
+
+  @override
+  String get accountPasswordSubtitle => 'Gestisci la tua password';
+
+  @override
+  String get accountPasswordChange => 'Cambia password';
+
+  @override
+  String get accountPasswordRecover => 'Recupera password';
+
+  @override
+  String get accountLinkedAccounts => 'Accessi collegati';
+
+  @override
+  String get accountLinkedAccountsSubtitle => 'Gestisci gli account collegati';
+
+  @override
+  String get accountLinkedGoogle => 'Google';
+
+  @override
+  String get accountLinkedOtherProviders => 'Altri provider';
+
+  @override
+  String get accountLinkedConnected => 'Collegato';
+
+  @override
+  String get accountLinkedNotConnected => 'Non collegato';
+
+  @override
+  String get accountSession => 'Sessione';
+
+  @override
+  String get accountSessionSubtitle => 'Gestisci gli accessi al tuo account';
+
+  @override
+  String get accountSessionActive => 'Sessioni attive';
+
+  @override
+  String get accountSessionSignOutAll => 'Disconnetti da tutti i dispositivi';
+
+  @override
+  String get accountDelete => 'Elimina account';
+
+  @override
+  String get accountDeleteDescription => 'L\'eliminazione dell\'account è definitiva e comporta la perdita dei dati associati.';
+
+  @override
+  String get accountDeleteConfirm => 'Conferma eliminazione account';
+
+  @override
+  String get accountLogout => 'Esci';
+
+  @override
+  String get accountEmailCurrentPassword => 'Password attuale';
+
+  @override
+  String get accountEmailVerificationSent => 'Email di verifica inviata. Controlla anche la cartella Spam o Posta indesiderata.';
+
+  @override
+  String get accountEmailChangeVerificationSent => 'Abbiamo inviato un\'email di verifica al nuovo indirizzo. Controlla anche la cartella Spam o Posta indesiderata.';
+
+  @override
+  String get accountEmailVerifiedDescription => 'Il tuo indirizzo email è verificato.';
+
+  @override
+  String get accountEmailChangeDescription => 'Modifica l\'indirizzo email associato al tuo account.';
+
+  @override
+  String get accountEmailUnavailable => 'Indirizzo email non disponibile';
+
+  @override
+  String get accountEmailErrorInvalidPassword => 'La password attuale non è corretta.';
+
+  @override
+  String get accountEmailErrorAlreadyInUse => 'Questo indirizzo email è già associato a un account.';
+
+  @override
+  String get accountEmailErrorInvalidEmail => 'Inserisci un indirizzo email valido.';
+
+  @override
+  String get accountEmailErrorRecentLogin => 'Per motivi di sicurezza, effettua nuovamente l\'accesso e riprova.';
+
+  @override
+  String get accountEmailErrorTooManyRequests => 'Sono state effettuate troppe richieste. Riprova più tardi.';
+
+  @override
+  String get accountEmailErrorUserNotFound => 'Non è stato possibile trovare l\'account.';
+
+  @override
+  String get accountEmailErrorGeneric => 'Non è stato possibile completare l\'operazione.';
+
+  @override
+  String get cancel => 'Annulla';
 }

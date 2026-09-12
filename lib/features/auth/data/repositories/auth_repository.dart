@@ -27,24 +27,62 @@ class AuthRepository {
   }
   Future<UserCredential?> signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
-    // Forza sempre la scelta account Google
-    // (utile anche se un account Ã¨ giÃ  loggato)
     await googleSignIn.signOut();
     final GoogleSignInAccount? googleUser =
         await googleSignIn.signIn();
-    // Utente chiude il popup
     if (googleUser == null) {
       return null;
     }
     final GoogleSignInAuthentication googleAuth =
         await googleUser.authentication;
-    final credential =
-        GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
     return await _firebaseAuth.signInWithCredential(
       credential,
+    );
+  }
+  Future<void> sendEmailVerification() async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) {
+      throw FirebaseAuthException(
+        code: 'user-not-found',
+      );
+    }
+    await user.sendEmailVerification();
+  }
+  Future<void> reloadCurrentUser() async {
+    await _firebaseAuth.currentUser?.reload();
+  }
+  Future<void> reauthenticateWithPassword({
+    required String password,
+  }) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null || user.email == null) {
+      throw FirebaseAuthException(
+        code: 'user-not-found',
+      );
+    }
+    final credential = EmailAuthProvider.credential(
+      email: user.email!,
+      password: password,
+    );
+    await user.reauthenticateWithCredential(
+      credential,
+    );
+  }
+  Future<void> verifyBeforeUpdateEmail({
+    required String newEmail,
+  }) async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) {
+      throw FirebaseAuthException(
+        code: 'user-not-found',
+      );
+    }
+    await user.verifyBeforeUpdateEmail(
+      newEmail,
     );
   }
   Future<void> signOut() async {
