@@ -862,6 +862,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @accountEmailChangeLogoutWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'After changing your email address, you will be signed out for security reasons. You will need to sign in again with your new email address.'**
+  String get accountEmailChangeLogoutWarning;
+
+  /// No description provided for @accountEmailChangeContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get accountEmailChangeContinue;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

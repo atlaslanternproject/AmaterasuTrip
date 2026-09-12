@@ -401,4 +401,10 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get cancel => 'Annulla';
+
+  @override
+  String get accountEmailChangeLogoutWarning => 'Dopo aver modificato l\'indirizzo email, verrai disconnesso per motivi di sicurezza. Dovrai effettuare nuovamente l\'accesso con il nuovo indirizzo email.';
+
+  @override
+  String get accountEmailChangeContinue => 'Continua';
 }

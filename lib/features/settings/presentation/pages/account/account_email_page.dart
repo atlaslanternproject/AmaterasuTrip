@@ -84,6 +84,15 @@ class _AccountEmailPageState
   Future<void> _showChangeEmailDialog() async {
     if (_loading) return;
     final l10n = AppLocalizations.of(context)!;
+    final confirmed =
+        await showDialog<bool>(
+      context: context,
+      barrierDismissible: true,
+      builder: (_) => _ChangeEmailWarningDialog(
+        l10n: l10n,
+      ),
+    );
+    if (!mounted || confirmed != true) return;
     final result =
         await showDialog<_ChangeEmailResult>(
       context: context,
@@ -127,6 +136,13 @@ class _AccountEmailPageState
             ),
           ),
         );
+      await Future<void>.delayed(
+        const Duration(milliseconds: 1200),
+      );
+      if (!mounted) return;
+      await ref
+          .read(authControllerProvider)
+          .logout();
     } on FirebaseAuthException catch (error) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)
@@ -215,6 +231,41 @@ class _AccountEmailPageState
     );
   }
 }
+class _ChangeEmailWarningDialog extends StatelessWidget {
+  const _ChangeEmailWarningDialog({
+    required this.l10n,
+  });
+  final AppLocalizations l10n;
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(
+        l10n.accountEmailChange,
+      ),
+      content: Text(
+        l10n.accountEmailChangeLogoutWarning,
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(false);
+          },
+          child: Text(
+            l10n.cancel,
+          ),
+        ),
+        FilledButton(
+          onPressed: () {
+            Navigator.of(context).pop(true);
+          },
+          child: Text(
+            l10n.accountEmailChangeContinue,
+          ),
+        ),
+      ],
+    );
+  }
+}
 class _ChangeEmailResult {
   const _ChangeEmailResult({
     required this.password,
@@ -256,6 +307,7 @@ class _ChangeEmailDialogState
   @override
   Widget build(BuildContext context) {
     final l10n = widget.l10n;
+
     return AlertDialog(
       title: Text(
         l10n.accountEmailChange,
@@ -267,7 +319,8 @@ class _ChangeEmailDialogState
             controller: _passwordController,
             obscureText: _obscurePassword,
             autofocus: true,
-            textInputAction: TextInputAction.next,
+            textInputAction:
+                TextInputAction.next,
             decoration: InputDecoration(
               labelText:
                   l10n.accountEmailCurrentPassword,
@@ -281,8 +334,7 @@ class _ChangeEmailDialogState
                 icon: Icon(
                   _obscurePassword
                       ? Icons.visibility_outlined
-                      : Icons
-                          .visibility_off_outlined,
+                      : Icons.visibility_off_outlined,
                 ),
               ),
             ),
@@ -292,7 +344,8 @@ class _ChangeEmailDialogState
             controller: _emailController,
             keyboardType:
                 TextInputType.emailAddress,
-            textInputAction: TextInputAction.done,
+            textInputAction:
+                TextInputAction.done,
             autocorrect: false,
             decoration: InputDecoration(
               labelText:
@@ -358,7 +411,8 @@ class _AccountSubItem extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius:
+            BorderRadius.circular(12),
         child: Ink(
           decoration: BoxDecoration(
             color: _sectionColor,

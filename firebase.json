@@ -1,1 +1,43 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"amaterasutrip","appId":"1:189662926755:android:e011004f5976e7b000ac16","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"amaterasutrip","configurations":{"android":"1:189662926755:android:e011004f5976e7b000ac16","ios":"1:189662926755:ios:aeee6644bc25f4f500ac16","macos":"1:189662926755:ios:aeee6644bc25f4f500ac16","web":"1:189662926755:web:e323ea20846118c900ac16","windows":"1:189662926755:web:adc6438ea41d8a1300ac16"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "amaterasutrip",
+          "appId": "1:189662926755:android:e011004f5976e7b000ac16",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "amaterasutrip",
+          "configurations": {
+            "android": "1:189662926755:android:e011004f5976e7b000ac16",
+            "ios": "1:189662926755:ios:aeee6644bc25f4f500ac16",
+            "macos": "1:189662926755:ios:aeee6644bc25f4f500ac16",
+            "web": "1:189662926755:web:e323ea20846118c900ac16",
+            "windows": "1:189662926755:web:adc6438ea41d8a1300ac16"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "disallowLegacyRuntimeConfig": true,
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+        "npm --prefix \"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ]
+}

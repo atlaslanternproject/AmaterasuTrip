@@ -1,12 +1,18 @@
-﻿import 'package:firebase_auth/firebase_auth.dart';
+﻿import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
 class AuthRepository {
   final FirebaseAuth _firebaseAuth;
+
   AuthRepository(this._firebaseAuth);
+
   Stream<User?> get authStateChanges =>
       _firebaseAuth.authStateChanges();
+
   User? get currentUser =>
       _firebaseAuth.currentUser;
+
   Future<UserCredential> signInWithEmail({
     required String email,
     required String password,
@@ -16,6 +22,7 @@ class AuthRepository {
       password: password,
     );
   }
+
   Future<UserCredential> registerWithEmail({
     required String email,
     required String password,
@@ -25,65 +32,91 @@ class AuthRepository {
       password: password,
     );
   }
+
   Future<UserCredential?> signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
+
     final GoogleSignInAccount? googleUser =
         await googleSignIn.signIn();
+
     if (googleUser == null) {
       return null;
     }
+
     final GoogleSignInAuthentication googleAuth =
         await googleUser.authentication;
+
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
+
     return await _firebaseAuth.signInWithCredential(
       credential,
     );
   }
+
   Future<void> sendEmailVerification() async {
     final user = _firebaseAuth.currentUser;
+
     if (user == null) {
       throw FirebaseAuthException(
         code: 'user-not-found',
       );
     }
+
     await user.sendEmailVerification();
   }
+
   Future<void> reloadCurrentUser() async {
     await _firebaseAuth.currentUser?.reload();
   }
+
   Future<void> reauthenticateWithPassword({
     required String password,
   }) async {
     final user = _firebaseAuth.currentUser;
+
     if (user == null || user.email == null) {
       throw FirebaseAuthException(
         code: 'user-not-found',
       );
     }
+
     final credential = EmailAuthProvider.credential(
       email: user.email!,
       password: password,
     );
+
     await user.reauthenticateWithCredential(
       credential,
     );
   }
-  Future<void> verifyBeforeUpdateEmail({
+
+  Future<void> changeEmail({
     required String newEmail,
   }) async {
-    final user = _firebaseAuth.currentUser;
-    if (user == null) {
+    final functions = FirebaseFunctions.instance;
+
+    final callable =
+        functions.httpsCallable('changeEmail');
+
+    try {
+      await callable.call(<String, dynamic>{
+        'newEmail': newEmail.trim().toLowerCase(),
+      });
+
+      await _firebaseAuth.currentUser?.reload();
+
+      await _firebaseAuth.currentUser
+          ?.sendEmailVerification();
+    } on FirebaseFunctionsException catch (error) {
       throw FirebaseAuthException(
-        code: 'user-not-found',
+        code: error.code,
+        message: error.message,
       );
     }
-    await user.verifyBeforeUpdateEmail(
-      newEmail,
-    );
   }
   Future<void> signOut() async {
     await GoogleSignIn().signOut();

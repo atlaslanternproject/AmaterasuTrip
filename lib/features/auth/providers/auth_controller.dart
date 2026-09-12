@@ -66,7 +66,9 @@ class AuthController {
       email: email,
       password: password,
     );
-    await _userRepository.createUsername(username: username);
+    await _userRepository.createUsername(
+      username: username,
+    );
     await credential.user?.sendEmailVerification();
     return credential;
   }
@@ -83,7 +85,8 @@ class AuthController {
     await _repository.reauthenticateWithPassword(
       password: currentPassword,
     );
-    await _repository.verifyBeforeUpdateEmail(
+
+    await _repository.changeEmail(
       newEmail: newEmail,
     );
   }

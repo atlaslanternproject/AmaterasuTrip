@@ -133,5 +133,7 @@
   "accountEmailErrorTooManyRequests": "Too many requests have been made. Please try again later.",
   "accountEmailErrorUserNotFound": "The account could not be found.",
   "accountEmailErrorGeneric": "The operation could not be completed.",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "accountEmailChangeLogoutWarning": "After changing your email address, you will be signed out for security reasons. You will need to sign in again with your new email address.",
+  "accountEmailChangeContinue": "Continue"
 }

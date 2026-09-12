@@ -401,4 +401,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get accountEmailChangeLogoutWarning => 'After changing your email address, you will be signed out for security reasons. You will need to sign in again with your new email address.';
+
+  @override
+  String get accountEmailChangeContinue => 'Continue';
 }
