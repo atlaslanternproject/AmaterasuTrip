@@ -1,4 +1,4 @@
-﻿import 'package:amaterasutrip/features/auth/presentation/pages/auth_gate.dart';
+import 'package:amaterasutrip/features/auth/presentation/pages/auth_gate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
@@ -10,13 +10,13 @@ import '../features/trips/presentation/pages/trips_page.dart';
 import '../features/explore/presentation/pages/explore_page.dart';
 import '../features/memories/presentation/pages/memories_page.dart';
 import '../features/settings/presentation/pages/settings_page.dart';
-import '../features/settings/presentation/pages/profile_page.dart';
-import '../features/settings/presentation/pages/language_page.dart';
-import '../features/settings/presentation/pages/notifications_page.dart';
-import '../features/settings/presentation/pages/account_page.dart';
-import '../features/settings/presentation/pages/privacy_page.dart';
-import '../features/settings/presentation/pages/data_sync_page.dart';
-import '../features/settings/presentation/pages/information_page.dart';
+import '../features/settings/presentation/pages/profile/profile_page.dart';
+import '../features/settings/presentation/pages/language/language_page.dart';
+import '../features/settings/presentation/pages/notifications/notifications_page.dart';
+import '../features/settings/presentation/pages/account/account_page.dart';
+import '../features/settings/presentation/pages/privacy/privacy_page.dart';
+import '../features/settings/presentation/pages/data/data_sync_page.dart';
+import '../features/settings/presentation/pages/information/information_page.dart';
 
 
 
