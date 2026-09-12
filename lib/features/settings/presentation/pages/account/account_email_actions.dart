@@ -288,12 +288,24 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
 
     final l10n = AppLocalizations.of(context)!;
 
+    final pendingEmail = _pendingNewEmail;
+    final pendingPassword = _pendingPassword;
+
+    if (pendingEmail == null || pendingPassword == null) {
+      return;
+    }
+
     setState(() {
       _loading = true;
     });
 
     try {
-      await ref.read(authControllerProvider).resendEmailVerification();
+      final controller = ref.read(authControllerProvider);
+
+      await controller.changeEmail(
+        newEmail: pendingEmail,
+        currentPassword: pendingPassword,
+      );
 
       if (!mounted) return;
 
@@ -305,9 +317,7 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
 
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(content: Text(_firebaseErrorMessage(error, l10n))),
-        );
+        ..showSnackBar(SnackBar(content: Text(error.message ?? error.code)));
     } finally {
       if (mounted) {
         setState(() {
