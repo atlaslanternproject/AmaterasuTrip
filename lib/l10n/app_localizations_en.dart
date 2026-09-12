@@ -248,4 +248,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logoutTest => 'Test logout';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsAccountSubtitle => 'Manage your account, password and data';
+
+  @override
+  String get settingsLanguageSubtitle => 'Choose the app language';
+
+  @override
+  String get settingsProfileSubtitle => 'Personalize your profile';
+
+  @override
+  String get settingsNotificationsSubtitle => 'Manage your notifications';
+
+  @override
+  String get settingsPrivacySubtitle => 'Control your privacy';
+
+  @override
+  String get settingsDataSyncSubtitle => 'Manage data and synchronization';
+
+  @override
+  String get settingsInformationSubtitle => 'App version, terms and more';
+
+  @override
+  String get confirm => 'Confirm';
 }

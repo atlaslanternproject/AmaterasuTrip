@@ -82,5 +82,14 @@
   "email": "Email:",
   "noEmail": "Nessuna email",
   "uid": "UID:",
-  "logoutTest": "Logout test"
+  "logoutTest": "Logout test",
+  "settingsTitle": "Impostazioni",
+  "settingsAccountSubtitle": "Gestisci il tuo account, password e dati",
+  "settingsLanguageSubtitle": "Scegli la lingua dell'app",
+  "settingsProfileSubtitle": "Personalizza il tuo profilo",
+  "settingsNotificationsSubtitle": "Gestisci le tue notifiche",
+  "settingsPrivacySubtitle": "Controlla la tua privacy",
+  "settingsDataSyncSubtitle": "Gestisci i dati e la sincronizzazione",
+  "settingsInformationSubtitle": "Versione app, termini e altro",
+  "confirm": "Conferma"
 }

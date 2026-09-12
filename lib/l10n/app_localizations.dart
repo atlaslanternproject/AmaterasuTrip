@@ -556,6 +556,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Test logout'**
   String get logoutTest;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsAccountSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your account, password and data'**
+  String get settingsAccountSubtitle;
+
+  /// No description provided for @settingsLanguageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the app language'**
+  String get settingsLanguageSubtitle;
+
+  /// No description provided for @settingsProfileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalize your profile'**
+  String get settingsProfileSubtitle;
+
+  /// No description provided for @settingsNotificationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your notifications'**
+  String get settingsNotificationsSubtitle;
+
+  /// No description provided for @settingsPrivacySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Control your privacy'**
+  String get settingsPrivacySubtitle;
+
+  /// No description provided for @settingsDataSyncSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage data and synchronization'**
+  String get settingsDataSyncSubtitle;
+
+  /// No description provided for @settingsInformationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'App version, terms and more'**
+  String get settingsInformationSubtitle;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
