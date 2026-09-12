@@ -135,5 +135,9 @@
   "accountEmailErrorGeneric": "Non è stato possibile completare l'operazione.",
   "cancel": "Annulla",
   "accountEmailChangeLogoutWarning": "Dopo aver modificato l'indirizzo email, verrai disconnesso per motivi di sicurezza. Dovrai effettuare nuovamente l'accesso con il nuovo indirizzo email.",
-  "accountEmailChangeContinue": "Continua"
+  "accountEmailChangeContinue": "Continua",
+  "accountLogoutTitle": "Uscire da Amaterasu Trip?",
+  "accountLogoutDescription": "La sessione verrà chiusa su questo dispositivo.",
+  "accountLogoutStay": "Resta",
+  "accountLogoutConfirm": "Esci"
 }

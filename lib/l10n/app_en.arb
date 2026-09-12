@@ -135,5 +135,9 @@
   "accountEmailErrorGeneric": "The operation could not be completed.",
   "cancel": "Cancel",
   "accountEmailChangeLogoutWarning": "After changing your email address, you will be signed out for security reasons. You will need to sign in again with your new email address.",
-  "accountEmailChangeContinue": "Continue"
+  "accountEmailChangeContinue": "Continue",
+  "accountLogoutTitle": "Log out of Amaterasu Trip?",
+  "accountLogoutDescription": "Your session will be closed on this device.",
+  "accountLogoutStay": "Stay",
+  "accountLogoutConfirm": "Log out"
 }

@@ -407,4 +407,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountEmailChangeContinue => 'Continue';
+
+  @override
+  String get accountLogoutTitle => 'Log out of Amaterasu Trip?';
+
+  @override
+  String get accountLogoutDescription => 'Your session will be closed on this device.';
+
+  @override
+  String get accountLogoutStay => 'Stay';
+
+  @override
+  String get accountLogoutConfirm => 'Log out';
 }

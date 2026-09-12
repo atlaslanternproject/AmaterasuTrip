@@ -407,4 +407,16 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get accountEmailChangeContinue => 'Continua';
+
+  @override
+  String get accountLogoutTitle => 'Uscire da Amaterasu Trip?';
+
+  @override
+  String get accountLogoutDescription => 'La sessione verrà chiusa su questo dispositivo.';
+
+  @override
+  String get accountLogoutStay => 'Resta';
+
+  @override
+  String get accountLogoutConfirm => 'Esci';
 }

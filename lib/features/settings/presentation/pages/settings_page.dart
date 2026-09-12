@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
+
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+
 import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
+
+import 'package:amaterasutrip/features/settings/presentation/pages/account/account_logout.dart';
+
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
+
   static const Color _backgroundColor = Color(0xFF100C0A);
+
   static const Color _titleColor = Color(0xFFF2E7D5);
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: _backgroundColor,
       appBar: AppBar(
@@ -88,6 +98,8 @@ class SettingsPage extends StatelessWidget {
               context.push('/settings/information');
             },
           ),
+          const SizedBox(height: 10),
+          const AccountLogoutPage(),
         ],
       ),
     );

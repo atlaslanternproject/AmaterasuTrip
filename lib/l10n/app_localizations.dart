@@ -874,6 +874,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue'**
   String get accountEmailChangeContinue;
+
+  /// No description provided for @accountLogoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out of Amaterasu Trip?'**
+  String get accountLogoutTitle;
+
+  /// No description provided for @accountLogoutDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session will be closed on this device.'**
+  String get accountLogoutDescription;
+
+  /// No description provided for @accountLogoutStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay'**
+  String get accountLogoutStay;
+
+  /// No description provided for @accountLogoutConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get accountLogoutConfirm;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

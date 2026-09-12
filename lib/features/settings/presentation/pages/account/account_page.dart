@@ -10,11 +10,7 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   bool _emailExpanded = false;
   static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _sectionColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
   static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _chevronColor = Color(0xFFB89B7A);
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -77,85 +73,7 @@ class _AccountPageState extends State<AccountPage> {
             subtitle: l10n.accountDeleteDescription,
             onTap: () {},
           ),
-          const SizedBox(height: 24),
-          _AccountActionCard(
-            icon: Icons.logout,
-            title: l10n.accountLogout,
-            onTap: () {},
-          ),
         ],
-      ),
-    );
-  }
-}
-class _AccountActionCard extends StatelessWidget {
-  const _AccountActionCard({
-    required this.icon,
-    required this.title,
-    required this.onTap,
-  });
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
-        child: Ink(
-          decoration: BoxDecoration(
-            color: _AccountPageState._sectionColor,
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: _AccountPageState._borderColor,
-              width: 1,
-            ),
-          ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 15,
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: _AccountPageState._accentColor.withValues(
-                      alpha: 0.75,
-                    ),
-                  ),
-                ),
-                child: Icon(
-                  icon,
-                  color: _AccountPageState._accentColor,
-                  size: 23,
-                ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    color: _AccountPageState._titleColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              const Icon(
-                Icons.chevron_right,
-                color: _AccountPageState._chevronColor,
-                size: 24,
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

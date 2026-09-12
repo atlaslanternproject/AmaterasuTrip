@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/auth_provider.dart';
 import 'auth_page.dart';
+import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
 class AuthGate extends ConsumerStatefulWidget {
   const AuthGate({
@@ -34,6 +35,22 @@ class AuthGate extends ConsumerStatefulWidget {
       },
       data: (user) {
         debugPrint("USER FIREBASE: ${user?.email}");
+        if (user != null && user.email != null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            try {
+              await ref.read(userRepositoryProvider).updateEmail(
+                email: user.email!,
+              );
+              debugPrint(
+                "FIRESTORE EMAIL SYNC: ${user.email}",
+              );
+            } catch (error) {
+              debugPrint(
+                "FIRESTORE EMAIL SYNC ERROR: $error",
+              );
+            }
+          });
+        }
         return FutureBuilder<SharedPreferences>(
           future: SharedPreferences.getInstance(),
           builder: (context, snapshot) {
