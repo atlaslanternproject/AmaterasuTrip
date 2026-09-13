@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "189662926755-4l919tk7ctb9mhg5i4kgt8rr95ahnfag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amaterasutrip",
+            "certificate_hash": "1b3164a800f5c5e7685bfb24dcf556122f17b4a0"
+          }
+        },
+        {
+          "client_id": "189662926755-o98j794c99f1gnh0uv0h8fueg4q9ifhu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amaterasutrip",
+            "certificate_hash": "c60e059dc0cd38f66931a1990aae93c472459519"
+          }
+        },
+        {
           "client_id": "189662926755-vpu4mfao0vmsor1kipj4s4rs2c1dsdc2.apps.googleusercontent.com",
           "client_type": 3
         }
