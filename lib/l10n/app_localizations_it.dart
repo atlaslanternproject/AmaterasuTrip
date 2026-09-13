@@ -487,4 +487,64 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get accountPasswordErrorGeneric => 'Non è stato possibile completare l\'operazione.';
+
+  @override
+  String get accountDeleteIntro => 'Elimina definitivamente il tuo account Amaterasu.';
+
+  @override
+  String get accountDeleteWarning => 'Questa operazione è irreversibile. I dati associati all\'account verranno rimossi e non potranno essere recuperati.';
+
+  @override
+  String get accountDeleteButton => 'Elimina account';
+
+  @override
+  String get accountDeleteDialogTitle => 'Elimina account';
+
+  @override
+  String get accountDeleteDialogIntro => 'Stai per eliminare definitivamente il tuo account Amaterasu.';
+
+  @override
+  String get accountDeleteDialogData => 'Verranno eliminati i dati personali associati al tuo account e verrai rimosso dai viaggi e dai gruppi a cui appartieni.';
+
+  @override
+  String get accountDeleteDialogIrreversible => 'Questa operazione è irreversibile e i dati eliminati non potranno essere recuperati.';
+
+  @override
+  String get accountDeleteDialogConfirmation => 'Ho compreso che l\'eliminazione è definitiva.';
+
+  @override
+  String get accountDeleteLoading => 'Eliminazione account in corso…';
+
+  @override
+  String get accountDeleteCancel => 'Annulla';
+
+  @override
+  String get accountDeleteConfirmButton => 'Elimina definitivamente';
+
+  @override
+  String get accountDeleteReauthenticationTitle => 'Conferma la tua identità';
+
+  @override
+  String get accountDeleteReauthenticationPasswordDescription => 'Per continuare con l\'eliminazione dell\'account, inserisci la password attuale.';
+
+  @override
+  String get accountDeleteReauthenticationPasswordLabel => 'Password attuale';
+
+  @override
+  String get accountDeleteReauthenticationConfirm => 'Conferma';
+
+  @override
+  String get accountDeleteReauthenticationWrongPassword => 'La password inserita non è corretta.';
+
+  @override
+  String get accountDeleteReauthenticationCancelled => 'Verifica dell\'identità annullata.';
+
+  @override
+  String get accountDeleteReauthenticationGoogleMismatch => 'Devi utilizzare lo stesso account Google collegato ad Amaterasu.';
+
+  @override
+  String get accountDeleteReauthenticationFailed => 'Non è stato possibile verificare la tua identità. Riprova.';
+
+  @override
+  String get accountDeleteReauthenticationUnsupported => 'Questo metodo di accesso non è ancora supportato per la verifica dell\'identità.';
 }

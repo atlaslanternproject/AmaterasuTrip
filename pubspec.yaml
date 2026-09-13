@@ -35,6 +35,7 @@ flutter:
     - assets/icons/amaterasu_logo.png
     - assets/icons/discord.png
     - assets/icons/google.png
+    - assets/branding/
 flutter_launcher_icons:
   android: true
   ios: true

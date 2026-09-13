@@ -1030,6 +1030,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The operation could not be completed.'**
   String get accountPasswordErrorGeneric;
+
+  /// No description provided for @accountDeleteIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Permanently delete your Amaterasu account.'**
+  String get accountDeleteIntro;
+
+  /// No description provided for @accountDeleteWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This action is irreversible. The data associated with your account will be removed and cannot be recovered.'**
+  String get accountDeleteWarning;
+
+  /// No description provided for @accountDeleteButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get accountDeleteButton;
+
+  /// No description provided for @accountDeleteDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get accountDeleteDialogTitle;
+
+  /// No description provided for @accountDeleteDialogIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'You are about to permanently delete your Amaterasu account.'**
+  String get accountDeleteDialogIntro;
+
+  /// No description provided for @accountDeleteDialogData.
+  ///
+  /// In en, this message translates to:
+  /// **'The personal data associated with your account will be deleted and you will be removed from the trips and groups you belong to.'**
+  String get accountDeleteDialogData;
+
+  /// No description provided for @accountDeleteDialogIrreversible.
+  ///
+  /// In en, this message translates to:
+  /// **'This action is irreversible and deleted data cannot be recovered.'**
+  String get accountDeleteDialogIrreversible;
+
+  /// No description provided for @accountDeleteDialogConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'I understand that the deletion is permanent.'**
+  String get accountDeleteDialogConfirmation;
+
+  /// No description provided for @accountDeleteLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting account…'**
+  String get accountDeleteLoading;
+
+  /// No description provided for @accountDeleteCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get accountDeleteCancel;
+
+  /// No description provided for @accountDeleteConfirmButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete permanently'**
+  String get accountDeleteConfirmButton;
+
+  /// No description provided for @accountDeleteReauthenticationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your identity'**
+  String get accountDeleteReauthenticationTitle;
+
+  /// No description provided for @accountDeleteReauthenticationPasswordDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'To continue deleting your account, enter your current password.'**
+  String get accountDeleteReauthenticationPasswordDescription;
+
+  /// No description provided for @accountDeleteReauthenticationPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get accountDeleteReauthenticationPasswordLabel;
+
+  /// No description provided for @accountDeleteReauthenticationConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get accountDeleteReauthenticationConfirm;
+
+  /// No description provided for @accountDeleteReauthenticationWrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The password you entered is incorrect.'**
+  String get accountDeleteReauthenticationWrongPassword;
+
+  /// No description provided for @accountDeleteReauthenticationCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity verification was cancelled.'**
+  String get accountDeleteReauthenticationCancelled;
+
+  /// No description provided for @accountDeleteReauthenticationGoogleMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'You must use the same Google account linked to Amaterasu.'**
+  String get accountDeleteReauthenticationGoogleMismatch;
+
+  /// No description provided for @accountDeleteReauthenticationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not verify your identity. Please try again.'**
+  String get accountDeleteReauthenticationFailed;
+
+  /// No description provided for @accountDeleteReauthenticationUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This sign-in method is not yet supported for identity verification.'**
+  String get accountDeleteReauthenticationUnsupported;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

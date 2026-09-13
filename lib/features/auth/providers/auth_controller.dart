@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import '../data/repositories/auth_repository.dart';
 import 'auth_provider.dart';
+
 import 'package:amaterasutrip/features/profile/data/repositories/user_repository.dart';
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
 
@@ -75,6 +77,14 @@ class AuthController {
 
   Future<void> reloadCurrentUser() async {
     await _repository.reloadCurrentUser();
+  }
+
+  Future<void> reauthenticateWithPassword({required String password}) async {
+    await _repository.reauthenticateWithPassword(password: password);
+  }
+
+  Future<void> reauthenticateWithGoogle() async {
+    await _repository.reauthenticateWithGoogle();
   }
 
   Future<void> changeEmail({
