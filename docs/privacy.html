@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Privacy Policy - Amaterasu Trip</title>
+
+  <meta
+    name="description"
+    content="Privacy Policy ufficiale dell'app Amaterasu Trip."
+  />
+
+  <style>
+    :root {
+      --background: #120f0d;
+      --surface: #1a1512;
+      --border: #3a2a20;
+      --text: #f2e7d5;
+      --muted: #b8aaa0;
+      --accent: #d49a52;
+      --accent-soft: rgba(212, 154, 82, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(900px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 24px;
+    }
+
+    .language-selector {
+      display: inline-flex;
+      gap: 8px;
+      padding: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .language-button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.9rem;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .language-button:hover {
+      color: var(--text);
+    }
+
+    .language-button.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .header {
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 12px;
+      max-width: 720px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .notice {
+      background: var(--accent-soft);
+      border-color: rgba(212, 154, 82, 0.35);
+    }
+
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    p + p {
+      margin-top: 12px;
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 24px, 900px);
+        padding-top: 24px;
+      }
+
+      .topbar {
+        justify-content: center;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <div class="topbar">
+      <div class="language-selector">
+        <button
+          id="language-it"
+          class="language-button"
+          type="button"
+          onclick="setLanguage('it')"
+        >
+          Italiano
+        </button>
+
+        <button
+          id="language-en"
+          class="language-button"
+          type="button"
+          onclick="setLanguage('en')"
+        >
+          English
+        </button>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="eyebrow">Amaterasu Trip</div>
+
+      <h1 data-i18n="title"></h1>
+
+      <p
+        class="subtitle"
+        data-i18n="subtitle"
+      ></p>
+    </header>
+
+    <section class="card">
+      <h2 data-i18n="overviewTitle"></h2>
+      <p data-i18n="overviewBody"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="dataTitle"></h2>
+      <p data-i18n="dataBody1"></p>
+      <p data-i18n="dataBody2"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="purposeTitle"></h2>
+      <p data-i18n="purposeBody"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="firebaseTitle"></h2>
+      <p data-i18n="firebaseBody1"></p>
+      <p data-i18n="firebaseBody2"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="googleTitle"></h2>
+      <p data-i18n="googleBody1"></p>
+      <p data-i18n="googleBody2"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="retentionTitle"></h2>
+      <p data-i18n="retentionBody1"></p>
+      <p data-i18n="retentionBody2"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="deletionTitle"></h2>
+      <p data-i18n="deletionBody1"></p>
+      <p data-i18n="deletionBody2"></p>
+      <p data-i18n="deletionBody3"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="securityTitle"></h2>
+      <p data-i18n="securityBody"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="permissionsTitle"></h2>
+      <p data-i18n="permissionsBody1"></p>
+      <p data-i18n="permissionsBody2"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="consentTitle"></h2>
+      <p data-i18n="consentBody1"></p>
+      <p data-i18n="consentBody2"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="exportTitle"></h2>
+      <p data-i18n="exportBody1"></p>
+      <p data-i18n="exportBody2"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="changesTitle"></h2>
+      <p data-i18n="changesBody1"></p>
+      <p data-i18n="changesBody2"></p>
+    </section>
+
+    <section class="card notice">
+      <h2 data-i18n="contactTitle"></h2>
+      <p data-i18n="contactBody"></p>
+    </section>
+
+    <div
+      class="footer"
+      data-i18n="lastUpdated"
+    ></div>
+  </main>
+
+  <script>
+    const translations = {
+      it: {
+        pageTitle: "Privacy Policy - Amaterasu Trip",
+        pageDescription:
+          "Privacy Policy ufficiale dell'app Amaterasu Trip.",
+
+        title: "Privacy Policy",
+        subtitle:
+          "Questa informativa descrive come Amaterasu Trip gestisce i dati personali e le informazioni necessarie al funzionamento dell'applicazione.",
+
+        overviewTitle: "1. Informazioni generali",
+        overviewBody:
+          "Amaterasu Trip è un'applicazione dedicata all'organizzazione e alla gestione dei viaggi. La presente informativa descrive quali dati possono essere trattati durante l'utilizzo dell'app e per quali finalità.",
+
+        dataTitle: "2. Dati trattati",
+        dataBody1:
+          "Amaterasu può trattare dati necessari alla creazione e gestione dell'account, come indirizzo email, identificativo utente, username e metodo di autenticazione.",
+        dataBody2:
+          "Alcune preferenze dell'app, come la lingua e l'opzione di accesso memorizzato, possono essere salvate localmente sul dispositivo.",
+
+        purposeTitle: "3. Finalità del trattamento",
+        purposeBody:
+          "I dati vengono utilizzati esclusivamente per fornire le funzionalità dell'app, autenticare l'utente, mantenere il profilo Amaterasu, permettere la gestione dell'account e garantire il corretto funzionamento dei servizi associati.",
+
+        firebaseTitle: "4. Firebase",
+        firebaseBody1:
+          "Amaterasu utilizza servizi Firebase di Google per funzioni come autenticazione e archiviazione dei dati dell'account.",
+        firebaseBody2:
+          "I dati necessari al funzionamento di tali servizi possono essere trattati attraverso l'infrastruttura Firebase secondo le condizioni e le politiche applicabili di Google.",
+
+        googleTitle: "5. Accesso con Google",
+        googleBody1:
+          "Se scegli di utilizzare Google per accedere ad Amaterasu, Google fornisce all'app le informazioni necessarie per autenticare il tuo account.",
+        googleBody2:
+          "Amaterasu non riceve né conserva la password del tuo account Google.",
+
+        retentionTitle: "6. Conservazione dei dati",
+        retentionBody1:
+          "I dati associati all'account vengono conservati finché l'account Amaterasu rimane attivo o finché sono necessari per fornire i servizi richiesti.",
+        retentionBody2:
+          "Alcune preferenze possono essere conservate localmente sul dispositivo.",
+
+        deletionTitle: "7. Eliminazione dell'account",
+        deletionBody1:
+          "Puoi eliminare definitivamente il tuo account dalle impostazioni di Amaterasu.",
+        deletionBody2:
+          "L'eliminazione rimuove l'account Firebase Authentication e i dati dell'account attualmente associati al profilo Amaterasu.",
+        deletionBody3:
+          "Quando verranno introdotte nuove funzionalità e nuove categorie di dati, questa informativa verrà aggiornata di conseguenza.",
+
+        securityTitle: "8. Sicurezza",
+        securityBody:
+          "Amaterasu adotta misure tecniche appropriate per limitare l'accesso non autorizzato ai dati e utilizza i sistemi di autenticazione e sicurezza messi a disposizione dai servizi Firebase utilizzati dall'app.",
+
+        permissionsTitle: "9. Permessi dell'app",
+        permissionsBody1:
+          "Amaterasu richiede solamente i permessi necessari alle funzionalità che utilizzi.",
+        permissionsBody2:
+          "Permessi aggiuntivi, ad esempio per notifiche, foto, video, documenti o posizione, verranno richiesti esplicitamente solo quando una funzionalità che li necessita sarà disponibile e utilizzata.",
+
+        consentTitle: "10. Consensi opzionali",
+        consentBody1:
+          "Amaterasu non utilizza attualmente consensi per pubblicità personalizzata, marketing o vendita di dati personali.",
+        consentBody2:
+          "Se in futuro verranno introdotti servizi che richiedono un consenso facoltativo, l'utente potrà accettarlo o rifiutarlo separatamente.",
+
+        exportTitle: "11. Esportazione dei dati",
+        exportBody1:
+          "La funzione di esportazione completa dei dati personali sarà disponibile quando saranno implementate le funzionalità di gestione ed esportazione dei dati di viaggio.",
+        exportBody2:
+          "Non viene mostrato alcun comando di esportazione finché la funzione non sarà realmente disponibile.",
+
+        changesTitle: "12. Modifiche alla Privacy Policy",
+        changesBody1:
+          "La presente informativa potrà essere aggiornata quando Amaterasu introdurrà nuove funzionalità, servizi o categorie di dati.",
+        changesBody2:
+          "La versione aggiornata sarà resa disponibile all'interno dell'app e attraverso questa pagina pubblica.",
+
+        contactTitle: "13. Contatti",
+        contactBody:
+          "Per richieste relative alla privacy o al trattamento dei dati puoi contattare il team Amaterasu attraverso i canali di supporto ufficiali indicati nell'app.",
+
+        lastUpdated: "Ultimo aggiornamento: 13 settembre 2026",
+      },
+
+      en: {
+        pageTitle: "Privacy Policy - Amaterasu Trip",
+        pageDescription:
+          "Official Privacy Policy for the Amaterasu Trip app.",
+
+        title: "Privacy Policy",
+        subtitle:
+          "This policy explains how Amaterasu Trip manages personal data and the information required for the app to operate.",
+
+        overviewTitle: "1. General information",
+        overviewBody:
+          "Amaterasu Trip is an application designed to help organise and manage travel. This policy explains which data may be processed while using the app and for what purposes.",
+
+        dataTitle: "2. Data processed",
+        dataBody1:
+          "Amaterasu may process data required to create and manage an account, such as your email address, user identifier, username and authentication method.",
+        dataBody2:
+          "Some app preferences, such as language and remembered sign-in settings, may be stored locally on your device.",
+
+        purposeTitle: "3. Purpose of processing",
+        purposeBody:
+          "Data is used solely to provide the app's features, authenticate users, maintain the Amaterasu profile, allow account management and ensure the correct operation of associated services.",
+
+        firebaseTitle: "4. Firebase",
+        firebaseBody1:
+          "Amaterasu uses Google's Firebase services for features such as authentication and account data storage.",
+        firebaseBody2:
+          "Data required for these services may be processed through Firebase infrastructure in accordance with Google's applicable terms and policies.",
+
+        googleTitle: "5. Sign in with Google",
+        googleBody1:
+          "If you choose to sign in to Amaterasu using Google, Google provides the information required to authenticate your account.",
+        googleBody2:
+          "Amaterasu does not receive or store your Google account password.",
+
+        retentionTitle: "6. Data retention",
+        retentionBody1:
+          "Data associated with your account is retained while your Amaterasu account remains active or for as long as required to provide the requested services.",
+        retentionBody2:
+          "Some preferences may be stored locally on your device.",
+
+        deletionTitle: "7. Account deletion",
+        deletionBody1:
+          "You can permanently delete your account from Amaterasu settings.",
+        deletionBody2:
+          "Deletion removes the Firebase Authentication account and the account data currently associated with your Amaterasu profile.",
+        deletionBody3:
+          "When new features and additional categories of data are introduced, this policy will be updated accordingly.",
+
+        securityTitle: "8. Security",
+        securityBody:
+          "Amaterasu uses appropriate technical measures to limit unauthorised access to data and relies on the authentication and security systems provided by the Firebase services used by the app.",
+
+        permissionsTitle: "9. App permissions",
+        permissionsBody1:
+          "Amaterasu only requests permissions required by the features you choose to use.",
+        permissionsBody2:
+          "Additional permissions, such as access to notifications, photos, videos, documents or location, will only be requested explicitly when a feature requiring them becomes available and is used.",
+
+        consentTitle: "10. Optional consent",
+        consentBody1:
+          "Amaterasu does not currently use consent for personalised advertising, marketing or the sale of personal data.",
+        consentBody2:
+          "If services requiring optional consent are introduced in the future, users will be able to accept or refuse them separately.",
+
+        exportTitle: "11. Data export",
+        exportBody1:
+          "Full personal data export will become available when travel data management and export features are implemented.",
+        exportBody2:
+          "No export control is shown until the feature is genuinely available.",
+
+        changesTitle: "12. Changes to this Privacy Policy",
+        changesBody1:
+          "This policy may be updated when Amaterasu introduces new features, services or categories of data.",
+        changesBody2:
+          "The updated version will be made available within the app and through this public page.",
+
+        contactTitle: "13. Contact",
+        contactBody:
+          "For requests relating to privacy or personal data processing, you can contact the Amaterasu team through the official support channels listed in the app.",
+
+        lastUpdated: "Last updated: 13 September 2026",
+      },
+    };
+
+    function setLanguage(language) {
+      const selectedLanguage =
+        translations[language] ? language : "it";
+
+      const strings = translations[selectedLanguage];
+
+      document.documentElement.lang = selectedLanguage;
+      document.title = strings.pageTitle;
+
+      const description = document.querySelector(
+        'meta[name="description"]'
+      );
+
+      if (description) {
+        description.setAttribute(
+          "content",
+          strings.pageDescription
+        );
+      }
+
+      document.querySelectorAll("[data-i18n]").forEach(
+        (element) => {
+          const key = element.dataset.i18n;
+
+          if (strings[key] !== undefined) {
+            element.textContent = strings[key];
+          }
+        }
+      );
+
+      document
+        .querySelectorAll(".language-button")
+        .forEach((button) => {
+          button.classList.remove("active");
+        });
+
+      document
+        .getElementById(`language-${selectedLanguage}`)
+        .classList.add("active");
+
+      localStorage.setItem(
+        "amaterasu_privacy_language",
+        selectedLanguage
+      );
+    }
+
+    function getInitialLanguage() {
+      const savedLanguage = localStorage.getItem(
+        "amaterasu_privacy_language"
+      );
+
+      if (translations[savedLanguage]) {
+        return savedLanguage;
+      }
+
+      const browserLanguage =
+        navigator.language?.toLowerCase() ?? "";
+
+      if (browserLanguage.startsWith("it")) {
+        return "it";
+      }
+
+      return "en";
+    }
+
+    setLanguage(getInitialLanguage());
+  </script>
+</body>
+</html>
