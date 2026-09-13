@@ -112,10 +112,8 @@ class AccountDeleteReauthentication {
                   password = value;
                 },
                 onSubmitted: (value) {
-                  final normalizedPassword = value.trim();
-
-                  if (normalizedPassword.isNotEmpty) {
-                    Navigator.of(dialogContext).pop(normalizedPassword);
+                  if (value.isNotEmpty) {
+                    Navigator.of(dialogContext).pop(value);
                   }
                 },
               ),
@@ -130,13 +128,11 @@ class AccountDeleteReauthentication {
             ),
             FilledButton(
               onPressed: () {
-                final normalizedPassword = password.trim();
-
-                if (normalizedPassword.isEmpty) {
+                if (password.isEmpty) {
                   return;
                 }
 
-                Navigator.of(dialogContext).pop(normalizedPassword);
+                Navigator.of(dialogContext).pop(password);
               },
               child: Text(l10n.accountDeleteReauthenticationConfirm),
             ),

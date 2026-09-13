@@ -547,4 +547,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get accountDeleteReauthenticationUnsupported => 'Questo metodo di accesso non è ancora supportato per la verifica dell\'identità.';
+
+  @override
+  String get accountDeleteError => 'Non è stato possibile completare l\'eliminazione dell\'account. Nessun ulteriore dato verrà eliminato. Riprova.';
 }

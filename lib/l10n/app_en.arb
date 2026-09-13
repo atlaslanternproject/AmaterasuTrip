@@ -188,5 +188,6 @@
   "accountDeleteReauthenticationCancelled": "Identity verification was cancelled.",
   "accountDeleteReauthenticationGoogleMismatch": "You must use the same Google account linked to Amaterasu.",
   "accountDeleteReauthenticationFailed": "We could not verify your identity. Please try again.",
-  "accountDeleteReauthenticationUnsupported": "This sign-in method is not yet supported for identity verification."
+  "accountDeleteReauthenticationUnsupported": "This sign-in method is not yet supported for identity verification.",
+  "accountDeleteError": "We could not complete the account deletion. No further data will be deleted. Please try again."
 }

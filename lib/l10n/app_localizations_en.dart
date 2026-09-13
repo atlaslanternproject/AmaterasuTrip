@@ -547,4 +547,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountDeleteReauthenticationUnsupported => 'This sign-in method is not yet supported for identity verification.';
+
+  @override
+  String get accountDeleteError => 'We could not complete the account deletion. No further data will be deleted. Please try again.';
 }

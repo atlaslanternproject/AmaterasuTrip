@@ -1150,6 +1150,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This sign-in method is not yet supported for identity verification.'**
   String get accountDeleteReauthenticationUnsupported;
+
+  /// No description provided for @accountDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not complete the account deletion. No further data will be deleted. Please try again.'**
+  String get accountDeleteError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

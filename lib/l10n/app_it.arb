@@ -188,5 +188,6 @@
   "accountDeleteReauthenticationCancelled": "Verifica dell'identità annullata.",
   "accountDeleteReauthenticationGoogleMismatch": "Devi utilizzare lo stesso account Google collegato ad Amaterasu.",
   "accountDeleteReauthenticationFailed": "Non è stato possibile verificare la tua identità. Riprova.",
-  "accountDeleteReauthenticationUnsupported": "Questo metodo di accesso non è ancora supportato per la verifica dell'identità."
+  "accountDeleteReauthenticationUnsupported": "Questo metodo di accesso non è ancora supportato per la verifica dell'identità.",
+  "accountDeleteError": "Non è stato possibile completare l'eliminazione dell'account. Nessun ulteriore dato verrà eliminato. Riprova."
 }

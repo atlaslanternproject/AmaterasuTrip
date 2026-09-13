@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_reauthentication.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/data/account_deletion_service.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -30,11 +29,20 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
       return;
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     setState(() {
       _isDeleting = true;
     });
 
+    debugPrint('');
+    debugPrint('==========================================');
+    debugPrint('[ACCOUNT DELETE UI] DELETE FLOW START');
+    debugPrint('==========================================');
+
     try {
+      debugPrint('[ACCOUNT DELETE UI] Starting identity verification...');
+
       final reauthenticated =
           await AccountDeleteReauthentication.reauthenticate(
             context: context,
@@ -42,24 +50,58 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
           );
 
       if (!reauthenticated) {
+        debugPrint('[ACCOUNT DELETE UI] Reauthentication cancelled or failed.');
+        debugPrint('[ACCOUNT DELETE UI] Account deletion NOT started.');
+        debugPrint('==========================================');
+        debugPrint('');
+
         return;
       }
 
-      // La verifica identità è reale.
-      //
-      // L'eliminazione rimane invece completamente in DRY RUN:
-      // nessun dato Firestore e nessun utente Firebase Auth
-      // vengono eliminati.
-      await AccountDeletionService.runDryRun();
+      debugPrint('[ACCOUNT DELETE UI] Reauthentication successful.');
 
-      // Logout reale al termine del test.
-      await ref.read(authControllerProvider).logout();
+      if (!mounted) {
+        debugPrint(
+          '[ACCOUNT DELETE UI] Widget unmounted after reauthentication.',
+        );
+        return;
+      }
+
+      debugPrint('[ACCOUNT DELETE UI] Starting REAL account deletion...');
+
+      await AccountDeletionService.deleteAccount();
+
+      debugPrint('[ACCOUNT DELETE UI] Account deletion service completed.');
+
+      if (!mounted) {
+        debugPrint('[ACCOUNT DELETE UI] Widget unmounted after deletion.');
+        return;
+      }
+
+      debugPrint('[ACCOUNT DELETE UI] Redirecting to login route "/".');
+
+      debugPrint('==========================================');
+      debugPrint('[ACCOUNT DELETE UI] DELETE FLOW COMPLETED');
+      debugPrint('==========================================');
+      debugPrint('');
+
+      context.go('/');
+    } catch (error, stackTrace) {
+      debugPrint('');
+      debugPrint('==========================================');
+      debugPrint('[ACCOUNT DELETE UI] DELETE FLOW ERROR');
+      debugPrint('[ACCOUNT DELETE UI] $error');
+      debugPrint('[ACCOUNT DELETE UI] $stackTrace');
+      debugPrint('==========================================');
+      debugPrint('');
 
       if (!mounted) {
         return;
       }
 
-      context.go('/');
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.accountDeleteError)));
     } finally {
       if (mounted) {
         setState(() {
