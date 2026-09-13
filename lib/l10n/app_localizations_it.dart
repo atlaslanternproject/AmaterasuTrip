@@ -550,4 +550,142 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get accountDeleteError => 'Non è stato possibile completare l\'eliminazione dell\'account. Nessun ulteriore dato verrà eliminato. Riprova.';
+
+  @override
+  String get privacyTitle => 'Privacy';
+
+  @override
+  String get privacyIntro => 'Consulta come Amaterasu gestisce i tuoi dati, i permessi dell\'app e le tue scelte relative alla privacy.';
+
+  @override
+  String get privacyDataTitle => 'Privacy Policy';
+
+  @override
+  String get privacyDataSubtitle => 'Scopri quali dati utilizza Amaterasu e come vengono gestiti.';
+
+  @override
+  String get privacyPermissionsTitle => 'Permessi';
+
+  @override
+  String get privacyPermissionsSubtitle => 'Informazioni sui permessi che l\'app può richiedere.';
+
+  @override
+  String get privacyConsentTitle => 'Consensi';
+
+  @override
+  String get privacyConsentSubtitle => 'Consulta come vengono gestiti i consensi e le funzionalità opzionali.';
+
+  @override
+  String get privacyExportTitle => 'Esportazione dei dati';
+
+  @override
+  String get privacyExportSubtitle => 'Informazioni sulla possibilità di ottenere una copia dei tuoi dati.';
+
+  @override
+  String get privacyPolicyOverviewTitle => 'Informazioni generali';
+
+  @override
+  String get privacyPolicyOverviewBody => 'Amaterasu Trip è un\'applicazione dedicata all\'organizzazione e alla gestione dei viaggi. La presente informativa descrive quali dati possono essere trattati durante l\'utilizzo dell\'app e per quali finalità.';
+
+  @override
+  String get privacyPolicyCollectedDataTitle => 'Dati trattati';
+
+  @override
+  String get privacyPolicyCollectedDataBody => 'Amaterasu può trattare dati necessari alla creazione e gestione dell\'account, come indirizzo email, identificativo utente, username e metodo di autenticazione. Alcune preferenze dell\'app, come la lingua e l\'opzione di accesso memorizzato, possono essere salvate localmente sul dispositivo.';
+
+  @override
+  String get privacyPolicyPurposeTitle => 'Finalità del trattamento';
+
+  @override
+  String get privacyPolicyPurposeBody => 'I dati vengono utilizzati esclusivamente per fornire le funzionalità dell\'app, autenticare l\'utente, mantenere il profilo Amaterasu, permettere la gestione dell\'account e garantire il corretto funzionamento dei servizi associati.';
+
+  @override
+  String get privacyPolicyFirebaseTitle => 'Firebase';
+
+  @override
+  String get privacyPolicyFirebaseBody => 'Amaterasu utilizza servizi Firebase di Google per funzioni come autenticazione e archiviazione dei dati dell\'account. I dati necessari al funzionamento di tali servizi possono essere trattati attraverso l\'infrastruttura Firebase secondo le condizioni e le politiche applicabili di Google.';
+
+  @override
+  String get privacyPolicyGoogleTitle => 'Accesso con Google';
+
+  @override
+  String get privacyPolicyGoogleBody => 'Se scegli di utilizzare Google per accedere ad Amaterasu, Google fornisce all\'app le informazioni necessarie per autenticare il tuo account. Amaterasu non riceve né conserva la password del tuo account Google.';
+
+  @override
+  String get privacyPolicyStorageTitle => 'Conservazione dei dati';
+
+  @override
+  String get privacyPolicyStorageBody => 'I dati associati all\'account vengono conservati finché l\'account Amaterasu rimane attivo o finché sono necessari per fornire i servizi richiesti. Alcune preferenze possono essere conservate localmente sul dispositivo.';
+
+  @override
+  String get privacyPolicyDeletionTitle => 'Eliminazione dell\'account';
+
+  @override
+  String get privacyPolicyDeletionBody => 'Puoi eliminare definitivamente il tuo account dalle impostazioni di Amaterasu. L\'eliminazione rimuove l\'account Firebase Authentication e i dati dell\'account attualmente associati al profilo Amaterasu. Quando verranno introdotte nuove funzionalità e nuove categorie di dati, questa informativa verrà aggiornata di conseguenza.';
+
+  @override
+  String get privacyPolicySecurityTitle => 'Sicurezza';
+
+  @override
+  String get privacyPolicySecurityBody => 'Amaterasu adotta misure tecniche appropriate per limitare l\'accesso non autorizzato ai dati e utilizza i sistemi di autenticazione e sicurezza messi a disposizione dai servizi Firebase utilizzati dall\'app.';
+
+  @override
+  String get privacyPolicyChangesTitle => 'Modifiche alla Privacy Policy';
+
+  @override
+  String get privacyPolicyChangesBody => 'La presente informativa potrà essere aggiornata quando Amaterasu introdurrà nuove funzionalità, servizi o categorie di dati. La versione aggiornata sarà resa disponibile all\'interno dell\'app e attraverso la pagina pubblica della Privacy Policy.';
+
+  @override
+  String get privacyPolicyContactTitle => 'Contatti';
+
+  @override
+  String get privacyPolicyContactBody => 'Per richieste relative alla privacy o al trattamento dei dati puoi contattare il team Amaterasu attraverso i canali di supporto ufficiali indicati nell\'app.';
+
+  @override
+  String get privacyPermissionsIntro => 'Amaterasu richiede solamente i permessi necessari alle funzionalità che utilizzi. Alcuni permessi potranno essere introdotti quando saranno disponibili nuove funzioni.';
+
+  @override
+  String get privacyPermissionsNotificationsTitle => 'Notifiche';
+
+  @override
+  String get privacyPermissionsNotificationsBody => 'Amaterasu potrà richiedere l\'autorizzazione alle notifiche per ricordarti prenotazioni, scadenze e informazioni relative ai tuoi viaggi. Il permesso potrà essere revocato dalle impostazioni del dispositivo.';
+
+  @override
+  String get privacyPermissionsMediaTitle => 'Foto e contenuti multimediali';
+
+  @override
+  String get privacyPermissionsMediaBody => 'Quando saranno disponibili le funzionalità dedicate a foto, video e documenti di viaggio, Amaterasu potrà richiedere l\'accesso ai contenuti selezionati dall\'utente. L\'app non accederà ai contenuti senza un\'azione dell\'utente.';
+
+  @override
+  String get privacyPermissionsLocationTitle => 'Posizione';
+
+  @override
+  String get privacyPermissionsLocationBody => 'Amaterasu non utilizza attualmente la posizione del dispositivo. Qualora una futura funzione richiedesse l\'accesso alla posizione, il permesso verrà richiesto esplicitamente prima dell\'utilizzo.';
+
+  @override
+  String get privacyConsentIntro => 'Le funzionalità necessarie al funzionamento dell\'account non richiedono consensi di marketing. Eventuali funzionalità opzionali che richiederanno un consenso specifico saranno presentate separatamente.';
+
+  @override
+  String get privacyConsentRequiredTitle => 'Servizi necessari';
+
+  @override
+  String get privacyConsentRequiredBody => 'L\'autenticazione e la gestione dell\'account utilizzano i dati necessari per fornire il servizio richiesto dall\'utente.';
+
+  @override
+  String get privacyConsentOptionalTitle => 'Consensi opzionali';
+
+  @override
+  String get privacyConsentOptionalBody => 'Amaterasu non utilizza attualmente consensi per pubblicità personalizzata, marketing o vendita di dati personali.';
+
+  @override
+  String get privacyConsentFutureTitle => 'Funzionalità future';
+
+  @override
+  String get privacyConsentFutureBody => 'Se in futuro verranno introdotti servizi che richiedono un consenso facoltativo, potrai accettarlo o rifiutarlo separatamente senza modificare i consensi già espressi.';
+
+  @override
+  String get privacyExportHeading => 'Una copia dei tuoi dati';
+
+  @override
+  String get privacyExportBody => 'La funzione di esportazione completa dei dati personali sarà disponibile quando saranno implementate le funzionalità di gestione ed esportazione dei dati di viaggio. Non viene mostrato alcun comando di esportazione finché la funzione non sarà realmente disponibile.';
 }

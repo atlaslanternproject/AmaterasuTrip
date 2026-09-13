@@ -1156,6 +1156,282 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We could not complete the account deletion. No further data will be deleted. Please try again.'**
   String get accountDeleteError;
+
+  /// No description provided for @privacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get privacyTitle;
+
+  /// No description provided for @privacyIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn how Amaterasu manages your data, app permissions and privacy choices.'**
+  String get privacyIntro;
+
+  /// No description provided for @privacyDataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyDataTitle;
+
+  /// No description provided for @privacyDataSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn what data Amaterasu uses and how it is managed.'**
+  String get privacyDataSubtitle;
+
+  /// No description provided for @privacyPermissionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Permissions'**
+  String get privacyPermissionsTitle;
+
+  /// No description provided for @privacyPermissionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Information about permissions the app may request.'**
+  String get privacyPermissionsSubtitle;
+
+  /// No description provided for @privacyConsentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Consent'**
+  String get privacyConsentTitle;
+
+  /// No description provided for @privacyConsentSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn how consent and optional features are managed.'**
+  String get privacyConsentSubtitle;
+
+  /// No description provided for @privacyExportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Data export'**
+  String get privacyExportTitle;
+
+  /// No description provided for @privacyExportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Information about obtaining a copy of your data.'**
+  String get privacyExportSubtitle;
+
+  /// No description provided for @privacyPolicyOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'General information'**
+  String get privacyPolicyOverviewTitle;
+
+  /// No description provided for @privacyPolicyOverviewBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu Trip is an application designed to help organise and manage travel. This policy explains which data may be processed while using the app and for what purposes.'**
+  String get privacyPolicyOverviewBody;
+
+  /// No description provided for @privacyPolicyCollectedDataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Data processed'**
+  String get privacyPolicyCollectedDataTitle;
+
+  /// No description provided for @privacyPolicyCollectedDataBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu may process data required to create and manage an account, such as your email address, user identifier, username and authentication method. Some app preferences, such as language and remembered sign-in settings, may be stored locally on your device.'**
+  String get privacyPolicyCollectedDataBody;
+
+  /// No description provided for @privacyPolicyPurposeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Purpose of processing'**
+  String get privacyPolicyPurposeTitle;
+
+  /// No description provided for @privacyPolicyPurposeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Data is used solely to provide the app\'s features, authenticate users, maintain the Amaterasu profile, allow account management and ensure the correct operation of associated services.'**
+  String get privacyPolicyPurposeBody;
+
+  /// No description provided for @privacyPolicyFirebaseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Firebase'**
+  String get privacyPolicyFirebaseTitle;
+
+  /// No description provided for @privacyPolicyFirebaseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu uses Google\'s Firebase services for features such as authentication and account data storage. Data required for these services may be processed through Firebase infrastructure in accordance with Google\'s applicable terms and policies.'**
+  String get privacyPolicyFirebaseBody;
+
+  /// No description provided for @privacyPolicyGoogleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get privacyPolicyGoogleTitle;
+
+  /// No description provided for @privacyPolicyGoogleBody.
+  ///
+  /// In en, this message translates to:
+  /// **'If you choose to sign in to Amaterasu using Google, Google provides the information required to authenticate your account. Amaterasu does not receive or store your Google account password.'**
+  String get privacyPolicyGoogleBody;
+
+  /// No description provided for @privacyPolicyStorageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Data retention'**
+  String get privacyPolicyStorageTitle;
+
+  /// No description provided for @privacyPolicyStorageBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Data associated with your account is retained while your Amaterasu account remains active or for as long as required to provide the requested services. Some preferences may be stored locally on your device.'**
+  String get privacyPolicyStorageBody;
+
+  /// No description provided for @privacyPolicyDeletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Account deletion'**
+  String get privacyPolicyDeletionTitle;
+
+  /// No description provided for @privacyPolicyDeletionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can permanently delete your account from Amaterasu settings. Deletion removes the Firebase Authentication account and the account data currently associated with your Amaterasu profile. When new features and additional categories of data are introduced, this policy will be updated accordingly.'**
+  String get privacyPolicyDeletionBody;
+
+  /// No description provided for @privacyPolicySecurityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get privacyPolicySecurityTitle;
+
+  /// No description provided for @privacyPolicySecurityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu uses appropriate technical measures to limit unauthorised access to data and relies on the authentication and security systems provided by the Firebase services used by the app.'**
+  String get privacyPolicySecurityBody;
+
+  /// No description provided for @privacyPolicyChangesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes to this Privacy Policy'**
+  String get privacyPolicyChangesTitle;
+
+  /// No description provided for @privacyPolicyChangesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This policy may be updated when Amaterasu introduces new features, services or categories of data. The updated version will be made available within the app and through the public Privacy Policy page.'**
+  String get privacyPolicyChangesBody;
+
+  /// No description provided for @privacyPolicyContactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get privacyPolicyContactTitle;
+
+  /// No description provided for @privacyPolicyContactBody.
+  ///
+  /// In en, this message translates to:
+  /// **'For requests relating to privacy or personal data processing, you can contact the Amaterasu team through the official support channels listed in the app.'**
+  String get privacyPolicyContactBody;
+
+  /// No description provided for @privacyPermissionsIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu only requests permissions required by the features you choose to use. Additional permissions may be introduced when new features become available.'**
+  String get privacyPermissionsIntro;
+
+  /// No description provided for @privacyPermissionsNotificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get privacyPermissionsNotificationsTitle;
+
+  /// No description provided for @privacyPermissionsNotificationsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu may request permission to send notifications for bookings, deadlines and information relating to your trips. You can revoke this permission from your device settings.'**
+  String get privacyPermissionsNotificationsBody;
+
+  /// No description provided for @privacyPermissionsMediaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos and media'**
+  String get privacyPermissionsMediaTitle;
+
+  /// No description provided for @privacyPermissionsMediaBody.
+  ///
+  /// In en, this message translates to:
+  /// **'When features for photos, videos and travel documents become available, Amaterasu may request access to content selected by the user. The app will not access such content without an action from the user.'**
+  String get privacyPermissionsMediaBody;
+
+  /// No description provided for @privacyPermissionsLocationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get privacyPermissionsLocationTitle;
+
+  /// No description provided for @privacyPermissionsLocationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu does not currently use the device\'s location. If a future feature requires location access, permission will be requested explicitly before it is used.'**
+  String get privacyPermissionsLocationBody;
+
+  /// No description provided for @privacyConsentIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Features required for account operation do not involve marketing consent. Any optional feature requiring specific consent will be presented separately.'**
+  String get privacyConsentIntro;
+
+  /// No description provided for @privacyConsentRequiredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Required services'**
+  String get privacyConsentRequiredTitle;
+
+  /// No description provided for @privacyConsentRequiredBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication and account management use the data required to provide the service requested by the user.'**
+  String get privacyConsentRequiredBody;
+
+  /// No description provided for @privacyConsentOptionalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional consent'**
+  String get privacyConsentOptionalTitle;
+
+  /// No description provided for @privacyConsentOptionalBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu does not currently use consent for personalised advertising, marketing or the sale of personal data.'**
+  String get privacyConsentOptionalBody;
+
+  /// No description provided for @privacyConsentFutureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Future features'**
+  String get privacyConsentFutureTitle;
+
+  /// No description provided for @privacyConsentFutureBody.
+  ///
+  /// In en, this message translates to:
+  /// **'If services requiring optional consent are introduced in the future, you will be able to accept or refuse them separately without affecting consent choices already made.'**
+  String get privacyConsentFutureBody;
+
+  /// No description provided for @privacyExportHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'A copy of your data'**
+  String get privacyExportHeading;
+
+  /// No description provided for @privacyExportBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Full personal data export will become available when travel data management and export features are implemented. No export control is shown until the feature is genuinely available.'**
+  String get privacyExportBody;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
