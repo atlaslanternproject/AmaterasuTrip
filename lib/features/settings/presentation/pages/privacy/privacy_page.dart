@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:amaterasutrip/features/settings/presentation/pages/privacy/privacy_consent_page.dart';
-import 'package:amaterasutrip/features/settings/presentation/pages/privacy/privacy_data_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/privacy/privacy_export_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/privacy/privacy_permissions_page.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -16,8 +16,16 @@ class PrivacyPage extends StatelessWidget {
   static const Color _subtitleColor = Color(0xFF9E9287);
   static const Color _accentColor = Color(0xFFD49A52);
 
+  static final Uri _privacyPolicyUrl = Uri.parse(
+    'https://atlaslanternproject.github.io/AmaterasuTrip/privacy.html',
+  );
+
   void _openPage(BuildContext context, Widget page) {
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
+  }
+
+  Future<void> _openPrivacyPolicy() async {
+    await launchUrl(_privacyPolicyUrl, mode: LaunchMode.externalApplication);
   }
 
   @override
@@ -47,9 +55,7 @@ class PrivacyPage extends StatelessWidget {
             icon: Icons.policy_outlined,
             title: l10n.privacyDataTitle,
             subtitle: l10n.privacyDataSubtitle,
-            onTap: () {
-              _openPage(context, const PrivacyDataPage());
-            },
+            onTap: _openPrivacyPolicy,
           ),
           const SizedBox(height: 12),
           _PrivacyTile(
