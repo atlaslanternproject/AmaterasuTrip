@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
   @override
@@ -7,10 +8,7 @@ class ExplorePage extends StatelessWidget {
       body: Center(
         child: Text(
           'Esplora',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
       ),
     );

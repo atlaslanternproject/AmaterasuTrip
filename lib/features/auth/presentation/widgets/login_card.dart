@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -12,11 +12,13 @@ import '../../../../core/widgets/common/Amaterasu_divider.dart';
 import '../../../../core/widgets/inputs/Amaterasu_password_field.dart';
 import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
 import '../../../../core/storage/remember_me_storage.dart';
+
 class LoginCard extends ConsumerStatefulWidget {
   const LoginCard({super.key});
   @override
   ConsumerState<LoginCard> createState() => _LoginCardState();
 }
+
 class _LoginCardState extends ConsumerState<LoginCard> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -31,6 +33,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
     resetEmailController.dispose();
     super.dispose();
   }
+
   Future<void> login() async {
     if (loading) return;
     setState(() {
@@ -40,9 +43,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
     try {
       debugPrint("LOGIN: inizio");
       await RememberMeStorage.save(rememberMe);
-      debugPrint(
-        "REMEMBER SALVATO: $rememberMe",
-      );
+      debugPrint("REMEMBER SALVATO: $rememberMe");
       final credential = await ref
           .read(authControllerProvider)
           .loginWithEmailorUsername(
@@ -52,9 +53,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       final user = credential.user;
       await user?.reload();
       final refreshedUser = FirebaseAuth.instance.currentUser;
-      debugPrint(
-        "LOGIN OK: ${refreshedUser?.email}",
-      );
+      debugPrint("LOGIN OK: ${refreshedUser?.email}");
       if (!mounted) return;
       if (refreshedUser == null) {
         return;
@@ -65,9 +64,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
         context.go('/home');
       }
     } on FirebaseAuthException catch (e) {
-      debugPrint(
-        "ERRORE LOGIN: ${e.code}",
-      );
+      debugPrint("ERRORE LOGIN: ${e.code}");
       if (!mounted) return;
       setState(() {
         loginError = e.code;
@@ -80,10 +77,8 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       }
     }
   }
-  String getLoginErrorMessage(
-    AppLocalizations l10n,
-    String errorCode,
-  ) {
+
+  String getLoginErrorMessage(AppLocalizations l10n, String errorCode) {
     return switch (errorCode) {
       'user-not-found' => l10n.authLoginErrorUserNotFound,
       'wrong-password' => l10n.authLoginErrorWrongPassword,
@@ -91,6 +86,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       _ => l10n.authLoginErrorGeneric,
     };
   }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -130,9 +126,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text(
-                        l10n.authForgotPassword,
-                      ),
+                      title: Text(l10n.authForgotPassword),
                       content: TextField(
                         controller: resetEmailController,
                         keyboardType: TextInputType.emailAddress,
@@ -145,17 +139,15 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text(
-                            l10n.authCancel,
-                          ),
+                          child: Text(l10n.authCancel),
                         ),
                         TextButton(
                           onPressed: () async {
                             try {
                               await FirebaseAuth.instance
                                   .sendPasswordResetEmail(
-                                email: resetEmailController.text.trim(),
-                              );
+                                    email: resetEmailController.text.trim(),
+                                  );
                               if (!context.mounted) return;
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -166,23 +158,17 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                                 ),
                               );
                             } on FirebaseAuthException catch (e) {
-                              debugPrint(
-                                "RESET PASSWORD ERRORE: ${e.code}",
-                              );
+                              debugPrint("RESET PASSWORD ERRORE: ${e.code}");
                             }
                           },
-                          child: Text(
-                            l10n.authContinue,
-                          ),
+                          child: Text(l10n.authContinue),
                         ),
                       ],
                     );
                   },
                 );
               },
-              child: Text(
-                l10n.authForgotPasswordQuestion,
-              ),
+              child: Text(l10n.authForgotPasswordQuestion),
             ),
           ),
           Row(
@@ -197,9 +183,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
               ),
               Text(
                 l10n.authStaySignedIn,
-                style: const TextStyle(
-                  color: Colors.white70,
-                ),
+                style: const TextStyle(color: Colors.white70),
               ),
             ],
           ),
@@ -212,23 +196,14 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                getLoginErrorMessage(
-                  l10n,
-                  loginError!,
-                ),
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
+                getLoginErrorMessage(l10n, loginError!),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           const SizedBox(height: 16),
           AmaterasuPrimaryButton(
-            text: loading
-                ? l10n.authSigningIn
-                : l10n.authSignIn,
-            onPressed: loading
-                ? null
-                : login,
+            text: loading ? l10n.authSigningIn : l10n.authSignIn,
+            onPressed: loading ? null : login,
           ),
           const SizedBox(height: 20),
           const AmaterasuDivider(),
@@ -245,9 +220,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
             onPressed: () {
               context.go('/register');
             },
-            child: Text(
-              l10n.authNoAccountRegister,
-            ),
+            child: Text(l10n.authNoAccountRegister),
           ),
         ],
       ),

@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
 /// Example:
@@ -62,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '189662926755',
     projectId: 'amaterasutrip',
     storageBucket: 'amaterasutrip.firebasestorage.app',
-    iosClientId: '189662926755-og7mp573rpcepos1hsho6bl0jmtdi9uk.apps.googleusercontent.com',
+    iosClientId:
+        '189662926755-og7mp573rpcepos1hsho6bl0jmtdi9uk.apps.googleusercontent.com',
     iosBundleId: 'com.example.amaterasutrip',
   );
   static const FirebaseOptions macos = FirebaseOptions(
@@ -71,7 +73,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '189662926755',
     projectId: 'amaterasutrip',
     storageBucket: 'amaterasutrip.firebasestorage.app',
-    iosClientId: '189662926755-og7mp573rpcepos1hsho6bl0jmtdi9uk.apps.googleusercontent.com',
+    iosClientId:
+        '189662926755-og7mp573rpcepos1hsho6bl0jmtdi9uk.apps.googleusercontent.com',
     iosBundleId: 'com.example.amaterasutrip',
   );
 

@@ -1,5 +1,6 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'Amaterasu_colors.dart';
+
 final ThemeData appTheme = ThemeData(
   useMaterial3: true,
   scaffoldBackgroundColor: AmaterasuColors.background,
@@ -8,4 +9,3 @@ final ThemeData appTheme = ThemeData(
     brightness: Brightness.dark,
   ),
 );
-

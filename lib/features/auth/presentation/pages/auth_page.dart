@@ -1,11 +1,10 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../../../core/widgets/layout/Amaterasu_background.dart';
 import '../../../../core/widgets/layout/Amaterasu_hero.dart';
 import '../widgets/login_card.dart';
+
 class AuthPage extends StatelessWidget {
-  const AuthPage({
-    super.key,
-  });
+  const AuthPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +14,7 @@ class AuthPage extends StatelessWidget {
             builder: (context, constraints) {
               return SingleChildScrollView(
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: constraints.maxHeight,
-                  ),
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
                   child: IntrinsicHeight(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -38,4 +35,3 @@ class AuthPage extends StatelessWidget {
     );
   }
 }
-

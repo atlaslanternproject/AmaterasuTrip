@@ -1,11 +1,9 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../theme/Amaterasu_colors.dart';
+
 class AmaterasuBackground extends StatelessWidget {
   final Widget child;
-  const AmaterasuBackground({
-    super.key,
-    required this.child,
-  });
+  const AmaterasuBackground({super.key, required this.child});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,4 +24,3 @@ class AmaterasuBackground extends StatelessWidget {
     );
   }
 }
-

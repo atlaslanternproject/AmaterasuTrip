@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,9 +20,7 @@ class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp> {
   void initState() {
     super.initState();
 
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.immersiveSticky,
-    );
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _recoverPendingProfilePhoto();
@@ -30,9 +28,7 @@ class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp> {
   }
 
   Future<void> _recoverPendingProfilePhoto() async {
-    final recoveryService = ref.read(
-      profilePhotoRecoveryServiceProvider,
-    );
+    final recoveryService = ref.read(profilePhotoRecoveryServiceProvider);
 
     final isPending = await recoveryService.isPending();
 
@@ -40,9 +36,7 @@ class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp> {
       return;
     }
 
-    final picker = ref.read(
-      profilePhotoPickerServiceProvider,
-    );
+    final picker = ref.read(profilePhotoPickerServiceProvider);
 
     try {
       final recoveredPhoto = await picker.retrieveLostPhoto();
@@ -52,25 +46,17 @@ class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp> {
         return;
       }
 
-      await recoveryService.saveRecoveredPath(
-        recoveredPhoto.path,
-      );
+      await recoveryService.saveRecoveredPath(recoveredPhoto.path);
 
       await recoveryService.clearPending();
 
-      debugPrint(
-        'Recovered profile photo: ${recoveredPhoto.path}',
-      );
+      debugPrint('Recovered profile photo: ${recoveredPhoto.path}');
 
       amaterasuRouter.go('/settings/profile');
     } catch (error, stackTrace) {
-      debugPrint(
-        'Profile photo recovery failed: $error',
-      );
+      debugPrint('Profile photo recovery failed: $error');
 
-      debugPrintStack(
-        stackTrace: stackTrace,
-      );
+      debugPrintStack(stackTrace: stackTrace);
 
       await recoveryService.clearRecovery();
     }

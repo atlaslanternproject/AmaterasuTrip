@@ -1,8 +1,9 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/features/settings/providers/language_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart';
+
 class LanguagePage extends ConsumerStatefulWidget {
   const LanguagePage({super.key});
   static const Color _backgroundColor = Color(0xFF100C0A);
@@ -14,6 +15,7 @@ class LanguagePage extends ConsumerStatefulWidget {
   @override
   ConsumerState<LanguagePage> createState() => _LanguagePageState();
 }
+
 class _LanguagePageState extends ConsumerState<LanguagePage> {
   late Locale _selectedLocale;
   @override
@@ -21,6 +23,7 @@ class _LanguagePageState extends ConsumerState<LanguagePage> {
     super.initState();
     _selectedLocale = ref.read(languageProvider);
   }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -56,9 +59,7 @@ class _LanguagePageState extends ConsumerState<LanguagePage> {
                     bottom: index == supportedLocales.length - 1 ? 0 : 10,
                   ),
                   child: _LanguageCard(
-                    title: l10n.settingsLanguageName(
-                      locale.languageCode,
-                    ),
+                    title: l10n.settingsLanguageName(locale.languageCode),
                     locale: locale,
                     isSelected: isSelected,
                     onTap: () {
@@ -89,6 +90,7 @@ class _LanguagePageState extends ConsumerState<LanguagePage> {
     );
   }
 }
+
 class _LanguageCard extends StatelessWidget {
   const _LanguageCard({
     required this.title,
@@ -123,10 +125,7 @@ class _LanguageCard extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 15,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
             child: Row(
               children: [
                 Container(
@@ -143,9 +142,7 @@ class _LanguageCard extends StatelessWidget {
                   ),
                   child: Text(
                     _languageFlags[locale.languageCode] ?? '🌐',
-                    style: const TextStyle(
-                      fontSize: 22,
-                    ),
+                    style: const TextStyle(fontSize: 22),
                   ),
                 ),
                 const SizedBox(width: 14),

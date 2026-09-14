@@ -36,26 +36,23 @@ class AmaterasuSettingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveCardColor =
-        enabled ? _cardColor : _disabledCardColor;
+    final effectiveCardColor = enabled ? _cardColor : _disabledCardColor;
 
-    final effectiveBorderColor =
-        enabled ? _borderColor : _disabledBorderColor;
+    final effectiveBorderColor = enabled ? _borderColor : _disabledBorderColor;
 
-    final effectiveIconColor =
-        enabled ? _accentColor : _disabledIconColor;
+    final effectiveIconColor = enabled ? _accentColor : _disabledIconColor;
 
-    final effectiveTitleColor =
-        enabled ? _titleColor : _disabledTitleColor;
+    final effectiveTitleColor = enabled ? _titleColor : _disabledTitleColor;
 
-    final effectiveSubtitleColor =
-        enabled ? _subtitleColor : _disabledSubtitleColor;
+    final effectiveSubtitleColor = enabled
+        ? _subtitleColor
+        : _disabledSubtitleColor;
 
-    final effectiveChevronColor =
-        enabled ? _chevronColor : _disabledChevronColor;
+    final effectiveChevronColor = enabled
+        ? _chevronColor
+        : _disabledChevronColor;
 
-    final showExpandedContent =
-        enabled && isExpanded && children.isNotEmpty;
+    final showExpandedContent = enabled && isExpanded && children.isNotEmpty;
 
     return Material(
       color: Colors.transparent,
@@ -66,10 +63,7 @@ class AmaterasuSettingsCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: effectiveCardColor,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(
-              color: effectiveBorderColor,
-              width: 1,
-            ),
+            border: Border.all(color: effectiveBorderColor, width: 1),
           ),
           child: AnimatedSize(
             duration: const Duration(milliseconds: 220),
@@ -95,17 +89,12 @@ class AmaterasuSettingsCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        child: Icon(
-                          icon,
-                          color: effectiveIconColor,
-                          size: 23,
-                        ),
+                        child: Icon(icon, color: effectiveIconColor, size: 23),
                       ),
                       const SizedBox(width: 14),
                       Expanded(
                         child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               title,
@@ -142,15 +131,8 @@ class AmaterasuSettingsCard extends StatelessWidget {
                 ),
                 if (showExpandedContent)
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      16,
-                      0,
-                      16,
-                      16,
-                    ),
-                    child: Column(
-                      children: _withSpacing(children),
-                    ),
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                    child: Column(children: _withSpacing(children)),
                   ),
               ],
             ),

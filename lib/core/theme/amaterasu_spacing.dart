@@ -1,4 +1,4 @@
-﻿class AmaterasuSpacing {
+class AmaterasuSpacing {
   AmaterasuSpacing._();
   static const xs = 4.0;
   static const sm = 8.0;
@@ -7,4 +7,3 @@
   static const xl = 32.0;
   static const xxl = 48.0;
 }
-

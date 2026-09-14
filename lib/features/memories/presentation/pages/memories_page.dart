@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class MemoriesPage extends StatelessWidget {
   const MemoriesPage({super.key});
   @override
@@ -7,10 +8,7 @@ class MemoriesPage extends StatelessWidget {
       body: Center(
         child: Text(
           'Ricordi',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
       ),
     );

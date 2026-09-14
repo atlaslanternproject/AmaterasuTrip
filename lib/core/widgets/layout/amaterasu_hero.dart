@@ -1,8 +1,7 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+
 class AmaterasuHero extends StatelessWidget {
-  const AmaterasuHero({
-    super.key,
-  });
+  const AmaterasuHero({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,4 +17,3 @@ class AmaterasuHero extends StatelessWidget {
     );
   }
 }
-

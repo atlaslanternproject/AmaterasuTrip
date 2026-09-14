@@ -1,17 +1,18 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../theme/Amaterasu_colors.dart';
 import '../../theme/Amaterasu_radius.dart';
+
 class AmaterasuPrimaryButton extends StatelessWidget {
   final String text;
   final Widget? icon;
   final VoidCallback? onPressed;
   final bool loading;
   const AmaterasuPrimaryButton({
-  super.key,
-  required this.text,
-  required this.onPressed,
-  this.loading = false,
-  this.icon,
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.loading = false,
+    this.icon,
   });
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,7 @@ class AmaterasuPrimaryButton extends StatelessWidget {
           backgroundColor: AmaterasuColors.primary,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              AmaterasuRadius.md,
-            ),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
           ),
         ),
         child: loading
@@ -42,10 +41,7 @@ class AmaterasuPrimaryButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (icon != null) ...[
-                    icon!,
-                    const SizedBox(width: 12),
-                  ],
+                  if (icon != null) ...[icon!, const SizedBox(width: 12)],
                   Text(
                     text,
                     style: const TextStyle(
@@ -59,4 +55,3 @@ class AmaterasuPrimaryButton extends StatelessWidget {
     );
   }
 }
-

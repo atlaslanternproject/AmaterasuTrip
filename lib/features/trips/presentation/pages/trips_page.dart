@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class TripsPage extends StatelessWidget {
   const TripsPage({super.key});
   @override
@@ -7,10 +8,7 @@ class TripsPage extends StatelessWidget {
       body: Center(
         child: Text(
           'Viaggi',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import '../data/services/profile_photo_storage_service.dart';
 import '../data/repositories/user_repository.dart';
 import '../data/services/profile_photo_picker_service.dart';
 import '../data/services/profile_photo_recovery_service.dart';
@@ -26,3 +26,9 @@ final currentUserProfileProvider = StreamProvider<UserProfile?>((ref) {
 
   return repository.watchCurrentUserProfile();
 });
+
+final profilePhotoStorageServiceProvider = Provider<ProfilePhotoStorageService>(
+  (ref) {
+    return ProfilePhotoStorageService();
+  },
+);

@@ -369,8 +369,47 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         return;
       }
 
-      debugPrint('Selected profile photo: ${selectedPhoto.path}');
-    } catch (_) {
+      final storageService = ref.read(profilePhotoStorageServiceProvider);
+
+      final repository = ref.read(userRepositoryProvider);
+
+      final previousPhotoPath = profile.photoPath;
+
+      final uploadResult = await storageService.uploadProfilePhoto(
+        selectedPhoto,
+      );
+
+      try {
+        await repository.updateProfilePhoto(
+          photoUrl: uploadResult.downloadUrl,
+          photoPath: uploadResult.storagePath,
+        );
+      } catch (_) {
+        // Firestore non è stato aggiornato:
+        // eliminiamo il nuovo file per non lasciare un file orfano.
+        await storageService.deleteProfilePhoto(uploadResult.storagePath);
+
+        rethrow;
+      }
+
+      // Firestore punta ormai alla nuova foto.
+      // Possiamo eliminare in sicurezza quella precedente.
+      if (previousPhotoPath != null &&
+          previousPhotoPath.trim().isNotEmpty &&
+          previousPhotoPath != uploadResult.storagePath) {
+        try {
+          await storageService.deleteProfilePhoto(previousPhotoPath);
+        } catch (error) {
+          debugPrint('Unable to delete previous profile photo: $error');
+        }
+      }
+
+      debugPrint('Profile photo uploaded: ${uploadResult.storagePath}');
+    } catch (error, stackTrace) {
+      debugPrint('Profile photo update failed: $error');
+
+      debugPrintStack(stackTrace: stackTrace);
+
       if (!mounted) {
         return;
       }

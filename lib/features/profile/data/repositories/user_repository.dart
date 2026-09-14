@@ -213,4 +213,21 @@ class UserRepository {
 
     return data?['username'] as String?;
   }
+
+  Future<void> updateProfilePhoto({
+    required String photoUrl,
+    required String photoPath,
+  }) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw StateError('No authenticated user.');
+    }
+
+    await _firestore.collection('viaggiatori').doc(user.uid).update({
+      'photoUrl': photoUrl,
+      'photoPath': photoPath,
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+  }
 }

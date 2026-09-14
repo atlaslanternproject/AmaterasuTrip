@@ -1,4 +1,5 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+
 class AmaterasuColors {
   AmaterasuColors._();
   static const background = Color(0xFF1A0B08);

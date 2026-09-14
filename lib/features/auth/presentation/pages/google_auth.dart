@@ -1,14 +1,16 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+
 class GoogleAuth extends ConsumerStatefulWidget {
   const GoogleAuth({super.key});
   @override
   ConsumerState<GoogleAuth> createState() => _GoogleAuthState();
 }
+
 class _GoogleAuthState extends ConsumerState<GoogleAuth> {
   String? error;
   @override
@@ -18,6 +20,7 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
       _login();
     });
   }
+
   Future<void> _login() async {
     final l10n = AppLocalizations.of(context)!;
     try {
@@ -58,6 +61,7 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -78,18 +82,11 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.error_outline,
-                    size: 48,
-                    color: Colors.red,
-                  ),
+                  const Icon(Icons.error_outline, size: 48, color: Colors.red),
                   const SizedBox(height: 16),
                   Text(error!),
                   const SizedBox(height: 24),
-                  ElevatedButton(
-                    onPressed: null,
-                    child: Text(l10n.authRetry),
-                  ),
+                  ElevatedButton(onPressed: null, child: Text(l10n.authRetry)),
                 ],
               ),
       ),

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -11,13 +11,13 @@ import '../../../../core/widgets/common/Amaterasu_divider.dart';
 import '../../../../core/widgets/inputs/Amaterasu_password_field.dart';
 import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
 import '../../../../l10n/app_localizations.dart';
+
 class RegisterCard extends ConsumerStatefulWidget {
-  const RegisterCard({
-    super.key,
-  });
+  const RegisterCard({super.key});
   @override
   ConsumerState<RegisterCard> createState() => _RegisterCardState();
 }
+
 class _RegisterCardState extends ConsumerState<RegisterCard> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
@@ -32,6 +32,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
     confirmPasswordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -102,9 +103,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
                   Expanded(
                     child: Text(
                       registerError!,
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
@@ -127,8 +126,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
                 });
                 return;
               }
-              if (passwordController.text !=
-                  confirmPasswordController.text) {
+              if (passwordController.text != confirmPasswordController.text) {
                 setState(() {
                   registerError = l10n.authRegisterPasswordsMismatch;
                 });
@@ -146,20 +144,15 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
                 if (!context.mounted) return;
                 context.go('/verify-email');
               } on FirebaseAuthException catch (e) {
-                debugPrint(
-                  "ERRORE REGISTER: ${e.code}",
-                );
+                debugPrint("ERRORE REGISTER: ${e.code}");
                 if (!context.mounted) return;
                 setState(() {
                   registerError = switch (e.code) {
                     'email-already-in-use' =>
                       l10n.authRegisterEmailAlreadyInUse,
-                    'weak-password' =>
-                      l10n.authRegisterWeakPassword,
-                    'invalid-email' =>
-                      l10n.authRegisterInvalidEmail,
-                    _ =>
-                      l10n.authRegisterGenericError,
+                    'weak-password' => l10n.authRegisterWeakPassword,
+                    'invalid-email' => l10n.authRegisterInvalidEmail,
+                    _ => l10n.authRegisterGenericError,
                   };
                 });
               }
@@ -174,17 +167,13 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
             },
           ),
           const SizedBox(height: 12),
-          AmaterasuDiscordButton(
-            onPressed: () {},
-          ),
+          AmaterasuDiscordButton(onPressed: () {}),
           const SizedBox(height: 16),
           TextButton(
             onPressed: () {
               context.go('/');
             },
-            child: Text(
-              l10n.authAlreadyHaveAccountSignIn,
-            ),
+            child: Text(l10n.authAlreadyHaveAccountSignIn),
           ),
         ],
       ),
