@@ -784,4 +784,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profilePhotoPickerError => 'The photo could not be selected.';
+
+  @override
+  String get profilePhotoCameraPermissionDenied => 'Camera permission was denied.';
+
+  @override
+  String get profilePhotoCameraPermissionPermanentlyDenied => 'Camera permission is disabled. You can enable it from the app settings.';
+
+  @override
+  String get profilePhotoOpenSettings => 'Open settings';
+
+  @override
+  String get profilePhotoGalleryPermissionDenied => 'Permission to access photos was denied.';
+
+  @override
+  String get profilePhotoGalleryPermissionPermanentlyDenied => 'Permission to access photos is disabled. You can enable it from the app settings.';
 }

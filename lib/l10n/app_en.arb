@@ -267,5 +267,10 @@
   "profilePhotoCamera": "Take a photo",
   "profilePhotoGallery": "Choose from gallery",
   "profilePhotoRemove": "Remove photo",
-  "profilePhotoPickerError": "The photo could not be selected."
+  "profilePhotoPickerError": "The photo could not be selected.",
+  "profilePhotoCameraPermissionDenied": "Camera permission was denied.",
+  "profilePhotoCameraPermissionPermanentlyDenied": "Camera permission is disabled. You can enable it from the app settings.",
+  "profilePhotoOpenSettings": "Open settings",
+  "profilePhotoGalleryPermissionDenied": "Permission to access photos was denied.",
+  "profilePhotoGalleryPermissionPermanentlyDenied": "Permission to access photos is disabled. You can enable it from the app settings."
 }

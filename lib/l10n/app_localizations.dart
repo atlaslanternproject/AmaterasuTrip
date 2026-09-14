@@ -1624,6 +1624,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The photo could not be selected.'**
   String get profilePhotoPickerError;
+
+  /// No description provided for @profilePhotoCameraPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera permission was denied.'**
+  String get profilePhotoCameraPermissionDenied;
+
+  /// No description provided for @profilePhotoCameraPermissionPermanentlyDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera permission is disabled. You can enable it from the app settings.'**
+  String get profilePhotoCameraPermissionPermanentlyDenied;
+
+  /// No description provided for @profilePhotoOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get profilePhotoOpenSettings;
+
+  /// No description provided for @profilePhotoGalleryPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission to access photos was denied.'**
+  String get profilePhotoGalleryPermissionDenied;
+
+  /// No description provided for @profilePhotoGalleryPermissionPermanentlyDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission to access photos is disabled. You can enable it from the app settings.'**
+  String get profilePhotoGalleryPermissionPermanentlyDenied;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -267,5 +267,10 @@
   "profilePhotoCamera": "Scatta una foto",
   "profilePhotoGallery": "Scegli dalla galleria",
   "profilePhotoRemove": "Rimuovi foto",
-  "profilePhotoPickerError": "Non è stato possibile selezionare la foto."
+  "profilePhotoPickerError": "Non è stato possibile selezionare la foto.",
+  "profilePhotoCameraPermissionDenied": "Il permesso per usare la fotocamera è stato negato.",
+  "profilePhotoCameraPermissionPermanentlyDenied": "Il permesso per la fotocamera è disattivato. Puoi abilitarlo dalle impostazioni dell'app.",
+  "profilePhotoOpenSettings": "Apri impostazioni",
+  "profilePhotoGalleryPermissionDenied": "Il permesso per accedere alle foto è stato negato.",
+  "profilePhotoGalleryPermissionPermanentlyDenied": "Il permesso per accedere alle foto è disattivato. Puoi abilitarlo dalle impostazioni dell'app."
 }

@@ -784,4 +784,19 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get profilePhotoPickerError => 'Non è stato possibile selezionare la foto.';
+
+  @override
+  String get profilePhotoCameraPermissionDenied => 'Il permesso per usare la fotocamera è stato negato.';
+
+  @override
+  String get profilePhotoCameraPermissionPermanentlyDenied => 'Il permesso per la fotocamera è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
+
+  @override
+  String get profilePhotoOpenSettings => 'Apri impostazioni';
+
+  @override
+  String get profilePhotoGalleryPermissionDenied => 'Il permesso per accedere alle foto è stato negato.';
+
+  @override
+  String get profilePhotoGalleryPermissionPermanentlyDenied => 'Il permesso per accedere alle foto è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
 }

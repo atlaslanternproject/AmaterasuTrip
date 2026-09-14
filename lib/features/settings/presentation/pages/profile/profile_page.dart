@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:amaterasutrip/core/permissions/app_permission.dart';
+import 'package:amaterasutrip/core/permissions/permission_provider.dart';
+import 'package:amaterasutrip/core/permissions/permission_result.dart';
 import 'package:amaterasutrip/core/widgets/dialogs/amaterasu_unsaved_changes_dialog.dart';
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
@@ -33,6 +36,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   bool _isEditing = false;
   bool _isSaving = false;
   bool _allowPop = false;
+
+  bool _recoveryChecked = false;
 
   String _originalFirstName = '';
   String _originalLastName = '';
@@ -216,6 +221,24 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     ).showSnackBar(SnackBar(content: Text(l10n.profileUsernameChangeSuccess)));
   }
 
+  Future<void> _consumeRecoveredProfilePhoto() async {
+    if (_recoveryChecked) {
+      return;
+    }
+
+    _recoveryChecked = true;
+
+    final recoveryService = ref.read(profilePhotoRecoveryServiceProvider);
+
+    final recoveredPath = await recoveryService.consumeRecoveredPath();
+
+    if (!mounted || recoveredPath == null) {
+      return;
+    }
+
+    debugPrint('ProfilePage received recovered photo: $recoveredPath');
+  }
+
   Future<void> _changeProfilePhoto(UserProfile profile) async {
     final l10n = AppLocalizations.of(context)!;
 
@@ -231,7 +254,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
     if (action == ProfilePhotoSourceAction.remove) {
       // La rimozione reale verrà collegata a Firebase Storage
-      // nel prossimo step.
+      // nel blocco dedicato alla persistenza della foto profilo.
       return;
     }
 
@@ -242,11 +265,100 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
       switch (action) {
         case ProfilePhotoSourceAction.camera:
-          selectedPhoto = await picker.pickFromCamera();
+          final permissionService = ref.read(permissionServiceProvider);
+
+          final permissionResult = await permissionService.request(
+            AppPermission.camera,
+          );
+
+          if (!mounted) {
+            return;
+          }
+
+          switch (permissionResult) {
+            case AppPermissionResult.granted:
+              final recoveryService = ref.read(
+                profilePhotoRecoveryServiceProvider,
+              );
+
+              await recoveryService.markPending();
+
+              selectedPhoto = await picker.pickFromCamera();
+
+              if (selectedPhoto != null) {
+                await recoveryService.clearPending();
+              }
+
+              break;
+
+            case AppPermissionResult.denied:
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(l10n.profilePhotoCameraPermissionDenied),
+                ),
+              );
+              return;
+
+            case AppPermissionResult.permanentlyDenied:
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    l10n.profilePhotoCameraPermissionPermanentlyDenied,
+                  ),
+                  action: SnackBarAction(
+                    label: l10n.profilePhotoOpenSettings,
+                    onPressed: () {
+                      permissionService.openSettings();
+                    },
+                  ),
+                ),
+              );
+              return;
+          }
+
           break;
 
         case ProfilePhotoSourceAction.gallery:
-          selectedPhoto = await picker.pickFromGallery();
+          final permissionService = ref.read(permissionServiceProvider);
+
+          final permissionResult = await permissionService.request(
+            AppPermission.photos,
+          );
+
+          if (!mounted) {
+            return;
+          }
+
+          switch (permissionResult) {
+            case AppPermissionResult.granted:
+              selectedPhoto = await picker.pickFromGallery();
+              break;
+
+            case AppPermissionResult.denied:
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(l10n.profilePhotoGalleryPermissionDenied),
+                ),
+              );
+              return;
+
+            case AppPermissionResult.permanentlyDenied:
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    l10n.profilePhotoGalleryPermissionPermanentlyDenied,
+                  ),
+                  action: SnackBarAction(
+                    label: l10n.profilePhotoOpenSettings,
+                    onPressed: () {
+                      permissionService.openSettings();
+                    },
+                  ),
+                ),
+              );
+              return;
+          }
+
           break;
 
         case ProfilePhotoSourceAction.remove:
@@ -271,6 +383,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_recoveryChecked) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _consumeRecoveredProfilePhoto();
+      });
+    }
+
     final l10n = AppLocalizations.of(context)!;
 
     final profileAsync = ref.watch(currentUserProfileProvider);
@@ -408,10 +526,7 @@ class _ProfileContent extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 20, 16, 32),
       children: [
-        ProfileHeader(
-          profile: profile,
-          onChangePhoto: onChangePhoto,
-        ),
+        ProfileHeader(profile: profile, onChangePhoto: onChangePhoto),
         const SizedBox(height: 24),
         if (isEditing)
           ProfileEditCard(
