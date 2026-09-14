@@ -6,6 +6,8 @@ class UserProfile {
     this.firstName,
     this.lastName,
     this.bio,
+    this.photoUrl,
+    this.photoPath,
   });
 
   final String uid;
@@ -15,6 +17,9 @@ class UserProfile {
   final String? firstName;
   final String? lastName;
   final String? bio;
+
+  final String? photoUrl;
+  final String? photoPath;
 
   factory UserProfile.fromFirestore({
     required String uid,
@@ -27,6 +32,8 @@ class UserProfile {
       firstName: data['firstName'] as String?,
       lastName: data['lastName'] as String?,
       bio: data['bio'] as String?,
+      photoUrl: data['photoUrl'] as String?,
+      photoPath: data['photoPath'] as String?,
     );
   }
 }

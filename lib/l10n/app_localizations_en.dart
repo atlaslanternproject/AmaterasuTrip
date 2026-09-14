@@ -769,4 +769,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileEmailReadOnly => 'Your email address can be changed from the Account section.';
+
+  @override
+  String get profilePhotoChange => 'Change profile photo';
+
+  @override
+  String get profilePhotoCamera => 'Take a photo';
+
+  @override
+  String get profilePhotoGallery => 'Choose from gallery';
+
+  @override
+  String get profilePhotoRemove => 'Remove photo';
+
+  @override
+  String get profilePhotoPickerError => 'The photo could not be selected.';
 }

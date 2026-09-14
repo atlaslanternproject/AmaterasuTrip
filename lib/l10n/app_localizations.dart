@@ -1594,6 +1594,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your email address can be changed from the Account section.'**
   String get profileEmailReadOnly;
+
+  /// No description provided for @profilePhotoChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change profile photo'**
+  String get profilePhotoChange;
+
+  /// No description provided for @profilePhotoCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get profilePhotoCamera;
+
+  /// No description provided for @profilePhotoGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get profilePhotoGallery;
+
+  /// No description provided for @profilePhotoRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get profilePhotoRemove;
+
+  /// No description provided for @profilePhotoPickerError.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo could not be selected.'**
+  String get profilePhotoPickerError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

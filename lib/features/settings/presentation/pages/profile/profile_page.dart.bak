@@ -1,0 +1,801 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'package:amaterasutrip/core/widgets/dialogs/amaterasu_unsaved_changes_dialog.dart';
+import 'package:amaterasutrip/features/profile/models/user_profile.dart';
+import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
+
+import 'profile_photo_source_sheet.dart';
+import 'profile_username_dialog.dart';
+
+class ProfilePage extends ConsumerStatefulWidget {
+  const ProfilePage({super.key});
+
+  @override
+  ConsumerState<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends ConsumerState<ProfilePage> {
+  static const Color _backgroundColor = Color(0xFF100C0A);
+  static const Color _accentColor = Color(0xFFE28A32);
+  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _subtitleColor = Color(0xFF9E9287);
+
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+
+  bool _isEditing = false;
+  bool _isSaving = false;
+  bool _allowPop = false;
+
+  String _originalFirstName = '';
+  String _originalLastName = '';
+  String _originalBio = '';
+
+  String? _draftProfileUid;
+
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _bioController.dispose();
+
+    super.dispose();
+  }
+
+  void _prepareDraft(UserProfile profile, {bool force = false}) {
+    if (!force && _draftProfileUid == profile.uid) {
+      return;
+    }
+
+    _firstNameController.text = profile.firstName ?? '';
+    _lastNameController.text = profile.lastName ?? '';
+    _bioController.text = profile.bio ?? '';
+
+    _originalFirstName = profile.firstName?.trim() ?? '';
+    _originalLastName = profile.lastName?.trim() ?? '';
+    _originalBio = profile.bio?.trim() ?? '';
+
+    _draftProfileUid = profile.uid;
+  }
+
+  void _startEditing(UserProfile profile) {
+    _prepareDraft(profile, force: true);
+
+    setState(() {
+      _isEditing = true;
+    });
+  }
+
+  bool get _hasUnsavedChanges {
+    if (!_isEditing) {
+      return false;
+    }
+
+    return _firstNameController.text.trim() != _originalFirstName ||
+        _lastNameController.text.trim() != _originalLastName ||
+        _bioController.text.trim() != _originalBio;
+  }
+
+  Future<bool> _saveProfile({required bool exitAfterSave}) async {
+    if (_isSaving) {
+      return false;
+    }
+
+    final l10n = AppLocalizations.of(context)!;
+
+    if (_bioController.text.trim().length > 200) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profileBioTooLong)));
+
+      return false;
+    }
+
+    setState(() {
+      _isSaving = true;
+    });
+
+    try {
+      final repository = ref.read(userRepositoryProvider);
+
+      await repository.updateProfile(
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        bio: _bioController.text,
+      );
+
+      if (!mounted) {
+        return false;
+      }
+
+      _originalFirstName = _firstNameController.text.trim();
+      _originalLastName = _lastNameController.text.trim();
+      _originalBio = _bioController.text.trim();
+
+      if (exitAfterSave) {
+        setState(() {
+          _isSaving = false;
+          _isEditing = false;
+          _allowPop = true;
+        });
+
+        Navigator.of(context).pop();
+
+        return true;
+      }
+
+      setState(() {
+        _isSaving = false;
+        _isEditing = false;
+      });
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profileSaveSuccess)));
+
+      return true;
+    } catch (_) {
+      if (!mounted) {
+        return false;
+      }
+
+      setState(() {
+        _isSaving = false;
+      });
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profileSaveError)));
+
+      return false;
+    }
+  }
+
+  Future<void> _handleAttemptToLeave() async {
+    if (_allowPop) {
+      return;
+    }
+
+    if (!_hasUnsavedChanges) {
+      setState(() {
+        _allowPop = true;
+      });
+
+      Navigator.of(context).pop();
+      return;
+    }
+
+    final action = await showAmaterasuUnsavedChangesDialog(context);
+
+    if (!mounted) {
+      return;
+    }
+
+    switch (action) {
+      case AmaterasuUnsavedChangesAction.discard:
+        setState(() {
+          _allowPop = true;
+        });
+
+        Navigator.of(context).pop();
+        return;
+
+      case AmaterasuUnsavedChangesAction.saveAndExit:
+        await _saveProfile(exitAfterSave: true);
+        return;
+
+      case AmaterasuUnsavedChangesAction.cancel:
+        return;
+    }
+  }
+
+  Future<void> _changeUsername(UserProfile profile) async {
+    final changed = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) {
+        return ProfileUsernameDialog(currentUsername: profile.username);
+      },
+    );
+
+    if (!mounted || changed != true) {
+      return;
+    }
+
+    final l10n = AppLocalizations.of(context)!;
+
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l10n.profileUsernameChangeSuccess)));
+  }
+
+  Future<void> _changeProfilePhoto(UserProfile profile) async {
+    final l10n = AppLocalizations.of(context)!;
+
+    final action = await showProfilePhotoSourceSheet(
+      context: context,
+      hasCustomPhoto:
+          profile.photoUrl != null && profile.photoUrl!.trim().isNotEmpty,
+    );
+
+    if (!mounted || action == null) {
+      return;
+    }
+
+    if (action == ProfilePhotoSourceAction.remove) {
+      // La rimozione reale verrà collegata a Firebase Storage
+      // nel prossimo step.
+      return;
+    }
+
+    final picker = ref.read(profilePhotoPickerServiceProvider);
+
+    try {
+      XFile? selectedPhoto;
+
+      switch (action) {
+        case ProfilePhotoSourceAction.camera:
+          selectedPhoto = await picker.pickFromCamera();
+          break;
+
+        case ProfilePhotoSourceAction.gallery:
+          selectedPhoto = await picker.pickFromGallery();
+          break;
+
+        case ProfilePhotoSourceAction.remove:
+          return;
+      }
+
+      if (!mounted || selectedPhoto == null) {
+        return;
+      }
+
+      debugPrint('Selected profile photo: ${selectedPhoto.path}');
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profilePhotoPickerError)));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    final profileAsync = ref.watch(currentUserProfileProvider);
+
+    return PopScope(
+      canPop: _allowPop,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) {
+          return;
+        }
+
+        await _handleAttemptToLeave();
+      },
+      child: Scaffold(
+        backgroundColor: _backgroundColor,
+        appBar: AppBar(
+          backgroundColor: _backgroundColor,
+          foregroundColor: _titleColor,
+          surfaceTintColor: Colors.transparent,
+          title: Text(l10n.settingsProfile),
+          actions: [
+            profileAsync.maybeWhen(
+              data: (profile) {
+                if (profile == null) {
+                  return const SizedBox.shrink();
+                }
+
+                if (_isEditing) {
+                  return IconButton(
+                    tooltip: l10n.profileSave,
+                    onPressed: _isSaving
+                        ? null
+                        : () {
+                            _saveProfile(exitAfterSave: false);
+                          },
+                    icon: _isSaving
+                        ? const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: _accentColor,
+                            ),
+                          )
+                        : const Icon(Icons.check, color: _accentColor),
+                  );
+                }
+
+                return IconButton(
+                  tooltip: l10n.profileEditTitle,
+                  onPressed: () {
+                    _startEditing(profile);
+                  },
+                  icon: const Icon(Icons.edit_outlined, color: _accentColor),
+                );
+              },
+              orElse: () => const SizedBox.shrink(),
+            ),
+          ],
+        ),
+        body: profileAsync.when(
+          loading: () => const Center(
+            child: CircularProgressIndicator(color: _accentColor),
+          ),
+          error: (_, _) => Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Text(
+                l10n.profileSaveError,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: _subtitleColor),
+              ),
+            ),
+          ),
+          data: (profile) {
+            if (profile == null) {
+              return Center(
+                child: Text(
+                  l10n.profileSaveError,
+                  style: const TextStyle(color: _subtitleColor),
+                ),
+              );
+            }
+
+            if (!_isEditing) {
+              _prepareDraft(profile);
+            }
+
+            return _ProfileContent(
+              profile: profile,
+              isEditing: _isEditing,
+              isSaving: _isSaving,
+              firstNameController: _firstNameController,
+              lastNameController: _lastNameController,
+              bioController: _bioController,
+              onChangeUsername: () {
+                _changeUsername(profile);
+              },
+              onChangePhoto: () {
+                _changeProfilePhoto(profile);
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _ProfileContent extends StatelessWidget {
+  const _ProfileContent({
+    required this.profile,
+    required this.isEditing,
+    required this.isSaving,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.bioController,
+    required this.onChangeUsername,
+    required this.onChangePhoto,
+  });
+
+  final UserProfile profile;
+  final bool isEditing;
+  final bool isSaving;
+
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController bioController;
+
+  final VoidCallback onChangeUsername;
+  final VoidCallback onChangePhoto;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 32),
+      children: [
+        _ProfileHeader(profile: profile, onChangePhoto: onChangePhoto),
+        const SizedBox(height: 24),
+        if (isEditing)
+          _ProfileEditCard(
+            profile: profile,
+            isSaving: isSaving,
+            firstNameController: firstNameController,
+            lastNameController: lastNameController,
+            bioController: bioController,
+            onChangeUsername: onChangeUsername,
+          )
+        else
+          _ProfileViewCard(profile: profile),
+      ],
+    );
+  }
+}
+
+class _ProfileHeader extends StatelessWidget {
+  const _ProfileHeader({required this.profile, required this.onChangePhoto});
+
+  static const Color _accentColor = Color(0xFFE28A32);
+  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _subtitleColor = Color(0xFF9E9287);
+
+  final UserProfile profile;
+  final VoidCallback onChangePhoto;
+
+  String get _fullName {
+    final parts = <String>[
+      if (profile.firstName?.trim().isNotEmpty ?? false)
+        profile.firstName!.trim(),
+      if (profile.lastName?.trim().isNotEmpty ?? false)
+        profile.lastName!.trim(),
+    ];
+
+    return parts.join(' ');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: onChangePhoto,
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                width: 96,
+                height: 96,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: _accentColor, width: 2),
+                ),
+                child: ClipOval(
+                  child: Transform.scale(
+                    scale: 1.33,
+                    alignment: const Alignment(0, 0.10),
+                    child: Image.asset(
+                      'assets/images/profile/amaterasu_profile_fallback.png',
+                      fit: BoxFit.cover,
+                      alignment: const Alignment(0, 0.13),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: const BoxDecoration(
+                    color: _accentColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.camera_alt_outlined,
+                    size: 17,
+                    color: Color(0xFF100C0A),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        Text(
+          profile.username,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: _titleColor,
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        if (_fullName.isNotEmpty) ...[
+          const SizedBox(height: 4),
+          Text(
+            _fullName,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: _subtitleColor, fontSize: 14),
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _ProfileViewCard extends StatelessWidget {
+  const _ProfileViewCard({required this.profile});
+
+  static const Color _cardColor = Color(0xFF1A1512);
+  static const Color _borderColor = Color(0xFF3A2A20);
+
+  final UserProfile profile;
+
+  String _valueOrDash(String? value) {
+    final trimmed = value?.trim() ?? '';
+
+    if (trimmed.isEmpty) {
+      return '—';
+    }
+
+    return trimmed;
+  }
+
+  String get _fullName {
+    final parts = <String>[
+      if (profile.firstName?.trim().isNotEmpty ?? false)
+        profile.firstName!.trim(),
+      if (profile.lastName?.trim().isNotEmpty ?? false)
+        profile.lastName!.trim(),
+    ];
+
+    if (parts.isEmpty) {
+      return '—';
+    }
+
+    return parts.join(' ');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: _cardColor,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: _borderColor),
+      ),
+      child: Column(
+        children: [
+          _ProfileInfoRow(
+            icon: Icons.alternate_email,
+            label: l10n.profileUsername,
+            value: _valueOrDash(profile.username),
+          ),
+          const _ProfileDivider(),
+          _ProfileInfoRow(
+            icon: Icons.badge_outlined,
+            label: l10n.profileFullName,
+            value: _fullName,
+          ),
+          const _ProfileDivider(),
+          _ProfileInfoRow(
+            icon: Icons.email_outlined,
+            label: l10n.profileEmail,
+            value: _valueOrDash(profile.email),
+          ),
+          const _ProfileDivider(),
+          _ProfileInfoRow(
+            icon: Icons.notes_outlined,
+            label: l10n.profileBio,
+            value: _valueOrDash(profile.bio),
+            alignTop: true,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ProfileEditCard extends StatelessWidget {
+  const _ProfileEditCard({
+    required this.profile,
+    required this.isSaving,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.bioController,
+    required this.onChangeUsername,
+  });
+
+  static const Color _cardColor = Color(0xFF1A1512);
+  static const Color _fieldColor = Color(0xFF14100E);
+  static const Color _borderColor = Color(0xFF3A2A20);
+  static const Color _accentColor = Color(0xFFE28A32);
+  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _subtitleColor = Color(0xFF9E9287);
+
+  final UserProfile profile;
+  final bool isSaving;
+
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController bioController;
+
+  final VoidCallback onChangeUsername;
+
+  InputDecoration _decoration({required String label, Widget? suffixIcon}) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: const TextStyle(color: _subtitleColor),
+      filled: true,
+      fillColor: _fieldColor,
+      suffixIcon: suffixIcon,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: _borderColor),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: _accentColor, width: 1.4),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: _borderColor),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: _cardColor,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: _borderColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            l10n.profileUsername,
+            style: const TextStyle(color: _subtitleColor, fontSize: 12),
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  profile.username,
+                  style: const TextStyle(
+                    color: _titleColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              TextButton.icon(
+                onPressed: isSaving ? null : onChangeUsername,
+                icon: const Icon(Icons.edit_outlined, size: 18),
+                label: Text(l10n.profileChangeUsername),
+                style: TextButton.styleFrom(foregroundColor: _accentColor),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: firstNameController,
+            enabled: !isSaving,
+            textCapitalization: TextCapitalization.words,
+            cursorColor: _accentColor,
+            style: const TextStyle(color: _titleColor),
+            decoration: _decoration(label: l10n.profileFirstName),
+          ),
+          const SizedBox(height: 14),
+          TextField(
+            controller: lastNameController,
+            enabled: !isSaving,
+            textCapitalization: TextCapitalization.words,
+            cursorColor: _accentColor,
+            style: const TextStyle(color: _titleColor),
+            decoration: _decoration(label: l10n.profileLastName),
+          ),
+          const SizedBox(height: 14),
+          TextField(
+            controller: TextEditingController(text: profile.email ?? ''),
+            enabled: false,
+            style: const TextStyle(color: _subtitleColor),
+            decoration: _decoration(
+              label: l10n.profileEmail,
+              suffixIcon: const Icon(
+                Icons.lock_outline,
+                color: _subtitleColor,
+                size: 20,
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            l10n.profileEmailReadOnly,
+            style: const TextStyle(color: _subtitleColor, fontSize: 12),
+          ),
+          const SizedBox(height: 14),
+          TextField(
+            controller: bioController,
+            enabled: !isSaving,
+            maxLength: 200,
+            minLines: 3,
+            maxLines: 5,
+            textCapitalization: TextCapitalization.sentences,
+            cursorColor: _accentColor,
+            style: const TextStyle(color: _titleColor),
+            decoration: _decoration(label: l10n.profileBioHint),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ProfileInfoRow extends StatelessWidget {
+  const _ProfileInfoRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    this.alignTop = false,
+  });
+
+  static const Color _accentColor = Color(0xFFE28A32);
+  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _subtitleColor = Color(0xFF9E9287);
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final bool alignTop;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+      child: Row(
+        crossAxisAlignment: alignTop
+            ? CrossAxisAlignment.start
+            : CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: alignTop ? 2 : 0),
+            child: Icon(icon, color: _accentColor, size: 21),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: const TextStyle(color: _subtitleColor, fontSize: 12),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  value,
+                  style: const TextStyle(color: _titleColor, fontSize: 15),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ProfileDivider extends StatelessWidget {
+  const _ProfileDivider();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Divider(
+      height: 1,
+      thickness: 1,
+      indent: 16,
+      endIndent: 16,
+      color: Color(0xFF3A2A20),
+    );
+  }
+}

@@ -262,5 +262,10 @@
   "profileUsernameChangeError": "Non è stato possibile aggiornare lo username.",
   "profileUsernameConfirm": "Conferma modifica",
   "profileUsernameChanging": "Modifica in corso...",
-  "profileEmailReadOnly": "L'indirizzo email si modifica dalla sezione Account."
+  "profileEmailReadOnly": "L'indirizzo email si modifica dalla sezione Account.",
+  "profilePhotoChange": "Cambia foto profilo",
+  "profilePhotoCamera": "Scatta una foto",
+  "profilePhotoGallery": "Scegli dalla galleria",
+  "profilePhotoRemove": "Rimuovi foto",
+  "profilePhotoPickerError": "Non è stato possibile selezionare la foto."
 }
