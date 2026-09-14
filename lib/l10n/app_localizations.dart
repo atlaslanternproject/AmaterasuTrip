@@ -1432,6 +1432,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Full personal data export will become available when travel data management and export features are implemented. No export control is shown until the feature is genuinely available.'**
   String get privacyExportBody;
+
+  /// No description provided for @profileUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get profileUsername;
+
+  /// No description provided for @profileFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get profileFullName;
+
+  /// No description provided for @profileEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get profileEmail;
+
+  /// No description provided for @profileBio.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get profileBio;
+
+  /// No description provided for @profileEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get profileEditTitle;
+
+  /// No description provided for @profileFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First name'**
+  String get profileFirstName;
+
+  /// No description provided for @profileLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last name'**
+  String get profileLastName;
+
+  /// No description provided for @profileBioHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us something about yourself'**
+  String get profileBioHint;
+
+  /// No description provided for @profileSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get profileSave;
+
+  /// No description provided for @profileSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving...'**
+  String get profileSaving;
+
+  /// No description provided for @profileSaveSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated.'**
+  String get profileSaveSuccess;
+
+  /// No description provided for @profileSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'The profile could not be updated.'**
+  String get profileSaveError;
+
+  /// No description provided for @profileBioTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Your bio can contain up to 200 characters.'**
+  String get profileBioTooLong;
+
+  /// No description provided for @unsavedChangesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to leave without saving?'**
+  String get unsavedChangesTitle;
+
+  /// No description provided for @unsavedChangesMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You have unsaved changes.'**
+  String get unsavedChangesMessage;
+
+  /// No description provided for @unsavedChangesDiscard.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave without saving'**
+  String get unsavedChangesDiscard;
+
+  /// No description provided for @unsavedChangesSaveAndExit.
+  ///
+  /// In en, this message translates to:
+  /// **'Save and leave'**
+  String get unsavedChangesSaveAndExit;
+
+  /// No description provided for @unsavedChangesCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get unsavedChangesCancel;
+
+  /// No description provided for @profileChangeUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'Change username'**
+  String get profileChangeUsername;
+
+  /// No description provided for @profileNewUsername.
+  ///
+  /// In en, this message translates to:
+  /// **'New username'**
+  String get profileNewUsername;
+
+  /// No description provided for @profileUsernameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a username.'**
+  String get profileUsernameRequired;
+
+  /// No description provided for @profileUsernameAlreadyInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'This username is already in use.'**
+  String get profileUsernameAlreadyInUse;
+
+  /// No description provided for @profileUsernameChangeSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Username updated.'**
+  String get profileUsernameChangeSuccess;
+
+  /// No description provided for @profileUsernameChangeError.
+  ///
+  /// In en, this message translates to:
+  /// **'The username could not be updated.'**
+  String get profileUsernameChangeError;
+
+  /// No description provided for @profileUsernameConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm change'**
+  String get profileUsernameConfirm;
+
+  /// No description provided for @profileUsernameChanging.
+  ///
+  /// In en, this message translates to:
+  /// **'Updating...'**
+  String get profileUsernameChanging;
+
+  /// No description provided for @profileEmailReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Your email address can be changed from the Account section.'**
+  String get profileEmailReadOnly;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

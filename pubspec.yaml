@@ -37,6 +37,7 @@ flutter:
     - assets/icons/discord.png
     - assets/icons/google.png
     - assets/branding/
+    - assets/images/profile/
 flutter_launcher_icons:
   android: true
   ios: true

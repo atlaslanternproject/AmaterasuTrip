@@ -688,4 +688,85 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyExportBody => 'Full personal data export will become available when travel data management and export features are implemented. No export control is shown until the feature is genuinely available.';
+
+  @override
+  String get profileUsername => 'Username';
+
+  @override
+  String get profileFullName => 'Full name';
+
+  @override
+  String get profileEmail => 'Email';
+
+  @override
+  String get profileBio => 'Bio';
+
+  @override
+  String get profileEditTitle => 'Edit profile';
+
+  @override
+  String get profileFirstName => 'First name';
+
+  @override
+  String get profileLastName => 'Last name';
+
+  @override
+  String get profileBioHint => 'Tell us something about yourself';
+
+  @override
+  String get profileSave => 'Save';
+
+  @override
+  String get profileSaving => 'Saving...';
+
+  @override
+  String get profileSaveSuccess => 'Profile updated.';
+
+  @override
+  String get profileSaveError => 'The profile could not be updated.';
+
+  @override
+  String get profileBioTooLong => 'Your bio can contain up to 200 characters.';
+
+  @override
+  String get unsavedChangesTitle => 'Are you sure you want to leave without saving?';
+
+  @override
+  String get unsavedChangesMessage => 'You have unsaved changes.';
+
+  @override
+  String get unsavedChangesDiscard => 'Leave without saving';
+
+  @override
+  String get unsavedChangesSaveAndExit => 'Save and leave';
+
+  @override
+  String get unsavedChangesCancel => 'Cancel';
+
+  @override
+  String get profileChangeUsername => 'Change username';
+
+  @override
+  String get profileNewUsername => 'New username';
+
+  @override
+  String get profileUsernameRequired => 'Enter a username.';
+
+  @override
+  String get profileUsernameAlreadyInUse => 'This username is already in use.';
+
+  @override
+  String get profileUsernameChangeSuccess => 'Username updated.';
+
+  @override
+  String get profileUsernameChangeError => 'The username could not be updated.';
+
+  @override
+  String get profileUsernameConfirm => 'Confirm change';
+
+  @override
+  String get profileUsernameChanging => 'Updating...';
+
+  @override
+  String get profileEmailReadOnly => 'Your email address can be changed from the Account section.';
 }
