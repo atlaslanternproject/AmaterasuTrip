@@ -272,5 +272,6 @@
   "profilePhotoCameraPermissionPermanentlyDenied": "Camera permission is disabled. You can enable it from the app settings.",
   "profilePhotoOpenSettings": "Open settings",
   "profilePhotoGalleryPermissionDenied": "Permission to access photos was denied.",
-  "profilePhotoGalleryPermissionPermanentlyDenied": "Permission to access photos is disabled. You can enable it from the app settings."
+  "profilePhotoGalleryPermissionPermanentlyDenied": "Permission to access photos is disabled. You can enable it from the app settings.",
+  "profilePhotoRemoveError": "Unable to remove profile photo."
 }

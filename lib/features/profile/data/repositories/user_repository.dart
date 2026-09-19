@@ -230,4 +230,18 @@ class UserRepository {
       'updatedAt': FieldValue.serverTimestamp(),
     });
   }
+
+  Future<void> removeProfilePhoto() async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw StateError('No authenticated user.');
+    }
+
+    await _firestore.collection('viaggiatori').doc(user.uid).update({
+      'photoUrl': FieldValue.delete(),
+      'photoPath': FieldValue.delete(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+  }
 }

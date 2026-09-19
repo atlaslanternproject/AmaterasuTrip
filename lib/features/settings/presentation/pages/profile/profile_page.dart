@@ -229,14 +229,70 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     _recoveryChecked = true;
 
     final recoveryService = ref.read(profilePhotoRecoveryServiceProvider);
-
     final recoveredPath = await recoveryService.consumeRecoveredPath();
 
     if (!mounted || recoveredPath == null) {
       return;
     }
 
-    debugPrint('ProfilePage received recovered photo: $recoveredPath');
+    final profile = ref.read(currentUserProfileProvider).value;
+
+    if (profile == null) {
+      return;
+    }
+
+    final storageService = ref.read(profilePhotoStorageServiceProvider);
+    final repository = ref.read(userRepositoryProvider);
+
+    final previousPhotoPath = profile.photoPath;
+    final recoveredPhoto = XFile(recoveredPath);
+
+    try {
+      final uploadResult = await storageService.uploadProfilePhoto(
+        recoveredPhoto,
+      );
+
+      try {
+        await repository.updateProfilePhoto(
+          photoUrl: uploadResult.downloadUrl,
+          photoPath: uploadResult.storagePath,
+        );
+      } catch (_) {
+        await storageService.deleteProfilePhoto(uploadResult.storagePath);
+        rethrow;
+      }
+
+      if (previousPhotoPath != null &&
+          previousPhotoPath.trim().isNotEmpty &&
+          previousPhotoPath != uploadResult.storagePath) {
+        try {
+          await storageService.deleteProfilePhoto(previousPhotoPath);
+        } catch (error) {
+          debugPrint(
+            'Unable to delete previous recovered profile photo: $error',
+          );
+        }
+      }
+
+      debugPrint(
+        'Recovered profile photo uploaded: ${uploadResult.storagePath}',
+      );
+    } catch (error, stackTrace) {
+      debugPrint('Recovered profile photo update failed: $error');
+      debugPrintStack(stackTrace: stackTrace);
+
+      if (!mounted) {
+        return;
+      }
+
+      final l10n = AppLocalizations.of(context)!;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.profilePhotoPickerError),
+        ),
+      );
+    }
   }
 
   Future<void> _changeProfilePhoto(UserProfile profile) async {
@@ -253,8 +309,30 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     }
 
     if (action == ProfilePhotoSourceAction.remove) {
-      // La rimozione reale verrà collegata a Firebase Storage
-      // nel blocco dedicato alla persistenza della foto profilo.
+      final storageService = ref.read(profilePhotoStorageServiceProvider);
+      final repository = ref.read(userRepositoryProvider);
+      final currentPhotoPath = profile.photoPath;
+
+      try {
+        if (currentPhotoPath != null && currentPhotoPath.trim().isNotEmpty) {
+          await storageService.deleteProfilePhoto(currentPhotoPath);
+        }
+
+        await repository.removeProfilePhoto();
+      } catch (error) {
+        debugPrint('Unable to remove profile photo: $error');
+
+        if (!mounted) {
+          return;
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.profilePhotoRemoveError),
+          ),
+        );
+      }
+
       return;
     }
 

@@ -27,6 +27,36 @@ class ProfileHeader extends StatelessWidget {
     return parts.join(' ');
   }
 
+  Widget _buildProfileImage() {
+    final photoUrl = profile.photoUrl?.trim();
+
+    if (photoUrl != null && photoUrl.isNotEmpty) {
+      return Image.network(
+        photoUrl,
+        width: 96,
+        height: 96,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return _buildFallbackImage();
+        },
+      );
+    }
+
+    return _buildFallbackImage();
+  }
+
+  Widget _buildFallbackImage() {
+    return Transform.scale(
+      scale: 1.33,
+      alignment: const Alignment(0, 0.10),
+      child: Image.asset(
+        'assets/images/profile/amaterasu_profile_fallback.png',
+        fit: BoxFit.cover,
+        alignment: const Alignment(0, 0.13),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,15 +74,7 @@ class ProfileHeader extends StatelessWidget {
                   border: Border.all(color: _accentColor, width: 2),
                 ),
                 child: ClipOval(
-                  child: Transform.scale(
-                    scale: 1.33,
-                    alignment: const Alignment(0, 0.10),
-                    child: Image.asset(
-                      'assets/images/profile/amaterasu_profile_fallback.png',
-                      fit: BoxFit.cover,
-                      alignment: const Alignment(0, 0.13),
-                    ),
-                  ),
+                  child: _buildProfileImage(),
                 ),
               ),
               Positioned(
@@ -90,7 +112,10 @@ class ProfileHeader extends StatelessWidget {
           Text(
             _fullName,
             textAlign: TextAlign.center,
-            style: const TextStyle(color: _subtitleColor, fontSize: 14),
+            style: const TextStyle(
+              color: _subtitleColor,
+              fontSize: 14,
+            ),
           ),
         ],
       ],
