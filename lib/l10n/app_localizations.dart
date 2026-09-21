@@ -1660,6 +1660,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to remove profile photo.'**
   String get profilePhotoRemoveError;
+
+  /// No description provided for @notificationsAppSection.
+  ///
+  /// In en, this message translates to:
+  /// **'App notifications'**
+  String get notificationsAppSection;
+
+  /// No description provided for @notificationsPush.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notifications'**
+  String get notificationsPush;
+
+  /// No description provided for @notificationsPushSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn app notifications on or off'**
+  String get notificationsPushSubtitle;
+
+  /// No description provided for @notificationsTripReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip reminders'**
+  String get notificationsTripReminders;
+
+  /// No description provided for @notificationsTripRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive reminders about your trips'**
+  String get notificationsTripRemindersSubtitle;
+
+  /// No description provided for @notificationsItineraryReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Itinerary reminders'**
+  String get notificationsItineraryReminders;
+
+  /// No description provided for @notificationsItineraryRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive reminders for itinerary activities, bookings and stops'**
+  String get notificationsItineraryRemindersSubtitle;
+
+  /// No description provided for @notificationsTripUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip updates'**
+  String get notificationsTripUpdates;
+
+  /// No description provided for @notificationsTripUpdatesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive notifications when your trips are updated'**
+  String get notificationsTripUpdatesSubtitle;
+
+  /// No description provided for @notificationsGroupInvitations.
+  ///
+  /// In en, this message translates to:
+  /// **'Group invitations'**
+  String get notificationsGroupInvitations;
+
+  /// No description provided for @notificationsGroupInvitationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive notifications when you are invited to a trip'**
+  String get notificationsGroupInvitationsSubtitle;
+
+  /// No description provided for @notificationsGroupActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Group activity'**
+  String get notificationsGroupActivity;
+
+  /// No description provided for @notificationsGroupActivitySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive notifications about activity in your travel groups'**
+  String get notificationsGroupActivitySubtitle;
+
+  /// No description provided for @notificationsAppUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'App updates'**
+  String get notificationsAppUpdates;
+
+  /// No description provided for @notificationsAppUpdatesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive notifications about what\'s new and updates to Amaterasu Trip'**
+  String get notificationsAppUpdatesSubtitle;
+
+  /// No description provided for @notificationsImportantCommunications.
+  ///
+  /// In en, this message translates to:
+  /// **'Important communications'**
+  String get notificationsImportantCommunications;
+
+  /// No description provided for @notificationsImportantCommunicationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive important communications about the service'**
+  String get notificationsImportantCommunicationsSubtitle;
+
+  /// No description provided for @notificationsEmailSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Email communications'**
+  String get notificationsEmailSection;
+
+  /// No description provided for @notificationsEmailSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage communications received by email'**
+  String get notificationsEmailSubtitle;
+
+  /// No description provided for @notificationsAccountEmails.
+  ///
+  /// In en, this message translates to:
+  /// **'Account communications'**
+  String get notificationsAccountEmails;
+
+  /// No description provided for @notificationsAccountEmailsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Emails required for account security, access and management'**
+  String get notificationsAccountEmailsSubtitle;
+
+  /// No description provided for @notificationsServiceEmails.
+  ///
+  /// In en, this message translates to:
+  /// **'Service communications'**
+  String get notificationsServiceEmails;
+
+  /// No description provided for @notificationsServiceEmailsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Emails required for the operation and use of the service'**
+  String get notificationsServiceEmailsSubtitle;
+
+  /// No description provided for @notificationsPromotionalEmails.
+  ///
+  /// In en, this message translates to:
+  /// **'Promotional communications'**
+  String get notificationsPromotionalEmails;
+
+  /// No description provided for @notificationsPromotionalEmailsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive news, initiatives and promotional communications from Amaterasu Trip'**
+  String get notificationsPromotionalEmailsSubtitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

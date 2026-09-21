@@ -802,4 +802,79 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get profilePhotoRemoveError => 'Impossibile rimuovere la foto profilo.';
+
+  @override
+  String get notificationsAppSection => 'Notifiche dell\'app';
+
+  @override
+  String get notificationsPush => 'Notifiche push';
+
+  @override
+  String get notificationsPushSubtitle => 'Attiva o disattiva le notifiche dell\'app';
+
+  @override
+  String get notificationsTripReminders => 'Promemoria viaggio';
+
+  @override
+  String get notificationsTripRemindersSubtitle => 'Ricevi promemoria relativi ai tuoi viaggi';
+
+  @override
+  String get notificationsItineraryReminders => 'Promemoria itinerario';
+
+  @override
+  String get notificationsItineraryRemindersSubtitle => 'Ricevi promemoria per attività, prenotazioni e tappe dell\'itinerario';
+
+  @override
+  String get notificationsTripUpdates => 'Aggiornamenti viaggio';
+
+  @override
+  String get notificationsTripUpdatesSubtitle => 'Ricevi notifiche quando vengono aggiornati i tuoi viaggi';
+
+  @override
+  String get notificationsGroupInvitations => 'Inviti ai gruppi';
+
+  @override
+  String get notificationsGroupInvitationsSubtitle => 'Ricevi notifiche quando vieni invitato a un viaggio';
+
+  @override
+  String get notificationsGroupActivity => 'Attività dei gruppi';
+
+  @override
+  String get notificationsGroupActivitySubtitle => 'Ricevi notifiche sulle attività dei gruppi di viaggio';
+
+  @override
+  String get notificationsAppUpdates => 'Aggiornamenti dell\'app';
+
+  @override
+  String get notificationsAppUpdatesSubtitle => 'Ricevi notifiche sulle novità e sugli aggiornamenti di Amaterasu Trip';
+
+  @override
+  String get notificationsImportantCommunications => 'Comunicazioni importanti';
+
+  @override
+  String get notificationsImportantCommunicationsSubtitle => 'Ricevi comunicazioni importanti relative al servizio';
+
+  @override
+  String get notificationsEmailSection => 'Comunicazioni email';
+
+  @override
+  String get notificationsEmailSubtitle => 'Gestisci le comunicazioni ricevute via email';
+
+  @override
+  String get notificationsAccountEmails => 'Comunicazioni relative all\'account';
+
+  @override
+  String get notificationsAccountEmailsSubtitle => 'Email necessarie per sicurezza, accesso e gestione dell\'account';
+
+  @override
+  String get notificationsServiceEmails => 'Comunicazioni di servizio';
+
+  @override
+  String get notificationsServiceEmailsSubtitle => 'Email necessarie per il funzionamento e l\'utilizzo del servizio';
+
+  @override
+  String get notificationsPromotionalEmails => 'Comunicazioni promozionali';
+
+  @override
+  String get notificationsPromotionalEmailsSubtitle => 'Ricevi novità, iniziative e comunicazioni promozionali di Amaterasu Trip';
 }
