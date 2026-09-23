@@ -8,7 +8,6 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 class NotificationTypesPage extends ConsumerWidget {
   const NotificationTypesPage({super.key});
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
   static const Color _cardColor = Color(0xFF1A1411);
   static const Color _accentColor = Color(0xFFE28A32);
   static const Color _titleColor = Color(0xFFF2E7D5);
@@ -21,98 +20,91 @@ class NotificationTypesPage extends ConsumerWidget {
     final settings = ref.watch(notificationSettingsProvider);
     final notifier = ref.read(notificationSettingsProvider.notifier);
 
-    return Scaffold(
-      backgroundColor: _backgroundColor,
-      appBar: AppBar(
-        backgroundColor: _backgroundColor,
-        foregroundColor: _titleColor,
-        title: Text(l10n.notificationsAppSection),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-        children: [
-          _NotificationSwitchTile(
-            title: l10n.notificationsPush,
-            subtitle: l10n.notificationsPushSubtitle,
-            value: settings.pushNotifications,
-            onChanged: (value) async {
-              if (!value) {
-                await notifier.setPushNotifications(false);
-                return;
-              }
-              final permissionStatus = await ref
-                  .read(notificationPermissionProvider.notifier)
-                  .requestPermission();
-              if (permissionStatus.isGranted) {
-                await notifier.setPushNotifications(true);
-              } else {
-                await notifier.setPushNotifications(false);
-              }
-            },
-            isMaster: true,
-          ),
-          const SizedBox(height: 12),
-          _NotificationSettingsCard(
-            children: [
-              _NotificationSwitchTile(
-                title: l10n.notificationsTripReminders,
-                subtitle: l10n.notificationsTripRemindersSubtitle,
-                value: settings.tripReminders,
-                enabled: settings.pushNotifications,
-                onChanged: notifier.setTripReminders,
-              ),
-              const _NotificationDivider(),
-              _NotificationSwitchTile(
-                title: l10n.notificationsItineraryReminders,
-                subtitle: l10n.notificationsItineraryRemindersSubtitle,
-                value: settings.itineraryReminders,
-                enabled: settings.pushNotifications,
-                onChanged: notifier.setItineraryReminders,
-              ),
-              const _NotificationDivider(),
-              _NotificationSwitchTile(
-                title: l10n.notificationsTripUpdates,
-                subtitle: l10n.notificationsTripUpdatesSubtitle,
-                value: settings.tripUpdates,
-                enabled: settings.pushNotifications,
-                onChanged: notifier.setTripUpdates,
-              ),
-              const _NotificationDivider(),
-              _NotificationSwitchTile(
-                title: l10n.notificationsGroupInvitations,
-                subtitle: l10n.notificationsGroupInvitationsSubtitle,
-                value: settings.groupInvitations,
-                enabled: settings.pushNotifications,
-                onChanged: notifier.setGroupInvitations,
-              ),
-              const _NotificationDivider(),
-              _NotificationSwitchTile(
-                title: l10n.notificationsGroupActivity,
-                subtitle: l10n.notificationsGroupActivitySubtitle,
-                value: settings.groupActivity,
-                enabled: settings.pushNotifications,
-                onChanged: notifier.setGroupActivity,
-              ),
-              const _NotificationDivider(),
-              _NotificationSwitchTile(
-                title: l10n.notificationsAppUpdates,
-                subtitle: l10n.notificationsAppUpdatesSubtitle,
-                value: settings.appUpdates,
-                enabled: settings.pushNotifications,
-                onChanged: notifier.setAppUpdates,
-              ),
-              const _NotificationDivider(),
-              _NotificationSwitchTile(
-                title: l10n.notificationsImportantCommunications,
-                subtitle: l10n.notificationsImportantCommunicationsSubtitle,
-                value: settings.importantCommunications,
-                enabled: settings.pushNotifications,
-                onChanged: notifier.setImportantCommunications,
-              ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        _NotificationSwitchTile(
+          title: l10n.notificationsPush,
+          subtitle: l10n.notificationsPushSubtitle,
+          value: settings.pushNotifications,
+          onChanged: (value) async {
+            if (!value) {
+              await notifier.setPushNotifications(false);
+              return;
+            }
+
+            final permissionStatus = await ref
+                .read(notificationPermissionProvider.notifier)
+                .requestPermission();
+
+            if (permissionStatus.isGranted) {
+              await notifier.setPushNotifications(true);
+            } else {
+              await notifier.setPushNotifications(false);
+            }
+          },
+          isMaster: true,
+        ),
+        const SizedBox(height: 12),
+        _NotificationSettingsCard(
+          children: [
+            _NotificationSwitchTile(
+              title: l10n.notificationsTripReminders,
+              subtitle: l10n.notificationsTripRemindersSubtitle,
+              value: settings.tripReminders,
+              enabled: settings.pushNotifications,
+              onChanged: notifier.setTripReminders,
+            ),
+            const _NotificationDivider(),
+            _NotificationSwitchTile(
+              title: l10n.notificationsItineraryReminders,
+              subtitle: l10n.notificationsItineraryRemindersSubtitle,
+              value: settings.itineraryReminders,
+              enabled: settings.pushNotifications,
+              onChanged: notifier.setItineraryReminders,
+            ),
+            const _NotificationDivider(),
+            _NotificationSwitchTile(
+              title: l10n.notificationsTripUpdates,
+              subtitle: l10n.notificationsTripUpdatesSubtitle,
+              value: settings.tripUpdates,
+              enabled: settings.pushNotifications,
+              onChanged: notifier.setTripUpdates,
+            ),
+            const _NotificationDivider(),
+            _NotificationSwitchTile(
+              title: l10n.notificationsGroupInvitations,
+              subtitle: l10n.notificationsGroupInvitationsSubtitle,
+              value: settings.groupInvitations,
+              enabled: settings.pushNotifications,
+              onChanged: notifier.setGroupInvitations,
+            ),
+            const _NotificationDivider(),
+            _NotificationSwitchTile(
+              title: l10n.notificationsGroupActivity,
+              subtitle: l10n.notificationsGroupActivitySubtitle,
+              value: settings.groupActivity,
+              enabled: settings.pushNotifications,
+              onChanged: notifier.setGroupActivity,
+            ),
+            const _NotificationDivider(),
+            _NotificationSwitchTile(
+              title: l10n.notificationsAppUpdates,
+              subtitle: l10n.notificationsAppUpdatesSubtitle,
+              value: settings.appUpdates,
+              enabled: settings.pushNotifications,
+              onChanged: notifier.setAppUpdates,
+            ),
+            const _NotificationDivider(),
+            _NotificationSwitchTile(
+              title: l10n.notificationsImportantCommunications,
+              subtitle: l10n.notificationsImportantCommunicationsSubtitle,
+              value: settings.importantCommunications,
+              enabled: settings.pushNotifications,
+              onChanged: notifier.setImportantCommunications,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

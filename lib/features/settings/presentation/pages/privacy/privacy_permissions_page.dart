@@ -5,7 +5,6 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 class PrivacyPermissionsPage extends StatelessWidget {
   const PrivacyPermissionsPage({super.key});
 
-  static const Color _backgroundColor = Color(0xFF120F0D);
   static const Color _titleColor = Color(0xFFF2E7D5);
   static const Color _textColor = Color(0xFFB8AAA0);
   static const Color _accentColor = Color(0xFFD49A52);
@@ -14,42 +13,30 @@ class PrivacyPermissionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      backgroundColor: _backgroundColor,
-      appBar: AppBar(
-        backgroundColor: _backgroundColor,
-        foregroundColor: _titleColor,
-        title: Text(l10n.privacyPermissionsTitle),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          Text(
-            l10n.privacyPermissionsIntro,
-            style: const TextStyle(
-              color: _textColor,
-              fontSize: 14,
-              height: 1.5,
-            ),
-          ),
-          const SizedBox(height: 24),
-          _PermissionSection(
-            icon: Icons.notifications_none_outlined,
-            title: l10n.privacyPermissionsNotificationsTitle,
-            body: l10n.privacyPermissionsNotificationsBody,
-          ),
-          _PermissionSection(
-            icon: Icons.photo_library_outlined,
-            title: l10n.privacyPermissionsMediaTitle,
-            body: l10n.privacyPermissionsMediaBody,
-          ),
-          _PermissionSection(
-            icon: Icons.location_on_outlined,
-            title: l10n.privacyPermissionsLocationTitle,
-            body: l10n.privacyPermissionsLocationBody,
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.privacyPermissionsIntro,
+          style: const TextStyle(color: _textColor, fontSize: 14, height: 1.5),
+        ),
+        const SizedBox(height: 24),
+        _PermissionSection(
+          icon: Icons.notifications_none_outlined,
+          title: l10n.privacyPermissionsNotificationsTitle,
+          body: l10n.privacyPermissionsNotificationsBody,
+        ),
+        _PermissionSection(
+          icon: Icons.photo_library_outlined,
+          title: l10n.privacyPermissionsMediaTitle,
+          body: l10n.privacyPermissionsMediaBody,
+        ),
+        _PermissionSection(
+          icon: Icons.location_on_outlined,
+          title: l10n.privacyPermissionsLocationTitle,
+          body: l10n.privacyPermissionsLocationBody,
+        ),
+      ],
     );
   }
 }

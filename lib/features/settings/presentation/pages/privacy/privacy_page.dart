@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/privacy/privacy_consent_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/privacy/privacy_export_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/privacy/privacy_permissions_page.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
-class PrivacyPage extends StatelessWidget {
+class PrivacyPage extends StatefulWidget {
   const PrivacyPage({super.key});
 
-  static const Color _backgroundColor = Color(0xFF120F0D);
-  static const Color _cardColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
+  @override
+  State<PrivacyPage> createState() => _PrivacyPageState();
+}
+
+class _PrivacyPageState extends State<PrivacyPage> {
+  bool _permissionsExpanded = false;
+  bool _consentExpanded = false;
+  bool _exportExpanded = false;
+
+  static const Color _backgroundColor = Color(0xFF100C0A);
   static const Color _titleColor = Color(0xFFF2E7D5);
   static const Color _subtitleColor = Color(0xFF9E9287);
-  static const Color _accentColor = Color(0xFFD49A52);
 
   static final Uri _privacyPolicyUrl = Uri.parse(
     'https://atlaslanternproject.github.io/AmaterasuTrip/privacy.html',
   );
-
-  void _openPage(BuildContext context, Widget page) {
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
-  }
 
   Future<void> _openPrivacyPolicy() async {
     await launchUrl(_privacyPolicyUrl, mode: LaunchMode.externalApplication);
@@ -36,11 +39,18 @@ class PrivacyPage extends StatelessWidget {
       backgroundColor: _backgroundColor,
       appBar: AppBar(
         backgroundColor: _backgroundColor,
-        foregroundColor: _titleColor,
-        title: Text(l10n.privacyTitle),
+        elevation: 0,
+        title: Text(
+          l10n.privacyTitle,
+          style: const TextStyle(
+            color: _titleColor,
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
         children: [
           Text(
             l10n.privacyIntro,
@@ -51,117 +61,52 @@ class PrivacyPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          _PrivacyTile(
+          AmaterasuSettingsCard(
             icon: Icons.policy_outlined,
             title: l10n.privacyDataTitle,
             subtitle: l10n.privacyDataSubtitle,
             onTap: _openPrivacyPolicy,
           ),
-          const SizedBox(height: 12),
-          _PrivacyTile(
+          const SizedBox(height: 10),
+          AmaterasuSettingsCard(
             icon: Icons.admin_panel_settings_outlined,
             title: l10n.privacyPermissionsTitle,
             subtitle: l10n.privacyPermissionsSubtitle,
+            isExpanded: _permissionsExpanded,
             onTap: () {
-              _openPage(context, const PrivacyPermissionsPage());
+              setState(() {
+                _permissionsExpanded = !_permissionsExpanded;
+              });
             },
+            children: const [PrivacyPermissionsPage()],
           ),
-          const SizedBox(height: 12),
-          _PrivacyTile(
+          const SizedBox(height: 10),
+          AmaterasuSettingsCard(
             icon: Icons.fact_check_outlined,
             title: l10n.privacyConsentTitle,
             subtitle: l10n.privacyConsentSubtitle,
+            isExpanded: _consentExpanded,
             onTap: () {
-              _openPage(context, const PrivacyConsentPage());
+              setState(() {
+                _consentExpanded = !_consentExpanded;
+              });
             },
+            children: const [PrivacyConsentPage()],
           ),
-          const SizedBox(height: 12),
-          _PrivacyTile(
+          const SizedBox(height: 10),
+          AmaterasuSettingsCard(
             icon: Icons.download_outlined,
             title: l10n.privacyExportTitle,
             subtitle: l10n.privacyExportSubtitle,
+            isExpanded: _exportExpanded,
             onTap: () {
-              _openPage(context, const PrivacyExportPage());
+              setState(() {
+                _exportExpanded = !_exportExpanded;
+              });
             },
+            children: const [PrivacyExportPage()],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _PrivacyTile extends StatelessWidget {
-  const _PrivacyTile({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: PrivacyPage._cardColor,
-      borderRadius: BorderRadius.circular(14),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: PrivacyPage._borderColor),
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 42,
-                height: 42,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: PrivacyPage._accentColor.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(icon, color: PrivacyPage._accentColor, size: 22),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        color: PrivacyPage._titleColor,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      style: const TextStyle(
-                        color: PrivacyPage._subtitleColor,
-                        fontSize: 12,
-                        height: 1.35,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              const Icon(
-                Icons.chevron_right_rounded,
-                color: PrivacyPage._subtitleColor,
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
