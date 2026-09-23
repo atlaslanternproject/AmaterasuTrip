@@ -951,4 +951,88 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get informationCreditsTechnologiesSubtitle => 'Tecnologie e servizi utilizzati da Amaterasu Trip';
+
+  @override
+  String get dataSyncSection => 'Sincronizzazione';
+
+  @override
+  String get dataSyncSectionSubtitle => 'Gestisci la sincronizzazione dei dati';
+
+  @override
+  String get dataStorageSection => 'Archiviazione';
+
+  @override
+  String get dataStorageSectionSubtitle => 'Gestisci i dati disponibili offline e lo spazio utilizzato';
+
+  @override
+  String get dataConnectionSection => 'Connessione';
+
+  @override
+  String get dataConnectionSectionSubtitle => 'Gestisci come Amaterasu utilizza la connessione';
+
+  @override
+  String get dataSyncEnabled => 'Sincronizzazione dati';
+
+  @override
+  String get dataSyncEnabledSubtitle => 'Consenti la sincronizzazione dei dati quando sei online';
+
+  @override
+  String get dataSyncNow => 'Sincronizza ora';
+
+  @override
+  String get dataSyncNowSubtitle => 'Sincronizza manualmente i dati in attesa';
+
+  @override
+  String get dataSyncLast => 'Ultima sincronizzazione';
+
+  @override
+  String get dataSyncNever => 'Mai';
+
+  @override
+  String get dataSyncStatus => 'Stato sincronizzazione';
+
+  @override
+  String get dataSyncStatusUnavailable => 'Non ancora disponibile';
+
+  @override
+  String get dataOfflineAvailable => 'Dati disponibili offline';
+
+  @override
+  String get dataOfflineAvailableSubtitle => 'Visualizza i contenuti salvati sul dispositivo';
+
+  @override
+  String get dataStorageUsed => 'Spazio utilizzato';
+
+  @override
+  String get dataStorageUsedUnavailable => 'Nessun dato offline disponibile';
+
+  @override
+  String get dataManageOffline => 'Gestisci dati offline';
+
+  @override
+  String get dataManageOfflineSubtitle => 'Gestisci i contenuti disponibili senza connessione';
+
+  @override
+  String get dataClearOffline => 'Cancella dati offline';
+
+  @override
+  String get dataClearOfflineSubtitle => 'Rimuovi dal dispositivo le copie offline già sincronizzate';
+
+  @override
+  String get dataWifiOnly => 'Sincronizza solo con Wi-Fi';
+
+  @override
+  String get dataWifiOnlySubtitle => 'Evita la sincronizzazione tramite rete mobile';
+
+  @override
+  String get dataMobileData => 'Usa dati mobili';
+
+  @override
+  String get dataMobileDataSubtitle => 'Consenti la sincronizzazione anche tramite rete mobile';
+
+  @override
+  String get dataAutomaticDownloads => 'Download automatici';
+
+  @override
+  String get dataAutomaticDownloadsSubtitle => 'Scarica automaticamente i contenuti disponibili offline';
 }

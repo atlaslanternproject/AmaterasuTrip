@@ -168,7 +168,7 @@ final amaterasuRouter = GoRouter(
     ),
 
     GoRoute(
-      path: '/settings/data-sync',
+      path: '/settings/data',
       builder: (context, state) {
         return const DataSyncPage();
       },

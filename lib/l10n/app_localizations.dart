@@ -1954,6 +1954,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Technologies and services used by Amaterasu Trip'**
   String get informationCreditsTechnologiesSubtitle;
+
+  /// No description provided for @dataSyncSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronisation'**
+  String get dataSyncSection;
+
+  /// No description provided for @dataSyncSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage data synchronisation'**
+  String get dataSyncSectionSubtitle;
+
+  /// No description provided for @dataStorageSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage'**
+  String get dataStorageSection;
+
+  /// No description provided for @dataStorageSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage offline data and storage usage'**
+  String get dataStorageSectionSubtitle;
+
+  /// No description provided for @dataConnectionSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection'**
+  String get dataConnectionSection;
+
+  /// No description provided for @dataConnectionSectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage how Amaterasu uses your connection'**
+  String get dataConnectionSectionSubtitle;
+
+  /// No description provided for @dataSyncEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Data synchronisation'**
+  String get dataSyncEnabled;
+
+  /// No description provided for @dataSyncEnabledSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow data to synchronise when you are online'**
+  String get dataSyncEnabledSubtitle;
+
+  /// No description provided for @dataSyncNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync now'**
+  String get dataSyncNow;
+
+  /// No description provided for @dataSyncNowSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manually synchronise pending data'**
+  String get dataSyncNowSubtitle;
+
+  /// No description provided for @dataSyncLast.
+  ///
+  /// In en, this message translates to:
+  /// **'Last synchronisation'**
+  String get dataSyncLast;
+
+  /// No description provided for @dataSyncNever.
+  ///
+  /// In en, this message translates to:
+  /// **'Never'**
+  String get dataSyncNever;
+
+  /// No description provided for @dataSyncStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronisation status'**
+  String get dataSyncStatus;
+
+  /// No description provided for @dataSyncStatusUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet available'**
+  String get dataSyncStatusUnavailable;
+
+  /// No description provided for @dataOfflineAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline data'**
+  String get dataOfflineAvailable;
+
+  /// No description provided for @dataOfflineAvailableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View content saved on this device'**
+  String get dataOfflineAvailableSubtitle;
+
+  /// No description provided for @dataStorageUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage used'**
+  String get dataStorageUsed;
+
+  /// No description provided for @dataStorageUsedUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No offline data available'**
+  String get dataStorageUsedUnavailable;
+
+  /// No description provided for @dataManageOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage offline data'**
+  String get dataManageOffline;
+
+  /// No description provided for @dataManageOfflineSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage content available without an internet connection'**
+  String get dataManageOfflineSubtitle;
+
+  /// No description provided for @dataClearOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear offline data'**
+  String get dataClearOffline;
+
+  /// No description provided for @dataClearOfflineSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove already synchronised offline copies from this device'**
+  String get dataClearOfflineSubtitle;
+
+  /// No description provided for @dataWifiOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync on Wi-Fi only'**
+  String get dataWifiOnly;
+
+  /// No description provided for @dataWifiOnlySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid synchronisation over mobile data'**
+  String get dataWifiOnlySubtitle;
+
+  /// No description provided for @dataMobileData.
+  ///
+  /// In en, this message translates to:
+  /// **'Use mobile data'**
+  String get dataMobileData;
+
+  /// No description provided for @dataMobileDataSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow synchronisation over a mobile network'**
+  String get dataMobileDataSubtitle;
+
+  /// No description provided for @dataAutomaticDownloads.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic downloads'**
+  String get dataAutomaticDownloads;
+
+  /// No description provided for @dataAutomaticDownloadsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically download content available offline'**
+  String get dataAutomaticDownloadsSubtitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

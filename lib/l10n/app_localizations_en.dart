@@ -951,4 +951,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get informationCreditsTechnologiesSubtitle => 'Technologies and services used by Amaterasu Trip';
+
+  @override
+  String get dataSyncSection => 'Synchronisation';
+
+  @override
+  String get dataSyncSectionSubtitle => 'Manage data synchronisation';
+
+  @override
+  String get dataStorageSection => 'Storage';
+
+  @override
+  String get dataStorageSectionSubtitle => 'Manage offline data and storage usage';
+
+  @override
+  String get dataConnectionSection => 'Connection';
+
+  @override
+  String get dataConnectionSectionSubtitle => 'Manage how Amaterasu uses your connection';
+
+  @override
+  String get dataSyncEnabled => 'Data synchronisation';
+
+  @override
+  String get dataSyncEnabledSubtitle => 'Allow data to synchronise when you are online';
+
+  @override
+  String get dataSyncNow => 'Sync now';
+
+  @override
+  String get dataSyncNowSubtitle => 'Manually synchronise pending data';
+
+  @override
+  String get dataSyncLast => 'Last synchronisation';
+
+  @override
+  String get dataSyncNever => 'Never';
+
+  @override
+  String get dataSyncStatus => 'Synchronisation status';
+
+  @override
+  String get dataSyncStatusUnavailable => 'Not yet available';
+
+  @override
+  String get dataOfflineAvailable => 'Offline data';
+
+  @override
+  String get dataOfflineAvailableSubtitle => 'View content saved on this device';
+
+  @override
+  String get dataStorageUsed => 'Storage used';
+
+  @override
+  String get dataStorageUsedUnavailable => 'No offline data available';
+
+  @override
+  String get dataManageOffline => 'Manage offline data';
+
+  @override
+  String get dataManageOfflineSubtitle => 'Manage content available without an internet connection';
+
+  @override
+  String get dataClearOffline => 'Clear offline data';
+
+  @override
+  String get dataClearOfflineSubtitle => 'Remove already synchronised offline copies from this device';
+
+  @override
+  String get dataWifiOnly => 'Sync on Wi-Fi only';
+
+  @override
+  String get dataWifiOnlySubtitle => 'Avoid synchronisation over mobile data';
+
+  @override
+  String get dataMobileData => 'Use mobile data';
+
+  @override
+  String get dataMobileDataSubtitle => 'Allow synchronisation over a mobile network';
+
+  @override
+  String get dataAutomaticDownloads => 'Automatic downloads';
+
+  @override
+  String get dataAutomaticDownloadsSubtitle => 'Automatically download content available offline';
 }
