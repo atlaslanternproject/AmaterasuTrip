@@ -5,7 +5,7 @@ import '../../providers/auth_provider.dart';
 import 'auth_page.dart';
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
-
+import 'package:amaterasutrip/core/notifications/firebase_messaging_service.dart';
 class AuthGate extends ConsumerStatefulWidget {
   const AuthGate({super.key});
   @override
@@ -35,6 +35,7 @@ class _AuthGateState extends ConsumerState<AuthGate> {
             } catch (error) {
               debugPrint("FIRESTORE EMAIL SYNC ERROR: $error");
             }
+            await FirebaseMessagingService.instance.syncCurrentUserToken();
           });
         }
         return FutureBuilder<SharedPreferences>(

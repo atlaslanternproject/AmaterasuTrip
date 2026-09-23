@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import '../localization/external_locale.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -11,6 +14,8 @@ class FirebaseMessagingService {
       FirebaseMessagingService._();
 
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
@@ -26,7 +31,7 @@ class FirebaseMessagingService {
   StreamSubscription<String>? _tokenRefreshSubscription;
   StreamSubscription<RemoteMessage>? _foregroundMessageSubscription;
   StreamSubscription<RemoteMessage>? _messageOpenedAppSubscription;
-  
+
   String? _token;
 
   String? get token => _token;
@@ -52,6 +57,10 @@ class FirebaseMessagingService {
 
     debugPrint('FCM foreground listener registered');
 
+    debugPrint(
+      'External notification locale: ${ExternalLocale.languageCode}',
+    );
+
     _messageOpenedAppSubscription ??=
         FirebaseMessaging.onMessageOpenedApp.listen(_handleMessageOpenedApp);
 
@@ -66,6 +75,7 @@ class FirebaseMessagingService {
 
       if (_token != null) {
         debugPrint('FCM TEST TOKEN: $_token');
+        await _registerCurrentToken();
       } else {
         debugPrint('FCM token not available.');
       }
@@ -76,15 +86,51 @@ class FirebaseMessagingService {
 
     _tokenRefreshSubscription ??=
         _messaging.onTokenRefresh.listen(
-          (token) {
+          (token) async {
             _token = token;
-            debugPrint('FCM TEST TOKEN: $token');
+            debugPrint('FCM TEST TOKEN REFRESHED: $token');
+
+            try {
+              await _registerCurrentToken();
+            } catch (error, stackTrace) {
+              debugPrint('FCM refreshed token registration failed: $error');
+              debugPrintStack(stackTrace: stackTrace);
+            }
           },
           onError: (Object error, StackTrace stackTrace) {
             debugPrint('FCM token refresh failed: $error');
             debugPrintStack(stackTrace: stackTrace);
           },
         );
+  }
+
+  Future<void> syncCurrentUserToken() async {
+    try {
+      await _registerCurrentToken();
+    } catch (error, stackTrace) {
+      debugPrint('FCM user token sync failed: $error');
+      debugPrintStack(stackTrace: stackTrace);
+    }
+  }
+
+  Future<void> _registerCurrentToken() async {
+    final user = _auth.currentUser;
+    final token = _token;
+
+    if (user == null || token == null) {
+      return;
+    }
+
+    await _firestore.collection('viaggiatori').doc(user.uid).set({
+      'fcmToken': token,
+      'notificationLocale': ExternalLocale.languageCode,
+      'fcmUpdatedAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
+
+    debugPrint(
+      'FCM token registered for user ${user.uid} '
+      'with locale ${ExternalLocale.languageCode}',
+    );
   }
 
   Future<void> _handleForegroundMessage(RemoteMessage message) async {
