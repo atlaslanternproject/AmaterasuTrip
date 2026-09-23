@@ -7,8 +7,6 @@ import '../features/auth/presentation/pages/verify_email_page.dart';
 import '../features/auth/presentation/pages/create_username_page.dart';
 import '../features/auth/presentation/pages/google_auth.dart';
 import '../features/trips/presentation/pages/trips_page.dart';
-import '../features/explore/presentation/pages/explore_page.dart';
-import '../features/memories/presentation/pages/memories_page.dart';
 import '../features/settings/presentation/pages/settings_page.dart';
 import '../features/settings/presentation/pages/profile/profile_page.dart';
 import '../features/settings/presentation/pages/language/language_page.dart';
@@ -94,20 +92,6 @@ final amaterasuRouter = GoRouter(
       path: '/trips',
       builder: (context, state) {
         return const TripsPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/explore',
-      builder: (context, state) {
-        return const ExplorePage();
-      },
-    ),
-
-    GoRoute(
-      path: '/memories',
-      builder: (context, state) {
-        return const MemoriesPage();
       },
     ),
 
