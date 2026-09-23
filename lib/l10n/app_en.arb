@@ -360,5 +360,68 @@
   "dataMobileData": "Use mobile data",
   "dataMobileDataSubtitle": "Allow synchronisation over a mobile network",
   "dataAutomaticDownloads": "Automatic downloads",
-  "dataAutomaticDownloadsSubtitle": "Automatically download content available offline"
+  "dataAutomaticDownloadsSubtitle": "Automatically download content available offline",
+  "tripsTitle": "My trips",
+  "tripsNewTrip": "New trip",
+  "tripsInProgress": "In progress",
+  "tripsUpcoming": "Upcoming",
+  "tripsCompleted": "Completed",
+  "tripsDayProgress": "Day {currentDay} of {totalDays}",
+  "@tripsDayProgress": {
+    "placeholders": {
+      "currentDay": {
+        "type": "int"
+      },
+      "totalDays": {
+        "type": "int"
+      }
+    }
+  },
+  "tripsTodayActivities": "Today: {count} activities",
+  "@tripsTodayActivities": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tripsOrganisationProgress": "{percentage}% organised",
+  "@tripsOrganisationProgress": {
+    "placeholders": {
+      "percentage": {
+        "type": "int"
+      }
+    }
+  },
+  "tripsCompletedStatus": "Trip completed",
+  "createTripTitle": "New trip",
+  "createTripChangePhoto": "Change photo",
+  "createTripName": "Trip name",
+  "createTripNameHint": "e.g. Japan 2027",
+  "createTripDestination": "Destination",
+  "createTripDestinationHint": "Choose a destination",
+  "createTripDates": "DATES",
+  "createTripDepartureDate": "Departure",
+  "createTripReturnDate": "Return",
+  "createTripCurrency": "Main currency",
+  "createTripCurrencyHint": "Choose a currency",
+  "createTripStorageSection": "TRIP STORAGE",
+  "createTripStorage": "Configure storage",
+  "createTripStorageSubtitle": "Connect Google Drive, OneDrive or Dropbox.",
+  "createTripStorageLater": "Set up later",
+  "createTripCreate": "CREATE TRIP",
+  "tripCreatedTitle": "{tripName} is ready!",
+  "@tripCreatedTitle": {
+    "placeholders": {
+      "tripName": {
+        "type": "String"
+      }
+    }
+  },
+  "tripCreatedSubtitle": "Your trip has been created. Invite your travel companions or enter the trip and start organising it.",
+  "tripCreatedInviteTravellers": "Invite travellers",
+  "tripCreatedCopyLink": "Copy link",
+  "tripCreatedShare": "Share",
+  "tripCreatedEnterTrip": "Enter trip",
+  "tripCreatedLinkCopied": "Invitation link copied"
 }

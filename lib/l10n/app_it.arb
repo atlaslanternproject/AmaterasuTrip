@@ -360,5 +360,68 @@
   "dataMobileData": "Usa dati mobili",
   "dataMobileDataSubtitle": "Consenti la sincronizzazione anche tramite rete mobile",
   "dataAutomaticDownloads": "Download automatici",
-  "dataAutomaticDownloadsSubtitle": "Scarica automaticamente i contenuti disponibili offline"
+  "dataAutomaticDownloadsSubtitle": "Scarica automaticamente i contenuti disponibili offline",
+  "tripsTitle": "I miei viaggi",
+  "tripsNewTrip": "Nuovo viaggio",
+  "tripsInProgress": "In corso",
+  "tripsUpcoming": "In programma",
+  "tripsCompleted": "Conclusi",
+  "tripsDayProgress": "Giorno {currentDay} di {totalDays}",
+  "@tripsDayProgress": {
+    "placeholders": {
+      "currentDay": {
+        "type": "int"
+      },
+      "totalDays": {
+        "type": "int"
+      }
+    }
+  },
+  "tripsTodayActivities": "Oggi: {count} attività",
+  "@tripsTodayActivities": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tripsOrganisationProgress": "{percentage}% organizzato",
+  "@tripsOrganisationProgress": {
+    "placeholders": {
+      "percentage": {
+        "type": "int"
+      }
+    }
+  },
+  "tripsCompletedStatus": "Viaggio concluso",
+  "createTripTitle": "Nuovo viaggio",
+  "createTripChangePhoto": "Cambia foto",
+  "createTripName": "Nome del viaggio",
+  "createTripNameHint": "Es. Giappone 2027",
+  "createTripDestination": "Destinazione",
+  "createTripDestinationHint": "Scegli una destinazione",
+  "createTripDates": "DATE",
+  "createTripDepartureDate": "Partenza",
+  "createTripReturnDate": "Ritorno",
+  "createTripCurrency": "Valuta principale",
+  "createTripCurrencyHint": "Scegli la valuta",
+  "createTripStorageSection": "ARCHIVIO DEL VIAGGIO",
+  "createTripStorage": "Configura archivio",
+  "createTripStorageSubtitle": "Potrai collegare Google Drive, OneDrive o Dropbox.",
+  "createTripStorageLater": "Configura dopo",
+  "createTripCreate": "CREA VIAGGIO",
+  "tripCreatedTitle": "{tripName} è pronto!",
+  "@tripCreatedTitle": {
+    "placeholders": {
+      "tripName": {
+        "type": "String"
+      }
+    }
+  },
+  "tripCreatedSubtitle": "Il tuo viaggio è stato creato. Invita i tuoi compagni di viaggio oppure entra e inizia a organizzarlo.",
+  "tripCreatedInviteTravellers": "Invita viaggiatori",
+  "tripCreatedCopyLink": "Copia link",
+  "tripCreatedShare": "Condividi",
+  "tripCreatedEnterTrip": "Entra nel viaggio",
+  "tripCreatedLinkCopied": "Link di invito copiato"
 }

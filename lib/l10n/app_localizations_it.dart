@@ -1035,4 +1035,108 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get dataAutomaticDownloadsSubtitle => 'Scarica automaticamente i contenuti disponibili offline';
+
+  @override
+  String get tripsTitle => 'I miei viaggi';
+
+  @override
+  String get tripsNewTrip => 'Nuovo viaggio';
+
+  @override
+  String get tripsInProgress => 'In corso';
+
+  @override
+  String get tripsUpcoming => 'In programma';
+
+  @override
+  String get tripsCompleted => 'Conclusi';
+
+  @override
+  String tripsDayProgress(int currentDay, int totalDays) {
+    return 'Giorno $currentDay di $totalDays';
+  }
+
+  @override
+  String tripsTodayActivities(int count) {
+    return 'Oggi: $count attività';
+  }
+
+  @override
+  String tripsOrganisationProgress(int percentage) {
+    return '$percentage% organizzato';
+  }
+
+  @override
+  String get tripsCompletedStatus => 'Viaggio concluso';
+
+  @override
+  String get createTripTitle => 'Nuovo viaggio';
+
+  @override
+  String get createTripChangePhoto => 'Cambia foto';
+
+  @override
+  String get createTripName => 'Nome del viaggio';
+
+  @override
+  String get createTripNameHint => 'Es. Giappone 2027';
+
+  @override
+  String get createTripDestination => 'Destinazione';
+
+  @override
+  String get createTripDestinationHint => 'Scegli una destinazione';
+
+  @override
+  String get createTripDates => 'DATE';
+
+  @override
+  String get createTripDepartureDate => 'Partenza';
+
+  @override
+  String get createTripReturnDate => 'Ritorno';
+
+  @override
+  String get createTripCurrency => 'Valuta principale';
+
+  @override
+  String get createTripCurrencyHint => 'Scegli la valuta';
+
+  @override
+  String get createTripStorageSection => 'ARCHIVIO DEL VIAGGIO';
+
+  @override
+  String get createTripStorage => 'Configura archivio';
+
+  @override
+  String get createTripStorageSubtitle => 'Potrai collegare Google Drive, OneDrive o Dropbox.';
+
+  @override
+  String get createTripStorageLater => 'Configura dopo';
+
+  @override
+  String get createTripCreate => 'CREA VIAGGIO';
+
+  @override
+  String tripCreatedTitle(String tripName) {
+    return '$tripName è pronto!';
+  }
+
+  @override
+  String get tripCreatedSubtitle => 'Il tuo viaggio è stato creato. Invita i tuoi compagni di viaggio oppure entra e inizia a organizzarlo.';
+
+  @override
+  String get tripCreatedInviteTravellers => 'Invita viaggiatori';
+
+  @override
+  String get tripCreatedCopyLink => 'Copia link';
+
+  @override
+  String get tripCreatedShare => 'Condividi';
+
+  @override
+  String get tripCreatedEnterTrip => 'Entra nel viaggio';
+
+  @override
+  String get tripCreatedLinkCopied => 'Link di invito copiato';
 }

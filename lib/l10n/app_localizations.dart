@@ -2122,6 +2122,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Automatically download content available offline'**
   String get dataAutomaticDownloadsSubtitle;
+
+  /// No description provided for @tripsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My trips'**
+  String get tripsTitle;
+
+  /// No description provided for @tripsNewTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'New trip'**
+  String get tripsNewTrip;
+
+  /// No description provided for @tripsInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get tripsInProgress;
+
+  /// No description provided for @tripsUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get tripsUpcoming;
+
+  /// No description provided for @tripsCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get tripsCompleted;
+
+  /// No description provided for @tripsDayProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {currentDay} of {totalDays}'**
+  String tripsDayProgress(int currentDay, int totalDays);
+
+  /// No description provided for @tripsTodayActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Today: {count} activities'**
+  String tripsTodayActivities(int count);
+
+  /// No description provided for @tripsOrganisationProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{percentage}% organised'**
+  String tripsOrganisationProgress(int percentage);
+
+  /// No description provided for @tripsCompletedStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip completed'**
+  String get tripsCompletedStatus;
+
+  /// No description provided for @createTripTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New trip'**
+  String get createTripTitle;
+
+  /// No description provided for @createTripChangePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Change photo'**
+  String get createTripChangePhoto;
+
+  /// No description provided for @createTripName.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip name'**
+  String get createTripName;
+
+  /// No description provided for @createTripNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Japan 2027'**
+  String get createTripNameHint;
+
+  /// No description provided for @createTripDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Destination'**
+  String get createTripDestination;
+
+  /// No description provided for @createTripDestinationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a destination'**
+  String get createTripDestinationHint;
+
+  /// No description provided for @createTripDates.
+  ///
+  /// In en, this message translates to:
+  /// **'DATES'**
+  String get createTripDates;
+
+  /// No description provided for @createTripDepartureDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure'**
+  String get createTripDepartureDate;
+
+  /// No description provided for @createTripReturnDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Return'**
+  String get createTripReturnDate;
+
+  /// No description provided for @createTripCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Main currency'**
+  String get createTripCurrency;
+
+  /// No description provided for @createTripCurrencyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a currency'**
+  String get createTripCurrencyHint;
+
+  /// No description provided for @createTripStorageSection.
+  ///
+  /// In en, this message translates to:
+  /// **'TRIP STORAGE'**
+  String get createTripStorageSection;
+
+  /// No description provided for @createTripStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure storage'**
+  String get createTripStorage;
+
+  /// No description provided for @createTripStorageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Google Drive, OneDrive or Dropbox.'**
+  String get createTripStorageSubtitle;
+
+  /// No description provided for @createTripStorageLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up later'**
+  String get createTripStorageLater;
+
+  /// No description provided for @createTripCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'CREATE TRIP'**
+  String get createTripCreate;
+
+  /// No description provided for @tripCreatedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{tripName} is ready!'**
+  String tripCreatedTitle(String tripName);
+
+  /// No description provided for @tripCreatedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your trip has been created. Invite your travel companions or enter the trip and start organising it.'**
+  String get tripCreatedSubtitle;
+
+  /// No description provided for @tripCreatedInviteTravellers.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite travellers'**
+  String get tripCreatedInviteTravellers;
+
+  /// No description provided for @tripCreatedCopyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get tripCreatedCopyLink;
+
+  /// No description provided for @tripCreatedShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get tripCreatedShare;
+
+  /// No description provided for @tripCreatedEnterTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter trip'**
+  String get tripCreatedEnterTrip;
+
+  /// No description provided for @tripCreatedLinkCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation link copied'**
+  String get tripCreatedLinkCopied;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

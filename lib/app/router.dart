@@ -2,11 +2,16 @@ import 'package:amaterasutrip/features/auth/presentation/pages/auth_gate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
+
 import '../features/auth/presentation/pages/register_page.dart';
 import '../features/auth/presentation/pages/verify_email_page.dart';
 import '../features/auth/presentation/pages/create_username_page.dart';
 import '../features/auth/presentation/pages/google_auth.dart';
+
 import '../features/trips/presentation/pages/trips_page.dart';
+import '../features/trips/presentation/pages/create_trip/create_trip_page.dart';
+import '../features/trips/presentation/pages/workspace/trip_overview_page.dart';
+
 import '../features/settings/presentation/pages/settings_page.dart';
 import '../features/settings/presentation/pages/profile/profile_page.dart';
 import '../features/settings/presentation/pages/language/language_page.dart';
@@ -88,6 +93,9 @@ final amaterasuRouter = GoRouter(
       },
     ),
 
+    // =========================
+    // VIAGGI
+    // =========================
     GoRoute(
       path: '/trips',
       builder: (context, state) {
@@ -95,6 +103,23 @@ final amaterasuRouter = GoRouter(
       },
     ),
 
+    GoRoute(
+      path: '/trips/create',
+      builder: (context, state) {
+        return const CreateTripPage();
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId',
+      builder: (context, state) {
+        return const TripOverviewPage();
+      },
+    ),
+
+    // =========================
+    // IMPOSTAZIONI
+    // =========================
     GoRoute(
       path: '/settings',
       builder: (context, state) {
