@@ -298,5 +298,39 @@
   "notificationsServiceEmails": "Comunicazioni di servizio",
   "notificationsServiceEmailsSubtitle": "Email necessarie per il funzionamento e l'utilizzo del servizio",
   "notificationsPromotionalEmails": "Comunicazioni promozionali",
-  "notificationsPromotionalEmailsSubtitle": "Ricevi novità, iniziative e comunicazioni promozionali di Amaterasu Trip"
+  "notificationsPromotionalEmailsSubtitle": "Ricevi novità, iniziative e comunicazioni promozionali di Amaterasu Trip",
+  "informationApp": "App",
+  "informationAppSubtitle": "Versione, build e licenze",
+  "informationLegal": "Legale",
+  "informationLegalSubtitle": "Termini, privacy e informazioni legali",
+  "informationSupport": "Supporto",
+  "informationSupportSubtitle": "Assistenza, contatti e segnalazioni",
+  "informationCredits": "Crediti",
+  "informationCreditsSubtitle": "Credits, servizi e SDK utilizzati",
+  "informationAppName": "Nome applicazione",
+  "informationVersion": "Versione",
+  "informationBuild": "Build",
+  "informationOpenSourceLicenses": "Licenze open source",
+  "informationOpenSourceLicensesSubtitle": "Visualizza le licenze dei software utilizzati",
+  "informationPrivacyPolicy": "Informativa sulla privacy",
+  "informationPrivacyPolicySubtitle": "Consulta l'informativa sul trattamento dei dati personali",
+  "informationContactUs": "Contattaci",
+  "informationReportProblem": "Segnala un problema",
+  "informationReportProblemSubtitle": "Invia una segnalazione al supporto",
+  "informationReportProblemSubject": "Amaterasu Trip — Segnalazione problema",
+  "informationReportProblemBody": "Descrivi il problema:\n\n\n---\nAmaterasu Trip\nVersione: {version}\nBuild: {build}",
+  "@informationReportProblemBody": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "build": {
+        "type": "String"
+      }
+    }
+  },
+  "informationCreditsDevelopedBy": "Sviluppato da",
+  "informationCreditsTeam": "Atlas Lantern Team",
+  "informationCreditsTechnologies": "Tecnologie e servizi",
+  "informationCreditsTechnologiesSubtitle": "Tecnologie e servizi utilizzati da Amaterasu Trip"
 }

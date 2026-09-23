@@ -1810,6 +1810,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Receive news, initiatives and promotional communications from Amaterasu Trip'**
   String get notificationsPromotionalEmailsSubtitle;
+
+  /// No description provided for @informationApp.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get informationApp;
+
+  /// No description provided for @informationAppSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Version, build and licences'**
+  String get informationAppSubtitle;
+
+  /// No description provided for @informationLegal.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal'**
+  String get informationLegal;
+
+  /// No description provided for @informationLegalSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms, privacy and legal information'**
+  String get informationLegalSubtitle;
+
+  /// No description provided for @informationSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get informationSupport;
+
+  /// No description provided for @informationSupportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help, contact and reporting'**
+  String get informationSupportSubtitle;
+
+  /// No description provided for @informationCredits.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits'**
+  String get informationCredits;
+
+  /// No description provided for @informationCreditsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits, services and SDKs used'**
+  String get informationCreditsSubtitle;
+
+  /// No description provided for @informationAppName.
+  ///
+  /// In en, this message translates to:
+  /// **'Application name'**
+  String get informationAppName;
+
+  /// No description provided for @informationVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get informationVersion;
+
+  /// No description provided for @informationBuild.
+  ///
+  /// In en, this message translates to:
+  /// **'Build'**
+  String get informationBuild;
+
+  /// No description provided for @informationOpenSourceLicenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Open-source licences'**
+  String get informationOpenSourceLicenses;
+
+  /// No description provided for @informationOpenSourceLicensesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View licences for the software used'**
+  String get informationOpenSourceLicensesSubtitle;
+
+  /// No description provided for @informationPrivacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy policy'**
+  String get informationPrivacyPolicy;
+
+  /// No description provided for @informationPrivacyPolicySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Read how your personal data is handled'**
+  String get informationPrivacyPolicySubtitle;
+
+  /// No description provided for @informationContactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact us'**
+  String get informationContactUs;
+
+  /// No description provided for @informationReportProblem.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a problem'**
+  String get informationReportProblem;
+
+  /// No description provided for @informationReportProblemSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a problem report to support'**
+  String get informationReportProblemSubtitle;
+
+  /// No description provided for @informationReportProblemSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu Trip — Problem report'**
+  String get informationReportProblemSubject;
+
+  /// No description provided for @informationReportProblemBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the problem:\n\n\n---\nAmaterasu Trip\nVersion: {version}\nBuild: {build}'**
+  String informationReportProblemBody(String version, String build);
+
+  /// No description provided for @informationCreditsDevelopedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Developed by'**
+  String get informationCreditsDevelopedBy;
+
+  /// No description provided for @informationCreditsTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Atlas Lantern Team'**
+  String get informationCreditsTeam;
+
+  /// No description provided for @informationCreditsTechnologies.
+  ///
+  /// In en, this message translates to:
+  /// **'Technologies and services'**
+  String get informationCreditsTechnologies;
+
+  /// No description provided for @informationCreditsTechnologiesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Technologies and services used by Amaterasu Trip'**
+  String get informationCreditsTechnologiesSubtitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

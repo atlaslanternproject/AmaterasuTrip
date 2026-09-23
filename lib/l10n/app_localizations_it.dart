@@ -877,4 +877,78 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get notificationsPromotionalEmailsSubtitle => 'Ricevi novità, iniziative e comunicazioni promozionali di Amaterasu Trip';
+
+  @override
+  String get informationApp => 'App';
+
+  @override
+  String get informationAppSubtitle => 'Versione, build e licenze';
+
+  @override
+  String get informationLegal => 'Legale';
+
+  @override
+  String get informationLegalSubtitle => 'Termini, privacy e informazioni legali';
+
+  @override
+  String get informationSupport => 'Supporto';
+
+  @override
+  String get informationSupportSubtitle => 'Assistenza, contatti e segnalazioni';
+
+  @override
+  String get informationCredits => 'Crediti';
+
+  @override
+  String get informationCreditsSubtitle => 'Credits, servizi e SDK utilizzati';
+
+  @override
+  String get informationAppName => 'Nome applicazione';
+
+  @override
+  String get informationVersion => 'Versione';
+
+  @override
+  String get informationBuild => 'Build';
+
+  @override
+  String get informationOpenSourceLicenses => 'Licenze open source';
+
+  @override
+  String get informationOpenSourceLicensesSubtitle => 'Visualizza le licenze dei software utilizzati';
+
+  @override
+  String get informationPrivacyPolicy => 'Informativa sulla privacy';
+
+  @override
+  String get informationPrivacyPolicySubtitle => 'Consulta l\'informativa sul trattamento dei dati personali';
+
+  @override
+  String get informationContactUs => 'Contattaci';
+
+  @override
+  String get informationReportProblem => 'Segnala un problema';
+
+  @override
+  String get informationReportProblemSubtitle => 'Invia una segnalazione al supporto';
+
+  @override
+  String get informationReportProblemSubject => 'Amaterasu Trip — Segnalazione problema';
+
+  @override
+  String informationReportProblemBody(String version, String build) {
+    return 'Descrivi il problema:\n\n\n---\nAmaterasu Trip\nVersione: $version\nBuild: $build';
+  }
+
+  @override
+  String get informationCreditsDevelopedBy => 'Sviluppato da';
+
+  @override
+  String get informationCreditsTeam => 'Atlas Lantern Team';
+
+  @override
+  String get informationCreditsTechnologies => 'Tecnologie e servizi';
+
+  @override
+  String get informationCreditsTechnologiesSubtitle => 'Tecnologie e servizi utilizzati da Amaterasu Trip';
 }

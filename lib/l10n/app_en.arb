@@ -298,5 +298,39 @@
   "notificationsServiceEmails": "Service communications",
   "notificationsServiceEmailsSubtitle": "Emails required for the operation and use of the service",
   "notificationsPromotionalEmails": "Promotional communications",
-  "notificationsPromotionalEmailsSubtitle": "Receive news, initiatives and promotional communications from Amaterasu Trip"
+  "notificationsPromotionalEmailsSubtitle": "Receive news, initiatives and promotional communications from Amaterasu Trip",
+  "informationApp": "App",
+  "informationAppSubtitle": "Version, build and licences",
+  "informationLegal": "Legal",
+  "informationLegalSubtitle": "Terms, privacy and legal information",
+  "informationSupport": "Support",
+  "informationSupportSubtitle": "Help, contact and reporting",
+  "informationCredits": "Credits",
+  "informationCreditsSubtitle": "Credits, services and SDKs used",
+  "informationAppName": "Application name",
+  "informationVersion": "Version",
+  "informationBuild": "Build",
+  "informationOpenSourceLicenses": "Open-source licences",
+  "informationOpenSourceLicensesSubtitle": "View licences for the software used",
+  "informationPrivacyPolicy": "Privacy policy",
+  "informationPrivacyPolicySubtitle": "Read how your personal data is handled",
+  "informationContactUs": "Contact us",
+  "informationReportProblem": "Report a problem",
+  "informationReportProblemSubtitle": "Send a problem report to support",
+  "informationReportProblemSubject": "Amaterasu Trip — Problem report",
+  "informationReportProblemBody": "Describe the problem:\n\n\n---\nAmaterasu Trip\nVersion: {version}\nBuild: {build}",
+  "@informationReportProblemBody": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "build": {
+        "type": "String"
+      }
+    }
+  },
+  "informationCreditsDevelopedBy": "Developed by",
+  "informationCreditsTeam": "Atlas Lantern Team",
+  "informationCreditsTechnologies": "Technologies and services",
+  "informationCreditsTechnologiesSubtitle": "Technologies and services used by Amaterasu Trip"
 }
