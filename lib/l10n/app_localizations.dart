@@ -2314,6 +2314,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invitation link copied'**
   String get tripCreatedLinkCopied;
+
+  /// No description provided for @tripsUpcomingStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming trip'**
+  String get tripsUpcomingStatus;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

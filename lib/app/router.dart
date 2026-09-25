@@ -113,7 +113,9 @@ final amaterasuRouter = GoRouter(
     GoRoute(
       path: '/trips/:tripId',
       builder: (context, state) {
-        return const TripOverviewPage();
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripOverviewPage(tripId: tripId);
       },
     ),
 

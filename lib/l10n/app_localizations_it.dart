@@ -1139,4 +1139,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripCreatedLinkCopied => 'Link di invito copiato';
+
+  @override
+  String get tripsUpcomingStatus => 'Viaggio in programma';
 }

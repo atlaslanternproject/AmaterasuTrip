@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'trip_created_page.dart';
@@ -11,14 +13,14 @@ import 'widgets/trip_date_selector.dart';
 import 'widgets/trip_destination_field.dart';
 import 'widgets/trip_name_field.dart';
 
-class CreateTripPage extends StatefulWidget {
+class CreateTripPage extends ConsumerStatefulWidget {
   const CreateTripPage({super.key});
 
   @override
-  State<CreateTripPage> createState() => _CreateTripPageState();
+  ConsumerState<CreateTripPage> createState() => _CreateTripPageState();
 }
 
-class _CreateTripPageState extends State<CreateTripPage> {
+class _CreateTripPageState extends ConsumerState<CreateTripPage> {
   static const Color _backgroundColor = Color(0xFF100C0A);
   static const Color _titleColor = Color(0xFFF2E7D5);
   static const Color _secondaryTextColor = Color(0xFFB7A99B);
@@ -126,12 +128,26 @@ class _CreateTripPageState extends State<CreateTripPage> {
     );
   }
 
-  void _createTrip() {
+  Future<void> _createTrip() async {
     if (!_canCreateTrip) {
       return;
     }
 
     final tripName = _nameController.text.trim();
+
+    final tripId = await ref
+        .read(tripRepositoryProvider)
+        .createTrip(
+          name: tripName,
+          destination: _destination!,
+          startDate: _departureDate!,
+          endDate: _returnDate!,
+          currency: _currency!,
+        );
+
+    if (!mounted) {
+      return;
+    }
 
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -157,11 +173,13 @@ class _CreateTripPageState extends State<CreateTripPage> {
             );
           },
           onEnterTrip: () {
-            // Collegamento al workspace nel prossimo step.
+            context.go('/trips/$tripId');
           },
         ),
       ),
     );
+
+    debugPrint('Trip created: $tripId');
   }
 
   @override

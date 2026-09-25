@@ -423,5 +423,6 @@
   "tripCreatedCopyLink": "Copia link",
   "tripCreatedShare": "Condividi",
   "tripCreatedEnterTrip": "Entra nel viaggio",
-  "tripCreatedLinkCopied": "Link di invito copiato"
+  "tripCreatedLinkCopied": "Link di invito copiato",
+  "tripsUpcomingStatus": "Viaggio in programma"
 }

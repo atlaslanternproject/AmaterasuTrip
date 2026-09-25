@@ -423,5 +423,6 @@
   "tripCreatedCopyLink": "Copy link",
   "tripCreatedShare": "Share",
   "tripCreatedEnterTrip": "Enter trip",
-  "tripCreatedLinkCopied": "Invitation link copied"
+  "tripCreatedLinkCopied": "Invitation link copied",
+  "tripsUpcomingStatus": "Upcoming trip"
 }
