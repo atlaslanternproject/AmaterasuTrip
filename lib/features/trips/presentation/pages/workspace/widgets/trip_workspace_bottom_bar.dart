@@ -15,52 +15,73 @@ class TripWorkspaceBottomBar extends StatelessWidget {
   final String tripId;
   final TripWorkspaceSection currentSection;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _borderColor = Color(0xFF5A3023);
-  static const Color _accentColor = Color(0xFFD96C32);
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
     return Container(
-      decoration: BoxDecoration(
-        color: _backgroundColor,
-        border: Border(
-          top: BorderSide(color: _borderColor.withValues(alpha: 0.65)),
-        ),
+      decoration: const BoxDecoration(
+        color: Color(0xFF080605),
+        border: Border(top: BorderSide(color: Color(0xFF3A211B), width: 1)),
       ),
-      child: SafeArea(
-        top: false,
-        child: NavigationBar(
+      child: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          height: 88,
           backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          shadowColor: Colors.transparent,
           elevation: 0,
-          height: 68,
+          indicatorColor: Colors.transparent,
           labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-          indicatorColor: _accentColor.withValues(alpha: 0.14),
+          labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+            final selected = states.contains(WidgetState.selected);
+
+            return TextStyle(
+              fontSize: 13,
+              fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+              color: selected
+                  ? const Color(0xFFFFB06A)
+                  : const Color(0xFFE8D8C8),
+              letterSpacing: 0.2,
+            );
+          }),
+        ),
+        child: NavigationBar(
           selectedIndex: _selectedIndex,
           onDestinationSelected: (index) {
             _navigate(context, index);
           },
           destinations: [
             NavigationDestination(
-              icon: const Icon(Icons.luggage_outlined),
-              selectedIcon: const Icon(Icons.luggage_rounded),
+              icon: const _TripNavIcon(icon: Icons.luggage_outlined),
+              selectedIcon: const _TripNavIcon(
+                icon: Icons.luggage_rounded,
+                selected: true,
+              ),
               label: l10n.tripNavTrips,
             ),
             NavigationDestination(
-              icon: const Icon(Icons.map_outlined),
-              selectedIcon: const Icon(Icons.map_rounded),
+              icon: const _TripNavIcon(icon: Icons.map_outlined),
+              selectedIcon: const _TripNavIcon(
+                icon: Icons.map_rounded,
+                selected: true,
+              ),
               label: l10n.tripNavItinerary,
             ),
             NavigationDestination(
-              icon: const Icon(Icons.favorite_border_rounded),
-              selectedIcon: const Icon(Icons.favorite_rounded),
+              icon: const _TripNavIcon(icon: Icons.favorite_border_rounded),
+              selectedIcon: const _TripNavIcon(
+                icon: Icons.favorite_rounded,
+                selected: true,
+              ),
               label: l10n.tripNavBucketList,
             ),
             NavigationDestination(
-              icon: const Icon(Icons.more_horiz_rounded),
-              selectedIcon: const Icon(Icons.more_horiz_rounded),
+              icon: const _TripNavIcon(icon: Icons.more_horiz_rounded),
+              selectedIcon: const _TripNavIcon(
+                icon: Icons.more_horiz_rounded,
+                selected: true,
+              ),
               label: l10n.tripNavMore,
             ),
           ],
@@ -110,5 +131,30 @@ class TripWorkspaceBottomBar extends StatelessWidget {
         }
         return;
     }
+  }
+}
+
+class _TripNavIcon extends StatelessWidget {
+  const _TripNavIcon({required this.icon, this.selected = false});
+
+  final IconData icon;
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final iconColor = selected
+        ? const Color(0xFFFF8A4C)
+        : const Color(0xFFD9784A);
+
+    if (!selected) {
+      return Icon(icon, size: 27, color: iconColor);
+    }
+
+    return Icon(
+      icon,
+      size: 28,
+      color: const Color(0xFFFF8A4C),
+      shadows: const [Shadow(color: Color(0xFFFF6B32), blurRadius: 4)],
+    );
   }
 }
