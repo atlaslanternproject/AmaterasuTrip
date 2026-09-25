@@ -62,9 +62,7 @@ class TripPlaceholderPage extends StatelessWidget {
                   padding: const EdgeInsets.all(24),
                   child: Container(
                     width: double.infinity,
-                    constraints: const BoxConstraints(
-                      maxWidth: 520,
-                    ),
+                    constraints: const BoxConstraints(maxWidth: 520),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,
                       vertical: 36,
@@ -89,11 +87,7 @@ class TripPlaceholderPage extends StatelessWidget {
                               color: _accentColor.withValues(alpha: 0.5),
                             ),
                           ),
-                          child: Icon(
-                            icon,
-                            color: _accentColor,
-                            size: 32,
-                          ),
+                          child: Icon(icon, color: _accentColor, size: 32),
                         ),
                         const SizedBox(height: 20),
                         Text(

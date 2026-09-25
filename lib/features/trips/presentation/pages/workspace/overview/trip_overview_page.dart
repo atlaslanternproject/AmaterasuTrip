@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/trips/models/trip.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
-import 'package:amaterasutrip/features/trips/presentation/pages/workspace/widgets/trip_workspace_bottom_bar.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/widgets/trip_workspace_card.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/widgets/trip_workspace_header.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -38,10 +37,6 @@ class TripOverviewPage extends ConsumerWidget {
       },
       loading: () => Scaffold(
         backgroundColor: _backgroundColor,
-        bottomNavigationBar: TripWorkspaceBottomBar(
-          tripId: tripId,
-          currentSection: TripWorkspaceSection.overview,
-        ),
         body: const SafeArea(
           child: Center(child: CircularProgressIndicator(color: _accentColor)),
         ),
@@ -61,10 +56,6 @@ class TripOverviewPage extends ConsumerWidget {
   ) {
     return Scaffold(
       backgroundColor: _backgroundColor,
-      bottomNavigationBar: TripWorkspaceBottomBar(
-        tripId: trip.id,
-        currentSection: TripWorkspaceSection.overview,
-      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -174,10 +165,6 @@ class TripOverviewPage extends ConsumerWidget {
   }) {
     return Scaffold(
       backgroundColor: _backgroundColor,
-      bottomNavigationBar: TripWorkspaceBottomBar(
-        tripId: tripId,
-        currentSection: TripWorkspaceSection.overview,
-      ),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -223,6 +210,6 @@ class TripOverviewPage extends ConsumerWidget {
     final start = localizations.formatMediumDate(trip.startDate);
     final end = localizations.formatMediumDate(trip.endDate);
 
-    return '$start — $end';
+    return '$start â€” $end';
   }
 }

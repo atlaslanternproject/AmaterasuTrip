@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:amaterasutrip/features/trips/presentation/pages/workspace/widgets/trip_workspace_bottom_bar.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class TripMorePage extends StatelessWidget {
@@ -97,10 +96,6 @@ class TripMorePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: _backgroundColor,
-      bottomNavigationBar: TripWorkspaceBottomBar(
-        tripId: tripId,
-        currentSection: TripWorkspaceSection.more,
-      ),
       body: SafeArea(
         child: Column(
           children: [
