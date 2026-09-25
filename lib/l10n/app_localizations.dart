@@ -140,7 +140,7 @@ abstract class AppLocalizations {
   /// No description provided for @authPasswordResetEmailSent.
   ///
   /// In en, this message translates to:
-  /// **'📜 We sent a scroll to recover your password. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
+  /// **'ðŸ“œ We sent a scroll to recover your password. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
   String get authPasswordResetEmailSent;
 
   /// No description provided for @authContinue.
@@ -236,37 +236,37 @@ abstract class AppLocalizations {
   /// No description provided for @authRegisterFillFields.
   ///
   /// In en, this message translates to:
-  /// **'⚠️ Please fill in all required fields.'**
+  /// **'âš ï¸ Please fill in all required fields.'**
   String get authRegisterFillFields;
 
   /// No description provided for @authRegisterPasswordsMismatch.
   ///
   /// In en, this message translates to:
-  /// **'⚠️ The two secret words don\'t match.'**
+  /// **'âš ï¸ The two secret words don\'t match.'**
   String get authRegisterPasswordsMismatch;
 
   /// No description provided for @authRegisterEmailAlreadyInUse.
   ///
   /// In en, this message translates to:
-  /// **'⚠️ A traveler is already registered with this scroll.'**
+  /// **'âš ï¸ A traveler is already registered with this scroll.'**
   String get authRegisterEmailAlreadyInUse;
 
   /// No description provided for @authRegisterWeakPassword.
   ///
   /// In en, this message translates to:
-  /// **'⚠️ The secret word is too weak.'**
+  /// **'âš ï¸ The secret word is too weak.'**
   String get authRegisterWeakPassword;
 
   /// No description provided for @authRegisterInvalidEmail.
   ///
   /// In en, this message translates to:
-  /// **'⚠️ The raven cannot reach this address.'**
+  /// **'âš ï¸ The raven cannot reach this address.'**
   String get authRegisterInvalidEmail;
 
   /// No description provided for @authRegisterGenericError.
   ///
   /// In en, this message translates to:
-  /// **'⚠️ Unable to complete registration.'**
+  /// **'âš ï¸ Unable to complete registration.'**
   String get authRegisterGenericError;
 
   /// No description provided for @authAlreadyHaveAccountSignIn.
@@ -296,13 +296,13 @@ abstract class AppLocalizations {
   /// No description provided for @authVerifyEmailNotVerified.
   ///
   /// In en, this message translates to:
-  /// **'⚠️ The scroll has not been signed yet. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
+  /// **'âš ï¸ The scroll has not been signed yet. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
   String get authVerifyEmailNotVerified;
 
   /// No description provided for @authVerifyEmailSent.
   ///
   /// In en, this message translates to:
-  /// **'📜 A new scroll has been sent. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
+  /// **'ðŸ“œ A new scroll has been sent. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
   String get authVerifyEmailSent;
 
   /// No description provided for @authVerifyEmailTitle.
@@ -1082,7 +1082,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountDeleteLoading.
   ///
   /// In en, this message translates to:
-  /// **'Deleting account…'**
+  /// **'Deleting accountâ€¦'**
   String get accountDeleteLoading;
 
   /// No description provided for @accountDeleteCancel.
@@ -1922,7 +1922,7 @@ abstract class AppLocalizations {
   /// No description provided for @informationReportProblemSubject.
   ///
   /// In en, this message translates to:
-  /// **'Amaterasu Trip — Problem report'**
+  /// **'Amaterasu Trip â€” Problem report'**
   String get informationReportProblemSubject;
 
   /// No description provided for @informationReportProblemBody.
@@ -2320,6 +2320,378 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Upcoming trip'**
   String get tripsUpcomingStatus;
+
+  /// No description provided for @tripNavTrips.
+  ///
+  /// In en, this message translates to:
+  /// **'Trips'**
+  String get tripNavTrips;
+
+  /// No description provided for @tripNavItinerary.
+  ///
+  /// In en, this message translates to:
+  /// **'Itinerary'**
+  String get tripNavItinerary;
+
+  /// No description provided for @tripNavBucketList.
+  ///
+  /// In en, this message translates to:
+  /// **'Bucket List'**
+  String get tripNavBucketList;
+
+  /// No description provided for @tripNavMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get tripNavMore;
+
+  /// No description provided for @tripMoreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get tripMoreTitle;
+
+  /// No description provided for @tripMoreSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything related to your trip'**
+  String get tripMoreSubtitle;
+
+  /// No description provided for @tripMoreRestaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants'**
+  String get tripMoreRestaurants;
+
+  /// No description provided for @tripMoreRestaurantsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Organise restaurants and places to eat'**
+  String get tripMoreRestaurantsSubtitle;
+
+  /// No description provided for @tripMoreHotels.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotels and accommodation'**
+  String get tripMoreHotels;
+
+  /// No description provided for @tripMoreHotelsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage hotels and accommodation'**
+  String get tripMoreHotelsSubtitle;
+
+  /// No description provided for @tripMoreShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get tripMoreShopping;
+
+  /// No description provided for @tripMoreShoppingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Save shops and places for shopping'**
+  String get tripMoreShoppingSubtitle;
+
+  /// No description provided for @tripMoreTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get tripMoreTransport;
+
+  /// No description provided for @tripMoreTransportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Organise transport for your trip'**
+  String get tripMoreTransportSubtitle;
+
+  /// No description provided for @tripMoreBookings.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get tripMoreBookings;
+
+  /// No description provided for @tripMoreBookingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tickets, admissions and bookings'**
+  String get tripMoreBookingsSubtitle;
+
+  /// No description provided for @tripMoreSavedPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved places'**
+  String get tripMoreSavedPlaces;
+
+  /// No description provided for @tripMoreSavedPlacesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep useful places for your trip together'**
+  String get tripMoreSavedPlacesSubtitle;
+
+  /// No description provided for @tripMoreMemories.
+  ///
+  /// In en, this message translates to:
+  /// **'Memories'**
+  String get tripMoreMemories;
+
+  /// No description provided for @tripMoreMemoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos, videos and moments from your trip'**
+  String get tripMoreMemoriesSubtitle;
+
+  /// No description provided for @tripMoreNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get tripMoreNotes;
+
+  /// No description provided for @tripMoreNotesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes and useful information'**
+  String get tripMoreNotesSubtitle;
+
+  /// No description provided for @tripMoreSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip settings'**
+  String get tripMoreSettings;
+
+  /// No description provided for @tripMoreSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage trip information, privacy and options'**
+  String get tripMoreSettingsSubtitle;
+
+  /// No description provided for @tripRestaurantsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants'**
+  String get tripRestaurantsTitle;
+
+  /// No description provided for @tripHotelsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotels and accommodation'**
+  String get tripHotelsTitle;
+
+  /// No description provided for @tripShoppingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get tripShoppingTitle;
+
+  /// No description provided for @tripTransportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get tripTransportTitle;
+
+  /// No description provided for @tripBookingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get tripBookingsTitle;
+
+  /// No description provided for @tripSavedPlacesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved places'**
+  String get tripSavedPlacesTitle;
+
+  /// No description provided for @tripMemoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Memories'**
+  String get tripMemoriesTitle;
+
+  /// No description provided for @tripNotesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get tripNotesTitle;
+
+  /// No description provided for @tripSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip settings'**
+  String get tripSettingsTitle;
+
+  /// No description provided for @tripSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage this trip'**
+  String get tripSettingsSubtitle;
+
+  /// No description provided for @tripSettingsInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get tripSettingsInformation;
+
+  /// No description provided for @tripSettingsInformationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name, destination, dates and trip details'**
+  String get tripSettingsInformationSubtitle;
+
+  /// No description provided for @tripSettingsTravellers.
+  ///
+  /// In en, this message translates to:
+  /// **'Travellers'**
+  String get tripSettingsTravellers;
+
+  /// No description provided for @tripSettingsTravellersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage travellers, invitations and roles'**
+  String get tripSettingsTravellersSubtitle;
+
+  /// No description provided for @tripSettingsNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get tripSettingsNotifications;
+
+  /// No description provided for @tripSettingsNotificationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage notifications for this trip'**
+  String get tripSettingsNotificationsSubtitle;
+
+  /// No description provided for @tripSettingsPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy and sharing'**
+  String get tripSettingsPrivacy;
+
+  /// No description provided for @tripSettingsPrivacySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage trip visibility and sharing'**
+  String get tripSettingsPrivacySubtitle;
+
+  /// No description provided for @tripSettingsManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip management'**
+  String get tripSettingsManagement;
+
+  /// No description provided for @tripSettingsManagementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive, duplicate, export or delete the trip'**
+  String get tripSettingsManagementSubtitle;
+
+  /// No description provided for @tripMapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get tripMapTitle;
+
+  /// No description provided for @tripExpensesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses'**
+  String get tripExpensesTitle;
+
+  /// No description provided for @tripTravellersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Travellers'**
+  String get tripTravellersTitle;
+
+  /// No description provided for @tripTravellersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View the people taking part in the trip'**
+  String get tripTravellersSubtitle;
+
+  /// No description provided for @tripMapSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View and organise places for your trip'**
+  String get tripMapSubtitle;
+
+  /// No description provided for @tripExpensesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage expenses, splits and reimbursements'**
+  String get tripExpensesSubtitle;
+
+  /// No description provided for @tripOverviewItinerary.
+  ///
+  /// In en, this message translates to:
+  /// **'Itinerary'**
+  String get tripOverviewItinerary;
+
+  /// No description provided for @tripOverviewBucketListSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep together everything you want to see and do'**
+  String get tripOverviewBucketListSubtitle;
+
+  /// No description provided for @tripOverviewMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get tripOverviewMore;
+
+  /// No description provided for @tripOverviewExploreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan your trip'**
+  String get tripOverviewExploreTitle;
+
+  /// No description provided for @tripOverviewNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip not found'**
+  String get tripOverviewNotFound;
+
+  /// No description provided for @tripOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get tripOverviewTitle;
+
+  /// No description provided for @tripOverviewNotFoundSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This trip is not available.'**
+  String get tripOverviewNotFoundSubtitle;
+
+  /// No description provided for @tripOverviewError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the trip'**
+  String get tripOverviewError;
+
+  /// No description provided for @tripOverviewMoreSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Map, expenses, travellers, bookings and more'**
+  String get tripOverviewMoreSubtitle;
+
+  /// No description provided for @tripOverviewItinerarySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Organise days, stops and activities'**
+  String get tripOverviewItinerarySubtitle;
+
+  /// No description provided for @tripOverviewExploreSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Access the main sections of your trip'**
+  String get tripOverviewExploreSubtitle;
+
+  /// No description provided for @tripOverviewBucketList.
+  ///
+  /// In en, this message translates to:
+  /// **'Bucket List'**
+  String get tripOverviewBucketList;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

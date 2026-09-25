@@ -10,7 +10,31 @@ import '../features/auth/presentation/pages/google_auth.dart';
 
 import '../features/trips/presentation/pages/trips_page.dart';
 import '../features/trips/presentation/pages/create_trip/create_trip_page.dart';
-import '../features/trips/presentation/pages/workspace/trip_overview_page.dart';
+
+import '../features/trips/presentation/pages/workspace/overview/trip_overview_page.dart';
+import '../features/trips/presentation/pages/workspace/itinerary/trip_itinerary_page.dart';
+import '../features/trips/presentation/pages/workspace/bucket_list/trip_bucket_list_page.dart';
+import '../features/trips/presentation/pages/workspace/more/trip_more_page.dart';
+
+import '../features/trips/presentation/pages/workspace/map/trip_map_page.dart';
+import '../features/trips/presentation/pages/workspace/expenses/trip_expenses_page.dart';
+import '../features/trips/presentation/pages/workspace/travellers/trip_travellers_page.dart';
+
+import '../features/trips/presentation/pages/workspace/more/restaurants/trip_restaurants_page.dart';
+import '../features/trips/presentation/pages/workspace/more/hotels/trip_hotels_page.dart';
+import '../features/trips/presentation/pages/workspace/more/shopping/trip_shopping_page.dart';
+import '../features/trips/presentation/pages/workspace/more/transport/trip_transport_page.dart';
+import '../features/trips/presentation/pages/workspace/more/bookings/trip_bookings_page.dart';
+import '../features/trips/presentation/pages/workspace/more/saved_places/trip_saved_places_page.dart';
+import '../features/trips/presentation/pages/workspace/more/memories/trip_memories_page.dart';
+import '../features/trips/presentation/pages/workspace/more/notes/trip_notes_page.dart';
+
+import '../features/trips/presentation/pages/workspace/settings/trip_settings_page.dart';
+import '../features/trips/presentation/pages/workspace/settings/information/trip_information_settings_page.dart';
+import '../features/trips/presentation/pages/workspace/settings/travellers/trip_travellers_settings_page.dart';
+import '../features/trips/presentation/pages/workspace/settings/notifications/trip_notifications_settings_page.dart';
+import '../features/trips/presentation/pages/workspace/settings/privacy/trip_privacy_settings_page.dart';
+import '../features/trips/presentation/pages/workspace/settings/management/trip_management_settings_page.dart';
 
 import '../features/settings/presentation/pages/settings_page.dart';
 import '../features/settings/presentation/pages/profile/profile_page.dart';
@@ -89,7 +113,13 @@ final amaterasuRouter = GoRouter(
     GoRoute(
       path: '/home',
       builder: (context, state) {
-        return const HomePage();
+        final initialIndex = state.extra is int
+            ? state.extra as int
+            : 0;
+
+        return HomePage(
+          initialIndex: initialIndex,
+        );
       },
     ),
 
@@ -110,6 +140,11 @@ final amaterasuRouter = GoRouter(
       },
     ),
 
+    // =========================
+    // WORKSPACE VIAGGIO
+    // =========================
+
+    // Panoramica
     GoRoute(
       path: '/trips/:tripId',
       builder: (context, state) {
@@ -119,8 +154,196 @@ final amaterasuRouter = GoRouter(
       },
     ),
 
+    // Itinerario
+    GoRoute(
+      path: '/trips/:tripId/itinerary',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripItineraryPage(tripId: tripId);
+      },
+    ),
+
+    // Bucket List
+    GoRoute(
+      path: '/trips/:tripId/bucket-list',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripBucketListPage(tripId: tripId);
+      },
+    ),
+
     // =========================
-    // IMPOSTAZIONI
+    // ALTRO
+    // =========================
+    GoRoute(
+      path: '/trips/:tripId/more',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripMorePage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/map',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripMapPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/expenses',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripExpensesPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/travellers',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripTravellersPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/restaurants',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripRestaurantsPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/hotels',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripHotelsPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/shopping',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripShoppingPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/transport',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripTransportPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/bookings',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripBookingsPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/saved-places',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripSavedPlacesPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/memories',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripMemoriesPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/more/notes',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripNotesPage(tripId: tripId);
+      },
+    ),
+
+    // =========================
+    // IMPOSTAZIONI VIAGGIO
+    // =========================
+    GoRoute(
+      path: '/trips/:tripId/settings',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripSettingsPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/settings/information',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripInformationSettingsPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/settings/travellers',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripTravellersSettingsPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/settings/notifications',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripNotificationsSettingsPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/settings/privacy',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripPrivacySettingsPage(tripId: tripId);
+      },
+    ),
+
+    GoRoute(
+      path: '/trips/:tripId/settings/management',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+
+        return TripManagementSettingsPage(tripId: tripId);
+      },
+    ),
+
+    // =========================
+    // IMPOSTAZIONI APP
     // =========================
     GoRoute(
       path: '/settings',

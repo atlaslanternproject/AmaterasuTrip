@@ -11,3 +11,7 @@ final tripRepositoryProvider = Provider<TripRepository>((ref) {
 final userTripsProvider = StreamProvider<List<Trip>>((ref) {
   return ref.watch(tripRepositoryProvider).watchUserTrips();
 });
+
+final tripProvider = StreamProvider.family<Trip?, String>((ref, tripId) {
+  return ref.watch(tripRepositoryProvider).watchTrip(tripId);
+});

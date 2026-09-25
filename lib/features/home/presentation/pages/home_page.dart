@@ -6,16 +6,27 @@ import '../../../trips/presentation/pages/trips_page.dart';
 import '../../../../core/widgets/navigation/amaterasu_bottom_bar.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, this.initialIndex = 0});
+
+  final int initialIndex;
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
+  late int currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = widget.initialIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
     final pages = const [_HomeContent(), TripsPage(), SettingsPage()];
+
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: AmaterasuBottomBar(

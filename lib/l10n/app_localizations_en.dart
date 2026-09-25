@@ -30,7 +30,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authCancel => 'Cancel';
 
   @override
-  String get authPasswordResetEmailSent => '📜 We sent a scroll to recover your password. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
+  String get authPasswordResetEmailSent => 'ðŸ“œ We sent a scroll to recover your password. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
 
   @override
   String get authContinue => 'Continue';
@@ -78,22 +78,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authRegister => 'Register';
 
   @override
-  String get authRegisterFillFields => '⚠️ Please fill in all required fields.';
+  String get authRegisterFillFields => 'âš ï¸ Please fill in all required fields.';
 
   @override
-  String get authRegisterPasswordsMismatch => '⚠️ The two secret words don\'t match.';
+  String get authRegisterPasswordsMismatch => 'âš ï¸ The two secret words don\'t match.';
 
   @override
-  String get authRegisterEmailAlreadyInUse => '⚠️ A traveler is already registered with this scroll.';
+  String get authRegisterEmailAlreadyInUse => 'âš ï¸ A traveler is already registered with this scroll.';
 
   @override
-  String get authRegisterWeakPassword => '⚠️ The secret word is too weak.';
+  String get authRegisterWeakPassword => 'âš ï¸ The secret word is too weak.';
 
   @override
-  String get authRegisterInvalidEmail => '⚠️ The raven cannot reach this address.';
+  String get authRegisterInvalidEmail => 'âš ï¸ The raven cannot reach this address.';
 
   @override
-  String get authRegisterGenericError => '⚠️ Unable to complete registration.';
+  String get authRegisterGenericError => 'âš ï¸ Unable to complete registration.';
 
   @override
   String get authAlreadyHaveAccountSignIn => 'Already have an account? Sign in';
@@ -108,10 +108,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authRetry => 'Try again';
 
   @override
-  String get authVerifyEmailNotVerified => '⚠️ The scroll has not been signed yet. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
+  String get authVerifyEmailNotVerified => 'âš ï¸ The scroll has not been signed yet. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
 
   @override
-  String get authVerifyEmailSent => '📜 A new scroll has been sent. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
+  String get authVerifyEmailSent => 'ðŸ“œ A new scroll has been sent. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
 
   @override
   String get authVerifyEmailTitle => 'Verify your email address';
@@ -513,7 +513,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountDeleteDialogConfirmation => 'I understand that the deletion is permanent.';
 
   @override
-  String get accountDeleteLoading => 'Deleting account…';
+  String get accountDeleteLoading => 'Deleting accountâ€¦';
 
   @override
   String get accountDeleteCancel => 'Cancel';
@@ -933,7 +933,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get informationReportProblemSubtitle => 'Send a problem report to support';
 
   @override
-  String get informationReportProblemSubject => 'Amaterasu Trip — Problem report';
+  String get informationReportProblemSubject => 'Amaterasu Trip â€” Problem report';
 
   @override
   String informationReportProblemBody(String version, String build) {
@@ -1142,4 +1142,190 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripsUpcomingStatus => 'Upcoming trip';
+
+  @override
+  String get tripNavTrips => 'Trips';
+
+  @override
+  String get tripNavItinerary => 'Itinerary';
+
+  @override
+  String get tripNavBucketList => 'Bucket List';
+
+  @override
+  String get tripNavMore => 'More';
+
+  @override
+  String get tripMoreTitle => 'More';
+
+  @override
+  String get tripMoreSubtitle => 'Everything related to your trip';
+
+  @override
+  String get tripMoreRestaurants => 'Restaurants';
+
+  @override
+  String get tripMoreRestaurantsSubtitle => 'Organise restaurants and places to eat';
+
+  @override
+  String get tripMoreHotels => 'Hotels and accommodation';
+
+  @override
+  String get tripMoreHotelsSubtitle => 'Manage hotels and accommodation';
+
+  @override
+  String get tripMoreShopping => 'Shopping';
+
+  @override
+  String get tripMoreShoppingSubtitle => 'Save shops and places for shopping';
+
+  @override
+  String get tripMoreTransport => 'Transport';
+
+  @override
+  String get tripMoreTransportSubtitle => 'Organise transport for your trip';
+
+  @override
+  String get tripMoreBookings => 'Bookings';
+
+  @override
+  String get tripMoreBookingsSubtitle => 'Tickets, admissions and bookings';
+
+  @override
+  String get tripMoreSavedPlaces => 'Saved places';
+
+  @override
+  String get tripMoreSavedPlacesSubtitle => 'Keep useful places for your trip together';
+
+  @override
+  String get tripMoreMemories => 'Memories';
+
+  @override
+  String get tripMoreMemoriesSubtitle => 'Photos, videos and moments from your trip';
+
+  @override
+  String get tripMoreNotes => 'Notes';
+
+  @override
+  String get tripMoreNotesSubtitle => 'Notes and useful information';
+
+  @override
+  String get tripMoreSettings => 'Trip settings';
+
+  @override
+  String get tripMoreSettingsSubtitle => 'Manage trip information, privacy and options';
+
+  @override
+  String get tripRestaurantsTitle => 'Restaurants';
+
+  @override
+  String get tripHotelsTitle => 'Hotels and accommodation';
+
+  @override
+  String get tripShoppingTitle => 'Shopping';
+
+  @override
+  String get tripTransportTitle => 'Transport';
+
+  @override
+  String get tripBookingsTitle => 'Bookings';
+
+  @override
+  String get tripSavedPlacesTitle => 'Saved places';
+
+  @override
+  String get tripMemoriesTitle => 'Memories';
+
+  @override
+  String get tripNotesTitle => 'Notes';
+
+  @override
+  String get tripSettingsTitle => 'Trip settings';
+
+  @override
+  String get tripSettingsSubtitle => 'Manage this trip';
+
+  @override
+  String get tripSettingsInformation => 'Information';
+
+  @override
+  String get tripSettingsInformationSubtitle => 'Name, destination, dates and trip details';
+
+  @override
+  String get tripSettingsTravellers => 'Travellers';
+
+  @override
+  String get tripSettingsTravellersSubtitle => 'Manage travellers, invitations and roles';
+
+  @override
+  String get tripSettingsNotifications => 'Notifications';
+
+  @override
+  String get tripSettingsNotificationsSubtitle => 'Manage notifications for this trip';
+
+  @override
+  String get tripSettingsPrivacy => 'Privacy and sharing';
+
+  @override
+  String get tripSettingsPrivacySubtitle => 'Manage trip visibility and sharing';
+
+  @override
+  String get tripSettingsManagement => 'Trip management';
+
+  @override
+  String get tripSettingsManagementSubtitle => 'Archive, duplicate, export or delete the trip';
+
+  @override
+  String get tripMapTitle => 'Map';
+
+  @override
+  String get tripExpensesTitle => 'Expenses';
+
+  @override
+  String get tripTravellersTitle => 'Travellers';
+
+  @override
+  String get tripTravellersSubtitle => 'View the people taking part in the trip';
+
+  @override
+  String get tripMapSubtitle => 'View and organise places for your trip';
+
+  @override
+  String get tripExpensesSubtitle => 'Manage expenses, splits and reimbursements';
+
+  @override
+  String get tripOverviewItinerary => 'Itinerary';
+
+  @override
+  String get tripOverviewBucketListSubtitle => 'Keep together everything you want to see and do';
+
+  @override
+  String get tripOverviewMore => 'More';
+
+  @override
+  String get tripOverviewExploreTitle => 'Plan your trip';
+
+  @override
+  String get tripOverviewNotFound => 'Trip not found';
+
+  @override
+  String get tripOverviewTitle => 'Overview';
+
+  @override
+  String get tripOverviewNotFoundSubtitle => 'This trip is not available.';
+
+  @override
+  String get tripOverviewError => 'Unable to load the trip';
+
+  @override
+  String get tripOverviewMoreSubtitle => 'Map, expenses, travellers, bookings and more';
+
+  @override
+  String get tripOverviewItinerarySubtitle => 'Organise days, stops and activities';
+
+  @override
+  String get tripOverviewExploreSubtitle => 'Access the main sections of your trip';
+
+  @override
+  String get tripOverviewBucketList => 'Bucket List';
 }

@@ -7,6 +7,18 @@ class TripRepository {
 
   final FirebaseFirestore _firestore;
 
+  Stream<Trip?> watchTrip(String tripId) {
+    return _firestore.collection('trips').doc(tripId).snapshots().map((doc) {
+      final data = doc.data();
+
+      if (!doc.exists || data == null) {
+        return null;
+      }
+
+      return Trip.fromFirestore(id: doc.id, data: data);
+    });
+  }
+
   Stream<List<Trip>> watchUserTrips() {
     final user = FirebaseAuth.instance.currentUser;
 
