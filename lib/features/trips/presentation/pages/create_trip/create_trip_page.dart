@@ -1,9 +1,13 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'package:amaterasutrip/core/permissions/app_permission.dart';
+import 'package:amaterasutrip/core/permissions/permission_provider.dart';
+import 'package:amaterasutrip/core/permissions/permission_result.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-
 import 'destination/models/trip_destination.dart';
 import 'destination/services/destination_places_service.dart';
 import 'destination/trip_destination_page.dart';
@@ -41,6 +45,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
   String? _currencySymbol;
   String? _cloudProvider;
 
+  XFile? _selectedCover;
   @override
   void initState() {
     super.initState();
@@ -187,12 +192,160 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
     });
   }
 
-  void _changeCover() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(AppLocalizations.of(context)!.createTripCoverComingSoon),
-      ),
+  Future<void> _changeCover() async {
+    final l10n = AppLocalizations.of(context)!;
+
+    final action = await showModalBottomSheet<_CreateTripCoverAction>(
+      context: context,
+      backgroundColor: _surfaceColor,
+      showDragHandle: true,
+      builder: (sheetContext) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 4, 12, 18),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  leading: const Icon(
+                    Icons.camera_alt_outlined,
+                    color: Color(0xFFE86A3A),
+                  ),
+                  title: Text(
+                    l10n.tripCoverCamera,
+                    style: const TextStyle(color: _titleColor),
+                  ),
+                  onTap: () => Navigator.of(
+                    sheetContext,
+                  ).pop(_CreateTripCoverAction.camera),
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.photo_library_outlined,
+                    color: Color(0xFFE86A3A),
+                  ),
+                  title: Text(
+                    l10n.tripCoverGallery,
+                    style: const TextStyle(color: _titleColor),
+                  ),
+                  onTap: () => Navigator.of(
+                    sheetContext,
+                  ).pop(_CreateTripCoverAction.gallery),
+                ),
+                if (_selectedCover != null)
+                  ListTile(
+                    leading: const Icon(
+                      Icons.delete_outline_rounded,
+                      color: Color(0xFFD66A5E),
+                    ),
+                    title: Text(
+                      l10n.tripCoverRemove,
+                      style: const TextStyle(color: Color(0xFFD66A5E)),
+                    ),
+                    onTap: () => Navigator.of(
+                      sheetContext,
+                    ).pop(_CreateTripCoverAction.remove),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
+
+    if (!mounted || action == null) {
+      return;
+    }
+
+    switch (action) {
+      case _CreateTripCoverAction.camera:
+        await _pickCover(fromCamera: true);
+        break;
+
+      case _CreateTripCoverAction.gallery:
+        await _pickCover(fromCamera: false);
+        break;
+
+      case _CreateTripCoverAction.remove:
+        setState(() {
+          _selectedCover = null;
+        });
+        break;
+    }
+  }
+
+  Future<void> _pickCover({required bool fromCamera}) async {
+    final l10n = AppLocalizations.of(context)!;
+    final permissionService = ref.read(permissionServiceProvider);
+
+    final permissionResult = await permissionService.request(
+      fromCamera ? AppPermission.camera : AppPermission.photos,
+    );
+
+    if (!mounted) {
+      return;
+    }
+
+    switch (permissionResult) {
+      case AppPermissionResult.granted:
+        break;
+
+      case AppPermissionResult.denied:
+        _showMessage(
+          fromCamera
+              ? l10n.tripCoverCameraPermissionDenied
+              : l10n.tripCoverGalleryPermissionDenied,
+        );
+        return;
+
+      case AppPermissionResult.permanentlyDenied:
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(
+                fromCamera
+                    ? l10n.tripCoverCameraPermissionPermanentlyDenied
+                    : l10n.tripCoverGalleryPermissionPermanentlyDenied,
+              ),
+              action: SnackBarAction(
+                label: l10n.tripCoverOpenSettings,
+                onPressed: permissionService.openSettings,
+              ),
+            ),
+          );
+        return;
+    }
+
+    try {
+      final picker = ref.read(tripCoverPickerServiceProvider);
+
+      final selectedCover = fromCamera
+          ? await picker.pickFromCamera()
+          : await picker.pickFromGallery();
+
+      if (!mounted || selectedCover == null) {
+        return;
+      }
+
+      setState(() {
+        _selectedCover = selectedCover;
+      });
+    } catch (_) {
+      if (mounted) {
+        _showMessage(l10n.tripCoverPickerError);
+      }
+    }
+  }
+
+  void _showMessage(String message) {
+    if (!mounted) {
+      return;
+    }
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
   }
 
   Future<void> _createTrip() async {
@@ -213,10 +366,57 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
         .createTrip(
           name: tripName,
           destination: destination.label,
+          destinationPlaceId: destination.placeId,
+          destinationDisplayName: destination.displayName,
+          destinationFormattedAddress: destination.formattedAddress,
+          destinationLatitude: destination.latitude,
+          destinationLongitude: destination.longitude,
+          destinationCountry: destination.country,
+          destinationCountryCode: destination.countryCode,
+          destinationAdministrativeArea: destination.administrativeArea,
+          destinationLocality: destination.locality,
           startDate: _departureDate!,
           endDate: _returnDate!,
           currency: _currency!,
         );
+
+    final selectedCover = _selectedCover;
+
+    if (selectedCover != null) {
+      String? uploadedStoragePath;
+
+      try {
+        final storage = ref.read(tripCoverStorageServiceProvider);
+        final repository = ref.read(tripRepositoryProvider);
+
+        final uploaded = await storage.uploadTripCover(
+          tripId: tripId,
+          cover: selectedCover,
+        );
+
+        uploadedStoragePath = uploaded.storagePath;
+
+        await repository.updateTripCover(
+          tripId: tripId,
+          coverUrl: uploaded.downloadUrl,
+          coverPath: uploaded.storagePath,
+        );
+      } catch (_) {
+        if (uploadedStoragePath != null) {
+          try {
+            await ref
+                .read(tripCoverStorageServiceProvider)
+                .deleteTripCover(uploadedStoragePath);
+          } catch (_) {
+            // Non maschera l'errore principale.
+          }
+        }
+
+        if (mounted) {
+          _showMessage(AppLocalizations.of(context)!.tripCoverUploadError);
+        }
+      }
+    }
 
     if (!mounted) {
       return;
@@ -291,6 +491,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
             children: [
               TripCoverPicker(
                 changePhotoLabel: l10n.createTripChangePhoto,
+                localImagePath: _selectedCover?.path,
                 onTap: _changeCover,
               ),
               const SizedBox(height: 20),
@@ -356,6 +557,8 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
     );
   }
 }
+
+enum _CreateTripCoverAction { camera, gallery, remove }
 
 class _CurrencyPickerSheet extends StatefulWidget {
   const _CurrencyPickerSheet({
