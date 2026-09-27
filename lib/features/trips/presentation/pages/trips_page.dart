@@ -12,10 +12,10 @@ import '../widgets/trip_section_title.dart';
 class TripsPage extends ConsumerWidget {
   const TripsPage({super.key});
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _accentColor = Color(0xFFD96C32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _backgroundColor = Color(0xFF080605);
+  static const Color _accentColor = Color(0xFFE9783D);
+  static const Color _titleColor = Color(0xFFF4E9D8);
+  static const Color _secondaryTextColor = Color(0xFFB9AA9C);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -84,94 +84,98 @@ class TripsPage extends ConsumerWidget {
     required List<Trip> upcomingTrips,
     required List<Trip> completedTrips,
   }) {
+    final hasTrips =
+        inProgressTrips.isNotEmpty ||
+        upcomingTrips.isNotEmpty ||
+        completedTrips.isNotEmpty;
+
     return Scaffold(
       backgroundColor: _backgroundColor,
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 12),
-              sliver: SliverToBoxAdapter(child: _buildHeader(context, l10n)),
-            ),
-
-            if (inProgressTrips.isNotEmpty) ...[
+        bottom: false,
+        child: ScrollConfiguration(
+          behavior: const _TripsScrollBehavior(),
+          child: CustomScrollView(
+            physics: const ClampingScrollPhysics(),
+            slivers: [
               SliverPadding(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-                sliver: SliverToBoxAdapter(
-                  child: TripSectionTitle(
-                    title: l10n.tripsInProgress,
-                    icon: Icons.explore_rounded,
-                    accentColor: _accentColor,
+                padding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
+                sliver: SliverToBoxAdapter(child: _buildHeader(context, l10n)),
+              ),
+              if (inProgressTrips.isNotEmpty) ...[
+                SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
+                  sliver: SliverToBoxAdapter(
+                    child: TripSectionTitle(
+                      title: l10n.tripsInProgress,
+                      icon: Icons.explore_rounded,
+                      accentColor: _accentColor,
+                    ),
                   ),
                 ),
-              ),
-              _buildTripList(
-                context,
-                l10n,
-                trips: inProgressTrips,
-                status: TripCardStatus.inProgress,
-                today: today,
-                bottomPadding: 0,
-              ),
-            ],
-
-            if (upcomingTrips.isNotEmpty) ...[
-              SliverPadding(
-                padding: EdgeInsets.fromLTRB(
-                  20,
-                  inProgressTrips.isNotEmpty ? 28 : 16,
-                  20,
-                  0,
+                _buildTripList(
+                  context,
+                  l10n,
+                  trips: inProgressTrips,
+                  status: TripCardStatus.inProgress,
+                  today: today,
                 ),
-                sliver: SliverToBoxAdapter(
-                  child: TripSectionTitle(
-                    title: l10n.tripsUpcoming,
-                    icon: Icons.schedule_rounded,
-                    accentColor: const Color(0xFFC8894C),
+              ],
+              if (upcomingTrips.isNotEmpty) ...[
+                SliverPadding(
+                  padding: EdgeInsets.fromLTRB(
+                    20,
+                    inProgressTrips.isNotEmpty ? 32 : 24,
+                    20,
+                    0,
+                  ),
+                  sliver: SliverToBoxAdapter(
+                    child: TripSectionTitle(
+                      title: l10n.tripsUpcoming,
+                      icon: Icons.schedule_rounded,
+                      accentColor: const Color(0xFFD7A05C),
+                    ),
                   ),
                 ),
-              ),
-              _buildTripList(
-                context,
-                l10n,
-                trips: upcomingTrips,
-                status: TripCardStatus.upcoming,
-                today: today,
-                bottomPadding: 0,
-              ),
-            ],
-
-            if (completedTrips.isNotEmpty) ...[
-              SliverPadding(
-                padding: EdgeInsets.fromLTRB(
-                  20,
-                  inProgressTrips.isNotEmpty || upcomingTrips.isNotEmpty
-                      ? 28
-                      : 16,
-                  20,
-                  0,
+                _buildTripList(
+                  context,
+                  l10n,
+                  trips: upcomingTrips,
+                  status: TripCardStatus.upcoming,
+                  today: today,
                 ),
-                sliver: SliverToBoxAdapter(
-                  child: TripSectionTitle(
-                    title: l10n.tripsCompleted,
-                    icon: Icons.history_rounded,
-                    accentColor: _secondaryTextColor,
+              ],
+              if (completedTrips.isNotEmpty) ...[
+                SliverPadding(
+                  padding: EdgeInsets.fromLTRB(
+                    20,
+                    inProgressTrips.isNotEmpty || upcomingTrips.isNotEmpty
+                        ? 32
+                        : 24,
+                    20,
+                    0,
+                  ),
+                  sliver: SliverToBoxAdapter(
+                    child: TripSectionTitle(
+                      title: l10n.tripsCompleted,
+                      icon: Icons.history_rounded,
+                      accentColor: _secondaryTextColor,
+                    ),
                   ),
                 ),
-              ),
-              _buildTripList(
-                context,
-                l10n,
-                trips: completedTrips,
-                status: TripCardStatus.completed,
-                today: today,
-                bottomPadding: 32,
-              ),
+                _buildTripList(
+                  context,
+                  l10n,
+                  trips: completedTrips,
+                  status: TripCardStatus.completed,
+                  today: today,
+                ),
+              ],
+              if (!hasTrips)
+                const SliverToBoxAdapter(child: SizedBox(height: 32)),
+              const SliverToBoxAdapter(child: SizedBox(height: 34)),
             ],
-
-            if (completedTrips.isEmpty)
-              const SliverToBoxAdapter(child: SizedBox(height: 32)),
-          ],
+          ),
         ),
       ),
     );
@@ -183,22 +187,22 @@ class TripsPage extends ConsumerWidget {
     required List<Trip> trips,
     required TripCardStatus status,
     required DateTime today,
-    required double bottomPadding,
   }) {
     return SliverPadding(
-      padding: EdgeInsets.fromLTRB(20, 12, 20, bottomPadding),
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       sliver: SliverList.separated(
         itemCount: trips.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 12),
+        separatorBuilder: (context, index) => const SizedBox(height: 16),
         itemBuilder: (context, index) {
           final trip = trips[index];
 
           return TripCard(
             status: status,
-            flag: _flagForDestination(trip.destination),
+            coverUrl: trip.coverUrl,
+            statusLabel: _statusLabel(l10n, status),
             title: trip.name,
             date: _formatDateRange(context, trip),
-            places: trip.destination,
+            destination: trip.destination,
             footer: _footerForTrip(l10n, trip, status, today),
             progress: _progressForTrip(trip, status, today),
             onTap: () => context.go('/trips/${trip.id}'),
@@ -217,32 +221,57 @@ class TripsPage extends ConsumerWidget {
             l10n.tripsTitle,
             style: const TextStyle(
               color: _titleColor,
-              fontSize: 30,
+              fontSize: 32,
+              height: 1.05,
               fontWeight: FontWeight.w700,
-              letterSpacing: -0.7,
+              letterSpacing: -0.9,
             ),
           ),
         ),
         const SizedBox(width: 16),
-        FilledButton.icon(
-          onPressed: () => context.push('/trips/create'),
-          style: FilledButton.styleFrom(
-            backgroundColor: _accentColor,
-            foregroundColor: const Color(0xFFFFF6EC),
-            elevation: 0,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
+        Material(
+          color: _accentColor,
+          borderRadius: BorderRadius.circular(16),
+          child: InkWell(
+            onTap: () => context.push('/trips/create'),
+            borderRadius: BorderRadius.circular(16),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.add_rounded,
+                    color: Color(0xFFFFF4E8),
+                    size: 21,
+                  ),
+                  const SizedBox(width: 7),
+                  Text(
+                    l10n.tripsNewTrip,
+                    style: const TextStyle(
+                      color: Color(0xFFFFF4E8),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          icon: const Icon(Icons.add_rounded, size: 20),
-          label: Text(
-            l10n.tripsNewTrip,
-            style: const TextStyle(fontWeight: FontWeight.w700),
           ),
         ),
       ],
     );
+  }
+
+  String _statusLabel(AppLocalizations l10n, TripCardStatus status) {
+    switch (status) {
+      case TripCardStatus.inProgress:
+        return l10n.tripsInProgress;
+      case TripCardStatus.upcoming:
+        return l10n.tripsUpcoming;
+      case TripCardStatus.completed:
+        return l10n.tripsCompleted;
+    }
   }
 
   String _footerForTrip(
@@ -305,15 +334,20 @@ class TripsPage extends ConsumerWidget {
     return '$start — $end';
   }
 
-  String _flagForDestination(String destination) {
-    if (destination.contains('🇯🇵')) {
-      return '🇯🇵';
-    }
-
-    return '🌍';
-  }
-
   DateTime _dateOnly(DateTime date) {
     return DateTime(date.year, date.month, date.day);
+  }
+}
+
+class _TripsScrollBehavior extends ScrollBehavior {
+  const _TripsScrollBehavior();
+
+  @override
+  Widget buildOverscrollIndicator(
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
+    return child;
   }
 }
