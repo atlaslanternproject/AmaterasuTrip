@@ -124,7 +124,9 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
 
   void _changeCover() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Placeholder: selezione copertina')),
+      SnackBar(
+        content: Text(AppLocalizations.of(context)!.createTripCoverComingSoon),
+      ),
     );
   }
 
@@ -155,7 +157,11 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
           tripName: tripName,
           onInviteTravellers: () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Placeholder: invita viaggiatori')),
+              SnackBar(
+                content: Text(
+                  AppLocalizations.of(context)!.tripCreatedInviteComingSoon,
+                ),
+              ),
             );
           },
           onCopyLink: () {
@@ -169,7 +175,11 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
           },
           onShare: () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Placeholder: condividi viaggio')),
+              SnackBar(
+                content: Text(
+                  AppLocalizations.of(context)!.tripCreatedShareComingSoon,
+                ),
+              ),
             );
           },
           onEnterTrip: () {

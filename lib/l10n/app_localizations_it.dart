@@ -30,7 +30,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get authCancel => 'Annulla';
 
   @override
-  String get authPasswordResetEmailSent => 'ðŸ“œ Abbiamo inviato una pergamena per recuperare la password. Controlla la tua casella email. Controlla anche la cartella Spam o Posta indesiderata se non la trovi!';
+  String get authPasswordResetEmailSent => 'Ti abbiamo inviato un\'email per reimpostare la password. Controlla la posta in arrivo e, se non la trovi, anche la cartella Spam o Posta indesiderata.';
 
   @override
   String get authContinue => 'Continua';
@@ -54,7 +54,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get authLoginErrorUserNotFound => 'Nessun viaggiatore trovato con queste credenziali.';
 
   @override
-  String get authLoginErrorWrongPassword => 'La parola segreta non apre la porta del veivolo.';
+  String get authLoginErrorWrongPassword => 'La password inserita non è corretta.';
 
   @override
   String get authLoginErrorInvalidEmail => 'Questa email non sembra valida.';
@@ -78,25 +78,25 @@ class AppLocalizationsIt extends AppLocalizations {
   String get authRegister => 'Registrati';
 
   @override
-  String get authRegisterFillFields => 'âš ï¸ Compila tutti i campi richiesti.';
+  String get authRegisterFillFields => 'Compila tutti i campi richiesti.';
 
   @override
-  String get authRegisterPasswordsMismatch => 'âš ï¸ Le due parole segrete non coincidono.';
+  String get authRegisterPasswordsMismatch => 'Le password non coincidono.';
 
   @override
-  String get authRegisterEmailAlreadyInUse => 'âš ï¸ Un viaggiatore Ã¨ giÃ  registrato con questa pergamena.';
+  String get authRegisterEmailAlreadyInUse => 'Esiste gi� un account associato a questo indirizzo email.';
 
   @override
-  String get authRegisterWeakPassword => 'âš ï¸ La parola segreta Ã¨ troppo debole.';
+  String get authRegisterWeakPassword => 'La password scelta è troppo debole.';
 
   @override
-  String get authRegisterInvalidEmail => 'âš ï¸ Il corvo non riesce a raggiungere questo indirizzo.';
+  String get authRegisterInvalidEmail => 'L\'indirizzo email inserito non è valido.';
 
   @override
-  String get authRegisterGenericError => 'âš ï¸ Impossibile completare la registrazione.';
+  String get authRegisterGenericError => 'Impossibile completare la registrazione. Riprova.';
 
   @override
-  String get authAlreadyHaveAccountSignIn => 'Hai giÃ  un account? Accedi';
+  String get authAlreadyHaveAccountSignIn => 'Hai gi� un account? Accedi';
 
   @override
   String get authGoogleSignInError => 'Impossibile completare l\'accesso con Google.';
@@ -108,10 +108,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get authRetry => 'Riprova';
 
   @override
-  String get authVerifyEmailNotVerified => 'âš ï¸ La pergamena non risulta ancora firmata. Controlla la tua casella email. Controlla anche la cartella Spam o Posta indesiderata se non la trovi!';
+  String get authVerifyEmailNotVerified => 'L\'indirizzo email non è ancora stato verificato. Controlla la posta in arrivo e, se non trovi l\'email, anche la cartella Spam o Posta indesiderata.';
 
   @override
-  String get authVerifyEmailSent => 'ðŸ“œ Nuova pergamena inviata. Controlla la tua casella email. Controlla anche la cartella Spam o Posta indesiderata se non la trovi!';
+  String get authVerifyEmailSent => 'Email di verifica inviata. Controlla la posta in arrivo e, se non la trovi, anche la cartella Spam o Posta indesiderata.';
 
   @override
   String get authVerifyEmailTitle => 'Verifica il tuo indirizzo email';
@@ -141,7 +141,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get createUsernameGoogleUserNotFound => 'Utente Google non trovato. Riprova';
 
   @override
-  String get createUsernameAlreadyTaken => 'Questo username Ã¨ giÃ  in uso. Scegline un altro.';
+  String get createUsernameAlreadyTaken => 'Questo username è già in uso. Scegline un altro.';
 
   @override
   String get commonOr => 'oppure';
@@ -201,7 +201,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settingsInformation => 'Informazioni';
 
   @override
-  String get settingsPlaceholder => 'Questa sezione sarÃ  disponibile prossimamente.';
+  String get settingsPlaceholder => 'Questa sezione sar� disponibile prossimamente.';
 
   @override
   String settingsLanguageName(String languageCode) {
@@ -352,7 +352,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountDelete => 'Elimina account';
 
   @override
-  String get accountDeleteDescription => 'L\'eliminazione dell\'account Ã¨ definitiva e comporta la perdita dei dati associati.';
+  String get accountDeleteDescription => 'L\'eliminazione dell\'account è definitiva e comporta la cancellazione dei dati associati.';
 
   @override
   String get accountDeleteConfirm => 'Conferma eliminazione account';
@@ -370,7 +370,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountEmailChangeVerificationSent => 'Abbiamo inviato un\'email di verifica al nuovo indirizzo. Controlla anche la cartella Spam o Posta indesiderata.';
 
   @override
-  String get accountEmailVerifiedDescription => 'Il tuo indirizzo email Ã¨ verificato.';
+  String get accountEmailVerifiedDescription => 'Il tuo indirizzo email � verificato.';
 
   @override
   String get accountEmailChangeDescription => 'Modifica l\'indirizzo email associato al tuo account.';
@@ -379,10 +379,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountEmailUnavailable => 'Indirizzo email non disponibile';
 
   @override
-  String get accountEmailErrorInvalidPassword => 'La password attuale non Ã¨ corretta.';
+  String get accountEmailErrorInvalidPassword => 'La password attuale non � corretta.';
 
   @override
-  String get accountEmailErrorAlreadyInUse => 'Questo indirizzo email Ã¨ giÃ  associato a un account.';
+  String get accountEmailErrorAlreadyInUse => 'Questo indirizzo email � gi� associato a un account.';
 
   @override
   String get accountEmailErrorInvalidEmail => 'Inserisci un indirizzo email valido.';
@@ -391,13 +391,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountEmailErrorRecentLogin => 'Per motivi di sicurezza, effettua nuovamente l\'accesso e riprova.';
 
   @override
-  String get accountEmailErrorTooManyRequests => 'Sono state effettuate troppe richieste. Riprova piÃ¹ tardi.';
+  String get accountEmailErrorTooManyRequests => 'Sono state effettuate troppe richieste. Riprova pi� tardi.';
 
   @override
-  String get accountEmailErrorUserNotFound => 'Non Ã¨ stato possibile trovare l\'account.';
+  String get accountEmailErrorUserNotFound => 'Non � stato possibile trovare l\'account.';
 
   @override
-  String get accountEmailErrorGeneric => 'Non Ã¨ stato possibile completare l\'operazione.';
+  String get accountEmailErrorGeneric => 'Non � stato possibile completare l\'operazione.';
 
   @override
   String get cancel => 'Annulla';
@@ -412,7 +412,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountLogoutTitle => 'Uscire da Amaterasu Trip?';
 
   @override
-  String get accountLogoutDescription => 'La sessione verrÃ  chiusa su questo dispositivo.';
+  String get accountLogoutDescription => 'La sessione verr� chiusa su questo dispositivo.';
 
   @override
   String get accountLogoutStay => 'Resta';
@@ -456,7 +456,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountPasswordResetSent => 'Email per il recupero password inviata. Controlla la tua casella email e anche la cartella Spam o Posta indesiderata.';
 
   @override
-  String get accountPasswordManagedByProvider => 'Questo account non utilizza una password Amaterasu Trip. La password Ã¨ gestita dal provider con cui hai effettuato l\'accesso.';
+  String get accountPasswordManagedByProvider => 'Questo account non utilizza una password Amaterasu Trip. La password � gestita dal provider con cui hai effettuato l\'accesso.';
 
   @override
   String get accountPasswordErrorEmptyFields => 'Compila tutti i campi.';
@@ -471,28 +471,28 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountPasswordErrorSamePassword => 'La nuova password deve essere diversa da quella attuale.';
 
   @override
-  String get accountPasswordErrorWrongCurrent => 'La password attuale non Ã¨ corretta.';
+  String get accountPasswordErrorWrongCurrent => 'La password attuale non � corretta.';
 
   @override
   String get accountPasswordErrorRecentLogin => 'Per motivi di sicurezza, effettua nuovamente l\'accesso e riprova.';
 
   @override
-  String get accountPasswordErrorTooManyRequests => 'Sono state effettuate troppe richieste. Riprova piÃ¹ tardi.';
+  String get accountPasswordErrorTooManyRequests => 'Sono state effettuate troppe richieste. Riprova pi� tardi.';
 
   @override
-  String get accountPasswordErrorUserNotFound => 'Non Ã¨ stato possibile trovare l\'account.';
+  String get accountPasswordErrorUserNotFound => 'Non � stato possibile trovare l\'account.';
 
   @override
-  String get accountPasswordErrorNoEmail => 'Non Ã¨ disponibile un indirizzo email per questo account.';
+  String get accountPasswordErrorNoEmail => 'Non � disponibile un indirizzo email per questo account.';
 
   @override
-  String get accountPasswordErrorGeneric => 'Non Ã¨ stato possibile completare l\'operazione.';
+  String get accountPasswordErrorGeneric => 'Non � stato possibile completare l\'operazione.';
 
   @override
   String get accountDeleteIntro => 'Elimina definitivamente il tuo account Amaterasu.';
 
   @override
-  String get accountDeleteWarning => 'Questa operazione Ã¨ irreversibile. I dati associati all\'account verranno rimossi e non potranno essere recuperati.';
+  String get accountDeleteWarning => 'Questa operazione è irreversibile. I dati associati all\'account verranno rimossi e non potranno essere recuperati.';
 
   @override
   String get accountDeleteButton => 'Elimina account';
@@ -507,13 +507,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountDeleteDialogData => 'Verranno eliminati i dati personali associati al tuo account e verrai rimosso dai viaggi e dai gruppi a cui appartieni.';
 
   @override
-  String get accountDeleteDialogIrreversible => 'Questa operazione Ã¨ irreversibile e i dati eliminati non potranno essere recuperati.';
+  String get accountDeleteDialogIrreversible => 'Questa operazione è irreversibile e i dati eliminati non potranno essere recuperati.';
 
   @override
-  String get accountDeleteDialogConfirmation => 'Ho compreso che l\'eliminazione Ã¨ definitiva.';
+  String get accountDeleteDialogConfirmation => 'Ho compreso che l\'eliminazione è definitiva.';
 
   @override
-  String get accountDeleteLoading => 'Eliminazione account in corsoâ€¦';
+  String get accountDeleteLoading => 'Eliminazione account in corso...';
 
   @override
   String get accountDeleteCancel => 'Annulla';
@@ -522,7 +522,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountDeleteConfirmButton => 'Elimina definitivamente';
 
   @override
-  String get accountDeleteReauthenticationTitle => 'Conferma la tua identitÃ ';
+  String get accountDeleteReauthenticationTitle => 'Conferma la tua identit�';
 
   @override
   String get accountDeleteReauthenticationPasswordDescription => 'Per continuare con l\'eliminazione dell\'account, inserisci la password attuale.';
@@ -534,22 +534,22 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountDeleteReauthenticationConfirm => 'Conferma';
 
   @override
-  String get accountDeleteReauthenticationWrongPassword => 'La password inserita non Ã¨ corretta.';
+  String get accountDeleteReauthenticationWrongPassword => 'La password inserita non � corretta.';
 
   @override
-  String get accountDeleteReauthenticationCancelled => 'Verifica dell\'identitÃ  annullata.';
+  String get accountDeleteReauthenticationCancelled => 'Verifica dell\'identit� annullata.';
 
   @override
   String get accountDeleteReauthenticationGoogleMismatch => 'Devi utilizzare lo stesso account Google collegato ad Amaterasu.';
 
   @override
-  String get accountDeleteReauthenticationFailed => 'Non Ã¨ stato possibile verificare la tua identitÃ . Riprova.';
+  String get accountDeleteReauthenticationFailed => 'Non è stato possibile verificare la tua identità. Riprova.';
 
   @override
-  String get accountDeleteReauthenticationUnsupported => 'Questo metodo di accesso non Ã¨ ancora supportato per la verifica dell\'identitÃ .';
+  String get accountDeleteReauthenticationUnsupported => 'Questo metodo di accesso non è ancora supportato per la verifica dell\'identità.';
 
   @override
-  String get accountDeleteError => 'Non Ã¨ stato possibile completare l\'eliminazione dell\'account. Nessun ulteriore dato verrÃ  eliminato. Riprova.';
+  String get accountDeleteError => 'Non è stato possibile completare l\'eliminazione dell\'account. Nessun ulteriore dato verrà eliminato. Riprova.';
 
   @override
   String get privacyTitle => 'Privacy';
@@ -567,37 +567,37 @@ class AppLocalizationsIt extends AppLocalizations {
   String get privacyPermissionsTitle => 'Permessi';
 
   @override
-  String get privacyPermissionsSubtitle => 'Informazioni sui permessi che l\'app puÃ² richiedere.';
+  String get privacyPermissionsSubtitle => 'Informazioni sui permessi che l\'app pu� richiedere.';
 
   @override
   String get privacyConsentTitle => 'Consensi';
 
   @override
-  String get privacyConsentSubtitle => 'Consulta come vengono gestiti i consensi e le funzionalitÃ  opzionali.';
+  String get privacyConsentSubtitle => 'Consulta come vengono gestiti i consensi e le funzionalit� opzionali.';
 
   @override
   String get privacyExportTitle => 'Esportazione dei dati';
 
   @override
-  String get privacyExportSubtitle => 'Informazioni sulla possibilitÃ  di ottenere una copia dei tuoi dati.';
+  String get privacyExportSubtitle => 'Informazioni sulla possibilit� di ottenere una copia dei tuoi dati.';
 
   @override
   String get privacyPolicyOverviewTitle => 'Informazioni generali';
 
   @override
-  String get privacyPolicyOverviewBody => 'Amaterasu Trip Ã¨ un\'applicazione dedicata all\'organizzazione e alla gestione dei viaggi. La presente informativa descrive quali dati possono essere trattati durante l\'utilizzo dell\'app e per quali finalitÃ .';
+  String get privacyPolicyOverviewBody => 'Amaterasu Trip è un\'applicazione dedicata all\'organizzazione e alla gestione dei viaggi. La presente informativa descrive quali dati possono essere trattati durante l\'utilizzo dell\'app e per quali finalità.';
 
   @override
   String get privacyPolicyCollectedDataTitle => 'Dati trattati';
 
   @override
-  String get privacyPolicyCollectedDataBody => 'Amaterasu puÃ² trattare dati necessari alla creazione e gestione dell\'account, come indirizzo email, identificativo utente, username e metodo di autenticazione. Alcune preferenze dell\'app, come la lingua e l\'opzione di accesso memorizzato, possono essere salvate localmente sul dispositivo.';
+  String get privacyPolicyCollectedDataBody => 'Amaterasu pu� trattare dati necessari alla creazione e gestione dell\'account, come indirizzo email, identificativo utente, username e metodo di autenticazione. Alcune preferenze dell\'app, come la lingua e l\'opzione di accesso memorizzato, possono essere salvate localmente sul dispositivo.';
 
   @override
-  String get privacyPolicyPurposeTitle => 'FinalitÃ  del trattamento';
+  String get privacyPolicyPurposeTitle => 'Finalit� del trattamento';
 
   @override
-  String get privacyPolicyPurposeBody => 'I dati vengono utilizzati esclusivamente per fornire le funzionalitÃ  dell\'app, autenticare l\'utente, mantenere il profilo Amaterasu, permettere la gestione dell\'account e garantire il corretto funzionamento dei servizi associati.';
+  String get privacyPolicyPurposeBody => 'I dati vengono utilizzati esclusivamente per fornire le funzionalit� dell\'app, autenticare l\'utente, mantenere il profilo Amaterasu, permettere la gestione dell\'account e garantire il corretto funzionamento dei servizi associati.';
 
   @override
   String get privacyPolicyFirebaseTitle => 'Firebase';
@@ -609,19 +609,19 @@ class AppLocalizationsIt extends AppLocalizations {
   String get privacyPolicyGoogleTitle => 'Accesso con Google';
 
   @override
-  String get privacyPolicyGoogleBody => 'Se scegli di utilizzare Google per accedere ad Amaterasu, Google fornisce all\'app le informazioni necessarie per autenticare il tuo account. Amaterasu non riceve nÃ© conserva la password del tuo account Google.';
+  String get privacyPolicyGoogleBody => 'Se scegli di utilizzare Google per accedere ad Amaterasu, Google fornisce all\'app le informazioni necessarie per autenticare il tuo account. Amaterasu non riceve n� conserva la password del tuo account Google.';
 
   @override
   String get privacyPolicyStorageTitle => 'Conservazione dei dati';
 
   @override
-  String get privacyPolicyStorageBody => 'I dati associati all\'account vengono conservati finchÃ© l\'account Amaterasu rimane attivo o finchÃ© sono necessari per fornire i servizi richiesti. Alcune preferenze possono essere conservate localmente sul dispositivo.';
+  String get privacyPolicyStorageBody => 'I dati associati all\'account vengono conservati finch� l\'account Amaterasu rimane attivo o finch� sono necessari per fornire i servizi richiesti. Alcune preferenze possono essere conservate localmente sul dispositivo.';
 
   @override
   String get privacyPolicyDeletionTitle => 'Eliminazione dell\'account';
 
   @override
-  String get privacyPolicyDeletionBody => 'Puoi eliminare definitivamente il tuo account dalle impostazioni di Amaterasu. L\'eliminazione rimuove l\'account Firebase Authentication e i dati dell\'account attualmente associati al profilo Amaterasu. Quando verranno introdotte nuove funzionalitÃ  e nuove categorie di dati, questa informativa verrÃ  aggiornata di conseguenza.';
+  String get privacyPolicyDeletionBody => 'Puoi eliminare definitivamente il tuo account dalle impostazioni di Amaterasu. L\'eliminazione rimuove l\'account Firebase Authentication e i dati dell\'account attualmente associati al profilo Amaterasu. Quando verranno introdotte nuove funzionalit� e nuove categorie di dati, questa informativa verr� aggiornata di conseguenza.';
 
   @override
   String get privacyPolicySecurityTitle => 'Sicurezza';
@@ -633,7 +633,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get privacyPolicyChangesTitle => 'Modifiche alla Privacy Policy';
 
   @override
-  String get privacyPolicyChangesBody => 'La presente informativa potrÃ  essere aggiornata quando Amaterasu introdurrÃ  nuove funzionalitÃ , servizi o categorie di dati. La versione aggiornata sarÃ  resa disponibile all\'interno dell\'app e attraverso la pagina pubblica della Privacy Policy.';
+  String get privacyPolicyChangesBody => 'La presente informativa potr� essere aggiornata quando Amaterasu introdurr� nuove funzionalit�, servizi o categorie di dati. La versione aggiornata sar� resa disponibile all\'interno dell\'app e attraverso la pagina pubblica della Privacy Policy.';
 
   @override
   String get privacyPolicyContactTitle => 'Contatti';
@@ -642,28 +642,28 @@ class AppLocalizationsIt extends AppLocalizations {
   String get privacyPolicyContactBody => 'Per richieste relative alla privacy o al trattamento dei dati puoi contattare il team Amaterasu attraverso i canali di supporto ufficiali indicati nell\'app.';
 
   @override
-  String get privacyPermissionsIntro => 'Amaterasu richiede solamente i permessi necessari alle funzionalitÃ  che utilizzi. Alcuni permessi potranno essere introdotti quando saranno disponibili nuove funzioni.';
+  String get privacyPermissionsIntro => 'Amaterasu richiede solamente i permessi necessari alle funzionalit� che utilizzi. Alcuni permessi potranno essere introdotti quando saranno disponibili nuove funzioni.';
 
   @override
   String get privacyPermissionsNotificationsTitle => 'Notifiche';
 
   @override
-  String get privacyPermissionsNotificationsBody => 'Amaterasu potrÃ  richiedere l\'autorizzazione alle notifiche per ricordarti prenotazioni, scadenze e informazioni relative ai tuoi viaggi. Il permesso potrÃ  essere revocato dalle impostazioni del dispositivo.';
+  String get privacyPermissionsNotificationsBody => 'Amaterasu potr� richiedere l\'autorizzazione alle notifiche per ricordarti prenotazioni, scadenze e informazioni relative ai tuoi viaggi. Il permesso potr� essere revocato dalle impostazioni del dispositivo.';
 
   @override
   String get privacyPermissionsMediaTitle => 'Foto e contenuti multimediali';
 
   @override
-  String get privacyPermissionsMediaBody => 'Quando saranno disponibili le funzionalitÃ  dedicate a foto, video e documenti di viaggio, Amaterasu potrÃ  richiedere l\'accesso ai contenuti selezionati dall\'utente. L\'app non accederÃ  ai contenuti senza un\'azione dell\'utente.';
+  String get privacyPermissionsMediaBody => 'Quando saranno disponibili le funzionalit� dedicate a foto, video e documenti di viaggio, Amaterasu potr� richiedere l\'accesso ai contenuti selezionati dall\'utente. L\'app non acceder� ai contenuti senza un\'azione dell\'utente.';
 
   @override
   String get privacyPermissionsLocationTitle => 'Posizione';
 
   @override
-  String get privacyPermissionsLocationBody => 'Amaterasu non utilizza attualmente la posizione del dispositivo. Qualora una futura funzione richiedesse l\'accesso alla posizione, il permesso verrÃ  richiesto esplicitamente prima dell\'utilizzo.';
+  String get privacyPermissionsLocationBody => 'Amaterasu non utilizza attualmente la posizione del dispositivo. Qualora una futura funzione richiedesse l\'accesso alla posizione, il permesso verr� richiesto esplicitamente prima dell\'utilizzo.';
 
   @override
-  String get privacyConsentIntro => 'Le funzionalitÃ  necessarie al funzionamento dell\'account non richiedono consensi di marketing. Eventuali funzionalitÃ  opzionali che richiederanno un consenso specifico saranno presentate separatamente.';
+  String get privacyConsentIntro => 'Le funzionalit� necessarie al funzionamento dell\'account non richiedono consensi di marketing. Eventuali funzionalit� opzionali che richiederanno un consenso specifico saranno presentate separatamente.';
 
   @override
   String get privacyConsentRequiredTitle => 'Servizi necessari';
@@ -675,19 +675,19 @@ class AppLocalizationsIt extends AppLocalizations {
   String get privacyConsentOptionalTitle => 'Consensi opzionali';
 
   @override
-  String get privacyConsentOptionalBody => 'Amaterasu non utilizza attualmente consensi per pubblicitÃ  personalizzata, marketing o vendita di dati personali.';
+  String get privacyConsentOptionalBody => 'Amaterasu non utilizza attualmente consensi per pubblicit� personalizzata, marketing o vendita di dati personali.';
 
   @override
-  String get privacyConsentFutureTitle => 'FunzionalitÃ  future';
+  String get privacyConsentFutureTitle => 'Funzionalit� future';
 
   @override
-  String get privacyConsentFutureBody => 'Se in futuro verranno introdotti servizi che richiedono un consenso facoltativo, potrai accettarlo o rifiutarlo separatamente senza modificare i consensi giÃ  espressi.';
+  String get privacyConsentFutureBody => 'Se in futuro verranno introdotti servizi che richiedono un consenso facoltativo, potrai accettarlo o rifiutarlo separatamente senza modificare i consensi gi� espressi.';
 
   @override
   String get privacyExportHeading => 'Una copia dei tuoi dati';
 
   @override
-  String get privacyExportBody => 'La funzione di esportazione completa dei dati personali sarÃ  disponibile quando saranno implementate le funzionalitÃ  di gestione ed esportazione dei dati di viaggio. Non viene mostrato alcun comando di esportazione finchÃ© la funzione non sarÃ  realmente disponibile.';
+  String get privacyExportBody => 'La funzione di esportazione completa dei dati personali sar� disponibile quando saranno implementate le funzionalit� di gestione ed esportazione dei dati di viaggio. Non viene mostrato alcun comando di esportazione finch� la funzione non sar� realmente disponibile.';
 
   @override
   String get profileUsername => 'Username';
@@ -723,10 +723,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get profileSaveSuccess => 'Profilo aggiornato.';
 
   @override
-  String get profileSaveError => 'Non Ã¨ stato possibile aggiornare il profilo.';
+  String get profileSaveError => 'Non � stato possibile aggiornare il profilo.';
 
   @override
-  String get profileBioTooLong => 'La bio puÃ² contenere al massimo 200 caratteri.';
+  String get profileBioTooLong => 'La bio pu� contenere al massimo 200 caratteri.';
 
   @override
   String get unsavedChangesTitle => 'Sicuro di voler uscire senza salvare?';
@@ -753,13 +753,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get profileUsernameRequired => 'Inserisci un username.';
 
   @override
-  String get profileUsernameAlreadyInUse => 'Questo username Ã¨ giÃ  in uso.';
+  String get profileUsernameAlreadyInUse => 'Questo username � gi� in uso.';
 
   @override
   String get profileUsernameChangeSuccess => 'Username aggiornato.';
 
   @override
-  String get profileUsernameChangeError => 'Non Ã¨ stato possibile aggiornare lo username.';
+  String get profileUsernameChangeError => 'Non � stato possibile aggiornare lo username.';
 
   @override
   String get profileUsernameConfirm => 'Conferma modifica';
@@ -783,22 +783,22 @@ class AppLocalizationsIt extends AppLocalizations {
   String get profilePhotoRemove => 'Rimuovi foto';
 
   @override
-  String get profilePhotoPickerError => 'Non Ã¨ stato possibile selezionare la foto.';
+  String get profilePhotoPickerError => 'Non � stato possibile selezionare la foto.';
 
   @override
-  String get profilePhotoCameraPermissionDenied => 'Il permesso per usare la fotocamera Ã¨ stato negato.';
+  String get profilePhotoCameraPermissionDenied => 'Il permesso per usare la fotocamera � stato negato.';
 
   @override
-  String get profilePhotoCameraPermissionPermanentlyDenied => 'Il permesso per la fotocamera Ã¨ disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
+  String get profilePhotoCameraPermissionPermanentlyDenied => 'Il permesso per la fotocamera � disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
 
   @override
   String get profilePhotoOpenSettings => 'Apri impostazioni';
 
   @override
-  String get profilePhotoGalleryPermissionDenied => 'Il permesso per accedere alle foto Ã¨ stato negato.';
+  String get profilePhotoGalleryPermissionDenied => 'Il permesso per accedere alle foto � stato negato.';
 
   @override
-  String get profilePhotoGalleryPermissionPermanentlyDenied => 'Il permesso per accedere alle foto Ã¨ disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
+  String get profilePhotoGalleryPermissionPermanentlyDenied => 'Il permesso per accedere alle foto � disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
 
   @override
   String get profilePhotoRemoveError => 'Impossibile rimuovere la foto profilo.';
@@ -822,7 +822,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get notificationsItineraryReminders => 'Promemoria itinerario';
 
   @override
-  String get notificationsItineraryRemindersSubtitle => 'Ricevi promemoria per attivitÃ , prenotazioni e tappe dell\'itinerario';
+  String get notificationsItineraryRemindersSubtitle => 'Ricevi promemoria per attivit�, prenotazioni e tappe dell\'itinerario';
 
   @override
   String get notificationsTripUpdates => 'Aggiornamenti viaggio';
@@ -837,16 +837,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get notificationsGroupInvitationsSubtitle => 'Ricevi notifiche quando vieni invitato a un viaggio';
 
   @override
-  String get notificationsGroupActivity => 'AttivitÃ  dei gruppi';
+  String get notificationsGroupActivity => 'Attivit� dei gruppi';
 
   @override
-  String get notificationsGroupActivitySubtitle => 'Ricevi notifiche sulle attivitÃ  dei gruppi di viaggio';
+  String get notificationsGroupActivitySubtitle => 'Ricevi notifiche sulle attivit� dei gruppi di viaggio';
 
   @override
   String get notificationsAppUpdates => 'Aggiornamenti dell\'app';
 
   @override
-  String get notificationsAppUpdatesSubtitle => 'Ricevi notifiche sulle novitÃ  e sugli aggiornamenti di Amaterasu Trip';
+  String get notificationsAppUpdatesSubtitle => 'Ricevi notifiche sulle novit� e sugli aggiornamenti di Amaterasu Trip';
 
   @override
   String get notificationsImportantCommunications => 'Comunicazioni importanti';
@@ -876,7 +876,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get notificationsPromotionalEmails => 'Comunicazioni promozionali';
 
   @override
-  String get notificationsPromotionalEmailsSubtitle => 'Ricevi novitÃ , iniziative e comunicazioni promozionali di Amaterasu Trip';
+  String get notificationsPromotionalEmailsSubtitle => 'Ricevi novit�, iniziative e comunicazioni promozionali di Amaterasu Trip';
 
   @override
   String get informationApp => 'App';
@@ -933,7 +933,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get informationReportProblemSubtitle => 'Invia una segnalazione al supporto';
 
   @override
-  String get informationReportProblemSubject => 'Amaterasu Trip â€” Segnalazione problema';
+  String get informationReportProblemSubject => 'Amaterasu Trip - Segnalazione problema';
 
   @override
   String informationReportProblemBody(String version, String build) {
@@ -1016,7 +1016,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get dataClearOffline => 'Cancella dati offline';
 
   @override
-  String get dataClearOfflineSubtitle => 'Rimuovi dal dispositivo le copie offline giÃ  sincronizzate';
+  String get dataClearOfflineSubtitle => 'Rimuovi dal dispositivo le copie offline gi� sincronizzate';
 
   @override
   String get dataWifiOnly => 'Sincronizza solo con Wi-Fi';
@@ -1058,7 +1058,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String tripsTodayActivities(int count) {
-    return 'Oggi: $count attivitÃ ';
+    return 'Oggi: $count attivit�';
   }
 
   @override
@@ -1119,11 +1119,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String tripCreatedTitle(String tripName) {
-    return '$tripName Ã¨ pronto!';
+    return '$tripName è pronto!';
   }
 
   @override
-  String get tripCreatedSubtitle => 'Il tuo viaggio Ã¨ stato creato. Invita i tuoi compagni di viaggio oppure entra e inizia a organizzarlo.';
+  String get tripCreatedSubtitle => 'Il tuo viaggio è stato creato. Invita i tuoi compagni di viaggio oppure entra e inizia a organizzarlo.';
 
   @override
   String get tripCreatedInviteTravellers => 'Invita viaggiatori';
@@ -1159,7 +1159,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripMoreTitle => 'Altro';
 
   @override
-  String get tripMoreSubtitle => 'Tutto ciÃ² che riguarda il tuo viaggio';
+  String get tripMoreSubtitle => 'Tutto ci� che riguarda il tuo viaggio';
 
   @override
   String get tripMoreRestaurants => 'Ristoranti';
@@ -1267,7 +1267,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripSettingsPrivacy => 'Privacy e condivisione';
 
   @override
-  String get tripSettingsPrivacySubtitle => 'Gestisci visibilitÃ  e condivisione del viaggio';
+  String get tripSettingsPrivacySubtitle => 'Gestisci visibilit� e condivisione del viaggio';
 
   @override
   String get tripSettingsManagement => 'Gestione viaggio';
@@ -1297,7 +1297,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripOverviewItinerary => 'Itinerario';
 
   @override
-  String get tripOverviewBucketListSubtitle => 'Raccogli ciÃ² che vuoi vedere e fare';
+  String get tripOverviewBucketListSubtitle => 'Raccogli ci� che vuoi vedere e fare';
 
   @override
   String get tripOverviewMore => 'Altro';
@@ -1312,7 +1312,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripOverviewTitle => 'Panoramica';
 
   @override
-  String get tripOverviewNotFoundSubtitle => 'Questo viaggio non Ã¨ disponibile.';
+  String get tripOverviewNotFoundSubtitle => 'Questo viaggio non � disponibile.';
 
   @override
   String get tripOverviewError => 'Impossibile caricare il viaggio';
@@ -1321,7 +1321,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripOverviewMoreSubtitle => 'Mappa, spese, viaggiatori, prenotazioni e altro';
 
   @override
-  String get tripOverviewItinerarySubtitle => 'Organizza giorni, tappe e attivitÃ ';
+  String get tripOverviewItinerarySubtitle => 'Organizza giorni, tappe e attivit�';
 
   @override
   String get tripOverviewExploreSubtitle => 'Accedi alle sezioni principali del viaggio';
@@ -1330,7 +1330,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripOverviewBucketList => 'Bucket List';
 
   @override
-  String get tripCoverRemoveError => 'Non Ã¨ stato possibile rimuovere la copertina.';
+  String get tripCoverRemoveError => 'Non � stato possibile rimuovere la copertina.';
 
   @override
   String get tripCoverCamera => 'Scatta una foto';
@@ -1354,10 +1354,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripCoverGallery => 'Scegli dalla galleria';
 
   @override
-  String get tripCoverPickerError => 'Non Ã¨ stato possibile selezionare la copertina.';
+  String get tripCoverPickerError => 'Non � stato possibile selezionare la copertina.';
 
   @override
-  String get tripCoverUploadError => 'Non Ã¨ stato possibile caricare la copertina.';
+  String get tripCoverUploadError => 'Non � stato possibile caricare la copertina.';
 
   @override
   String get tripCoverSubtitle => 'Scegli l\'immagine che rappresenta il tuo viaggio';
@@ -1382,4 +1382,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripCoverCameraPermissionPermanentlyDenied => 'L\'accesso alla fotocamera è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
+
+  @override
+  String get createTripCoverComingSoon => 'La selezione della copertina sarà disponibile a breve.';
+
+  @override
+  String get tripCreatedInviteComingSoon => 'Gli inviti ai viaggiatori saranno disponibili a breve.';
+
+  @override
+  String get tripCreatedShareComingSoon => 'La condivisione del viaggio sarà disponibile a breve.';
 }

@@ -30,7 +30,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authCancel => 'Cancel';
 
   @override
-  String get authPasswordResetEmailSent => 'ðŸ“œ We sent a scroll to recover your password. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
+  String get authPasswordResetEmailSent => 'We\'ve sent you an email to reset your password. Check your inbox and, if you can\'t find it, your Spam or Junk folder.';
 
   @override
   String get authContinue => 'Continue';
@@ -54,7 +54,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authLoginErrorUserNotFound => 'No traveler found with these credentials.';
 
   @override
-  String get authLoginErrorWrongPassword => 'The secret word does not open the door of the vessel.';
+  String get authLoginErrorWrongPassword => 'The password you entered is incorrect.';
 
   @override
   String get authLoginErrorInvalidEmail => 'This email doesn\'t seem to be valid.';
@@ -78,22 +78,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authRegister => 'Register';
 
   @override
-  String get authRegisterFillFields => 'âš ï¸ Please fill in all required fields.';
+  String get authRegisterFillFields => 'Please complete all required fields.';
 
   @override
-  String get authRegisterPasswordsMismatch => 'âš ï¸ The two secret words don\'t match.';
+  String get authRegisterPasswordsMismatch => 'The passwords do not match.';
 
   @override
-  String get authRegisterEmailAlreadyInUse => 'âš ï¸ A traveler is already registered with this scroll.';
+  String get authRegisterEmailAlreadyInUse => 'An account already exists with this email address.';
 
   @override
-  String get authRegisterWeakPassword => 'âš ï¸ The secret word is too weak.';
+  String get authRegisterWeakPassword => 'The password you chose is too weak.';
 
   @override
-  String get authRegisterInvalidEmail => 'âš ï¸ The raven cannot reach this address.';
+  String get authRegisterInvalidEmail => 'The email address you entered is not valid.';
 
   @override
-  String get authRegisterGenericError => 'âš ï¸ Unable to complete registration.';
+  String get authRegisterGenericError => 'Unable to complete registration. Please try again.';
 
   @override
   String get authAlreadyHaveAccountSignIn => 'Already have an account? Sign in';
@@ -108,10 +108,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authRetry => 'Try again';
 
   @override
-  String get authVerifyEmailNotVerified => 'âš ï¸ The scroll has not been signed yet. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
+  String get authVerifyEmailNotVerified => 'Your email address has not been verified yet. Check your inbox and, if you can\'t find the email, your Spam or Junk folder.';
 
   @override
-  String get authVerifyEmailSent => 'ðŸ“œ A new scroll has been sent. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!';
+  String get authVerifyEmailSent => 'Verification email sent. Check your inbox and, if you can\'t find it, your Spam or Junk folder.';
 
   @override
   String get authVerifyEmailTitle => 'Verify your email address';
@@ -352,7 +352,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountDelete => 'Delete account';
 
   @override
-  String get accountDeleteDescription => 'Deleting your account is permanent and will result in the loss of associated data.';
+  String get accountDeleteDescription => 'Deleting your account is permanent and will remove the associated data.';
 
   @override
   String get accountDeleteConfirm => 'Confirm account deletion';
@@ -513,7 +513,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountDeleteDialogConfirmation => 'I understand that the deletion is permanent.';
 
   @override
-  String get accountDeleteLoading => 'Deleting accountâ€¦';
+  String get accountDeleteLoading => 'Deleting account...';
 
   @override
   String get accountDeleteCancel => 'Cancel';
@@ -933,7 +933,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get informationReportProblemSubtitle => 'Send a problem report to support';
 
   @override
-  String get informationReportProblemSubject => 'Amaterasu Trip â€” Problem report';
+  String get informationReportProblemSubject => 'Amaterasu Trip - Problem report';
 
   @override
   String informationReportProblemBody(String version, String build) {
@@ -1382,4 +1382,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripCoverCameraPermissionPermanentlyDenied => 'Camera access is disabled. You can enable it in the app settings.';
+
+  @override
+  String get createTripCoverComingSoon => 'Cover selection will be available soon.';
+
+  @override
+  String get tripCreatedInviteComingSoon => 'Traveller invitations will be available soon.';
+
+  @override
+  String get tripCreatedShareComingSoon => 'Trip sharing will be available soon.';
 }

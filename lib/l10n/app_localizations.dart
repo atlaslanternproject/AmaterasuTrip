@@ -140,7 +140,7 @@ abstract class AppLocalizations {
   /// No description provided for @authPasswordResetEmailSent.
   ///
   /// In en, this message translates to:
-  /// **'ðŸ“œ We sent a scroll to recover your password. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
+  /// **'We\'ve sent you an email to reset your password. Check your inbox and, if you can\'t find it, your Spam or Junk folder.'**
   String get authPasswordResetEmailSent;
 
   /// No description provided for @authContinue.
@@ -188,7 +188,7 @@ abstract class AppLocalizations {
   /// No description provided for @authLoginErrorWrongPassword.
   ///
   /// In en, this message translates to:
-  /// **'The secret word does not open the door of the vessel.'**
+  /// **'The password you entered is incorrect.'**
   String get authLoginErrorWrongPassword;
 
   /// No description provided for @authLoginErrorInvalidEmail.
@@ -236,37 +236,37 @@ abstract class AppLocalizations {
   /// No description provided for @authRegisterFillFields.
   ///
   /// In en, this message translates to:
-  /// **'âš ï¸ Please fill in all required fields.'**
+  /// **'Please complete all required fields.'**
   String get authRegisterFillFields;
 
   /// No description provided for @authRegisterPasswordsMismatch.
   ///
   /// In en, this message translates to:
-  /// **'âš ï¸ The two secret words don\'t match.'**
+  /// **'The passwords do not match.'**
   String get authRegisterPasswordsMismatch;
 
   /// No description provided for @authRegisterEmailAlreadyInUse.
   ///
   /// In en, this message translates to:
-  /// **'âš ï¸ A traveler is already registered with this scroll.'**
+  /// **'An account already exists with this email address.'**
   String get authRegisterEmailAlreadyInUse;
 
   /// No description provided for @authRegisterWeakPassword.
   ///
   /// In en, this message translates to:
-  /// **'âš ï¸ The secret word is too weak.'**
+  /// **'The password you chose is too weak.'**
   String get authRegisterWeakPassword;
 
   /// No description provided for @authRegisterInvalidEmail.
   ///
   /// In en, this message translates to:
-  /// **'âš ï¸ The raven cannot reach this address.'**
+  /// **'The email address you entered is not valid.'**
   String get authRegisterInvalidEmail;
 
   /// No description provided for @authRegisterGenericError.
   ///
   /// In en, this message translates to:
-  /// **'âš ï¸ Unable to complete registration.'**
+  /// **'Unable to complete registration. Please try again.'**
   String get authRegisterGenericError;
 
   /// No description provided for @authAlreadyHaveAccountSignIn.
@@ -296,13 +296,13 @@ abstract class AppLocalizations {
   /// No description provided for @authVerifyEmailNotVerified.
   ///
   /// In en, this message translates to:
-  /// **'âš ï¸ The scroll has not been signed yet. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
+  /// **'Your email address has not been verified yet. Check your inbox and, if you can\'t find the email, your Spam or Junk folder.'**
   String get authVerifyEmailNotVerified;
 
   /// No description provided for @authVerifyEmailSent.
   ///
   /// In en, this message translates to:
-  /// **'ðŸ“œ A new scroll has been sent. Check your inbox. Also check your Spam or Junk folder if you don\'t find it!'**
+  /// **'Verification email sent. Check your inbox and, if you can\'t find it, your Spam or Junk folder.'**
   String get authVerifyEmailSent;
 
   /// No description provided for @authVerifyEmailTitle.
@@ -764,7 +764,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountDeleteDescription.
   ///
   /// In en, this message translates to:
-  /// **'Deleting your account is permanent and will result in the loss of associated data.'**
+  /// **'Deleting your account is permanent and will remove the associated data.'**
   String get accountDeleteDescription;
 
   /// No description provided for @accountDeleteConfirm.
@@ -1082,7 +1082,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountDeleteLoading.
   ///
   /// In en, this message translates to:
-  /// **'Deleting accountâ€¦'**
+  /// **'Deleting account...'**
   String get accountDeleteLoading;
 
   /// No description provided for @accountDeleteCancel.
@@ -1922,7 +1922,7 @@ abstract class AppLocalizations {
   /// No description provided for @informationReportProblemSubject.
   ///
   /// In en, this message translates to:
-  /// **'Amaterasu Trip â€” Problem report'**
+  /// **'Amaterasu Trip - Problem report'**
   String get informationReportProblemSubject;
 
   /// No description provided for @informationReportProblemBody.
@@ -2800,6 +2800,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Camera access is disabled. You can enable it in the app settings.'**
   String get tripCoverCameraPermissionPermanentlyDenied;
+
+  /// No description provided for @createTripCoverComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover selection will be available soon.'**
+  String get createTripCoverComingSoon;
+
+  /// No description provided for @tripCreatedInviteComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Traveller invitations will be available soon.'**
+  String get tripCreatedInviteComingSoon;
+
+  /// No description provided for @tripCreatedShareComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip sharing will be available soon.'**
+  String get tripCreatedShareComingSoon;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
