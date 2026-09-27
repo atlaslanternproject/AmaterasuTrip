@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:amaterasutrip/core/permissions/app_permission.dart';
-import 'package:amaterasutrip/core/permissions/permission_provider.dart';
-import 'package:amaterasutrip/core/permissions/permission_result.dart';
 import 'package:amaterasutrip/features/trips/models/trip.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -293,48 +290,6 @@ class _TripInformationSettingsPageState
     required bool fromCamera,
   }) async {
     final l10n = AppLocalizations.of(context)!;
-    final permissionService = ref.read(permissionServiceProvider);
-
-    final permissionResult = await permissionService.request(
-      fromCamera ? AppPermission.camera : AppPermission.photos,
-    );
-
-    if (!mounted) {
-      return;
-    }
-
-    switch (permissionResult) {
-      case AppPermissionResult.granted:
-        break;
-
-      case AppPermissionResult.denied:
-        _showMessage(
-          fromCamera
-              ? l10n.tripCoverCameraPermissionDenied
-              : l10n.tripCoverGalleryPermissionDenied,
-        );
-        return;
-
-      case AppPermissionResult.permanentlyDenied:
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(
-                fromCamera
-                    ? l10n.tripCoverCameraPermissionPermanentlyDenied
-                    : l10n.tripCoverGalleryPermissionPermanentlyDenied,
-              ),
-              action: SnackBarAction(
-                label: l10n.tripCoverOpenSettings,
-                onPressed: () {
-                  permissionService.openSettings();
-                },
-              ),
-            ),
-          );
-        return;
-    }
 
     XFile? selectedCover;
 
@@ -355,7 +310,6 @@ class _TripInformationSettingsPageState
       if (mounted) {
         _showMessage(l10n.tripCoverPickerError);
       }
-
       return;
     }
 

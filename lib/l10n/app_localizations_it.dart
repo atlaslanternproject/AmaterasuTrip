@@ -1297,7 +1297,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripOverviewItinerary => 'Itinerario';
 
   @override
-  String get tripOverviewBucketListSubtitle => 'Raccogli ciò che vuoi vedere e fare';
+  String get tripOverviewBucketListSubtitle => 'Raccogli ciÃ² che vuoi vedere e fare';
 
   @override
   String get tripOverviewMore => 'Altro';
@@ -1312,7 +1312,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripOverviewTitle => 'Panoramica';
 
   @override
-  String get tripOverviewNotFoundSubtitle => 'Questo viaggio non è disponibile.';
+  String get tripOverviewNotFoundSubtitle => 'Questo viaggio non Ã¨ disponibile.';
 
   @override
   String get tripOverviewError => 'Impossibile caricare il viaggio';
@@ -1321,11 +1321,65 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripOverviewMoreSubtitle => 'Mappa, spese, viaggiatori, prenotazioni e altro';
 
   @override
-  String get tripOverviewItinerarySubtitle => 'Organizza giorni, tappe e attività';
+  String get tripOverviewItinerarySubtitle => 'Organizza giorni, tappe e attivitÃ ';
 
   @override
   String get tripOverviewExploreSubtitle => 'Accedi alle sezioni principali del viaggio';
 
   @override
   String get tripOverviewBucketList => 'Bucket List';
+
+  @override
+  String get tripCoverRemoveError => 'Non Ã¨ stato possibile rimuovere la copertina.';
+
+  @override
+  String get tripCoverCamera => 'Scatta una foto';
+
+  @override
+  String get tripCoverTitle => 'Copertina del viaggio';
+
+  @override
+  String get tripCoverUploading => 'Caricamento copertina...';
+
+  @override
+  String get tripCoverAdd => 'Aggiungi copertina';
+
+  @override
+  String get tripCoverRemoved => 'Copertina rimossa';
+
+  @override
+  String get tripCoverUpdated => 'Copertina aggiornata';
+
+  @override
+  String get tripCoverGallery => 'Scegli dalla galleria';
+
+  @override
+  String get tripCoverPickerError => 'Non Ã¨ stato possibile selezionare la copertina.';
+
+  @override
+  String get tripCoverUploadError => 'Non Ã¨ stato possibile caricare la copertina.';
+
+  @override
+  String get tripCoverSubtitle => 'Scegli l\'immagine che rappresenta il tuo viaggio';
+
+  @override
+  String get tripCoverChange => 'Cambia copertina';
+
+  @override
+  String get tripCoverRemove => 'Rimuovi copertina';
+
+  @override
+  String get tripCoverGalleryPermissionDenied => 'Per scegliere una copertina devi consentire ad Amaterasu Trip di accedere alle foto.';
+
+  @override
+  String get tripCoverOpenSettings => 'Impostazioni';
+
+  @override
+  String get tripCoverGalleryPermissionPermanentlyDenied => 'L\'accesso alle foto è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
+
+  @override
+  String get tripCoverCameraPermissionDenied => 'Per scattare una foto devi consentire ad Amaterasu Trip di usare la fotocamera.';
+
+  @override
+  String get tripCoverCameraPermissionPermanentlyDenied => 'L\'accesso alla fotocamera è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
 }

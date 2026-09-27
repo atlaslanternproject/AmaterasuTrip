@@ -1,9 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-enum TripStatus {
-  active,
-  closed,
-}
+enum TripStatus { active, closed }
 
 class Trip {
   const Trip({
@@ -17,6 +14,8 @@ class Trip {
     required this.status,
     required this.createdAt,
     required this.updatedAt,
+    this.coverUrl,
+    this.coverPath,
   });
 
   final String id;
@@ -29,6 +28,18 @@ class Trip {
   final TripStatus status;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+
+  /// URL pubblico della copertina scelta dall'utente.
+  ///
+  /// È nullable perché un viaggio può esistere senza una copertina
+  /// personalizzata. In quel caso la UI utilizzerà il fallback Amaterasu.
+  final String? coverUrl;
+
+  /// Percorso del file in Firebase Storage.
+  ///
+  /// Viene conservato separatamente dall'URL per permettere la sostituzione
+  /// o la rimozione sicura della vecchia copertina.
+  final String? coverPath;
 
   factory Trip.fromFirestore({
     required String id,
@@ -50,6 +61,8 @@ class Trip {
       status: _tripStatusFromString(data['status'] as String?),
       createdAt: createdAt?.toDate(),
       updatedAt: updatedAt?.toDate(),
+      coverUrl: data['coverUrl'] as String?,
+      coverPath: data['coverPath'] as String?,
     );
   }
 }

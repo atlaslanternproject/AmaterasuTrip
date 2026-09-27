@@ -1328,4 +1328,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripOverviewBucketList => 'Bucket List';
+
+  @override
+  String get tripCoverRemoveError => 'The cover could not be removed.';
+
+  @override
+  String get tripCoverCamera => 'Take a photo';
+
+  @override
+  String get tripCoverTitle => 'Trip cover';
+
+  @override
+  String get tripCoverUploading => 'Uploading cover...';
+
+  @override
+  String get tripCoverAdd => 'Add cover';
+
+  @override
+  String get tripCoverRemoved => 'Cover removed';
+
+  @override
+  String get tripCoverUpdated => 'Cover updated';
+
+  @override
+  String get tripCoverGallery => 'Choose from gallery';
+
+  @override
+  String get tripCoverPickerError => 'The cover could not be selected.';
+
+  @override
+  String get tripCoverUploadError => 'The cover could not be uploaded.';
+
+  @override
+  String get tripCoverSubtitle => 'Choose the image that represents your trip';
+
+  @override
+  String get tripCoverChange => 'Change cover';
+
+  @override
+  String get tripCoverRemove => 'Remove cover';
+
+  @override
+  String get tripCoverGalleryPermissionDenied => 'To choose a cover, allow Amaterasu Trip to access your photos.';
+
+  @override
+  String get tripCoverOpenSettings => 'Settings';
+
+  @override
+  String get tripCoverGalleryPermissionPermanentlyDenied => 'Photo access is disabled. You can enable it in the app settings.';
+
+  @override
+  String get tripCoverCameraPermissionDenied => 'To take a photo, allow Amaterasu Trip to use the camera.';
+
+  @override
+  String get tripCoverCameraPermissionPermanentlyDenied => 'Camera access is disabled. You can enable it in the app settings.';
 }

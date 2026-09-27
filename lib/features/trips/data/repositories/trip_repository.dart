@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:amaterasutrip/features/trips/models/trip.dart';
 
 class TripRepository {
@@ -65,5 +66,71 @@ class TripRepository {
     });
 
     return tripRef.id;
+  }
+
+  Future<void> updateTripCover({
+    required String tripId,
+    required String coverUrl,
+    required String coverPath,
+  }) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw FirebaseAuthException(code: 'user-not-found');
+    }
+
+    final tripRef = _firestore.collection('trips').doc(tripId);
+    final snapshot = await tripRef.get();
+
+    if (!snapshot.exists) {
+      throw StateError('Trip not found.');
+    }
+
+    final data = snapshot.data();
+
+    if (data == null) {
+      throw StateError('Trip not found.');
+    }
+
+    if (data['ownerUid'] != user.uid) {
+      throw StateError('Current user cannot manage this trip.');
+    }
+
+    await tripRef.update({
+      'coverUrl': coverUrl,
+      'coverPath': coverPath,
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Future<void> removeTripCover({required String tripId}) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw FirebaseAuthException(code: 'user-not-found');
+    }
+
+    final tripRef = _firestore.collection('trips').doc(tripId);
+    final snapshot = await tripRef.get();
+
+    if (!snapshot.exists) {
+      throw StateError('Trip not found.');
+    }
+
+    final data = snapshot.data();
+
+    if (data == null) {
+      throw StateError('Trip not found.');
+    }
+
+    if (data['ownerUid'] != user.uid) {
+      throw StateError('Current user cannot manage this trip.');
+    }
+
+    await tripRef.update({
+      'coverUrl': FieldValue.delete(),
+      'coverPath': FieldValue.delete(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
   }
 }

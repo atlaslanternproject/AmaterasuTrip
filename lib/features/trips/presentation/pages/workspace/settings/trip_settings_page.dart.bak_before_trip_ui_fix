@@ -62,7 +62,7 @@ class TripSettingsPage extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () => context.go('/trips/$tripId'),
+                    onPressed: () => context.go('/trips/$tripId/more'),
                     icon: const Icon(
                       Icons.arrow_back_rounded,
                       color: _titleColor,

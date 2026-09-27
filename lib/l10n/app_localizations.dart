@@ -2692,6 +2692,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Bucket List'**
   String get tripOverviewBucketList;
+
+  /// No description provided for @tripCoverRemoveError.
+  ///
+  /// In en, this message translates to:
+  /// **'The cover could not be removed.'**
+  String get tripCoverRemoveError;
+
+  /// No description provided for @tripCoverCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get tripCoverCamera;
+
+  /// No description provided for @tripCoverTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip cover'**
+  String get tripCoverTitle;
+
+  /// No description provided for @tripCoverUploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading cover...'**
+  String get tripCoverUploading;
+
+  /// No description provided for @tripCoverAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add cover'**
+  String get tripCoverAdd;
+
+  /// No description provided for @tripCoverRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover removed'**
+  String get tripCoverRemoved;
+
+  /// No description provided for @tripCoverUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover updated'**
+  String get tripCoverUpdated;
+
+  /// No description provided for @tripCoverGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get tripCoverGallery;
+
+  /// No description provided for @tripCoverPickerError.
+  ///
+  /// In en, this message translates to:
+  /// **'The cover could not be selected.'**
+  String get tripCoverPickerError;
+
+  /// No description provided for @tripCoverUploadError.
+  ///
+  /// In en, this message translates to:
+  /// **'The cover could not be uploaded.'**
+  String get tripCoverUploadError;
+
+  /// No description provided for @tripCoverSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the image that represents your trip'**
+  String get tripCoverSubtitle;
+
+  /// No description provided for @tripCoverChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change cover'**
+  String get tripCoverChange;
+
+  /// No description provided for @tripCoverRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove cover'**
+  String get tripCoverRemove;
+
+  /// No description provided for @tripCoverGalleryPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'To choose a cover, allow Amaterasu Trip to access your photos.'**
+  String get tripCoverGalleryPermissionDenied;
+
+  /// No description provided for @tripCoverOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get tripCoverOpenSettings;
+
+  /// No description provided for @tripCoverGalleryPermissionPermanentlyDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo access is disabled. You can enable it in the app settings.'**
+  String get tripCoverGalleryPermissionPermanentlyDenied;
+
+  /// No description provided for @tripCoverCameraPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'To take a photo, allow Amaterasu Trip to use the camera.'**
+  String get tripCoverCameraPermissionDenied;
+
+  /// No description provided for @tripCoverCameraPermissionPermanentlyDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera access is disabled. You can enable it in the app settings.'**
+  String get tripCoverCameraPermissionPermanentlyDenied;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -55,25 +55,23 @@ class _TripOverviewContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Column(
-      children: [
-        // HERO FISSA:
-        // è intenzionalmente FUORI dalla zona scrollabile.
-        _TripHero(
-          trip: trip,
-          onSettingsPressed: () {
-            context.push('/trips/${trip.id}/settings');
-          },
-        ),
-
-        // SOLO il contenuto sotto la Hero può scorrere.
-        Expanded(
-          child: ScrollConfiguration(
-            behavior: const _NoOverscrollBehavior(),
-            child: ListView(
-              physics: const ClampingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
-              children: [
+    return SafeArea(
+      bottom: false,
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: _TripHero(
+              trip: trip,
+              onSettingsPressed: () {
+                context.push('/trips/${trip.id}/settings');
+              },
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(20, 24, 20, 32),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
                 Text(
                   l10n.tripOverviewTitle,
                   style: const TextStyle(
@@ -119,25 +117,12 @@ class _TripOverviewContent extends StatelessWidget {
                     context.go('/trips/${trip.id}/more');
                   },
                 ),
-              ],
+              ]),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
-  }
-}
-
-class _NoOverscrollBehavior extends ScrollBehavior {
-  const _NoOverscrollBehavior();
-
-  @override
-  Widget buildOverscrollIndicator(
-    BuildContext context,
-    Widget child,
-    ScrollableDetails details,
-  ) {
-    return child;
   }
 }
 
@@ -155,7 +140,6 @@ class _TripHero extends StatelessWidget {
   Widget build(BuildContext context) {
     final coverUrl = trip.coverUrl?.trim();
     final hasCover = coverUrl != null && coverUrl.isNotEmpty;
-    final topSafePadding = MediaQuery.paddingOf(context).top;
 
     return SizedBox(
       height: 410,
@@ -172,7 +156,6 @@ class _TripHero extends StatelessWidget {
             )
           else
             const _TripCoverFallback(),
-
           const DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -188,9 +171,8 @@ class _TripHero extends StatelessWidget {
               ),
             ),
           ),
-
           Positioned(
-            top: topSafePadding + 12,
+            top: 12,
             left: 16,
             child: _HeroButton(
               icon: Icons.arrow_back_rounded,
@@ -199,18 +181,20 @@ class _TripHero extends StatelessWidget {
               },
             ),
           ),
-
-          // Solo Impostazioni.
-          // Il menu "..." viene rimosso finché non avrà azioni reali.
           Positioned(
-            top: topSafePadding + 12,
+            top: 12,
             right: 16,
-            child: _HeroButton(
-              icon: Icons.settings_outlined,
-              onPressed: onSettingsPressed,
+            child: Row(
+              children: [
+                _HeroButton(
+                  icon: Icons.settings_outlined,
+                  onPressed: onSettingsPressed,
+                ),
+                const SizedBox(width: 8),
+                _HeroButton(icon: Icons.more_horiz_rounded, onPressed: () {}),
+              ],
             ),
           ),
-
           Positioned(
             left: 20,
             right: 20,
@@ -394,7 +378,6 @@ class _TripStatusChip extends StatelessWidget {
     final String label;
     final IconData icon;
 
-    // Status volutamente invariati per ora.
     if (trip.status == TripStatus.closed) {
       label = l10n.tripsCompleted;
       icon = Icons.check_circle_outline_rounded;
