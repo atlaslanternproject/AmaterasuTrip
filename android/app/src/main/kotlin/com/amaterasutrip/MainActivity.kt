@@ -156,6 +156,7 @@ class MainActivity : FlutterActivity() {
 
         val request = FindAutocompletePredictionsRequest.builder()
             .setQuery(query)
+            .setTypesFilter(listOf("geocode"))
             .setSessionToken(sessionToken)
             .build()
 
@@ -423,4 +424,5 @@ class MainActivity : FlutterActivity() {
     }
 
 }
+
 

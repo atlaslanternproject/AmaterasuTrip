@@ -2,6 +2,44 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum TripStatus { active, closed }
 
+class TripDestinationData {
+  const TripDestinationData({
+    required this.placeId,
+    required this.displayName,
+    required this.formattedAddress,
+    required this.latitude,
+    required this.longitude,
+    this.country,
+    this.countryCode,
+    this.administrativeArea,
+    this.locality,
+  });
+
+  final String placeId;
+  final String displayName;
+  final String formattedAddress;
+  final double latitude;
+  final double longitude;
+  final String? country;
+  final String? countryCode;
+  final String? administrativeArea;
+  final String? locality;
+
+  factory TripDestinationData.fromMap(Map<String, dynamic> data) {
+    return TripDestinationData(
+      placeId: data['placeId'] as String? ?? '',
+      displayName: data['displayName'] as String? ?? '',
+      formattedAddress: data['formattedAddress'] as String? ?? '',
+      latitude: (data['latitude'] as num?)?.toDouble() ?? 0,
+      longitude: (data['longitude'] as num?)?.toDouble() ?? 0,
+      country: data['country'] as String?,
+      countryCode: data['countryCode'] as String?,
+      administrativeArea: data['administrativeArea'] as String?,
+      locality: data['locality'] as String?,
+    );
+  }
+}
+
 class Trip {
   const Trip({
     required this.id,
@@ -14,13 +52,26 @@ class Trip {
     required this.status,
     required this.createdAt,
     required this.updatedAt,
+    this.destinationData,
     this.coverUrl,
     this.coverPath,
   });
 
   final String id;
   final String name;
+
+  /// Etichetta leggibile della destinazione.
+  ///
+  /// Rimane separata dai dati strutturati per compatibilità con i viaggi
+  /// creati prima dell'introduzione di destinationData.
   final String destination;
+
+  /// Informazioni geografiche strutturate della destinazione.
+  ///
+  /// È nullable per mantenere compatibilità con i viaggi esistenti che
+  /// possiedono soltanto il campo destination.
+  final TripDestinationData? destinationData;
+
   final DateTime startDate;
   final DateTime endDate;
   final String currency;
@@ -50,10 +101,21 @@ class Trip {
     final createdAt = data['createdAt'] as Timestamp?;
     final updatedAt = data['updatedAt'] as Timestamp?;
 
+    final rawDestinationData = data['destinationData'];
+
+    TripDestinationData? destinationData;
+
+    if (rawDestinationData is Map) {
+      destinationData = TripDestinationData.fromMap(
+        Map<String, dynamic>.from(rawDestinationData),
+      );
+    }
+
     return Trip(
       id: id,
       name: data['name'] as String? ?? '',
       destination: data['destination'] as String? ?? '',
+      destinationData: destinationData,
       startDate: startDate?.toDate() ?? DateTime.fromMillisecondsSinceEpoch(0),
       endDate: endDate?.toDate() ?? DateTime.fromMillisecondsSinceEpoch(0),
       currency: data['currency'] as String? ?? '',

@@ -1,4 +1,4 @@
-class TripDestination {
+﻿class TripDestination {
   const TripDestination({
     required this.placeId,
     required this.displayName,

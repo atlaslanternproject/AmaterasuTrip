@@ -41,6 +41,15 @@ class TripRepository {
   Future<String> createTrip({
     required String name,
     required String destination,
+    required String destinationPlaceId,
+    required String destinationDisplayName,
+    required String destinationFormattedAddress,
+    required double destinationLatitude,
+    required double destinationLongitude,
+    String? destinationCountry,
+    String? destinationCountryCode,
+    String? destinationAdministrativeArea,
+    String? destinationLocality,
     required DateTime startDate,
     required DateTime endDate,
     required String currency,
@@ -55,7 +64,24 @@ class TripRepository {
 
     await tripRef.set({
       'name': name.trim(),
+
+      // Etichetta leggibile mantenuta per compatibilità  e uso rapido in UI.
       'destination': destination,
+
+      // Dati geografici reali riutilizzabili da mappa, itinerario,
+      // meteo, fuso orario e altri moduli del viaggio.
+      'destinationData': {
+        'placeId': destinationPlaceId,
+        'displayName': destinationDisplayName,
+        'formattedAddress': destinationFormattedAddress,
+        'latitude': destinationLatitude,
+        'longitude': destinationLongitude,
+        'country': ?destinationCountry,
+        'countryCode': ?destinationCountryCode,
+        'administrativeArea': ?destinationAdministrativeArea,
+        'locality': ?destinationLocality,
+      },
+
       'startDate': Timestamp.fromDate(startDate),
       'endDate': Timestamp.fromDate(endDate),
       'currency': currency,
