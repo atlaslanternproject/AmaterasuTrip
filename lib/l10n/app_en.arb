@@ -1,4 +1,4 @@
-{
+﻿{
     "settingsLanguage":  "Language",
     "@@locale":  "en",
     "authWelcomeBack":  "Welcome back",
@@ -509,5 +509,19 @@
     "tripCoverCameraPermissionPermanentlyDenied":  "Camera access is disabled. You can enable it in the app settings.",
     "createTripCoverComingSoon":  "Cover selection will be available soon.",
     "tripCreatedInviteComingSoon":  "Traveller invitations will be available soon.",
-    "tripCreatedShareComingSoon":  "Trip sharing will be available soon."
+    "tripCreatedShareComingSoon":  "Trip sharing will be available soon.",
+    "destinationPickerTitle":  "Choose destination",
+    "destinationPickerSearchHint":  "Search for a country or city...",
+    "destinationPickerMapLabel":  "WORLD MAP",
+    "destinationPickerConfirm":  "CONFIRM",
+    "destinationPickerNoResults":  "No destinations found",
+    "destinationGenericError":  "The search could not be completed. Please try again.",
+    "destinationMapResolving":  "Identifying location...",
+    "destinationCurrencySuggested":  "Suggested currency",
+    "destinationMapNoPlace":  "No geographic location was found at this point.",
+    "destinationMapTapToExplore":  "Tap the map to explore",
+    "destinationMapTwoFingers":  "Use two fingers to explore",
+    "destinationCountryLabel":  "Country",
+    "createTripCurrencyNoResults":  "No currencies found",
+    "createTripCurrencySearchHint":  "Search currency..."
 }

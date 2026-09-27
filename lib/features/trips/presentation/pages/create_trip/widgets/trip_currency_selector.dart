@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 class TripCurrencySelector extends StatelessWidget {
   const TripCurrencySelector({
@@ -7,21 +7,25 @@ class TripCurrencySelector extends StatelessWidget {
     required this.hint,
     required this.currency,
     required this.onTap,
+    this.symbol,
   });
 
   final String label;
   final String hint;
   final String? currency;
+  final String? symbol;
   final VoidCallback onTap;
 
   static const Color _surfaceColor = Color(0xFF1A1715);
   static const Color _borderColor = Color(0xFF332824);
   static const Color _creamColor = Color(0xFFF2E7D5);
   static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _accentColor = Color(0xFFE86A3A);
 
   @override
   Widget build(BuildContext context) {
     final hasCurrency = currency != null && currency!.trim().isNotEmpty;
+    final hasSymbol = symbol != null && symbol!.trim().isNotEmpty;
 
     return Material(
       color: Colors.transparent,
@@ -48,11 +52,26 @@ class TripCurrencySelector extends StatelessWidget {
                   color: const Color(0xFF241B17),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(
-                  Icons.currency_yen_rounded,
-                  color: _creamColor,
-                  size: 21,
-                ),
+                child: hasCurrency && hasSymbol
+                    ? FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Text(
+                            symbol!,
+                            style: const TextStyle(
+                              color: _accentColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      )
+                    : const Icon(
+                        Icons.currency_exchange_rounded,
+                        color: _creamColor,
+                        size: 21,
+                      ),
               ),
               const SizedBox(width: 14),
               Expanded(

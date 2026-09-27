@@ -1391,4 +1391,46 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripCreatedShareComingSoon => 'La condivisione del viaggio sarà disponibile a breve.';
+
+  @override
+  String get destinationPickerTitle => 'Scegli destinazione';
+
+  @override
+  String get destinationPickerSearchHint => 'Cerca paese o città...';
+
+  @override
+  String get destinationPickerMapLabel => 'MAPPA MONDIALE';
+
+  @override
+  String get destinationPickerConfirm => 'CONFERMA';
+
+  @override
+  String get destinationPickerNoResults => 'Nessuna destinazione trovata';
+
+  @override
+  String get destinationGenericError => 'Non è stato possibile completare la ricerca. Riprova.';
+
+  @override
+  String get destinationMapResolving => 'Identificazione del luogo...';
+
+  @override
+  String get destinationCurrencySuggested => 'Valuta suggerita';
+
+  @override
+  String get destinationMapNoPlace => 'Nessun luogo geografico trovato in questo punto.';
+
+  @override
+  String get destinationMapTapToExplore => 'Tocca la mappa per esplorarla';
+
+  @override
+  String get destinationMapTwoFingers => 'Usa due dita per esplorare';
+
+  @override
+  String get destinationCountryLabel => 'Paese';
+
+  @override
+  String get createTripCurrencyNoResults => 'Nessuna valuta trovata';
+
+  @override
+  String get createTripCurrencySearchHint => 'Cerca valuta...';
 }

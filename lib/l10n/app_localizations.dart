@@ -2818,6 +2818,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Trip sharing will be available soon.'**
   String get tripCreatedShareComingSoon;
+
+  /// No description provided for @destinationPickerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose destination'**
+  String get destinationPickerTitle;
+
+  /// No description provided for @destinationPickerSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for a country or city...'**
+  String get destinationPickerSearchHint;
+
+  /// No description provided for @destinationPickerMapLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'WORLD MAP'**
+  String get destinationPickerMapLabel;
+
+  /// No description provided for @destinationPickerConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'CONFIRM'**
+  String get destinationPickerConfirm;
+
+  /// No description provided for @destinationPickerNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No destinations found'**
+  String get destinationPickerNoResults;
+
+  /// No description provided for @destinationGenericError.
+  ///
+  /// In en, this message translates to:
+  /// **'The search could not be completed. Please try again.'**
+  String get destinationGenericError;
+
+  /// No description provided for @destinationMapResolving.
+  ///
+  /// In en, this message translates to:
+  /// **'Identifying location...'**
+  String get destinationMapResolving;
+
+  /// No description provided for @destinationCurrencySuggested.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested currency'**
+  String get destinationCurrencySuggested;
+
+  /// No description provided for @destinationMapNoPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'No geographic location was found at this point.'**
+  String get destinationMapNoPlace;
+
+  /// No description provided for @destinationMapTapToExplore.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the map to explore'**
+  String get destinationMapTapToExplore;
+
+  /// No description provided for @destinationMapTwoFingers.
+  ///
+  /// In en, this message translates to:
+  /// **'Use two fingers to explore'**
+  String get destinationMapTwoFingers;
+
+  /// No description provided for @destinationCountryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get destinationCountryLabel;
+
+  /// No description provided for @createTripCurrencyNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No currencies found'**
+  String get createTripCurrencyNoResults;
+
+  /// No description provided for @createTripCurrencySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search currency...'**
+  String get createTripCurrencySearchHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

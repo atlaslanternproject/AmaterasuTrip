@@ -1,4 +1,4 @@
-{
+﻿{
     "settingsLanguage":  "Lingua",
     "@@locale":  "it",
     "authWelcomeBack":  "Bentornato",
@@ -509,5 +509,19 @@
     "tripCoverCameraPermissionPermanentlyDenied":  "L\u0027accesso alla fotocamera è disattivato. Puoi abilitarlo dalle impostazioni dell\u0027app.",
     "createTripCoverComingSoon":  "La selezione della copertina sarà disponibile a breve.",
     "tripCreatedInviteComingSoon":  "Gli inviti ai viaggiatori saranno disponibili a breve.",
-    "tripCreatedShareComingSoon":  "La condivisione del viaggio sarà disponibile a breve."
+    "tripCreatedShareComingSoon":  "La condivisione del viaggio sarà disponibile a breve.",
+    "destinationPickerTitle":  "Scegli destinazione",
+    "destinationPickerSearchHint":  "Cerca paese o città...",
+    "destinationPickerMapLabel":  "MAPPA MONDIALE",
+    "destinationPickerConfirm":  "CONFERMA",
+    "destinationPickerNoResults":  "Nessuna destinazione trovata",
+    "destinationGenericError":  "Non è stato possibile completare la ricerca. Riprova.",
+    "destinationMapResolving":  "Identificazione del luogo...",
+    "destinationCurrencySuggested":  "Valuta suggerita",
+    "destinationMapNoPlace":  "Nessun luogo geografico trovato in questo punto.",
+    "destinationMapTapToExplore":  "Tocca la mappa per esplorarla",
+    "destinationMapTwoFingers":  "Usa due dita per esplorare",
+    "destinationCountryLabel":  "Paese",
+    "createTripCurrencyNoResults":  "Nessuna valuta trovata",
+    "createTripCurrencySearchHint":  "Cerca valuta..."
 }

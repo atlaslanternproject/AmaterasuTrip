@@ -1391,4 +1391,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripCreatedShareComingSoon => 'Trip sharing will be available soon.';
+
+  @override
+  String get destinationPickerTitle => 'Choose destination';
+
+  @override
+  String get destinationPickerSearchHint => 'Search for a country or city...';
+
+  @override
+  String get destinationPickerMapLabel => 'WORLD MAP';
+
+  @override
+  String get destinationPickerConfirm => 'CONFIRM';
+
+  @override
+  String get destinationPickerNoResults => 'No destinations found';
+
+  @override
+  String get destinationGenericError => 'The search could not be completed. Please try again.';
+
+  @override
+  String get destinationMapResolving => 'Identifying location...';
+
+  @override
+  String get destinationCurrencySuggested => 'Suggested currency';
+
+  @override
+  String get destinationMapNoPlace => 'No geographic location was found at this point.';
+
+  @override
+  String get destinationMapTapToExplore => 'Tap the map to explore';
+
+  @override
+  String get destinationMapTwoFingers => 'Use two fingers to explore';
+
+  @override
+  String get destinationCountryLabel => 'Country';
+
+  @override
+  String get createTripCurrencyNoResults => 'No currencies found';
+
+  @override
+  String get createTripCurrencySearchHint => 'Search currency...';
 }
