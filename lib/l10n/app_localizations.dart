@@ -62,7 +62,8 @@ import 'app_localizations_it.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,17 +84,18 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('it')
+    Locale('it'),
   ];
 
   /// No description provided for @settingsLanguage.
@@ -2902,9 +2905,112 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search currency...'**
   String get createTripCurrencySearchHint;
+
+  /// No description provided for @tripCloudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip storage'**
+  String get tripCloudTitle;
+
+  /// No description provided for @tripCloudHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Where would you like to keep your memories?'**
+  String get tripCloudHeading;
+
+  /// No description provided for @tripCloudDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your cloud service. Amaterasu will create the trip folder inside the main folder you choose.'**
+  String get tripCloudDescription;
+
+  /// No description provided for @tripCloudGoogleDrive.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Drive'**
+  String get tripCloudGoogleDrive;
+
+  /// No description provided for @tripCloudGoogleDriveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Drive and choose the main folder'**
+  String get tripCloudGoogleDriveSubtitle;
+
+  /// No description provided for @tripCloudOneDrive.
+  ///
+  /// In en, this message translates to:
+  /// **'OneDrive'**
+  String get tripCloudOneDrive;
+
+  /// No description provided for @tripCloudDropbox.
+  ///
+  /// In en, this message translates to:
+  /// **'Dropbox'**
+  String get tripCloudDropbox;
+
+  /// No description provided for @tripCloudProviderComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Setup coming soon'**
+  String get tripCloudProviderComingSoon;
+
+  /// No description provided for @tripCloudPrivacyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu will only request access required for files and folders used with the app.'**
+  String get tripCloudPrivacyNote;
+
+  /// No description provided for @tripCloudGoogleDriveLocationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where should the archive be created?'**
+  String get tripCloudGoogleDriveLocationTitle;
+
+  /// No description provided for @tripCloudGoogleDriveLocationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose My Drive or a specific folder. The trip folder will only be created when you create the trip.'**
+  String get tripCloudGoogleDriveLocationDescription;
+
+  /// No description provided for @tripCloudGoogleDriveRoot.
+  ///
+  /// In en, this message translates to:
+  /// **'My Drive'**
+  String get tripCloudGoogleDriveRoot;
+
+  /// No description provided for @tripCloudGoogleDriveRootSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create the trip folder directly in your Drive'**
+  String get tripCloudGoogleDriveRootSubtitle;
+
+  /// No description provided for @tripCloudGoogleDriveChooseFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a folder'**
+  String get tripCloudGoogleDriveChooseFolder;
+
+  /// No description provided for @tripCloudGoogleDriveChooseFolderSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Google Drive and select the parent folder'**
+  String get tripCloudGoogleDriveChooseFolderSubtitle;
+
+  /// No description provided for @tripCloudGoogleDriveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Drive could not be configured. Please try again.'**
+  String get tripCloudGoogleDriveError;
+
+  /// No description provided for @createTripCreationError.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip could not be created. Please try again.'**
+  String get createTripCreationError;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -2913,25 +3019,26 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'it'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'it'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AppLocalizationsEn();
-    case 'it': return AppLocalizationsIt();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'it':
+      return AppLocalizationsIt();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

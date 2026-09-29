@@ -72,14 +72,9 @@ class _StorageItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: DataStoragePage._sectionColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: DataStoragePage._borderColor,
-        ),
+        border: Border.all(color: DataStoragePage._borderColor),
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 13,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
       child: Row(
         children: [
           Container(
@@ -87,15 +82,9 @@ class _StorageItem extends StatelessWidget {
             height: 40,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: color.withValues(alpha: 0.65),
-              ),
+              border: Border.all(color: color.withValues(alpha: 0.65)),
             ),
-            child: Icon(
-              icon,
-              color: color,
-              size: 20,
-            ),
+            child: Icon(icon, color: color, size: 20),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -113,11 +102,7 @@ class _StorageItem extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: TextStyle(
-                    color: color,
-                    fontSize: 12,
-                    height: 1.25,
-                  ),
+                  style: TextStyle(color: color, fontSize: 12, height: 1.25),
                 ),
               ],
             ),

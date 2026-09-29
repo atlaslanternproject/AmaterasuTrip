@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final notificationSettingsProvider =
     NotifierProvider<NotificationSettingsNotifier, NotificationSettings>(
-  NotificationSettingsNotifier.new,
-);
+      NotificationSettingsNotifier.new,
+    );
 
 class NotificationSettings {
   const NotificationSettings({
@@ -79,20 +79,16 @@ class NotificationSettingsNotifier extends Notifier<NotificationSettings> {
     final preferences = await SharedPreferences.getInstance();
 
     state = NotificationSettings(
-      pushNotifications:
-          preferences.getBool(_pushNotificationsKey) ?? true,
+      pushNotifications: preferences.getBool(_pushNotificationsKey) ?? true,
       tripReminders: preferences.getBool(_tripRemindersKey) ?? true,
-      itineraryReminders:
-          preferences.getBool(_itineraryRemindersKey) ?? true,
+      itineraryReminders: preferences.getBool(_itineraryRemindersKey) ?? true,
       tripUpdates: preferences.getBool(_tripUpdatesKey) ?? true,
-      groupInvitations:
-          preferences.getBool(_groupInvitationsKey) ?? true,
+      groupInvitations: preferences.getBool(_groupInvitationsKey) ?? true,
       groupActivity: preferences.getBool(_groupActivityKey) ?? true,
       appUpdates: preferences.getBool(_appUpdatesKey) ?? true,
       importantCommunications:
           preferences.getBool(_importantCommunicationsKey) ?? true,
-      promotionalEmails:
-          preferences.getBool(_promotionalEmailsKey) ?? false,
+      promotionalEmails: preferences.getBool(_promotionalEmailsKey) ?? false,
     );
   }
 

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TripOverviewPage extends StatelessWidget {
-  const TripOverviewPage({
-    super.key,
-    required this.tripId,
-  });
+  const TripOverviewPage({super.key, required this.tripId});
 
   final String tripId;
 

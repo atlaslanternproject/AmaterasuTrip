@@ -67,11 +67,7 @@ class _InformationLicensesPageState extends State<InformationLicensesPage> {
         ),
       ),
       body: _loading
-          ? const Center(
-              child: CircularProgressIndicator(
-                color: _accentColor,
-              ),
-            )
+          ? const Center(child: CircularProgressIndicator(color: _accentColor))
           : ListView.separated(
               padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
               itemCount: _licenses.length,
@@ -84,10 +80,7 @@ class _InformationLicensesPageState extends State<InformationLicensesPage> {
                   decoration: BoxDecoration(
                     color: _sectionColor,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: _borderColor,
-                      width: 1,
-                    ),
+                    border: Border.all(color: _borderColor, width: 1),
                   ),
                   padding: const EdgeInsets.all(14),
                   child: Column(

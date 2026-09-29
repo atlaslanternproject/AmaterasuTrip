@@ -53,9 +53,7 @@ class _DataSyncPageState extends State<DataSyncPage> {
                 _syncExpanded = !_syncExpanded;
               });
             },
-            children: const [
-              DataSyncSettingsPage(),
-            ],
+            children: const [DataSyncSettingsPage()],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
@@ -68,9 +66,7 @@ class _DataSyncPageState extends State<DataSyncPage> {
                 _storageExpanded = !_storageExpanded;
               });
             },
-            children: const [
-              DataStoragePage(),
-            ],
+            children: const [DataStoragePage()],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
@@ -83,9 +79,7 @@ class _DataSyncPageState extends State<DataSyncPage> {
                 _connectionExpanded = !_connectionExpanded;
               });
             },
-            children: const [
-              DataConnectionPage(),
-            ],
+            children: const [DataConnectionPage()],
           ),
         ],
       ),

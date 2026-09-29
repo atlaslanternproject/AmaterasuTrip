@@ -18,10 +18,7 @@ class InformationLegalPage extends StatelessWidget {
   );
 
   Future<void> _openPrivacyPolicy() async {
-    await launchUrl(
-      _privacyPolicyUrl,
-      mode: LaunchMode.externalApplication,
-    );
+    await launchUrl(_privacyPolicyUrl, mode: LaunchMode.externalApplication);
   }
 
   @override
@@ -70,10 +67,7 @@ class _InformationLegalSubItem extends StatelessWidget {
               width: 1,
             ),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14,
-            vertical: 13,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
           child: Row(
             children: [
               Container(

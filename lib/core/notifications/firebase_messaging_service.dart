@@ -10,8 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 class FirebaseMessagingService {
   FirebaseMessagingService._();
 
-  static final FirebaseMessagingService instance =
-      FirebaseMessagingService._();
+  static final FirebaseMessagingService instance = FirebaseMessagingService._();
 
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -41,9 +40,7 @@ class FirebaseMessagingService {
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
     );
 
-    await _localNotifications.initialize(
-      settings: initializationSettings,
-    );
+    await _localNotifications.initialize(settings: initializationSettings);
 
     final androidPlugin = _localNotifications
         .resolvePlatformSpecificImplementation<
@@ -52,17 +49,16 @@ class FirebaseMessagingService {
 
     await androidPlugin?.createNotificationChannel(_androidChannel);
 
-    _foregroundMessageSubscription ??=
-        FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
+    _foregroundMessageSubscription ??= FirebaseMessaging.onMessage.listen(
+      _handleForegroundMessage,
+    );
 
     debugPrint('FCM foreground listener registered');
 
-    debugPrint(
-      'External notification locale: ${ExternalLocale.languageCode}',
-    );
+    debugPrint('External notification locale: ${ExternalLocale.languageCode}');
 
-    _messageOpenedAppSubscription ??=
-        FirebaseMessaging.onMessageOpenedApp.listen(_handleMessageOpenedApp);
+    _messageOpenedAppSubscription ??= FirebaseMessaging.onMessageOpenedApp
+        .listen(_handleMessageOpenedApp);
 
     final initialMessage = await _messaging.getInitialMessage();
 
@@ -84,24 +80,23 @@ class FirebaseMessagingService {
       debugPrintStack(stackTrace: stackTrace);
     }
 
-    _tokenRefreshSubscription ??=
-        _messaging.onTokenRefresh.listen(
-          (token) async {
-            _token = token;
-            debugPrint('FCM TEST TOKEN REFRESHED: $token');
+    _tokenRefreshSubscription ??= _messaging.onTokenRefresh.listen(
+      (token) async {
+        _token = token;
+        debugPrint('FCM TEST TOKEN REFRESHED: $token');
 
-            try {
-              await _registerCurrentToken();
-            } catch (error, stackTrace) {
-              debugPrint('FCM refreshed token registration failed: $error');
-              debugPrintStack(stackTrace: stackTrace);
-            }
-          },
-          onError: (Object error, StackTrace stackTrace) {
-            debugPrint('FCM token refresh failed: $error');
-            debugPrintStack(stackTrace: stackTrace);
-          },
-        );
+        try {
+          await _registerCurrentToken();
+        } catch (error, stackTrace) {
+          debugPrint('FCM refreshed token registration failed: $error');
+          debugPrintStack(stackTrace: stackTrace);
+        }
+      },
+      onError: (Object error, StackTrace stackTrace) {
+        debugPrint('FCM token refresh failed: $error');
+        debugPrintStack(stackTrace: stackTrace);
+      },
+    );
   }
 
   Future<void> syncCurrentUserToken() async {
@@ -140,9 +135,7 @@ class FirebaseMessagingService {
       return;
     }
 
-    debugPrint(
-      'FCM foreground message received: ${message.messageId}',
-    );
+    debugPrint('FCM foreground message received: ${message.messageId}');
 
     const notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
@@ -163,13 +156,9 @@ class FirebaseMessagingService {
   }
 
   void _handleMessageOpenedApp(RemoteMessage message) {
-    debugPrint(
-      'FCM notification opened: ${message.messageId}',
-    );
+    debugPrint('FCM notification opened: ${message.messageId}');
 
-    debugPrint(
-      'FCM notification data: ${message.data}',
-    );
+    debugPrint('FCM notification data: ${message.data}');
   }
 
   Future<void> dispose() async {

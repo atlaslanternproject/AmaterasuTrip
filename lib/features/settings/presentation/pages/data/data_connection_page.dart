@@ -76,11 +76,7 @@ class _DataConnectionPageState extends State<DataConnectionPage> {
     if (_loading) {
       return const Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
-        child: Center(
-          child: CircularProgressIndicator(
-            color: _accentColor,
-          ),
-        ),
+        child: Center(child: CircularProgressIndicator(color: _accentColor)),
       );
     }
 
@@ -135,14 +131,9 @@ class _ConnectionSwitchItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: _DataConnectionPageState._sectionColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: _DataConnectionPageState._borderColor,
-        ),
+        border: Border.all(color: _DataConnectionPageState._borderColor),
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 11,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
       child: Row(
         children: [
           Container(
@@ -151,8 +142,9 @@ class _ConnectionSwitchItem extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: _DataConnectionPageState._accentColor
-                    .withValues(alpha: 0.65),
+                color: _DataConnectionPageState._accentColor.withValues(
+                  alpha: 0.65,
+                ),
               ),
             ),
             child: const Icon(

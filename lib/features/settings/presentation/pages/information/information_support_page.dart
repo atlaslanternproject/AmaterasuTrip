@@ -17,10 +17,7 @@ class InformationSupportPage extends StatelessWidget {
   static const String _supportEmail = 'atlaslanternproject@gmail.com';
 
   Future<void> _contactSupport() async {
-    final uri = Uri(
-      scheme: 'mailto',
-      path: _supportEmail,
-    );
+    final uri = Uri(scheme: 'mailto', path: _supportEmail);
 
     await launchUrl(uri);
   }
@@ -29,9 +26,7 @@ class InformationSupportPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final packageInfo = await PackageInfo.fromPlatform();
 
-    final subject = Uri.encodeComponent(
-      l10n.informationReportProblemSubject,
-    );
+    final subject = Uri.encodeComponent(l10n.informationReportProblemSubject);
 
     final body = Uri.encodeComponent(
       l10n.informationReportProblemBody(
@@ -40,9 +35,7 @@ class InformationSupportPage extends StatelessWidget {
       ),
     );
 
-    final uri = Uri.parse(
-      'mailto:$_supportEmail?subject=$subject&body=$body',
-    );
+    final uri = Uri.parse('mailto:$_supportEmail?subject=$subject&body=$body');
 
     await launchUrl(uri);
   }
@@ -100,10 +93,7 @@ class _InformationSupportSubItem extends StatelessWidget {
               width: 1,
             ),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14,
-            vertical: 13,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
           child: Row(
             children: [
               Container(

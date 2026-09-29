@@ -6,6 +6,7 @@ import 'auth_page.dart';
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
 import 'package:amaterasutrip/core/notifications/firebase_messaging_service.dart';
+
 class AuthGate extends ConsumerStatefulWidget {
   const AuthGate({super.key});
   @override

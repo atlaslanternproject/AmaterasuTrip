@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
+
 enum TripStatus { active, closed }
 
 class TripDestinationData {
@@ -55,6 +57,7 @@ class Trip {
     this.destinationData,
     this.coverUrl,
     this.coverPath,
+    this.cloudArchive,
   });
 
   final String id;
@@ -92,6 +95,12 @@ class Trip {
   /// o la rimozione sicura della vecchia copertina.
   final String? coverPath;
 
+  /// Archivio cloud definitivo associato al viaggio.
+  ///
+  /// È nullable perché la configurazione dell'archivio non è obbligatoria
+  /// e per mantenere compatibilità con i viaggi già esistenti.
+  final TripCloudArchive? cloudArchive;
+
   factory Trip.fromFirestore({
     required String id,
     required Map<String, dynamic> data,
@@ -102,12 +111,20 @@ class Trip {
     final updatedAt = data['updatedAt'] as Timestamp?;
 
     final rawDestinationData = data['destinationData'];
+    final rawCloudArchive = data['cloudArchive'];
 
     TripDestinationData? destinationData;
+    TripCloudArchive? cloudArchive;
 
     if (rawDestinationData is Map) {
       destinationData = TripDestinationData.fromMap(
         Map<String, dynamic>.from(rawDestinationData),
+      );
+    }
+
+    if (rawCloudArchive is Map) {
+      cloudArchive = TripCloudArchive.fromMap(
+        Map<String, dynamic>.from(rawCloudArchive),
       );
     }
 
@@ -125,6 +142,7 @@ class Trip {
       updatedAt: updatedAt?.toDate(),
       coverUrl: data['coverUrl'] as String?,
       coverPath: data['coverPath'] as String?,
+      cloudArchive: cloudArchive,
     );
   }
 }

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class TripCurrencySelector extends StatelessWidget {
   const TripCurrencySelector({
@@ -33,10 +33,7 @@ class TripCurrencySelector extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(17),
         child: Ink(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 13,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
           decoration: BoxDecoration(
             color: _surfaceColor,
             borderRadius: BorderRadius.circular(17),

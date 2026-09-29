@@ -58,11 +58,7 @@ class _DataSyncSettingsPageState extends State<DataSyncSettingsPage> {
     if (_loading) {
       return const Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
-        child: Center(
-          child: CircularProgressIndicator(
-            color: _accentColor,
-          ),
-        ),
+        child: Center(child: CircularProgressIndicator(color: _accentColor)),
       );
     }
 
@@ -122,14 +118,9 @@ class _SwitchItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: _DataSyncSettingsPageState._sectionColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: _DataSyncSettingsPageState._borderColor,
-        ),
+        border: Border.all(color: _DataSyncSettingsPageState._borderColor),
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 11,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
       child: Row(
         children: [
           _SettingsIcon(icon: icon),
@@ -198,20 +189,12 @@ class _InfoItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: _DataSyncSettingsPageState._sectionColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: _DataSyncSettingsPageState._borderColor,
-        ),
+        border: Border.all(color: _DataSyncSettingsPageState._borderColor),
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 13,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
       child: Row(
         children: [
-          _SettingsIcon(
-            icon: icon,
-            enabled: enabled,
-          ),
+          _SettingsIcon(icon: icon, enabled: enabled),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -244,10 +227,7 @@ class _InfoItem extends StatelessWidget {
 }
 
 class _SettingsIcon extends StatelessWidget {
-  const _SettingsIcon({
-    required this.icon,
-    this.enabled = true,
-  });
+  const _SettingsIcon({required this.icon, this.enabled = true});
 
   final IconData icon;
   final bool enabled;
@@ -263,15 +243,9 @@ class _SettingsIcon extends StatelessWidget {
       height: 40,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(
-          color: color.withValues(alpha: 0.65),
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.65)),
       ),
-      child: Icon(
-        icon,
-        color: color,
-        size: 20,
-      ),
+      child: Icon(icon, color: color, size: 20),
     );
   }
 }

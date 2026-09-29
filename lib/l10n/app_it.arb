@@ -523,5 +523,22 @@
     "destinationMapTwoFingers":  "Usa due dita per esplorare",
     "destinationCountryLabel":  "Paese",
     "createTripCurrencyNoResults":  "Nessuna valuta trovata",
-    "createTripCurrencySearchHint":  "Cerca valuta..."
+    "createTripCurrencySearchHint":  "Cerca valuta...",
+    "tripCloudTitle":  "Archivio del viaggio",
+    "tripCloudHeading":  "Dove vuoi conservare i tuoi ricordi?",
+    "tripCloudDescription":  "Collega il tuo servizio cloud. Amaterasu creerà la cartella del viaggio all\u0027interno della cartella principale che sceglierai.",
+    "tripCloudGoogleDrive":  "Google Drive",
+    "tripCloudGoogleDriveSubtitle":  "Collega Drive e scegli la cartella principale",
+    "tripCloudOneDrive":  "OneDrive",
+    "tripCloudDropbox":  "Dropbox",
+    "tripCloudProviderComingSoon":  "Configurazione disponibile a breve",
+    "tripCloudPrivacyNote":  "Amaterasu richiederà soltanto l\u0027accesso necessario ai file e alle cartelle utilizzati con l\u0027app.",
+    "tripCloudGoogleDriveLocationTitle":  "Dove vuoi creare l\u0027archivio?",
+    "tripCloudGoogleDriveLocationDescription":  "Scegli Il mio Drive oppure una cartella specifica. La cartella del viaggio verrà creata solo quando creerai il viaggio.",
+    "tripCloudGoogleDriveRoot":  "Il mio Drive",
+    "tripCloudGoogleDriveRootSubtitle":  "Crea la cartella del viaggio direttamente nel tuo Drive",
+    "tripCloudGoogleDriveChooseFolder":  "Scegli una cartella",
+    "tripCloudGoogleDriveChooseFolderSubtitle":  "Apri Google Drive e seleziona la cartella principale",
+    "tripCloudGoogleDriveError":  "Non è stato possibile configurare Google Drive. Riprova.",
+    "createTripCreationError":  "Non è stato possibile creare il viaggio. Riprova."
 }

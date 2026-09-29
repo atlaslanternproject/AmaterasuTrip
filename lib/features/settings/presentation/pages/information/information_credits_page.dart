@@ -55,10 +55,7 @@ class _InformationCreditsSubItem extends StatelessWidget {
           width: 1,
         ),
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 14,
-        vertical: 13,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
       child: Row(
         children: [
           Container(

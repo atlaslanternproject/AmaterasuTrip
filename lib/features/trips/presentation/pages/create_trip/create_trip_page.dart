@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/cloud_archive/trip_cloud_archive_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -7,11 +9,14 @@ import 'package:amaterasutrip/core/permissions/app_permission.dart';
 import 'package:amaterasutrip/core/permissions/permission_provider.dart';
 import 'package:amaterasutrip/core/permissions/permission_result.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'destination/models/trip_destination.dart';
 import 'destination/services/destination_places_service.dart';
 import 'destination/trip_destination_page.dart';
 import 'trip_created_page.dart';
+import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
+import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive_selection.dart';
 import 'widgets/create_trip_button.dart';
 import 'widgets/trip_cloud_selector.dart';
 import 'widgets/trip_cover_picker.dart';
@@ -43,7 +48,16 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
   DateTime? _returnDate;
   String? _currency;
   String? _currencySymbol;
-  String? _cloudProvider;
+  TripCloudArchiveSelection? _cloudArchiveSelection;
+
+  bool get _canConfigureCloudArchive {
+    final hasName = _nameController.text.trim().isNotEmpty;
+    final hasDestination = _selectedDestination != null;
+    final hasStartDate = _departureDate != null;
+    final hasEndDate = _returnDate != null;
+
+    return hasName && hasDestination && hasStartDate && hasEndDate;
+  }
 
   XFile? _selectedCover;
   @override
@@ -186,9 +200,23 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
     });
   }
 
-  void _selectCloudProvider() {
+  Future<void> _selectCloudProvider() async {
+    if (!_canConfigureCloudArchive) {
+      return;
+    }
+    final selection = await Navigator.of(context)
+        .push<TripCloudArchiveSelection>(
+          MaterialPageRoute<TripCloudArchiveSelection>(
+            builder: (context) => const TripCloudArchivePage(),
+          ),
+        );
+
+    if (!mounted || selection == null) {
+      return;
+    }
+
     setState(() {
-      _cloudProvider = 'Google Drive';
+      _cloudArchiveSelection = selection;
     });
   }
 
@@ -360,25 +388,77 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
     }
 
     final tripName = _nameController.text.trim();
+    final departureDate = _departureDate!;
+    final returnDate = _returnDate!;
+    final cloudSelection = _cloudArchiveSelection;
 
-    final tripId = await ref
-        .read(tripRepositoryProvider)
-        .createTrip(
-          name: tripName,
-          destination: destination.label,
-          destinationPlaceId: destination.placeId,
-          destinationDisplayName: destination.displayName,
-          destinationFormattedAddress: destination.formattedAddress,
-          destinationLatitude: destination.latitude,
-          destinationLongitude: destination.longitude,
-          destinationCountry: destination.country,
-          destinationCountryCode: destination.countryCode,
-          destinationAdministrativeArea: destination.administrativeArea,
-          destinationLocality: destination.locality,
-          startDate: _departureDate!,
-          endDate: _returnDate!,
-          currency: _currency!,
-        );
+    TripCloudArchive? cloudArchive;
+
+    if (cloudSelection != null) {
+      try {
+        switch (cloudSelection.provider) {
+          case TripCloudProvider.googleDrive:
+            final namingService = ref.read(tripArchiveNamingServiceProvider);
+            final driveService = ref.read(googleDriveArchiveServiceProvider);
+
+            final destinationName =
+                destination.country?.trim().isNotEmpty == true
+                ? destination.country!.trim()
+                : destination.displayName.trim();
+
+            final folderName = namingService.buildTripFolderName(
+              tripName: tripName,
+              destination: destinationName,
+              startDate: departureDate,
+              endDate: returnDate,
+            );
+
+            cloudArchive = await driveService.createTripArchive(
+              tripName: folderName,
+              parentFolderId: cloudSelection.parentFolderId,
+            );
+            break;
+
+          case TripCloudProvider.oneDrive:
+          case TripCloudProvider.dropbox:
+            return;
+        }
+      } catch (_) {
+        if (mounted) {
+          _showMessage(AppLocalizations.of(context)!.tripCloudGoogleDriveError);
+        }
+        return;
+      }
+    }
+
+    String tripId;
+
+    try {
+      tripId = await ref
+          .read(tripRepositoryProvider)
+          .createTrip(
+            name: tripName,
+            destination: destination.label,
+            destinationPlaceId: destination.placeId,
+            destinationDisplayName: destination.displayName,
+            destinationFormattedAddress: destination.formattedAddress,
+            destinationLatitude: destination.latitude,
+            destinationLongitude: destination.longitude,
+            destinationCountry: destination.country,
+            destinationCountryCode: destination.countryCode,
+            destinationAdministrativeArea: destination.administrativeArea,
+            destinationLocality: destination.locality,
+            startDate: departureDate,
+            endDate: returnDate,
+            currency: _currency!,
+            cloudArchive: cloudArchive,
+          );
+    } catch (_) {
+      if (mounted) {
+        _showMessage(AppLocalizations.of(context)!.createTripCreationError);
+      }
+      return;
+    }
 
     final selectedCover = _selectedCover;
 
@@ -541,7 +621,12 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
                 sectionLabel: l10n.createTripStorageSection,
                 title: l10n.createTripStorage,
                 subtitle: l10n.createTripStorageSubtitle,
-                selectedProvider: _cloudProvider,
+                selectedProvider: switch (_cloudArchiveSelection?.provider) {
+                  TripCloudProvider.googleDrive => l10n.tripCloudGoogleDrive,
+                  TripCloudProvider.oneDrive => l10n.tripCloudOneDrive,
+                  TripCloudProvider.dropbox => l10n.tripCloudDropbox,
+                  null => null,
+                },
                 onTap: _selectCloudProvider,
               ),
               const SizedBox(height: 28),

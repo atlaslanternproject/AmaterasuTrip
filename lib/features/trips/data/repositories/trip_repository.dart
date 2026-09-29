@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
 import 'package:amaterasutrip/features/trips/models/trip.dart';
 
 class TripRepository {
@@ -53,6 +54,7 @@ class TripRepository {
     required DateTime startDate,
     required DateTime endDate,
     required String currency,
+    TripCloudArchive? cloudArchive,
   }) async {
     final user = FirebaseAuth.instance.currentUser;
 
@@ -64,12 +66,7 @@ class TripRepository {
 
     await tripRef.set({
       'name': name.trim(),
-
-      // Etichetta leggibile mantenuta per compatibilità  e uso rapido in UI.
       'destination': destination,
-
-      // Dati geografici reali riutilizzabili da mappa, itinerario,
-      // meteo, fuso orario e altri moduli del viaggio.
       'destinationData': {
         'placeId': destinationPlaceId,
         'displayName': destinationDisplayName,
@@ -81,10 +78,10 @@ class TripRepository {
         'administrativeArea': ?destinationAdministrativeArea,
         'locality': ?destinationLocality,
       },
-
       'startDate': Timestamp.fromDate(startDate),
       'endDate': Timestamp.fromDate(endDate),
       'currency': currency,
+      if (cloudArchive != null) 'cloudArchive': cloudArchive.toMap(),
       'ownerUid': user.uid,
       'status': 'active',
       'createdAt': FieldValue.serverTimestamp(),

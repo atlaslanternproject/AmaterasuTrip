@@ -1,4 +1,4 @@
-﻿package com.amaterasutrip
+package com.amaterasutrip
 
 import com.amaterasutrip.currency.CurrencyResolver
 import com.amaterasutrip.drive.GoogleDrivePicker
@@ -99,6 +99,21 @@ class MainActivity : FlutterFragmentActivity() {
         }
     }
 
+            if (pendingDriveResult == null) {
+                android.util.Log.d(
+                    "AmaterasuDrive",
+                    "resolution callback ignored: no pending Flutter result"
+                )
+                return@registerForActivityResult
+            }
+
+            android.util.Log.d(
+                "AmaterasuDrive",
+                "resolution completed; retrying Drive authorization"
+            )
+
+            googleDrivePicker.handleAuthorizationIntent(activityResult.data)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

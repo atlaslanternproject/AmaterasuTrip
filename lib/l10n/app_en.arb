@@ -523,5 +523,22 @@
     "destinationMapTwoFingers":  "Use two fingers to explore",
     "destinationCountryLabel":  "Country",
     "createTripCurrencyNoResults":  "No currencies found",
-    "createTripCurrencySearchHint":  "Search currency..."
+    "createTripCurrencySearchHint":  "Search currency...",
+    "tripCloudTitle":  "Trip storage",
+    "tripCloudHeading":  "Where would you like to keep your memories?",
+    "tripCloudDescription":  "Connect your cloud service. Amaterasu will create the trip folder inside the main folder you choose.",
+    "tripCloudGoogleDrive":  "Google Drive",
+    "tripCloudGoogleDriveSubtitle":  "Connect Drive and choose the main folder",
+    "tripCloudOneDrive":  "OneDrive",
+    "tripCloudDropbox":  "Dropbox",
+    "tripCloudProviderComingSoon":  "Setup coming soon",
+    "tripCloudPrivacyNote":  "Amaterasu will only request access required for files and folders used with the app.",
+    "tripCloudGoogleDriveLocationTitle":  "Where should the archive be created?",
+    "tripCloudGoogleDriveLocationDescription":  "Choose My Drive or a specific folder. The trip folder will only be created when you create the trip.",
+    "tripCloudGoogleDriveRoot":  "My Drive",
+    "tripCloudGoogleDriveRootSubtitle":  "Create the trip folder directly in your Drive",
+    "tripCloudGoogleDriveChooseFolder":  "Choose a folder",
+    "tripCloudGoogleDriveChooseFolderSubtitle":  "Open Google Drive and select the parent folder",
+    "tripCloudGoogleDriveError":  "Google Drive could not be configured. Please try again.",
+    "createTripCreationError":  "The trip could not be created. Please try again."
 }

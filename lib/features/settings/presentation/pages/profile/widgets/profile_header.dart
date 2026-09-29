@@ -73,9 +73,7 @@ class ProfileHeader extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(color: _accentColor, width: 2),
                 ),
-                child: ClipOval(
-                  child: _buildProfileImage(),
-                ),
+                child: ClipOval(child: _buildProfileImage()),
               ),
               Positioned(
                 right: 0,
@@ -112,10 +110,7 @@ class ProfileHeader extends StatelessWidget {
           Text(
             _fullName,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: _subtitleColor,
-              fontSize: 14,
-            ),
+            style: const TextStyle(color: _subtitleColor, fontSize: 14),
           ),
         ],
       ],

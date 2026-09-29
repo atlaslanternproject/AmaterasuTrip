@@ -55,9 +55,7 @@ class _InformationPageState extends State<InformationPage> {
                 _appExpanded = !_appExpanded;
               });
             },
-            children: const [
-              InformationAppPage(),
-            ],
+            children: const [InformationAppPage()],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
@@ -70,9 +68,7 @@ class _InformationPageState extends State<InformationPage> {
                 _legalExpanded = !_legalExpanded;
               });
             },
-            children: const [
-              InformationLegalPage(),
-            ],
+            children: const [InformationLegalPage()],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
@@ -85,9 +81,7 @@ class _InformationPageState extends State<InformationPage> {
                 _supportExpanded = !_supportExpanded;
               });
             },
-            children: const [
-              InformationSupportPage(),
-            ],
+            children: const [InformationSupportPage()],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
@@ -100,9 +94,7 @@ class _InformationPageState extends State<InformationPage> {
                 _creditsExpanded = !_creditsExpanded;
               });
             },
-            children: const [
-              InformationCreditsPage(),
-            ],
+            children: const [InformationCreditsPage()],
           ),
         ],
       ),

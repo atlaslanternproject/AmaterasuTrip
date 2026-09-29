@@ -7,22 +7,18 @@ import 'firebase_options.dart';
 import 'core/notifications/firebase_messaging_service.dart';
 import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
+
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   debugPrint('FCM background message received: ${message.messageId}');
 }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  FirebaseMessaging.onBackgroundMessage(
-    firebaseMessagingBackgroundHandler,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   debugPrint("START USER: ${FirebaseAuth.instance.currentUser?.email}");
   runApp(const ProviderScope(child: AmaterasuTripApp()));
   unawaited(FirebaseMessagingService.instance.initialize());

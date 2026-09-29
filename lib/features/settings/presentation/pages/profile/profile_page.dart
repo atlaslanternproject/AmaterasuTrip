@@ -287,11 +287,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
       final l10n = AppLocalizations.of(context)!;
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(l10n.profilePhotoPickerError),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profilePhotoPickerError)));
     }
   }
 
@@ -326,11 +324,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           return;
         }
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.profilePhotoRemoveError),
-          ),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.profilePhotoRemoveError)));
       }
 
       return;

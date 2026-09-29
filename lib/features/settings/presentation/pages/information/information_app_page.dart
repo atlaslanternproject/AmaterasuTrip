@@ -105,10 +105,7 @@ class _InformationSubItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: _borderColor, width: 1),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14,
-            vertical: 13,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
           child: Row(
             children: [
               Container(
@@ -120,11 +117,7 @@ class _InformationSubItem extends StatelessWidget {
                     color: _accentColor.withValues(alpha: 0.65),
                   ),
                 ),
-                child: Icon(
-                  icon,
-                  color: _accentColor,
-                  size: 20,
-                ),
+                child: Icon(icon, color: _accentColor, size: 20),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -154,11 +147,7 @@ class _InformationSubItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              const Icon(
-                Icons.chevron_right,
-                color: _chevronColor,
-                size: 22,
-              ),
+              const Icon(Icons.chevron_right, color: _chevronColor, size: 22),
             ],
           ),
         ),

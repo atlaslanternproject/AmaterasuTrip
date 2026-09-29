@@ -43,3 +43,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+*.apk
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+*.temp
+*.copy
+*.save
+*~
+MainActivity_broken.txt
