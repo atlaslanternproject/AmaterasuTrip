@@ -409,6 +409,9 @@
     "createTripCurrencyHint":  "Choose a currency",
     "createTripStorageSection":  "TRIP STORAGE",
     "createTripStorage":  "Configure storage",
+    "createTripStorageConfigured":  "CONFIGURED",
+    "createTripStorageRequirementsTitle":  "Complete your trip first",
+    "createTripStorageRequirementsMessage":  "To configure storage, complete the following first:",
     "createTripStorageSubtitle":  "Connect Google Drive, OneDrive or Dropbox.",
     "createTripStorageLater":  "Set up later",
     "createTripCreate":  "CREATE TRIP",
@@ -542,3 +545,4 @@
     "tripCloudGoogleDriveError":  "Google Drive could not be configured. Please try again.",
     "createTripCreationError":  "The trip could not be created. Please try again."
 }
+

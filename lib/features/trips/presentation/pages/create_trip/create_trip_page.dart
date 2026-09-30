@@ -202,6 +202,116 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
 
   Future<void> _selectCloudProvider() async {
     if (!_canConfigureCloudArchive) {
+      final l10n = AppLocalizations.of(context)!;
+      final missingFields = <String>[];
+
+      if (_nameController.text.trim().isEmpty) {
+        missingFields.add(l10n.createTripName);
+      }
+
+      if (_selectedDestination == null) {
+        missingFields.add(l10n.createTripDestination);
+      }
+
+      if (_departureDate == null) {
+        missingFields.add(l10n.createTripDepartureDate);
+      }
+
+      if (_returnDate == null) {
+        missingFields.add(l10n.createTripReturnDate);
+      }
+
+      await showDialog<void>(
+        context: context,
+        builder: (dialogContext) {
+          return AlertDialog(
+            backgroundColor: _surfaceColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(
+                color: Color(0xFFD96C32).withValues(alpha: 0.45),
+              ),
+            ),
+            title: Row(
+              children: [
+                const Icon(
+                  Icons.info_outline_rounded,
+                  color: Color(0xFFD96C32),
+                  size: 24,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    l10n.createTripStorageRequirementsTitle,
+                    style: const TextStyle(
+                      color: _titleColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.createTripStorageRequirementsMessage,
+                  style: const TextStyle(
+                    color: _secondaryTextColor,
+                    fontSize: 14,
+                    height: 1.4,
+                  ),
+                ),
+                const SizedBox(height: 14),
+                ...missingFields.map(
+                  (field) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 6),
+                          child: Icon(
+                            Icons.circle,
+                            color: Color(0xFFD96C32),
+                            size: 7,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            field,
+                            style: const TextStyle(
+                              color: _titleColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(),
+                child: const Text(
+                  'OK',
+                  style: TextStyle(
+                    color: Color(0xFFD96C32),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+
       return;
     }
     final selection = await Navigator.of(context)
@@ -621,6 +731,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
                 sectionLabel: l10n.createTripStorageSection,
                 title: l10n.createTripStorage,
                 subtitle: l10n.createTripStorageSubtitle,
+                configuredLabel: l10n.createTripStorageConfigured,
                 selectedProvider: switch (_cloudArchiveSelection?.provider) {
                   TripCloudProvider.googleDrive => l10n.tripCloudGoogleDrive,
                   TripCloudProvider.oneDrive => l10n.tripCloudOneDrive,
@@ -823,12 +934,16 @@ class _CurrencyPickerSheetState extends State<_CurrencyPickerSheet> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: isSelected
-                                ? _accentColor.withValues(alpha: 0.12)
+                                ? const Color(
+                                    0xFFD96C32,
+                                  ).withValues(alpha: 0.12)
                                 : _fieldColor,
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
                               color: isSelected
-                                  ? _accentColor.withValues(alpha: 0.55)
+                                  ? const Color(
+                                      0xFFD96C32,
+                                    ).withValues(alpha: 0.55)
                                   : _borderColor,
                             ),
                           ),

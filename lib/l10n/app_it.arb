@@ -409,6 +409,9 @@
     "createTripCurrencyHint":  "Scegli la valuta",
     "createTripStorageSection":  "ARCHIVIO DEL VIAGGIO",
     "createTripStorage":  "Configura archivio",
+    "createTripStorageConfigured":  "CONFIGURATO",
+    "createTripStorageRequirementsTitle":  "Completa prima il viaggio",
+    "createTripStorageRequirementsMessage":  "Per configurare l'archivio, completa prima:",
     "createTripStorageSubtitle":  "Potrai collegare Google Drive, OneDrive o Dropbox.",
     "createTripStorageLater":  "Configura dopo",
     "createTripCreate":  "CREA VIAGGIO",
@@ -542,3 +545,4 @@
     "tripCloudGoogleDriveError":  "Non è stato possibile configurare Google Drive. Riprova.",
     "createTripCreationError":  "Non è stato possibile creare il viaggio. Riprova."
 }
+

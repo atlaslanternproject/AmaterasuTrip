@@ -6,6 +6,7 @@ class TripCloudSelector extends StatelessWidget {
     required this.sectionLabel,
     required this.title,
     required this.subtitle,
+    required this.configuredLabel,
     required this.onTap,
     this.selectedProvider,
   });
@@ -13,6 +14,7 @@ class TripCloudSelector extends StatelessWidget {
   final String sectionLabel;
   final String title;
   final String subtitle;
+  final String configuredLabel;
   final String? selectedProvider;
   final VoidCallback onTap;
 
@@ -54,28 +56,29 @@ class TripCloudSelector extends StatelessWidget {
                 borderRadius: BorderRadius.circular(17),
                 border: Border.all(
                   color: hasProvider
-                      ? _accentColor.withValues(alpha: 0.55)
+                      ? _accentColor.withValues(alpha: 0.75)
                       : _borderColor,
+                  width: hasProvider ? 1.4 : 1,
                 ),
               ),
               child: Row(
                 children: [
                   Container(
-                    width: 44,
-                    height: 44,
+                    width: 46,
+                    height: 46,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: hasProvider
-                          ? _accentColor.withValues(alpha: 0.12)
+                          ? _accentColor.withValues(alpha: 0.16)
                           : const Color(0xFF241B17),
                       borderRadius: BorderRadius.circular(13),
                     ),
                     child: Icon(
                       hasProvider
-                          ? Icons.cloud_done_outlined
+                          ? Icons.cloud_done_rounded
                           : Icons.cloud_outlined,
                       color: hasProvider ? _accentColor : _creamColor,
-                      size: 23,
+                      size: 24,
                     ),
                   ),
                   const SizedBox(width: 14),
@@ -83,12 +86,47 @@ class TripCloudSelector extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        if (hasProvider) ...[
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: _accentColor.withValues(alpha: 0.14),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.check_circle_rounded,
+                                  color: _accentColor,
+                                  size: 14,
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  configuredLabel,
+                                  style: const TextStyle(
+                                    color: _accentColor,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: 0.8,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 7),
+                        ],
                         Text(
                           hasProvider ? selectedProvider! : title,
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: _creamColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
+                            fontSize: hasProvider ? 16 : 15,
+                            fontWeight: hasProvider
+                                ? FontWeight.w700
+                                : FontWeight.w600,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -104,9 +142,12 @@ class TripCloudSelector extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  const Icon(
-                    Icons.chevron_right_rounded,
-                    color: _secondaryTextColor,
+                  Icon(
+                    hasProvider
+                        ? Icons.edit_outlined
+                        : Icons.chevron_right_rounded,
+                    color: hasProvider ? _accentColor : _secondaryTextColor,
+                    size: hasProvider ? 20 : 24,
                   ),
                 ],
               ),
