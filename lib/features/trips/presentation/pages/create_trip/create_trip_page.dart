@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/cloud_archive/trip_cloud_archive_page.dart';
@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:amaterasutrip/core/permissions/app_permission.dart';
 import 'package:amaterasutrip/core/permissions/permission_provider.dart';
-import 'package:amaterasutrip/core/permissions/permission_result.dart';
+import 'package:amaterasutrip/core/permissions/permission_request_handler.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -17,6 +17,8 @@ import 'destination/trip_destination_page.dart';
 import 'trip_created_page.dart';
 import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
 import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive_selection.dart';
+import 'package:amaterasutrip/features/trips/presentation/widgets/trip_cover_source_sheet.dart';
+import 'currency/trip_currency_picker_sheet.dart';
 import 'widgets/create_trip_button.dart';
 import 'widgets/trip_cloud_selector.dart';
 import 'widgets/trip_cover_picker.dart';
@@ -180,7 +182,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
       isScrollControlled: true,
       useSafeArea: true,
       builder: (context) {
-        return _CurrencyPickerSheet(
+        return TripCurrencyPickerSheet(
           currencies: currencies,
           selectedCurrency: _currency,
           title: l10n.createTripCurrency,
@@ -331,64 +333,9 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
   }
 
   Future<void> _changeCover() async {
-    final l10n = AppLocalizations.of(context)!;
-
-    final action = await showModalBottomSheet<_CreateTripCoverAction>(
+    final action = await showTripCoverSourceSheet(
       context: context,
-      backgroundColor: _surfaceColor,
-      showDragHandle: true,
-      builder: (sheetContext) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12, 4, 12, 18),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  leading: const Icon(
-                    Icons.camera_alt_outlined,
-                    color: Color(0xFFE86A3A),
-                  ),
-                  title: Text(
-                    l10n.tripCoverCamera,
-                    style: const TextStyle(color: _titleColor),
-                  ),
-                  onTap: () => Navigator.of(
-                    sheetContext,
-                  ).pop(_CreateTripCoverAction.camera),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.photo_library_outlined,
-                    color: Color(0xFFE86A3A),
-                  ),
-                  title: Text(
-                    l10n.tripCoverGallery,
-                    style: const TextStyle(color: _titleColor),
-                  ),
-                  onTap: () => Navigator.of(
-                    sheetContext,
-                  ).pop(_CreateTripCoverAction.gallery),
-                ),
-                if (_selectedCover != null)
-                  ListTile(
-                    leading: const Icon(
-                      Icons.delete_outline_rounded,
-                      color: Color(0xFFD66A5E),
-                    ),
-                    title: Text(
-                      l10n.tripCoverRemove,
-                      style: const TextStyle(color: Color(0xFFD66A5E)),
-                    ),
-                    onTap: () => Navigator.of(
-                      sheetContext,
-                    ).pop(_CreateTripCoverAction.remove),
-                  ),
-              ],
-            ),
-          ),
-        );
-      },
+      hasCover: _selectedCover != null,
     );
 
     if (!mounted || action == null) {
@@ -396,63 +343,40 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
     }
 
     switch (action) {
-      case _CreateTripCoverAction.camera:
+      case TripCoverSourceAction.camera:
         await _pickCover(fromCamera: true);
         break;
 
-      case _CreateTripCoverAction.gallery:
+      case TripCoverSourceAction.gallery:
         await _pickCover(fromCamera: false);
         break;
 
-      case _CreateTripCoverAction.remove:
+      case TripCoverSourceAction.remove:
         setState(() {
           _selectedCover = null;
         });
         break;
     }
   }
-
   Future<void> _pickCover({required bool fromCamera}) async {
     final l10n = AppLocalizations.of(context)!;
     final permissionService = ref.read(permissionServiceProvider);
 
-    final permissionResult = await permissionService.request(
-      fromCamera ? AppPermission.camera : AppPermission.photos,
+    final permissionGranted = await requestAppPermission(
+      context: context,
+      permissionService: permissionService,
+      permission: fromCamera ? AppPermission.camera : AppPermission.photos,
+      deniedMessage: fromCamera
+          ? l10n.tripCoverCameraPermissionDenied
+          : l10n.tripCoverGalleryPermissionDenied,
+      permanentlyDeniedMessage: fromCamera
+          ? l10n.tripCoverCameraPermissionPermanentlyDenied
+          : l10n.tripCoverGalleryPermissionPermanentlyDenied,
+      openSettingsLabel: l10n.tripCoverOpenSettings,
     );
 
-    if (!mounted) {
+    if (!permissionGranted || !mounted) {
       return;
-    }
-
-    switch (permissionResult) {
-      case AppPermissionResult.granted:
-        break;
-
-      case AppPermissionResult.denied:
-        _showMessage(
-          fromCamera
-              ? l10n.tripCoverCameraPermissionDenied
-              : l10n.tripCoverGalleryPermissionDenied,
-        );
-        return;
-
-      case AppPermissionResult.permanentlyDenied:
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(
-                fromCamera
-                    ? l10n.tripCoverCameraPermissionPermanentlyDenied
-                    : l10n.tripCoverGalleryPermissionPermanentlyDenied,
-              ),
-              action: SnackBarAction(
-                label: l10n.tripCoverOpenSettings,
-                onPressed: permissionService.openSettings,
-              ),
-            ),
-          );
-        return;
     }
 
     try {
@@ -475,7 +399,6 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
       }
     }
   }
-
   void _showMessage(String message) {
     if (!mounted) {
       return;
@@ -754,243 +677,3 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
   }
 }
 
-enum _CreateTripCoverAction { camera, gallery, remove }
-
-class _CurrencyPickerSheet extends StatefulWidget {
-  const _CurrencyPickerSheet({
-    required this.currencies,
-    required this.selectedCurrency,
-    required this.title,
-    required this.searchHint,
-    required this.noResultsText,
-  });
-
-  final List<TripCurrency> currencies;
-  final String? selectedCurrency;
-  final String title;
-  final String searchHint;
-  final String noResultsText;
-
-  @override
-  State<_CurrencyPickerSheet> createState() => _CurrencyPickerSheetState();
-}
-
-class _CurrencyPickerSheetState extends State<_CurrencyPickerSheet> {
-  static const Color _fieldColor = Color(0xFF241B17);
-  static const Color _borderColor = Color(0xFF3A2A24);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _accentColor = Color(0xFFE86A3A);
-
-  final TextEditingController _searchController = TextEditingController();
-
-  String _query = '';
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  List<TripCurrency> get _filteredCurrencies {
-    final query = _query.trim().toLowerCase();
-
-    if (query.isEmpty) {
-      return widget.currencies;
-    }
-
-    return widget.currencies.where((currency) {
-      return currency.code.toLowerCase().contains(query) ||
-          currency.name.toLowerCase().contains(query) ||
-          currency.symbol.toLowerCase().contains(query);
-    }).toList();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final currencies = _filteredCurrencies;
-
-    return FractionallySizedBox(
-      heightFactor: 0.78,
-      child: Column(
-        children: [
-          const SizedBox(height: 10),
-          Container(
-            width: 42,
-            height: 4,
-            decoration: BoxDecoration(
-              color: _secondaryTextColor.withValues(alpha: 0.35),
-              borderRadius: BorderRadius.circular(999),
-            ),
-          ),
-          const SizedBox(height: 18),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              widget.title,
-              style: const TextStyle(
-                color: _titleColor,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: TextField(
-              controller: _searchController,
-              autofocus: false,
-              textInputAction: TextInputAction.search,
-              style: const TextStyle(color: _titleColor, fontSize: 15),
-              cursorColor: _accentColor,
-              onChanged: (value) {
-                setState(() {
-                  _query = value;
-                });
-              },
-              decoration: InputDecoration(
-                hintText: widget.searchHint,
-                hintStyle: TextStyle(
-                  color: _secondaryTextColor.withValues(alpha: 0.7),
-                ),
-                prefixIcon: const Icon(
-                  Icons.search_rounded,
-                  color: _secondaryTextColor,
-                ),
-                suffixIcon: _query.isNotEmpty
-                    ? IconButton(
-                        onPressed: () {
-                          _searchController.clear();
-
-                          setState(() {
-                            _query = '';
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.close_rounded,
-                          color: _secondaryTextColor,
-                        ),
-                      )
-                    : null,
-                filled: true,
-                fillColor: _fieldColor,
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 15,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: const BorderSide(color: _borderColor),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: const BorderSide(color: _accentColor, width: 1.2),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 14),
-          Expanded(
-            child: currencies.isEmpty
-                ? Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Text(
-                        widget.noResultsText,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: _secondaryTextColor,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                  )
-                : ListView.separated(
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
-                    itemCount: currencies.length,
-                    separatorBuilder: (_, _) => Divider(
-                      height: 1,
-                      color: _secondaryTextColor.withValues(alpha: 0.12),
-                    ),
-                    itemBuilder: (context, index) {
-                      final currency = currencies[index];
-
-                      final isSelected =
-                          widget.selectedCurrency?.startsWith(currency.code) ??
-                          false;
-
-                      return ListTile(
-                        onTap: () => Navigator.of(context).pop(currency),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 3,
-                        ),
-                        leading: Container(
-                          width: 42,
-                          height: 42,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: isSelected
-                                ? const Color(
-                                    0xFFD96C32,
-                                  ).withValues(alpha: 0.12)
-                                : _fieldColor,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: isSelected
-                                  ? const Color(
-                                      0xFFD96C32,
-                                    ).withValues(alpha: 0.55)
-                                  : _borderColor,
-                            ),
-                          ),
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Padding(
-                              padding: const EdgeInsets.all(6),
-                              child: Text(
-                                currency.symbol,
-                                style: const TextStyle(
-                                  color: _accentColor,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        title: Text(
-                          currency.code,
-                          style: const TextStyle(
-                            color: _titleColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        subtitle: Text(
-                          currency.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(color: _secondaryTextColor),
-                        ),
-                        trailing: isSelected
-                            ? const Icon(
-                                Icons.check_circle_rounded,
-                                color: _accentColor,
-                              )
-                            : const Icon(
-                                Icons.chevron_right_rounded,
-                                color: _secondaryTextColor,
-                                size: 20,
-                              ),
-                      );
-                    },
-                  ),
-          ),
-        ],
-      ),
-    );
-  }
-}

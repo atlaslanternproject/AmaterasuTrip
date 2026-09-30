@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:amaterasutrip/core/permissions/app_permission.dart';
 import 'package:amaterasutrip/core/permissions/permission_provider.dart';
-import 'package:amaterasutrip/core/permissions/permission_result.dart';
+import 'package:amaterasutrip/core/permissions/permission_request_handler.dart';
 import 'package:amaterasutrip/features/trips/models/trip.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
+import 'package:amaterasutrip/features/trips/presentation/widgets/trip_cover_source_sheet.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class TripInformationSettingsPage extends ConsumerStatefulWidget {
@@ -213,65 +214,11 @@ class _TripInformationSettingsPageState
   }
 
   Future<void> _showCoverSourceSheet(BuildContext context, Trip trip) async {
-    final l10n = AppLocalizations.of(context)!;
     final hasCover = trip.coverUrl != null && trip.coverUrl!.trim().isNotEmpty;
 
-    final action = await showModalBottomSheet<_CoverAction>(
+    final action = await showTripCoverSourceSheet(
       context: context,
-      backgroundColor: _surfaceColor,
-      showDragHandle: true,
-      builder: (sheetContext) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12, 4, 12, 18),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  leading: const Icon(
-                    Icons.camera_alt_outlined,
-                    color: _accentColor,
-                  ),
-                  title: Text(
-                    l10n.tripCoverCamera,
-                    style: const TextStyle(color: _titleColor),
-                  ),
-                  onTap: () {
-                    Navigator.of(sheetContext).pop(_CoverAction.camera);
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.photo_library_outlined,
-                    color: _accentColor,
-                  ),
-                  title: Text(
-                    l10n.tripCoverGallery,
-                    style: const TextStyle(color: _titleColor),
-                  ),
-                  onTap: () {
-                    Navigator.of(sheetContext).pop(_CoverAction.gallery);
-                  },
-                ),
-                if (hasCover)
-                  ListTile(
-                    leading: const Icon(
-                      Icons.delete_outline_rounded,
-                      color: Color(0xFFD66A5E),
-                    ),
-                    title: Text(
-                      l10n.tripCoverRemove,
-                      style: const TextStyle(color: Color(0xFFD66A5E)),
-                    ),
-                    onTap: () {
-                      Navigator.of(sheetContext).pop(_CoverAction.remove);
-                    },
-                  ),
-              ],
-            ),
-          ),
-        );
-      },
+      hasCover: hasCover,
     );
 
     if (!mounted || action == null) {
@@ -279,15 +226,16 @@ class _TripInformationSettingsPageState
     }
 
     switch (action) {
-      case _CoverAction.camera:
+      case TripCoverSourceAction.camera:
         await _pickAndUploadCover(trip, fromCamera: true);
-      case _CoverAction.gallery:
+
+      case TripCoverSourceAction.gallery:
         await _pickAndUploadCover(trip, fromCamera: false);
-      case _CoverAction.remove:
+
+      case TripCoverSourceAction.remove:
         await _removeCover(trip);
     }
   }
-
   Future<void> _pickAndUploadCover(
     Trip trip, {
     required bool fromCamera,
@@ -295,83 +243,41 @@ class _TripInformationSettingsPageState
     final l10n = AppLocalizations.of(context)!;
     final permissionService = ref.read(permissionServiceProvider);
 
-    final permissionResult = await permissionService.request(
-      fromCamera ? AppPermission.camera : AppPermission.photos,
+    final permissionGranted = await requestAppPermission(
+      context: context,
+      permissionService: permissionService,
+      permission: fromCamera ? AppPermission.camera : AppPermission.photos,
+      deniedMessage: fromCamera
+          ? l10n.tripCoverCameraPermissionDenied
+          : l10n.tripCoverGalleryPermissionDenied,
+      permanentlyDeniedMessage: fromCamera
+          ? l10n.tripCoverCameraPermissionPermanentlyDenied
+          : l10n.tripCoverGalleryPermissionPermanentlyDenied,
+      openSettingsLabel: l10n.tripCoverOpenSettings,
     );
 
-    if (!mounted) {
+    if (!permissionGranted || !mounted) {
       return;
     }
 
-    switch (permissionResult) {
-      case AppPermissionResult.granted:
-        break;
-
-      case AppPermissionResult.denied:
-        _showMessage(
-          fromCamera
-              ? l10n.tripCoverCameraPermissionDenied
-              : l10n.tripCoverGalleryPermissionDenied,
-        );
-        return;
-
-      case AppPermissionResult.permanentlyDenied:
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(
-                fromCamera
-                    ? l10n.tripCoverCameraPermissionPermanentlyDenied
-                    : l10n.tripCoverGalleryPermissionPermanentlyDenied,
-              ),
-              action: SnackBarAction(
-                label: l10n.tripCoverOpenSettings,
-                onPressed: () {
-                  permissionService.openSettings();
-                },
-              ),
-            ),
-          );
-        return;
-    }
-
-    XFile? selectedCover;
-
     try {
       final picker = ref.read(tripCoverPickerServiceProvider);
-      final recovery = ref.read(tripCoverRecoveryServiceProvider);
 
-      await recovery.markPending(trip.id);
-
-      selectedCover = fromCamera
+      final selectedCover = fromCamera
           ? await picker.pickFromCamera()
           : await picker.pickFromGallery();
 
-      if (selectedCover == null) {
-        await recovery.clearRecovery();
+      if (!mounted || selectedCover == null) {
+        return;
       }
+
+      await _uploadSelectedCover(trip, selectedCover);
     } catch (_) {
       if (mounted) {
         _showMessage(l10n.tripCoverPickerError);
       }
-
-      return;
     }
-
-    if (selectedCover == null || !mounted) {
-      return;
-    }
-
-    await ref.read(tripCoverRecoveryServiceProvider).clearRecovery();
-
-    if (!mounted) {
-      return;
-    }
-
-    await _uploadSelectedCover(trip, selectedCover);
   }
-
   Future<void> _uploadSelectedCover(Trip trip, XFile selectedCover) async {
     if (!mounted) {
       return;
@@ -410,7 +316,7 @@ class _TripInformationSettingsPageState
         try {
           await storage.deleteTripCover(oldPath);
         } catch (_) {
-          // La nuova cover è già salvata correttamente.
+          // La nuova cover Ã¨ giÃ  salvata correttamente.
           // La pulizia del vecchio file non deve annullare l'operazione.
         }
       }
@@ -507,7 +413,7 @@ class _TripInformationSettingsPageState
       try {
         await storage.deleteTripCover(trip.coverPath);
       } catch (_) {
-        // Il riferimento Firestore è già stato rimosso.
+        // Il riferimento Firestore Ã¨ giÃ  stato rimosso.
       }
 
       if (mounted) {
@@ -533,7 +439,7 @@ class _TripInformationSettingsPageState
   }
 }
 
-enum _CoverAction { camera, gallery, remove }
+
 
 class _CoverFallback extends StatelessWidget {
   const _CoverFallback();
@@ -558,3 +464,4 @@ class _CoverFallback extends StatelessWidget {
     );
   }
 }
+

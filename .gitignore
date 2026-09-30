@@ -54,3 +54,4 @@ app.*.map.json
 *.save
 *~
 MainActivity_broken.txt
+*.bak_*

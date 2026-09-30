@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:amaterasutrip/core/permissions/app_permission.dart';
 import 'package:amaterasutrip/core/permissions/permission_provider.dart';
-import 'package:amaterasutrip/core/permissions/permission_result.dart';
+import 'package:amaterasutrip/core/permissions/permission_request_handler.dart';
 import 'package:amaterasutrip/core/widgets/dialogs/amaterasu_unsaved_changes_dialog.dart';
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
@@ -337,102 +337,54 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     try {
       XFile? selectedPhoto;
 
+      final permissionService = ref.read(permissionServiceProvider);
+
       switch (action) {
         case ProfilePhotoSourceAction.camera:
-          final permissionService = ref.read(permissionServiceProvider);
-
-          final permissionResult = await permissionService.request(
-            AppPermission.camera,
+          final permissionGranted = await requestAppPermission(
+            context: context,
+            permissionService: permissionService,
+            permission: AppPermission.camera,
+            deniedMessage: l10n.profilePhotoCameraPermissionDenied,
+            permanentlyDeniedMessage:
+                l10n.profilePhotoCameraPermissionPermanentlyDenied,
+            openSettingsLabel: l10n.profilePhotoOpenSettings,
           );
 
-          if (!mounted) {
+          if (!permissionGranted || !mounted) {
             return;
           }
 
-          switch (permissionResult) {
-            case AppPermissionResult.granted:
-              final recoveryService = ref.read(
-                profilePhotoRecoveryServiceProvider,
-              );
+          final recoveryService = ref.read(
+            profilePhotoRecoveryServiceProvider,
+          );
 
-              await recoveryService.markPending();
+          await recoveryService.markPending();
 
-              selectedPhoto = await picker.pickFromCamera();
+          selectedPhoto = await picker.pickFromCamera();
 
-              if (selectedPhoto != null) {
-                await recoveryService.clearPending();
-              }
-
-              break;
-
-            case AppPermissionResult.denied:
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(l10n.profilePhotoCameraPermissionDenied),
-                ),
-              );
-              return;
-
-            case AppPermissionResult.permanentlyDenied:
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    l10n.profilePhotoCameraPermissionPermanentlyDenied,
-                  ),
-                  action: SnackBarAction(
-                    label: l10n.profilePhotoOpenSettings,
-                    onPressed: () {
-                      permissionService.openSettings();
-                    },
-                  ),
-                ),
-              );
-              return;
+          if (selectedPhoto != null) {
+            await recoveryService.clearPending();
           }
 
           break;
 
         case ProfilePhotoSourceAction.gallery:
-          final permissionService = ref.read(permissionServiceProvider);
-
-          final permissionResult = await permissionService.request(
-            AppPermission.photos,
+          final permissionGranted = await requestAppPermission(
+            context: context,
+            permissionService: permissionService,
+            permission: AppPermission.photos,
+            deniedMessage: l10n.profilePhotoGalleryPermissionDenied,
+            permanentlyDeniedMessage:
+                l10n.profilePhotoGalleryPermissionPermanentlyDenied,
+            openSettingsLabel: l10n.profilePhotoOpenSettings,
           );
 
-          if (!mounted) {
+          if (!permissionGranted || !mounted) {
             return;
           }
 
-          switch (permissionResult) {
-            case AppPermissionResult.granted:
-              selectedPhoto = await picker.pickFromGallery();
-              break;
-
-            case AppPermissionResult.denied:
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(l10n.profilePhotoGalleryPermissionDenied),
-                ),
-              );
-              return;
-
-            case AppPermissionResult.permanentlyDenied:
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    l10n.profilePhotoGalleryPermissionPermanentlyDenied,
-                  ),
-                  action: SnackBarAction(
-                    label: l10n.profilePhotoOpenSettings,
-                    onPressed: () {
-                      permissionService.openSettings();
-                    },
-                  ),
-                ),
-              );
-              return;
-          }
-
+          selectedPhoto = await picker.pickFromGallery();
           break;
 
         case ProfilePhotoSourceAction.remove:
@@ -459,7 +411,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           photoPath: uploadResult.storagePath,
         );
       } catch (_) {
-        // Firestore non è stato aggiornato:
+        // Firestore non Ã¨ stato aggiornato:
         // eliminiamo il nuovo file per non lasciare un file orfano.
         await storageService.deleteProfilePhoto(uploadResult.storagePath);
 

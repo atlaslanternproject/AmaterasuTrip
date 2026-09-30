@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_reauthentication.dart';
-import 'package:amaterasutrip/features/settings/presentation/pages/data/account_deletion_service.dart';
+import 'package:amaterasutrip/features/settings/data/services/account_deletion_service.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class AccountDeleteDialog extends ConsumerStatefulWidget {
@@ -264,3 +264,4 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
     );
   }
 }
+
