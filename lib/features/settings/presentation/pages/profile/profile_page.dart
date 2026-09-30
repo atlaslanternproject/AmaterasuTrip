@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -411,7 +411,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           photoPath: uploadResult.storagePath,
         );
       } catch (_) {
-        // Firestore non Ã¨ stato aggiornato:
+        // Firestore non è stato aggiornato:
         // eliminiamo il nuovo file per non lasciare un file orfano.
         await storageService.deleteProfilePhoto(uploadResult.storagePath);
 

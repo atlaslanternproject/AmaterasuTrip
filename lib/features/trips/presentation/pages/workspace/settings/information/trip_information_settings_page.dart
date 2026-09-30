@@ -316,7 +316,7 @@ class _TripInformationSettingsPageState
         try {
           await storage.deleteTripCover(oldPath);
         } catch (_) {
-          // La nuova cover Ã¨ giÃ  salvata correttamente.
+          // La nuova cover è¨ già  salvata correttamente.
           // La pulizia del vecchio file non deve annullare l'operazione.
         }
       }
@@ -413,7 +413,7 @@ class _TripInformationSettingsPageState
       try {
         await storage.deleteTripCover(trip.coverPath);
       } catch (_) {
-        // Il riferimento Firestore Ã¨ giÃ  stato rimosso.
+        // Il riferimento Firestore è già stato rimosso.
       }
 
       if (mounted) {

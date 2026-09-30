@@ -389,12 +389,6 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get commonPassword;
 
-  /// No description provided for @homeLoginCompleted.
-  ///
-  /// In en, this message translates to:
-  /// **'Login completed!'**
-  String get homeLoginCompleted;
-
   /// No description provided for @homeGoogleUser.
   ///
   /// In en, this message translates to:
@@ -406,42 +400,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No UID'**
   String get homeNoUid;
-
-  /// No description provided for @homeName.
-  ///
-  /// In en, this message translates to:
-  /// **'Name:'**
-  String get homeName;
-
-  /// No description provided for @homeNoName.
-  ///
-  /// In en, this message translates to:
-  /// **'No name'**
-  String get homeNoName;
-
-  /// No description provided for @homeEmail.
-  ///
-  /// In en, this message translates to:
-  /// **'Email:'**
-  String get homeEmail;
-
-  /// No description provided for @homeNoEmail.
-  ///
-  /// In en, this message translates to:
-  /// **'No email'**
-  String get homeNoEmail;
-
-  /// No description provided for @homeUid.
-  ///
-  /// In en, this message translates to:
-  /// **'UID:'**
-  String get homeUid;
-
-  /// No description provided for @homeLogoutTest.
-  ///
-  /// In en, this message translates to:
-  /// **'Test logout'**
-  String get homeLogoutTest;
 
   /// No description provided for @settingsProfile.
   ///
@@ -2818,12 +2776,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Camera access is disabled. You can enable it in the app settings.'**
   String get tripCoverCameraPermissionPermanentlyDenied;
-
-  /// No description provided for @createTripCoverComingSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Cover selection will be available soon.'**
-  String get createTripCoverComingSoon;
 
   /// No description provided for @tripCreatedInviteComingSoon.
   ///

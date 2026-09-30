@@ -156,31 +156,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonPassword => 'Password';
 
   @override
-  String get homeLoginCompleted => 'Login completato!';
-
-  @override
   String get homeGoogleUser => 'Utente Google';
 
   @override
   String get homeNoUid => 'No UID';
-
-  @override
-  String get homeName => 'Nome:';
-
-  @override
-  String get homeNoName => 'Nessun nome';
-
-  @override
-  String get homeEmail => 'Email:';
-
-  @override
-  String get homeNoEmail => 'Nessuna email';
-
-  @override
-  String get homeUid => 'UID:';
-
-  @override
-  String get homeLogoutTest => 'Logout test';
 
   @override
   String get settingsProfile => 'Profilo';
@@ -1391,9 +1370,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripCoverCameraPermissionPermanentlyDenied => 'L\'accesso alla fotocamera è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
-
-  @override
-  String get createTripCoverComingSoon => 'La selezione della copertina sarà disponibile a breve.';
 
   @override
   String get tripCreatedInviteComingSoon => 'Gli inviti ai viaggiatori saranno disponibili a breve.';
