@@ -1270,7 +1270,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripPrivacyAccess => 'Trip access';
 
   @override
-  String get tripPrivacyAccessPrivate => 'Private · Only authorised travellers can access';
+  String get tripPrivacyAccessPrivate => 'Private Â· Only authorised travellers can access';
 
   @override
   String get tripPrivacyInviteLink => 'Invitation link';
@@ -1304,7 +1304,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String tripManagementArchiveConfigured(String provider) {
-    return 'Configured · $provider';
+    return 'Configured Â· $provider';
   }
 
   @override
@@ -1587,7 +1587,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripManagementArchiveInsufficientSpace => 'Insufficient Google Drive storage';
 
   @override
-  String get tripManagementArchiveNetworkUnavailable => 'Needs checking · connection unavailable';
+  String get tripManagementArchiveNetworkUnavailable => 'Needs checking Â· connection unavailable';
 
   @override
   String get tripManagementArchiveError => 'Synchronisation error';
@@ -1630,4 +1630,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripManagementOperationError => 'The operation failed. Please try again.';
+
+  @override
+  String get tripInformationSectionTitle => 'Trip information';
+
+  @override
+  String get tripInformationName => 'Name';
+
+  @override
+  String get tripInformationDestination => 'Destination';
+
+  @override
+  String get tripInformationStartDate => 'Departure date';
+
+  @override
+  String get tripInformationEndDate => 'Return date';
+
+  @override
+  String get tripInformationDescription => 'Description';
+
+  @override
+  String get tripInformationDescriptionEmpty => 'Add a description';
+
+  @override
+  String get tripInformationCurrency => 'Main currency';
+
+  @override
+  String get tripInformationSave => 'Save';
+
+  @override
+  String get tripInformationCancel => 'Cancel';
+
+  @override
+  String get tripInformationUpdated => 'Trip information updated.';
+
+  @override
+  String get tripInformationUpdateError => 'Unable to update the trip information.';
 }

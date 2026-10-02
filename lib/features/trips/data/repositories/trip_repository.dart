@@ -91,6 +91,62 @@ class TripRepository {
     return tripRef.id;
   }
 
+  Future<void> updateTripInformation({
+    required String tripId,
+    required String name,
+    required String destination,
+    required String destinationPlaceId,
+    required String destinationDisplayName,
+    required String destinationFormattedAddress,
+    required double destinationLatitude,
+    required double destinationLongitude,
+    String? destinationCountry,
+    String? destinationCountryCode,
+    String? destinationAdministrativeArea,
+    String? destinationLocality,
+    required DateTime startDate,
+    required DateTime endDate,
+    required String currency,
+    String? description,
+  }) async {
+    final tripRef = await _ownedTripReference(tripId);
+
+    final trimmedName = name.trim();
+    final trimmedDescription = description?.trim();
+
+    if (trimmedName.isEmpty) {
+      throw ArgumentError.value(name, 'name', 'Trip name cannot be empty.');
+    }
+
+    if (endDate.isBefore(startDate)) {
+      throw ArgumentError('Trip end date cannot be before the start date.');
+    }
+
+    await tripRef.update({
+      'name': trimmedName,
+      'destination': destination,
+      'destinationData': {
+        'placeId': destinationPlaceId,
+        'displayName': destinationDisplayName,
+        'formattedAddress': destinationFormattedAddress,
+        'latitude': destinationLatitude,
+        'longitude': destinationLongitude,
+        'country': ?destinationCountry,
+        'countryCode': ?destinationCountryCode,
+        'administrativeArea': ?destinationAdministrativeArea,
+        'locality': ?destinationLocality,
+      },
+      'startDate': Timestamp.fromDate(startDate),
+      'endDate': Timestamp.fromDate(endDate),
+      'currency': currency,
+      if (trimmedDescription != null && trimmedDescription.isNotEmpty)
+        'description': trimmedDescription
+      else
+        'description': FieldValue.delete(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+  }
+
   Future<void> updateTripCover({
     required String tripId,
     required String coverUrl,

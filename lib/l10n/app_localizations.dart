@@ -2576,7 +2576,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripPrivacyAccessPrivate.
   ///
   /// In en, this message translates to:
-  /// **'Private · Only authorised travellers can access'**
+  /// **'Private Â· Only authorised travellers can access'**
   String get tripPrivacyAccessPrivate;
 
   /// No description provided for @tripPrivacyInviteLink.
@@ -2642,7 +2642,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripManagementArchiveConfigured.
   ///
   /// In en, this message translates to:
-  /// **'Configured · {provider}'**
+  /// **'Configured Â· {provider}'**
   String tripManagementArchiveConfigured(String provider);
 
   /// No description provided for @tripManagementArchiveNotConfigured.
@@ -3206,7 +3206,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripManagementArchiveNetworkUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Needs checking · connection unavailable'**
+  /// **'Needs checking Â· connection unavailable'**
   String get tripManagementArchiveNetworkUnavailable;
 
   /// No description provided for @tripManagementArchiveError.
@@ -3292,6 +3292,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The operation failed. Please try again.'**
   String get tripManagementOperationError;
+
+  /// No description provided for @tripInformationSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip information'**
+  String get tripInformationSectionTitle;
+
+  /// No description provided for @tripInformationName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get tripInformationName;
+
+  /// No description provided for @tripInformationDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Destination'**
+  String get tripInformationDestination;
+
+  /// No description provided for @tripInformationStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure date'**
+  String get tripInformationStartDate;
+
+  /// No description provided for @tripInformationEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Return date'**
+  String get tripInformationEndDate;
+
+  /// No description provided for @tripInformationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get tripInformationDescription;
+
+  /// No description provided for @tripInformationDescriptionEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a description'**
+  String get tripInformationDescriptionEmpty;
+
+  /// No description provided for @tripInformationCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Main currency'**
+  String get tripInformationCurrency;
+
+  /// No description provided for @tripInformationSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get tripInformationSave;
+
+  /// No description provided for @tripInformationCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get tripInformationCancel;
+
+  /// No description provided for @tripInformationUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip information updated.'**
+  String get tripInformationUpdated;
+
+  /// No description provided for @tripInformationUpdateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to update the trip information.'**
+  String get tripInformationUpdateError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
