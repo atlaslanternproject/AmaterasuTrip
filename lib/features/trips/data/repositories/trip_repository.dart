@@ -28,15 +28,49 @@ class TripRepository {
       return Stream.value(const []);
     }
 
-    return _firestore
+    final memberTripsStream = _firestore
+        .collection('trips')
+        .where('memberUids', arrayContains: user.uid)
+        .snapshots();
+
+    final ownedTripsStream = _firestore
         .collection('trips')
         .where('ownerUid', isEqualTo: user.uid)
-        .snapshots()
-        .map(
-          (snapshot) => snapshot.docs
-              .map((doc) => Trip.fromFirestore(id: doc.id, data: doc.data()))
-              .toList(),
-        );
+        .snapshots();
+
+    return Stream<List<Trip>>.multi((controller) {
+      QuerySnapshot<Map<String, dynamic>>? memberSnapshot;
+      QuerySnapshot<Map<String, dynamic>>? ownedSnapshot;
+
+      void emitTrips() {
+        final tripsById = <String, Trip>{};
+
+        for (final doc in ownedSnapshot?.docs ?? const []) {
+          tripsById[doc.id] = Trip.fromFirestore(id: doc.id, data: doc.data());
+        }
+
+        for (final doc in memberSnapshot?.docs ?? const []) {
+          tripsById[doc.id] = Trip.fromFirestore(id: doc.id, data: doc.data());
+        }
+
+        controller.add(tripsById.values.toList());
+      }
+
+      final memberSubscription = memberTripsStream.listen((snapshot) {
+        memberSnapshot = snapshot;
+        emitTrips();
+      }, onError: controller.addError);
+
+      final ownedSubscription = ownedTripsStream.listen((snapshot) {
+        ownedSnapshot = snapshot;
+        emitTrips();
+      }, onError: controller.addError);
+
+      controller.onCancel = () async {
+        await memberSubscription.cancel();
+        await ownedSubscription.cancel();
+      };
+    });
   }
 
   Future<String> createTrip({
@@ -64,7 +98,10 @@ class TripRepository {
 
     final tripRef = _firestore.collection('trips').doc();
 
-    await tripRef.set({
+    final ownerMemberRef = tripRef.collection('members').doc(user.uid);
+    final batch = _firestore.batch();
+
+    batch.set(tripRef, {
       'name': name.trim(),
       'destination': destination,
       'destinationData': {
@@ -83,10 +120,20 @@ class TripRepository {
       'currency': currency,
       if (cloudArchive != null) 'cloudArchive': cloudArchive.toMap(),
       'ownerUid': user.uid,
+      'memberUids': [user.uid],
       'status': 'active',
       'createdAt': FieldValue.serverTimestamp(),
       'updatedAt': FieldValue.serverTimestamp(),
     });
+
+    batch.set(ownerMemberRef, {
+      'uid': user.uid,
+      'role': 'admin',
+      'joinedAt': FieldValue.serverTimestamp(),
+      'travellerProfileCompleted': true,
+    });
+
+    await batch.commit();
 
     return tripRef.id;
   }

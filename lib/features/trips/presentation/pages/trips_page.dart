@@ -228,7 +228,8 @@ class TripsPage extends ConsumerWidget {
             ),
           ),
         ),
-        const SizedBox(width: 16),
+        const SizedBox(width: 8),
+        const SizedBox(width: 8),
         Material(
           color: _accentColor,
           borderRadius: BorderRadius.circular(16),

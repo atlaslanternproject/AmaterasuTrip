@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/cloud_archive/trip_cloud_archive_page.dart';
@@ -358,6 +358,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
         break;
     }
   }
+
   Future<void> _pickCover({required bool fromCamera}) async {
     final l10n = AppLocalizations.of(context)!;
     final permissionService = ref.read(permissionServiceProvider);
@@ -399,6 +400,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
       }
     }
   }
+
   void _showMessage(String message) {
     if (!mounted) {
       return;
@@ -539,14 +541,40 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
       MaterialPageRoute(
         builder: (context) => TripCreatedPage(
           tripName: tripName,
-          onInviteTravellers: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  AppLocalizations.of(context)!.tripCreatedInviteComingSoon,
-                ),
-              ),
-            );
+          onInviteTravellers: () async {
+            try {
+              final invite = await ref
+                  .read(tripInviteRepositoryProvider)
+                  .createTripInvite(tripId: tripId);
+
+              debugPrint('Trip invite created.');
+              debugPrint('Trip ID: ${invite.tripId}');
+              debugPrint('Invite ID: ${invite.inviteId}');
+              debugPrint('Invite token: ${invite.token}');
+
+              if (!context.mounted) {
+                return;
+              }
+
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  const SnackBar(content: Text('Invito creato correttamente.')),
+                );
+            } catch (error, stackTrace) {
+              debugPrint('Trip invite creation failed: $error');
+              debugPrintStack(stackTrace: stackTrace);
+
+              if (!context.mounted) {
+                return;
+              }
+
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(content: Text('Errore creazione invito: $error')),
+                );
+            }
           },
           onCopyLink: () {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -676,4 +704,3 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
     );
   }
 }
-
