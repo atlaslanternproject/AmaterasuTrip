@@ -156,4 +156,59 @@ class TripRepository {
       'updatedAt': FieldValue.serverTimestamp(),
     });
   }
+
+  Future<void> updateCloudArchive({
+    required String tripId,
+    required TripCloudArchive cloudArchive,
+  }) async {
+    final tripRef = await _ownedTripReference(tripId);
+
+    await tripRef.update({
+      'cloudArchive': cloudArchive.toMap(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Future<void> removeCloudArchive({required String tripId}) async {
+    final tripRef = await _ownedTripReference(tripId);
+
+    await tripRef.update({
+      'cloudArchive': FieldValue.delete(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Future<void> deleteTrip({required String tripId}) async {
+    final tripRef = await _ownedTripReference(tripId);
+    await tripRef.delete();
+  }
+
+  Future<DocumentReference<Map<String, dynamic>>> _ownedTripReference(
+    String tripId,
+  ) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw FirebaseAuthException(code: 'user-not-found');
+    }
+
+    final tripRef = _firestore.collection('trips').doc(tripId);
+    final snapshot = await tripRef.get();
+
+    if (!snapshot.exists) {
+      throw StateError('Trip not found.');
+    }
+
+    final data = snapshot.data();
+
+    if (data == null) {
+      throw StateError('Trip not found.');
+    }
+
+    if (data['ownerUid'] != user.uid) {
+      throw StateError('Current user cannot manage this trip.');
+    }
+
+    return tripRef;
+  }
 }

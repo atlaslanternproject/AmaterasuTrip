@@ -10,7 +10,7 @@ class TripArchiveNamingService {
     final safeTripName = _sanitise(tripName);
     final safeDestination = _sanitise(destination);
 
-    return '${safeTripName}__${safeDestination}_'
+    return '${safeTripName}_${safeDestination}_'
         '${_formatDate(startDate)}_${_formatDate(endDate)}';
   }
 

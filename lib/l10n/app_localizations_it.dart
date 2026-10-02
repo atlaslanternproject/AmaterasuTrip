@@ -1264,6 +1264,101 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripSettingsManagementSubtitle => 'Archivia, duplica, esporta o elimina il viaggio';
 
   @override
+  String get tripPrivacyIntro => 'Controlla accesso, inviti e condivisione di questo viaggio.';
+
+  @override
+  String get tripPrivacyAccess => 'Accesso al viaggio';
+
+  @override
+  String get tripPrivacyAccessPrivate => 'Privato · Solo i viaggiatori autorizzati possono accedere';
+
+  @override
+  String get tripPrivacyInviteLink => 'Link di invito';
+
+  @override
+  String get tripPrivacyInviteLinkSubtitle => 'Crea e gestisci il link privato per invitare nuovi viaggiatori';
+
+  @override
+  String get tripPrivacyTravellers => 'Viaggiatori';
+
+  @override
+  String get tripPrivacyTravellersSubtitle => 'Visualizza e gestisci i partecipanti al viaggio';
+
+  @override
+  String get tripPrivacyRoles => 'Ruoli e permessi';
+
+  @override
+  String get tripPrivacyRolesSubtitle => 'Gestisci cosa possono fare OWNER e TRAVELER';
+
+  @override
+  String get tripManagementIntro => 'Gestisci archivio e operazioni amministrative del viaggio.';
+
+  @override
+  String get tripManagementLoadError => 'Impossibile caricare le informazioni di gestione del viaggio.';
+
+  @override
+  String get tripManagementArchiveSection => 'Archivio del viaggio';
+
+  @override
+  String get tripManagementArchiveStatus => 'Stato archivio';
+
+  @override
+  String tripManagementArchiveConfigured(String provider) {
+    return 'Configurato · $provider';
+  }
+
+  @override
+  String get tripManagementArchiveNotConfigured => 'Nessun archivio configurato';
+
+  @override
+  String get tripManagementArchiveFolder => 'Cartella archivio';
+
+  @override
+  String get tripManagementArchiveVerify => 'Verifica archivio';
+
+  @override
+  String get tripManagementArchiveVerifySubtitle => 'Controlla che l\'archivio sia ancora disponibile e accessibile';
+
+  @override
+  String get tripManagementArchiveOpen => 'Apri archivio';
+
+  @override
+  String get tripManagementArchiveOpenSubtitle => 'Apri la cartella del viaggio nel provider collegato';
+
+  @override
+  String get tripManagementArchiveChange => 'Cambia archivio';
+
+  @override
+  String get tripManagementArchiveChangeSubtitle => 'Collega il viaggio a una nuova posizione di archiviazione';
+
+  @override
+  String get tripManagementArchiveReconnect => 'Ricollega Google Drive';
+
+  @override
+  String get tripManagementArchiveReconnectSubtitle => 'Ripristina l\'autorizzazione senza spostare i file del viaggio';
+
+  @override
+  String get tripManagementOperationsSection => 'Operazioni viaggio';
+
+  @override
+  String get tripManagementExport => 'Esporta viaggio';
+
+  @override
+  String get tripManagementExportSubtitle => 'Crea una copia esportabile dei dati del viaggio';
+
+  @override
+  String get tripManagementDuplicate => 'Duplica viaggio';
+
+  @override
+  String get tripManagementDuplicateSubtitle => 'Crea un nuovo viaggio partendo da questo';
+
+  @override
+  String get tripManagementDelete => 'Elimina viaggio';
+
+  @override
+  String get tripManagementDeleteSubtitle => 'Elimina il viaggio da Amaterasu senza cancellare automaticamente i file personali dal cloud';
+
+  @override
   String get tripMapTitle => 'Mappa';
 
   @override
@@ -1469,4 +1564,70 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get createTripCreationError => 'Non è stato possibile creare il viaggio. Riprova.';
+
+  @override
+  String get tripManagementArchiveChecking => 'Verifica in corso...';
+
+  @override
+  String get tripManagementArchiveAvailable => 'Configurato e accessibile';
+
+  @override
+  String get tripManagementArchiveUnchecked => 'Da verificare';
+
+  @override
+  String get tripManagementArchiveAuthorizationRequired => 'Autorizzazione richiesta';
+
+  @override
+  String get tripManagementArchiveInaccessible => 'Archivio non accessibile';
+
+  @override
+  String get tripManagementArchiveNotFound => 'Archivio eliminato o non trovato';
+
+  @override
+  String get tripManagementArchiveInsufficientSpace => 'Spazio Google Drive insufficiente';
+
+  @override
+  String get tripManagementArchiveNetworkUnavailable => 'Da verificare · connessione non disponibile';
+
+  @override
+  String get tripManagementArchiveError => 'Errore di sincronizzazione';
+
+  @override
+  String get tripManagementArchiveVerified => 'Archivio verificato correttamente.';
+
+  @override
+  String get tripManagementArchiveReconnectSuccess => 'Google Drive ricollegato. L\'archivio è accessibile.';
+
+  @override
+  String get tripManagementArchiveReconnectUnavailable => 'Google Drive è collegato, ma l\'archivio del viaggio non è accessibile con questo account.';
+
+  @override
+  String get tripManagementArchiveChangeTitle => 'Cambiare archivio?';
+
+  @override
+  String get tripManagementArchiveChangeBody => 'Verrà creato e collegato un nuovo archivio. I file presenti nella cartella attuale non verranno spostati, eliminati o modificati.';
+
+  @override
+  String get tripManagementArchiveChangeConfirm => 'Cambia archivio';
+
+  @override
+  String get tripManagementArchiveChanged => 'Nuovo archivio collegato correttamente.';
+
+  @override
+  String get tripManagementDeleteTitle => 'Eliminare il viaggio?';
+
+  @override
+  String get tripManagementDeleteDriveWarning => 'I file su Google Drive non verranno eliminati.';
+
+  @override
+  String get tripManagementDeleteBody => 'Eliminando il viaggio verranno rimossi i dati associati da Amaterasu, mentre la cartella e i file presenti su Google Drive resteranno invariati.';
+
+  @override
+  String get tripManagementDeleteConfirm => 'Elimina viaggio';
+
+  @override
+  String get tripManagementCancel => 'Annulla';
+
+  @override
+  String get tripManagementOperationError => 'Operazione non riuscita. Riprova.';
 }

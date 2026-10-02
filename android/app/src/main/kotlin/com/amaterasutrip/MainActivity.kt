@@ -1,4 +1,4 @@
-﻿package com.amaterasutrip
+package com.amaterasutrip
 
 import com.amaterasutrip.currency.CurrencyResolver
 import com.amaterasutrip.drive.GoogleDrivePicker
@@ -170,7 +170,92 @@ class MainActivity : FlutterFragmentActivity() {
                     googleDrivePicker.authorizeRoot()
                 }
 
-                else -> result.notImplemented()
+                "reauthorizeDrive" -> {
+                    if (pendingDriveResult != null) {
+                        result.error(
+                            "DRIVE_OPERATION_IN_PROGRESS",
+                            "A Google Drive authorization is already in progress.",
+                            null
+                        )
+                        return@setMethodCallHandler
+                    }
+
+                    pendingDriveResult = result
+
+                    android.util.Log.d(
+                        "AmaterasuDrive",
+                        "MethodChannel reauthorizeDrive"
+                    )
+
+                    googleDrivePicker.reauthorizeDrive()
+                }
+                "openDriveFolder" -> {
+                                    val folderId =
+                                        call.argument<String>("folderId")
+                                            .orEmpty()
+                                            .trim()
+
+                                    if (folderId.isBlank()) {
+                                        result.error(
+                                            "INVALID_DRIVE_FOLDER",
+                                            "Missing Google Drive folder ID.",
+                                            null
+                                        )
+                                        return@setMethodCallHandler
+                                    }
+
+                                    val folderUri = android.net.Uri.parse(
+                                        "https://drive.google.com/drive/folders/$folderId"
+                                    )
+
+                                    val driveIntent = android.content.Intent(
+                                        android.content.Intent.ACTION_VIEW,
+                                        folderUri
+                                    ).apply {
+                                        setPackage("com.google.android.apps.docs")
+                                        addFlags(
+                                            android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                                        )
+                                    }
+
+                                    try {
+                                        startActivity(driveIntent)
+                                        result.success(null)
+                                    } catch (_: android.content.ActivityNotFoundException) {
+                                        val playStoreIntent = android.content.Intent(
+                                            android.content.Intent.ACTION_VIEW,
+                                            android.net.Uri.parse(
+                                                "market://details?id=com.google.android.apps.docs"
+                                            )
+                                        ).apply {
+                                            addFlags(
+                                                android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                                            )
+                                        }
+
+                                        try {
+                                            startActivity(playStoreIntent)
+                                            result.success(null)
+                                        } catch (_: android.content.ActivityNotFoundException) {
+                                            val playStoreWebIntent =
+                                                android.content.Intent(
+                                                    android.content.Intent.ACTION_VIEW,
+                                                    android.net.Uri.parse(
+                                                        "https://play.google.com/store/apps/details?id=com.google.android.apps.docs"
+                                                    )
+                                                ).apply {
+                                                    addFlags(
+                                                        android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+                                                    )
+                                                }
+
+                                            startActivity(playStoreWebIntent)
+                                            result.success(null)
+                                        }
+                                    }
+                                }
+
+                                else -> result.notImplemented()
             }
         }
 

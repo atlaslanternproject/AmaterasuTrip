@@ -2561,6 +2561,192 @@ abstract class AppLocalizations {
   /// **'Archive, duplicate, export or delete the trip'**
   String get tripSettingsManagementSubtitle;
 
+  /// No description provided for @tripPrivacyIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Control access, invitations and sharing for this trip.'**
+  String get tripPrivacyIntro;
+
+  /// No description provided for @tripPrivacyAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip access'**
+  String get tripPrivacyAccess;
+
+  /// No description provided for @tripPrivacyAccessPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Private · Only authorised travellers can access'**
+  String get tripPrivacyAccessPrivate;
+
+  /// No description provided for @tripPrivacyInviteLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation link'**
+  String get tripPrivacyInviteLink;
+
+  /// No description provided for @tripPrivacyInviteLinkSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create and manage the private link used to invite new travellers'**
+  String get tripPrivacyInviteLinkSubtitle;
+
+  /// No description provided for @tripPrivacyTravellers.
+  ///
+  /// In en, this message translates to:
+  /// **'Travellers'**
+  String get tripPrivacyTravellers;
+
+  /// No description provided for @tripPrivacyTravellersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View and manage trip participants'**
+  String get tripPrivacyTravellersSubtitle;
+
+  /// No description provided for @tripPrivacyRoles.
+  ///
+  /// In en, this message translates to:
+  /// **'Roles and permissions'**
+  String get tripPrivacyRoles;
+
+  /// No description provided for @tripPrivacyRolesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage what OWNER and TRAVELER can do'**
+  String get tripPrivacyRolesSubtitle;
+
+  /// No description provided for @tripManagementIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage trip storage and administrative operations.'**
+  String get tripManagementIntro;
+
+  /// No description provided for @tripManagementLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load trip management information.'**
+  String get tripManagementLoadError;
+
+  /// No description provided for @tripManagementArchiveSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip storage'**
+  String get tripManagementArchiveSection;
+
+  /// No description provided for @tripManagementArchiveStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage status'**
+  String get tripManagementArchiveStatus;
+
+  /// No description provided for @tripManagementArchiveConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Configured · {provider}'**
+  String tripManagementArchiveConfigured(String provider);
+
+  /// No description provided for @tripManagementArchiveNotConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'No storage configured'**
+  String get tripManagementArchiveNotConfigured;
+
+  /// No description provided for @tripManagementArchiveFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage folder'**
+  String get tripManagementArchiveFolder;
+
+  /// No description provided for @tripManagementArchiveVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify storage'**
+  String get tripManagementArchiveVerify;
+
+  /// No description provided for @tripManagementArchiveVerifySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check that the storage is still available and accessible'**
+  String get tripManagementArchiveVerifySubtitle;
+
+  /// No description provided for @tripManagementArchiveOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open storage'**
+  String get tripManagementArchiveOpen;
+
+  /// No description provided for @tripManagementArchiveOpenSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the trip folder in the connected provider'**
+  String get tripManagementArchiveOpenSubtitle;
+
+  /// No description provided for @tripManagementArchiveChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change storage'**
+  String get tripManagementArchiveChange;
+
+  /// No description provided for @tripManagementArchiveChangeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect the trip to a new storage location'**
+  String get tripManagementArchiveChangeSubtitle;
+
+  /// No description provided for @tripManagementArchiveReconnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconnect Google Drive'**
+  String get tripManagementArchiveReconnect;
+
+  /// No description provided for @tripManagementArchiveReconnectSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore authorisation without moving trip files'**
+  String get tripManagementArchiveReconnectSubtitle;
+
+  /// No description provided for @tripManagementOperationsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip operations'**
+  String get tripManagementOperationsSection;
+
+  /// No description provided for @tripManagementExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export trip'**
+  String get tripManagementExport;
+
+  /// No description provided for @tripManagementExportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an exportable copy of the trip data'**
+  String get tripManagementExportSubtitle;
+
+  /// No description provided for @tripManagementDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate trip'**
+  String get tripManagementDuplicate;
+
+  /// No description provided for @tripManagementDuplicateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a new trip based on this one'**
+  String get tripManagementDuplicateSubtitle;
+
+  /// No description provided for @tripManagementDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete trip'**
+  String get tripManagementDelete;
+
+  /// No description provided for @tripManagementDeleteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete the trip from Amaterasu without automatically deleting personal files from cloud storage'**
+  String get tripManagementDeleteSubtitle;
+
   /// No description provided for @tripMapTitle.
   ///
   /// In en, this message translates to:
@@ -2974,6 +3160,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The trip could not be created. Please try again.'**
   String get createTripCreationError;
+
+  /// No description provided for @tripManagementArchiveChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking...'**
+  String get tripManagementArchiveChecking;
+
+  /// No description provided for @tripManagementArchiveAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Configured and accessible'**
+  String get tripManagementArchiveAvailable;
+
+  /// No description provided for @tripManagementArchiveUnchecked.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs checking'**
+  String get tripManagementArchiveUnchecked;
+
+  /// No description provided for @tripManagementArchiveAuthorizationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Authorisation required'**
+  String get tripManagementArchiveAuthorizationRequired;
+
+  /// No description provided for @tripManagementArchiveInaccessible.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage unavailable'**
+  String get tripManagementArchiveInaccessible;
+
+  /// No description provided for @tripManagementArchiveNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage deleted or not found'**
+  String get tripManagementArchiveNotFound;
+
+  /// No description provided for @tripManagementArchiveInsufficientSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Insufficient Google Drive storage'**
+  String get tripManagementArchiveInsufficientSpace;
+
+  /// No description provided for @tripManagementArchiveNetworkUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs checking · connection unavailable'**
+  String get tripManagementArchiveNetworkUnavailable;
+
+  /// No description provided for @tripManagementArchiveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronisation error'**
+  String get tripManagementArchiveError;
+
+  /// No description provided for @tripManagementArchiveVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage checked successfully.'**
+  String get tripManagementArchiveVerified;
+
+  /// No description provided for @tripManagementArchiveReconnectSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Drive has been reconnected. The trip storage is accessible.'**
+  String get tripManagementArchiveReconnectSuccess;
+
+  /// No description provided for @tripManagementArchiveReconnectUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Drive is connected, but the trip storage is not accessible with this account.'**
+  String get tripManagementArchiveReconnectUnavailable;
+
+  /// No description provided for @tripManagementArchiveChangeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change storage?'**
+  String get tripManagementArchiveChangeTitle;
+
+  /// No description provided for @tripManagementArchiveChangeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A new storage folder will be created and connected. Files in the current folder will not be moved, deleted or modified.'**
+  String get tripManagementArchiveChangeBody;
+
+  /// No description provided for @tripManagementArchiveChangeConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Change storage'**
+  String get tripManagementArchiveChangeConfirm;
+
+  /// No description provided for @tripManagementArchiveChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'New storage connected successfully.'**
+  String get tripManagementArchiveChanged;
+
+  /// No description provided for @tripManagementDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete trip?'**
+  String get tripManagementDeleteTitle;
+
+  /// No description provided for @tripManagementDeleteDriveWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Files on Google Drive will not be deleted.'**
+  String get tripManagementDeleteDriveWarning;
+
+  /// No description provided for @tripManagementDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting the trip will remove its associated data from Amaterasu, while the Google Drive folder and its files will remain unchanged.'**
+  String get tripManagementDeleteBody;
+
+  /// No description provided for @tripManagementDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete trip'**
+  String get tripManagementDeleteConfirm;
+
+  /// No description provided for @tripManagementCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get tripManagementCancel;
+
+  /// No description provided for @tripManagementOperationError.
+  ///
+  /// In en, this message translates to:
+  /// **'The operation failed. Please try again.'**
+  String get tripManagementOperationError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

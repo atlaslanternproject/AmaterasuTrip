@@ -1,4 +1,4 @@
-﻿package com.amaterasutrip.drive
+package com.amaterasutrip.drive
 
 import android.app.Activity
 import android.app.PendingIntent
@@ -37,6 +37,7 @@ class GoogleDrivePicker(
      * il parent della futura cartella del viaggio è semplicemente "root".
      */
     private var selectingRoot = false
+    private var reauthorizing = false
 
     /*
      * Google Picker:
@@ -68,6 +69,16 @@ class GoogleDrivePicker(
         Log.d(TAG, "authorizeRoot")
 
         selectingRoot = true
+
+        authorize(
+            usePicker = false
+        )
+    }
+    fun reauthorizeDrive() {
+        Log.d(TAG, "reauthorizeDrive")
+
+        selectingRoot = false
+        reauthorizing = true
 
         authorize(
             usePicker = false
@@ -296,6 +307,22 @@ class GoogleDrivePicker(
          * e createTripArchive() creerà fisicamente
          * la cartella del viaggio solo al CREA VIAGGIO.
          */
+        if (reauthorizing) {
+            Log.d(
+                TAG,
+                "Drive reauthorized successfully"
+            )
+
+            reauthorizing = false
+
+            listener?.onFolderSelected(
+                accessToken = accessToken,
+                grantedScopes = result.grantedScopes,
+                folderId = ""
+            )
+
+            return
+        }
         if (selectingRoot) {
 
             Log.d(

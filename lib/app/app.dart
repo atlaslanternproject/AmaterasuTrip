@@ -15,16 +15,39 @@ class AmaterasuTripApp extends ConsumerStatefulWidget {
   ConsumerState<AmaterasuTripApp> createState() => _AmaterasuTripAppState();
 }
 
-class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp> {
+class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp>
+    with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
 
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    WidgetsBinding.instance.addObserver(this);
+
+    _restoreImmersiveMode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _restoreImmersiveMode();
       _recoverPendingProfilePhoto();
     });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if (state == AppLifecycleState.resumed) {
+      _restoreImmersiveMode();
+    }
+  }
+
+  Future<void> _restoreImmersiveMode() async {
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   }
 
   Future<void> _recoverPendingProfilePhoto() async {

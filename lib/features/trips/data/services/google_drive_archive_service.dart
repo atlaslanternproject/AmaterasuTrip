@@ -58,6 +58,42 @@ class GoogleDriveArchiveService {
     }
   }
 
+  Future<GoogleDriveNativeAuthorization?> reauthorizeNative() async {
+    try {
+      final response = await _driveChannel.invokeMapMethod<String, dynamic>(
+        'reauthorizeDrive',
+      );
+
+      if (response == null) {
+        return null;
+      }
+
+      final accessToken = response['accessToken'];
+      final grantedScopes = response['grantedScopes'];
+
+      if (accessToken is! String || accessToken.isEmpty) {
+        return null;
+      }
+
+      final authorization = GoogleDriveNativeAuthorization(
+        accessToken: accessToken,
+        grantedScopes: grantedScopes is List
+            ? grantedScopes.whereType<String>().toList(growable: false)
+            : const <String>[],
+        folderId: '',
+      );
+
+      _accessToken = authorization.accessToken;
+
+      return authorization;
+    } on PlatformException catch (exception) {
+      throw GoogleDriveNativeAuthorizationException(
+        code: exception.code,
+        message: exception.message,
+      );
+    }
+  }
+
   Future<GoogleDriveNativeAuthorization?> authorizeRootNative() async {
     try {
       final response = await _driveChannel.invokeMapMethod<String, dynamic>(
@@ -240,6 +276,77 @@ class GoogleDriveArchiveService {
     }
   }
 
+  Future<GoogleDriveArchiveVerification> verifyArchive(String folderId) async {
+    if (!isAuthorized) {
+      return const GoogleDriveArchiveVerification(
+        status: GoogleDriveArchiveVerificationStatus.authorizationRequired,
+      );
+    }
+
+    try {
+      final folder = await getFolder(folderId);
+
+      if (folder == null) {
+        return const GoogleDriveArchiveVerification(
+          status: GoogleDriveArchiveVerificationStatus.notFound,
+        );
+      }
+
+      return GoogleDriveArchiveVerification(
+        status: GoogleDriveArchiveVerificationStatus.available,
+        folder: folder,
+      );
+    } catch (error) {
+      final message = error.toString().toLowerCase();
+
+      if (message.contains('401') ||
+          message.contains('unauthorized') ||
+          message.contains('invalid credentials')) {
+        return const GoogleDriveArchiveVerification(
+          status: GoogleDriveArchiveVerificationStatus.authorizationRequired,
+        );
+      }
+
+      if (message.contains('404') ||
+          message.contains('not found') ||
+          message.contains('filenotfound')) {
+        return const GoogleDriveArchiveVerification(
+          status: GoogleDriveArchiveVerificationStatus.notFound,
+        );
+      }
+
+      if (message.contains('403') ||
+          message.contains('forbidden') ||
+          message.contains('permission')) {
+        return const GoogleDriveArchiveVerification(
+          status: GoogleDriveArchiveVerificationStatus.inaccessible,
+        );
+      }
+
+      if (message.contains('quota') ||
+          message.contains('storagequota') ||
+          message.contains('insufficient storage')) {
+        return const GoogleDriveArchiveVerification(
+          status: GoogleDriveArchiveVerificationStatus.insufficientSpace,
+        );
+      }
+
+      if (message.contains('socket') ||
+          message.contains('network') ||
+          message.contains('connection') ||
+          message.contains('timed out') ||
+          message.contains('timeout')) {
+        return const GoogleDriveArchiveVerification(
+          status: GoogleDriveArchiveVerificationStatus.networkUnavailable,
+        );
+      }
+
+      return const GoogleDriveArchiveVerification(
+        status: GoogleDriveArchiveVerificationStatus.error,
+      );
+    }
+  }
+
   void clearAuthorization() {
     _accessToken = null;
   }
@@ -377,4 +484,21 @@ class GoogleDriveNativeAuthorizationException implements Exception {
 
   @override
   String toString() => 'GoogleDriveNativeAuthorizationException($code)';
+}
+
+enum GoogleDriveArchiveVerificationStatus {
+  available,
+  authorizationRequired,
+  inaccessible,
+  notFound,
+  insufficientSpace,
+  networkUnavailable,
+  error,
+}
+
+class GoogleDriveArchiveVerification {
+  const GoogleDriveArchiveVerification({required this.status, this.folder});
+
+  final GoogleDriveArchiveVerificationStatus status;
+  final GoogleDriveFolder? folder;
 }
