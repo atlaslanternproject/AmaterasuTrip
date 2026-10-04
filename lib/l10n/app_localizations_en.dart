@@ -1270,7 +1270,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripPrivacyAccess => 'Trip access';
 
   @override
-  String get tripPrivacyAccessPrivate => 'Private Â· Only authorised travellers can access';
+  String get tripPrivacyAccessPrivate => 'Private · Only authorised travellers can access';
 
   @override
   String get tripPrivacyInviteLink => 'Invitation link';
@@ -1304,7 +1304,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String tripManagementArchiveConfigured(String provider) {
-    return 'Configured Â· $provider';
+    return 'Configured · $provider';
   }
 
   @override
@@ -1587,7 +1587,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripManagementArchiveInsufficientSpace => 'Insufficient Google Drive storage';
 
   @override
-  String get tripManagementArchiveNetworkUnavailable => 'Needs checking Â· connection unavailable';
+  String get tripManagementArchiveNetworkUnavailable => 'Needs checking · connection unavailable';
 
   @override
   String get tripManagementArchiveError => 'Synchronisation error';

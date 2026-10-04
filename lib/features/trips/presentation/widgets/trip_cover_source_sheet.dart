@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
@@ -31,9 +31,7 @@ Future<TripCoverSourceAction?> showTripCoverSourceSheet({
                   style: const TextStyle(color: Color(0xFFF2E7D5)),
                 ),
                 onTap: () {
-                  Navigator.of(
-                    sheetContext,
-                  ).pop(TripCoverSourceAction.camera);
+                  Navigator.of(sheetContext).pop(TripCoverSourceAction.camera);
                 },
               ),
               ListTile(
@@ -46,9 +44,7 @@ Future<TripCoverSourceAction?> showTripCoverSourceSheet({
                   style: const TextStyle(color: Color(0xFFF2E7D5)),
                 ),
                 onTap: () {
-                  Navigator.of(
-                    sheetContext,
-                  ).pop(TripCoverSourceAction.gallery);
+                  Navigator.of(sheetContext).pop(TripCoverSourceAction.gallery);
                 },
               ),
               if (hasCover)

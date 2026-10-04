@@ -355,9 +355,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             return;
           }
 
-          final recoveryService = ref.read(
-            profilePhotoRecoveryServiceProvider,
-          );
+          final recoveryService = ref.read(profilePhotoRecoveryServiceProvider);
 
           await recoveryService.markPending();
 

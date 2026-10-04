@@ -66,13 +66,13 @@ class Trip {
 
   /// Etichetta leggibile della destinazione.
   ///
-  /// Rimane separata dai dati strutturati per compatibilitÃƒÂ  con i viaggi
+  /// Rimane separata dai dati strutturati per compatibilità con i viaggi
   /// creati prima dell'introduzione di destinationData.
   final String destination;
 
   /// Informazioni geografiche strutturate della destinazione.
   ///
-  /// ÃƒË† nullable per mantenere compatibilitÃƒÂ  con i viaggi esistenti che
+  /// È nullable per mantenere compatibilità con i viaggi esistenti che
   /// possiedono soltanto il campo destination.
   final TripDestinationData? destinationData;
 
@@ -87,8 +87,8 @@ class Trip {
 
   /// URL pubblico della copertina scelta dall'utente.
   ///
-  /// ÃƒË† nullable perchÃƒÂ© un viaggio puÃƒÂ² esistere senza una copertina
-  /// personalizzata. In quel caso la UI utilizzerÃƒÂ  il fallback Amaterasu.
+  /// È nullable perché un viaggio può esistere senza una copertina
+  /// personalizzata. In quel caso la UI utilizzerà il fallback Amaterasu.
   final String? coverUrl;
 
   /// Percorso del file in Firebase Storage.
@@ -99,8 +99,8 @@ class Trip {
 
   /// Archivio cloud definitivo associato al viaggio.
   ///
-  /// ÃƒË† nullable perchÃƒÂ© la configurazione dell'archivio non ÃƒÂ¨ obbligatoria
-  /// e per mantenere compatibilitÃƒÂ  con i viaggi giÃƒÂ  esistenti.
+  /// È nullable perché la configurazione dell'archivio non è obbligatoria
+  /// e per mantenere compatibilità con i viaggi già esistenti.
   final TripCloudArchive? cloudArchive;
 
   factory Trip.fromFirestore({

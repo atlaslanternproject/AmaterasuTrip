@@ -2576,7 +2576,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripPrivacyAccessPrivate.
   ///
   /// In en, this message translates to:
-  /// **'Private Â· Only authorised travellers can access'**
+  /// **'Private · Only authorised travellers can access'**
   String get tripPrivacyAccessPrivate;
 
   /// No description provided for @tripPrivacyInviteLink.
@@ -2642,7 +2642,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripManagementArchiveConfigured.
   ///
   /// In en, this message translates to:
-  /// **'Configured Â· {provider}'**
+  /// **'Configured · {provider}'**
   String tripManagementArchiveConfigured(String provider);
 
   /// No description provided for @tripManagementArchiveNotConfigured.
@@ -3206,7 +3206,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripManagementArchiveNetworkUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Needs checking Â· connection unavailable'**
+  /// **'Needs checking · connection unavailable'**
   String get tripManagementArchiveNetworkUnavailable;
 
   /// No description provided for @tripManagementArchiveError.

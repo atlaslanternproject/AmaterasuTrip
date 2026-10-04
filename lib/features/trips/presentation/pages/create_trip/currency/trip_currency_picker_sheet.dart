@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import '../destination/services/destination_places_service.dart';
 
@@ -19,7 +19,8 @@ class TripCurrencyPickerSheet extends StatefulWidget {
   final String noResultsText;
 
   @override
-  State<TripCurrencyPickerSheet> createState() => _TripCurrencyPickerSheetState();
+  State<TripCurrencyPickerSheet> createState() =>
+      _TripCurrencyPickerSheetState();
 }
 
 class _TripCurrencyPickerSheetState extends State<TripCurrencyPickerSheet> {
@@ -241,5 +242,3 @@ class _TripCurrencyPickerSheetState extends State<TripCurrencyPickerSheet> {
     );
   }
 }
-
-

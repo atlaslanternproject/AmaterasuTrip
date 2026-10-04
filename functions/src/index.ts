@@ -418,3 +418,78 @@ export const acceptTripInvite = onCall(async (request) => {
     role: "traveler",
   };
 });
+
+export const deleteTrip = onCall(
+  {
+    timeoutSeconds: 300,
+  },
+  async (request) => {
+    const uid = request.auth?.uid;
+
+    if (uid == null) {
+      throw new HttpsError(
+        "unauthenticated",
+        "Authentication is required.",
+      );
+    }
+
+    const rawTripId = request.data?.tripId;
+
+    if (
+      typeof rawTripId !== "string" ||
+      rawTripId.trim().length === 0
+    ) {
+      throw new HttpsError(
+        "invalid-argument",
+        "A valid tripId is required.",
+      );
+    }
+
+    const tripId = rawTripId.trim();
+    const tripRef = db.collection("trips").doc(tripId);
+    const tripSnapshot = await tripRef.get();
+
+    if (!tripSnapshot.exists) {
+      throw new HttpsError(
+        "not-found",
+        "Trip not found.",
+      );
+    }
+
+    const tripData = tripSnapshot.data();
+
+    if (tripData?.ownerUid !== uid) {
+      throw new HttpsError(
+        "permission-denied",
+        "Only the trip owner can delete the trip.",
+      );
+    }
+
+    // Delete every current and future subcollection recursively.
+    //
+    // The parent trip document is intentionally kept until all
+    // descendants are gone. If a recursive delete fails, the owner
+    // can retry the operation safely.
+    const subcollections = await tripRef.listCollections();
+
+    for (const collectionRef of subcollections) {
+      await db.recursiveDelete(collectionRef);
+    }
+
+    const inviteRef = db.collection("tripInvites").doc(tripId);
+
+    // Once descendants are gone, remove both top-level documents
+    // together.
+    const batch = db.batch();
+
+    batch.delete(inviteRef);
+    batch.delete(tripRef);
+
+    await batch.commit();
+
+    return {
+      deleted: true,
+      tripId,
+    };
+  },
+);

@@ -469,7 +469,7 @@
     "tripSettingsManagementSubtitle":  "Archive, duplicate, export or delete the trip",
     "tripPrivacyIntro":  "Control access, invitations and sharing for this trip.",
     "tripPrivacyAccess":  "Trip access",
-    "tripPrivacyAccessPrivate":  "Private Â· Only authorised travellers can access",
+    "tripPrivacyAccessPrivate":  "Private · Only authorised travellers can access",
     "tripPrivacyInviteLink":  "Invitation link",
     "tripPrivacyInviteLinkSubtitle":  "Create and manage the private link used to invite new travellers",
     "tripPrivacyTravellers":  "Travellers",
@@ -480,7 +480,7 @@
     "tripManagementLoadError":  "Unable to load trip management information.",
     "tripManagementArchiveSection":  "Trip storage",
     "tripManagementArchiveStatus":  "Storage status",
-    "tripManagementArchiveConfigured":  "Configured Â· {provider}",
+    "tripManagementArchiveConfigured":  "Configured · {provider}",
     "@tripManagementArchiveConfigured":  {
                                              "placeholders":  {
                                                                   "provider":  {
@@ -581,7 +581,7 @@
     "tripManagementArchiveInaccessible":  "Storage unavailable",
     "tripManagementArchiveNotFound":  "Storage deleted or not found",
     "tripManagementArchiveInsufficientSpace":  "Insufficient Google Drive storage",
-    "tripManagementArchiveNetworkUnavailable":  "Needs checking Â· connection unavailable",
+    "tripManagementArchiveNetworkUnavailable":  "Needs checking · connection unavailable",
     "tripManagementArchiveError":  "Synchronisation error",
     "tripManagementArchiveVerified":  "Storage checked successfully.",
     "tripManagementArchiveReconnectSuccess":  "Google Drive has been reconnected. The trip storage is accessible.",

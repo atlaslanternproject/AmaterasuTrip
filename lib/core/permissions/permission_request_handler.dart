@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'app_permission.dart';
 import 'permission_result.dart';
@@ -27,11 +27,7 @@ Future<bool> requestAppPermission({
 
       messenger
         ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            content: Text(deniedMessage),
-          ),
-        );
+        ..showSnackBar(SnackBar(content: Text(deniedMessage)));
 
       return false;
 

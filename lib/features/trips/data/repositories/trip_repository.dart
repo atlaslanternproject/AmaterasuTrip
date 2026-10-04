@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
@@ -276,8 +277,29 @@ class TripRepository {
   }
 
   Future<void> deleteTrip({required String tripId}) async {
-    final tripRef = await _ownedTripReference(tripId);
-    await tripRef.delete();
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw FirebaseAuthException(code: 'user-not-found');
+    }
+
+    // Ensure an auth token is available before invoking the
+    // authenticated callable function.
+    await user.getIdToken();
+
+    final callable = FirebaseFunctions.instanceFor(
+      region: 'europe-west1',
+    ).httpsCallable('deleteTrip');
+
+    final result = await callable.call<Map<String, dynamic>>({
+      'tripId': tripId,
+    });
+
+    final data = result.data;
+
+    if (data['deleted'] != true || data['tripId'] != tripId) {
+      throw StateError('Invalid deleteTrip response.');
+    }
   }
 
   Future<DocumentReference<Map<String, dynamic>>> _ownedTripReference(
