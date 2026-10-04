@@ -72,6 +72,7 @@ class TripInviteRepository {
       tripId: normalizedTrip['id'] as String? ?? tripId,
       name: normalizedTrip['name'] as String? ?? '',
       destination: normalizedTrip['destination'] as String? ?? '',
+      coverUrl: normalizedTrip['coverUrl'] as String?,
       startDate: _dateTimeFromMilliseconds(normalizedTrip['startDate']),
       endDate: _dateTimeFromMilliseconds(normalizedTrip['endDate']),
     );
@@ -142,6 +143,7 @@ class ValidatedTripInvite {
     required this.destination,
     required this.startDate,
     required this.endDate,
+    this.coverUrl,
   });
 
   final String tripId;
@@ -149,6 +151,7 @@ class ValidatedTripInvite {
   final String destination;
   final DateTime? startDate;
   final DateTime? endDate;
+  final String? coverUrl;
 }
 
 class TripTravellerProfile {

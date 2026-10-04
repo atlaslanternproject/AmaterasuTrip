@@ -202,6 +202,8 @@ export const validateTripInvite = onCall(async (request) => {
       id: tripSnapshot.id,
       name: tripData?.name ?? "",
       destination: tripData?.destination ?? "",
+      coverUrl:
+        typeof tripData?.coverUrl === "string" ? tripData.coverUrl : null,
       startDate: tripData?.startDate?.toMillis?.() ?? null,
       endDate: tripData?.endDate?.toMillis?.() ?? null,
     },

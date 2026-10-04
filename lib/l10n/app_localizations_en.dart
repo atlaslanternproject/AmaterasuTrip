@@ -1666,4 +1666,109 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripInformationUpdateError => 'Unable to update the trip information.';
+
+  @override
+  String get tripInviteAppBarTitle => 'Trip invitation';
+
+  @override
+  String get tripInviteHeading => 'You\'ve been invited to a trip';
+
+  @override
+  String get tripInviteContinue => 'Continue';
+
+  @override
+  String get tripInviteUnavailableTitle => 'Invitation unavailable';
+
+  @override
+  String get tripInviteUnavailableBody => 'The link may be invalid, revoked or replaced by a newer invitation.';
+
+  @override
+  String get tripInviteRetry => 'Try again';
+
+  @override
+  String get tripQuestionnaireTitle => 'Trip profile';
+
+  @override
+  String get tripQuestionnaireIntro => 'This information helps the group organise the trip more easily and safely.';
+
+  @override
+  String get tripQuestionnaireYes => 'Yes';
+
+  @override
+  String get tripQuestionnaireNo => 'No';
+
+  @override
+  String get tripQuestionnaireEsim => 'Will you have an eSIM or internet connection during the trip?';
+
+  @override
+  String get tripQuestionnaireCheckedBaggage => 'Will you have checked baggage?';
+
+  @override
+  String get tripQuestionnaireCabinBaggage => 'Will you have cabin baggage up to 10 kg?';
+
+  @override
+  String get tripQuestionnaireOptionalSection => 'Health and accessibility';
+
+  @override
+  String get tripQuestionnaireAllergies => 'Allergies';
+
+  @override
+  String get tripQuestionnaireIntolerances => 'Intolerances';
+
+  @override
+  String get tripQuestionnaireAccessibility => 'Medical information or accessibility requirements';
+
+  @override
+  String get tripQuestionnaireEmergencySection => 'Emergency contact';
+
+  @override
+  String get tripQuestionnaireEmergencyName => 'Full name';
+
+  @override
+  String get tripQuestionnaireEmergencyPhone => 'Phone number';
+
+  @override
+  String get tripQuestionnaireRequiredHint => 'Complete all required questions and, when you answer Yes, provide the requested details.';
+
+  @override
+  String get tripQuestionnairePresenceConfirm => 'I confirm that I will take part in this trip.';
+
+  @override
+  String get tripQuestionnaireSubmit => 'Confirm participation';
+
+  @override
+  String get tripQuestionnaireSubmitError => 'Your participation could not be confirmed. Please try again.';
+
+  @override
+  String get tripQuestionnaireRequiredLegend => 'required question';
+
+  @override
+  String get tripQuestionnaireOrganisationSection => 'Organisation';
+
+  @override
+  String get tripQuestionnaireCountrySearch => 'Search country';
+
+  @override
+  String get tripQuestionnaireCountrySearchHint => 'Country name or calling code';
+
+  @override
+  String get tripQuestionnairePhoneHint => 'Number';
+
+  @override
+  String get tripQuestionnaireAllergiesQuestion => 'Do you have any allergies?';
+
+  @override
+  String get tripQuestionnaireIntolerancesQuestion => 'Do you have any intolerances?';
+
+  @override
+  String get tripQuestionnaireMedicalAccessibilityQuestion => 'Do you have any medical conditions or accessibility requirements relevant to the trip?';
+
+  @override
+  String get tripQuestionnaireDetailsHint => 'Provide details';
+
+  @override
+  String get tripQuestionnaireSafetyNoticeTitle => 'Important information';
+
+  @override
+  String get tripQuestionnaireSafetyNoticeBody => 'Please provide all information relevant to health, safety and accessibility. Information that is not disclosed may prevent the group from arranging suitable assistance, alternatives or accommodations in advance.';
 }

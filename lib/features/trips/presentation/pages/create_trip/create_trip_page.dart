@@ -550,17 +550,14 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
               debugPrint('Trip invite created.');
               debugPrint('Trip ID: ${invite.tripId}');
               debugPrint('Invite ID: ${invite.inviteId}');
-              debugPrint('Invite token: ${invite.token}');
 
               if (!context.mounted) {
                 return;
               }
 
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  const SnackBar(content: Text('Invito creato correttamente.')),
-                );
+              context.push(
+                '/trip-invite/${invite.tripId}?token=${Uri.encodeQueryComponent(invite.token)}',
+              );
             } catch (error, stackTrace) {
               debugPrint('Trip invite creation failed: $error');
               debugPrintStack(stackTrace: stackTrace);

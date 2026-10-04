@@ -3364,6 +3364,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to update the trip information.'**
   String get tripInformationUpdateError;
+
+  /// No description provided for @tripInviteAppBarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip invitation'**
+  String get tripInviteAppBarTitle;
+
+  /// No description provided for @tripInviteHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve been invited to a trip'**
+  String get tripInviteHeading;
+
+  /// No description provided for @tripInviteContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get tripInviteContinue;
+
+  /// No description provided for @tripInviteUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation unavailable'**
+  String get tripInviteUnavailableTitle;
+
+  /// No description provided for @tripInviteUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The link may be invalid, revoked or replaced by a newer invitation.'**
+  String get tripInviteUnavailableBody;
+
+  /// No description provided for @tripInviteRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tripInviteRetry;
+
+  /// No description provided for @tripQuestionnaireTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip profile'**
+  String get tripQuestionnaireTitle;
+
+  /// No description provided for @tripQuestionnaireIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'This information helps the group organise the trip more easily and safely.'**
+  String get tripQuestionnaireIntro;
+
+  /// No description provided for @tripQuestionnaireYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get tripQuestionnaireYes;
+
+  /// No description provided for @tripQuestionnaireNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get tripQuestionnaireNo;
+
+  /// No description provided for @tripQuestionnaireEsim.
+  ///
+  /// In en, this message translates to:
+  /// **'Will you have an eSIM or internet connection during the trip?'**
+  String get tripQuestionnaireEsim;
+
+  /// No description provided for @tripQuestionnaireCheckedBaggage.
+  ///
+  /// In en, this message translates to:
+  /// **'Will you have checked baggage?'**
+  String get tripQuestionnaireCheckedBaggage;
+
+  /// No description provided for @tripQuestionnaireCabinBaggage.
+  ///
+  /// In en, this message translates to:
+  /// **'Will you have cabin baggage up to 10 kg?'**
+  String get tripQuestionnaireCabinBaggage;
+
+  /// No description provided for @tripQuestionnaireOptionalSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Health and accessibility'**
+  String get tripQuestionnaireOptionalSection;
+
+  /// No description provided for @tripQuestionnaireAllergies.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies'**
+  String get tripQuestionnaireAllergies;
+
+  /// No description provided for @tripQuestionnaireIntolerances.
+  ///
+  /// In en, this message translates to:
+  /// **'Intolerances'**
+  String get tripQuestionnaireIntolerances;
+
+  /// No description provided for @tripQuestionnaireAccessibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical information or accessibility requirements'**
+  String get tripQuestionnaireAccessibility;
+
+  /// No description provided for @tripQuestionnaireEmergencySection.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contact'**
+  String get tripQuestionnaireEmergencySection;
+
+  /// No description provided for @tripQuestionnaireEmergencyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get tripQuestionnaireEmergencyName;
+
+  /// No description provided for @tripQuestionnaireEmergencyPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get tripQuestionnaireEmergencyPhone;
+
+  /// No description provided for @tripQuestionnaireRequiredHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete all required questions and, when you answer Yes, provide the requested details.'**
+  String get tripQuestionnaireRequiredHint;
+
+  /// No description provided for @tripQuestionnairePresenceConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'I confirm that I will take part in this trip.'**
+  String get tripQuestionnairePresenceConfirm;
+
+  /// No description provided for @tripQuestionnaireSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm participation'**
+  String get tripQuestionnaireSubmit;
+
+  /// No description provided for @tripQuestionnaireSubmitError.
+  ///
+  /// In en, this message translates to:
+  /// **'Your participation could not be confirmed. Please try again.'**
+  String get tripQuestionnaireSubmitError;
+
+  /// No description provided for @tripQuestionnaireRequiredLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'required question'**
+  String get tripQuestionnaireRequiredLegend;
+
+  /// No description provided for @tripQuestionnaireOrganisationSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Organisation'**
+  String get tripQuestionnaireOrganisationSection;
+
+  /// No description provided for @tripQuestionnaireCountrySearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search country'**
+  String get tripQuestionnaireCountrySearch;
+
+  /// No description provided for @tripQuestionnaireCountrySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Country name or calling code'**
+  String get tripQuestionnaireCountrySearchHint;
+
+  /// No description provided for @tripQuestionnairePhoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Number'**
+  String get tripQuestionnairePhoneHint;
+
+  /// No description provided for @tripQuestionnaireAllergiesQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you have any allergies?'**
+  String get tripQuestionnaireAllergiesQuestion;
+
+  /// No description provided for @tripQuestionnaireIntolerancesQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you have any intolerances?'**
+  String get tripQuestionnaireIntolerancesQuestion;
+
+  /// No description provided for @tripQuestionnaireMedicalAccessibilityQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you have any medical conditions or accessibility requirements relevant to the trip?'**
+  String get tripQuestionnaireMedicalAccessibilityQuestion;
+
+  /// No description provided for @tripQuestionnaireDetailsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Provide details'**
+  String get tripQuestionnaireDetailsHint;
+
+  /// No description provided for @tripQuestionnaireSafetyNoticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Important information'**
+  String get tripQuestionnaireSafetyNoticeTitle;
+
+  /// No description provided for @tripQuestionnaireSafetyNoticeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide all information relevant to health, safety and accessibility. Information that is not disclosed may prevent the group from arranging suitable assistance, alternatives or accommodations in advance.'**
+  String get tripQuestionnaireSafetyNoticeBody;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

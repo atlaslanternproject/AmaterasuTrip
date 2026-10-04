@@ -10,6 +10,7 @@ import '../features/auth/presentation/pages/google_auth.dart';
 
 import '../features/trips/presentation/pages/trips_page.dart';
 import '../features/trips/presentation/pages/create_trip/create_trip_page.dart';
+import '../features/trips/presentation/pages/invite/trip_invite_page.dart';
 
 import '../features/trips/presentation/pages/workspace/overview/trip_overview_page.dart';
 import '../features/trips/presentation/pages/workspace/itinerary/trip_itinerary_page.dart';
@@ -153,6 +154,15 @@ final amaterasuRouter = GoRouter(
       path: '/trips/create',
       builder: (context, state) {
         return const CreateTripPage();
+      },
+    ),
+    GoRoute(
+      path: '/trip-invite/:tripId',
+      builder: (context, state) {
+        final tripId = state.pathParameters['tripId']!;
+        final token = state.uri.queryParameters['token'] ?? '';
+
+        return TripInvitePage(tripId: tripId, token: token);
       },
     ),
 

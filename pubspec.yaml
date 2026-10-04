@@ -1,7 +1,7 @@
 name: amaterasutrip
 description: "Amaterasu Trip - Japan Travel Planner"
 publish_to: 'none'
-version: 1.4.3+4
+version: 1.5.0+5
 environment:
   sdk: ^3.12.2
 dependencies:
@@ -35,6 +35,7 @@ dependencies:
   googleapis_auth: ^2.3.4
   extension_google_sign_in_as_googleapis_auth: ^2.0.13
   http: ^1.6.0
+  country_picker: 2.0.28
 dev_dependencies:
   flutter_test:
     sdk: flutter
