@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../providers/auth_provider.dart';
 import 'auth_page.dart';
@@ -8,12 +10,16 @@ import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
 import 'package:amaterasutrip/core/notifications/firebase_messaging_service.dart';
 
 class AuthGate extends ConsumerStatefulWidget {
-  const AuthGate({super.key});
+  const AuthGate({super.key, this.returnTo});
+
+  final String? returnTo;
   @override
   ConsumerState<AuthGate> createState() => _AuthGateState();
 }
 
 class _AuthGateState extends ConsumerState<AuthGate> {
+  bool _sawSignedOutState = false;
+  bool _signOutScheduled = false;
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authStateProvider);
@@ -55,7 +61,9 @@ class _AuthGateState extends ConsumerState<AuthGate> {
               -> login
             */
             if (user == null) {
-              return const AuthPage();
+              _sawSignedOutState = true;
+              _signOutScheduled = false;
+              return AuthPage(returnTo: widget.returnTo);
             }
             /*
               Utente loggato:
@@ -63,12 +71,43 @@ class _AuthGateState extends ConsumerState<AuthGate> {
               Remember me serve solo
               per il prossimo avvio.
             */
-            if (!rememberMe) {
-              WidgetsBinding.instance.addPostFrameCallback((_) async {
-                await ref.read(authRepositoryProvider).signOut();
-              });
-              return const AuthPage();
+            if (!rememberMe && !_sawSignedOutState) {
+              if (!_signOutScheduled) {
+                _signOutScheduled = true;
+
+                WidgetsBinding.instance.addPostFrameCallback((_) async {
+                  try {
+                    await ref.read(authRepositoryProvider).signOut();
+                  } finally {
+                    if (mounted) {
+                      _signOutScheduled = false;
+                    }
+                  }
+                });
+              }
+
+              return AuthPage(returnTo: widget.returnTo);
             }
+            final returnTo = InviteAuthReturn.normalize(widget.returnTo);
+
+            if (returnTo != null) {
+              final destination = user.emailVerified
+                  ? returnTo
+                  : InviteAuthReturn.route('/verify-email', returnTo);
+
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted) {
+                  return;
+                }
+
+                context.go(destination);
+              });
+
+              return const Scaffold(
+                body: Center(child: CircularProgressIndicator()),
+              );
+            }
+
             return const HomePage();
           },
         );

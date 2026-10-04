@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import '../../../../core/widgets/buttons/Amaterasu_discord_button.dart';
 import '../../../../core/widgets/buttons/Amaterasu_google_button.dart';
@@ -13,7 +14,9 @@ import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class RegisterCard extends ConsumerStatefulWidget {
-  const RegisterCard({super.key});
+  const RegisterCard({super.key, this.returnTo});
+
+  final String? returnTo;
   @override
   ConsumerState<RegisterCard> createState() => _RegisterCardState();
 }
@@ -142,7 +145,9 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
                     );
                 debugPrint("REGISTER OK");
                 if (!context.mounted) return;
-                context.go('/verify-email');
+                context.go(
+                  InviteAuthReturn.route('/verify-email', widget.returnTo),
+                );
               } on FirebaseAuthException catch (e) {
                 debugPrint("ERRORE REGISTER: ${e.code}");
                 if (!context.mounted) return;
@@ -163,7 +168,9 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
           const SizedBox(height: 20),
           AmaterasuGoogleButton(
             onPressed: () {
-              context.go('/google-auth');
+              context.go(
+                InviteAuthReturn.route('/google-auth', widget.returnTo),
+              );
             },
           ),
           const SizedBox(height: 12),
@@ -171,7 +178,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
           const SizedBox(height: 16),
           TextButton(
             onPressed: () {
-              context.go('/');
+              context.go(InviteAuthReturn.route('/', widget.returnTo));
             },
             child: Text(l10n.authAlreadyHaveAccountSignIn),
           ),

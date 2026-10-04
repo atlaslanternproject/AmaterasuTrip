@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repository.dart';
@@ -66,6 +69,23 @@ class _TripInvitePageState extends ConsumerState<TripInvitePage> {
             return _InviteContent(
               invite: invite,
               onContinue: () {
+                final returnTo = Uri(
+                  path: '/trip-invite/${widget.tripId}',
+                  queryParameters: {'token': widget.token},
+                ).toString();
+
+                final user = FirebaseAuth.instance.currentUser;
+
+                if (user == null) {
+                  context.go(InviteAuthReturn.route('/', returnTo));
+                  return;
+                }
+
+                if (!user.emailVerified) {
+                  context.go(InviteAuthReturn.route('/verify-email', returnTo));
+                  return;
+                }
+
                 Navigator.of(context).push(
                   PageRouteBuilder<void>(
                     transitionDuration: const Duration(milliseconds: 160),

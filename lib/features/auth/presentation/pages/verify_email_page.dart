@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import '../../../../core/widgets/layout/Amaterasu_background.dart';
 import '../../../../core/widgets/layout/Amaterasu_hero.dart';
 import '../../../../core/widgets/auth/amaterasu_email_verification_card.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class VerifyEmailPage extends StatefulWidget {
-  const VerifyEmailPage({super.key});
+  const VerifyEmailPage({super.key, this.returnTo});
+
+  final String? returnTo;
   @override
   State<VerifyEmailPage> createState() => _VerifyEmailPageState();
 }
@@ -24,7 +27,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     if (updatedUser?.emailVerified ?? false) {
       debugPrint("EMAIL VERIFICATA");
       if (!mounted) return;
-      context.go('/');
+      context.go(InviteAuthReturn.destinationOrHome(widget.returnTo));
     } else {
       if (!mounted) return;
       final l10n = AppLocalizations.of(context)!;

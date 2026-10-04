@@ -540,57 +540,8 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => TripCreatedPage(
+          tripId: tripId,
           tripName: tripName,
-          onInviteTravellers: () async {
-            try {
-              final invite = await ref
-                  .read(tripInviteRepositoryProvider)
-                  .createTripInvite(tripId: tripId);
-
-              debugPrint('Trip invite created.');
-              debugPrint('Trip ID: ${invite.tripId}');
-              debugPrint('Invite ID: ${invite.inviteId}');
-
-              if (!context.mounted) {
-                return;
-              }
-
-              context.push(
-                '/trip-invite/${invite.tripId}?token=${Uri.encodeQueryComponent(invite.token)}',
-              );
-            } catch (error, stackTrace) {
-              debugPrint('Trip invite creation failed: $error');
-              debugPrintStack(stackTrace: stackTrace);
-
-              if (!context.mounted) {
-                return;
-              }
-
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(content: Text('Errore creazione invito: $error')),
-                );
-            }
-          },
-          onCopyLink: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  AppLocalizations.of(context)!.tripCreatedLinkCopied,
-                ),
-              ),
-            );
-          },
-          onShare: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  AppLocalizations.of(context)!.tripCreatedShareComingSoon,
-                ),
-              ),
-            );
-          },
           onEnterTrip: () {
             context.go('/trips/$tripId');
           },

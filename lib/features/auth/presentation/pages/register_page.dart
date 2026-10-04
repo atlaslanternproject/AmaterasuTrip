@@ -4,7 +4,9 @@ import '../../../../core/widgets/layout/Amaterasu_hero.dart';
 import '../widgets/register_card.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+  const RegisterPage({super.key, this.returnTo});
+
+  final String? returnTo;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class RegisterPage extends StatelessWidget {
                       children: [
                         const AmaterasuHero(),
                         const SizedBox(height: 12),
-                        const RegisterCard(),
+                        RegisterCard(returnTo: returnTo),
                         const SizedBox(height: 40),
                       ],
                     ),

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class GoogleAuth extends ConsumerStatefulWidget {
-  const GoogleAuth({super.key});
+  const GoogleAuth({super.key, this.returnTo});
+
+  final String? returnTo;
   @override
   ConsumerState<GoogleAuth> createState() => _GoogleAuthState();
 }
@@ -29,12 +32,12 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
           .loginWithGoogle();
       if (!mounted) return;
       if (credential == null) {
-        context.go('/');
+        context.go(InviteAuthReturn.route('/', widget.returnTo));
         return;
       }
       final user = credential.user;
       if (user == null) {
-        context.go('/');
+        context.go(InviteAuthReturn.route('/', widget.returnTo));
         return;
       }
       debugPrint("GOOGLE LOGIN OK");
@@ -47,10 +50,10 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
       if (!mounted) return;
       if (playerDoc.exists) {
         debugPrint("PLAYER ESISTE -> HOME");
-        context.go('/home');
+        context.go(InviteAuthReturn.destinationOrHome(widget.returnTo));
       } else {
         debugPrint("PLAYER NON ESISTE -> CREATE USERNAME");
-        context.go('/create-username');
+        context.go(InviteAuthReturn.route('/create-username', widget.returnTo));
       }
     } catch (e) {
       debugPrint("GOOGLE AUTH ERROR");

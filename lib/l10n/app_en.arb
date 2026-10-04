@@ -643,5 +643,25 @@
   "tripQuestionnaireMedicalAccessibilityQuestion": "Do you have any medical conditions or accessibility requirements relevant to the trip?",
   "tripQuestionnaireDetailsHint": "Provide details",
   "tripQuestionnaireSafetyNoticeTitle": "Important information",
-  "tripQuestionnaireSafetyNoticeBody": "Please provide all information relevant to health, safety and accessibility. Information that is not disclosed may prevent the group from arranging suitable assistance, alternatives or accommodations in advance."
+  "tripQuestionnaireSafetyNoticeBody": "Please provide all information relevant to health, safety and accessibility. Information that is not disclosed may prevent the group from arranging suitable assistance, alternatives or accommodations in advance.",
+"tripCreatedInviteShareSubject": "Invitation to {tripName}",
+  "@tripCreatedInviteShareSubject": {
+    "placeholders": {
+      "tripName": {
+        "type": "String"
+      }
+    }
+  },
+  "tripCreatedInviteShareText": "Join the trip {tripName} on Amaterasu Trip.\nOpen this invitation:\n{link}",
+  "@tripCreatedInviteShareText": {
+    "placeholders": {
+      "tripName": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "tripCreatedInviteError": "The invitation could not be prepared. Please try again."
 }

@@ -21,21 +21,15 @@ class TripRepository {
     });
   }
 
-  Stream<List<Trip>> watchUserTrips() {
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user == null) {
-      return Stream.value(const []);
-    }
-
+  Stream<List<Trip>> watchUserTrips({required String uid}) {
     final memberTripsStream = _firestore
         .collection('trips')
-        .where('memberUids', arrayContains: user.uid)
+        .where('memberUids', arrayContains: uid)
         .snapshots();
 
     final ownedTripsStream = _firestore
         .collection('trips')
-        .where('ownerUid', isEqualTo: user.uid)
+        .where('ownerUid', isEqualTo: uid)
         .snapshots();
 
     return Stream<List<Trip>>.multi((controller) {

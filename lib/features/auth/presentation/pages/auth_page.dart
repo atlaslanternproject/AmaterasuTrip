@@ -4,7 +4,9 @@ import '../../../../core/widgets/layout/Amaterasu_hero.dart';
 import '../widgets/login_card.dart';
 
 class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+  const AuthPage({super.key, this.returnTo});
+
+  final String? returnTo;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class AuthPage extends StatelessWidget {
                       children: [
                         const AmaterasuHero(),
                         const SizedBox(height: 12),
-                        const LoginCard(),
+                        LoginCard(returnTo: returnTo),
                         const SizedBox(height: 40),
                       ],
                     ),

@@ -1,29 +1,136 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 
+import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repository.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
-class TripCreatedPage extends StatelessWidget {
+class TripCreatedPage extends ConsumerStatefulWidget {
   const TripCreatedPage({
     super.key,
+    required this.tripId,
     required this.tripName,
-    required this.onInviteTravellers,
-    required this.onCopyLink,
-    required this.onShare,
     required this.onEnterTrip,
   });
 
+  final String tripId;
   final String tripName;
-  final VoidCallback onInviteTravellers;
-  final VoidCallback onCopyLink;
-  final VoidCallback onShare;
   final VoidCallback onEnterTrip;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
   static const Color _surfaceColor = Color(0xFF1A1715);
   static const Color _borderColor = Color(0xFF332824);
   static const Color _creamColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
   static const Color _accentColor = Color(0xFFE35B28);
+
+  @override
+  ConsumerState<TripCreatedPage> createState() => _TripCreatedPageState();
+}
+
+class _TripCreatedPageState extends ConsumerState<TripCreatedPage> {
+  static const Color _backgroundColor = Color(0xFF100C0A);
+  static const Color _creamColor = Color(0xFFF2E7D5);
+  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+
+  TripInviteCredentials? _activeInvite;
+  Future<TripInviteCredentials>? _inviteRequest;
+
+  Future<TripInviteCredentials> _ensureInvite() async {
+    final cached = _activeInvite;
+
+    if (cached != null) {
+      return cached;
+    }
+
+    final pending = _inviteRequest;
+
+    if (pending != null) {
+      return pending;
+    }
+
+    final request = ref
+        .read(tripInviteRepositoryProvider)
+        .createTripInvite(tripId: widget.tripId);
+
+    _inviteRequest = request;
+
+    try {
+      final invite = await request;
+      _activeInvite = invite;
+      return invite;
+    } finally {
+      if (identical(_inviteRequest, request)) {
+        _inviteRequest = null;
+      }
+    }
+  }
+
+  String _buildInvitationUrl(TripInviteCredentials invite) {
+    final encodedTripId = Uri.encodeComponent(invite.tripId);
+    final encodedToken = Uri.encodeQueryComponent(invite.token);
+
+    return 'https://amaterasutrip.web.app/invite/'
+        '$encodedTripId?token=$encodedToken';
+  }
+
+  Future<String> _ensureInvitationUrl() async {
+    final invite = await _ensureInvite();
+    return _buildInvitationUrl(invite);
+  }
+
+  Future<void> _copyInvitation() async {
+    final l10n = AppLocalizations.of(context)!;
+
+    try {
+      final url = await _ensureInvitationUrl();
+
+      await Clipboard.setData(ClipboardData(text: url));
+
+      if (!mounted) {
+        return;
+      }
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.tripCreatedLinkCopied)));
+    } catch (_) {
+      _showInviteError();
+    }
+  }
+
+  Future<void> _shareInvitation() async {
+    final l10n = AppLocalizations.of(context)!;
+
+    try {
+      final url = await _ensureInvitationUrl();
+
+      if (!mounted) {
+        return;
+      }
+
+      await SharePlus.instance.share(
+        ShareParams(
+          subject: l10n.tripCreatedInviteShareSubject(widget.tripName),
+          text: l10n.tripCreatedInviteShareText(widget.tripName, url),
+        ),
+      );
+    } catch (_) {
+      _showInviteError();
+    }
+  }
+
+  void _showInviteError() {
+    if (!mounted) {
+      return;
+    }
+
+    final l10n = AppLocalizations.of(context)!;
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(l10n.tripCreatedInviteError)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +147,7 @@ class TripCreatedPage extends StatelessWidget {
               const SizedBox(height: 30),
 
               Text(
-                l10n.tripCreatedTitle(tripName),
+                l10n.tripCreatedTitle(widget.tripName),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: _creamColor,
@@ -65,7 +172,7 @@ class TripCreatedPage extends StatelessWidget {
               _PrimaryButton(
                 label: l10n.tripCreatedInviteTravellers,
                 icon: Icons.group_add_outlined,
-                onTap: onInviteTravellers,
+                onTap: _shareInvitation,
               ),
               const SizedBox(height: 12),
 
@@ -75,7 +182,7 @@ class TripCreatedPage extends StatelessWidget {
                     child: _SecondaryButton(
                       label: l10n.tripCreatedCopyLink,
                       icon: Icons.link_rounded,
-                      onTap: onCopyLink,
+                      onTap: _copyInvitation,
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -83,7 +190,7 @@ class TripCreatedPage extends StatelessWidget {
                     child: _SecondaryButton(
                       label: l10n.tripCreatedShare,
                       icon: Icons.ios_share_rounded,
-                      onTap: onShare,
+                      onTap: _shareInvitation,
                     ),
                   ),
                 ],
@@ -93,7 +200,7 @@ class TripCreatedPage extends StatelessWidget {
               _SecondaryButton(
                 label: l10n.tripCreatedEnterTrip,
                 icon: Icons.arrow_forward_rounded,
-                onTap: onEnterTrip,
+                onTap: widget.onEnterTrip,
               ),
               const SizedBox(height: 30),
 

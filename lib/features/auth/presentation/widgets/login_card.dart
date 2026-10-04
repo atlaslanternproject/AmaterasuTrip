@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../../../../core/widgets/buttons/Amaterasu_discord_button.dart';
@@ -14,7 +15,9 @@ import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
 import '../../../../core/storage/remember_me_storage.dart';
 
 class LoginCard extends ConsumerStatefulWidget {
-  const LoginCard({super.key});
+  const LoginCard({super.key, this.returnTo});
+
+  final String? returnTo;
   @override
   ConsumerState<LoginCard> createState() => _LoginCardState();
 }
@@ -59,9 +62,9 @@ class _LoginCardState extends ConsumerState<LoginCard> {
         return;
       }
       if (!refreshedUser.emailVerified) {
-        context.go('/verify-email');
+        context.go(InviteAuthReturn.route('/verify-email', widget.returnTo));
       } else {
-        context.go('/home');
+        context.go(InviteAuthReturn.destinationOrHome(widget.returnTo));
       }
     } on FirebaseAuthException catch (e) {
       debugPrint("ERRORE LOGIN: ${e.code}");
@@ -210,7 +213,9 @@ class _LoginCardState extends ConsumerState<LoginCard> {
           const SizedBox(height: 20),
           AmaterasuGoogleButton(
             onPressed: () {
-              context.go('/google-auth');
+              context.go(
+                InviteAuthReturn.route('/google-auth', widget.returnTo),
+              );
             },
           ),
           const SizedBox(height: 12),
@@ -218,7 +223,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
-              context.go('/register');
+              context.go(InviteAuthReturn.route('/register', widget.returnTo));
             },
             child: Text(l10n.authNoAccountRegister),
           ),

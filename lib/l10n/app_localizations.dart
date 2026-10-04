@@ -3574,6 +3574,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please provide all information relevant to health, safety and accessibility. Information that is not disclosed may prevent the group from arranging suitable assistance, alternatives or accommodations in advance.'**
   String get tripQuestionnaireSafetyNoticeBody;
+
+  /// No description provided for @tripCreatedInviteShareSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation to {tripName}'**
+  String tripCreatedInviteShareSubject(String tripName);
+
+  /// No description provided for @tripCreatedInviteShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Join the trip {tripName} on Amaterasu Trip.\nOpen this invitation:\n{link}'**
+  String tripCreatedInviteShareText(String tripName, String link);
+
+  /// No description provided for @tripCreatedInviteError.
+  ///
+  /// In en, this message translates to:
+  /// **'The invitation could not be prepared. Please try again.'**
+  String get tripCreatedInviteError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

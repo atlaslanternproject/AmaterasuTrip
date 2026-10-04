@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class CreateUsernamePage extends ConsumerStatefulWidget {
-  const CreateUsernamePage({super.key});
+  const CreateUsernamePage({super.key, this.returnTo});
+
+  final String? returnTo;
   @override
   ConsumerState<CreateUsernamePage> createState() => _CreateUsernamePageState();
 }
@@ -89,7 +92,9 @@ class _CreateUsernamePageState extends ConsumerState<CreateUsernamePage> {
                           loading = false;
                         });
                         if (!context.mounted) return;
-                        context.go('/home');
+                        context.go(
+                          InviteAuthReturn.destinationOrHome(widget.returnTo),
+                        );
                       } on FirebaseAuthException catch (e) {
                         if (!mounted) return;
                         setState(() {

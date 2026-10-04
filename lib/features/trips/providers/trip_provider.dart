@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories/trip_invite_repository.dart';
@@ -32,8 +33,18 @@ final tripCoverStorageServiceProvider = Provider<TripCoverStorageService>((
   return TripCoverStorageService();
 });
 
-final userTripsProvider = StreamProvider<List<Trip>>((ref) {
-  return ref.watch(tripRepositoryProvider).watchUserTrips();
+final _tripAuthStateProvider = StreamProvider<User?>((ref) {
+  return FirebaseAuth.instance.authStateChanges();
+});
+
+final userTripsProvider = StreamProvider.autoDispose<List<Trip>>((ref) {
+  final user = ref.watch(_tripAuthStateProvider).asData?.value;
+
+  if (user == null) {
+    return Stream.value(const <Trip>[]);
+  }
+
+  return ref.watch(tripRepositoryProvider).watchUserTrips(uid: user.uid);
 });
 
 final tripProvider = StreamProvider.family<Trip?, String>((ref, tripId) {

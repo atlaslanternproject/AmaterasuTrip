@@ -1771,4 +1771,17 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripQuestionnaireSafetyNoticeBody => 'Indica tutte le informazioni rilevanti per salute, sicurezza e accessibilità. Informazioni non dichiarate potrebbero impedire al gruppo di organizzare in anticipo assistenza, alternative o accorgimenti adeguati.';
+
+  @override
+  String tripCreatedInviteShareSubject(String tripName) {
+    return 'Invito a $tripName';
+  }
+
+  @override
+  String tripCreatedInviteShareText(String tripName, String link) {
+    return 'Unisciti al viaggio $tripName su Amaterasu Trip.\nApri questo invito:\n$link';
+  }
+
+  @override
+  String get tripCreatedInviteError => 'Non è stato possibile preparare l\'invito. Riprova.';
 }

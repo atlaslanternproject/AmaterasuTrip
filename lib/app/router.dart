@@ -1,6 +1,7 @@
 import 'package:amaterasutrip/features/auth/presentation/pages/auth_gate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
+import '../core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
 
 import '../features/auth/presentation/pages/register_page.dart';
@@ -69,7 +70,11 @@ final amaterasuRouter = GoRouter(
     }
 
     if (location == '/') {
-      return '/home';
+      final returnTo = InviteAuthReturn.normalize(
+        state.uri.queryParameters['returnTo'],
+      );
+
+      return returnTo ?? '/home';
     }
 
     return null;
@@ -82,35 +87,55 @@ final amaterasuRouter = GoRouter(
     GoRoute(
       path: '/',
       builder: (context, state) {
-        return const AuthGate();
+        return AuthGate(
+          returnTo: InviteAuthReturn.normalize(
+            state.uri.queryParameters['returnTo'],
+          ),
+        );
       },
     ),
 
     GoRoute(
       path: '/register',
       builder: (context, state) {
-        return const RegisterPage();
+        return RegisterPage(
+          returnTo: InviteAuthReturn.normalize(
+            state.uri.queryParameters['returnTo'],
+          ),
+        );
       },
     ),
 
     GoRoute(
       path: '/verify-email',
       builder: (context, state) {
-        return const VerifyEmailPage();
+        return VerifyEmailPage(
+          returnTo: InviteAuthReturn.normalize(
+            state.uri.queryParameters['returnTo'],
+          ),
+        );
       },
     ),
 
     GoRoute(
       path: '/google-auth',
       builder: (context, state) {
-        return const GoogleAuth();
+        return GoogleAuth(
+          returnTo: InviteAuthReturn.normalize(
+            state.uri.queryParameters['returnTo'],
+          ),
+        );
       },
     ),
 
     GoRoute(
       path: '/create-username',
       builder: (context, state) {
-        return const CreateUsernamePage();
+        return CreateUsernamePage(
+          returnTo: InviteAuthReturn.normalize(
+            state.uri.queryParameters['returnTo'],
+          ),
+        );
       },
     ),
 
