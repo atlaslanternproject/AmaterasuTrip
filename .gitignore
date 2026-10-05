@@ -55,3 +55,5 @@ app.*.map.json
 *~
 MainActivity_broken.txt
 *.bak_*
+.firebase/
+hosting/invite/*.backup_*
