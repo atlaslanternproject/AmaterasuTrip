@@ -2,8 +2,12 @@
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
   <meta name="theme-color" content="#120e0b">
+
   <title>Amaterasu Trip · Invito</title>
 
   <style>
@@ -11,12 +15,19 @@
       box-sizing: border-box;
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
+
       display: grid;
       place-items: center;
+
       padding: 24px;
+
       background:
         radial-gradient(
           circle at top,
@@ -24,7 +35,9 @@
           #21120e 36%,
           #120e0b 72%
         );
+
       color: #f4e7d3;
+
       font-family:
         system-ui,
         -apple-system,
@@ -35,61 +48,193 @@
 
     main {
       width: min(100%, 480px);
+
       padding: 30px;
-      text-align: center;
+
       background: rgba(29, 22, 18, .94);
-      border: 1px solid rgba(214, 163, 74, .42);
+
+      border:
+        1px solid rgba(214, 163, 74, .42);
+
       border-radius: 24px;
-      box-shadow: 0 22px 70px rgba(0, 0, 0, .38);
+
+      box-shadow:
+        0 22px 70px rgba(0, 0, 0, .38);
+
+      text-align: center;
     }
 
     .sun {
       width: 64px;
       height: 64px;
+
+      margin: 0 auto 20px;
+
       display: grid;
       place-items: center;
-      margin: 0 auto 20px;
-      border: 1px solid #d6a34a;
+
+      border:
+        1px solid #d6a34a;
+
       border-radius: 50%;
+
       color: #d6a34a;
+
       font-size: 30px;
+
+      box-shadow:
+        0 0 28px rgba(214, 163, 74, .08);
     }
 
     h1 {
       margin: 0 0 10px;
+
+      color: #f4e7d3;
+
       font-size: 26px;
     }
 
     p {
+      margin-top: 10px;
+
       color: #cdbda8;
+
       line-height: 1.55;
     }
 
-    a.button {
-      display: block;
+    .button {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       margin-top: 22px;
       padding: 15px 18px;
+
+      border: 0;
       border-radius: 14px;
-      background: linear-gradient(
-        90deg,
-        #8b2f23,
-        #b9432f
-      );
+
+      background:
+        linear-gradient(
+          90deg,
+          #8b2f23,
+          #b9432f
+        );
+
       color: #fff5e8;
+
       text-decoration: none;
+
+      font: inherit;
       font-weight: 750;
+
+      cursor: pointer;
     }
 
-    a.store {
+    .button:hover {
+      filter: brightness(1.06);
+    }
+
+    .button.secondary {
+      margin-top: 10px;
+
+      background: #261c16;
+
+      border:
+        1px solid rgba(214, 163, 74, .42);
+
+      color: #f4e7d3;
+    }
+
+    .store {
       display: inline-block;
+
       margin-top: 18px;
+
       color: #d6a34a;
+
       text-decoration: none;
+
+      font-weight: 650;
+    }
+
+    .store:hover {
+      text-decoration: underline;
+    }
+
+    .fallback {
+      margin-top: 22px;
+      padding: 18px;
+
+      background:
+        rgba(112, 38, 29, .18);
+
+      border:
+        1px solid rgba(185, 67, 47, .45);
+
+      border-radius: 16px;
+
+      text-align: left;
+    }
+
+    .fallback-header {
+      display: flex;
+      align-items: flex-start;
+
+      gap: 11px;
+    }
+
+    .fallback-icon {
+      flex: 0 0 auto;
+
+      width: 34px;
+      height: 34px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background:
+        rgba(214, 163, 74, .10);
+
+      color: #d6a34a;
+
+      font-size: 18px;
+    }
+
+    .fallback-content {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .fallback h2 {
+      margin: 2px 0 6px;
+
+      color: #f4e7d3;
+
+      font-size: 17px;
+    }
+
+    .fallback p {
+      margin: 0;
+
+      font-size: 14px;
+    }
+
+    .small-note {
+      margin-top: 18px;
+
+      font-size: 12px;
+
+      color:
+        rgba(205, 189, 168, .72);
     }
 
     #error {
-      display: none;
-      margin-top: 16px;
+      margin-top: 18px;
+
       color: #e9b3a8;
     }
   </style>
@@ -101,65 +246,320 @@
 
     <h1>Amaterasu Trip</h1>
 
-    <p>
-      Hai ricevuto un invito a partecipare a un viaggio.
-    </p>
+    <p id="description"></p>
 
     <a
       id="openApp"
       class="button"
       href="#"
+    ></a>
+
+    <div
+      id="fallback"
+      class="fallback"
+      hidden
     >
-      Apri in Amaterasu Trip
-    </a>
+      <div class="fallback-header">
+        <div class="fallback-icon">
+          !
+        </div>
+
+        <div class="fallback-content">
+          <h2 id="fallbackTitle"></h2>
+
+          <p id="fallbackBody"></p>
+        </div>
+      </div>
+
+      <a
+        id="updateApp"
+        class="button"
+        href="https://play.google.com/store/apps/details?id=com.amaterasutrip"
+        target="_blank"
+        rel="noopener noreferrer"
+      ></a>
+
+      <a
+        id="retryApp"
+        class="button secondary"
+        href="#"
+      ></a>
+    </div>
 
     <a
+      id="storeLink"
       class="store"
       href="https://play.google.com/store/apps/details?id=com.amaterasutrip"
-    >
-      Apri Google Play
-    </a>
+      target="_blank"
+      rel="noopener noreferrer"
+    ></a>
 
-    <p id="error">
-      Invito non valido.
-    </p>
+    <p
+      id="error"
+      hidden
+    ></p>
+
+    <p
+      id="note"
+      class="small-note"
+    ></p>
   </main>
 
   <script>
-    const parts =
-      window.location.pathname
-        .split('/')
-        .filter(Boolean);
+    (() => {
+      const playStoreUrl =
+        'https://play.google.com/store/apps/details?id=com.amaterasutrip';
 
-    const tripId =
-      parts.length >= 2 &&
-      parts[0] === 'invite'
-        ? parts[1]
-        : null;
+      const browserLanguage =
+        (
+          navigator.language ||
+          navigator.userLanguage ||
+          'it'
+        ).toLowerCase();
 
-    const token =
-      new URLSearchParams(
-        window.location.search
-      ).get('token');
+      const italian =
+        browserLanguage.startsWith('it');
 
-    const button =
-      document.getElementById('openApp');
+      const strings = italian
+        ? {
+            description:
+              'Hai ricevuto un invito a partecipare a un viaggio.',
 
-    const error =
-      document.getElementById('error');
+            openApp:
+              'Apri in Amaterasu Trip',
 
-    if (!tripId || !token) {
-      button.style.display = 'none';
-      error.style.display = 'block';
-    } else {
+            store:
+              'Scarica o aggiorna da Google Play',
+
+            fallbackTitle:
+              'Amaterasu Trip non si è aperta?',
+
+            fallbackBody:
+              'Se l’app è già installata, potresti avere una versione precedente oppure il browser potrebbe aver bloccato l’apertura. Aggiorna Amaterasu Trip e riprova.',
+
+            updateApp:
+              'Aggiorna Amaterasu Trip',
+
+            retryApp:
+              'Riprova ad aprire l’app',
+
+            error:
+              'Questo invito non è valido.',
+
+            note:
+              'Per utilizzare l’invito è necessaria Amaterasu Trip.'
+          }
+        : {
+            description:
+              'You have received an invitation to join a trip.',
+
+            openApp:
+              'Open in Amaterasu Trip',
+
+            store:
+              'Download or update on Google Play',
+
+            fallbackTitle:
+              'Amaterasu Trip did not open?',
+
+            fallbackBody:
+              'If the app is already installed, you may be using an older version or your browser may have blocked the request. Update Amaterasu Trip and try again.',
+
+            updateApp:
+              'Update Amaterasu Trip',
+
+            retryApp:
+              'Try opening the app again',
+
+            error:
+              'This invitation is not valid.',
+
+            note:
+              'Amaterasu Trip is required to use this invitation.'
+          };
+
+      document.documentElement.lang =
+        italian ? 'it' : 'en';
+
+      const description =
+        document.getElementById('description');
+
+      const openApp =
+        document.getElementById('openApp');
+
+      const fallback =
+        document.getElementById('fallback');
+
+      const fallbackTitle =
+        document.getElementById('fallbackTitle');
+
+      const fallbackBody =
+        document.getElementById('fallbackBody');
+
+      const updateApp =
+        document.getElementById('updateApp');
+
+      const retryApp =
+        document.getElementById('retryApp');
+
+      const storeLink =
+        document.getElementById('storeLink');
+
+      const error =
+        document.getElementById('error');
+
+      const note =
+        document.getElementById('note');
+
+      description.textContent =
+        strings.description;
+
+      openApp.textContent =
+        strings.openApp;
+
+      storeLink.textContent =
+        strings.store;
+
+      fallbackTitle.textContent =
+        strings.fallbackTitle;
+
+      fallbackBody.textContent =
+        strings.fallbackBody;
+
+      updateApp.textContent =
+        strings.updateApp;
+
+      retryApp.textContent =
+        strings.retryApp;
+
+      error.textContent =
+        strings.error;
+
+      note.textContent =
+        strings.note;
+
+      updateApp.href =
+        playStoreUrl;
+
+      storeLink.href =
+        playStoreUrl;
+
+      const parts =
+        window.location.pathname
+          .split('/')
+          .filter(Boolean);
+
+      const tripId =
+        parts.length >= 2 &&
+        parts[0] === 'invite'
+          ? parts[1]
+          : null;
+
+      const token =
+        new URLSearchParams(
+          window.location.search
+        ).get('token');
+
+      if (!tripId || !token) {
+        openApp.hidden = true;
+        storeLink.hidden = true;
+        note.hidden = true;
+        fallback.hidden = true;
+        error.hidden = false;
+
+        return;
+      }
+
       const deepLink =
         'amaterasutrip:///trip-invite/' +
         encodeURIComponent(tripId) +
         '?token=' +
         encodeURIComponent(token);
 
-      button.href = deepLink;
-    }
+      openApp.href = deepLink;
+      retryApp.href = deepLink;
+
+      let fallbackTimer = null;
+      let pageWasHidden = false;
+
+      function cancelFallback() {
+        if (fallbackTimer !== null) {
+          window.clearTimeout(
+            fallbackTimer
+          );
+
+          fallbackTimer = null;
+        }
+      }
+
+      function appProbablyOpened() {
+        pageWasHidden = true;
+
+        cancelFallback();
+      }
+
+      function beginOpenAttempt() {
+        pageWasHidden = false;
+
+        fallback.hidden = true;
+
+        cancelFallback();
+
+        /*
+         * Non possiamo leggere dal browser la versione
+         * dell'app installata.
+         *
+         * Se, dopo il tentativo di deep link, questa pagina
+         * è ancora visibile, mostriamo quindi un fallback:
+         * app vecchia, app assente oppure apertura bloccata.
+         */
+        fallbackTimer =
+          window.setTimeout(
+            () => {
+              if (
+                !pageWasHidden &&
+                document.visibilityState ===
+                  'visible'
+              ) {
+                fallback.hidden = false;
+
+                fallback.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'nearest'
+                });
+              }
+            },
+            1800
+          );
+      }
+
+      openApp.addEventListener(
+        'click',
+        beginOpenAttempt
+      );
+
+      retryApp.addEventListener(
+        'click',
+        beginOpenAttempt
+      );
+
+      document.addEventListener(
+        'visibilitychange',
+        () => {
+          if (
+            document.visibilityState ===
+            'hidden'
+          ) {
+            appProbablyOpened();
+          }
+        }
+      );
+
+      window.addEventListener(
+        'pagehide',
+        appProbablyOpened
+      );
+    })();
   </script>
 </body>
 </html>
