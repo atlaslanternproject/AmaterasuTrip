@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
-class TripSettingsPage extends StatelessWidget {
+class TripSettingsPage extends ConsumerWidget {
   const TripSettingsPage({super.key, required this.tripId});
 
   final String tripId;
@@ -16,8 +19,9 @@ class TripSettingsPage extends StatelessWidget {
   static const Color _secondaryTextColor = Color(0xFFB7A99B);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final access = ref.watch(tripAccessProvider(tripId));
 
     final items = [
       _TripSettingsItem(
@@ -25,30 +29,35 @@ class TripSettingsPage extends StatelessWidget {
         subtitle: l10n.tripSettingsInformationSubtitle,
         icon: Icons.info_outline_rounded,
         route: '/trips/$tripId/settings/information',
+        permission: TripPermission.viewInformation,
       ),
       _TripSettingsItem(
         title: l10n.tripSettingsTravellers,
         subtitle: l10n.tripSettingsTravellersSubtitle,
         icon: Icons.group_outlined,
         route: '/trips/$tripId/settings/travellers',
+        permission: TripPermission.viewTravellers,
       ),
       _TripSettingsItem(
         title: l10n.tripSettingsNotifications,
         subtitle: l10n.tripSettingsNotificationsSubtitle,
         icon: Icons.notifications_none_rounded,
         route: '/trips/$tripId/settings/notifications',
+        permission: TripPermission.viewNotifications,
       ),
       _TripSettingsItem(
         title: l10n.tripSettingsPrivacy,
         subtitle: l10n.tripSettingsPrivacySubtitle,
         icon: Icons.lock_outline_rounded,
         route: '/trips/$tripId/settings/privacy',
+        permission: TripPermission.viewPrivacy,
       ),
       _TripSettingsItem(
         title: l10n.tripSettingsManagement,
         subtitle: l10n.tripSettingsManagementSubtitle,
         icon: Icons.tune_rounded,
         route: '/trips/$tripId/settings/management',
+        permission: TripPermission.viewManagement,
       ),
     ];
 
@@ -103,9 +112,11 @@ class TripSettingsPage extends StatelessWidget {
                     const SizedBox(height: 10),
                 itemBuilder: (context, index) {
                   final item = items[index];
+                  final enabled = access?.can(item.permission) ?? false;
 
                   return _SettingsCard(
                     item: item,
+                    enabled: enabled,
                     onTap: () => context.go(item.route),
                   );
                 },
@@ -119,73 +130,83 @@ class TripSettingsPage extends StatelessWidget {
 }
 
 class _SettingsCard extends StatelessWidget {
-  const _SettingsCard({required this.item, required this.onTap});
+  const _SettingsCard({
+    required this.item,
+    required this.enabled,
+    required this.onTap,
+  });
 
   final _TripSettingsItem item;
+  final bool enabled;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: TripSettingsPage._surfaceColor,
-      borderRadius: BorderRadius.circular(18),
-      child: InkWell(
-        onTap: onTap,
+    return Opacity(
+      opacity: enabled ? 1 : 0.45,
+      child: Material(
+        color: TripSettingsPage._surfaceColor,
         borderRadius: BorderRadius.circular(18),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: TripSettingsPage._borderColor.withValues(alpha: 0.6),
+        child: InkWell(
+          onTap: enabled ? onTap : null,
+          borderRadius: BorderRadius.circular(18),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(
+                color: TripSettingsPage._borderColor.withValues(alpha: 0.6),
+              ),
             ),
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 46,
-                height: 46,
-                decoration: BoxDecoration(
-                  color: TripSettingsPage._accentColor.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Icon(
-                  item.icon,
-                  color: TripSettingsPage._accentColor,
-                  size: 24,
-                ),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item.title,
-                      style: const TextStyle(
-                        color: TripSettingsPage._titleColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+            child: Row(
+              children: [
+                Container(
+                  width: 46,
+                  height: 46,
+                  decoration: BoxDecoration(
+                    color: TripSettingsPage._accentColor.withValues(
+                      alpha: 0.12,
                     ),
-                    const SizedBox(height: 3),
-                    Text(
-                      item.subtitle,
-                      style: const TextStyle(
-                        color: TripSettingsPage._secondaryTextColor,
-                        fontSize: 13,
-                        height: 1.3,
-                      ),
-                    ),
-                  ],
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Icon(
+                    item.icon,
+                    color: TripSettingsPage._accentColor,
+                    size: 24,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              const Icon(
-                Icons.chevron_right_rounded,
-                color: TripSettingsPage._secondaryTextColor,
-              ),
-            ],
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.title,
+                        style: const TextStyle(
+                          color: TripSettingsPage._titleColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        item.subtitle,
+                        style: const TextStyle(
+                          color: TripSettingsPage._secondaryTextColor,
+                          fontSize: 13,
+                          height: 1.3,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 10),
+                const Icon(
+                  Icons.chevron_right_rounded,
+                  color: TripSettingsPage._secondaryTextColor,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -199,10 +220,12 @@ class _TripSettingsItem {
     required this.subtitle,
     required this.icon,
     required this.route,
+    required this.permission,
   });
 
   final String title;
   final String subtitle;
   final IconData icon;
   final String route;
+  final TripPermission permission;
 }

@@ -107,7 +107,7 @@ class TripWorkspaceBottomBar extends StatelessWidget {
     switch (index) {
       case 0:
         if (currentSection == TripWorkspaceSection.overview) {
-          context.go('/home', extra: 1);
+          context.go('/trips');
         } else {
           context.go('/trips/$tripId');
         }

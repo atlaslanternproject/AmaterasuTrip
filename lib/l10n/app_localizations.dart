@@ -3592,6 +3592,360 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The invitation could not be prepared. Please try again.'**
   String get tripCreatedInviteError;
+
+  /// No description provided for @tripTravellersSettingsIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage trip participants, invitations and profiles.'**
+  String get tripTravellersSettingsIntro;
+
+  /// No description provided for @tripTravellersInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite traveller'**
+  String get tripTravellersInvite;
+
+  /// No description provided for @tripTravellersInviteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create and share a private invitation link'**
+  String get tripTravellersInviteSubtitle;
+
+  /// No description provided for @tripTravellersParticipants.
+  ///
+  /// In en, this message translates to:
+  /// **'Participants'**
+  String get tripTravellersParticipants;
+
+  /// No description provided for @tripTravellersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no participants in this trip yet.'**
+  String get tripTravellersEmpty;
+
+  /// No description provided for @tripTravellersLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load trip participants.'**
+  String get tripTravellersLoadError;
+
+  /// No description provided for @tripTravellersOwnerRole.
+  ///
+  /// In en, this message translates to:
+  /// **'OWNER'**
+  String get tripTravellersOwnerRole;
+
+  /// No description provided for @tripTravellersTravelerRole.
+  ///
+  /// In en, this message translates to:
+  /// **'TRAVELER'**
+  String get tripTravellersTravelerRole;
+
+  /// No description provided for @tripTravellersYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get tripTravellersYou;
+
+  /// No description provided for @tripTravellersProfileComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip profile complete'**
+  String get tripTravellersProfileComplete;
+
+  /// No description provided for @tripTravellersProfileIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip profile incomplete'**
+  String get tripTravellersProfileIncomplete;
+
+  /// No description provided for @tripTravellersSensitiveDataNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip profile may contain sensitive information such as allergies, medical or accessibility needs and emergency contacts. This information is shared with trip participants only for organisation and assistance during the trip.'**
+  String get tripTravellersSensitiveDataNotice;
+
+  /// No description provided for @tripTravellersCopyInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy invitation link'**
+  String get tripTravellersCopyInvite;
+
+  /// No description provided for @tripTravellersShareInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Share invitation'**
+  String get tripTravellersShareInvite;
+
+  /// No description provided for @tripTravellersRegenerateInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerate invitation link'**
+  String get tripTravellersRegenerateInvite;
+
+  /// No description provided for @tripTravellersRevokeInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoke invitation link'**
+  String get tripTravellersRevokeInvite;
+
+  /// No description provided for @tripTravellersInviteCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation link copied.'**
+  String get tripTravellersInviteCopied;
+
+  /// No description provided for @tripTravellersInviteRegenerated.
+  ///
+  /// In en, this message translates to:
+  /// **'A new invitation link has been generated. The previous link is no longer valid.'**
+  String get tripTravellersInviteRegenerated;
+
+  /// No description provided for @tripTravellersInviteRevoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitation link revoked.'**
+  String get tripTravellersInviteRevoked;
+
+  /// No description provided for @tripTravellersInviteActionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to manage the invitation link.'**
+  String get tripTravellersInviteActionError;
+
+  /// No description provided for @tripTravellersRevokeInviteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoke the invitation link?'**
+  String get tripTravellersRevokeInviteTitle;
+
+  /// No description provided for @tripTravellersRevokeInviteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone with the current link will no longer be able to use it to join the trip.'**
+  String get tripTravellersRevokeInviteBody;
+
+  /// No description provided for @tripTravellersRevoke.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoke'**
+  String get tripTravellersRevoke;
+
+  /// No description provided for @tripTravellersCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get tripTravellersCancel;
+
+  /// No description provided for @tripTravellersMembership.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership'**
+  String get tripTravellersMembership;
+
+  /// No description provided for @tripTravellersRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get tripTravellersRole;
+
+  /// No description provided for @tripTravellersJoinedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Member since'**
+  String get tripTravellersJoinedAt;
+
+  /// No description provided for @tripTravellersOrganisation.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip organisation'**
+  String get tripTravellersOrganisation;
+
+  /// No description provided for @tripTravellersHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health and accessibility'**
+  String get tripTravellersHealth;
+
+  /// No description provided for @tripTravellersEmergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contact'**
+  String get tripTravellersEmergency;
+
+  /// No description provided for @tripTravellersEsim.
+  ///
+  /// In en, this message translates to:
+  /// **'eSIM / internet connection'**
+  String get tripTravellersEsim;
+
+  /// No description provided for @tripTravellersCheckedBaggage.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked baggage'**
+  String get tripTravellersCheckedBaggage;
+
+  /// No description provided for @tripTravellersCabinBaggage.
+  ///
+  /// In en, this message translates to:
+  /// **'10 kg cabin baggage'**
+  String get tripTravellersCabinBaggage;
+
+  /// No description provided for @tripTravellersAllergies.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies'**
+  String get tripTravellersAllergies;
+
+  /// No description provided for @tripTravellersIntolerances.
+  ///
+  /// In en, this message translates to:
+  /// **'Intolerances'**
+  String get tripTravellersIntolerances;
+
+  /// No description provided for @tripTravellersAccessibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical / accessibility information'**
+  String get tripTravellersAccessibility;
+
+  /// No description provided for @tripTravellersEmergencyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact name'**
+  String get tripTravellersEmergencyName;
+
+  /// No description provided for @tripTravellersEmergencyPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact phone'**
+  String get tripTravellersEmergencyPhone;
+
+  /// No description provided for @tripTravellersYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get tripTravellersYes;
+
+  /// No description provided for @tripTravellersNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get tripTravellersNo;
+
+  /// No description provided for @tripTravellersUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get tripTravellersUnknown;
+
+  /// No description provided for @tripTravellersNotProvided.
+  ///
+  /// In en, this message translates to:
+  /// **'Not provided'**
+  String get tripTravellersNotProvided;
+
+  /// No description provided for @tripTravellersEditMyProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit my trip profile'**
+  String get tripTravellersEditMyProfile;
+
+  /// No description provided for @tripTravellersEditProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit trip profile'**
+  String get tripTravellersEditProfileTitle;
+
+  /// No description provided for @tripTravellersEditProfileNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This information belongs to this trip. Only you can edit your personal trip-profile information.'**
+  String get tripTravellersEditProfileNote;
+
+  /// No description provided for @tripTravellersSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get tripTravellersSave;
+
+  /// No description provided for @tripTravellersProfileUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip profile updated.'**
+  String get tripTravellersProfileUpdated;
+
+  /// No description provided for @tripTravellersProfileUpdateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to update the trip profile.'**
+  String get tripTravellersProfileUpdateError;
+
+  /// No description provided for @tripTravellersRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from trip'**
+  String get tripTravellersRemove;
+
+  /// No description provided for @tripTravellersLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave trip'**
+  String get tripTravellersLeave;
+
+  /// No description provided for @tripTravellersRemoveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove traveller?'**
+  String get tripTravellersRemoveTitle;
+
+  /// No description provided for @tripTravellersRemoveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} will lose access to the trip and to data shared with trip participants.'**
+  String tripTravellersRemoveBody(String name);
+
+  /// No description provided for @tripTravellersRemoveConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get tripTravellersRemoveConfirm;
+
+  /// No description provided for @tripTravellersLeaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave the trip?'**
+  String get tripTravellersLeaveTitle;
+
+  /// No description provided for @tripTravellersLeaveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You will lose access to the trip and to data shared with participants. You will only be able to rejoin through a new invitation.'**
+  String get tripTravellersLeaveBody;
+
+  /// No description provided for @tripTravellersLeaveConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave trip'**
+  String get tripTravellersLeaveConfirm;
+
+  /// No description provided for @tripTravellersRemovedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Traveller removed from the trip.'**
+  String get tripTravellersRemovedSuccess;
+
+  /// No description provided for @tripTravellersRemoveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to complete the operation.'**
+  String get tripTravellersRemoveError;
+
+  /// No description provided for @tripTravellersOwnerProtected.
+  ///
+  /// In en, this message translates to:
+  /// **'The OWNER cannot be removed from the trip. Any ownership change must use a dedicated transfer procedure.'**
+  String get tripTravellersOwnerProtected;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

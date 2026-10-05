@@ -1,52 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import '../../../settings/presentation/pages/settings_page.dart';
-import '../../../trips/presentation/pages/trips_page.dart';
-import '../../../../core/widgets/navigation/amaterasu_bottom_bar.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key, this.initialIndex = 0});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-  final int initialIndex;
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  late int currentIndex;
-
-  @override
-  void initState() {
-    super.initState();
-    currentIndex = widget.initialIndex;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final pages = const [_HomeContent(), TripsPage(), SettingsPage()];
-
-    return Scaffold(
-      body: pages[currentIndex],
-      bottomNavigationBar: AmaterasuBottomBar(
-        selectedIndex: currentIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-      ),
-    );
-  }
-}
-
-class _HomeContent extends StatelessWidget {
-  const _HomeContent();
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final User? user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(title: Text(l10n.appName), centerTitle: true),
       body: Center(
@@ -87,8 +52,9 @@ class _HomeContent extends StatelessWidget {
                 label: Text(l10n.logoutTest),
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
+
                   if (context.mounted) {
-                    Navigator.of(context).pop();
+                    context.go('/');
                   }
                 },
               ),

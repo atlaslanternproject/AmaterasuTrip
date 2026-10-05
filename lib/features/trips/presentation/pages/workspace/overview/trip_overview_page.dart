@@ -195,7 +195,7 @@ class _TripHero extends StatelessWidget {
             child: _HeroButton(
               icon: Icons.arrow_back_rounded,
               onPressed: () {
-                context.go('/home', extra: 1);
+                context.go('/trips');
               },
             ),
           ),

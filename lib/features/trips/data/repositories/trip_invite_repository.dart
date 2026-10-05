@@ -159,6 +159,9 @@ class TripTravellerProfile {
     required this.hasEsimOrInternet,
     required this.hasCheckedBaggage,
     required this.hasCabinBaggage10Kg,
+    required this.hasAllergies,
+    required this.hasIntolerances,
+    required this.hasMedicalAccessibilityInfo,
     this.allergies = '',
     this.intolerances = '',
     this.medicalAccessibilityInfo = '',
@@ -169,6 +172,10 @@ class TripTravellerProfile {
   final bool hasEsimOrInternet;
   final bool hasCheckedBaggage;
   final bool hasCabinBaggage10Kg;
+
+  final bool hasAllergies;
+  final bool hasIntolerances;
+  final bool hasMedicalAccessibilityInfo;
 
   final String allergies;
   final String intolerances;
@@ -182,6 +189,9 @@ class TripTravellerProfile {
       'hasEsimOrInternet': hasEsimOrInternet,
       'hasCheckedBaggage': hasCheckedBaggage,
       'hasCabinBaggage10Kg': hasCabinBaggage10Kg,
+      'hasAllergies': hasAllergies,
+      'hasIntolerances': hasIntolerances,
+      'hasMedicalAccessibilityInfo': hasMedicalAccessibilityInfo,
       'allergies': allergies.trim(),
       'intolerances': intolerances.trim(),
       'medicalAccessibilityInfo': medicalAccessibilityInfo.trim(),

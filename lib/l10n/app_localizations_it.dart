@@ -1784,4 +1784,183 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripCreatedInviteError => 'Non è stato possibile preparare l\'invito. Riprova.';
+
+  @override
+  String get tripTravellersSettingsIntro => 'Gestisci partecipanti, inviti e profili del viaggio.';
+
+  @override
+  String get tripTravellersInvite => 'Invita viaggiatore';
+
+  @override
+  String get tripTravellersInviteSubtitle => 'Crea e condividi un link privato di invito';
+
+  @override
+  String get tripTravellersParticipants => 'Partecipanti';
+
+  @override
+  String get tripTravellersEmpty => 'Non ci sono ancora partecipanti nel viaggio.';
+
+  @override
+  String get tripTravellersLoadError => 'Impossibile caricare i partecipanti.';
+
+  @override
+  String get tripTravellersOwnerRole => 'OWNER';
+
+  @override
+  String get tripTravellersTravelerRole => 'TRAVELER';
+
+  @override
+  String get tripTravellersYou => 'Tu';
+
+  @override
+  String get tripTravellersProfileComplete => 'Profilo viaggio completo';
+
+  @override
+  String get tripTravellersProfileIncomplete => 'Profilo viaggio non completato';
+
+  @override
+  String get tripTravellersSensitiveDataNotice => 'Le informazioni del profilo viaggio possono includere dati sensibili come allergie, esigenze mediche o di accessibilità e contatti di emergenza. Sono condivise con i partecipanti del viaggio esclusivamente per esigenze organizzative e di assistenza durante il viaggio.';
+
+  @override
+  String get tripTravellersCopyInvite => 'Copia link invito';
+
+  @override
+  String get tripTravellersShareInvite => 'Condividi invito';
+
+  @override
+  String get tripTravellersRegenerateInvite => 'Rigenera link invito';
+
+  @override
+  String get tripTravellersRevokeInvite => 'Revoca link invito';
+
+  @override
+  String get tripTravellersInviteCopied => 'Link di invito copiato.';
+
+  @override
+  String get tripTravellersInviteRegenerated => 'Nuovo link di invito generato. Il precedente non è più valido.';
+
+  @override
+  String get tripTravellersInviteRevoked => 'Link di invito revocato.';
+
+  @override
+  String get tripTravellersInviteActionError => 'Impossibile gestire il link di invito.';
+
+  @override
+  String get tripTravellersRevokeInviteTitle => 'Revocare il link di invito?';
+
+  @override
+  String get tripTravellersRevokeInviteBody => 'Chi possiede il link attuale non potrà più usarlo per entrare nel viaggio.';
+
+  @override
+  String get tripTravellersRevoke => 'Revoca';
+
+  @override
+  String get tripTravellersCancel => 'Annulla';
+
+  @override
+  String get tripTravellersMembership => 'Partecipazione';
+
+  @override
+  String get tripTravellersRole => 'Ruolo';
+
+  @override
+  String get tripTravellersJoinedAt => 'Nel viaggio dal';
+
+  @override
+  String get tripTravellersOrganisation => 'Organizzazione del viaggio';
+
+  @override
+  String get tripTravellersHealth => 'Salute e accessibilità';
+
+  @override
+  String get tripTravellersEmergency => 'Contatto di emergenza';
+
+  @override
+  String get tripTravellersEsim => 'eSIM / connessione internet';
+
+  @override
+  String get tripTravellersCheckedBaggage => 'Bagaglio da stiva';
+
+  @override
+  String get tripTravellersCabinBaggage => 'Bagaglio a mano 10 kg';
+
+  @override
+  String get tripTravellersAllergies => 'Allergie';
+
+  @override
+  String get tripTravellersIntolerances => 'Intolleranze';
+
+  @override
+  String get tripTravellersAccessibility => 'Informazioni mediche / accessibilità';
+
+  @override
+  String get tripTravellersEmergencyName => 'Nome contatto';
+
+  @override
+  String get tripTravellersEmergencyPhone => 'Telefono contatto';
+
+  @override
+  String get tripTravellersYes => 'Sì';
+
+  @override
+  String get tripTravellersNo => 'No';
+
+  @override
+  String get tripTravellersUnknown => 'Non disponibile';
+
+  @override
+  String get tripTravellersNotProvided => 'Non indicato';
+
+  @override
+  String get tripTravellersEditMyProfile => 'Modifica il mio profilo viaggio';
+
+  @override
+  String get tripTravellersEditProfileTitle => 'Modifica profilo viaggio';
+
+  @override
+  String get tripTravellersEditProfileNote => 'Queste informazioni appartengono a questo viaggio. Solo tu puoi modificare i tuoi dati personali del profilo viaggio.';
+
+  @override
+  String get tripTravellersSave => 'Salva modifiche';
+
+  @override
+  String get tripTravellersProfileUpdated => 'Profilo viaggio aggiornato.';
+
+  @override
+  String get tripTravellersProfileUpdateError => 'Impossibile aggiornare il profilo viaggio.';
+
+  @override
+  String get tripTravellersRemove => 'Rimuovi dal viaggio';
+
+  @override
+  String get tripTravellersLeave => 'Lascia il viaggio';
+
+  @override
+  String get tripTravellersRemoveTitle => 'Rimuovere il viaggiatore?';
+
+  @override
+  String tripTravellersRemoveBody(String name) {
+    return '$name perderà l\'accesso al viaggio e ai dati condivisi con i partecipanti.';
+  }
+
+  @override
+  String get tripTravellersRemoveConfirm => 'Rimuovi';
+
+  @override
+  String get tripTravellersLeaveTitle => 'Lasciare il viaggio?';
+
+  @override
+  String get tripTravellersLeaveBody => 'Perderai l\'accesso al viaggio e ai dati condivisi con i partecipanti. Potrai rientrare solo tramite un nuovo invito.';
+
+  @override
+  String get tripTravellersLeaveConfirm => 'Lascia viaggio';
+
+  @override
+  String get tripTravellersRemovedSuccess => 'Viaggiatore rimosso dal viaggio.';
+
+  @override
+  String get tripTravellersRemoveError => 'Impossibile completare l\'operazione.';
+
+  @override
+  String get tripTravellersOwnerProtected => 'L\'OWNER non può essere rimosso dal viaggio. Un eventuale cambio di proprietà deve avvenire tramite una procedura dedicata.';
 }

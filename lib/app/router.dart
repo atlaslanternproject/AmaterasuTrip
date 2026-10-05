@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import '../core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
+import '../core/widgets/navigation/amaterasu_global_shell.dart';
 
 import '../features/auth/presentation/pages/register_page.dart';
 import '../features/auth/presentation/pages/verify_email_page.dart';
@@ -35,6 +36,7 @@ import '../features/trips/presentation/pages/workspace/more/notes/trip_notes_pag
 import '../features/trips/presentation/pages/workspace/settings/trip_settings_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/information/trip_information_settings_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/travellers/trip_travellers_settings_page.dart';
+import '../features/trips/presentation/pages/workspace/settings/travellers/trip_traveller_profile_edit_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/notifications/trip_notifications_settings_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/privacy/trip_privacy_settings_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/management/trip_management_settings_page.dart';
@@ -140,47 +142,12 @@ final amaterasuRouter = GoRouter(
     ),
 
     // ========================================================
-    // APP PRINCIPALE
+    // INVITO VIAGGIO
     // ========================================================
     //
-    // HomePage contiene la navigazione globale:
-    //
-    // HOME
-    // VIAGGI
-    // IMPOSTAZIONI
-    //
-    // initialIndex permette al workspace di tornare direttamente
-    // alla sezione "I miei viaggi" mantenendo la bottom bar globale.
+    // Rimane fuori dalla shell globale perché può essere
+    // raggiunto anche dal flusso autenticazione/deep link.
     // ========================================================
-    GoRoute(
-      path: '/home',
-      builder: (context, state) {
-        final initialIndex = state.extra is int ? state.extra as int : 0;
-
-        return HomePage(initialIndex: initialIndex);
-      },
-    ),
-
-    // ========================================================
-    // VIAGGI - LIVELLO GLOBALE
-    // ========================================================
-    //
-    // Queste pagine NON fanno parte del workspace di un singolo
-    // viaggio e NON devono avere la bottom bar del viaggio.
-    // ========================================================
-    GoRoute(
-      path: '/trips',
-      builder: (context, state) {
-        return const TripsPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/trips/create',
-      builder: (context, state) {
-        return const CreateTripPage();
-      },
-    ),
     GoRoute(
       path: '/trip-invite/:tripId',
       builder: (context, state) {
@@ -189,6 +156,123 @@ final amaterasuRouter = GoRouter(
 
         return TripInvitePage(tripId: tripId, token: token);
       },
+    ),
+
+    // ========================================================
+    // APP GLOBALE
+    // ========================================================
+    //
+    // HOME | VIAGGI | IMPOSTAZIONI
+    //
+    // Ogni branch mantiene il proprio Navigator.
+    //
+    // Il workspace di un singolo viaggio resta FUORI da questa
+    // shell e usa TripWorkspaceShell.
+    // ========================================================
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return AmaterasuGlobalShell(navigationShell: navigationShell);
+      },
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/home',
+              builder: (context, state) {
+                return const HomePage();
+              },
+            ),
+          ],
+        ),
+
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/trips',
+              builder: (context, state) {
+                return const TripsPage();
+              },
+              routes: [
+                GoRoute(
+                  path: 'create',
+                  builder: (context, state) {
+                    return const CreateTripPage();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/settings',
+              builder: (context, state) {
+                return const SettingsPage();
+              },
+              routes: [
+                GoRoute(
+                  path: 'profile',
+                  builder: (context, state) {
+                    return const ProfilePage();
+                  },
+                ),
+                GoRoute(
+                  path: 'language',
+                  builder: (context, state) {
+                    return const LanguagePage();
+                  },
+                ),
+                GoRoute(
+                  path: 'notifications',
+                  builder: (context, state) {
+                    return const NotificationsPage();
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'types',
+                      builder: (context, state) {
+                        return const NotificationTypesPage();
+                      },
+                    ),
+                    GoRoute(
+                      path: 'email',
+                      builder: (context, state) {
+                        return const NotificationEmailPage();
+                      },
+                    ),
+                  ],
+                ),
+                GoRoute(
+                  path: 'account',
+                  builder: (context, state) {
+                    return const AccountPage();
+                  },
+                ),
+                GoRoute(
+                  path: 'privacy',
+                  builder: (context, state) {
+                    return const PrivacyPage();
+                  },
+                ),
+                GoRoute(
+                  path: 'data',
+                  builder: (context, state) {
+                    return const DataSyncPage();
+                  },
+                ),
+                GoRoute(
+                  path: 'information',
+                  builder: (context, state) {
+                    return const InformationPage();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
     ),
 
     // ========================================================
@@ -446,6 +530,17 @@ final amaterasuRouter = GoRouter(
         ),
 
         // ------------------------------------------------------
+        // IMPOSTAZIONI VIAGGIO > VIAGGIATORI > MODIFICA PROFILO
+        // ------------------------------------------------------
+        GoRoute(
+          path: '/trips/:tripId/settings/travellers/profile/edit',
+          builder: (context, state) {
+            final tripId = state.pathParameters['tripId']!;
+
+            return TripTravellerProfileEditPage(tripId: tripId);
+          },
+        ),
+        // ------------------------------------------------------
         // IMPOSTAZIONI VIAGGIO > NOTIFICHE
         // ------------------------------------------------------
         GoRoute(
@@ -481,83 +576,6 @@ final amaterasuRouter = GoRouter(
           },
         ),
       ],
-    ),
-
-    // ========================================================
-    // IMPOSTAZIONI GLOBALI DELL'APP
-    // ========================================================
-    //
-    // ATTENZIONE:
-    // queste NON sono le impostazioni del singolo viaggio.
-    // ========================================================
-    GoRoute(
-      path: '/settings',
-      builder: (context, state) {
-        return const SettingsPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/profile',
-      builder: (context, state) {
-        return const ProfilePage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/language',
-      builder: (context, state) {
-        return const LanguagePage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/notifications',
-      builder: (context, state) {
-        return const NotificationsPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/notifications/types',
-      builder: (context, state) {
-        return const NotificationTypesPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/notifications/email',
-      builder: (context, state) {
-        return const NotificationEmailPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/account',
-      builder: (context, state) {
-        return const AccountPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/privacy',
-      builder: (context, state) {
-        return const PrivacyPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/data',
-      builder: (context, state) {
-        return const DataSyncPage();
-      },
-    ),
-
-    GoRoute(
-      path: '/settings/information',
-      builder: (context, state) {
-        return const InformationPage();
-      },
     ),
   ],
 );

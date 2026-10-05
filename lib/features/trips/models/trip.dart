@@ -52,6 +52,7 @@ class Trip {
     required this.currency,
     this.description,
     required this.ownerUid,
+    this.memberUids = const <String>[],
     required this.status,
     required this.createdAt,
     required this.updatedAt,
@@ -81,6 +82,7 @@ class Trip {
   final String currency;
   final String? description;
   final String ownerUid;
+  final List<String> memberUids;
   final TripStatus status;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -140,6 +142,9 @@ class Trip {
       currency: data['currency'] as String? ?? '',
       description: data['description'] as String?,
       ownerUid: data['ownerUid'] as String? ?? '',
+      memberUids: (data['memberUids'] as List<dynamic>? ?? const <dynamic>[])
+          .whereType<String>()
+          .toList(growable: false),
       status: _tripStatusFromString(data['status'] as String?),
       createdAt: createdAt?.toDate(),
       updatedAt: updatedAt?.toDate(),

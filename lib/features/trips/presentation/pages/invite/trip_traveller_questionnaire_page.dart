@@ -187,17 +187,23 @@ class _TripTravellerQuestionnairePageState
         hasEsimOrInternet: _hasEsimOrInternet!,
         hasCheckedBaggage: _hasCheckedBaggage!,
         hasCabinBaggage10Kg: _hasCabinBaggage10Kg!,
-        allergies: _trimOrEmpty(_allergiesController.text),
-        intolerances: _trimOrEmpty(_intolerancesController.text),
-        medicalAccessibilityInfo: _trimOrEmpty(
-          _medicalAccessibilityController.text,
-        ),
+        hasAllergies: _hasAllergies!,
+        hasIntolerances: _hasIntolerances!,
+        hasMedicalAccessibilityInfo: _hasMedicalAccessibilityInfo!,
+        allergies: _hasAllergies == true
+            ? _trimOrEmpty(_allergiesController.text)
+            : '',
+        intolerances: _hasIntolerances == true
+            ? _trimOrEmpty(_intolerancesController.text)
+            : '',
+        medicalAccessibilityInfo: _hasMedicalAccessibilityInfo == true
+            ? _trimOrEmpty(_medicalAccessibilityController.text)
+            : '',
         emergencyContactName: _trimOrEmpty(
           _emergencyContactNameController.text,
         ),
         emergencyContactPhone: _buildEmergencyPhone(),
       );
-
       await ref
           .read(tripInviteRepositoryProvider)
           .acceptTripInvite(
