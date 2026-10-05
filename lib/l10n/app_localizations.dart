@@ -3946,6 +3946,366 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The OWNER cannot be removed from the trip. Any ownership change must use a dedicated transfer procedure.'**
   String get tripTravellersOwnerProtected;
+
+  /// No description provided for @tripNotificationsIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose which updates you want to receive for this trip. Preferences are personal and do not change notification settings for other travellers.'**
+  String get tripNotificationsIntro;
+
+  /// No description provided for @tripNotificationsMaster.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications for this trip'**
+  String get tripNotificationsMaster;
+
+  /// No description provided for @tripNotificationsMasterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn all notifications for this trip on or off'**
+  String get tripNotificationsMasterSubtitle;
+
+  /// No description provided for @tripNotificationsAccessDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not have access to this trip\'s notification settings.'**
+  String get tripNotificationsAccessDenied;
+
+  /// No description provided for @tripNotificationsSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to save notification preferences.'**
+  String get tripNotificationsSaveError;
+
+  /// No description provided for @tripNotificationsPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification permission is not enabled on this device.'**
+  String get tripNotificationsPermissionDenied;
+
+  /// No description provided for @tripNotificationsSystemPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Android notification permission'**
+  String get tripNotificationsSystemPermission;
+
+  /// No description provided for @tripNotificationsSystemPermissionBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Android is blocking app notifications. Your preferences will remain saved, but notifications cannot be shown until permission is enabled again.'**
+  String get tripNotificationsSystemPermissionBlocked;
+
+  /// No description provided for @tripNotificationsOpenAndroidSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Android settings'**
+  String get tripNotificationsOpenAndroidSettings;
+
+  /// No description provided for @tripNotificationsTimingSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Dates, itinerary and bookings'**
+  String get tripNotificationsTimingSection;
+
+  /// No description provided for @tripNotificationsPlanningSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Planning and expenses'**
+  String get tripNotificationsPlanningSection;
+
+  /// No description provided for @tripNotificationsGroupSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Group and collaboration'**
+  String get tripNotificationsGroupSection;
+
+  /// No description provided for @tripNotificationsContentSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Content and memories'**
+  String get tripNotificationsContentSection;
+
+  /// No description provided for @tripNotificationsSystemSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip and services'**
+  String get tripNotificationsSystemSection;
+
+  /// No description provided for @tripNotificationsDepartureDates.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure and trip dates'**
+  String get tripNotificationsDepartureDates;
+
+  /// No description provided for @tripNotificationsDepartureDatesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders for departure, return and important changes to trip dates'**
+  String get tripNotificationsDepartureDatesSubtitle;
+
+  /// No description provided for @tripNotificationsItineraryReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Itinerary reminders'**
+  String get tripNotificationsItineraryReminders;
+
+  /// No description provided for @tripNotificationsItineraryRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts for upcoming itinerary activities and appointments'**
+  String get tripNotificationsItineraryRemindersSubtitle;
+
+  /// No description provided for @tripNotificationsItineraryUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Itinerary changes'**
+  String get tripNotificationsItineraryUpdates;
+
+  /// No description provided for @tripNotificationsItineraryUpdatesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Additions, changes and removals in the shared itinerary'**
+  String get tripNotificationsItineraryUpdatesSubtitle;
+
+  /// No description provided for @tripNotificationsBookingReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings to make'**
+  String get tripNotificationsBookingReminders;
+
+  /// No description provided for @tripNotificationsBookingRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadlines and booking windows for reservations that need to be completed in advance'**
+  String get tripNotificationsBookingRemindersSubtitle;
+
+  /// No description provided for @tripNotificationsBookingUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings and tickets'**
+  String get tripNotificationsBookingUpdates;
+
+  /// No description provided for @tripNotificationsBookingUpdatesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates about bookings, tickets and travel documents'**
+  String get tripNotificationsBookingUpdatesSubtitle;
+
+  /// No description provided for @tripNotificationsBucketList.
+  ///
+  /// In en, this message translates to:
+  /// **'Bucket List'**
+  String get tripNotificationsBucketList;
+
+  /// No description provided for @tripNotificationsBucketListSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New items and changes to the Bucket List'**
+  String get tripNotificationsBucketListSubtitle;
+
+  /// No description provided for @tripNotificationsBucketListVotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Bucket List voting'**
+  String get tripNotificationsBucketListVotes;
+
+  /// No description provided for @tripNotificationsBucketListVotesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New votes and changes to group priorities'**
+  String get tripNotificationsBucketListVotesSubtitle;
+
+  /// No description provided for @tripNotificationsBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget'**
+  String get tripNotificationsBudget;
+
+  /// No description provided for @tripNotificationsBudgetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Important updates to the trip budget'**
+  String get tripNotificationsBudgetSubtitle;
+
+  /// No description provided for @tripNotificationsNewExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'New expenses'**
+  String get tripNotificationsNewExpenses;
+
+  /// No description provided for @tripNotificationsNewExpensesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts when a new group expense is recorded'**
+  String get tripNotificationsNewExpensesSubtitle;
+
+  /// No description provided for @tripNotificationsExpenseChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense changes'**
+  String get tripNotificationsExpenseChanges;
+
+  /// No description provided for @tripNotificationsExpenseChangesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes or removals of expenses that affect the group'**
+  String get tripNotificationsExpenseChangesSubtitle;
+
+  /// No description provided for @tripNotificationsReimbursements.
+  ///
+  /// In en, this message translates to:
+  /// **'Reimbursements and balances'**
+  String get tripNotificationsReimbursements;
+
+  /// No description provided for @tripNotificationsReimbursementsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded reimbursements and changes to balances between travellers'**
+  String get tripNotificationsReimbursementsSubtitle;
+
+  /// No description provided for @tripNotificationsTravellers.
+  ///
+  /// In en, this message translates to:
+  /// **'Travellers'**
+  String get tripNotificationsTravellers;
+
+  /// No description provided for @tripNotificationsTravellersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Participants joining, leaving or being removed from the trip'**
+  String get tripNotificationsTravellersSubtitle;
+
+  /// No description provided for @tripNotificationsInvitations.
+  ///
+  /// In en, this message translates to:
+  /// **'Invitations'**
+  String get tripNotificationsInvitations;
+
+  /// No description provided for @tripNotificationsInvitationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Relevant updates to invitation links and invitation status'**
+  String get tripNotificationsInvitationsSubtitle;
+
+  /// No description provided for @tripNotificationsRolesPermissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Roles and permissions'**
+  String get tripNotificationsRolesPermissions;
+
+  /// No description provided for @tripNotificationsRolesPermissionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes to your role or permissions within the trip'**
+  String get tripNotificationsRolesPermissionsSubtitle;
+
+  /// No description provided for @tripNotificationsGroupActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Group activity'**
+  String get tripNotificationsGroupActivity;
+
+  /// No description provided for @tripNotificationsGroupActivitySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'General updates generated by other participants'**
+  String get tripNotificationsGroupActivitySubtitle;
+
+  /// No description provided for @tripNotificationsSharedNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared notes'**
+  String get tripNotificationsSharedNotes;
+
+  /// No description provided for @tripNotificationsSharedNotesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation and changes to shared trip notes'**
+  String get tripNotificationsSharedNotesSubtitle;
+
+  /// No description provided for @tripNotificationsMedia.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos and videos'**
+  String get tripNotificationsMedia;
+
+  /// No description provided for @tripNotificationsMediaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New media shared within the trip'**
+  String get tripNotificationsMediaSubtitle;
+
+  /// No description provided for @tripNotificationsMemories.
+  ///
+  /// In en, this message translates to:
+  /// **'Memories'**
+  String get tripNotificationsMemories;
+
+  /// No description provided for @tripNotificationsMemoriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New memories and updates to saved content'**
+  String get tripNotificationsMemoriesSubtitle;
+
+  /// No description provided for @tripNotificationsCloudArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip archive'**
+  String get tripNotificationsCloudArchive;
+
+  /// No description provided for @tripNotificationsCloudArchiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Problems accessing, connecting to or using the cloud archive'**
+  String get tripNotificationsCloudArchiveSubtitle;
+
+  /// No description provided for @tripNotificationsSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronisation'**
+  String get tripNotificationsSync;
+
+  /// No description provided for @tripNotificationsSyncSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Errors or important data synchronisation operations'**
+  String get tripNotificationsSyncSubtitle;
+
+  /// No description provided for @tripNotificationsTripInformationChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Important trip changes'**
+  String get tripNotificationsTripInformationChanges;
+
+  /// No description provided for @tripNotificationsTripInformationChangesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes to the name, destination, dates, currency or other key trip information'**
+  String get tripNotificationsTripInformationChangesSubtitle;
+
+  /// No description provided for @tripNotificationsTripStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip status'**
+  String get tripNotificationsTripStatus;
+
+  /// No description provided for @tripNotificationsTripStatusSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing, reopening or other changes to the trip status'**
+  String get tripNotificationsTripStatusSubtitle;
+
+  /// No description provided for @tripNotificationsImportantCommunications.
+  ///
+  /// In en, this message translates to:
+  /// **'Important communications'**
+  String get tripNotificationsImportantCommunications;
+
+  /// No description provided for @tripNotificationsImportantCommunicationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Critical alerts needed for organisation, safety or the correct use of the trip'**
+  String get tripNotificationsImportantCommunicationsSubtitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1963,4 +1963,184 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripTravellersOwnerProtected => 'The OWNER cannot be removed from the trip. Any ownership change must use a dedicated transfer procedure.';
+
+  @override
+  String get tripNotificationsIntro => 'Choose which updates you want to receive for this trip. Preferences are personal and do not change notification settings for other travellers.';
+
+  @override
+  String get tripNotificationsMaster => 'Notifications for this trip';
+
+  @override
+  String get tripNotificationsMasterSubtitle => 'Turn all notifications for this trip on or off';
+
+  @override
+  String get tripNotificationsAccessDenied => 'You do not have access to this trip\'s notification settings.';
+
+  @override
+  String get tripNotificationsSaveError => 'Unable to save notification preferences.';
+
+  @override
+  String get tripNotificationsPermissionDenied => 'Notification permission is not enabled on this device.';
+
+  @override
+  String get tripNotificationsSystemPermission => 'Android notification permission';
+
+  @override
+  String get tripNotificationsSystemPermissionBlocked => 'Android is blocking app notifications. Your preferences will remain saved, but notifications cannot be shown until permission is enabled again.';
+
+  @override
+  String get tripNotificationsOpenAndroidSettings => 'Open Android settings';
+
+  @override
+  String get tripNotificationsTimingSection => 'Dates, itinerary and bookings';
+
+  @override
+  String get tripNotificationsPlanningSection => 'Planning and expenses';
+
+  @override
+  String get tripNotificationsGroupSection => 'Group and collaboration';
+
+  @override
+  String get tripNotificationsContentSection => 'Content and memories';
+
+  @override
+  String get tripNotificationsSystemSection => 'Trip and services';
+
+  @override
+  String get tripNotificationsDepartureDates => 'Departure and trip dates';
+
+  @override
+  String get tripNotificationsDepartureDatesSubtitle => 'Reminders for departure, return and important changes to trip dates';
+
+  @override
+  String get tripNotificationsItineraryReminders => 'Itinerary reminders';
+
+  @override
+  String get tripNotificationsItineraryRemindersSubtitle => 'Alerts for upcoming itinerary activities and appointments';
+
+  @override
+  String get tripNotificationsItineraryUpdates => 'Itinerary changes';
+
+  @override
+  String get tripNotificationsItineraryUpdatesSubtitle => 'Additions, changes and removals in the shared itinerary';
+
+  @override
+  String get tripNotificationsBookingReminders => 'Bookings to make';
+
+  @override
+  String get tripNotificationsBookingRemindersSubtitle => 'Deadlines and booking windows for reservations that need to be completed in advance';
+
+  @override
+  String get tripNotificationsBookingUpdates => 'Bookings and tickets';
+
+  @override
+  String get tripNotificationsBookingUpdatesSubtitle => 'Updates about bookings, tickets and travel documents';
+
+  @override
+  String get tripNotificationsBucketList => 'Bucket List';
+
+  @override
+  String get tripNotificationsBucketListSubtitle => 'New items and changes to the Bucket List';
+
+  @override
+  String get tripNotificationsBucketListVotes => 'Bucket List voting';
+
+  @override
+  String get tripNotificationsBucketListVotesSubtitle => 'New votes and changes to group priorities';
+
+  @override
+  String get tripNotificationsBudget => 'Budget';
+
+  @override
+  String get tripNotificationsBudgetSubtitle => 'Important updates to the trip budget';
+
+  @override
+  String get tripNotificationsNewExpenses => 'New expenses';
+
+  @override
+  String get tripNotificationsNewExpensesSubtitle => 'Alerts when a new group expense is recorded';
+
+  @override
+  String get tripNotificationsExpenseChanges => 'Expense changes';
+
+  @override
+  String get tripNotificationsExpenseChangesSubtitle => 'Changes or removals of expenses that affect the group';
+
+  @override
+  String get tripNotificationsReimbursements => 'Reimbursements and balances';
+
+  @override
+  String get tripNotificationsReimbursementsSubtitle => 'Recorded reimbursements and changes to balances between travellers';
+
+  @override
+  String get tripNotificationsTravellers => 'Travellers';
+
+  @override
+  String get tripNotificationsTravellersSubtitle => 'Participants joining, leaving or being removed from the trip';
+
+  @override
+  String get tripNotificationsInvitations => 'Invitations';
+
+  @override
+  String get tripNotificationsInvitationsSubtitle => 'Relevant updates to invitation links and invitation status';
+
+  @override
+  String get tripNotificationsRolesPermissions => 'Roles and permissions';
+
+  @override
+  String get tripNotificationsRolesPermissionsSubtitle => 'Changes to your role or permissions within the trip';
+
+  @override
+  String get tripNotificationsGroupActivity => 'Group activity';
+
+  @override
+  String get tripNotificationsGroupActivitySubtitle => 'General updates generated by other participants';
+
+  @override
+  String get tripNotificationsSharedNotes => 'Shared notes';
+
+  @override
+  String get tripNotificationsSharedNotesSubtitle => 'Creation and changes to shared trip notes';
+
+  @override
+  String get tripNotificationsMedia => 'Photos and videos';
+
+  @override
+  String get tripNotificationsMediaSubtitle => 'New media shared within the trip';
+
+  @override
+  String get tripNotificationsMemories => 'Memories';
+
+  @override
+  String get tripNotificationsMemoriesSubtitle => 'New memories and updates to saved content';
+
+  @override
+  String get tripNotificationsCloudArchive => 'Trip archive';
+
+  @override
+  String get tripNotificationsCloudArchiveSubtitle => 'Problems accessing, connecting to or using the cloud archive';
+
+  @override
+  String get tripNotificationsSync => 'Synchronisation';
+
+  @override
+  String get tripNotificationsSyncSubtitle => 'Errors or important data synchronisation operations';
+
+  @override
+  String get tripNotificationsTripInformationChanges => 'Important trip changes';
+
+  @override
+  String get tripNotificationsTripInformationChangesSubtitle => 'Changes to the name, destination, dates, currency or other key trip information';
+
+  @override
+  String get tripNotificationsTripStatus => 'Trip status';
+
+  @override
+  String get tripNotificationsTripStatusSubtitle => 'Closing, reopening or other changes to the trip status';
+
+  @override
+  String get tripNotificationsImportantCommunications => 'Important communications';
+
+  @override
+  String get tripNotificationsImportantCommunicationsSubtitle => 'Critical alerts needed for organisation, safety or the correct use of the trip';
 }

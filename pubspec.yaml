@@ -1,7 +1,7 @@
 name: amaterasutrip
 description: "Amaterasu Trip - Japan Travel Planner"
 publish_to: 'none'
-version: 1.5.0+5
+version: 1.6.0+6
 environment:
   sdk: ^3.12.2
 dependencies:
