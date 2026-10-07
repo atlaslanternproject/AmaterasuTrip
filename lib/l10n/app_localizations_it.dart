@@ -1261,7 +1261,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripSettingsManagement => 'Gestione viaggio';
 
   @override
-  String get tripSettingsManagementSubtitle => 'Archivia, duplica, esporta o elimina il viaggio';
+  String get tripSettingsManagementSubtitle => 'Archivio cloud, stato, duplicazione ed eliminazione del viaggio';
 
   @override
   String get tripPrivacyIntro => 'Controlla accesso, inviti e condivisione di questo viaggio.';
@@ -1350,13 +1350,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripManagementDuplicate => 'Duplica viaggio';
 
   @override
-  String get tripManagementDuplicateSubtitle => 'Crea un nuovo viaggio partendo da questo';
+  String get tripManagementDuplicateSubtitle => 'Copia i contenuti Firestore del viaggio senza membri, archivio cloud o file esterni';
 
   @override
   String get tripManagementDelete => 'Elimina viaggio';
 
   @override
-  String get tripManagementDeleteSubtitle => 'Elimina il viaggio da Amaterasu senza cancellare automaticamente i file personali dal cloud';
+  String get tripManagementDeleteSubtitle => 'Elimina definitivamente i dati del viaggio da Amaterasu; i file nel cloud personale restano intatti';
 
   @override
   String get tripMapTitle => 'Mappa';
@@ -2143,4 +2143,189 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripNotificationsImportantCommunicationsSubtitle => 'Avvisi critici necessari per organizzazione, sicurezza o corretto utilizzo del viaggio';
+
+  @override
+  String get tripPrivacyAccessSection => 'Accesso e inviti';
+
+  @override
+  String get tripPrivacyAccessPrivateDetail => 'Questo viaggio è privato. Possono accedere soltanto i membri autorizzati del viaggio. Amaterasu non prevede una modalità \"viaggio pubblico\": il link di invito serve esclusivamente ad avviare il processo di ingresso e non rende automaticamente membri.';
+
+  @override
+  String get tripPrivacyInviteStatusChecking => 'Verifica in corso';
+
+  @override
+  String get tripPrivacyInviteStatusMissing => 'Non ancora creato';
+
+  @override
+  String get tripPrivacyInviteStatusActive => 'Attivo';
+
+  @override
+  String get tripPrivacyInviteStatusRevoked => 'Revocato';
+
+  @override
+  String get tripPrivacyInviteStatusUnavailable => 'Stato non disponibile';
+
+  @override
+  String tripPrivacyInviteLinkWithStatus(String status) {
+    return 'Stato: $status · crea, copia, condividi, rigenera o revoca il link dalla sezione Viaggiatori';
+  }
+
+  @override
+  String get tripPrivacyProfileSection => 'Dati del profilo viaggio';
+
+  @override
+  String get tripPrivacyProfileData => 'Profilo viaggio dei partecipanti';
+
+  @override
+  String get tripPrivacyProfileDataSubtitle => 'Allergie, intolleranze, accessibilità e contatti di emergenza';
+
+  @override
+  String get tripPrivacyRolesSection => 'Ruoli e permessi';
+
+  @override
+  String tripPrivacyRolesCurrentAllowed(String role) {
+    return 'Il tuo ruolo è $role. In questa fase OWNER e TRAVELER hanno gli stessi permessi sul viaggio. Le autorizzazioni vengono determinate dalla policy centrale del viaggio.';
+  }
+
+  @override
+  String tripPrivacyRolesCurrentReadOnly(String role) {
+    return 'Il tuo ruolo è $role. Puoi consultare queste informazioni, ma la policy del viaggio non ti autorizza a gestire ruoli e permessi.';
+  }
+
+  @override
+  String get tripPrivacyExternalSection => 'Condivisione esterna';
+
+  @override
+  String get tripPrivacyExternalArchive => 'Archivio cloud esterno';
+
+  @override
+  String get tripPrivacyExternalArchiveNone => 'Nessun archivio cloud esterno è attualmente collegato a questo viaggio.';
+
+  @override
+  String tripPrivacyExternalArchiveConnected(String provider) {
+    return '$provider è collegato a questo viaggio.';
+  }
+
+  @override
+  String get tripPrivacyExternalControl => 'Il link di invito di Amaterasu e l\'archivio cloud sono separati. File, spazio disponibile e permessi di Google Drive, OneDrive o Dropbox restano sotto il controllo dell\'account del provider esterno e non vengono resi pubblici da Amaterasu.';
+
+  @override
+  String get tripPrivacyAccessDenied => 'Non hai accesso alle impostazioni di privacy e condivisione di questo viaggio.';
+
+  @override
+  String get tripPrivacyLoadError => 'Impossibile caricare le impostazioni di privacy e condivisione.';
+
+  @override
+  String get tripManagementFinalConfigureArchive => 'Configura archivio';
+
+  @override
+  String get tripManagementFinalConfigureArchiveSubtitle => 'Collega un archivio cloud personale a questo viaggio';
+
+  @override
+  String get tripManagementFinalArchiveOwnershipTitle => 'Archivio personale';
+
+  @override
+  String get tripManagementFinalArchiveOwnershipBody => 'Amaterasu conserva il collegamento all\'archivio, ma i file restano sotto il controllo dell\'account Google Drive, OneDrive o Dropbox dell\'utente.';
+
+  @override
+  String get tripManagementFinalArchiveProviderUnsupported => 'Questo provider è registrato sul viaggio, ma le operazioni di verifica, apertura e riconnessione non sono ancora disponibili. Puoi comunque cambiare archivio.';
+
+  @override
+  String get tripManagementFinalStatusSection => 'Stato del viaggio';
+
+  @override
+  String get tripManagementFinalTripStatus => 'Stato';
+
+  @override
+  String get tripManagementFinalStatusActive => 'Attivo';
+
+  @override
+  String get tripManagementFinalStatusClosed => 'Archiviato';
+
+  @override
+  String get tripManagementFinalStatusActiveBody => 'Il viaggio è attivo e compare normalmente tra i viaggi in corso o programmati.';
+
+  @override
+  String get tripManagementFinalStatusClosedBody => 'Il viaggio è archiviato, ma resta completamente consultabile e modificabile.';
+
+  @override
+  String get tripManagementFinalArchiveAction => 'Archivia viaggio';
+
+  @override
+  String get tripManagementFinalArchiveActionSubtitle => 'Sposta il viaggio tra quelli archiviati senza bloccare modifiche o consultazione';
+
+  @override
+  String get tripManagementFinalReactivateAction => 'Riattiva viaggio';
+
+  @override
+  String get tripManagementFinalReactivateActionSubtitle => 'Riporta il viaggio allo stato attivo';
+
+  @override
+  String get tripManagementFinalArchiveConfirmTitle => 'Archiviare il viaggio?';
+
+  @override
+  String get tripManagementFinalArchiveConfirmBody => 'Il viaggio verrà contrassegnato come archiviato. Tutti i dati resteranno disponibili e potrai continuare a consultarli e modificarli.';
+
+  @override
+  String get tripManagementFinalArchiveConfirmAction => 'Archivia';
+
+  @override
+  String get tripManagementFinalReactivateConfirmTitle => 'Riattivare il viaggio?';
+
+  @override
+  String get tripManagementFinalReactivateConfirmBody => 'Il viaggio tornerà allo stato attivo senza perdere o modificare alcun contenuto.';
+
+  @override
+  String get tripManagementFinalReactivateConfirmAction => 'Riattiva';
+
+  @override
+  String get tripManagementFinalStatusUpdated => 'Stato del viaggio aggiornato';
+
+  @override
+  String get tripManagementFinalOperationsSection => 'Operazioni';
+
+  @override
+  String get tripManagementFinalDuplicateConfirmTitle => 'Duplicare il viaggio?';
+
+  @override
+  String get tripManagementFinalDuplicateConfirmBody => 'Amaterasu creerà un nuovo viaggio copiando il documento e tutti i contenuti Firestore presenti nelle subcollection, comprese quelle che verranno aggiunte in futuro. Non verranno copiati membri, inviti, profili viaggio, archivio Drive/OneDrive/Dropbox, copertina collegata a file o riferimenti a file esterni. Il nuovo viaggio sarà attivo e avrà come unico membro iniziale chi esegue la duplicazione.';
+
+  @override
+  String get tripManagementFinalDuplicateConfirmAction => 'Duplica';
+
+  @override
+  String tripManagementFinalDuplicateCopyName(String name) {
+    return 'Copia di $name';
+  }
+
+  @override
+  String get tripManagementFinalDuplicateSuccessTitle => 'Viaggio duplicato';
+
+  @override
+  String tripManagementFinalDuplicateSuccessBody(String name) {
+    return 'La copia \"$name\" è stata creata correttamente.';
+  }
+
+  @override
+  String get tripManagementFinalDuplicateOpen => 'Apri copia';
+
+  @override
+  String get tripManagementFinalStayHere => 'Resta qui';
+
+  @override
+  String get tripManagementFinalDangerSection => 'Zona pericolosa';
+
+  @override
+  String get tripManagementFinalDeleteCloudWarning => 'Eliminare il viaggio da Amaterasu NON elimina i file personali presenti su Google Drive, OneDrive o Dropbox. Quei file restano sotto il controllo dell\'account cloud esterno.';
+
+  @override
+  String tripManagementFinalDeleteConfirmInstruction(String name) {
+    return 'Per confermare l\'eliminazione definitiva, scrivi esattamente \"$name\".';
+  }
+
+  @override
+  String get tripManagementFinalDeleteInputLabel => 'Nome del viaggio';
+
+  @override
+  String get tripManagementFinalAccessDenied => 'Non hai accesso alla gestione di questo viaggio.';
 }

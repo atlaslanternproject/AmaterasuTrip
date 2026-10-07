@@ -466,7 +466,7 @@
     "tripSettingsPrivacy":  "Privacy e condivisione",
     "tripSettingsPrivacySubtitle":  "Gestisci visibilità e condivisione del viaggio",
     "tripSettingsManagement":  "Gestione viaggio",
-    "tripSettingsManagementSubtitle":  "Archivia, duplica, esporta o elimina il viaggio",
+    "tripSettingsManagementSubtitle":  "Archivio cloud, stato, duplicazione ed eliminazione del viaggio",
     "tripPrivacyIntro":  "Controlla accesso, inviti e condivisione di questo viaggio.",
     "tripPrivacyAccess":  "Accesso al viaggio",
     "tripPrivacyAccessPrivate":  "Privato · Solo i viaggiatori autorizzati possono accedere",
@@ -502,9 +502,9 @@
     "tripManagementExport":  "Esporta viaggio",
     "tripManagementExportSubtitle":  "Crea una copia esportabile dei dati del viaggio",
     "tripManagementDuplicate":  "Duplica viaggio",
-    "tripManagementDuplicateSubtitle":  "Crea un nuovo viaggio partendo da questo",
+    "tripManagementDuplicateSubtitle":  "Copia i contenuti Firestore del viaggio senza membri, archivio cloud o file esterni",
     "tripManagementDelete":  "Elimina viaggio",
-    "tripManagementDeleteSubtitle":  "Elimina il viaggio da Amaterasu senza cancellare automaticamente i file personali dal cloud",
+    "tripManagementDeleteSubtitle":  "Elimina definitivamente i dati del viaggio da Amaterasu; i file nel cloud personale restano intatti",
     "tripMapTitle":  "Mappa",
     "tripExpensesTitle":  "Spese",
     "tripTravellersTitle":  "Viaggiatori",
@@ -795,5 +795,121 @@
   "tripNotificationsTripStatus": "Stato del viaggio",
   "tripNotificationsTripStatusSubtitle": "Chiusura, riapertura o altri cambiamenti di stato del viaggio",
   "tripNotificationsImportantCommunications": "Comunicazioni importanti",
-  "tripNotificationsImportantCommunicationsSubtitle": "Avvisi critici necessari per organizzazione, sicurezza o corretto utilizzo del viaggio"
+  "tripNotificationsImportantCommunicationsSubtitle": "Avvisi critici necessari per organizzazione, sicurezza o corretto utilizzo del viaggio",
+"tripPrivacyAccessSection": "Accesso e inviti",
+  "tripPrivacyAccessPrivateDetail": "Questo viaggio è privato. Possono accedere soltanto i membri autorizzati del viaggio. Amaterasu non prevede una modalità \"viaggio pubblico\": il link di invito serve esclusivamente ad avviare il processo di ingresso e non rende automaticamente membri.",
+  "tripPrivacyInviteStatusChecking": "Verifica in corso",
+  "tripPrivacyInviteStatusMissing": "Non ancora creato",
+  "tripPrivacyInviteStatusActive": "Attivo",
+  "tripPrivacyInviteStatusRevoked": "Revocato",
+  "tripPrivacyInviteStatusUnavailable": "Stato non disponibile",
+  "tripPrivacyInviteLinkWithStatus": "Stato: {status} · crea, copia, condividi, rigenera o revoca il link dalla sezione Viaggiatori",
+  "@tripPrivacyInviteLinkWithStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+
+  "tripPrivacyProfileSection": "Dati del profilo viaggio",
+  "tripPrivacyProfileData": "Profilo viaggio dei partecipanti",
+  "tripPrivacyProfileDataSubtitle": "Allergie, intolleranze, accessibilità e contatti di emergenza",
+
+  "tripPrivacyRolesSection": "Ruoli e permessi",
+  "tripPrivacyRolesCurrentAllowed": "Il tuo ruolo è {role}. In questa fase OWNER e TRAVELER hanno gli stessi permessi sul viaggio. Le autorizzazioni vengono determinate dalla policy centrale del viaggio.",
+  "@tripPrivacyRolesCurrentAllowed": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "tripPrivacyRolesCurrentReadOnly": "Il tuo ruolo è {role}. Puoi consultare queste informazioni, ma la policy del viaggio non ti autorizza a gestire ruoli e permessi.",
+  "@tripPrivacyRolesCurrentReadOnly": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+
+  "tripPrivacyExternalSection": "Condivisione esterna",
+  "tripPrivacyExternalArchive": "Archivio cloud esterno",
+  "tripPrivacyExternalArchiveNone": "Nessun archivio cloud esterno è attualmente collegato a questo viaggio.",
+  "tripPrivacyExternalArchiveConnected": "{provider} è collegato a questo viaggio.",
+  "@tripPrivacyExternalArchiveConnected": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "tripPrivacyExternalControl": "Il link di invito di Amaterasu e l'archivio cloud sono separati. File, spazio disponibile e permessi di Google Drive, OneDrive o Dropbox restano sotto il controllo dell'account del provider esterno e non vengono resi pubblici da Amaterasu.",
+
+  "tripPrivacyAccessDenied": "Non hai accesso alle impostazioni di privacy e condivisione di questo viaggio.",
+  "tripPrivacyLoadError": "Impossibile caricare le impostazioni di privacy e condivisione.",
+"tripManagementFinalConfigureArchive": "Configura archivio",
+  "tripManagementFinalConfigureArchiveSubtitle": "Collega un archivio cloud personale a questo viaggio",
+
+  "tripManagementFinalArchiveOwnershipTitle": "Archivio personale",
+  "tripManagementFinalArchiveOwnershipBody": "Amaterasu conserva il collegamento all'archivio, ma i file restano sotto il controllo dell'account Google Drive, OneDrive o Dropbox dell'utente.",
+
+  "tripManagementFinalArchiveProviderUnsupported": "Questo provider è registrato sul viaggio, ma le operazioni di verifica, apertura e riconnessione non sono ancora disponibili. Puoi comunque cambiare archivio.",
+
+  "tripManagementFinalStatusSection": "Stato del viaggio",
+  "tripManagementFinalTripStatus": "Stato",
+  "tripManagementFinalStatusActive": "Attivo",
+  "tripManagementFinalStatusClosed": "Archiviato",
+  "tripManagementFinalStatusActiveBody": "Il viaggio è attivo e compare normalmente tra i viaggi in corso o programmati.",
+  "tripManagementFinalStatusClosedBody": "Il viaggio è archiviato, ma resta completamente consultabile e modificabile.",
+  "tripManagementFinalArchiveAction": "Archivia viaggio",
+  "tripManagementFinalArchiveActionSubtitle": "Sposta il viaggio tra quelli archiviati senza bloccare modifiche o consultazione",
+  "tripManagementFinalReactivateAction": "Riattiva viaggio",
+  "tripManagementFinalReactivateActionSubtitle": "Riporta il viaggio allo stato attivo",
+  "tripManagementFinalArchiveConfirmTitle": "Archiviare il viaggio?",
+  "tripManagementFinalArchiveConfirmBody": "Il viaggio verrà contrassegnato come archiviato. Tutti i dati resteranno disponibili e potrai continuare a consultarli e modificarli.",
+  "tripManagementFinalArchiveConfirmAction": "Archivia",
+  "tripManagementFinalReactivateConfirmTitle": "Riattivare il viaggio?",
+  "tripManagementFinalReactivateConfirmBody": "Il viaggio tornerà allo stato attivo senza perdere o modificare alcun contenuto.",
+  "tripManagementFinalReactivateConfirmAction": "Riattiva",
+  "tripManagementFinalStatusUpdated": "Stato del viaggio aggiornato",
+
+  "tripManagementFinalOperationsSection": "Operazioni",
+  "tripManagementFinalDuplicateConfirmTitle": "Duplicare il viaggio?",
+  "tripManagementFinalDuplicateConfirmBody": "Amaterasu creerà un nuovo viaggio copiando il documento e tutti i contenuti Firestore presenti nelle subcollection, comprese quelle che verranno aggiunte in futuro. Non verranno copiati membri, inviti, profili viaggio, archivio Drive/OneDrive/Dropbox, copertina collegata a file o riferimenti a file esterni. Il nuovo viaggio sarà attivo e avrà come unico membro iniziale chi esegue la duplicazione.",
+  "tripManagementFinalDuplicateConfirmAction": "Duplica",
+  "tripManagementFinalDuplicateCopyName": "Copia di {name}",
+  "@tripManagementFinalDuplicateCopyName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tripManagementFinalDuplicateSuccessTitle": "Viaggio duplicato",
+  "tripManagementFinalDuplicateSuccessBody": "La copia \"{name}\" è stata creata correttamente.",
+  "@tripManagementFinalDuplicateSuccessBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tripManagementFinalDuplicateOpen": "Apri copia",
+  "tripManagementFinalStayHere": "Resta qui",
+
+  "tripManagementFinalDangerSection": "Zona pericolosa",
+  "tripManagementFinalDeleteCloudWarning": "Eliminare il viaggio da Amaterasu NON elimina i file personali presenti su Google Drive, OneDrive o Dropbox. Quei file restano sotto il controllo dell'account cloud esterno.",
+  "tripManagementFinalDeleteConfirmInstruction": "Per confermare l'eliminazione definitiva, scrivi esattamente \"{name}\".",
+  "@tripManagementFinalDeleteConfirmInstruction": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tripManagementFinalDeleteInputLabel": "Nome del viaggio",
+
+  "tripManagementFinalAccessDenied": "Non hai accesso alla gestione di questo viaggio."
 }

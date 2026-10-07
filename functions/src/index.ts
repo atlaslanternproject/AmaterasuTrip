@@ -24,6 +24,34 @@ function hashInviteToken(token: string): string {
   return createHash("sha256").update(token).digest("hex");
 }
 
+/**
+ * Checks whether a trip member can manage invitation links.
+ *
+ * Client permissions are exposed through TripAccessPolicy.
+ * Cloud Functions enforce the same current membership rule
+ * because client-side checks are not a security boundary.
+ *
+ * @param {Object|undefined} tripData Trip document data.
+ * @param {string} uid Authenticated user UID.
+ * @return {boolean} Whether the member can manage invitations.
+ */
+function canManageTripInvitations(
+  tripData: {
+    ownerUid?: unknown;
+    memberUids?: unknown;
+  } | undefined,
+  uid: string,
+): boolean {
+  if (tripData?.ownerUid === uid) {
+    return true;
+  }
+
+  const memberUids = tripData?.memberUids;
+
+  return Array.isArray(memberUids) &&
+    memberUids.includes(uid);
+}
+
 export const createTripInvite = onCall(async (request) => {
   const uid = request.auth?.uid;
 
@@ -55,10 +83,10 @@ export const createTripInvite = onCall(async (request) => {
 
   const tripData = tripSnapshot.data();
 
-  if (tripData?.ownerUid !== uid) {
+  if (!canManageTripInvitations(tripData, uid)) {
     throw new HttpsError(
       "permission-denied",
-      "Only the trip owner can create invitations.",
+      "Only trip members can manage invitations.",
     );
   }
 
@@ -120,10 +148,12 @@ export const revokeTripInvite = onCall(async (request) => {
     );
   }
 
-  if (tripSnapshot.data()?.ownerUid !== uid) {
+  const tripData = tripSnapshot.data();
+
+  if (!canManageTripInvitations(tripData, uid)) {
     throw new HttpsError(
       "permission-denied",
-      "Only the trip owner can revoke invitations.",
+      "Only trip members can manage invitations.",
     );
   }
 
@@ -144,6 +174,72 @@ export const revokeTripInvite = onCall(async (request) => {
 
   return {
     revoked: true,
+  };
+});
+
+export const getTripInviteStatus = onCall(async (request) => {
+  const uid = request.auth?.uid;
+
+  if (uid == null) {
+    throw new HttpsError(
+      "unauthenticated",
+      "Authentication is required.",
+    );
+  }
+
+  const tripId = request.data?.tripId;
+
+  if (
+    typeof tripId !== "string" ||
+    tripId.trim().length === 0
+  ) {
+    throw new HttpsError(
+      "invalid-argument",
+      "A valid tripId is required.",
+    );
+  }
+
+  const tripRef =
+      db.collection("trips").doc(tripId);
+
+  const inviteRef =
+      db.collection("tripInvites").doc(tripId);
+
+  const [tripSnapshot, inviteSnapshot] =
+      await Promise.all([
+        tripRef.get(),
+        inviteRef.get(),
+      ]);
+
+  if (!tripSnapshot.exists) {
+    throw new HttpsError(
+      "not-found",
+      "Trip not found.",
+    );
+  }
+
+  const tripData = tripSnapshot.data();
+
+  if (!canManageTripInvitations(tripData, uid)) {
+    throw new HttpsError(
+      "permission-denied",
+      "Only trip members can view invitation status.",
+    );
+  }
+
+  if (!inviteSnapshot.exists) {
+    return {
+      status: "missing",
+    };
+  }
+
+  const rawStatus =
+      inviteSnapshot.data()?.status;
+
+  return {
+    status: rawStatus === "active" ?
+      "active" :
+      "revoked",
   };
 });
 
@@ -468,81 +564,6 @@ export const acceptTripInvite = onCall(async (request) => {
     role: "traveler",
   };
 });
-
-export const deleteTrip = onCall(
-  {
-    timeoutSeconds: 300,
-  },
-  async (request) => {
-    const uid = request.auth?.uid;
-
-    if (uid == null) {
-      throw new HttpsError(
-        "unauthenticated",
-        "Authentication is required.",
-      );
-    }
-
-    const rawTripId = request.data?.tripId;
-
-    if (
-      typeof rawTripId !== "string" ||
-      rawTripId.trim().length === 0
-    ) {
-      throw new HttpsError(
-        "invalid-argument",
-        "A valid tripId is required.",
-      );
-    }
-
-    const tripId = rawTripId.trim();
-    const tripRef = db.collection("trips").doc(tripId);
-    const tripSnapshot = await tripRef.get();
-
-    if (!tripSnapshot.exists) {
-      throw new HttpsError(
-        "not-found",
-        "Trip not found.",
-      );
-    }
-
-    const tripData = tripSnapshot.data();
-
-    if (tripData?.ownerUid !== uid) {
-      throw new HttpsError(
-        "permission-denied",
-        "Only the trip owner can delete the trip.",
-      );
-    }
-
-    // Delete every current and future subcollection recursively.
-    //
-    // The parent trip document is intentionally kept until all
-    // descendants are gone. If a recursive delete fails, the owner
-    // can retry the operation safely.
-    const subcollections = await tripRef.listCollections();
-
-    for (const collectionRef of subcollections) {
-      await db.recursiveDelete(collectionRef);
-    }
-
-    const inviteRef = db.collection("tripInvites").doc(tripId);
-
-    // Once descendants are gone, remove both top-level documents
-    // together.
-    const batch = db.batch();
-
-    batch.delete(inviteRef);
-    batch.delete(tripRef);
-
-    await batch.commit();
-
-    return {
-      deleted: true,
-      tripId,
-    };
-  },
-);
 
 export const listTripMembers = onCall(async (request) => {
   const uid = request.auth?.uid;
@@ -950,3 +971,18 @@ export const removeTripMember = onCall(async (request) => {
     leftTrip: targetUid === uid,
   };
 });
+export {
+  setTripStatus,
+} from "./trip-management/set-trip-status";
+
+export {
+  updateTripCloudArchive,
+} from "./trip-management/update-trip-cloud-archive";
+
+export {
+  duplicateTrip,
+} from "./trip-management/duplicate-trip";
+
+export {
+  deleteTrip,
+} from "./trip-management/delete-trip";

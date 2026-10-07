@@ -4,11 +4,16 @@ import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
 import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
+import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive_selection.dart';
 import 'package:amaterasutrip/features/trips/data/services/trip_archive_management_service.dart';
 import 'package:amaterasutrip/features/trips/data/services/trip_archive_naming_service.dart';
-import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
-import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
+import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
+import 'package:amaterasutrip/features/trips/models/trip.dart';
+import 'package:amaterasutrip/features/trips/presentation/pages/workspace/settings/management/trip_delete_confirmation_dialog.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/cloud_archive/trip_cloud_archive_page.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_management_provider.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class TripManagementSettingsPage extends ConsumerStatefulWidget {
@@ -17,7 +22,15 @@ class TripManagementSettingsPage extends ConsumerStatefulWidget {
   final String tripId;
 
   static const Color _backgroundColor = Color(0xFF100C0A);
+
+  static const Color _surfaceColor = Color(0xFF1A1512);
+
+  static const Color _borderColor = Color(0xFF3A2A20);
+
+  static const Color _accentColor = Color(0xFFE28A32);
+
   static const Color _titleColor = Color(0xFFF2E7D5);
+
   static const Color _secondaryTextColor = Color(0xFFB7A99B);
 
   @override
@@ -27,14 +40,18 @@ class TripManagementSettingsPage extends ConsumerStatefulWidget {
 
 class _TripManagementSettingsPageState
     extends ConsumerState<TripManagementSettingsPage> {
-  TripArchiveStatus _status = TripArchiveStatus.unchecked;
+  TripArchiveStatus _archiveStatus = TripArchiveStatus.unchecked;
+
   String? _verifiedFolderName;
 
   bool _initialVerificationStarted = false;
-  bool _busy = false;
 
-  void _snack(String text) {
-    if (!mounted) return;
+  bool _working = false;
+
+  void _showMessage(String text) {
+    if (!mounted) {
+      return;
+    }
 
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
@@ -42,25 +59,30 @@ class _TripManagementSettingsPageState
   }
 
   void _startInitialVerification(TripCloudArchive archive) {
-    if (_initialVerificationStarted) return;
+    if (_initialVerificationStarted ||
+        archive.provider != TripCloudProvider.googleDrive) {
+      return;
+    }
 
     _initialVerificationStarted = true;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        _verify(archive);
+        _verifyArchive(archive);
       }
     });
   }
 
-  Future<void> _verify(
+  Future<void> _verifyArchive(
     TripCloudArchive archive, {
     bool showSuccess = false,
   }) async {
-    if (_busy) return;
+    if (_working) {
+      return;
+    }
 
     setState(() {
-      _busy = true;
+      _working = true;
     });
 
     try {
@@ -68,61 +90,72 @@ class _TripManagementSettingsPageState
           .read(tripArchiveManagementServiceProvider)
           .verify(archive);
 
-      if (!mounted) return;
+      if (!mounted) {
+        return;
+      }
 
       setState(() {
-        _status = result.status;
+        _archiveStatus = result.status;
         _verifiedFolderName = result.folderName;
       });
 
       if (showSuccess && result.status == TripArchiveStatus.available) {
-        _snack(AppLocalizations.of(context)!.tripManagementArchiveVerified);
+        _showMessage(
+          AppLocalizations.of(context)!.tripManagementArchiveVerified,
+        );
       }
     } catch (_) {
-      if (!mounted) return;
+      if (!mounted) {
+        return;
+      }
 
       setState(() {
-        _status = TripArchiveStatus.error;
+        _archiveStatus = TripArchiveStatus.error;
       });
+
+      _showMessage(AppLocalizations.of(context)!.tripManagementOperationError);
     } finally {
       if (mounted) {
         setState(() {
-          _busy = false;
+          _working = false;
         });
       }
     }
   }
 
-  Future<void> _open(TripCloudArchive archive) async {
-    if (_busy) return;
+  Future<void> _openArchive(TripCloudArchive archive) async {
+    if (_working) {
+      return;
+    }
 
     final l10n = AppLocalizations.of(context)!;
 
     setState(() {
-      _busy = true;
+      _working = true;
     });
 
     try {
       await ref.read(tripArchiveManagementServiceProvider).open(archive);
     } catch (_) {
-      _snack(l10n.tripManagementOperationError);
+      _showMessage(l10n.tripManagementOperationError);
     } finally {
       if (mounted) {
         setState(() {
-          _busy = false;
+          _working = false;
         });
       }
     }
   }
 
-  Future<void> _reconnect(TripCloudArchive archive) async {
-    if (_busy) return;
+  Future<void> _reconnectArchive(TripCloudArchive archive) async {
+    if (_working) {
+      return;
+    }
 
     final l10n = AppLocalizations.of(context)!;
-    final messenger = ScaffoldMessenger.of(context);
 
     setState(() {
-      _busy = true;
+      _working = true;
     });
 
     try {
@@ -130,72 +163,96 @@ class _TripManagementSettingsPageState
           .read(tripArchiveManagementServiceProvider)
           .reconnect(archive);
 
-      if (!mounted) return;
+      if (!mounted) {
+        return;
+      }
+
       setState(() {
-        _status = result.status;
+        _archiveStatus = result.status;
         _verifiedFolderName = result.folderName;
       });
+
       if (result.status == TripArchiveStatus.available) {
-        messenger
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(content: Text(l10n.tripManagementArchiveReconnectSuccess)),
-          );
+        _showMessage(l10n.tripManagementArchiveReconnectSuccess);
       } else {
-        _snack(l10n.tripManagementArchiveReconnectUnavailable);
+        _showMessage(l10n.tripManagementArchiveReconnectUnavailable);
       }
     } catch (_) {
-      _snack(AppLocalizations.of(context)!.tripManagementOperationError);
+      _showMessage(l10n.tripManagementOperationError);
     } finally {
       if (mounted) {
         setState(() {
-          _busy = false;
+          _working = false;
         });
       }
     }
   }
 
-  Future<void> _changeArchive(dynamic trip) async {
-    if (_busy) return;
+  Future<void> _configureOrChangeArchive(Trip trip) async {
+    if (_working) {
+      return;
+    }
 
     final l10n = AppLocalizations.of(context)!;
 
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) {
-        return AlertDialog(
-          title: Text(l10n.tripManagementArchiveChangeTitle),
-          content: Text(l10n.tripManagementArchiveChangeBody),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(dialogContext).pop(false);
-              },
-              child: Text(l10n.tripManagementCancel),
+    final hasCurrentArchive =
+        trip.cloudArchive != null &&
+        trip.cloudArchive!.folderId.trim().isNotEmpty;
+
+    if (hasCurrentArchive) {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) {
+          return AlertDialog(
+            backgroundColor: TripManagementSettingsPage._surfaceColor,
+            surfaceTintColor: Colors.transparent,
+            title: Text(
+              l10n.tripManagementArchiveChangeTitle,
+              style: const TextStyle(
+                color: TripManagementSettingsPage._titleColor,
+                fontWeight: FontWeight.w700,
+              ),
             ),
-            FilledButton(
-              onPressed: () {
-                Navigator.of(dialogContext).pop(true);
-              },
-              child: Text(l10n.tripManagementArchiveChangeConfirm),
+            content: Text(
+              l10n.tripManagementArchiveChangeBody,
+              style: const TextStyle(
+                color: TripManagementSettingsPage._secondaryTextColor,
+                height: 1.4,
+              ),
             ),
-          ],
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(false),
+                child: Text(l10n.tripManagementCancel),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.of(dialogContext).pop(true),
+                child: Text(l10n.tripManagementArchiveChangeConfirm),
+              ),
+            ],
+          );
+        },
+      );
+
+      if (confirmed != true || !mounted) {
+        return;
+      }
+    }
+
+    final selection = await Navigator.of(context)
+        .push<TripCloudArchiveSelection>(
+          MaterialPageRoute<TripCloudArchiveSelection>(
+            builder: (_) =>
+                TripCloudArchivePage(currentArchive: trip.cloudArchive),
+          ),
         );
-      },
-    );
 
-    if (confirmed != true || !mounted) return;
-
-    final selection = await Navigator.of(context).push<dynamic>(
-      MaterialPageRoute<dynamic>(
-        builder: (_) => TripCloudArchivePage(currentArchive: trip.cloudArchive),
-      ),
-    );
-
-    if (selection == null || !mounted) return;
+    if (selection == null || !mounted) {
+      return;
+    }
 
     setState(() {
-      _busy = true;
+      _working = true;
     });
 
     try {
@@ -214,30 +271,118 @@ class _TripManagementSettingsPageState
           );
 
       await ref
-          .read(tripRepositoryProvider)
-          .updateCloudArchive(tripId: widget.tripId, cloudArchive: archive);
+          .read(tripManagementRepositoryProvider)
+          .updateCloudArchive(tripId: trip.id, archive: archive);
 
-      if (!mounted) return;
+      if (!mounted) {
+        return;
+      }
 
       setState(() {
-        _status = TripArchiveStatus.available;
+        _archiveStatus = TripArchiveStatus.available;
         _verifiedFolderName = archive.folderName;
+        _initialVerificationStarted = true;
       });
 
-      _snack(l10n.tripManagementArchiveChanged);
+      _showMessage(l10n.tripManagementArchiveChanged);
     } catch (_) {
-      _snack(l10n.tripManagementOperationError);
+      _showMessage(l10n.tripManagementOperationError);
     } finally {
       if (mounted) {
         setState(() {
-          _busy = false;
+          _working = false;
         });
       }
     }
   }
 
-  Future<void> _deleteTrip() async {
-    if (_busy) return;
+  Future<void> _changeStatus(Trip trip) async {
+    if (_working) {
+      return;
+    }
+
+    final l10n = AppLocalizations.of(context)!;
+
+    final closing = trip.status == TripStatus.active;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          backgroundColor: TripManagementSettingsPage._surfaceColor,
+          surfaceTintColor: Colors.transparent,
+          title: Text(
+            closing
+                ? l10n.tripManagementFinalArchiveConfirmTitle
+                : l10n.tripManagementFinalReactivateConfirmTitle,
+            style: const TextStyle(
+              color: TripManagementSettingsPage._titleColor,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          content: Text(
+            closing
+                ? l10n.tripManagementFinalArchiveConfirmBody
+                : l10n.tripManagementFinalReactivateConfirmBody,
+            style: const TextStyle(
+              color: TripManagementSettingsPage._secondaryTextColor,
+              height: 1.4,
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(false),
+              child: Text(l10n.tripManagementCancel),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(dialogContext).pop(true),
+              child: Text(
+                closing
+                    ? l10n.tripManagementFinalArchiveConfirmAction
+                    : l10n.tripManagementFinalReactivateConfirmAction,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed != true || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _working = true;
+    });
+
+    try {
+      await ref
+          .read(tripManagementRepositoryProvider)
+          .setStatus(
+            tripId: trip.id,
+            status: closing ? TripStatus.closed : TripStatus.active,
+          );
+
+      if (!mounted) {
+        return;
+      }
+
+      _showMessage(l10n.tripManagementFinalStatusUpdated);
+    } catch (_) {
+      _showMessage(l10n.tripManagementOperationError);
+    } finally {
+      if (mounted) {
+        setState(() {
+          _working = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _duplicateTrip(Trip trip) async {
+    if (_working) {
+      return;
+    }
 
     final l10n = AppLocalizations.of(context)!;
 
@@ -245,73 +390,166 @@ class _TripManagementSettingsPageState
       context: context,
       builder: (dialogContext) {
         return AlertDialog(
-          title: Text(l10n.tripManagementDeleteTitle),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.tripManagementDeleteDriveWarning,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 12),
-              Text(l10n.tripManagementDeleteBody),
-            ],
+          backgroundColor: TripManagementSettingsPage._surfaceColor,
+          surfaceTintColor: Colors.transparent,
+          title: Text(
+            l10n.tripManagementFinalDuplicateConfirmTitle,
+            style: const TextStyle(
+              color: TripManagementSettingsPage._titleColor,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          content: Text(
+            l10n.tripManagementFinalDuplicateConfirmBody,
+            style: const TextStyle(
+              color: TripManagementSettingsPage._secondaryTextColor,
+              height: 1.45,
+            ),
           ),
           actions: [
             TextButton(
-              onPressed: () {
-                Navigator.of(dialogContext).pop(false);
-              },
+              onPressed: () => Navigator.of(dialogContext).pop(false),
               child: Text(l10n.tripManagementCancel),
             ),
             FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: Colors.red.shade700,
-              ),
-              onPressed: () {
-                Navigator.of(dialogContext).pop(true);
-              },
-              child: Text(l10n.tripManagementDeleteConfirm),
+              onPressed: () => Navigator.of(dialogContext).pop(true),
+              child: Text(l10n.tripManagementFinalDuplicateConfirmAction),
             ),
           ],
         );
       },
     );
 
-    if (confirmed != true || !mounted) return;
+    if (confirmed != true || !mounted) {
+      return;
+    }
 
     setState(() {
-      _busy = true;
+      _working = true;
     });
 
     try {
-      await ref.read(tripRepositoryProvider).deleteTrip(tripId: widget.tripId);
+      final duplicateName = l10n.tripManagementFinalDuplicateCopyName(
+        trip.name,
+      );
 
-      if (!mounted) return;
+      final newTripId = await ref
+          .read(tripManagementRepositoryProvider)
+          .duplicateTrip(tripId: trip.id, duplicateName: duplicateName);
 
-      context.go('/trips');
-    } catch (_) {
-      if (!mounted) return;
+      if (!mounted) {
+        return;
+      }
 
       setState(() {
-        _busy = false;
+        _working = false;
       });
 
-      _snack(l10n.tripManagementOperationError);
+      final openDuplicate = await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) {
+          return AlertDialog(
+            backgroundColor: TripManagementSettingsPage._surfaceColor,
+            surfaceTintColor: Colors.transparent,
+            title: Text(
+              l10n.tripManagementFinalDuplicateSuccessTitle,
+              style: const TextStyle(
+                color: TripManagementSettingsPage._titleColor,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            content: Text(
+              l10n.tripManagementFinalDuplicateSuccessBody(duplicateName),
+              style: const TextStyle(
+                color: TripManagementSettingsPage._secondaryTextColor,
+                height: 1.4,
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(false),
+                child: Text(l10n.tripManagementFinalStayHere),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.of(dialogContext).pop(true),
+                child: Text(l10n.tripManagementFinalDuplicateOpen),
+              ),
+            ],
+          );
+        },
+      );
+
+      if (openDuplicate == true && mounted) {
+        context.go('/trips/$newTripId');
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() {
+          _working = false;
+        });
+
+        _showMessage(l10n.tripManagementOperationError);
+      }
     }
   }
 
-  String _statusLabel(AppLocalizations l10n, bool hasArchive) {
+  Future<void> _deleteTrip(Trip trip) async {
+    if (_working) {
+      return;
+    }
+
+    final l10n = AppLocalizations.of(context)!;
+
+    final confirmed =
+        await showDialog<bool>(
+          context: context,
+          builder: (_) {
+            return TripDeleteConfirmationDialog(tripName: trip.name);
+          },
+        ) ??
+        false;
+
+    if (!confirmed || !mounted) {
+      return;
+    }
+
+    setState(() {
+      _working = true;
+    });
+
+    try {
+      await ref
+          .read(tripManagementRepositoryProvider)
+          .deleteTrip(tripId: trip.id, confirmationName: trip.name);
+
+      if (!mounted) {
+        return;
+      }
+
+      context.go('/trips');
+    } catch (_) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _working = false;
+      });
+
+      _showMessage(l10n.tripManagementOperationError);
+    }
+  }
+
+  String _archiveStatusLabel(AppLocalizations l10n, bool hasArchive) {
     if (!hasArchive) {
       return l10n.tripManagementArchiveNotConfigured;
     }
 
-    if (_busy && _status == TripArchiveStatus.unchecked) {
+    if (_working && _archiveStatus == TripArchiveStatus.unchecked) {
       return l10n.tripManagementArchiveChecking;
     }
 
-    return switch (_status) {
+    return switch (_archiveStatus) {
       TripArchiveStatus.available => l10n.tripManagementArchiveAvailable,
       TripArchiveStatus.unchecked => l10n.tripManagementArchiveUnchecked,
       TripArchiveStatus.authorizationRequired =>
@@ -326,10 +564,21 @@ class _TripManagementSettingsPageState
     };
   }
 
+  String _providerLabel(AppLocalizations l10n, TripCloudProvider provider) {
+    return switch (provider) {
+      TripCloudProvider.googleDrive => l10n.tripCloudGoogleDrive,
+      TripCloudProvider.oneDrive => l10n.tripCloudOneDrive,
+      TripCloudProvider.dropbox => l10n.tripCloudDropbox,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+
     final tripAsync = ref.watch(tripProvider(widget.tripId));
+
+    final access = ref.watch(tripAccessProvider(widget.tripId));
 
     return Scaffold(
       backgroundColor: TripManagementSettingsPage._backgroundColor,
@@ -338,142 +587,212 @@ class _TripManagementSettingsPageState
           children: [
             _Header(
               title: l10n.tripSettingsManagement,
+              subtitle: l10n.tripSettingsManagementSubtitle,
               onBack: () {
                 context.go('/trips/${widget.tripId}/settings');
               },
             ),
             Expanded(
               child: tripAsync.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (_, _) => Center(
-                  child: Text(
-                    l10n.tripManagementLoadError,
-                    style: const TextStyle(
-                      color: TripManagementSettingsPage._titleColor,
-                    ),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(
+                    color: TripManagementSettingsPage._accentColor,
                   ),
                 ),
+                error: (_, _) =>
+                    _CenteredMessage(text: l10n.tripManagementLoadError),
                 data: (trip) {
                   if (trip == null) {
-                    return Center(
-                      child: Text(
-                        l10n.tripManagementLoadError,
-                        style: const TextStyle(
-                          color: TripManagementSettingsPage._titleColor,
-                        ),
-                      ),
+                    return _CenteredMessage(text: l10n.tripManagementLoadError);
+                  }
+
+                  final canView =
+                      access?.can(TripPermission.viewManagement) ?? false;
+
+                  if (!canView) {
+                    return _CenteredMessage(
+                      text: l10n.tripManagementFinalAccessDenied,
                     );
                   }
+
+                  final canManageArchive =
+                      access?.can(TripPermission.manageArchive) ?? false;
+
+                  final canManageStatus =
+                      access?.can(TripPermission.manageStatus) ?? false;
+
+                  final canDuplicate =
+                      access?.can(TripPermission.duplicateTrip) ?? false;
+
+                  final canDelete =
+                      access?.can(TripPermission.deleteTrip) ?? false;
 
                   final archive = trip.cloudArchive;
 
                   final hasArchive =
                       archive != null && archive.folderId.trim().isNotEmpty;
 
-                  if (hasArchive) {
+                  final googleDriveArchive =
+                      hasArchive &&
+                      archive.provider == TripCloudProvider.googleDrive;
+
+                  if (hasArchive && googleDriveArchive) {
                     _startInitialVerification(archive);
                   }
 
                   return ListView(
                     physics: const ClampingScrollPhysics(),
-                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
                     children: [
                       _SectionTitle(l10n.tripManagementArchiveSection),
                       const SizedBox(height: 8),
 
-                      AmaterasuSettingsCard(
+                      _InfoCard(
                         icon: hasArchive
                             ? Icons.cloud_done_outlined
                             : Icons.cloud_off_outlined,
                         title: l10n.tripManagementArchiveStatus,
-                        subtitle: _statusLabel(l10n, hasArchive),
-                        onTap: () {},
-                        enabled: false,
+                        body: _archiveStatusLabel(l10n, hasArchive),
                       ),
 
                       if (hasArchive) ...[
                         const SizedBox(height: 10),
-
-                        AmaterasuSettingsCard(
+                        _InfoCard(
                           icon: Icons.folder_outlined,
                           title: l10n.tripManagementArchiveFolder,
-                          subtitle: _verifiedFolderName ?? archive.folderName,
-                          onTap: () {},
-                          enabled: false,
+                          body:
+                              '${_providerLabel(l10n, archive.provider)}\n'
+                              '${_verifiedFolderName ?? archive.folderName}',
+                        ),
+                      ],
+
+                      const SizedBox(height: 10),
+
+                      if (!hasArchive)
+                        AmaterasuSettingsCard(
+                          icon: Icons.cloud_upload_outlined,
+                          title: l10n.tripManagementFinalConfigureArchive,
+                          subtitle:
+                              l10n.tripManagementFinalConfigureArchiveSubtitle,
+                          onTap: () => _configureOrChangeArchive(trip),
+                          enabled: !_working && canManageArchive,
                         ),
 
-                        const SizedBox(height: 10),
-
+                      if (googleDriveArchive) ...[
                         AmaterasuSettingsCard(
                           icon: Icons.verified_outlined,
                           title: l10n.tripManagementArchiveVerify,
                           subtitle: l10n.tripManagementArchiveVerifySubtitle,
-                          onTap: () => _verify(archive, showSuccess: true),
-                          enabled: !_busy,
+                          onTap: () =>
+                              _verifyArchive(archive, showSuccess: true),
+                          enabled: !_working && canManageArchive,
                         ),
-
                         const SizedBox(height: 10),
-
                         AmaterasuSettingsCard(
                           icon: Icons.open_in_new_rounded,
                           title: l10n.tripManagementArchiveOpen,
                           subtitle: l10n.tripManagementArchiveOpenSubtitle,
-                          onTap: () => _open(archive),
-                          enabled: !_busy,
+                          onTap: () => _openArchive(archive),
+                          enabled: !_working && canManageArchive,
                         ),
-
                         const SizedBox(height: 10),
-
-                        AmaterasuSettingsCard(
-                          icon: Icons.drive_file_move_outline,
-                          title: l10n.tripManagementArchiveChange,
-                          subtitle: l10n.tripManagementArchiveChangeSubtitle,
-                          onTap: () => _changeArchive(trip),
-                          enabled: !_busy,
-                        ),
-
-                        const SizedBox(height: 10),
-
                         AmaterasuSettingsCard(
                           icon: Icons.sync_rounded,
                           title: l10n.tripManagementArchiveReconnect,
                           subtitle: l10n.tripManagementArchiveReconnectSubtitle,
-                          onTap: () => _reconnect(archive),
-                          enabled: !_busy,
+                          onTap: () => _reconnectArchive(archive),
+                          enabled: !_working && canManageArchive,
                         ),
+                        const SizedBox(height: 10),
                       ],
 
-                      const SizedBox(height: 24),
+                      if (hasArchive && !googleDriveArchive) ...[
+                        _InfoCard(
+                          icon: Icons.info_outline_rounded,
+                          title: l10n.tripManagementArchiveStatus,
+                          body: l10n
+                              .tripManagementFinalArchiveProviderUnsupported,
+                        ),
+                        const SizedBox(height: 10),
+                      ],
 
-                      _SectionTitle(l10n.tripManagementOperationsSection),
+                      if (hasArchive)
+                        AmaterasuSettingsCard(
+                          icon: Icons.drive_file_move_outline,
+                          title: l10n.tripManagementArchiveChange,
+                          subtitle: l10n.tripManagementArchiveChangeSubtitle,
+                          onTap: () => _configureOrChangeArchive(trip),
+                          enabled: !_working && canManageArchive,
+                        ),
+
+                      const SizedBox(height: 10),
+
+                      _InfoCard(
+                        icon: Icons.shield_outlined,
+                        title: l10n.tripManagementFinalArchiveOwnershipTitle,
+                        body: l10n.tripManagementFinalArchiveOwnershipBody,
+                      ),
+
+                      const SizedBox(height: 26),
+
+                      _SectionTitle(l10n.tripManagementFinalStatusSection),
+
                       const SizedBox(height: 8),
 
-                      AmaterasuSettingsCard(
-                        icon: Icons.file_download_outlined,
-                        title: l10n.tripManagementExport,
-                        subtitle: l10n.tripManagementExportSubtitle,
-                        onTap: () {},
-                        enabled: false,
+                      _InfoCard(
+                        icon: trip.status == TripStatus.active
+                            ? Icons.play_circle_outline_rounded
+                            : Icons.inventory_2_outlined,
+                        title: l10n.tripManagementFinalTripStatus,
+                        body: trip.status == TripStatus.active
+                            ? '${l10n.tripManagementFinalStatusActive}\n'
+                                  '${l10n.tripManagementFinalStatusActiveBody}'
+                            : '${l10n.tripManagementFinalStatusClosed}\n'
+                                  '${l10n.tripManagementFinalStatusClosedBody}',
                       ),
 
                       const SizedBox(height: 10),
+
+                      AmaterasuSettingsCard(
+                        icon: trip.status == TripStatus.active
+                            ? Icons.archive_outlined
+                            : Icons.unarchive_outlined,
+                        title: trip.status == TripStatus.active
+                            ? l10n.tripManagementFinalArchiveAction
+                            : l10n.tripManagementFinalReactivateAction,
+                        subtitle: trip.status == TripStatus.active
+                            ? l10n.tripManagementFinalArchiveActionSubtitle
+                            : l10n.tripManagementFinalReactivateActionSubtitle,
+                        onTap: () => _changeStatus(trip),
+                        enabled: !_working && canManageStatus,
+                      ),
+
+                      const SizedBox(height: 26),
+
+                      _SectionTitle(l10n.tripManagementFinalOperationsSection),
+
+                      const SizedBox(height: 8),
 
                       AmaterasuSettingsCard(
                         icon: Icons.copy_all_outlined,
                         title: l10n.tripManagementDuplicate,
                         subtitle: l10n.tripManagementDuplicateSubtitle,
-                        onTap: () {},
-                        enabled: false,
+                        onTap: () => _duplicateTrip(trip),
+                        enabled: !_working && canDuplicate,
                       ),
 
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 26),
+
+                      _SectionTitle(l10n.tripManagementFinalDangerSection),
+
+                      const SizedBox(height: 8),
 
                       AmaterasuSettingsCard(
-                        icon: Icons.delete_outline_rounded,
+                        icon: Icons.delete_forever_outlined,
                         title: l10n.tripManagementDelete,
                         subtitle: l10n.tripManagementDeleteSubtitle,
-                        onTap: _deleteTrip,
-                        enabled: !_busy,
+                        onTap: () => _deleteTrip(trip),
+                        enabled: !_working && canDelete,
                       ),
                     ],
                   );
@@ -488,9 +807,14 @@ class _TripManagementSettingsPageState
 }
 
 class _Header extends StatelessWidget {
-  const _Header({required this.title, required this.onBack});
+  const _Header({
+    required this.title,
+    required this.subtitle,
+    required this.onBack,
+  });
 
   final String title;
+  final String subtitle;
   final VoidCallback onBack;
 
   @override
@@ -508,13 +832,27 @@ class _Header extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: TripManagementSettingsPage._titleColor,
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: TripManagementSettingsPage._titleColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    color: TripManagementSettingsPage._secondaryTextColor,
+                    fontSize: 13,
+                    height: 1.3,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -536,6 +874,100 @@ class _SectionTitle extends StatelessWidget {
         color: TripManagementSettingsPage._secondaryTextColor,
         fontWeight: FontWeight.w700,
         letterSpacing: 1.1,
+      ),
+    );
+  }
+}
+
+class _InfoCard extends StatelessWidget {
+  const _InfoCard({
+    required this.icon,
+    required this.title,
+    required this.body,
+  });
+
+  final IconData icon;
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: TripManagementSettingsPage._surfaceColor,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: TripManagementSettingsPage._borderColor),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 42,
+            height: 42,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: TripManagementSettingsPage._accentColor.withValues(
+                alpha: 0.10,
+              ),
+              borderRadius: BorderRadius.circular(13),
+            ),
+            child: Icon(
+              icon,
+              color: TripManagementSettingsPage._accentColor,
+              size: 22,
+            ),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: TripManagementSettingsPage._titleColor,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  body,
+                  style: const TextStyle(
+                    color: TripManagementSettingsPage._secondaryTextColor,
+                    fontSize: 13,
+                    height: 1.45,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CenteredMessage extends StatelessWidget {
+  const _CenteredMessage({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: TripManagementSettingsPage._secondaryTextColor,
+            fontSize: 14,
+            height: 1.4,
+          ),
+        ),
       ),
     );
   }

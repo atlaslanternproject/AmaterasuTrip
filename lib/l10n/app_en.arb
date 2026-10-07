@@ -466,7 +466,7 @@
     "tripSettingsPrivacy":  "Privacy and sharing",
     "tripSettingsPrivacySubtitle":  "Manage trip visibility and sharing",
     "tripSettingsManagement":  "Trip management",
-    "tripSettingsManagementSubtitle":  "Archive, duplicate, export or delete the trip",
+    "tripSettingsManagementSubtitle":  "Cloud storage, trip status, duplication and deletion",
     "tripPrivacyIntro":  "Control access, invitations and sharing for this trip.",
     "tripPrivacyAccess":  "Trip access",
     "tripPrivacyAccessPrivate":  "Private · Only authorised travellers can access",
@@ -502,9 +502,9 @@
     "tripManagementExport":  "Export trip",
     "tripManagementExportSubtitle":  "Create an exportable copy of the trip data",
     "tripManagementDuplicate":  "Duplicate trip",
-    "tripManagementDuplicateSubtitle":  "Create a new trip based on this one",
+    "tripManagementDuplicateSubtitle":  "Copy the trip's Firestore content without members, cloud storage or external files",
     "tripManagementDelete":  "Delete trip",
-    "tripManagementDeleteSubtitle":  "Delete the trip from Amaterasu without automatically deleting personal files from cloud storage",
+    "tripManagementDeleteSubtitle":  "Permanently delete the trip data from Amaterasu; personal cloud files remain untouched",
     "tripMapTitle":  "Map",
     "tripExpensesTitle":  "Expenses",
     "tripTravellersTitle":  "Travellers",
@@ -795,5 +795,121 @@
   "tripNotificationsTripStatus": "Trip status",
   "tripNotificationsTripStatusSubtitle": "Closing, reopening or other changes to the trip status",
   "tripNotificationsImportantCommunications": "Important communications",
-  "tripNotificationsImportantCommunicationsSubtitle": "Critical alerts needed for organisation, safety or the correct use of the trip"
+  "tripNotificationsImportantCommunicationsSubtitle": "Critical alerts needed for organisation, safety or the correct use of the trip",
+"tripPrivacyAccessSection": "Access and invitations",
+  "tripPrivacyAccessPrivateDetail": "This trip is private. Only authorised trip members can access it. Amaterasu does not provide a \"public trip\" mode: the invitation link only starts the joining process and does not automatically make someone a member.",
+  "tripPrivacyInviteStatusChecking": "Checking",
+  "tripPrivacyInviteStatusMissing": "Not created yet",
+  "tripPrivacyInviteStatusActive": "Active",
+  "tripPrivacyInviteStatusRevoked": "Revoked",
+  "tripPrivacyInviteStatusUnavailable": "Status unavailable",
+  "tripPrivacyInviteLinkWithStatus": "Status: {status} · create, copy, share, regenerate or revoke the link from the Travellers section",
+  "@tripPrivacyInviteLinkWithStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+
+  "tripPrivacyProfileSection": "Trip profile data",
+  "tripPrivacyProfileData": "Travellers' trip profiles",
+  "tripPrivacyProfileDataSubtitle": "Allergies, intolerances, accessibility and emergency contacts",
+
+  "tripPrivacyRolesSection": "Roles and permissions",
+  "tripPrivacyRolesCurrentAllowed": "Your role is {role}. At this stage OWNER and TRAVELER have the same trip permissions. Authorisation is determined by the trip's central access policy.",
+  "@tripPrivacyRolesCurrentAllowed": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "tripPrivacyRolesCurrentReadOnly": "Your role is {role}. You can view this information, but the trip policy does not authorise you to manage roles and permissions.",
+  "@tripPrivacyRolesCurrentReadOnly": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+
+  "tripPrivacyExternalSection": "External sharing",
+  "tripPrivacyExternalArchive": "External cloud archive",
+  "tripPrivacyExternalArchiveNone": "No external cloud archive is currently linked to this trip.",
+  "tripPrivacyExternalArchiveConnected": "{provider} is linked to this trip.",
+  "@tripPrivacyExternalArchiveConnected": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "tripPrivacyExternalControl": "Amaterasu invitation links and the cloud archive are separate. Files, available storage and Google Drive, OneDrive or Dropbox permissions remain under the control of the external provider account and are not made public by Amaterasu.",
+
+  "tripPrivacyAccessDenied": "You do not have access to this trip's privacy and sharing settings.",
+  "tripPrivacyLoadError": "Unable to load privacy and sharing settings.",
+"tripManagementFinalConfigureArchive": "Configure storage",
+  "tripManagementFinalConfigureArchiveSubtitle": "Link personal cloud storage to this trip",
+
+  "tripManagementFinalArchiveOwnershipTitle": "Personal cloud storage",
+  "tripManagementFinalArchiveOwnershipBody": "Amaterasu stores the link to the archive, but the files remain under the control of the user's Google Drive, OneDrive or Dropbox account.",
+
+  "tripManagementFinalArchiveProviderUnsupported": "This provider is registered for the trip, but verification, opening and reconnection are not yet available. You can still change the archive.",
+
+  "tripManagementFinalStatusSection": "Trip status",
+  "tripManagementFinalTripStatus": "Status",
+  "tripManagementFinalStatusActive": "Active",
+  "tripManagementFinalStatusClosed": "Archived",
+  "tripManagementFinalStatusActiveBody": "The trip is active and appears normally among current or upcoming trips.",
+  "tripManagementFinalStatusClosedBody": "The trip is archived, but remains fully viewable and editable.",
+  "tripManagementFinalArchiveAction": "Archive trip",
+  "tripManagementFinalArchiveActionSubtitle": "Move the trip to archived trips without preventing viewing or editing",
+  "tripManagementFinalReactivateAction": "Reactivate trip",
+  "tripManagementFinalReactivateActionSubtitle": "Return the trip to active status",
+  "tripManagementFinalArchiveConfirmTitle": "Archive this trip?",
+  "tripManagementFinalArchiveConfirmBody": "The trip will be marked as archived. All data will remain available and you will still be able to view and edit it.",
+  "tripManagementFinalArchiveConfirmAction": "Archive",
+  "tripManagementFinalReactivateConfirmTitle": "Reactivate this trip?",
+  "tripManagementFinalReactivateConfirmBody": "The trip will return to active status without losing or changing any content.",
+  "tripManagementFinalReactivateConfirmAction": "Reactivate",
+  "tripManagementFinalStatusUpdated": "Trip status updated",
+
+  "tripManagementFinalOperationsSection": "Operations",
+  "tripManagementFinalDuplicateConfirmTitle": "Duplicate this trip?",
+  "tripManagementFinalDuplicateConfirmBody": "Amaterasu will create a new trip by copying the trip document and all Firestore content stored in its subcollections, including subcollections added in the future. Members, invitations, trip profiles, Drive/OneDrive/Dropbox storage, file-backed cover references and external file references will not be copied. The new trip will be active and the person creating the duplicate will be its only initial member.",
+  "tripManagementFinalDuplicateConfirmAction": "Duplicate",
+  "tripManagementFinalDuplicateCopyName": "Copy of {name}",
+  "@tripManagementFinalDuplicateCopyName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tripManagementFinalDuplicateSuccessTitle": "Trip duplicated",
+  "tripManagementFinalDuplicateSuccessBody": "The copy \"{name}\" was created successfully.",
+  "@tripManagementFinalDuplicateSuccessBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tripManagementFinalDuplicateOpen": "Open copy",
+  "tripManagementFinalStayHere": "Stay here",
+
+  "tripManagementFinalDangerSection": "Danger zone",
+  "tripManagementFinalDeleteCloudWarning": "Deleting the trip from Amaterasu does NOT delete personal files stored in Google Drive, OneDrive or Dropbox. Those files remain under the control of the external cloud account.",
+  "tripManagementFinalDeleteConfirmInstruction": "To confirm permanent deletion, type \"{name}\" exactly.",
+  "@tripManagementFinalDeleteConfirmInstruction": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tripManagementFinalDeleteInputLabel": "Trip name",
+
+  "tripManagementFinalAccessDenied": "You do not have access to manage this trip."
 }

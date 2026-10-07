@@ -20,6 +20,7 @@ enum TripPermission {
 
   viewManagement,
   manageArchive,
+  manageStatus,
   exportTrip,
   duplicateTrip,
   deleteTrip,

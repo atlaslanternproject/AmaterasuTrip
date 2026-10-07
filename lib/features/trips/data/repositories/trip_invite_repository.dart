@@ -1,5 +1,7 @@
 import 'package:cloud_functions/cloud_functions.dart';
 
+enum TripInviteStatus { missing, active, revoked }
+
 class TripInviteRepository {
   TripInviteRepository({FirebaseFunctions? functions})
     : _functions =
@@ -45,6 +47,23 @@ class TripInviteRepository {
     }
 
     return revoked;
+  }
+
+  Future<TripInviteStatus> getTripInviteStatus({required String tripId}) async {
+    final callable = _functions.httpsCallable('getTripInviteStatus');
+
+    final result = await callable.call<Map<String, dynamic>>({
+      'tripId': tripId,
+    });
+
+    final status = result.data['status'];
+
+    return switch (status) {
+      'missing' => TripInviteStatus.missing,
+      'active' => TripInviteStatus.active,
+      'revoked' => TripInviteStatus.revoked,
+      _ => throw StateError('Invalid getTripInviteStatus response.'),
+    };
   }
 
   Future<ValidatedTripInvite> validateTripInvite({

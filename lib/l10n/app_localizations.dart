@@ -2558,7 +2558,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripSettingsManagementSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Archive, duplicate, export or delete the trip'**
+  /// **'Cloud storage, trip status, duplication and deletion'**
   String get tripSettingsManagementSubtitle;
 
   /// No description provided for @tripPrivacyIntro.
@@ -2732,7 +2732,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripManagementDuplicateSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Create a new trip based on this one'**
+  /// **'Copy the trip\'s Firestore content without members, cloud storage or external files'**
   String get tripManagementDuplicateSubtitle;
 
   /// No description provided for @tripManagementDelete.
@@ -2744,7 +2744,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripManagementDeleteSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Delete the trip from Amaterasu without automatically deleting personal files from cloud storage'**
+  /// **'Permanently delete the trip data from Amaterasu; personal cloud files remain untouched'**
   String get tripManagementDeleteSubtitle;
 
   /// No description provided for @tripMapTitle.
@@ -4306,6 +4306,348 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Critical alerts needed for organisation, safety or the correct use of the trip'**
   String get tripNotificationsImportantCommunicationsSubtitle;
+
+  /// No description provided for @tripPrivacyAccessSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Access and invitations'**
+  String get tripPrivacyAccessSection;
+
+  /// No description provided for @tripPrivacyAccessPrivateDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'This trip is private. Only authorised trip members can access it. Amaterasu does not provide a \"public trip\" mode: the invitation link only starts the joining process and does not automatically make someone a member.'**
+  String get tripPrivacyAccessPrivateDetail;
+
+  /// No description provided for @tripPrivacyInviteStatusChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking'**
+  String get tripPrivacyInviteStatusChecking;
+
+  /// No description provided for @tripPrivacyInviteStatusMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Not created yet'**
+  String get tripPrivacyInviteStatusMissing;
+
+  /// No description provided for @tripPrivacyInviteStatusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get tripPrivacyInviteStatusActive;
+
+  /// No description provided for @tripPrivacyInviteStatusRevoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoked'**
+  String get tripPrivacyInviteStatusRevoked;
+
+  /// No description provided for @tripPrivacyInviteStatusUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Status unavailable'**
+  String get tripPrivacyInviteStatusUnavailable;
+
+  /// No description provided for @tripPrivacyInviteLinkWithStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status: {status} · create, copy, share, regenerate or revoke the link from the Travellers section'**
+  String tripPrivacyInviteLinkWithStatus(String status);
+
+  /// No description provided for @tripPrivacyProfileSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip profile data'**
+  String get tripPrivacyProfileSection;
+
+  /// No description provided for @tripPrivacyProfileData.
+  ///
+  /// In en, this message translates to:
+  /// **'Travellers\' trip profiles'**
+  String get tripPrivacyProfileData;
+
+  /// No description provided for @tripPrivacyProfileDataSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies, intolerances, accessibility and emergency contacts'**
+  String get tripPrivacyProfileDataSubtitle;
+
+  /// No description provided for @tripPrivacyRolesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Roles and permissions'**
+  String get tripPrivacyRolesSection;
+
+  /// No description provided for @tripPrivacyRolesCurrentAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your role is {role}. At this stage OWNER and TRAVELER have the same trip permissions. Authorisation is determined by the trip\'s central access policy.'**
+  String tripPrivacyRolesCurrentAllowed(String role);
+
+  /// No description provided for @tripPrivacyRolesCurrentReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Your role is {role}. You can view this information, but the trip policy does not authorise you to manage roles and permissions.'**
+  String tripPrivacyRolesCurrentReadOnly(String role);
+
+  /// No description provided for @tripPrivacyExternalSection.
+  ///
+  /// In en, this message translates to:
+  /// **'External sharing'**
+  String get tripPrivacyExternalSection;
+
+  /// No description provided for @tripPrivacyExternalArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'External cloud archive'**
+  String get tripPrivacyExternalArchive;
+
+  /// No description provided for @tripPrivacyExternalArchiveNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No external cloud archive is currently linked to this trip.'**
+  String get tripPrivacyExternalArchiveNone;
+
+  /// No description provided for @tripPrivacyExternalArchiveConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'{provider} is linked to this trip.'**
+  String tripPrivacyExternalArchiveConnected(String provider);
+
+  /// No description provided for @tripPrivacyExternalControl.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu invitation links and the cloud archive are separate. Files, available storage and Google Drive, OneDrive or Dropbox permissions remain under the control of the external provider account and are not made public by Amaterasu.'**
+  String get tripPrivacyExternalControl;
+
+  /// No description provided for @tripPrivacyAccessDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not have access to this trip\'s privacy and sharing settings.'**
+  String get tripPrivacyAccessDenied;
+
+  /// No description provided for @tripPrivacyLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load privacy and sharing settings.'**
+  String get tripPrivacyLoadError;
+
+  /// No description provided for @tripManagementFinalConfigureArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure storage'**
+  String get tripManagementFinalConfigureArchive;
+
+  /// No description provided for @tripManagementFinalConfigureArchiveSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Link personal cloud storage to this trip'**
+  String get tripManagementFinalConfigureArchiveSubtitle;
+
+  /// No description provided for @tripManagementFinalArchiveOwnershipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal cloud storage'**
+  String get tripManagementFinalArchiveOwnershipTitle;
+
+  /// No description provided for @tripManagementFinalArchiveOwnershipBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu stores the link to the archive, but the files remain under the control of the user\'s Google Drive, OneDrive or Dropbox account.'**
+  String get tripManagementFinalArchiveOwnershipBody;
+
+  /// No description provided for @tripManagementFinalArchiveProviderUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This provider is registered for the trip, but verification, opening and reconnection are not yet available. You can still change the archive.'**
+  String get tripManagementFinalArchiveProviderUnsupported;
+
+  /// No description provided for @tripManagementFinalStatusSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip status'**
+  String get tripManagementFinalStatusSection;
+
+  /// No description provided for @tripManagementFinalTripStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get tripManagementFinalTripStatus;
+
+  /// No description provided for @tripManagementFinalStatusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get tripManagementFinalStatusActive;
+
+  /// No description provided for @tripManagementFinalStatusClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get tripManagementFinalStatusClosed;
+
+  /// No description provided for @tripManagementFinalStatusActiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip is active and appears normally among current or upcoming trips.'**
+  String get tripManagementFinalStatusActiveBody;
+
+  /// No description provided for @tripManagementFinalStatusClosedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip is archived, but remains fully viewable and editable.'**
+  String get tripManagementFinalStatusClosedBody;
+
+  /// No description provided for @tripManagementFinalArchiveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive trip'**
+  String get tripManagementFinalArchiveAction;
+
+  /// No description provided for @tripManagementFinalArchiveActionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the trip to archived trips without preventing viewing or editing'**
+  String get tripManagementFinalArchiveActionSubtitle;
+
+  /// No description provided for @tripManagementFinalReactivateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reactivate trip'**
+  String get tripManagementFinalReactivateAction;
+
+  /// No description provided for @tripManagementFinalReactivateActionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Return the trip to active status'**
+  String get tripManagementFinalReactivateActionSubtitle;
+
+  /// No description provided for @tripManagementFinalArchiveConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive this trip?'**
+  String get tripManagementFinalArchiveConfirmTitle;
+
+  /// No description provided for @tripManagementFinalArchiveConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip will be marked as archived. All data will remain available and you will still be able to view and edit it.'**
+  String get tripManagementFinalArchiveConfirmBody;
+
+  /// No description provided for @tripManagementFinalArchiveConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get tripManagementFinalArchiveConfirmAction;
+
+  /// No description provided for @tripManagementFinalReactivateConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reactivate this trip?'**
+  String get tripManagementFinalReactivateConfirmTitle;
+
+  /// No description provided for @tripManagementFinalReactivateConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip will return to active status without losing or changing any content.'**
+  String get tripManagementFinalReactivateConfirmBody;
+
+  /// No description provided for @tripManagementFinalReactivateConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reactivate'**
+  String get tripManagementFinalReactivateConfirmAction;
+
+  /// No description provided for @tripManagementFinalStatusUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip status updated'**
+  String get tripManagementFinalStatusUpdated;
+
+  /// No description provided for @tripManagementFinalOperationsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Operations'**
+  String get tripManagementFinalOperationsSection;
+
+  /// No description provided for @tripManagementFinalDuplicateConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate this trip?'**
+  String get tripManagementFinalDuplicateConfirmTitle;
+
+  /// No description provided for @tripManagementFinalDuplicateConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu will create a new trip by copying the trip document and all Firestore content stored in its subcollections, including subcollections added in the future. Members, invitations, trip profiles, Drive/OneDrive/Dropbox storage, file-backed cover references and external file references will not be copied. The new trip will be active and the person creating the duplicate will be its only initial member.'**
+  String get tripManagementFinalDuplicateConfirmBody;
+
+  /// No description provided for @tripManagementFinalDuplicateConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get tripManagementFinalDuplicateConfirmAction;
+
+  /// No description provided for @tripManagementFinalDuplicateCopyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy of {name}'**
+  String tripManagementFinalDuplicateCopyName(String name);
+
+  /// No description provided for @tripManagementFinalDuplicateSuccessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip duplicated'**
+  String get tripManagementFinalDuplicateSuccessTitle;
+
+  /// No description provided for @tripManagementFinalDuplicateSuccessBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The copy \"{name}\" was created successfully.'**
+  String tripManagementFinalDuplicateSuccessBody(String name);
+
+  /// No description provided for @tripManagementFinalDuplicateOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open copy'**
+  String get tripManagementFinalDuplicateOpen;
+
+  /// No description provided for @tripManagementFinalStayHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay here'**
+  String get tripManagementFinalStayHere;
+
+  /// No description provided for @tripManagementFinalDangerSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger zone'**
+  String get tripManagementFinalDangerSection;
+
+  /// No description provided for @tripManagementFinalDeleteCloudWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting the trip from Amaterasu does NOT delete personal files stored in Google Drive, OneDrive or Dropbox. Those files remain under the control of the external cloud account.'**
+  String get tripManagementFinalDeleteCloudWarning;
+
+  /// No description provided for @tripManagementFinalDeleteConfirmInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'To confirm permanent deletion, type \"{name}\" exactly.'**
+  String tripManagementFinalDeleteConfirmInstruction(String name);
+
+  /// No description provided for @tripManagementFinalDeleteInputLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip name'**
+  String get tripManagementFinalDeleteInputLabel;
+
+  /// No description provided for @tripManagementFinalAccessDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not have access to manage this trip.'**
+  String get tripManagementFinalAccessDenied;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
