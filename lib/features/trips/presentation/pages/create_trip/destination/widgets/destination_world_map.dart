@@ -166,12 +166,6 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
   }
 
   @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 

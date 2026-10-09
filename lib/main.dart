@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'app/app.dart';
 import 'firebase_options.dart';
 import 'core/notifications/firebase_messaging_service.dart';
+import 'core/maps/google_maps_loader.dart';
 import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -18,6 +19,7 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await initializeGoogleMaps();
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   debugPrint("START USER: ${FirebaseAuth.instance.currentUser?.email}");
   runApp(const ProviderScope(child: AmaterasuTripApp()));
