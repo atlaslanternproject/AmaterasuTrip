@@ -1,24 +1,24 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class TripCoverPicker extends StatelessWidget {
   const TripCoverPicker({
     super.key,
     required this.changePhotoLabel,
     required this.onTap,
-    this.localImagePath,
+    this.localImage,
   });
 
   final String changePhotoLabel;
   final VoidCallback onTap;
-  final String? localImagePath;
+  final XFile? localImage;
 
   static const Color _borderColor = Color(0xFF5A3023);
   static const Color _creamColor = Color(0xFFF2E7D5);
 
-  bool get _hasLocalImage =>
-      localImagePath != null && localImagePath!.trim().isNotEmpty;
+  bool get _hasLocalImage => localImage != null;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +39,7 @@ class TripCoverPicker extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           if (_hasLocalImage)
-            Image.file(
-              File(localImagePath!),
-              fit: BoxFit.cover,
-              filterQuality: FilterQuality.high,
-              errorBuilder: (context, error, stackTrace) {
-                return const _TripCoverFallback();
-              },
-            )
+            _TripCoverLocalImage(image: localImage!)
           else
             const _TripCoverFallback(),
 
@@ -106,6 +99,61 @@ class TripCoverPicker extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _TripCoverLocalImage extends StatefulWidget {
+  const _TripCoverLocalImage({required this.image});
+
+  final XFile image;
+
+  @override
+  State<_TripCoverLocalImage> createState() => _TripCoverLocalImageState();
+}
+
+class _TripCoverLocalImageState extends State<_TripCoverLocalImage> {
+  late Future<Uint8List> _bytesFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _bytesFuture = widget.image.readAsBytes();
+  }
+
+  @override
+  void didUpdateWidget(covariant _TripCoverLocalImage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (!identical(oldWidget.image, widget.image)) {
+      _bytesFuture = widget.image.readAsBytes();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Uint8List>(
+      future: _bytesFuture,
+      builder: (context, snapshot) {
+        final bytes = snapshot.data;
+
+        if (snapshot.connectionState != ConnectionState.done ||
+            snapshot.hasError ||
+            bytes == null ||
+            bytes.isEmpty) {
+          return const _TripCoverFallback();
+        }
+
+        return Image.memory(
+          bytes,
+          fit: BoxFit.cover,
+          filterQuality: FilterQuality.high,
+          gaplessPlayback: true,
+          errorBuilder: (context, error, stackTrace) {
+            return const _TripCoverFallback();
+          },
+        );
+      },
     );
   }
 }

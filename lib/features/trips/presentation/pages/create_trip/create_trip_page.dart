@@ -580,7 +580,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
             children: [
               TripCoverPicker(
                 changePhotoLabel: l10n.createTripChangePhoto,
-                localImagePath: _selectedCover?.path,
+                localImage: _selectedCover,
                 onTap: _changeCover,
               ),
               const SizedBox(height: 20),
