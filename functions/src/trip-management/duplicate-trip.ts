@@ -282,7 +282,7 @@ export const duplicateTrip = onCall(
         await cleanupFailedDuplicate(
           targetRef,
         );
-      } catch (_) {
+      } catch {
         // Best-effort cleanup.
       }
 
