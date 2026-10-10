@@ -2,6 +2,7 @@ import 'package:amaterasutrip/features/auth/presentation/pages/auth_gate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import '../core/navigation/invite_auth_return.dart';
+import '../core/navigation/auth_route_guard.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
 import '../core/widgets/navigation/amaterasu_global_shell.dart';
 
@@ -61,25 +62,12 @@ final amaterasuRouter = GoRouter(
   redirect: (context, state) async {
     final user = FirebaseAuth.instance.currentUser;
 
-    final location = state.matchedLocation;
-
-    if (user == null) {
-      return null;
-    }
-
-    if (location == '/google-auth' || location == '/create-username') {
-      return null;
-    }
-
-    if (location == '/') {
-      final returnTo = InviteAuthReturn.normalize(
-        state.uri.queryParameters['returnTo'],
-      );
-
-      return returnTo ?? '/home';
-    }
-
-    return null;
+    return AuthRouteGuard.redirect(
+      isAuthenticated: user != null,
+      isEmailVerified: user?.emailVerified ?? false,
+      matchedLocation: state.matchedLocation,
+      uri: state.uri,
+    );
   },
 
   routes: [

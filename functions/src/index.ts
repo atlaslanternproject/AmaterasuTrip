@@ -360,6 +360,13 @@ export const acceptTripInvite = onCall(async (request) => {
     );
   }
 
+  if (request.auth?.token.email_verified !== true) {
+    throw new HttpsError(
+      "failed-precondition",
+      "A verified email address is required.",
+    );
+  }
+
   const tripId = request.data?.tripId;
   const token = request.data?.token;
   const presenceConfirmed = request.data?.presenceConfirmed;
