@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:amaterasutrip/core/storage/remember_me_storage.dart';
+
 import '../data/repositories/auth_repository.dart';
 import 'auth_provider.dart';
 
@@ -81,5 +83,6 @@ class AuthController {
 
   Future<void> logout() async {
     await _repository.signOut();
+    await RememberMeStorage.clear();
   }
 }

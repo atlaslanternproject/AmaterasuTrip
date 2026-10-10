@@ -120,7 +120,13 @@ class AuthRepository {
   }
 
   Future<void> signOut() async {
-    await GoogleSignIn().signOut();
     await _firebaseAuth.signOut();
+
+    try {
+      await GoogleSignIn().signOut();
+    } catch (_) {
+      // Firebase Auth is the source of truth for the app session.
+      // Google provider cleanup must not block logout.
+    }
   }
 }
