@@ -1,0 +1,275 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function verifiedUser() {
+      return signedIn()
+        && request.auth.token.email_verified == true;
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function usernameBelongsToCurrentUser(username) {
+      return signedIn()
+        && username is string
+        && getAfter(
+          /databases/$(database)/documents/usernames/$(username)
+        ).data.uid == request.auth.uid;
+    }
+
+    function profileUsesUsernameAfter(uid, username) {
+      return existsAfter(
+        /databases/$(database)/documents/viaggiatori/$(uid)
+      )
+        && 'usernameLower' in getAfter(
+          /databases/$(database)/documents/viaggiatori/$(uid)
+        ).data
+        && getAfter(
+          /databases/$(database)/documents/viaggiatori/$(uid)
+        ).data.usernameLower == username;
+    }
+
+    function isTripMember(tripData) {
+      return verifiedUser()
+        && (
+          tripData.get('ownerUid', '') == request.auth.uid
+          || tripData.get('memberUids', []).hasAny([
+            request.auth.uid
+          ])
+        );
+    }
+
+    // =========================================================
+    // USER PROFILE
+    // =========================================================
+    match /viaggiatori/{uid} {
+      allow get: if isSelf(uid);
+      allow list: if false;
+
+      allow create: if isSelf(uid)
+        && request.resource.data.keys().hasOnly([
+          'username',
+          'usernameLower',
+          'email',
+          'createdAt',
+          'firstName',
+          'lastName',
+          'bio',
+          'updatedAt',
+          'photoUrl',
+          'photoPath',
+          'fcmToken',
+          'notificationLocale',
+          'fcmUpdatedAt'
+        ])
+        && (
+          !('email' in request.resource.data)
+          || request.resource.data.email == request.auth.token.email
+        )
+        && (
+          !('usernameLower' in request.resource.data)
+          || usernameBelongsToCurrentUser(
+            request.resource.data.usernameLower
+          )
+        );
+
+      allow update: if isSelf(uid)
+        && request.resource.data
+          .diff(resource.data)
+          .affectedKeys()
+          .hasOnly([
+            'username',
+            'usernameLower',
+            'email',
+            'firstName',
+            'lastName',
+            'bio',
+            'updatedAt',
+            'photoUrl',
+            'photoPath',
+            'fcmToken',
+            'notificationLocale',
+            'fcmUpdatedAt'
+          ])
+        && (
+          (
+            !('usernameLower' in resource.data)
+            && !('usernameLower' in request.resource.data)
+          )
+          || (
+            'usernameLower' in request.resource.data
+            && (
+              (
+                'usernameLower' in resource.data
+                && request.resource.data.usernameLower
+                  == resource.data.usernameLower
+              )
+              || (
+                usernameBelongsToCurrentUser(
+                  request.resource.data.usernameLower
+                )
+                && (
+                  !('usernameLower' in resource.data)
+                  || !existsAfter(
+                    /databases/$(database)/documents/usernames/$(resource.data.usernameLower)
+                  )
+                )
+              )
+            )
+          )
+        );
+
+      allow delete: if isSelf(uid);
+    }
+
+    // =========================================================
+    // USERNAME UNIQUE INDEX
+    // =========================================================
+    match /usernames/{username} {
+      allow get: if signedIn();
+      allow list: if false;
+
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly([
+          'uid',
+          'createdAt'
+        ])
+        && request.resource.data.uid == request.auth.uid
+        && profileUsesUsernameAfter(
+          request.auth.uid,
+          username
+        );
+
+      allow update: if false;
+
+      allow delete: if signedIn()
+        && resource.data.uid == request.auth.uid
+        && !profileUsesUsernameAfter(
+          request.auth.uid,
+          username
+        );
+    }
+
+    // =========================================================
+    // TRIPS
+    // =========================================================
+    match /trips/{tripId} {
+      allow get: if isTripMember(resource.data);
+
+      allow list: if verifiedUser()
+        && resource.data.ownerUid == request.auth.uid;
+
+      allow list: if verifiedUser()
+        && resource.data.memberUids.hasAny([
+          request.auth.uid
+        ]);
+
+      allow create: if verifiedUser()
+        && request.resource.data.keys().hasAll([
+          'name',
+          'destination',
+          'destinationData',
+          'startDate',
+          'endDate',
+          'currency',
+          'ownerUid',
+          'memberUids',
+          'status',
+          'createdAt',
+          'updatedAt'
+        ])
+        && request.resource.data.keys().hasOnly([
+          'name',
+          'destination',
+          'destinationData',
+          'startDate',
+          'endDate',
+          'currency',
+          'cloudArchive',
+          'ownerUid',
+          'memberUids',
+          'status',
+          'createdAt',
+          'updatedAt'
+        ])
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.memberUids == [request.auth.uid]
+        && request.resource.data.status == 'active'
+        && getAfter(
+          /databases/$(database)/documents/trips/$(tripId)/members/$(request.auth.uid)
+        ).data.uid == request.auth.uid
+        && getAfter(
+          /databases/$(database)/documents/trips/$(tripId)/members/$(request.auth.uid)
+        ).data.role == 'admin';
+
+      allow update: if verifiedUser()
+        && resource.data.ownerUid == request.auth.uid
+        && request.resource.data.ownerUid == resource.data.ownerUid
+        && request.resource.data.memberUids == resource.data.memberUids
+        && request.resource.data
+          .diff(resource.data)
+          .affectedKeys()
+          .hasOnly([
+            'name',
+            'destination',
+            'destinationData',
+            'startDate',
+            'endDate',
+            'currency',
+            'description',
+            'coverUrl',
+            'coverPath',
+            'updatedAt'
+          ]);
+
+      allow delete: if false;
+
+      match /members/{memberUid} {
+        allow read: if false;
+
+        allow create: if verifiedUser()
+          && memberUid == request.auth.uid
+          && !exists(
+            /databases/$(database)/documents/trips/$(tripId)
+          )
+          && getAfter(
+            /databases/$(database)/documents/trips/$(tripId)
+          ).data.ownerUid == request.auth.uid
+          && getAfter(
+            /databases/$(database)/documents/trips/$(tripId)
+          ).data.memberUids == [request.auth.uid]
+          && request.resource.data.keys().hasOnly([
+            'uid',
+            'role',
+            'joinedAt',
+            'travellerProfileCompleted'
+          ])
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.role == 'admin'
+          && request.resource.data.travellerProfileCompleted == true;
+
+        allow update, delete: if false;
+      }
+    }
+
+    // =========================================================
+    // INVITATIONS
+    // =========================================================
+    match /tripInvites/{tripId} {
+      allow read, write: if false;
+    }
+
+    // =========================================================
+    // DEFAULT DENY
+    // =========================================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

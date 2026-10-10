@@ -29,27 +29,6 @@ class AuthController {
     return await _repository.signInWithEmail(email: email, password: password);
   }
 
-  Future<UserCredential> loginWithEmailorUsername({
-    required String identifier,
-    required String password,
-  }) async {
-    String email = identifier.trim();
-
-    if (!email.contains('@')) {
-      final foundEmail = await _userRepository.getEmailFromUsername(
-        username: email,
-      );
-
-      if (foundEmail == null) {
-        throw FirebaseAuthException(code: 'user-not-found');
-      }
-
-      email = foundEmail;
-    }
-
-    return await _repository.signInWithEmail(email: email, password: password);
-  }
-
   Future<UserCredential?> loginWithGoogle() async {
     return await _repository.signInWithGoogle();
   }
