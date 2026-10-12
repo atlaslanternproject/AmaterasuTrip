@@ -1,4 +1,9 @@
 {
+  "webMediaCameraTitle": "Aprire la fotocamera?",
+  "webMediaCameraBody": "Amaterasu aprirà la fotocamera, se supportata dal browser. In alternativa, potrai scegliere un'immagine dal dispositivo. Nessuna foto verrà utilizzata senza una tua scelta.",
+  "webMediaGalleryTitle": "Selezionare una foto?",
+  "webMediaGalleryBody": "Potrai scegliere una foto dal dispositivo. Amaterasu utilizzerà soltanto il file che selezioni, senza accedere all'intera galleria.",
+  "webMediaContinue": "Continua",
     "settingsLanguage":  "Lingua",
     "@@locale":  "it",
     "authWelcomeBack":  "Bentornato",

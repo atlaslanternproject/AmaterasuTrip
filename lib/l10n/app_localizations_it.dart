@@ -9,6 +9,21 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
+  String get webMediaCameraTitle => 'Aprire la fotocamera?';
+
+  @override
+  String get webMediaCameraBody => 'Amaterasu aprirà la fotocamera, se supportata dal browser. In alternativa, potrai scegliere un\'immagine dal dispositivo. Nessuna foto verrà utilizzata senza una tua scelta.';
+
+  @override
+  String get webMediaGalleryTitle => 'Selezionare una foto?';
+
+  @override
+  String get webMediaGalleryBody => 'Potrai scegliere una foto dal dispositivo. Amaterasu utilizzerà soltanto il file che selezioni, senza accedere all\'intera galleria.';
+
+  @override
+  String get webMediaContinue => 'Continua';
+
+  @override
   String get settingsLanguage => 'Lingua';
 
   @override

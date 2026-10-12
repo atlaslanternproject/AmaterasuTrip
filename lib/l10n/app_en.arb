@@ -1,4 +1,9 @@
 {
+  "webMediaCameraTitle": "Open the camera?",
+  "webMediaCameraBody": "Amaterasu will open the camera if supported by your browser. Otherwise, you can choose an image from your device. No photo will be used without your choice.",
+  "webMediaGalleryTitle": "Select a photo?",
+  "webMediaGalleryBody": "You can choose a photo from your device. Amaterasu will only use the file you select, without accessing your entire gallery.",
+  "webMediaContinue": "Continue",
     "settingsLanguage":  "Language",
     "@@locale":  "en",
     "authWelcomeBack":  "Welcome back",

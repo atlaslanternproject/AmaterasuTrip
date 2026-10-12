@@ -95,6 +95,36 @@ abstract class AppLocalizations {
     Locale('it')
   ];
 
+  /// No description provided for @webMediaCameraTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the camera?'**
+  String get webMediaCameraTitle;
+
+  /// No description provided for @webMediaCameraBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu will open the camera if supported by your browser. Otherwise, you can choose an image from your device. No photo will be used without your choice.'**
+  String get webMediaCameraBody;
+
+  /// No description provided for @webMediaGalleryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a photo?'**
+  String get webMediaGalleryTitle;
+
+  /// No description provided for @webMediaGalleryBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can choose a photo from your device. Amaterasu will only use the file you select, without accessing your entire gallery.'**
+  String get webMediaGalleryBody;
+
+  /// No description provided for @webMediaContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get webMediaContinue;
+
   /// No description provided for @settingsLanguage.
   ///
   /// In en, this message translates to:
