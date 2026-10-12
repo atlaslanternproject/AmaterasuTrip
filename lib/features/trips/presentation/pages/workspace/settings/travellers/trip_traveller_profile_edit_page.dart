@@ -55,26 +55,8 @@ class _TripTravellerProfileEditPageState
   bool _dirty = false;
   bool _saving = false;
 
-  bool get _requiredAnswersCompleted =>
-      _hasEsimOrInternet != null &&
-      _hasCheckedBaggage != null &&
-      _hasCabinBaggage10Kg != null &&
-      _hasAllergies != null &&
-      _hasIntolerances != null &&
-      _hasMedicalAccessibilityInfo != null;
-
-  bool get _conditionalDetailsCompleted =>
-      (_hasAllergies != true || _allergiesController!.text.trim().isNotEmpty) &&
-      (_hasIntolerances != true ||
-          _intolerancesController!.text.trim().isNotEmpty) &&
-      (_hasMedicalAccessibilityInfo != true ||
-          _accessibilityController!.text.trim().isNotEmpty);
-
-  bool get _canSave =>
-      _initialized &&
-      _requiredAnswersCompleted &&
-      _conditionalDetailsCompleted &&
-      !_saving;
+  // Questionnaire answers and health details are optional.
+  bool get _canSave => _initialized && !_saving;
   void _initialize(TripMember member) {
     if (_initialized) {
       return;
@@ -154,35 +136,35 @@ class _TripTravellerProfileEditPageState
     });
   }
 
-  void _setAllergies(bool value) {
+  void _setAllergies(bool? value) {
     setState(() {
       _hasAllergies = value;
       _dirty = true;
     });
 
-    if (!value) {
+    if (value != true) {
       _allergiesController!.clear();
     }
   }
 
-  void _setIntolerances(bool value) {
+  void _setIntolerances(bool? value) {
     setState(() {
       _hasIntolerances = value;
       _dirty = true;
     });
 
-    if (!value) {
+    if (value != true) {
       _intolerancesController!.clear();
     }
   }
 
-  void _setMedicalAccessibility(bool value) {
+  void _setMedicalAccessibility(bool? value) {
     setState(() {
       _hasMedicalAccessibilityInfo = value;
       _dirty = true;
     });
 
-    if (!value) {
+    if (value != true) {
       _accessibilityController!.clear();
     }
   }
@@ -489,6 +471,15 @@ class _TripTravellerProfileEditPageState
 
                               const SizedBox(height: 18),
 
+                              Text(
+                                l10n.tripTravellersProfileEditIntro,
+                                style: const TextStyle(
+                                  color: _muted,
+                                  fontSize: 13,
+                                  height: 1.4,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
                               _QuestionnaireSection(
                                 icon: Icons.route_rounded,
                                 title:
@@ -499,10 +490,16 @@ class _TripTravellerProfileEditPageState
                                   children: [
                                     _YesNoQuestion(
                                       title: l10n.tripQuestionnaireEsim,
-                                      required: true,
+                                      required: false,
                                       value: _hasEsimOrInternet,
                                       yesLabel: l10n.tripQuestionnaireYes,
                                       noLabel: l10n.tripQuestionnaireNo,
+                                      skipLabel: l10n
+                                          .tripQuestionnairePreferNotToAnswer,
+                                      onSkip: () => setState(() {
+                                        _hasEsimOrInternet = null;
+                                        _dirty = true;
+                                      }),
                                       enabled: !_saving,
                                       onChanged: _setEsim,
                                     ),
@@ -512,10 +509,16 @@ class _TripTravellerProfileEditPageState
                                     _YesNoQuestion(
                                       title:
                                           l10n.tripQuestionnaireCheckedBaggage,
-                                      required: true,
+                                      required: false,
                                       value: _hasCheckedBaggage,
                                       yesLabel: l10n.tripQuestionnaireYes,
                                       noLabel: l10n.tripQuestionnaireNo,
+                                      skipLabel: l10n
+                                          .tripQuestionnairePreferNotToAnswer,
+                                      onSkip: () => setState(() {
+                                        _hasCheckedBaggage = null;
+                                        _dirty = true;
+                                      }),
                                       enabled: !_saving,
                                       onChanged: _setCheckedBaggage,
                                     ),
@@ -524,10 +527,16 @@ class _TripTravellerProfileEditPageState
 
                                     _YesNoQuestion(
                                       title: l10n.tripQuestionnaireCabinBaggage,
-                                      required: true,
+                                      required: false,
                                       value: _hasCabinBaggage10Kg,
                                       yesLabel: l10n.tripQuestionnaireYes,
                                       noLabel: l10n.tripQuestionnaireNo,
+                                      skipLabel: l10n
+                                          .tripQuestionnairePreferNotToAnswer,
+                                      onSkip: () => setState(() {
+                                        _hasCabinBaggage10Kg = null;
+                                        _dirty = true;
+                                      }),
                                       enabled: !_saving,
                                       onChanged: _setCabinBaggage,
                                     ),
@@ -544,13 +553,25 @@ class _TripTravellerProfileEditPageState
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
+                                    Text(
+                                      l10n.tripTravellersProfileEditOptionalNote,
+                                      style: const TextStyle(
+                                        color: _muted,
+                                        fontSize: 13,
+                                        height: 1.4,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 18),
                                     _YesNoQuestion(
                                       title: l10n
                                           .tripQuestionnaireAllergiesQuestion,
-                                      required: true,
+                                      required: false,
                                       value: _hasAllergies,
                                       yesLabel: l10n.tripQuestionnaireYes,
                                       noLabel: l10n.tripQuestionnaireNo,
+                                      skipLabel: l10n
+                                          .tripQuestionnairePreferNotToAnswer,
+                                      onSkip: () => _setAllergies(null),
                                       enabled: !_saving,
                                       onChanged: _setAllergies,
                                     ),
@@ -570,10 +591,13 @@ class _TripTravellerProfileEditPageState
                                     _YesNoQuestion(
                                       title: l10n
                                           .tripQuestionnaireIntolerancesQuestion,
-                                      required: true,
+                                      required: false,
                                       value: _hasIntolerances,
                                       yesLabel: l10n.tripQuestionnaireYes,
                                       noLabel: l10n.tripQuestionnaireNo,
+                                      skipLabel: l10n
+                                          .tripQuestionnairePreferNotToAnswer,
+                                      onSkip: () => _setIntolerances(null),
                                       enabled: !_saving,
                                       onChanged: _setIntolerances,
                                     ),
@@ -594,10 +618,14 @@ class _TripTravellerProfileEditPageState
                                     _YesNoQuestion(
                                       title: l10n
                                           .tripQuestionnaireMedicalAccessibilityQuestion,
-                                      required: true,
+                                      required: false,
                                       value: _hasMedicalAccessibilityInfo,
                                       yesLabel: l10n.tripQuestionnaireYes,
                                       noLabel: l10n.tripQuestionnaireNo,
+                                      skipLabel: l10n
+                                          .tripQuestionnairePreferNotToAnswer,
+                                      onSkip: () =>
+                                          _setMedicalAccessibility(null),
                                       enabled: !_saving,
                                       onChanged: _setMedicalAccessibility,
                                     ),
@@ -769,40 +797,6 @@ class _TripTravellerProfileEditPageState
 
                               const SizedBox(height: 20),
 
-                              if (!_requiredAnswersCompleted ||
-                                  !_conditionalDetailsCompleted)
-                                Container(
-                                  margin: const EdgeInsets.only(bottom: 12),
-                                  padding: const EdgeInsets.all(14),
-                                  decoration: BoxDecoration(
-                                    color: _deepVermilion.withValues(
-                                      alpha: 0.20,
-                                    ),
-                                    borderRadius: BorderRadius.circular(14),
-                                    border: Border.all(
-                                      color: _vermilion.withValues(alpha: 0.45),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.info_outline_rounded,
-                                        color: _gold,
-                                        size: 20,
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: Text(
-                                          l10n.tripQuestionnaireRequiredHint,
-                                          style: const TextStyle(
-                                            color: _muted,
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                               FilledButton.icon(
                                 onPressed: _canSave ? _saveAndExit : null,
                                 icon: _saving
@@ -1102,6 +1096,8 @@ class _YesNoQuestion extends StatelessWidget {
     required this.value,
     required this.yesLabel,
     required this.noLabel,
+    required this.skipLabel,
+    required this.onSkip,
     required this.enabled,
     required this.onChanged,
   });
@@ -1111,6 +1107,8 @@ class _YesNoQuestion extends StatelessWidget {
   final bool? value;
   final String yesLabel;
   final String noLabel;
+  final String skipLabel;
+  final VoidCallback onSkip;
   final bool enabled;
   final ValueChanged<bool> onChanged;
 
@@ -1197,11 +1195,26 @@ class _YesNoQuestion extends StatelessWidget {
           ),
           onSelectionChanged: enabled
               ? (selection) {
-                  if (selection.isNotEmpty) {
+                  if (selection.isEmpty) {
+                    onSkip();
+                  } else {
                     onChanged(selection.first);
                   }
                 }
               : null,
+        ),
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton.icon(
+            onPressed: enabled ? onSkip : null,
+            icon: const Icon(Icons.remove_circle_outline, size: 18),
+            label: Text(skipLabel),
+            style: TextButton.styleFrom(
+              foregroundColor: const Color(0xFFCDBDA8),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
+            ),
+          ),
         ),
       ],
     );

@@ -175,12 +175,12 @@ class ValidatedTripInvite {
 
 class TripTravellerProfile {
   const TripTravellerProfile({
-    required this.hasEsimOrInternet,
-    required this.hasCheckedBaggage,
-    required this.hasCabinBaggage10Kg,
-    required this.hasAllergies,
-    required this.hasIntolerances,
-    required this.hasMedicalAccessibilityInfo,
+    this.hasEsimOrInternet,
+    this.hasCheckedBaggage,
+    this.hasCabinBaggage10Kg,
+    this.hasAllergies,
+    this.hasIntolerances,
+    this.hasMedicalAccessibilityInfo,
     this.allergies = '',
     this.intolerances = '',
     this.medicalAccessibilityInfo = '',
@@ -188,13 +188,13 @@ class TripTravellerProfile {
     this.emergencyContactPhone = '',
   });
 
-  final bool hasEsimOrInternet;
-  final bool hasCheckedBaggage;
-  final bool hasCabinBaggage10Kg;
+  final bool? hasEsimOrInternet;
+  final bool? hasCheckedBaggage;
+  final bool? hasCabinBaggage10Kg;
 
-  final bool hasAllergies;
-  final bool hasIntolerances;
-  final bool hasMedicalAccessibilityInfo;
+  final bool? hasAllergies;
+  final bool? hasIntolerances;
+  final bool? hasMedicalAccessibilityInfo;
 
   final String allergies;
   final String intolerances;

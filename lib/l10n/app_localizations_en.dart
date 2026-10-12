@@ -1728,7 +1728,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripQuestionnaireCabinBaggage => 'Will you have cabin baggage up to 10 kg?';
 
   @override
+  String get tripTravellersProfileEditIntro => 'Update your trip profile. All answers are optional, and you can change or withdraw them whenever you like.';
+
+  @override
+  String get tripTravellersProfileEditOptionalNote => 'You can choose Yes, No or I prefer not to answer. If you withdraw a health-related answer, its associated details will be removed from your profile when you save.';
+
+  @override
   String get tripQuestionnaireOptionalSection => 'Health and accessibility';
+
+  @override
+  String get tripQuestionnairePreferNotToAnswer => 'I prefer not to answer';
+
+  @override
+  String get tripQuestionnaireOptionalExplanation => 'You may leave any question unanswered. Only the final confirmation of your participation is required.';
 
   @override
   String get tripQuestionnaireAllergies => 'Allergies';
@@ -1761,7 +1773,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripQuestionnaireSubmitError => 'Your participation could not be confirmed. Please try again.';
 
   @override
-  String get tripQuestionnaireRequiredLegend => 'required question';
+  String get tripQuestionnaireRequiredLegend => 'Only the participation confirmation is required';
 
   @override
   String get tripQuestionnaireOrganisationSection => 'Organisation';
@@ -1791,7 +1803,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripQuestionnaireSafetyNoticeTitle => 'Important information';
 
   @override
-  String get tripQuestionnaireSafetyNoticeBody => 'Please provide all information relevant to health, safety and accessibility. Information that is not disclosed may prevent the group from arranging suitable assistance, alternatives or accommodations in advance.';
+  String get tripQuestionnaireSafetyNoticeBody => 'Health and accessibility information is optional. If you choose to provide it, it is currently shared with other trip participants for organisational purposes. You can edit or remove it from your trip profile.';
 
   @override
   String tripCreatedInviteShareSubject(String tripName) {

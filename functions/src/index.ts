@@ -402,25 +402,30 @@ export const acceptTripInvite = onCall(async (request) => {
     );
   }
 
-  const hasEsimOrInternet = travellerProfile.hasEsimOrInternet;
-  const hasCheckedBaggage = travellerProfile.hasCheckedBaggage;
-  const hasCabinBaggage10Kg = travellerProfile.hasCabinBaggage10Kg;
-  const hasAllergies = travellerProfile.hasAllergies;
-  const hasIntolerances = travellerProfile.hasIntolerances;
+  const hasEsimOrInternet = travellerProfile.hasEsimOrInternet ?? null;
+  const hasCheckedBaggage = travellerProfile.hasCheckedBaggage ?? null;
+  const hasCabinBaggage10Kg = travellerProfile.hasCabinBaggage10Kg ?? null;
+  const hasAllergies = travellerProfile.hasAllergies ?? null;
+  const hasIntolerances = travellerProfile.hasIntolerances ?? null;
   const hasMedicalAccessibilityInfo =
-    travellerProfile.hasMedicalAccessibilityInfo;
+    travellerProfile.hasMedicalAccessibilityInfo ?? null;
 
-  if (
-    typeof hasEsimOrInternet !== "boolean" ||
-    typeof hasCheckedBaggage !== "boolean" ||
-    typeof hasCabinBaggage10Kg !== "boolean" ||
-    typeof hasAllergies !== "boolean" ||
-    typeof hasIntolerances !== "boolean" ||
-    typeof hasMedicalAccessibilityInfo !== "boolean"
-  ) {
+  // Questionnaire answers are optional. Null means not disclosed.
+  const optionalAnswers = [
+    hasEsimOrInternet,
+    hasCheckedBaggage,
+    hasCabinBaggage10Kg,
+    hasAllergies,
+    hasIntolerances,
+    hasMedicalAccessibilityInfo,
+  ];
+
+  if (optionalAnswers.some(
+    (answer) => answer !== null && typeof answer !== "boolean",
+  )) {
     throw new HttpsError(
       "invalid-argument",
-      "Traveller questionnaire is incomplete.",
+      "Questionnaire answers must be booleans or null.",
     );
   }
 
@@ -443,38 +448,6 @@ export const acceptTripInvite = onCall(async (request) => {
     }
   }
 
-  if (
-    hasAllergies &&
-    (travellerProfile.allergies?.trim() ?? "").length === 0
-  ) {
-    throw new HttpsError(
-      "invalid-argument",
-      "Allergy details are required when allergies are selected.",
-    );
-  }
-
-  if (
-    hasIntolerances &&
-    (travellerProfile.intolerances?.trim() ?? "").length === 0
-  ) {
-    throw new HttpsError(
-      "invalid-argument",
-      "Intolerance details are required when intolerances are selected.",
-    );
-  }
-
-  if (
-    hasMedicalAccessibilityInfo &&
-    (
-      travellerProfile.medicalAccessibilityInfo?.trim() ??
-      ""
-    ).length === 0
-  ) {
-    throw new HttpsError(
-      "invalid-argument",
-      "Medical or accessibility details are required when selected.",
-    );
-  }
   const inviteRef = db.collection("tripInvites").doc(tripId);
   const tripRef = db.collection("trips").doc(tripId);
   const memberRef = tripRef.collection("members").doc(uid);
@@ -720,26 +693,31 @@ export const updateMyTripTravellerProfile = onCall(
       );
     }
 
-    const hasEsimOrInternet = profile.hasEsimOrInternet;
-    const hasCheckedBaggage = profile.hasCheckedBaggage;
+    const hasEsimOrInternet = profile.hasEsimOrInternet ?? null;
+    const hasCheckedBaggage = profile.hasCheckedBaggage ?? null;
     const hasCabinBaggage10Kg =
-      profile.hasCabinBaggage10Kg;
-    const hasAllergies = profile.hasAllergies;
-    const hasIntolerances = profile.hasIntolerances;
+      profile.hasCabinBaggage10Kg ?? null;
+    const hasAllergies = profile.hasAllergies ?? null;
+    const hasIntolerances = profile.hasIntolerances ?? null;
     const hasMedicalAccessibilityInfo =
-      profile.hasMedicalAccessibilityInfo;
+      profile.hasMedicalAccessibilityInfo ?? null;
 
-    if (
-      typeof hasEsimOrInternet !== "boolean" ||
-      typeof hasCheckedBaggage !== "boolean" ||
-      typeof hasCabinBaggage10Kg !== "boolean" ||
-      typeof hasAllergies !== "boolean" ||
-      typeof hasIntolerances !== "boolean" ||
-      typeof hasMedicalAccessibilityInfo !== "boolean"
-    ) {
+    // Null means the traveller has not disclosed an answer.
+    const optionalAnswers = [
+      hasEsimOrInternet,
+      hasCheckedBaggage,
+      hasCabinBaggage10Kg,
+      hasAllergies,
+      hasIntolerances,
+      hasMedicalAccessibilityInfo,
+    ];
+
+    if (optionalAnswers.some(
+      (answer) => answer !== null && typeof answer !== "boolean",
+    )) {
       throw new HttpsError(
         "invalid-argument",
-        "Traveller profile is incomplete.",
+        "Profile answers must be booleans or null.",
       );
     }
 
@@ -762,38 +740,6 @@ export const updateMyTripTravellerProfile = onCall(
       }
     }
 
-    if (
-      hasAllergies &&
-      (profile.allergies?.trim() ?? "").length === 0
-    ) {
-      throw new HttpsError(
-        "invalid-argument",
-        "Allergy details are required when allergies are selected.",
-      );
-    }
-
-    if (
-      hasIntolerances &&
-      (profile.intolerances?.trim() ?? "").length === 0
-    ) {
-      throw new HttpsError(
-        "invalid-argument",
-        "Intolerance details are required when intolerances are selected.",
-      );
-    }
-
-    if (
-      hasMedicalAccessibilityInfo &&
-      (
-        profile.medicalAccessibilityInfo?.trim() ??
-        ""
-      ).length === 0
-    ) {
-      throw new HttpsError(
-        "invalid-argument",
-        "Medical or accessibility details are required when selected.",
-      );
-    }
     const tripId = rawTripId.trim();
     const tripRef = db.collection("trips").doc(tripId);
     const tripSnapshot = await tripRef.get();

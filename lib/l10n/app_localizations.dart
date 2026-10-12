@@ -3485,11 +3485,35 @@ abstract class AppLocalizations {
   /// **'Will you have cabin baggage up to 10 kg?'**
   String get tripQuestionnaireCabinBaggage;
 
+  /// No description provided for @tripTravellersProfileEditIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Update your trip profile. All answers are optional, and you can change or withdraw them whenever you like.'**
+  String get tripTravellersProfileEditIntro;
+
+  /// No description provided for @tripTravellersProfileEditOptionalNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You can choose Yes, No or I prefer not to answer. If you withdraw a health-related answer, its associated details will be removed from your profile when you save.'**
+  String get tripTravellersProfileEditOptionalNote;
+
   /// No description provided for @tripQuestionnaireOptionalSection.
   ///
   /// In en, this message translates to:
   /// **'Health and accessibility'**
   String get tripQuestionnaireOptionalSection;
+
+  /// No description provided for @tripQuestionnairePreferNotToAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'I prefer not to answer'**
+  String get tripQuestionnairePreferNotToAnswer;
+
+  /// No description provided for @tripQuestionnaireOptionalExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'You may leave any question unanswered. Only the final confirmation of your participation is required.'**
+  String get tripQuestionnaireOptionalExplanation;
 
   /// No description provided for @tripQuestionnaireAllergies.
   ///
@@ -3554,7 +3578,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripQuestionnaireRequiredLegend.
   ///
   /// In en, this message translates to:
-  /// **'required question'**
+  /// **'Only the participation confirmation is required'**
   String get tripQuestionnaireRequiredLegend;
 
   /// No description provided for @tripQuestionnaireOrganisationSection.
@@ -3614,7 +3638,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripQuestionnaireSafetyNoticeBody.
   ///
   /// In en, this message translates to:
-  /// **'Please provide all information relevant to health, safety and accessibility. Information that is not disclosed may prevent the group from arranging suitable assistance, alternatives or accommodations in advance.'**
+  /// **'Health and accessibility information is optional. If you choose to provide it, it is currently shared with other trip participants for organisational purposes. You can edit or remove it from your trip profile.'**
   String get tripQuestionnaireSafetyNoticeBody;
 
   /// No description provided for @tripCreatedInviteShareSubject.

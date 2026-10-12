@@ -1728,7 +1728,19 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripQuestionnaireCabinBaggage => 'Avrai un bagaglio a mano fino a 10 kg?';
 
   @override
+  String get tripTravellersProfileEditIntro => 'Aggiorna il tuo profilo viaggio. Tutte le risposte sono facoltative e puoi cambiarle o ritirarle quando vuoi.';
+
+  @override
+  String get tripTravellersProfileEditOptionalNote => 'Puoi scegliere Sì, No o Preferisco non rispondere. Se ritiri una risposta sanitaria, i dettagli collegati saranno rimossi dal profilo quando salvi.';
+
+  @override
   String get tripQuestionnaireOptionalSection => 'Salute e accessibilità';
+
+  @override
+  String get tripQuestionnairePreferNotToAnswer => 'Preferisco non rispondere';
+
+  @override
+  String get tripQuestionnaireOptionalExplanation => 'Puoi lasciare qualsiasi domanda senza risposta. Solo la conferma finale della partecipazione è obbligatoria.';
 
   @override
   String get tripQuestionnaireAllergies => 'Allergie';
@@ -1761,7 +1773,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripQuestionnaireSubmitError => 'Non è stato possibile confermare la partecipazione. Riprova.';
 
   @override
-  String get tripQuestionnaireRequiredLegend => 'domanda obbligatoria';
+  String get tripQuestionnaireRequiredLegend => 'Solo la conferma della partecipazione è obbligatoria';
 
   @override
   String get tripQuestionnaireOrganisationSection => 'Organizzazione';
@@ -1791,7 +1803,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripQuestionnaireSafetyNoticeTitle => 'Informazioni importanti';
 
   @override
-  String get tripQuestionnaireSafetyNoticeBody => 'Indica tutte le informazioni rilevanti per salute, sicurezza e accessibilità. Informazioni non dichiarate potrebbero impedire al gruppo di organizzare in anticipo assistenza, alternative o accorgimenti adeguati.';
+  String get tripQuestionnaireSafetyNoticeBody => 'Le informazioni su salute e accessibilità sono facoltative. Se scegli di inserirle, sono attualmente condivise con gli altri partecipanti del viaggio per esigenze organizzative. Puoi modificarle o rimuoverle dal tuo profilo viaggio.';
 
   @override
   String tripCreatedInviteShareSubject(String tripName) {
