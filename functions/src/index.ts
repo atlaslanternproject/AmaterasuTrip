@@ -949,6 +949,15 @@ export const removeTripMember = onCall(async (request) => {
       );
     }
 
+    // Members may leave voluntarily.
+    // Only the trip owner may remove another member.
+    if (targetUid !== uid && tripData?.ownerUid !== uid) {
+      throw new HttpsError(
+        "permission-denied",
+        "Only the trip owner can remove another member.",
+      );
+    }
+
     if (tripData?.ownerUid === targetUid) {
       throw new HttpsError(
         "failed-precondition",
