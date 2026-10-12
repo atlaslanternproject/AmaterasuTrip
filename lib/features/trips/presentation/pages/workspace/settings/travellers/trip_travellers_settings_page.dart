@@ -833,15 +833,7 @@ class _MemberCard extends StatelessWidget {
                     Wrap(
                       spacing: 8,
                       runSpacing: 4,
-                      children: [
-                        _TinyBadge(text: roleLabel),
-                        _TinyBadge(
-                          text: member.travellerProfileCompleted
-                              ? l10n.tripTravellersProfileComplete
-                              : l10n.tripTravellersProfileIncomplete,
-                          muted: true,
-                        ),
-                      ],
+                      children: [_TinyBadge(text: roleLabel)],
                     ),
                   ],
                 ),
@@ -912,31 +904,24 @@ class _MemberAvatar extends StatelessWidget {
 }
 
 class _TinyBadge extends StatelessWidget {
-  const _TinyBadge({required this.text, this.muted = false});
+  const _TinyBadge({required this.text});
 
   final String text;
-  final bool muted;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: muted
-            ? _TripTravellersSettingsPageState._secondaryTextColor.withValues(
-                alpha: 0.08,
-              )
-            : _TripTravellersSettingsPageState._accentColor.withValues(
-                alpha: 0.12,
-              ),
+        color: _TripTravellersSettingsPageState._accentColor.withValues(
+          alpha: 0.12,
+        ),
         borderRadius: BorderRadius.circular(99),
       ),
       child: Text(
         text,
-        style: TextStyle(
-          color: muted
-              ? _TripTravellersSettingsPageState._secondaryTextColor
-              : _TripTravellersSettingsPageState._accentColor,
+        style: const TextStyle(
+          color: _TripTravellersSettingsPageState._accentColor,
           fontSize: 10,
           fontWeight: FontWeight.w700,
         ),
