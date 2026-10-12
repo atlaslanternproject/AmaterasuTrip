@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -31,6 +32,9 @@ class AuthRepository {
   }
 
   Future<UserCredential?> signInWithGoogle() async {
+    if (kIsWeb) {
+      return _firebaseAuth.signInWithPopup(GoogleAuthProvider());
+    }
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     await googleSignIn.signOut();
@@ -86,6 +90,10 @@ class AuthRepository {
 
     if (user == null) {
       throw FirebaseAuthException(code: 'user-not-found');
+    }
+    if (kIsWeb) {
+      await user.reauthenticateWithPopup(GoogleAuthProvider());
+      return;
     }
 
     final GoogleSignIn googleSignIn = GoogleSignIn();

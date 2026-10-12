@@ -12,6 +12,49 @@
     return value.replace('_', '-');
   };
 
+  // Country/currency mapping generated from Unicode CLDR.
+  // Source: https://github.com/unicode-org/cldr-json
+  // License: https://www.unicode.org/license.txt
+  const currencyByCountry = Object.freeze({"AC":"SHP","AD":"EUR","AE":"AED","AF":"AFN","AG":"XCD","AI":"XCD","AL":"ALL","AM":"AMD","AO":"AOA","AR":"ARS","AS":"USD","AT":"EUR","AU":"AUD","AW":"AWG","AX":"EUR","AZ":"AZN","BA":"BAM","BB":"BBD","BD":"BDT","BE":"EUR","BF":"XOF","BG":"EUR","BH":"BHD","BI":"BIF","BJ":"XOF","BL":"EUR","BM":"BMD","BN":"BND","BO":"BOB","BQ":"USD","BR":"BRL","BS":"BSD","BT":"BTN","BV":"NOK","BW":"BWP","BY":"BYN","BZ":"BZD","CA":"CAD","CC":"AUD","CD":"CDF","CF":"XAF","CG":"XAF","CH":"CHF","CI":"XOF","CK":"NZD","CL":"CLP","CM":"XAF","CN":"CNY","CO":"COP","CR":"CRC","CU":"CUP","CV":"CVE","CW":"XCG","CX":"AUD","CY":"EUR","CZ":"CZK","DE":"EUR","DG":"USD","DJ":"DJF","DK":"DKK","DM":"XCD","DO":"DOP","DZ":"DZD","EA":"EUR","EC":"USD","EE":"EUR","EG":"EGP","EH":"MAD","ER":"ERN","ES":"EUR","ET":"ETB","EU":"EUR","FI":"EUR","FJ":"FJD","FK":"FKP","FM":"USD","FO":"DKK","FR":"EUR","GA":"XAF","GB":"GBP","GD":"XCD","GE":"GEL","GF":"EUR","GG":"GBP","GH":"GHS","GI":"GIP","GL":"DKK","GM":"GMD","GN":"GNF","GP":"EUR","GQ":"XAF","GR":"EUR","GS":"GBP","GT":"GTQ","GU":"USD","GW":"XOF","GY":"GYD","HK":"HKD","HM":"AUD","HN":"HNL","HR":"EUR","HT":"USD","HU":"HUF","IC":"EUR","ID":"IDR","IE":"EUR","IL":"ILS","IM":"GBP","IN":"INR","IO":"USD","IQ":"IQD","IR":"IRR","IS":"ISK","IT":"EUR","JE":"GBP","JM":"JMD","JO":"JOD","JP":"JPY","KE":"KES","KG":"KGS","KH":"KHR","KI":"AUD","KM":"KMF","KN":"XCD","KP":"KPW","KR":"KRW","KW":"KWD","KY":"KYD","KZ":"KZT","LA":"LAK","LB":"LBP","LC":"XCD","LI":"CHF","LK":"LKR","LR":"LRD","LS":"LSL","LT":"EUR","LU":"EUR","LV":"EUR","LY":"LYD","MA":"MAD","MC":"EUR","MD":"MDL","ME":"EUR","MF":"EUR","MG":"MGA","MH":"USD","MK":"MKD","ML":"XOF","MM":"MMK","MN":"MNT","MO":"MOP","MP":"USD","MQ":"EUR","MR":"MRU","MS":"XCD","MT":"EUR","MU":"MUR","MV":"MVR","MW":"MWK","MX":"MXN","MY":"MYR","MZ":"MZN","NA":"NAD","NC":"XPF","NE":"XOF","NF":"AUD","NG":"NGN","NI":"NIO","NL":"EUR","NO":"NOK","NP":"NPR","NR":"AUD","NU":"NZD","NZ":"NZD","OM":"OMR","PA":"USD","PE":"PEN","PF":"XPF","PG":"PGK","PH":"PHP","PK":"PKR","PL":"PLN","PM":"EUR","PN":"NZD","PR":"USD","PS":"JOD","PT":"EUR","PW":"USD","PY":"PYG","QA":"QAR","RE":"EUR","RO":"RON","RS":"RSD","RU":"RUB","RW":"RWF","SA":"SAR","SB":"SBD","SC":"SCR","SD":"SDG","SE":"SEK","SG":"SGD","SH":"SHP","SI":"EUR","SJ":"NOK","SK":"EUR","SL":"SLE","SM":"EUR","SN":"XOF","SO":"SOS","SR":"SRD","SS":"SSP","ST":"STN","SV":"USD","SX":"XCG","SY":"SYP","SZ":"SZL","TA":"GBP","TC":"USD","TD":"XAF","TF":"EUR","TG":"XOF","TH":"THB","TJ":"TJS","TK":"NZD","TL":"USD","TM":"TMT","TN":"TND","TO":"TOP","TR":"TRY","TT":"TTD","TV":"AUD","TW":"TWD","TZ":"TZS","UA":"UAH","UG":"UGX","UM":"USD","US":"USD","UY":"UYU","UZ":"UZS","VA":"EUR","VC":"XCD","VE":"VES","VG":"USD","VI":"USD","VN":"VND","VU":"VUV","WF":"XPF","WS":"WST","XK":"EUR","YE":"YER","YT":"EUR","ZA":"ZAR","ZM":"ZMW","ZW":"ZWG"});
+
+  const currencyForCountry = (countryCode, languageCode) => {
+    const country = String(countryCode || '').toUpperCase();
+    const code = currencyByCountry[country];
+
+    if (!code) {
+      return null;
+    }
+
+    const language = normalizeLanguage(languageCode);
+    let name = code;
+    let symbol = code;
+
+    try {
+      name = new Intl.DisplayNames([language], {
+        type: 'currency',
+        fallback: 'code',
+      }).of(code) || code;
+    } catch (_) {
+      // Keep ISO code as fallback.
+    }
+
+    try {
+      const parts = new Intl.NumberFormat(language, {
+        style: 'currency',
+        currency: code,
+        currencyDisplay: 'narrowSymbol',
+      }).formatToParts(0);
+
+      symbol =
+        parts.find((part) => part.type === 'currency')?.value ||
+        code;
+    } catch (_) {
+      // Keep ISO code as fallback.
+    }
+
+    return { code, name, symbol };
+  };
+
   const componentValue = (components, type, shortValue = false) => {
     const component = (components || []).find(
       (item) => Array.isArray(item.types) && item.types.includes(type),
@@ -43,6 +86,7 @@
     latitude,
     longitude,
     components,
+    languageCode,
   }) => {
     const country = componentValue(components, 'country');
 
@@ -51,6 +95,8 @@
       'country',
       true,
     );
+
+    const suggestedCurrency = currencyForCountry(countryCode, languageCode);
 
     const administrativeArea = componentValue(
       components,
@@ -89,11 +135,9 @@
       administrativeArea: administrativeArea || null,
       locality: locality || null,
 
-      // Currency selection remains available through getCurrencies().
-      // Country -> currency suggestion will be added separately if needed.
-      suggestedCurrencyCode: null,
-      suggestedCurrencyName: null,
-      suggestedCurrencySymbol: null,
+      suggestedCurrencyCode: suggestedCurrency?.code ?? null,
+      suggestedCurrencyName: suggestedCurrency?.name ?? null,
+      suggestedCurrencySymbol: suggestedCurrency?.symbol ?? null,
     };
   };
 
@@ -199,6 +243,7 @@ language: normalizeLanguage(languageCode),
       latitude: place.location.lat(),
       longitude: place.location.lng(),
       components: place.addressComponents || [],
+      languageCode,
     });
 
     autocompleteSessionToken = null;
@@ -245,6 +290,7 @@ language: normalizeLanguage(languageCode),
       latitude: lat,
       longitude: lng,
       components: result.address_components || [],
+      languageCode,
     });
 
     return JSON.stringify(destination);
