@@ -1,4 +1,6 @@
 {
+  "notificationsWebUnavailable": "Le notifiche push non sono ancora disponibili sul Web. Le tue preferenze salvate non verranno modificate.",
+  "tripNotificationsWebUnavailable": "Le notifiche push dei viaggi non sono ancora disponibili sul Web. Le preferenze salvate per Android rimangono invariate.",
   "webMediaCameraTitle": "Aprire la fotocamera?",
   "webMediaCameraBody": "Amaterasu aprirà la fotocamera, se supportata dal browser. In alternativa, potrai scegliere un'immagine dal dispositivo. Nessuna foto verrà utilizzata senza una tua scelta.",
   "webMediaGalleryTitle": "Selezionare una foto?",

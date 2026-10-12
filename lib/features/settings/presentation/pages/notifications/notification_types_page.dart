@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -25,8 +26,10 @@ class NotificationTypesPage extends ConsumerWidget {
         _NotificationSwitchTile(
           title: l10n.notificationsPush,
           subtitle: l10n.notificationsPushSubtitle,
-          value: settings.pushNotifications,
+          value: kIsWeb ? false : settings.pushNotifications,
+          enabled: !kIsWeb,
           onChanged: (value) async {
+            if (kIsWeb) return;
             if (!value) {
               await notifier.setPushNotifications(false);
               return;
@@ -44,6 +47,19 @@ class NotificationTypesPage extends ConsumerWidget {
           },
           isMaster: true,
         ),
+        if (kIsWeb) ...[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              l10n.notificationsWebUnavailable,
+              style: const TextStyle(
+                color: _subtitleColor,
+                fontSize: 13,
+                height: 1.4,
+              ),
+            ),
+          ),
+        ],
         const SizedBox(height: 12),
         _NotificationSettingsCard(
           children: [
@@ -51,7 +67,7 @@ class NotificationTypesPage extends ConsumerWidget {
               title: l10n.notificationsTripReminders,
               subtitle: l10n.notificationsTripRemindersSubtitle,
               value: settings.tripReminders,
-              enabled: settings.pushNotifications,
+              enabled: !kIsWeb && settings.pushNotifications,
               onChanged: notifier.setTripReminders,
             ),
             const _NotificationDivider(),
@@ -59,7 +75,7 @@ class NotificationTypesPage extends ConsumerWidget {
               title: l10n.notificationsItineraryReminders,
               subtitle: l10n.notificationsItineraryRemindersSubtitle,
               value: settings.itineraryReminders,
-              enabled: settings.pushNotifications,
+              enabled: !kIsWeb && settings.pushNotifications,
               onChanged: notifier.setItineraryReminders,
             ),
             const _NotificationDivider(),
@@ -67,7 +83,7 @@ class NotificationTypesPage extends ConsumerWidget {
               title: l10n.notificationsTripUpdates,
               subtitle: l10n.notificationsTripUpdatesSubtitle,
               value: settings.tripUpdates,
-              enabled: settings.pushNotifications,
+              enabled: !kIsWeb && settings.pushNotifications,
               onChanged: notifier.setTripUpdates,
             ),
             const _NotificationDivider(),
@@ -75,7 +91,7 @@ class NotificationTypesPage extends ConsumerWidget {
               title: l10n.notificationsGroupInvitations,
               subtitle: l10n.notificationsGroupInvitationsSubtitle,
               value: settings.groupInvitations,
-              enabled: settings.pushNotifications,
+              enabled: !kIsWeb && settings.pushNotifications,
               onChanged: notifier.setGroupInvitations,
             ),
             const _NotificationDivider(),
@@ -83,7 +99,7 @@ class NotificationTypesPage extends ConsumerWidget {
               title: l10n.notificationsGroupActivity,
               subtitle: l10n.notificationsGroupActivitySubtitle,
               value: settings.groupActivity,
-              enabled: settings.pushNotifications,
+              enabled: !kIsWeb && settings.pushNotifications,
               onChanged: notifier.setGroupActivity,
             ),
             const _NotificationDivider(),
@@ -91,7 +107,7 @@ class NotificationTypesPage extends ConsumerWidget {
               title: l10n.notificationsAppUpdates,
               subtitle: l10n.notificationsAppUpdatesSubtitle,
               value: settings.appUpdates,
-              enabled: settings.pushNotifications,
+              enabled: !kIsWeb && settings.pushNotifications,
               onChanged: notifier.setAppUpdates,
             ),
             const _NotificationDivider(),
@@ -99,7 +115,7 @@ class NotificationTypesPage extends ConsumerWidget {
               title: l10n.notificationsImportantCommunications,
               subtitle: l10n.notificationsImportantCommunicationsSubtitle,
               value: settings.importantCommunications,
-              enabled: settings.pushNotifications,
+              enabled: !kIsWeb && settings.pushNotifications,
               onChanged: notifier.setImportantCommunications,
             ),
           ],

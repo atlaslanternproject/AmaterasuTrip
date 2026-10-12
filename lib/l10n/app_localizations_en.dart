@@ -9,6 +9,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get notificationsWebUnavailable => 'Push notifications are not yet available on the Web. Your saved preferences will not be changed.';
+
+  @override
+  String get tripNotificationsWebUnavailable => 'Trip push notifications are not yet available on the Web. Your saved Android preferences remain unchanged.';
+
+  @override
   String get webMediaCameraTitle => 'Open the camera?';
 
   @override

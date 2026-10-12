@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,8 +21,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await initializeGoogleMaps();
-  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  if (!kIsWeb) {
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  }
   debugPrint("START USER: ${FirebaseAuth.instance.currentUser?.email}");
   runApp(const ProviderScope(child: AmaterasuTripApp()));
-  unawaited(FirebaseMessagingService.instance.initialize());
+  if (!kIsWeb) {
+    unawaited(FirebaseMessagingService.instance.initialize());
+  }
 }

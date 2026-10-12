@@ -95,6 +95,18 @@ abstract class AppLocalizations {
     Locale('it')
   ];
 
+  /// No description provided for @notificationsWebUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notifications are not yet available on the Web. Your saved preferences will not be changed.'**
+  String get notificationsWebUnavailable;
+
+  /// No description provided for @tripNotificationsWebUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip push notifications are not yet available on the Web. Your saved Android preferences remain unchanged.'**
+  String get tripNotificationsWebUnavailable;
+
   /// No description provided for @webMediaCameraTitle.
   ///
   /// In en, this message translates to:

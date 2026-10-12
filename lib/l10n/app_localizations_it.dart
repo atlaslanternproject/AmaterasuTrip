@@ -9,6 +9,12 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
+  String get notificationsWebUnavailable => 'Le notifiche push non sono ancora disponibili sul Web. Le tue preferenze salvate non verranno modificate.';
+
+  @override
+  String get tripNotificationsWebUnavailable => 'Le notifiche push dei viaggi non sono ancora disponibili sul Web. Le preferenze salvate per Android rimangono invariate.';
+
+  @override
   String get webMediaCameraTitle => 'Aprire la fotocamera?';
 
   @override
