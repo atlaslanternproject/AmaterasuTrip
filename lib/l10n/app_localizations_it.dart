@@ -1876,6 +1876,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripTravellersLoadError => 'Impossibile caricare i partecipanti.';
 
   @override
+  String get tripTravellersE2eeLocked => 'Profilo viaggio protetto. Verifica E2EE necessaria per visualizzare o modificare queste informazioni.';
+
+  @override
   String get tripTravellersOwnerRole => 'OWNER';
 
   @override

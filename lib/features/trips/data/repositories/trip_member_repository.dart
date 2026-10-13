@@ -51,40 +51,50 @@ class TripMemberRepository {
       }
 
       final format = data['travellerProfileFormat'];
-      if (format == 'legacy-redacted') {
-        throw StateError('Legacy health details require secure remediation.');
-      }
-      if (format == 'encrypted') {
-        final transport = data['travellerProfile'];
-        if (transport is! Map) {
-          throw StateError('Encrypted questionnaire is missing.');
+      final transport = data['travellerProfile'];
+
+      // Never expose an unverified questionnaire.
+      // Membership metadata remains separately readable.
+      data['travellerProfile'] = null;
+      var sensitiveProfileLocked = true;
+
+      if (format == 'encrypted' && transport is Map) {
+        try {
+          final lease = await VerifiedTripProfileSessions.instance.requireLease(
+            tripId: tripId,
+            profileUid: memberUid,
+            currentUserUid: currentUid,
+          );
+
+          final key = await lease.requireKey(
+            tripId: tripId,
+            profileUid: memberUid,
+            currentUserUid: currentUid,
+          );
+
+          final profile = await TripTravellerE2eeBridge().openMember(
+            transport: Map<String, dynamic>.from(transport),
+            profileKey: key,
+            tripId: tripId,
+            memberUid: memberUid,
+          );
+
+          data['travellerProfile'] = profile.toMap();
+          sensitiveProfileLocked = false;
+        } catch (_) {
+          // Fail closed for protected answers.
+          // Do not fail the public membership roster.
         }
-        final lease = await VerifiedTripProfileSessions.instance.requireLease(
-          tripId: tripId,
-          profileUid: memberUid,
-          currentUserUid: currentUid,
-        );
-        final key = await lease.requireKey(
-          tripId: tripId,
-          profileUid: memberUid,
-          currentUserUid: currentUid,
-        );
-        final profile = await TripTravellerE2eeBridge().openMember(
-          transport: Map<String, dynamic>.from(transport),
-          profileKey: key,
-          tripId: tripId,
-          memberUid: memberUid,
-        );
-        data['travellerProfile'] = profile.toMap();
       } else if (format == 'missing' &&
-          data['travellerProfileCompleted'] == false) {
-        data['travellerProfile'] = null;
-      } else {
-        // Never represent locked, malformed or supposedly completed
-        // questionnaires as empty/negative health answers.
-        throw StateError('E2EE questionnaire access is not verified.');
+          transport == null &&
+          data['travellerProfileCompleted'] != true) {
+        sensitiveProfileLocked = false;
+      } else if (format == 'legacy-redacted') {
+        // Legacy questionnaire remains inaccessible.
       }
 
+      // Unknown formats and old plaintext responses remain locked.
+      data['sensitiveProfileLocked'] = sensitiveProfileLocked;
       members.add(TripMember.fromMap(data));
     }
 

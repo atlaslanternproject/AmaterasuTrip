@@ -694,6 +694,7 @@
   "tripTravellersParticipants": "Partecipanti",
   "tripTravellersEmpty": "Non ci sono ancora partecipanti nel viaggio.",
   "tripTravellersLoadError": "Impossibile caricare i partecipanti.",
+  "tripTravellersE2eeLocked": "Profilo viaggio protetto. Verifica E2EE necessaria per visualizzare o modificare queste informazioni.",
   "tripTravellersOwnerRole": "OWNER",
   "tripTravellersTravelerRole": "TRAVELER",
   "tripTravellersYou": "Tu",

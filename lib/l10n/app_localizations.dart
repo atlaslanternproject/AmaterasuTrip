@@ -3773,6 +3773,12 @@ abstract class AppLocalizations {
   /// **'Unable to load trip participants.'**
   String get tripTravellersLoadError;
 
+  /// No description provided for @tripTravellersE2eeLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip profile locked. E2EE verification is required to view or edit these details.'**
+  String get tripTravellersE2eeLocked;
+
   /// No description provided for @tripTravellersOwnerRole.
   ///
   /// In en, this message translates to:

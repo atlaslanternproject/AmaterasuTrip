@@ -694,6 +694,7 @@
   "tripTravellersParticipants": "Participants",
   "tripTravellersEmpty": "There are no participants in this trip yet.",
   "tripTravellersLoadError": "Unable to load trip participants.",
+  "tripTravellersE2eeLocked": "Trip profile locked. E2EE verification is required to view or edit these details.",
   "tripTravellersOwnerRole": "OWNER",
   "tripTravellersTravelerRole": "TRAVELER",
   "tripTravellersYou": "You",

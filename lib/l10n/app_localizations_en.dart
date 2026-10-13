@@ -1876,6 +1876,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripTravellersLoadError => 'Unable to load trip participants.';
 
   @override
+  String get tripTravellersE2eeLocked => 'Trip profile locked. E2EE verification is required to view or edit these details.';
+
+  @override
   String get tripTravellersOwnerRole => 'OWNER';
 
   @override

@@ -268,7 +268,7 @@ class _TripTravellersSettingsPageState
           isCurrentUser: isCurrentUser,
           canManage: canManage,
           busy: _busyMemberUid == member.uid,
-          onEdit: isCurrentUser
+          onEdit: isCurrentUser && !member.sensitiveProfileLocked
               ? () {
                   Navigator.of(context).pop();
 
@@ -463,7 +463,9 @@ class _TripTravellersSettingsPageState
                       ),
                       error: (error, stackTrace) => _MessageCard(
                         icon: Icons.error_outline_rounded,
-                        message: l10n.tripTravellersLoadError,
+                        message: error is FirebaseFunctionsException
+                            ? '${l10n.tripTravellersLoadError} (${error.code})'
+                            : l10n.tripTravellersLoadError,
                       ),
                       data: (members) {
                         if (members.isEmpty) {
@@ -1020,55 +1022,63 @@ class _MemberDetailsSheet extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            _InfoSection(
-              title: l10n.tripTravellersOrganisation,
-              rows: [
-                _InfoRowData(
-                  label: l10n.tripTravellersEsim,
-                  value: yesNo(profile.hasEsimOrInternet),
-                ),
-                _InfoRowData(
-                  label: l10n.tripTravellersCheckedBaggage,
-                  value: yesNo(profile.hasCheckedBaggage),
-                ),
-                _InfoRowData(
-                  label: l10n.tripTravellersCabinBaggage,
-                  value: yesNo(profile.hasCabinBaggage10Kg),
-                ),
-              ],
-            ),
+            if (!member.sensitiveProfileLocked)
+              _InfoSection(
+                title: l10n.tripTravellersOrganisation,
+                rows: [
+                  _InfoRowData(
+                    label: l10n.tripTravellersEsim,
+                    value: yesNo(profile.hasEsimOrInternet),
+                  ),
+                  _InfoRowData(
+                    label: l10n.tripTravellersCheckedBaggage,
+                    value: yesNo(profile.hasCheckedBaggage),
+                  ),
+                  _InfoRowData(
+                    label: l10n.tripTravellersCabinBaggage,
+                    value: yesNo(profile.hasCabinBaggage10Kg),
+                  ),
+                ],
+              ),
             const SizedBox(height: 12),
-            _InfoSection(
-              title: l10n.tripTravellersHealth,
-              rows: [
-                _InfoRowData(
-                  label: l10n.tripTravellersAllergies,
-                  value: textOrMissing(profile.allergies),
-                ),
-                _InfoRowData(
-                  label: l10n.tripTravellersIntolerances,
-                  value: textOrMissing(profile.intolerances),
-                ),
-                _InfoRowData(
-                  label: l10n.tripTravellersAccessibility,
-                  value: textOrMissing(profile.medicalAccessibilityInfo),
-                ),
-              ],
-            ),
+            if (!member.sensitiveProfileLocked)
+              _InfoSection(
+                title: l10n.tripTravellersHealth,
+                rows: [
+                  _InfoRowData(
+                    label: l10n.tripTravellersAllergies,
+                    value: textOrMissing(profile.allergies),
+                  ),
+                  _InfoRowData(
+                    label: l10n.tripTravellersIntolerances,
+                    value: textOrMissing(profile.intolerances),
+                  ),
+                  _InfoRowData(
+                    label: l10n.tripTravellersAccessibility,
+                    value: textOrMissing(profile.medicalAccessibilityInfo),
+                  ),
+                ],
+              ),
             const SizedBox(height: 12),
-            _InfoSection(
-              title: l10n.tripTravellersEmergency,
-              rows: [
-                _InfoRowData(
-                  label: l10n.tripTravellersEmergencyName,
-                  value: textOrMissing(profile.emergencyContactName),
-                ),
-                _InfoRowData(
-                  label: l10n.tripTravellersEmergencyPhone,
-                  value: textOrMissing(profile.emergencyContactPhone),
-                ),
-              ],
-            ),
+            if (!member.sensitiveProfileLocked)
+              _InfoSection(
+                title: l10n.tripTravellersEmergency,
+                rows: [
+                  _InfoRowData(
+                    label: l10n.tripTravellersEmergencyName,
+                    value: textOrMissing(profile.emergencyContactName),
+                  ),
+                  _InfoRowData(
+                    label: l10n.tripTravellersEmergencyPhone,
+                    value: textOrMissing(profile.emergencyContactPhone),
+                  ),
+                ],
+              ),
+            if (member.sensitiveProfileLocked)
+              _MessageCard(
+                icon: Icons.lock_outline_rounded,
+                message: l10n.tripTravellersE2eeLocked,
+              ),
             const SizedBox(height: 18),
             if (onEdit != null)
               FilledButton.icon(
