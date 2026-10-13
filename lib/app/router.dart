@@ -47,6 +47,7 @@ import '../features/settings/presentation/pages/profile/profile_page.dart';
 import '../features/settings/presentation/pages/language/language_page.dart';
 import '../features/settings/presentation/pages/notifications/notifications_page.dart';
 import '../features/settings/presentation/pages/account/account_page.dart';
+import '../features/settings/presentation/pages/account/account_security_recovery_page.dart';
 import '../features/settings/presentation/pages/privacy/privacy_page.dart';
 import '../features/settings/presentation/pages/data/data_sync_page.dart';
 import '../features/settings/presentation/pages/information/information_page.dart';
@@ -237,6 +238,14 @@ final amaterasuRouter = GoRouter(
                   builder: (context, state) {
                     return const AccountPage();
                   },
+                  routes: [
+                    GoRoute(
+                      path: 'security-recovery',
+                      builder: (context, state) {
+                        return const AccountSecurityRecoveryPage();
+                      },
+                    ),
+                  ],
                 ),
                 GoRoute(
                   path: 'privacy',
