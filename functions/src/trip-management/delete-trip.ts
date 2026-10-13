@@ -7,9 +7,6 @@ import {
   onCall,
 } from "firebase-functions/v2/https";
 
-import {
-  isTripMember,
-} from "../shared/trip-access";
 
 const db = getFirestore();
 
@@ -74,10 +71,10 @@ export const deleteTrip = onCall(
     const tripData =
       tripSnapshot.data();
 
-    if (!isTripMember(tripData, uid)) {
+    if (tripData?.ownerUid !== uid) {
       throw new HttpsError(
         "permission-denied",
-        "Trip membership is required.",
+        "Only the trip owner can delete this trip.",
       );
     }
 

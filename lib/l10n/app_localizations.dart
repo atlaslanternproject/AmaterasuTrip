@@ -95,6 +95,84 @@ abstract class AppLocalizations {
     Locale('it')
   ];
 
+  /// No description provided for @accountRecoveryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Security and recovery'**
+  String get accountRecoveryTitle;
+
+  /// No description provided for @accountRecoverySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect and recover your data'**
+  String get accountRecoverySubtitle;
+
+  /// No description provided for @accountRecoveryStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'In development'**
+  String get accountRecoveryStatus;
+
+  /// No description provided for @accountRecoveryStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted recovery is not yet active'**
+  String get accountRecoveryStatusTitle;
+
+  /// No description provided for @accountRecoveryStatusDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is being developed. No backup of your data has been created through this screen.'**
+  String get accountRecoveryStatusDescription;
+
+  /// No description provided for @accountRecoverySectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How it will work'**
+  String get accountRecoverySectionTitle;
+
+  /// No description provided for @accountRecoveryCodeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal recovery code'**
+  String get accountRecoveryCodeTitle;
+
+  /// No description provided for @accountRecoveryCodeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You will be able to generate a recovery code and keep it somewhere safe.'**
+  String get accountRecoveryCodeDescription;
+
+  /// No description provided for @accountRecoveryStorageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protected data'**
+  String get accountRecoveryStorageTitle;
+
+  /// No description provided for @accountRecoveryStorageDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The code will help recover keys for data your account is still allowed to access.'**
+  String get accountRecoveryStorageDescription;
+
+  /// No description provided for @accountRecoveryDeviceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New device'**
+  String get accountRecoveryDeviceTitle;
+
+  /// No description provided for @accountRecoveryDeviceDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Security checks will be required before a new device can be authorised.'**
+  String get accountRecoveryDeviceDescription;
+
+  /// No description provided for @accountRecoveryNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Password recovery and encrypted data recovery are two different processes.'**
+  String get accountRecoveryNotice;
+
   /// No description provided for @notificationsWebUnavailable.
   ///
   /// In en, this message translates to:
@@ -4714,6 +4792,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You do not have access to manage this trip.'**
   String get tripManagementFinalAccessDenied;
+
+  /// No description provided for @accountE2eeDeviceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'E2EE device'**
+  String get accountE2eeDeviceTitle;
+
+  /// No description provided for @accountE2eeDeviceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Device identity and approval'**
+  String get accountE2eeDeviceSubtitle;
+
+  /// No description provided for @accountE2eeDeviceExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare this Android device\'s cryptographic identity. The request contains public keys only. It does not grant access to health information and requires approval from a trusted device.'**
+  String get accountE2eeDeviceExplanation;
+
+  /// No description provided for @accountE2eeDeviceConsentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare this device?'**
+  String get accountE2eeDeviceConsentTitle;
+
+  /// No description provided for @accountE2eeDeviceConsentText.
+  ///
+  /// In en, this message translates to:
+  /// **'Private keys will be created and stored locally. Secure approval and recovery are not yet integrated. This feature is experimental.'**
+  String get accountE2eeDeviceConsentText;
+
+  /// No description provided for @accountE2eeDevicePrepare.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare request'**
+  String get accountE2eeDevicePrepare;
+
+  /// No description provided for @accountE2eeDevicePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Request prepared — device not yet approved. Expires after 3 minutes.'**
+  String get accountE2eeDevicePending;
+
+  /// No description provided for @accountE2eeDeviceCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy public request'**
+  String get accountE2eeDeviceCopy;
+
+  /// No description provided for @accountE2eeDeviceCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Request copied'**
+  String get accountE2eeDeviceCopied;
+
+  /// No description provided for @accountE2eeDeviceUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Android device provisioning is unavailable on this platform.'**
+  String get accountE2eeDeviceUnavailable;
+
+  /// No description provided for @accountE2eeDeviceError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not prepare the request. Check the account or local identity state.'**
+  String get accountE2eeDeviceError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

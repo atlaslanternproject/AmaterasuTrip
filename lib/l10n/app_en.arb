@@ -1,4 +1,17 @@
 {
+  "accountRecoveryTitle": "Security and recovery",
+  "accountRecoverySubtitle": "Protect and recover your data",
+  "accountRecoveryStatus": "In development",
+  "accountRecoveryStatusTitle": "Encrypted recovery is not yet active",
+  "accountRecoveryStatusDescription": "This feature is being developed. No backup of your data has been created through this screen.",
+  "accountRecoverySectionTitle": "How it will work",
+  "accountRecoveryCodeTitle": "Personal recovery code",
+  "accountRecoveryCodeDescription": "You will be able to generate a recovery code and keep it somewhere safe.",
+  "accountRecoveryStorageTitle": "Protected data",
+  "accountRecoveryStorageDescription": "The code will help recover keys for data your account is still allowed to access.",
+  "accountRecoveryDeviceTitle": "New device",
+  "accountRecoveryDeviceDescription": "Security checks will be required before a new device can be authorised.",
+  "accountRecoveryNotice": "Password recovery and encrypted data recovery are two different processes.",
   "notificationsWebUnavailable": "Push notifications are not yet available on the Web. Your saved preferences will not be changed.",
   "tripNotificationsWebUnavailable": "Trip push notifications are not yet available on the Web. Your saved Android preferences remain unchanged.",
   "webMediaCameraTitle": "Open the camera?",
@@ -922,5 +935,16 @@
   },
   "tripManagementFinalDeleteInputLabel": "Trip name",
 
-  "tripManagementFinalAccessDenied": "You do not have access to manage this trip."
+  "tripManagementFinalAccessDenied": "You do not have access to manage this trip.",
+  "accountE2eeDeviceTitle": "E2EE device",
+  "accountE2eeDeviceSubtitle": "Device identity and approval",
+  "accountE2eeDeviceExplanation": "Prepare this Android device\u0027s cryptographic identity. The request contains public keys only. It does not grant access to health information and requires approval from a trusted device.",
+  "accountE2eeDeviceConsentTitle": "Prepare this device?",
+  "accountE2eeDeviceConsentText": "Private keys will be created and stored locally. Secure approval and recovery are not yet integrated. This feature is experimental.",
+  "accountE2eeDevicePrepare": "Prepare request",
+  "accountE2eeDevicePending": "Request prepared — device not yet approved. Expires after 3 minutes.",
+  "accountE2eeDeviceCopy": "Copy public request",
+  "accountE2eeDeviceCopied": "Request copied",
+  "accountE2eeDeviceUnavailable": "Android device provisioning is unavailable on this platform.",
+  "accountE2eeDeviceError": "Could not prepare the request. Check the account or local identity state."
 }

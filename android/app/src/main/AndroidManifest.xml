@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
+        android:fullBackupContent="@xml/amaterasu_backup_rules"
+        android:dataExtractionRules="@xml/amaterasu_data_extraction_rules"
         android:label="Amaterasu Trip"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
