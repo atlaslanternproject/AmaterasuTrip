@@ -9,6 +9,45 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
+  String get accountRecoveryTitle => 'Sicurezza e recupero';
+
+  @override
+  String get accountRecoverySubtitle => 'Protezione e recupero dei tuoi dati';
+
+  @override
+  String get accountRecoveryStatus => 'In preparazione';
+
+  @override
+  String get accountRecoveryStatusTitle => 'Recupero cifrato non ancora attivo';
+
+  @override
+  String get accountRecoveryStatusDescription => 'La funzione è in sviluppo. Non è stato creato alcun backup dei tuoi dati tramite questa schermata.';
+
+  @override
+  String get accountRecoverySectionTitle => 'Come funzionerà';
+
+  @override
+  String get accountRecoveryCodeTitle => 'Codice personale';
+
+  @override
+  String get accountRecoveryCodeDescription => 'Potrai generare un codice di recupero da conservare in un luogo sicuro.';
+
+  @override
+  String get accountRecoveryStorageTitle => 'Dati protetti';
+
+  @override
+  String get accountRecoveryStorageDescription => 'Il codice servirà a recuperare le chiavi dei dati ancora accessibili al tuo account.';
+
+  @override
+  String get accountRecoveryDeviceTitle => 'Nuovo dispositivo';
+
+  @override
+  String get accountRecoveryDeviceDescription => 'Il recupero richiederà verifiche di sicurezza prima di autorizzare un nuovo dispositivo.';
+
+  @override
+  String get accountRecoveryNotice => 'Il recupero della password e il recupero dei dati cifrati sono due procedure differenti.';
+
+  @override
   String get notificationsWebUnavailable => 'Le notifiche push non sono ancora disponibili sul Web. Le tue preferenze salvate non verranno modificate.';
 
   @override
@@ -2361,4 +2400,37 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripManagementFinalAccessDenied => 'Non hai accesso alla gestione di questo viaggio.';
+
+  @override
+  String get accountE2eeDeviceTitle => 'Dispositivo E2EE';
+
+  @override
+  String get accountE2eeDeviceSubtitle => 'Identità e approvazione del dispositivo';
+
+  @override
+  String get accountE2eeDeviceExplanation => 'Prepara l\'identità crittografica di questo dispositivo Android. La richiesta contiene soltanto chiavi pubbliche. Non concede accesso ai dati sanitari e richiede l\'approvazione di un dispositivo attendibile.';
+
+  @override
+  String get accountE2eeDeviceConsentTitle => 'Preparare questo dispositivo?';
+
+  @override
+  String get accountE2eeDeviceConsentText => 'Le chiavi private saranno create e conservate localmente. L\'approvazione e il recupero sicuro non sono ancora integrati. Questa funzione è sperimentale.';
+
+  @override
+  String get accountE2eeDevicePrepare => 'Prepara richiesta';
+
+  @override
+  String get accountE2eeDevicePending => 'Richiesta preparata — dispositivo non ancora approvato. Scade dopo 3 minuti.';
+
+  @override
+  String get accountE2eeDeviceCopy => 'Copia richiesta pubblica';
+
+  @override
+  String get accountE2eeDeviceCopied => 'Richiesta copiata';
+
+  @override
+  String get accountE2eeDeviceUnavailable => 'Il provisioning Android non è disponibile su questa piattaforma.';
+
+  @override
+  String get accountE2eeDeviceError => 'Impossibile preparare la richiesta. Verifica l\'account o lo stato dell\'identità locale.';
 }

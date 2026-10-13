@@ -1,5 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:amaterasutrip/core/security/verified_trip_profile_sessions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -286,11 +287,22 @@ class _TripTravellerProfileEditPageState
     });
 
     try {
+      final uid = FirebaseAuth.instance.currentUser?.uid;
+      if (uid == null) {
+        throw StateError('Authentication is required for E2EE.');
+      }
+      final session = await VerifiedTripProfileSessions.instance.requireLease(
+        tripId: widget.tripId,
+        profileUid: uid,
+        currentUserUid: uid,
+      );
+
       await ref
           .read(tripMemberRepositoryProvider)
-          .updateMyTravellerProfile(
+          .updateMyTravellerProfileEncrypted(
             tripId: widget.tripId,
             profile: _currentProfile(),
+            verifiedSession: session,
           );
 
       ref.invalidate(tripMembersProvider(widget.tripId));

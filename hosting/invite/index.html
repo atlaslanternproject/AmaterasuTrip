@@ -326,7 +326,7 @@
               'Hai ricevuto un invito a partecipare a un viaggio.',
 
             openApp:
-              'Apri in Amaterasu Trip',
+              'Apri Amaterasu Trip (Web)',
 
             store:
               'Scarica o aggiorna da Google Play',
@@ -347,14 +347,14 @@
               'Questo invito non è valido.',
 
             note:
-              'Per utilizzare l’invito è necessaria Amaterasu Trip.'
+              'Puoi partecipare anche dal browser senza installare Amaterasu Trip.'
           }
         : {
             description:
               'You have received an invitation to join a trip.',
 
             openApp:
-              'Open in Amaterasu Trip',
+              'Open Amaterasu Trip (Web)',
 
             store:
               'Download or update on Google Play',
@@ -375,7 +375,7 @@
               'This invitation is not valid.',
 
             note:
-              'Amaterasu Trip is required to use this invitation.'
+              'You can join the trip in your browser without installing Amaterasu Trip.'
           };
 
       document.documentElement.lang =
@@ -476,8 +476,33 @@
         '?token=' +
         encodeURIComponent(token);
 
-      openApp.href = deepLink;
+      // Web works even without the Android application.
+      const webInviteUrl =
+        window.location.origin +
+        '/#/trip-invite/' +
+        encodeURIComponent(tripId) +
+        '?token=' +
+        encodeURIComponent(token);
+
+      openApp.href = webInviteUrl;
       retryApp.href = deepLink;
+
+      const isAndroid = /Android/i.test(navigator.userAgent);
+
+      if (isAndroid) {
+        const nativeButton = document.createElement('a');
+        nativeButton.className = 'button secondary';
+        nativeButton.textContent = italian
+          ? 'Apri nell app Android installata'
+          : 'Open in the installed Android app';
+
+        nativeButton.href = deepLink;
+
+        openApp.insertAdjacentElement('afterend', nativeButton);
+        nativeButton.addEventListener('click', beginOpenAttempt);
+      } else {
+        storeLink.hidden = true;
+      }
 
       let fallbackTimer = null;
       let pageWasHidden = false;
@@ -533,10 +558,7 @@
           );
       }
 
-      openApp.addEventListener(
-        'click',
-        beginOpenAttempt
-      );
+
 
       retryApp.addEventListener(
         'click',

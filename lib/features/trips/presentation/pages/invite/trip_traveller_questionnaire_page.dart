@@ -1,4 +1,6 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:amaterasutrip/core/security/verified_trip_profile_sessions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -185,12 +187,23 @@ class _TripTravellerQuestionnairePageState
         ),
         emergencyContactPhone: _buildEmergencyPhone(),
       );
+      final uid = FirebaseAuth.instance.currentUser?.uid;
+      if (uid == null) {
+        throw StateError('Authentication is required for E2EE.');
+      }
+      final session = await VerifiedTripProfileSessions.instance.requireLease(
+        tripId: widget.tripId,
+        profileUid: uid,
+        currentUserUid: uid,
+      );
+
       await ref
           .read(tripInviteRepositoryProvider)
-          .acceptTripInvite(
+          .acceptTripInviteEncrypted(
             tripId: widget.tripId,
             token: widget.token,
             travellerProfile: profile,
+            verifiedSession: session,
           );
 
       if (!mounted) {
@@ -198,10 +211,7 @@ class _TripTravellerQuestionnairePageState
       }
 
       context.go('/trips/${widget.tripId}');
-    } catch (error, stackTrace) {
-      debugPrint('Trip invite acceptance failed: $error');
-      debugPrintStack(stackTrace: stackTrace);
-
+    } catch (_) {
       if (!mounted) {
         return;
       }
