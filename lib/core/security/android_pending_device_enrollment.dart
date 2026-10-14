@@ -135,6 +135,115 @@ final class AndroidPendingDeviceEnrollment {
     );
   }
 
+  /// Reads an existing, unexpired approval request.
+  ///
+  /// Read-only: does not generate keys, establish trust or
+  /// approve the device.
+  Future<DeviceEnrollmentRequest?> readSavedApprovalRequest({
+    required String uid,
+  }) async {
+    _validateUser(uid);
+
+    final identityRaw = await _storage.read(key: _metadataKey(uid));
+
+    if (identityRaw == null) {
+      return null;
+    }
+
+    final identity = _decode(identityRaw, uid);
+
+    final requestKey =
+        'pending_enrollment_request_v1_'
+        '${base64UrlEncode(utf8.encode(uid))}';
+
+    final savedRaw = await _storage.read(key: requestKey);
+
+    if (savedRaw == null) {
+      return null;
+    }
+
+    late final Map<String, dynamic> saved;
+
+    try {
+      final parsed = jsonDecode(savedRaw);
+
+      if (parsed is! Map<String, dynamic> ||
+          parsed.length != 3 ||
+          parsed['version'] != 1 ||
+          parsed['payload'] is! String ||
+          parsed['expiresAtMs'] is! int) {
+        throw const FormatException('Invalid saved enrollment request.');
+      }
+
+      saved = parsed;
+    } on FormatException {
+      rethrow;
+    } catch (_) {
+      throw const FormatException('Corrupt saved enrollment request.');
+    }
+
+    final now = DateTime.now().toUtc();
+    final expiry = saved['expiresAtMs'] as int;
+
+    if (expiry <= 0) {
+      throw const FormatException('Invalid saved enrollment expiration.');
+    }
+
+    if (now.millisecondsSinceEpoch >= expiry) {
+      // Expired requests are never returned.
+      // Renewal requires explicit user confirmation.
+      return null;
+    }
+
+    // A valid request must still match locally stored private keys.
+    // Expired requests are rejected before expensive verification.
+    await _verifyStoredPrivateKeys(uid, identity);
+    final request = DeviceEnrollmentRequest.fromQrPayload(
+      saved['payload'] as String,
+      expectedUserUid: uid,
+      nowUtc: now,
+    );
+
+    if (request.toQrPayload() != saved['payload'] ||
+        request.expiresAtMs != expiry ||
+        request.newDeviceId != identity.deviceId ||
+        !_same(request.x25519PublicKey, identity.x25519Public) ||
+        !_same(request.ed25519PublicKey, identity.ed25519Public)) {
+      throw const FormatException('Saved enrollment identity mismatch.');
+    }
+
+    return request;
+  }
+
+  /// Read-only UI status. Never authorises or replaces a device.
+  Future<bool> hasExpiredSavedRequest({required String uid}) async {
+    _validateUser(uid);
+
+    final key =
+        'pending_enrollment_request_v1_'
+        '${base64UrlEncode(utf8.encode(uid))}';
+
+    final raw = await _storage.read(key: key);
+
+    if (raw == null) return false;
+
+    try {
+      final data = jsonDecode(raw);
+
+      if (data is! Map<String, dynamic> ||
+          data['version'] != 1 ||
+          data['expiresAtMs'] is! int ||
+          data['payload'] is! String) {
+        return false;
+      }
+
+      return DateTime.now().toUtc().millisecondsSinceEpoch >=
+          (data['expiresAtMs'] as int);
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<void> _verifyStoredPrivateKeys(
     String uid,
     _PendingRecord record,

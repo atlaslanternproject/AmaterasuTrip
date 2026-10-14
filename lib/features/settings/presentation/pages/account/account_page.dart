@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'first_root_activation_card.dart';
+import 'account_web_devices_info_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -18,6 +21,17 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+
+      AccountE2eeDeviceContent.prefetchPreview();
+    });
+  }
+
   bool _emailExpanded = false;
   bool _passwordExpanded = false;
   bool _deleteExpanded = false;
@@ -107,7 +121,16 @@ class _AccountPageState extends State<AccountPage> {
                 _recoveryExpanded = !_recoveryExpanded;
               });
             },
-            children: const [AccountSecurityRecoveryContent()],
+            children: _recoveryExpanded
+                ? const [
+                    FirstDeviceBootstrapCard(),
+                    SizedBox(height: 18),
+                    if (kIsWeb) AccountWebDevicesInfoCard(),
+                    if (!kIsWeb) AccountE2eeDeviceContent(),
+                    SizedBox(height: 18),
+                    AccountSecurityRecoveryContent(),
+                  ]
+                : const [],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
@@ -116,19 +139,7 @@ class _AccountPageState extends State<AccountPage> {
             subtitle: l10n.accountSessionSubtitle,
             onTap: () {},
           ),
-          const SizedBox(height: 10),
-          AmaterasuSettingsCard(
-            icon: Icons.shield_outlined,
-            title: l10n.accountE2eeDeviceTitle,
-            subtitle: l10n.accountE2eeDeviceSubtitle,
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const AccountE2eeDevicePage(),
-                ),
-              );
-            },
-          ),
+
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
             icon: Icons.manage_accounts_outlined,

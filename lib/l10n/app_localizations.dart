@@ -4802,31 +4802,31 @@ abstract class AppLocalizations {
   /// No description provided for @accountE2eeDeviceTitle.
   ///
   /// In en, this message translates to:
-  /// **'E2EE device'**
+  /// **'Device security'**
   String get accountE2eeDeviceTitle;
 
   /// No description provided for @accountE2eeDeviceSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Device identity and approval'**
+  /// **'Protect access to your data'**
   String get accountE2eeDeviceSubtitle;
 
   /// No description provided for @accountE2eeDeviceExplanation.
   ///
   /// In en, this message translates to:
-  /// **'Prepare this Android device\'s cryptographic identity. The request contains public keys only. It does not grant access to health information and requires approval from a trusted device.'**
+  /// **'This device is not yet authorised to read protected data. You can prepare a request, but approval from an already trusted device or secure recovery is still required.'**
   String get accountE2eeDeviceExplanation;
 
   /// No description provided for @accountE2eeDeviceConsentTitle.
   ///
   /// In en, this message translates to:
-  /// **'Prepare this device?'**
+  /// **'Prepare a request?'**
   String get accountE2eeDeviceConsentTitle;
 
   /// No description provided for @accountE2eeDeviceConsentText.
   ///
   /// In en, this message translates to:
-  /// **'Private keys will be created and stored locally. Secure approval and recovery are not yet integrated. This feature is experimental.'**
+  /// **'Keys will be prepared and stored on this device. This does not grant access to protected information or authorise the device. This feature is still experimental.'**
   String get accountE2eeDeviceConsentText;
 
   /// No description provided for @accountE2eeDevicePrepare.
@@ -4838,32 +4838,260 @@ abstract class AppLocalizations {
   /// No description provided for @accountE2eeDevicePending.
   ///
   /// In en, this message translates to:
-  /// **'Request prepared — device not yet approved. Expires after 3 minutes.'**
+  /// **'Awaiting authorisation'**
   String get accountE2eeDevicePending;
 
   /// No description provided for @accountE2eeDeviceCopy.
   ///
   /// In en, this message translates to:
-  /// **'Copy public request'**
+  /// **'Copy code'**
   String get accountE2eeDeviceCopy;
 
   /// No description provided for @accountE2eeDeviceCopied.
   ///
   /// In en, this message translates to:
-  /// **'Request copied'**
+  /// **'Code copied'**
   String get accountE2eeDeviceCopied;
 
   /// No description provided for @accountE2eeDeviceUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Android device provisioning is unavailable on this platform.'**
+  /// **'Secure device management is not yet available on the Web. Simply signing in does not grant access to protected information.'**
   String get accountE2eeDeviceUnavailable;
 
   /// No description provided for @accountE2eeDeviceError.
   ///
   /// In en, this message translates to:
-  /// **'Could not prepare the request. Check the account or local identity state.'**
+  /// **'Unable to complete this operation. Check your account verification or the security status of this device.'**
   String get accountE2eeDeviceError;
+
+  /// No description provided for @accountE2eePinChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking device security...'**
+  String get accountE2eePinChecking;
+
+  /// No description provided for @accountE2eePinPresent.
+  ///
+  /// In en, this message translates to:
+  /// **'A locally trusted identity is stored. Access to protected data still requires security checks.'**
+  String get accountE2eePinPresent;
+
+  /// No description provided for @accountE2eePinMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'This device does not yet have a verified trusted identity.'**
+  String get accountE2eePinMissing;
+
+  /// No description provided for @accountE2eePinUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to verify the local identity. Access to protected data remains blocked.'**
+  String get accountE2eePinUnavailable;
+
+  /// No description provided for @accountE2eeQrScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a code'**
+  String get accountE2eeQrScan;
+
+  /// No description provided for @accountE2eeQrScanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a code'**
+  String get accountE2eeQrScanTitle;
+
+  /// No description provided for @accountE2eeQrCameraTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the camera?'**
+  String get accountE2eeQrCameraTitle;
+
+  /// No description provided for @accountE2eeQrCameraText.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu will use the camera to read a code. Scanning does not automatically authorise the device.'**
+  String get accountE2eeQrCameraText;
+
+  /// No description provided for @accountE2eeQrContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Understood'**
+  String get accountE2eeQrContinue;
+
+  /// No description provided for @accountE2eeQrInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This code is invalid, expired or belongs to another account. Prepare a new request if necessary.'**
+  String get accountE2eeQrInvalid;
+
+  /// No description provided for @accountE2eeQrReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Code recognised. Authorising a device still requires cryptographic signature verification. No access has been granted.'**
+  String get accountE2eeQrReadOnly;
+
+  /// No description provided for @accountE2eeQrCameraError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to access the camera. Check your device permissions.'**
+  String get accountE2eeQrCameraError;
+
+  /// No description provided for @accountE2eeQrHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Position the code inside the frame. Scanning does not grant access to data.'**
+  String get accountE2eeQrHint;
+
+  /// No description provided for @accountE2eeQrRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires in'**
+  String get accountE2eeQrRemaining;
+
+  /// No description provided for @accountE2eeQrExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'This code has expired. Generate a new request.'**
+  String get accountE2eeQrExpired;
+
+  /// No description provided for @accountE2eeQrRegenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerate request'**
+  String get accountE2eeQrRegenerate;
+
+  /// No description provided for @accountE2eeQrPendingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this code to another already trusted device. A device cannot authorise itself.'**
+  String get accountE2eeQrPendingHint;
+
+  /// No description provided for @accountE2eeQrResultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Code verification'**
+  String get accountE2eeQrResultTitle;
+
+  /// No description provided for @accountE2eeQrSelfScan.
+  ///
+  /// In en, this message translates to:
+  /// **'You scanned the code belonging to this same device. For security reasons, it cannot authorise itself.'**
+  String get accountE2eeQrSelfScan;
+
+  /// No description provided for @accountE2eeQrWebNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure browser activation and recovery are still being developed. Signing in alone does not authorise a device.'**
+  String get accountE2eeQrWebNotice;
+
+  /// No description provided for @accountRootTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First trusted device'**
+  String get accountRootTitle;
+
+  /// No description provided for @accountRootAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This account has no registered protected identity yet. You can activate the first device here, including directly in a browser.'**
+  String get accountRootAvailable;
+
+  /// No description provided for @accountRootActive.
+  ///
+  /// In en, this message translates to:
+  /// **'The initial identity has been verified on this device. The signature and local keys match the trusted root.'**
+  String get accountRootActive;
+
+  /// No description provided for @accountRootRecoveryNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'This account already has a protected identity. This device requires approval or independently verified recovery.'**
+  String get accountRootRecoveryNeeded;
+
+  /// No description provided for @accountRootBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'The local identity does not match the registered identity, or required information is missing. Protected access remains blocked.'**
+  String get accountRootBlocked;
+
+  /// No description provided for @accountRootVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with a verified account to configure protection.'**
+  String get accountRootVerify;
+
+  /// No description provided for @accountRootChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking protected identity...'**
+  String get accountRootChecking;
+
+  /// No description provided for @accountRootExperimental.
+  ///
+  /// In en, this message translates to:
+  /// **'Experimental feature: full recovery and access to encrypted health information are not enabled yet.'**
+  String get accountRootExperimental;
+
+  /// No description provided for @accountRootRecoveryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Save your recovery code'**
+  String get accountRootRecoveryTitle;
+
+  /// No description provided for @accountRootRecoveryWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This code is secret. Keep it somewhere safe outside the app. Never share it. An encrypted copy of the keys will be stored online, but automatic recovery is not available yet. Losing the code or browser data may permanently prevent access.'**
+  String get accountRootRecoveryWarning;
+
+  /// No description provided for @accountRootRecoveryConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'I have stored the code securely and understand the risk.'**
+  String get accountRootRecoveryConfirm;
+
+  /// No description provided for @accountRootActivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate this device'**
+  String get accountRootActivate;
+
+  /// No description provided for @accountRootActivated.
+  ///
+  /// In en, this message translates to:
+  /// **'First identity registered and verified. Keep your recovery code safe.'**
+  String get accountRootActivated;
+
+  /// No description provided for @accountRootError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to complete verification or activation. Check your connection and sign in again if your session is not recent. Do not clear local data.'**
+  String get accountRootError;
+
+  /// No description provided for @accountRootCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get accountRootCancel;
+
+  /// No description provided for @accountRootClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get accountRootClose;
+
+  /// No description provided for @accountRootRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh status'**
+  String get accountRootRefresh;
+
+  /// No description provided for @accountWebDevicesInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Trusted device management in the browser is being prepared. No approval or QR scanning is active here. First-browser activation will become available after Firestore rules and secure recovery have been verified.'**
+  String get accountWebDevicesInfo;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

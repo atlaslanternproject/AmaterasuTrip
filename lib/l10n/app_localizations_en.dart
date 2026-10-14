@@ -2405,35 +2405,149 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripManagementFinalAccessDenied => 'You do not have access to manage this trip.';
 
   @override
-  String get accountE2eeDeviceTitle => 'E2EE device';
+  String get accountE2eeDeviceTitle => 'Device security';
 
   @override
-  String get accountE2eeDeviceSubtitle => 'Device identity and approval';
+  String get accountE2eeDeviceSubtitle => 'Protect access to your data';
 
   @override
-  String get accountE2eeDeviceExplanation => 'Prepare this Android device\'s cryptographic identity. The request contains public keys only. It does not grant access to health information and requires approval from a trusted device.';
+  String get accountE2eeDeviceExplanation => 'This device is not yet authorised to read protected data. You can prepare a request, but approval from an already trusted device or secure recovery is still required.';
 
   @override
-  String get accountE2eeDeviceConsentTitle => 'Prepare this device?';
+  String get accountE2eeDeviceConsentTitle => 'Prepare a request?';
 
   @override
-  String get accountE2eeDeviceConsentText => 'Private keys will be created and stored locally. Secure approval and recovery are not yet integrated. This feature is experimental.';
+  String get accountE2eeDeviceConsentText => 'Keys will be prepared and stored on this device. This does not grant access to protected information or authorise the device. This feature is still experimental.';
 
   @override
   String get accountE2eeDevicePrepare => 'Prepare request';
 
   @override
-  String get accountE2eeDevicePending => 'Request prepared — device not yet approved. Expires after 3 minutes.';
+  String get accountE2eeDevicePending => 'Awaiting authorisation';
 
   @override
-  String get accountE2eeDeviceCopy => 'Copy public request';
+  String get accountE2eeDeviceCopy => 'Copy code';
 
   @override
-  String get accountE2eeDeviceCopied => 'Request copied';
+  String get accountE2eeDeviceCopied => 'Code copied';
 
   @override
-  String get accountE2eeDeviceUnavailable => 'Android device provisioning is unavailable on this platform.';
+  String get accountE2eeDeviceUnavailable => 'Secure device management is not yet available on the Web. Simply signing in does not grant access to protected information.';
 
   @override
-  String get accountE2eeDeviceError => 'Could not prepare the request. Check the account or local identity state.';
+  String get accountE2eeDeviceError => 'Unable to complete this operation. Check your account verification or the security status of this device.';
+
+  @override
+  String get accountE2eePinChecking => 'Checking device security...';
+
+  @override
+  String get accountE2eePinPresent => 'A locally trusted identity is stored. Access to protected data still requires security checks.';
+
+  @override
+  String get accountE2eePinMissing => 'This device does not yet have a verified trusted identity.';
+
+  @override
+  String get accountE2eePinUnavailable => 'Unable to verify the local identity. Access to protected data remains blocked.';
+
+  @override
+  String get accountE2eeQrScan => 'Scan a code';
+
+  @override
+  String get accountE2eeQrScanTitle => 'Scan a code';
+
+  @override
+  String get accountE2eeQrCameraTitle => 'Use the camera?';
+
+  @override
+  String get accountE2eeQrCameraText => 'Amaterasu will use the camera to read a code. Scanning does not automatically authorise the device.';
+
+  @override
+  String get accountE2eeQrContinue => 'Understood';
+
+  @override
+  String get accountE2eeQrInvalid => 'This code is invalid, expired or belongs to another account. Prepare a new request if necessary.';
+
+  @override
+  String get accountE2eeQrReadOnly => 'Code recognised. Authorising a device still requires cryptographic signature verification. No access has been granted.';
+
+  @override
+  String get accountE2eeQrCameraError => 'Unable to access the camera. Check your device permissions.';
+
+  @override
+  String get accountE2eeQrHint => 'Position the code inside the frame. Scanning does not grant access to data.';
+
+  @override
+  String get accountE2eeQrRemaining => 'Expires in';
+
+  @override
+  String get accountE2eeQrExpired => 'This code has expired. Generate a new request.';
+
+  @override
+  String get accountE2eeQrRegenerate => 'Regenerate request';
+
+  @override
+  String get accountE2eeQrPendingHint => 'Show this code to another already trusted device. A device cannot authorise itself.';
+
+  @override
+  String get accountE2eeQrResultTitle => 'Code verification';
+
+  @override
+  String get accountE2eeQrSelfScan => 'You scanned the code belonging to this same device. For security reasons, it cannot authorise itself.';
+
+  @override
+  String get accountE2eeQrWebNotice => 'Secure browser activation and recovery are still being developed. Signing in alone does not authorise a device.';
+
+  @override
+  String get accountRootTitle => 'First trusted device';
+
+  @override
+  String get accountRootAvailable => 'This account has no registered protected identity yet. You can activate the first device here, including directly in a browser.';
+
+  @override
+  String get accountRootActive => 'The initial identity has been verified on this device. The signature and local keys match the trusted root.';
+
+  @override
+  String get accountRootRecoveryNeeded => 'This account already has a protected identity. This device requires approval or independently verified recovery.';
+
+  @override
+  String get accountRootBlocked => 'The local identity does not match the registered identity, or required information is missing. Protected access remains blocked.';
+
+  @override
+  String get accountRootVerify => 'Sign in with a verified account to configure protection.';
+
+  @override
+  String get accountRootChecking => 'Checking protected identity...';
+
+  @override
+  String get accountRootExperimental => 'Experimental feature: full recovery and access to encrypted health information are not enabled yet.';
+
+  @override
+  String get accountRootRecoveryTitle => 'Save your recovery code';
+
+  @override
+  String get accountRootRecoveryWarning => 'This code is secret. Keep it somewhere safe outside the app. Never share it. An encrypted copy of the keys will be stored online, but automatic recovery is not available yet. Losing the code or browser data may permanently prevent access.';
+
+  @override
+  String get accountRootRecoveryConfirm => 'I have stored the code securely and understand the risk.';
+
+  @override
+  String get accountRootActivate => 'Activate this device';
+
+  @override
+  String get accountRootActivated => 'First identity registered and verified. Keep your recovery code safe.';
+
+  @override
+  String get accountRootError => 'Unable to complete verification or activation. Check your connection and sign in again if your session is not recent. Do not clear local data.';
+
+  @override
+  String get accountRootCancel => 'Cancel';
+
+  @override
+  String get accountRootClose => 'Close';
+
+  @override
+  String get accountRootRefresh => 'Refresh status';
+
+  @override
+  String get accountWebDevicesInfo => 'Trusted device management in the browser is being prepared. No approval or QR scanning is active here. First-browser activation will become available after Firestore rules and secure recovery have been verified.';
 }
