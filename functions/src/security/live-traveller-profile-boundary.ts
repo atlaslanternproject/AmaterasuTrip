@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc, valid-jsdoc */
 import {HttpsError} from "firebase-functions/v2/https";
 import {parseProtectedTravellerProfile} from "./traveller-profile-transport";
 import type {ProtectedTravellerProfileTransport} from
@@ -13,7 +14,7 @@ export function requireEncryptedTravellerProfile(
 ): ProtectedTravellerProfileTransport {
   try {
     return parseProtectedTravellerProfile(raw);
-  } catch (_) {
+  } catch {
     throw new HttpsError(
       "invalid-argument",
       "An encrypted traveller profile is required.",
@@ -30,7 +31,7 @@ export function projectEncryptedTravellerProfile(
 ): ProtectedTravellerProfileTransport | null {
   try {
     return parseProtectedTravellerProfile(raw);
-  } catch (_) {
+  } catch {
     return null;
   }
 }

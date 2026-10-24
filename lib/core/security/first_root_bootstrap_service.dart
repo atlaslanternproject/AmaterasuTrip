@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:cryptography/cryptography.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,9 @@ import 'account_recovery_vault.dart';
 import 'android_first_device_trust_pin_storage.dart';
 import 'first_device_trust_anchor.dart';
 import 'first_root_local_identity.dart';
+import 'first_device_bootstrap_policy.dart';
+import 'first_root_registration_provenance.dart';
+import 'first_root_server_registration.dart';
 
 import 'first_root_pin_stub.dart'
     if (dart.library.io) 'first_root_pin_io.dart'
@@ -46,6 +50,8 @@ final class FirstRootBootstrapService {
   final _anchors = FirstDeviceTrustAnchorService();
   final _local = FirstRootLocalIdentityStorage();
   final _db = FirebaseFirestore.instance;
+  final _policy = const FirstDeviceBootstrapPolicy();
+  final _provenance = FirstRootRegistrationProvenance();
 
   User _user() {
     final user = FirebaseAuth.instance.currentUser;
@@ -118,9 +124,27 @@ final class FirstRootBootstrapService {
     final pin = await local_pin.readRootPin(uid);
 
     if (remote == null) {
-      return pin == null
+      if (pin != null) {
+        // A previously pinned identity must never be replaced.
+        return FirstRootState.blocked;
+      }
+
+      // Registration provenance is a client-side flow hint only.
+      // A missing Firestore root is NOT sufficient authorisation.
+      final entry = await _provenance.entryFor(user);
+
+      final decision = _policy.evaluate(
+        authenticated: true,
+        emailVerified: user.emailVerified,
+        userExplicitlyRequestedSetup: true,
+        entry: entry,
+        local: LocalSecurityIdentity.absent,
+        remote: RemoteSecurityIdentity.missing,
+      );
+
+      return decision == ProtectedIdentityAction.proposeFirstDeviceSetup
           ? FirstRootState.setupAvailable
-          : FirstRootState.blocked;
+          : FirstRootState.approvalOrRecoveryRequired;
     }
 
     if (pin == null) {
@@ -177,6 +201,12 @@ final class FirstRootBootstrapService {
     }
 
     final user = _user();
+
+    if (await _provenance.entryFor(user) !=
+        SecurityAccountEntry.createdInCurrentRegistration) {
+      throw StateError('Independent first-root eligibility required.');
+    }
+
     await _requireRecentSignIn(user);
 
     if (await inspect() != FirstRootState.setupAvailable) {
@@ -267,6 +297,11 @@ final class FirstRootBootstrapService {
       throw StateError('Account changed during activation.');
     }
 
+    if (await _provenance.entryFor(user) !=
+        SecurityAccountEntry.createdInCurrentRegistration) {
+      throw StateError('Independent first-root eligibility required.');
+    }
+
     await _requireRecentSignIn(user);
 
     if (await inspect() != FirstRootState.setupAvailable) {
@@ -309,15 +344,27 @@ final class FirstRootBootstrapService {
       'recovery': prepared.encryptedRecovery,
     };
 
-    // Server rules MUST allow create, but NEVER update/delete.
-    // A second browser cannot replace this document.
-    await _document(user.uid).set(data);
+    // The signed first root must be registered by the server.
+    // Lost responses require a full server record verification.
+    try {
+      await FirstRootServerRegistration().register(
+        root: data,
+        expectedDeviceId: anchor.deviceId,
+        expectedFingerprint: prepared.fingerprint,
+      );
+    } on FirebaseFunctionsException catch (error) {
+      if (!FirstRootServerRegistration.mayHaveCommitted(error.code)) {
+        rethrow;
+      }
+    }
 
     // Do not trust an unacknowledged/local pending write.
     final committed = await _remote(user.uid);
     if (committed == null ||
-        committed['fingerprint'] != prepared.fingerprint ||
-        committed['deviceId'] != anchor.deviceId) {
+        !FirstRootServerRegistration.matchesServerRecord(
+          expected: data,
+          actual: committed,
+        )) {
       throw StateError('First-root server acknowledgement mismatch.');
     }
 

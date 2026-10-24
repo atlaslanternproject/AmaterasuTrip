@@ -140,7 +140,6 @@ class TravellerProfileKeyRotation {
         senderDeviceId.trim().isEmpty ||
         previousEpoch < 1 ||
         previousEpoch >= 2147483647 ||
-        revokedMemberUids.isEmpty ||
         activeRecipients.isEmpty) {
       throw StateError('Invalid profile rotation request.');
     }
@@ -257,8 +256,7 @@ class TravellerProfileKeyRotation {
 
     final revoked = rotation.revokedMemberUids.toList()..sort();
 
-    if (revoked.isEmpty ||
-        revoked.toSet().length != revoked.length ||
+    if (revoked.toSet().length != revoked.length ||
         !const ListEqualityStrings().equals(
           revoked,
           rotation.revokedMemberUids,

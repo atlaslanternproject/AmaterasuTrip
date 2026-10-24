@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc, valid-jsdoc */
 import {createPublicKey, verify as verifyEd25519} from "node:crypto";
 
 /**
@@ -236,7 +237,7 @@ export function verifyDeviceApproval(
     );
 
     if (!valid) invalid();
-  } catch (_) {
+  } catch {
     invalid();
   }
 

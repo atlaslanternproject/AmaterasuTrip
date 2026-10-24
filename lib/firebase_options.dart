@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAYzTuGb6KKlJzyKxhZ1Y1VXWThO1It8aw',
-    appId: '1:189662926755:android:e011004f5976e7b000ac16',
+    appId: '1:189662926755:android:b1434d2dae8076ec00ac16',
     messagingSenderId: '189662926755',
     projectId: 'amaterasutrip',
     storageBucket: 'amaterasutrip.firebasestorage.app',

@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc, valid-jsdoc */
 export interface AccountDeletionTripInventory {
   ownedTripIds: string[];
   participatingTripIds: string[];

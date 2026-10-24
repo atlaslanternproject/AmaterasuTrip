@@ -986,5 +986,17 @@
   "accountRootCancel": "Annulla",
   "accountRootClose": "Chiudi",
   "accountRootRefresh": "Aggiorna stato",
-  "accountWebDevicesInfo": "La gestione dei dispositivi attendibili dal browser e in preparazione. Nessuna approvazione o scansione QR e attiva qui. L\u0027attivazione del primo browser sara disponibile dopo la verifica delle regole Firestore e del recupero sicuro."
+  "accountWebDevicesInfo": "La gestione dei dispositivi attendibili dal browser e in preparazione. Nessuna approvazione o scansione QR e attiva qui. L\u0027attivazione del primo browser sara disponibile dopo la verifica delle regole Firestore e del recupero sicuro.",
+  "accountRecoveryPreflightTitle": "Dispositivo e recupero",
+  "accountRecoveryPreflightDescription": "Prepara questo dispositivo e utilizza il codice di recupero per firmare la richiesta. La registrazione non sblocca automaticamente i dati cifrati.",
+  "accountRecoveryPreflightPending": "Identita locale pronta. Questo dispositivo deve ancora essere autorizzato.",
+  "accountRecoveryPreflightPrepare": "Prepara questo dispositivo",
+  "accountRecoveryPreflightVerify": "Richiedi autorizzazione con codice",
+  "accountRecoveryPreflightVerified": "Registrazione confermata dal server. L\u0027accesso ai dati cifrati resta bloccato fino alla verifica delle autorizzazioni.",
+  "accountRecoveryPreflightError": "Autorizzazione non completata. Controlla la connessione e l\u0027accesso recente. Il servizio server potrebbe non essere disponibile.",
+  "accountRecoveryPreflightDialog": "Verifica del codice di recupero",
+  "accountRecoveryPreflightHelp": "Il codice rimane su questo dispositivo. A Firebase viene inviata soltanto una prova crittografica firmata.",
+  "accountRecoveryPreflightInput": "Codice di recupero",
+  "accountRecoveryPreflightCancel": "Annulla",
+  "accountRecoveryPreflightUnavailable": "Stato della sicurezza non disponibile. Le operazioni protette rimangono bloccate."
 }

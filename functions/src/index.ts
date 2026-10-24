@@ -541,59 +541,59 @@ export const listTripMembers = onCall(async (request) => {
     membersSnapshot.docs
       .filter((memberSnapshot) => activeUids.has(memberSnapshot.id))
       .map(async (memberSnapshot) => {
-      const memberData = memberSnapshot.data();
-      const memberUid = memberSnapshot.id;
+        const memberData = memberSnapshot.data();
+        const memberUid = memberSnapshot.id;
 
-      const profileSnapshot = await db
-        .collection("viaggiatori")
-        .doc(memberUid)
-        .get();
+        const profileSnapshot = await db
+          .collection("viaggiatori")
+          .doc(memberUid)
+          .get();
 
-      const profileData = profileSnapshot.data();
-      const protectedProfile = projectEncryptedTravellerProfile(
-        memberData.travellerProfile,
-      );
+        const profileData = profileSnapshot.data();
+        const protectedProfile = projectEncryptedTravellerProfile(
+          memberData.travellerProfile,
+        );
 
-      return {
-        uid: memberUid,
-        role:
+        return {
+          uid: memberUid,
+          role:
           typeof memberData.role === "string" ?
             memberData.role :
             "traveler",
-        joinedAt:
+          joinedAt:
           memberData.joinedAt?.toMillis?.() ?? null,
-        travellerProfileCompleted:
+          travellerProfileCompleted:
           memberData.travellerProfileCompleted === true,
 
-        // Safe projection of the global profile.
-        // Email, FCM token, Storage path and internal data are
-        // intentionally NOT exposed to trip members.
-        profile: {
-          username:
+          // Safe projection of the global profile.
+          // Email, FCM token, Storage path and internal data are
+          // intentionally NOT exposed to trip members.
+          profile: {
+            username:
             typeof profileData?.username === "string" ?
               profileData.username :
               "",
-          firstName:
+            firstName:
             typeof profileData?.firstName === "string" ?
               profileData.firstName :
               "",
-          lastName:
+            lastName:
             typeof profileData?.lastName === "string" ?
               profileData.lastName :
               "",
-          photoUrl:
+            photoUrl:
             typeof profileData?.photoUrl === "string" ?
               profileData.photoUrl :
               "",
-        },
+          },
 
-        // Legacy plaintext is redacted and flagged for remediation.
-        travellerProfile: protectedProfile,
-        travellerProfileFormat: memberData.travellerProfile == null ?
-          "missing" :
-          (protectedProfile == null ? "legacy-redacted" : "encrypted"),
-      };
-    }),
+          // Legacy plaintext is redacted and flagged for remediation.
+          travellerProfile: protectedProfile,
+          travellerProfileFormat: memberData.travellerProfile == null ?
+            "missing" :
+            (protectedProfile == null ? "legacy-redacted" : "encrypted"),
+        };
+      }),
   );
 
   return {
@@ -814,4 +814,24 @@ export {
   deleteTrip,
 } from "./trip-management/delete-trip";
 
-export {inspectAccountDeletionTrips} from "./account-deletion/inspect-account-deletion-trips";
+export {inspectAccountDeletionTrips} from
+  "./account-deletion/inspect-account-deletion-trips";
+
+export {recoveryDeviceEnrollmentCandidate} from
+  "./security/recovery-device-enrollment-callable";
+
+export {recoveryDeviceEnrollmentStatus} from
+  "./security/recovery-device-enrollment-callable";
+
+export {registerFirstE2eeRoot} from
+  "./security/first-root-registration-callable";
+export {
+  requestTripProfileAccess,
+  listMyTripProfileAccessRequests,
+  declineTripProfileAccessRequest,
+} from "./security/trip-profile-access-relay";
+export {
+  getPendingTripAccessRoot,
+  approveInitialTripProfileBundle,
+  getApprovedTripProfileBundle,
+} from "./security/trip-profile-bundle-callables";

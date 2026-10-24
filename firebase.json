@@ -4,7 +4,7 @@
                                       "android":  {
                                                       "default":  {
                                                                       "projectId":  "amaterasutrip",
-                                                                      "appId":  "1:189662926755:android:e011004f5976e7b000ac16",
+                                                                      "appId":  "1:189662926755:android:b1434d2dae8076ec00ac16",
                                                                       "fileOutput":  "android/app/google-services.json"
                                                                   }
                                                   },
@@ -12,7 +12,7 @@
                                                    "lib/firebase_options.dart":  {
                                                                                      "projectId":  "amaterasutrip",
                                                                                      "configurations":  {
-                                                                                                            "android":  "1:189662926755:android:e011004f5976e7b000ac16",
+                                                                                                            "android":  "1:189662926755:android:b1434d2dae8076ec00ac16",
                                                                                                             "ios":  "1:189662926755:ios:aeee6644bc25f4f500ac16",
                                                                                                             "macos":  "1:189662926755:ios:aeee6644bc25f4f500ac16",
                                                                                                             "web":  "1:189662926755:web:e323ea20846118c900ac16",

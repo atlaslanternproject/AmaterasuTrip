@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc, valid-jsdoc */
 /**
  * Experimental encrypted traveller profile transport contract.
  *

@@ -2550,4 +2550,40 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get accountWebDevicesInfo => 'La gestione dei dispositivi attendibili dal browser e in preparazione. Nessuna approvazione o scansione QR e attiva qui. L\'attivazione del primo browser sara disponibile dopo la verifica delle regole Firestore e del recupero sicuro.';
+
+  @override
+  String get accountRecoveryPreflightTitle => 'Dispositivo e recupero';
+
+  @override
+  String get accountRecoveryPreflightDescription => 'Prepara questo dispositivo e utilizza il codice di recupero per firmare la richiesta. La registrazione non sblocca automaticamente i dati cifrati.';
+
+  @override
+  String get accountRecoveryPreflightPending => 'Identita locale pronta. Questo dispositivo deve ancora essere autorizzato.';
+
+  @override
+  String get accountRecoveryPreflightPrepare => 'Prepara questo dispositivo';
+
+  @override
+  String get accountRecoveryPreflightVerify => 'Richiedi autorizzazione con codice';
+
+  @override
+  String get accountRecoveryPreflightVerified => 'Registrazione confermata dal server. L\'accesso ai dati cifrati resta bloccato fino alla verifica delle autorizzazioni.';
+
+  @override
+  String get accountRecoveryPreflightError => 'Autorizzazione non completata. Controlla la connessione e l\'accesso recente. Il servizio server potrebbe non essere disponibile.';
+
+  @override
+  String get accountRecoveryPreflightDialog => 'Verifica del codice di recupero';
+
+  @override
+  String get accountRecoveryPreflightHelp => 'Il codice rimane su questo dispositivo. A Firebase viene inviata soltanto una prova crittografica firmata.';
+
+  @override
+  String get accountRecoveryPreflightInput => 'Codice di recupero';
+
+  @override
+  String get accountRecoveryPreflightCancel => 'Annulla';
+
+  @override
+  String get accountRecoveryPreflightUnavailable => 'Stato della sicurezza non disponibile. Le operazioni protette rimangono bloccate.';
 }

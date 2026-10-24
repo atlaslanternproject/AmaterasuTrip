@@ -268,8 +268,7 @@ class SignedTripDeviceRosterVerifier {
         roster.authorityDeviceId.trim().isEmpty ||
         roster.epoch < 2 ||
         roster.epoch >= 2147483647 ||
-        roster.activeDevices.isEmpty ||
-        roster.revokedMemberUids.isEmpty) {
+        roster.activeDevices.isEmpty) {
       throw StateError('Invalid signed roster.');
     }
 

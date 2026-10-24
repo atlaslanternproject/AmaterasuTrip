@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
+import 'trip_protected_access_page.dart';
 
 import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repository.dart';
 import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
@@ -446,6 +447,39 @@ class _TripTravellersSettingsPageState
                     _PrivacyNotice(
                       text: l10n.tripTravellersSensitiveDataNotice,
                     ),
+                    if (const bool.fromEnvironment(
+                      'AMATERASU_E2EE_ACCESS_TEST',
+                      defaultValue: false,
+                    )) ...[
+                      const SizedBox(height: 12),
+                      Card(
+                        color: const Color(0xFF221915),
+                        child: ListTile(
+                          leading: const Icon(
+                            Icons.shield_outlined,
+                            color: Color(0xFFE7A044),
+                          ),
+                          title: Text(
+                            Localizations.localeOf(context).languageCode == 'it'
+                                ? 'Accesso ai dati protetti'
+                                : 'Protected data access',
+                            style: const TextStyle(color: Color(0xFFF2E7D5)),
+                          ),
+                          onTap: () {
+                            final members = membersAsync.asData?.value;
+                            if (members == null) return;
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => TripProtectedAccessPage(
+                                  tripId: widget.tripId,
+                                  members: members,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                     const SizedBox(height: 24),
                     Text(
                       l10n.tripTravellersParticipants,

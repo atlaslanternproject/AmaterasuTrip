@@ -986,5 +986,17 @@
   "accountRootCancel": "Cancel",
   "accountRootClose": "Close",
   "accountRootRefresh": "Refresh status",
-  "accountWebDevicesInfo": "Trusted device management in the browser is being prepared. No approval or QR scanning is active here. First-browser activation will become available after Firestore rules and secure recovery have been verified."
+  "accountWebDevicesInfo": "Trusted device management in the browser is being prepared. No approval or QR scanning is active here. First-browser activation will become available after Firestore rules and secure recovery have been verified.",
+  "accountRecoveryPreflightTitle": "Device and recovery",
+  "accountRecoveryPreflightDescription": "Prepare this device and use your recovery code to sign the request. Registration does not automatically unlock encrypted data.",
+  "accountRecoveryPreflightPending": "Local identity ready. This device still needs authorisation.",
+  "accountRecoveryPreflightPrepare": "Prepare this device",
+  "accountRecoveryPreflightVerify": "Request authorisation with recovery code",
+  "accountRecoveryPreflightVerified": "Registration confirmed by the server. Encrypted data remains locked until permissions have been verified.",
+  "accountRecoveryPreflightError": "Authorisation could not be completed. Check your connection and recent sign-in. The server service may be unavailable.",
+  "accountRecoveryPreflightDialog": "Recovery code verification",
+  "accountRecoveryPreflightHelp": "The code stays on this device. Only a signed cryptographic proof is sent to Firebase.",
+  "accountRecoveryPreflightInput": "Recovery code",
+  "accountRecoveryPreflightCancel": "Cancel",
+  "accountRecoveryPreflightUnavailable": "Security status unavailable. Protected operations remain blocked."
 }

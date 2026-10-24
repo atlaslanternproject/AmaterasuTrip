@@ -5092,6 +5092,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Trusted device management in the browser is being prepared. No approval or QR scanning is active here. First-browser activation will become available after Firestore rules and secure recovery have been verified.'**
   String get accountWebDevicesInfo;
+
+  /// No description provided for @accountRecoveryPreflightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Device and recovery'**
+  String get accountRecoveryPreflightTitle;
+
+  /// No description provided for @accountRecoveryPreflightDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare this device and use your recovery code to sign the request. Registration does not automatically unlock encrypted data.'**
+  String get accountRecoveryPreflightDescription;
+
+  /// No description provided for @accountRecoveryPreflightPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Local identity ready. This device still needs authorisation.'**
+  String get accountRecoveryPreflightPending;
+
+  /// No description provided for @accountRecoveryPreflightPrepare.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare this device'**
+  String get accountRecoveryPreflightPrepare;
+
+  /// No description provided for @accountRecoveryPreflightVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Request authorisation with recovery code'**
+  String get accountRecoveryPreflightVerify;
+
+  /// No description provided for @accountRecoveryPreflightVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration confirmed by the server. Encrypted data remains locked until permissions have been verified.'**
+  String get accountRecoveryPreflightVerified;
+
+  /// No description provided for @accountRecoveryPreflightError.
+  ///
+  /// In en, this message translates to:
+  /// **'Authorisation could not be completed. Check your connection and recent sign-in. The server service may be unavailable.'**
+  String get accountRecoveryPreflightError;
+
+  /// No description provided for @accountRecoveryPreflightDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery code verification'**
+  String get accountRecoveryPreflightDialog;
+
+  /// No description provided for @accountRecoveryPreflightHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'The code stays on this device. Only a signed cryptographic proof is sent to Firebase.'**
+  String get accountRecoveryPreflightHelp;
+
+  /// No description provided for @accountRecoveryPreflightInput.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery code'**
+  String get accountRecoveryPreflightInput;
+
+  /// No description provided for @accountRecoveryPreflightCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get accountRecoveryPreflightCancel;
+
+  /// No description provided for @accountRecoveryPreflightUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Security status unavailable. Protected operations remain blocked.'**
+  String get accountRecoveryPreflightUnavailable;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

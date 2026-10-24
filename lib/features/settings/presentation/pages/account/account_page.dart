@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'first_root_activation_card.dart';
-import 'account_web_devices_info_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -9,9 +6,8 @@ import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_email_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_password_page.dart';
-import 'package:amaterasutrip/features/settings/presentation/pages/account/account_security_recovery_page.dart';
+import 'package:amaterasutrip/features/settings/presentation/pages/account/account_security_content.dart';
 import 'package:amaterasutrip/features/settings/providers/account_provider_access.dart';
-import 'package:amaterasutrip/features/settings/presentation/pages/account/account_e2ee_device_page.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -21,17 +17,6 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-
-      AccountE2eeDeviceContent.prefetchPreview();
-    });
-  }
-
   bool _emailExpanded = false;
   bool _passwordExpanded = false;
   bool _deleteExpanded = false;
@@ -122,14 +107,7 @@ class _AccountPageState extends State<AccountPage> {
               });
             },
             children: _recoveryExpanded
-                ? const [
-                    FirstDeviceBootstrapCard(),
-                    SizedBox(height: 18),
-                    if (kIsWeb) AccountWebDevicesInfoCard(),
-                    if (!kIsWeb) AccountE2eeDeviceContent(),
-                    SizedBox(height: 18),
-                    AccountSecurityRecoveryContent(),
-                  ]
+                ? const [AccountSecurityContent()]
                 : const [],
           ),
           const SizedBox(height: 10),

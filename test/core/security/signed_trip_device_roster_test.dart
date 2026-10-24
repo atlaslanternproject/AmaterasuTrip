@@ -2,6 +2,7 @@ import 'package:cryptography/cryptography.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:amaterasutrip/core/security/signed_trip_device_roster.dart';
+import 'package:amaterasutrip/core/security/trip_signed_bundle_wire.dart';
 import 'package:amaterasutrip/core/security/traveller_profile_key_rotation.dart';
 import 'package:amaterasutrip/core/security/verified_trip_rotation_reader.dart';
 import 'package:amaterasutrip/core/security/trusted_device_public_key.dart';
@@ -223,6 +224,58 @@ Future<TripTravellerProfileData> _openWithTrustedEpoch(
 }
 
 void main() {
+  test('first share without previous revocations', () async {
+    final f = await _Fixture.create();
+
+    final roster = await f.roster(revoked: const <String>{});
+
+    final rotation = await TravellerProfileKeyRotation().rotate(
+      profile: _profile,
+      tripId: _tripId,
+      profileUid: 'alice',
+      senderDeviceId: 'alice-android',
+      previousEpoch: 1,
+      revokedMemberUids: const <String>{},
+      activeRecipients: [f.aliceRecipient, f.bobRecipient],
+      senderX25519KeyPair: f.aliceX,
+      senderEd25519KeyPair: f.aliceEd,
+    );
+
+    expect(roster.revokedMemberUids, isEmpty);
+    expect(rotation.revokedMemberUids, isEmpty);
+
+    final encoded = TripSignedBundleWire.encode(
+      roster: roster,
+      rotation: rotation,
+    );
+
+    final decoded = TripSignedBundleWire.decodeUntrusted(encoded);
+
+    final opened = await f.open(decoded.roster, decoded.rotation);
+
+    expect(opened.toMap(), _profile.toMap());
+  });
+
+  test('empty revocations do not bypass signed roster', () async {
+    final f = await _Fixture.create();
+
+    final roster = await f.roster(revoked: const <String>{});
+
+    final rotation = await TravellerProfileKeyRotation().rotate(
+      profile: _profile,
+      tripId: _tripId,
+      profileUid: 'alice',
+      senderDeviceId: 'alice-android',
+      previousEpoch: 1,
+      revokedMemberUids: const <String>{},
+      activeRecipients: [f.aliceRecipient, f.bobRecipient, f.marcoRecipient],
+      senderX25519KeyPair: f.aliceX,
+      senderEd25519KeyPair: f.aliceEd,
+    );
+
+    await expectLater(f.open(roster, rotation), throwsA(isA<StateError>()));
+  });
+
   test('signed roster permits Bob to open new encrypted data', () async {
     final f = await _Fixture.create();
     final roster = await f.roster();

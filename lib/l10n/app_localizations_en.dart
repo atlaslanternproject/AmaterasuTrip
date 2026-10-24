@@ -2550,4 +2550,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountWebDevicesInfo => 'Trusted device management in the browser is being prepared. No approval or QR scanning is active here. First-browser activation will become available after Firestore rules and secure recovery have been verified.';
+
+  @override
+  String get accountRecoveryPreflightTitle => 'Device and recovery';
+
+  @override
+  String get accountRecoveryPreflightDescription => 'Prepare this device and use your recovery code to sign the request. Registration does not automatically unlock encrypted data.';
+
+  @override
+  String get accountRecoveryPreflightPending => 'Local identity ready. This device still needs authorisation.';
+
+  @override
+  String get accountRecoveryPreflightPrepare => 'Prepare this device';
+
+  @override
+  String get accountRecoveryPreflightVerify => 'Request authorisation with recovery code';
+
+  @override
+  String get accountRecoveryPreflightVerified => 'Registration confirmed by the server. Encrypted data remains locked until permissions have been verified.';
+
+  @override
+  String get accountRecoveryPreflightError => 'Authorisation could not be completed. Check your connection and recent sign-in. The server service may be unavailable.';
+
+  @override
+  String get accountRecoveryPreflightDialog => 'Recovery code verification';
+
+  @override
+  String get accountRecoveryPreflightHelp => 'The code stays on this device. Only a signed cryptographic proof is sent to Firebase.';
+
+  @override
+  String get accountRecoveryPreflightInput => 'Recovery code';
+
+  @override
+  String get accountRecoveryPreflightCancel => 'Cancel';
+
+  @override
+  String get accountRecoveryPreflightUnavailable => 'Security status unavailable. Protected operations remain blocked.';
 }

@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc, valid-jsdoc */
 import {createHash} from "node:crypto";
 import type {Firestore} from "firebase-admin/firestore";
 

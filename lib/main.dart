@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'app/app.dart';
 import 'firebase_options.dart';
+import 'core/security/firebase_app_check_bootstrap.dart';
 import 'core/notifications/firebase_messaging_service.dart';
 import 'core/maps/google_maps_loader.dart';
 import 'dart:async';
@@ -74,8 +75,24 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureFirebase();
+  await AmaterasuAppCheckBootstrap.initialize(
+    localFirebaseTest: _localFirebaseTest,
+  );
   if (!_localFirebaseTest) {
-    await initializeGoogleMaps();
+    // AMATERASU_WEB_MAPS_NONBLOCKING_V1
+    // Maps must never block the initial Flutter screen.
+    if (kIsWeb) {
+      unawaited(
+        initializeGoogleMaps().catchError(
+          (Object error, StackTrace stackTrace) {
+            debugPrint('Google Maps initialization failed: $error');
+            debugPrintStack(stackTrace: stackTrace);
+          },
+        ),
+      );
+    } else {
+      await initializeGoogleMaps();
+    }
     if (!kIsWeb) {
       FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     }

@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:amaterasutrip/core/storage/remember_me_storage.dart';
+import 'package:amaterasutrip/core/security/first_root_registration_provenance.dart';
 
 import '../data/repositories/auth_repository.dart';
 import 'auth_provider.dart';
@@ -32,7 +33,16 @@ class AuthController {
   }
 
   Future<UserCredential?> loginWithGoogle() async {
-    return await _repository.signInWithGoogle();
+    final provenance = FirstRootRegistrationProvenance();
+
+    final credential = await _repository.signInWithGoogle();
+    final user = credential?.user;
+
+    if (user != null && credential?.additionalUserInfo?.isNewUser == true) {
+      await provenance.markCreated(user);
+    }
+
+    return credential;
   }
 
   Future<UserCredential> register({
@@ -44,6 +54,12 @@ class AuthController {
       email: email,
       password: password,
     );
+
+    final createdUser = credential.user;
+
+    if (createdUser != null) {
+      await FirstRootRegistrationProvenance().markCreated(createdUser);
+    }
 
     await _userRepository.createUsername(username: username);
 
