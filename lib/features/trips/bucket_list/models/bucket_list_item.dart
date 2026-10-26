@@ -99,10 +99,26 @@ class BucketListItem {
     String? country,
     BucketItemType? type,
     int? durationMinutes,
+    bool clearDurationMinutes = false,
     String? notes,
     List<String>? usefulLinks,
     DateTime? updatedAt,
+    String? googlePlaceId,
+    bool clearGooglePlaceId = false,
+    String? address,
+    bool clearAddress = false,
+    double? latitude,
+    double? longitude,
+    bool clearCoordinates = false,
   }) {
+    if (clearCoordinates && (latitude != null || longitude != null)) {
+      throw ArgumentError('Cannot set and clear coordinates together.');
+    }
+
+    if ((latitude == null) != (longitude == null)) {
+      throw ArgumentError('Coordinates must be supplied together.');
+    }
+
     return BucketListItem(
       id: id,
       tripId: tripId,
@@ -113,13 +129,17 @@ class BucketListItem {
       createdByUid: createdByUid,
       createdAt: createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
-      durationMinutes: durationMinutes ?? this.durationMinutes,
+      durationMinutes: clearDurationMinutes
+          ? null
+          : durationMinutes ?? this.durationMinutes,
       notes: notes ?? this.notes,
       usefulLinks: usefulLinks ?? this.usefulLinks,
-      googlePlaceId: googlePlaceId,
-      address: address,
-      latitude: latitude,
-      longitude: longitude,
+      googlePlaceId: clearGooglePlaceId
+          ? null
+          : googlePlaceId ?? this.googlePlaceId,
+      address: clearAddress ? null : address ?? this.address,
+      latitude: clearCoordinates ? null : latitude ?? this.latitude,
+      longitude: clearCoordinates ? null : longitude ?? this.longitude,
     );
   }
 }
