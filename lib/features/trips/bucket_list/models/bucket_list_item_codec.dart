@@ -4,7 +4,7 @@ import 'bucket_list_item.dart';
 /// Converts Bucket List activities to and from Firestore-compatible maps.
 ///
 /// Document IDs are supplied separately and are not duplicated in the map.
-/// Dates are stored as Firestore timestamps.
+/// Dates are stored as ISO 8601 UTC strings.
 abstract final class BucketListItemCodec {
   static Map<String, Object?> toMap(BucketListItem item) {
     item.validate();

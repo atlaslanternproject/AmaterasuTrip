@@ -59,6 +59,37 @@ class BucketListItem {
       throw ArgumentError('Required Bucket List field is empty.');
     }
 
+    if (name.length > 200) {
+      throw ArgumentError.value(name, 'name', 'Maximum 200 characters.');
+    }
+
+    if (city.length > 150 || country.length > 150) {
+      throw ArgumentError('City and country must not exceed 150 characters.');
+    }
+
+    if (notes.length > 10000) {
+      throw ArgumentError.value(
+        notes.length,
+        'notes',
+        'Maximum 10000 characters.',
+      );
+    }
+
+    if (usefulLinks.length > 20) {
+      throw ArgumentError.value(
+        usefulLinks.length,
+        'usefulLinks',
+        'Maximum 20 links.',
+      );
+    }
+
+    if (durationMinutes != null && durationMinutes! > 10080) {
+      throw ArgumentError.value(
+        durationMinutes,
+        'durationMinutes',
+        'Maximum 10080 minutes.',
+      );
+    }
     if (durationMinutes != null && durationMinutes! <= 0) {
       throw ArgumentError.value(
         durationMinutes,
@@ -84,6 +115,13 @@ class BucketListItem {
     }
 
     for (final link in usefulLinks) {
+      if (link.length > 2048) {
+        throw ArgumentError.value(
+          link.length,
+          'usefulLinks',
+          'Maximum 2048 characters per link.',
+        );
+      }
       final uri = Uri.tryParse(link);
       if (uri == null ||
           (uri.scheme != 'https' && uri.scheme != 'http') ||
