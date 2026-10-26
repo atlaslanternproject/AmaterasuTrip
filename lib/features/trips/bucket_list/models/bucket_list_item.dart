@@ -15,7 +15,6 @@ class BucketListItem {
     this.notes = '',
     this.usefulLinks = const [],
     this.googlePlaceId,
-    this.googlePhotoName,
     this.address,
     this.latitude,
     this.longitude,
@@ -41,7 +40,6 @@ class BucketListItem {
   final String? googlePlaceId;
 
   // Photo resource reference. Retrieval is handled by a separate service.
-  final String? googlePhotoName;
 
   final String? address;
   final double? latitude;
@@ -119,7 +117,6 @@ class BucketListItem {
       notes: notes ?? this.notes,
       usefulLinks: usefulLinks ?? this.usefulLinks,
       googlePlaceId: googlePlaceId,
-      googlePhotoName: googlePhotoName,
       address: address,
       latitude: latitude,
       longitude: longitude,
