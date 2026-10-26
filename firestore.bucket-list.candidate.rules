@@ -249,6 +249,44 @@ service cloud.firestore {
           && bucketTrip().get('ownerUid', '') == request.auth.uid;
       }
 
+      function validBucketDate(value) {
+        return value is string
+          && value.matches(
+            '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,6})?Z$'
+          );
+      }
+
+      function validBucketLink(value) {
+        return value is string
+          && value.size() <= 2048
+          && value.matches('^https?://[^ ]+$');
+      }
+
+      function validBucketLinks(links) {
+        return links is list
+          && links.size() <= 20
+          && (links.size() <= 0 || validBucketLink(links[0]))
+          && (links.size() <= 1 || validBucketLink(links[1]))
+          && (links.size() <= 2 || validBucketLink(links[2]))
+          && (links.size() <= 3 || validBucketLink(links[3]))
+          && (links.size() <= 4 || validBucketLink(links[4]))
+          && (links.size() <= 5 || validBucketLink(links[5]))
+          && (links.size() <= 6 || validBucketLink(links[6]))
+          && (links.size() <= 7 || validBucketLink(links[7]))
+          && (links.size() <= 8 || validBucketLink(links[8]))
+          && (links.size() <= 9 || validBucketLink(links[9]))
+          && (links.size() <= 10 || validBucketLink(links[10]))
+          && (links.size() <= 11 || validBucketLink(links[11]))
+          && (links.size() <= 12 || validBucketLink(links[12]))
+          && (links.size() <= 13 || validBucketLink(links[13]))
+          && (links.size() <= 14 || validBucketLink(links[14]))
+          && (links.size() <= 15 || validBucketLink(links[15]))
+          && (links.size() <= 16 || validBucketLink(links[16]))
+          && (links.size() <= 17 || validBucketLink(links[17]))
+          && (links.size() <= 18 || validBucketLink(links[18]))
+          && (links.size() <= 19 || validBucketLink(links[19]));
+      }
+
       function validBucketActivity(data) {
         return data.keys().hasAll([
           'tripId', 'name', 'city', 'country', 'type',
@@ -268,17 +306,17 @@ service cloud.firestore {
           && data.city.size() <= 150
           && data.country is string
           && data.country.size() <= 150
-          && data.type is string
-          && data.type.size() > 0
-          && data.type.size() <= 40
+          && data.type in [
+            'attraction', 'area', 'city',
+            'experience', 'event', 'other'
+          ]
           && data.createdByUid is string
           && data.createdByUid.size() > 0
-          && data.createdAt is string
-          && data.updatedAt is string
+          && validBucketDate(data.createdAt)
+          && validBucketDate(data.updatedAt)
           && data.get('notes', '') is string
           && data.get('notes', '').size() <= 10000
-          && data.get('usefulLinks', []) is list
-          && data.get('usefulLinks', []).size() <= 20
+          && validBucketLinks(data.get('usefulLinks', []))
           && (
             data.get('durationMinutes', null) == null
             || (
