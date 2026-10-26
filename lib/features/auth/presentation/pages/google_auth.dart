@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,7 +21,7 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _login();
+      if (!kIsWeb) _login();
     });
   }
 
@@ -70,7 +71,12 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: Center(
-        child: error == null
+        child: kIsWeb && error == null
+            ? ElevatedButton(
+                onPressed: _login,
+                child: Text(l10n.commonGoogleSignIn),
+              )
+            : error == null
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -89,7 +95,10 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
                   const SizedBox(height: 16),
                   Text(error!),
                   const SizedBox(height: 24),
-                  ElevatedButton(onPressed: null, child: Text(l10n.authRetry)),
+                  ElevatedButton(
+                    onPressed: kIsWeb ? _login : null,
+                    child: Text(l10n.authRetry),
+                  ),
                 ],
               ),
       ),

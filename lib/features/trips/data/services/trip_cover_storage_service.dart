@@ -1,8 +1,8 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../../core/storage/image_upload_utils.dart';
 
 class TripCoverUploadResult {
   const TripCoverUploadResult({
@@ -40,7 +40,9 @@ class TripCoverStorageService {
       throw ArgumentError.value(tripId, 'tripId', 'Trip ID cannot be empty.');
     }
 
-    final extension = _extractExtension(cover.path);
+    final extension = normalizedImageExtension(
+      cover.name.trim().isNotEmpty ? cover.name : cover.path,
+    );
 
     final storagePath =
         'users/${user.uid}/trips/$normalizedTripId/cover/'
@@ -48,7 +50,12 @@ class TripCoverStorageService {
 
     final reference = _firebaseStorage.ref().child(storagePath);
 
-    await reference.putFile(File(cover.path));
+    final bytes = await cover.readAsBytes();
+
+    await reference.putData(
+      bytes,
+      SettableMetadata(contentType: imageContentTypeForExtension(extension)),
+    );
 
     final downloadUrl = await reference.getDownloadURL();
 
@@ -64,15 +71,5 @@ class TripCoverStorageService {
     }
 
     await _firebaseStorage.ref().child(storagePath).delete();
-  }
-
-  String _extractExtension(String path) {
-    final lastDot = path.lastIndexOf('.');
-
-    if (lastDot == -1 || lastDot == path.length - 1) {
-      return 'jpg';
-    }
-
-    return path.substring(lastDot + 1).toLowerCase();
   }
 }

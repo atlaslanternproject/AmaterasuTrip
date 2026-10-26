@@ -1,10 +1,9 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/media/web_media_consent_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:amaterasutrip/core/permissions/app_permission.dart';
-import 'package:amaterasutrip/core/permissions/permission_provider.dart';
-import 'package:amaterasutrip/core/permissions/permission_request_handler.dart';
 import 'package:amaterasutrip/core/widgets/dialogs/amaterasu_unsaved_changes_dialog.dart';
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
@@ -337,22 +336,16 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     try {
       XFile? selectedPhoto;
 
-      final permissionService = ref.read(permissionServiceProvider);
-
       switch (action) {
         case ProfilePhotoSourceAction.camera:
-          final permissionGranted = await requestAppPermission(
-            context: context,
-            permissionService: permissionService,
-            permission: AppPermission.camera,
-            deniedMessage: l10n.profilePhotoCameraPermissionDenied,
-            permanentlyDeniedMessage:
-                l10n.profilePhotoCameraPermissionPermanentlyDenied,
-            openSettingsLabel: l10n.profilePhotoOpenSettings,
-          );
-
-          if (!permissionGranted || !mounted) {
-            return;
+          if (kIsWeb) {
+            selectedPhoto = await showWebMediaConsentDialog(
+              context: context,
+              fromCamera: true,
+              pickImage: picker.pickFromCamera,
+              errorMessage: l10n.profilePhotoPickerError,
+            );
+            break;
           }
 
           final recoveryService = ref.read(profilePhotoRecoveryServiceProvider);
@@ -368,18 +361,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           break;
 
         case ProfilePhotoSourceAction.gallery:
-          final permissionGranted = await requestAppPermission(
-            context: context,
-            permissionService: permissionService,
-            permission: AppPermission.photos,
-            deniedMessage: l10n.profilePhotoGalleryPermissionDenied,
-            permanentlyDeniedMessage:
-                l10n.profilePhotoGalleryPermissionPermanentlyDenied,
-            openSettingsLabel: l10n.profilePhotoOpenSettings,
-          );
-
-          if (!permissionGranted || !mounted) {
-            return;
+          if (kIsWeb) {
+            selectedPhoto = await showWebMediaConsentDialog(
+              context: context,
+              fromCamera: false,
+              pickImage: picker.pickFromGallery,
+              errorMessage: l10n.profilePhotoPickerError,
+            );
+            break;
           }
 
           selectedPhoto = await picker.pickFromGallery();

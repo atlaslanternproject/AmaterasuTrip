@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:amaterasutrip/core/storage/remember_me_storage.dart';
+import 'package:amaterasutrip/features/settings/domain/account_deletion_trip_guard.dart';
 
 class AccountDeletionService {
   const AccountDeletionService._();
@@ -27,6 +28,25 @@ class AccountDeletionService {
     }
 
     final uid = user.uid;
+
+    // Temporary account-deletion safety check.
+    // A failed query must prevent deletion.
+    final ownedTrips = await firestore
+        .collection('trips')
+        .where('ownerUid', isEqualTo: uid)
+        .limit(1)
+        .get();
+
+    final participatingTrips = await firestore
+        .collection('trips')
+        .where('memberUids', arrayContains: uid)
+        .limit(1)
+        .get();
+
+    AccountDeletionTripGuard.requireNoTripReferences(
+      ownsTrip: ownedTrips.docs.isNotEmpty,
+      participatesInTrip: participatingTrips.docs.isNotEmpty,
+    );
 
     final providerIds = user.providerData
         .map((provider) => provider.providerId)

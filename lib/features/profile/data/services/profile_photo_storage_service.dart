@@ -1,8 +1,8 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../../core/storage/image_upload_utils.dart';
 
 class ProfilePhotoUploadResult {
   const ProfilePhotoUploadResult({
@@ -31,14 +31,22 @@ class ProfilePhotoStorageService {
       throw StateError('No authenticated user.');
     }
 
-    final extension = _extractExtension(photo.path);
+    final extension = normalizedImageExtension(
+      photo.name.trim().isNotEmpty ? photo.name : photo.path,
+    );
 
     final storagePath =
-        'users/${user.uid}/profile/profile_${DateTime.now().millisecondsSinceEpoch}.$extension';
+        'users/${user.uid}/profile/'
+        'profile_${DateTime.now().millisecondsSinceEpoch}.$extension';
 
     final reference = _firebaseStorage.ref().child(storagePath);
 
-    await reference.putFile(File(photo.path));
+    final bytes = await photo.readAsBytes();
+
+    await reference.putData(
+      bytes,
+      SettableMetadata(contentType: imageContentTypeForExtension(extension)),
+    );
 
     final downloadUrl = await reference.getDownloadURL();
 
@@ -54,15 +62,5 @@ class ProfilePhotoStorageService {
     }
 
     await _firebaseStorage.ref().child(storagePath).delete();
-  }
-
-  String _extractExtension(String path) {
-    final lastDot = path.lastIndexOf('.');
-
-    if (lastDot == -1 || lastDot == path.length - 1) {
-      return 'jpg';
-    }
-
-    return path.substring(lastDot + 1).toLowerCase();
   }
 }

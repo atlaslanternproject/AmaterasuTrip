@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -101,7 +102,7 @@ class _TripNotificationsSettingsPageState
   }
 
   Future<void> _setMaster(bool value) async {
-    if (_saving) return;
+    if (kIsWeb || _saving) return;
 
     final uid = _uid;
 
@@ -159,7 +160,7 @@ class _TripNotificationsSettingsPageState
     TripNotificationCategory category,
     bool value,
   ) async {
-    if (_saving) return;
+    if (kIsWeb || _saving) return;
 
     final uid = _uid;
 
@@ -423,7 +424,7 @@ class _TripNotificationsSettingsPageState
     final sections = _sections(l10n);
 
     final categoriesEnabled =
-        _preferences.masterEnabled && canManage && !_saving;
+        !kIsWeb && _preferences.masterEnabled && canManage && !_saving;
 
     return Scaffold(
       backgroundColor: _backgroundColor,
@@ -449,19 +450,33 @@ class _TripNotificationsSettingsPageState
                   ),
                   const SizedBox(height: 18),
 
+                  if (kIsWeb) ...[
+                    Text(
+                      l10n.tripNotificationsWebUnavailable,
+                      style: const TextStyle(
+                        color: _subtitleColor,
+                        fontSize: 13,
+                        height: 1.4,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                  ],
+
                   _NotificationSettingsCard(
                     children: [
                       _NotificationSwitchTile(
                         title: l10n.tripNotificationsMaster,
                         subtitle: l10n.tripNotificationsMasterSubtitle,
-                        value: _preferences.masterEnabled,
-                        enabled: canManage && !_saving,
+                        value: kIsWeb ? false : _preferences.masterEnabled,
+                        enabled: !kIsWeb && canManage && !_saving,
                         onChanged: _setMaster,
                       ),
                     ],
                   ),
 
-                  if (permission != null && !permission.isGranted) ...[
+                  if (!kIsWeb &&
+                      permission != null &&
+                      !permission.isGranted) ...[
                     const SizedBox(height: 12),
                     _PermissionNotice(
                       title: l10n.tripNotificationsSystemPermission,
@@ -487,9 +502,11 @@ class _TripNotificationsSettingsPageState
                           _NotificationSwitchTile(
                             title: section.items[index].title,
                             subtitle: section.items[index].subtitle,
-                            value: _preferences.isEnabled(
-                              section.items[index].category,
-                            ),
+                            value: kIsWeb
+                                ? false
+                                : _preferences.isEnabled(
+                                    section.items[index].category,
+                                  ),
                             enabled: categoriesEnabled,
                             onChanged: (value) => _setCategory(
                               section.items[index].category,

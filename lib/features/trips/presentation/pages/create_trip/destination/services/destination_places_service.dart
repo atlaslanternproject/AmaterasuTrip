@@ -1,13 +1,10 @@
-import 'package:flutter/services.dart';
-
 import '../models/trip_destination.dart';
+import 'destination_places_service_native.dart'
+    if (dart.library.js_interop) 'destination_places_service_web.dart'
+    as platform;
 
 class DestinationPlacesService {
   const DestinationPlacesService();
-
-  static const MethodChannel _channel = MethodChannel(
-    'com.amaterasutrip/places',
-  );
 
   Future<List<DestinationPrediction>> search(
     String query, {
@@ -19,33 +16,22 @@ class DestinationPlacesService {
       return const [];
     }
 
-    final result = await _channel.invokeMethod<List<Object?>>(
-      'searchDestinations',
-      <String, Object?>{'query': normalizedQuery, 'languageCode': languageCode},
+    final result = await platform.search(
+      normalizedQuery,
+      languageCode: languageCode,
     );
 
-    if (result == null) {
-      return const [];
-    }
-
-    return result
-        .whereType<Map<Object?, Object?>>()
-        .map(DestinationPrediction.fromMap)
-        .toList(growable: false);
+    return result.map(DestinationPrediction.fromMap).toList(growable: false);
   }
 
   Future<TripDestination> getDetails(
     String placeId, {
     required String languageCode,
   }) async {
-    final result = await _channel.invokeMethod<Map<Object?, Object?>>(
-      'getDestinationDetails',
-      <String, Object?>{'placeId': placeId, 'languageCode': languageCode},
+    final result = await platform.getDetails(
+      placeId,
+      languageCode: languageCode,
     );
-
-    if (result == null) {
-      throw StateError('Destination details unavailable.');
-    }
 
     return TripDestination.fromMap(result);
   }
@@ -55,18 +41,11 @@ class DestinationPlacesService {
     required double longitude,
     required String languageCode,
   }) async {
-    final result = await _channel.invokeMethod<Map<Object?, Object?>>(
-      'reverseGeocodeDestination',
-      <String, Object?>{
-        'latitude': latitude,
-        'longitude': longitude,
-        'languageCode': languageCode,
-      },
+    final result = await platform.reverseGeocode(
+      latitude: latitude,
+      longitude: longitude,
+      languageCode: languageCode,
     );
-
-    if (result == null) {
-      throw StateError('Destination unavailable.');
-    }
 
     return TripDestination.fromMap(result);
   }
@@ -74,19 +53,9 @@ class DestinationPlacesService {
   Future<List<TripCurrency>> getCurrencies({
     required String languageCode,
   }) async {
-    final result = await _channel.invokeMethod<List<Object?>>(
-      'getCurrencies',
-      <String, Object?>{'languageCode': languageCode},
-    );
+    final result = await platform.getCurrencies(languageCode: languageCode);
 
-    if (result == null) {
-      return const [];
-    }
-
-    return result
-        .whereType<Map<Object?, Object?>>()
-        .map(TripCurrency.fromMap)
-        .toList(growable: false);
+    return result.map(TripCurrency.fromMap).toList(growable: false);
   }
 }
 

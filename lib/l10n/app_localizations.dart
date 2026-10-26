@@ -95,6 +95,126 @@ abstract class AppLocalizations {
     Locale('it')
   ];
 
+  /// No description provided for @accountRecoveryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Security and recovery'**
+  String get accountRecoveryTitle;
+
+  /// No description provided for @accountRecoverySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect and recover your data'**
+  String get accountRecoverySubtitle;
+
+  /// No description provided for @accountRecoveryStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'In development'**
+  String get accountRecoveryStatus;
+
+  /// No description provided for @accountRecoveryStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted recovery is not yet active'**
+  String get accountRecoveryStatusTitle;
+
+  /// No description provided for @accountRecoveryStatusDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is being developed. No backup of your data has been created through this screen.'**
+  String get accountRecoveryStatusDescription;
+
+  /// No description provided for @accountRecoverySectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How it will work'**
+  String get accountRecoverySectionTitle;
+
+  /// No description provided for @accountRecoveryCodeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal recovery code'**
+  String get accountRecoveryCodeTitle;
+
+  /// No description provided for @accountRecoveryCodeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You will be able to generate a recovery code and keep it somewhere safe.'**
+  String get accountRecoveryCodeDescription;
+
+  /// No description provided for @accountRecoveryStorageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protected data'**
+  String get accountRecoveryStorageTitle;
+
+  /// No description provided for @accountRecoveryStorageDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The code will help recover keys for data your account is still allowed to access.'**
+  String get accountRecoveryStorageDescription;
+
+  /// No description provided for @accountRecoveryDeviceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New device'**
+  String get accountRecoveryDeviceTitle;
+
+  /// No description provided for @accountRecoveryDeviceDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Security checks will be required before a new device can be authorised.'**
+  String get accountRecoveryDeviceDescription;
+
+  /// No description provided for @accountRecoveryNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Password recovery and encrypted data recovery are two different processes.'**
+  String get accountRecoveryNotice;
+
+  /// No description provided for @notificationsWebUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notifications are not yet available on the Web. Your saved preferences will not be changed.'**
+  String get notificationsWebUnavailable;
+
+  /// No description provided for @tripNotificationsWebUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip push notifications are not yet available on the Web. Your saved Android preferences remain unchanged.'**
+  String get tripNotificationsWebUnavailable;
+
+  /// No description provided for @webMediaCameraTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the camera?'**
+  String get webMediaCameraTitle;
+
+  /// No description provided for @webMediaCameraBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu will open the camera if supported by your browser. Otherwise, you can choose an image from your device. No photo will be used without your choice.'**
+  String get webMediaCameraBody;
+
+  /// No description provided for @webMediaGalleryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a photo?'**
+  String get webMediaGalleryTitle;
+
+  /// No description provided for @webMediaGalleryBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You can choose a photo from your device. Amaterasu will only use the file you select, without accessing your entire gallery.'**
+  String get webMediaGalleryBody;
+
+  /// No description provided for @webMediaContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get webMediaContinue;
+
   /// No description provided for @settingsLanguage.
   ///
   /// In en, this message translates to:
@@ -3443,11 +3563,35 @@ abstract class AppLocalizations {
   /// **'Will you have cabin baggage up to 10 kg?'**
   String get tripQuestionnaireCabinBaggage;
 
+  /// No description provided for @tripTravellersProfileEditIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Update your trip profile. All answers are optional, and you can change or withdraw them whenever you like.'**
+  String get tripTravellersProfileEditIntro;
+
+  /// No description provided for @tripTravellersProfileEditOptionalNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You can choose Yes, No or I prefer not to answer. If you withdraw a health-related answer, its associated details will be removed from your profile when you save.'**
+  String get tripTravellersProfileEditOptionalNote;
+
   /// No description provided for @tripQuestionnaireOptionalSection.
   ///
   /// In en, this message translates to:
   /// **'Health and accessibility'**
   String get tripQuestionnaireOptionalSection;
+
+  /// No description provided for @tripQuestionnairePreferNotToAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'I prefer not to answer'**
+  String get tripQuestionnairePreferNotToAnswer;
+
+  /// No description provided for @tripQuestionnaireOptionalExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'You may leave any question unanswered. Only the final confirmation of your participation is required.'**
+  String get tripQuestionnaireOptionalExplanation;
 
   /// No description provided for @tripQuestionnaireAllergies.
   ///
@@ -3512,7 +3656,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripQuestionnaireRequiredLegend.
   ///
   /// In en, this message translates to:
-  /// **'required question'**
+  /// **'Only the participation confirmation is required'**
   String get tripQuestionnaireRequiredLegend;
 
   /// No description provided for @tripQuestionnaireOrganisationSection.
@@ -3572,7 +3716,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripQuestionnaireSafetyNoticeBody.
   ///
   /// In en, this message translates to:
-  /// **'Please provide all information relevant to health, safety and accessibility. Information that is not disclosed may prevent the group from arranging suitable assistance, alternatives or accommodations in advance.'**
+  /// **'Health and accessibility information is optional. If you choose to provide it, it is currently shared with other trip participants for organisational purposes. You can edit or remove it from your trip profile.'**
   String get tripQuestionnaireSafetyNoticeBody;
 
   /// No description provided for @tripCreatedInviteShareSubject.
@@ -3628,6 +3772,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to load trip participants.'**
   String get tripTravellersLoadError;
+
+  /// No description provided for @tripTravellersE2eeLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip profile locked. E2EE verification is required to view or edit these details.'**
+  String get tripTravellersE2eeLocked;
 
   /// No description provided for @tripTravellersOwnerRole.
   ///
@@ -4648,6 +4798,372 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You do not have access to manage this trip.'**
   String get tripManagementFinalAccessDenied;
+
+  /// No description provided for @accountE2eeDeviceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Device security'**
+  String get accountE2eeDeviceTitle;
+
+  /// No description provided for @accountE2eeDeviceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect access to your data'**
+  String get accountE2eeDeviceSubtitle;
+
+  /// No description provided for @accountE2eeDeviceExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'This device is not yet authorised to read protected data. You can prepare a request, but approval from an already trusted device or secure recovery is still required.'**
+  String get accountE2eeDeviceExplanation;
+
+  /// No description provided for @accountE2eeDeviceConsentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare a request?'**
+  String get accountE2eeDeviceConsentTitle;
+
+  /// No description provided for @accountE2eeDeviceConsentText.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys will be prepared and stored on this device. This does not grant access to protected information or authorise the device. This feature is still experimental.'**
+  String get accountE2eeDeviceConsentText;
+
+  /// No description provided for @accountE2eeDevicePrepare.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare request'**
+  String get accountE2eeDevicePrepare;
+
+  /// No description provided for @accountE2eeDevicePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Awaiting authorisation'**
+  String get accountE2eeDevicePending;
+
+  /// No description provided for @accountE2eeDeviceCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy code'**
+  String get accountE2eeDeviceCopy;
+
+  /// No description provided for @accountE2eeDeviceCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Code copied'**
+  String get accountE2eeDeviceCopied;
+
+  /// No description provided for @accountE2eeDeviceUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure device management is not yet available on the Web. Simply signing in does not grant access to protected information.'**
+  String get accountE2eeDeviceUnavailable;
+
+  /// No description provided for @accountE2eeDeviceError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to complete this operation. Check your account verification or the security status of this device.'**
+  String get accountE2eeDeviceError;
+
+  /// No description provided for @accountE2eePinChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking device security...'**
+  String get accountE2eePinChecking;
+
+  /// No description provided for @accountE2eePinPresent.
+  ///
+  /// In en, this message translates to:
+  /// **'A locally trusted identity is stored. Access to protected data still requires security checks.'**
+  String get accountE2eePinPresent;
+
+  /// No description provided for @accountE2eePinMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'This device does not yet have a verified trusted identity.'**
+  String get accountE2eePinMissing;
+
+  /// No description provided for @accountE2eePinUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to verify the local identity. Access to protected data remains blocked.'**
+  String get accountE2eePinUnavailable;
+
+  /// No description provided for @accountE2eeQrScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a code'**
+  String get accountE2eeQrScan;
+
+  /// No description provided for @accountE2eeQrScanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a code'**
+  String get accountE2eeQrScanTitle;
+
+  /// No description provided for @accountE2eeQrCameraTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the camera?'**
+  String get accountE2eeQrCameraTitle;
+
+  /// No description provided for @accountE2eeQrCameraText.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu will use the camera to read a code. Scanning does not automatically authorise the device.'**
+  String get accountE2eeQrCameraText;
+
+  /// No description provided for @accountE2eeQrContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Understood'**
+  String get accountE2eeQrContinue;
+
+  /// No description provided for @accountE2eeQrInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This code is invalid, expired or belongs to another account. Prepare a new request if necessary.'**
+  String get accountE2eeQrInvalid;
+
+  /// No description provided for @accountE2eeQrReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Code recognised. Authorising a device still requires cryptographic signature verification. No access has been granted.'**
+  String get accountE2eeQrReadOnly;
+
+  /// No description provided for @accountE2eeQrCameraError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to access the camera. Check your device permissions.'**
+  String get accountE2eeQrCameraError;
+
+  /// No description provided for @accountE2eeQrHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Position the code inside the frame. Scanning does not grant access to data.'**
+  String get accountE2eeQrHint;
+
+  /// No description provided for @accountE2eeQrRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires in'**
+  String get accountE2eeQrRemaining;
+
+  /// No description provided for @accountE2eeQrExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'This code has expired. Generate a new request.'**
+  String get accountE2eeQrExpired;
+
+  /// No description provided for @accountE2eeQrRegenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Regenerate request'**
+  String get accountE2eeQrRegenerate;
+
+  /// No description provided for @accountE2eeQrPendingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this code to another already trusted device. A device cannot authorise itself.'**
+  String get accountE2eeQrPendingHint;
+
+  /// No description provided for @accountE2eeQrResultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Code verification'**
+  String get accountE2eeQrResultTitle;
+
+  /// No description provided for @accountE2eeQrSelfScan.
+  ///
+  /// In en, this message translates to:
+  /// **'You scanned the code belonging to this same device. For security reasons, it cannot authorise itself.'**
+  String get accountE2eeQrSelfScan;
+
+  /// No description provided for @accountE2eeQrWebNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure browser activation and recovery are still being developed. Signing in alone does not authorise a device.'**
+  String get accountE2eeQrWebNotice;
+
+  /// No description provided for @accountRootTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First trusted device'**
+  String get accountRootTitle;
+
+  /// No description provided for @accountRootAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This account has no registered protected identity yet. You can activate the first device here, including directly in a browser.'**
+  String get accountRootAvailable;
+
+  /// No description provided for @accountRootActive.
+  ///
+  /// In en, this message translates to:
+  /// **'The initial identity has been verified on this device. The signature and local keys match the trusted root.'**
+  String get accountRootActive;
+
+  /// No description provided for @accountRootRecoveryNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'This account already has a protected identity. This device requires approval or independently verified recovery.'**
+  String get accountRootRecoveryNeeded;
+
+  /// No description provided for @accountRootBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'The local identity does not match the registered identity, or required information is missing. Protected access remains blocked.'**
+  String get accountRootBlocked;
+
+  /// No description provided for @accountRootVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with a verified account to configure protection.'**
+  String get accountRootVerify;
+
+  /// No description provided for @accountRootChecking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking protected identity...'**
+  String get accountRootChecking;
+
+  /// No description provided for @accountRootExperimental.
+  ///
+  /// In en, this message translates to:
+  /// **'Experimental feature: full recovery and access to encrypted health information are not enabled yet.'**
+  String get accountRootExperimental;
+
+  /// No description provided for @accountRootRecoveryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Save your recovery code'**
+  String get accountRootRecoveryTitle;
+
+  /// No description provided for @accountRootRecoveryWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This code is secret. Keep it somewhere safe outside the app. Never share it. An encrypted copy of the keys will be stored online, but automatic recovery is not available yet. Losing the code or browser data may permanently prevent access.'**
+  String get accountRootRecoveryWarning;
+
+  /// No description provided for @accountRootRecoveryConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'I have stored the code securely and understand the risk.'**
+  String get accountRootRecoveryConfirm;
+
+  /// No description provided for @accountRootActivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate this device'**
+  String get accountRootActivate;
+
+  /// No description provided for @accountRootActivated.
+  ///
+  /// In en, this message translates to:
+  /// **'First identity registered and verified. Keep your recovery code safe.'**
+  String get accountRootActivated;
+
+  /// No description provided for @accountRootError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to complete verification or activation. Check your connection and sign in again if your session is not recent. Do not clear local data.'**
+  String get accountRootError;
+
+  /// No description provided for @accountRootCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get accountRootCancel;
+
+  /// No description provided for @accountRootClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get accountRootClose;
+
+  /// No description provided for @accountRootRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh status'**
+  String get accountRootRefresh;
+
+  /// No description provided for @accountWebDevicesInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Trusted device management in the browser is being prepared. No approval or QR scanning is active here. First-browser activation will become available after Firestore rules and secure recovery have been verified.'**
+  String get accountWebDevicesInfo;
+
+  /// No description provided for @accountRecoveryPreflightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Device and recovery'**
+  String get accountRecoveryPreflightTitle;
+
+  /// No description provided for @accountRecoveryPreflightDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare this device and use your recovery code to sign the request. Registration does not automatically unlock encrypted data.'**
+  String get accountRecoveryPreflightDescription;
+
+  /// No description provided for @accountRecoveryPreflightPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Local identity ready. This device still needs authorisation.'**
+  String get accountRecoveryPreflightPending;
+
+  /// No description provided for @accountRecoveryPreflightPrepare.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare this device'**
+  String get accountRecoveryPreflightPrepare;
+
+  /// No description provided for @accountRecoveryPreflightVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Request authorisation with recovery code'**
+  String get accountRecoveryPreflightVerify;
+
+  /// No description provided for @accountRecoveryPreflightVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration confirmed by the server. Encrypted data remains locked until permissions have been verified.'**
+  String get accountRecoveryPreflightVerified;
+
+  /// No description provided for @accountRecoveryPreflightError.
+  ///
+  /// In en, this message translates to:
+  /// **'Authorisation could not be completed. Check your connection and recent sign-in. The server service may be unavailable.'**
+  String get accountRecoveryPreflightError;
+
+  /// No description provided for @accountRecoveryPreflightDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery code verification'**
+  String get accountRecoveryPreflightDialog;
+
+  /// No description provided for @accountRecoveryPreflightHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'The code stays on this device. Only a signed cryptographic proof is sent to Firebase.'**
+  String get accountRecoveryPreflightHelp;
+
+  /// No description provided for @accountRecoveryPreflightInput.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery code'**
+  String get accountRecoveryPreflightInput;
+
+  /// No description provided for @accountRecoveryPreflightCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get accountRecoveryPreflightCancel;
+
+  /// No description provided for @accountRecoveryPreflightUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Security status unavailable. Protected operations remain blocked.'**
+  String get accountRecoveryPreflightUnavailable;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

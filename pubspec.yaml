@@ -1,7 +1,7 @@
 name: amaterasutrip
 description: "Amaterasu Trip - Japan Travel Planner"
 publish_to: 'none'
-version: 1.7.0+7
+version: 1.7.2+9
 environment:
   sdk: ^3.12.2
 dependencies:
@@ -37,11 +37,18 @@ dependencies:
   http: ^1.6.0
   country_picker: 2.0.28
   share_plus: 13.3.1
+  cryptography: 2.9.0
+  flutter_secure_storage: 11.2.0
+  web: 1.1.1
+  qr_flutter: 4.1.0
+  mobile_scanner: 7.4.2
+  firebase_app_check: 0.4.8
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
+  test: ^1.31.0
 flutter:
   uses-material-design: true
   generate: true

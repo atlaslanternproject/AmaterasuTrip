@@ -57,3 +57,6 @@ MainActivity_broken.txt
 *.bak_*
 .firebase/
 hosting/invite/*.backup_*
+
+# Local runtime configuration
+.env.local.json

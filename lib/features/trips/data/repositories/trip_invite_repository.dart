@@ -1,4 +1,7 @@
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:amaterasutrip/core/security/traveller_health_transport_codec.dart';
+import 'package:amaterasutrip/core/security/verified_trip_profile_sessions.dart';
 
 enum TripInviteStatus { missing, active, revoked }
 
@@ -97,22 +100,54 @@ class TripInviteRepository {
     );
   }
 
+  /// Legacy plaintext submission is forbidden, including empty answers.
+  /// Until trusted keys are provisioned, invitation completion is blocked.
   Future<void> acceptTripInvite({
     required String tripId,
     required String token,
     required TripTravellerProfile travellerProfile,
   }) async {
-    final callable = _functions.httpsCallable('acceptTripInvite');
+    throw StateError(
+      'E2EE device setup is required before submitting a questionnaire.',
+    );
+  }
 
+  /// Encrypted-only transport. A caller must first obtain the profile key
+  /// from the independently authenticated device/key lifecycle.
+  /// NOT wired to the current questionnaire screen until that lifecycle exists.
+  Future<void> acceptTripInviteEncrypted({
+    required String tripId,
+    required String token,
+    required TripTravellerProfile travellerProfile,
+    required VerifiedTripProfileKeyLease verifiedSession,
+  }) async {
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      throw StateError('Sign-in is required to encrypt a questionnaire.');
+    }
+
+    final profileKey = await verifiedSession.requireKey(
+      tripId: tripId,
+      profileUid: uid,
+      currentUserUid: uid,
+    );
+
+    final envelope = await TravellerHealthTransportCodec().seal(
+      profile: travellerProfile.toMap(),
+      profileKey: profileKey,
+      tripId: tripId,
+      memberUid: uid,
+    );
+
+    final callable = _functions.httpsCallable('acceptTripInvite');
     final result = await callable.call<Map<String, dynamic>>({
       'tripId': tripId,
       'token': token,
       'presenceConfirmed': true,
-      'travellerProfile': travellerProfile.toMap(),
+      'travellerProfile': envelope,
     });
 
     final data = result.data;
-
     if (data['accepted'] != true ||
         data['tripId'] != tripId ||
         data['role'] != 'traveler') {
@@ -175,12 +210,12 @@ class ValidatedTripInvite {
 
 class TripTravellerProfile {
   const TripTravellerProfile({
-    required this.hasEsimOrInternet,
-    required this.hasCheckedBaggage,
-    required this.hasCabinBaggage10Kg,
-    required this.hasAllergies,
-    required this.hasIntolerances,
-    required this.hasMedicalAccessibilityInfo,
+    this.hasEsimOrInternet,
+    this.hasCheckedBaggage,
+    this.hasCabinBaggage10Kg,
+    this.hasAllergies,
+    this.hasIntolerances,
+    this.hasMedicalAccessibilityInfo,
     this.allergies = '',
     this.intolerances = '',
     this.medicalAccessibilityInfo = '',
@@ -188,13 +223,13 @@ class TripTravellerProfile {
     this.emergencyContactPhone = '',
   });
 
-  final bool hasEsimOrInternet;
-  final bool hasCheckedBaggage;
-  final bool hasCabinBaggage10Kg;
+  final bool? hasEsimOrInternet;
+  final bool? hasCheckedBaggage;
+  final bool? hasCabinBaggage10Kg;
 
-  final bool hasAllergies;
-  final bool hasIntolerances;
-  final bool hasMedicalAccessibilityInfo;
+  final bool? hasAllergies;
+  final bool? hasIntolerances;
+  final bool? hasMedicalAccessibilityInfo;
 
   final String allergies;
   final String intolerances;

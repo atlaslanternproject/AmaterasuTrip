@@ -1,4 +1,6 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:amaterasutrip/core/security/verified_trip_profile_sessions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -56,27 +58,8 @@ class _TripTravellerQuestionnairePageState
   String _emergencyCountryFlag = '🇮🇹';
   String _emergencyPhonePrefix = '+39';
 
-  bool get _requiredAnswersCompleted =>
-      _hasEsimOrInternet != null &&
-      _hasCheckedBaggage != null &&
-      _hasCabinBaggage10Kg != null &&
-      _hasAllergies != null &&
-      _hasIntolerances != null &&
-      _hasMedicalAccessibilityInfo != null;
-
-  bool get _conditionalDetailsCompleted =>
-      (_hasAllergies != true || _allergiesController.text.trim().isNotEmpty) &&
-      (_hasIntolerances != true ||
-          _intolerancesController.text.trim().isNotEmpty) &&
-      (_hasMedicalAccessibilityInfo != true ||
-          _medicalAccessibilityController.text.trim().isNotEmpty);
-
-  bool get _canSubmit =>
-      _requiredAnswersCompleted &&
-      _conditionalDetailsCompleted &&
-      _presenceConfirmed &&
-      !_isSubmitting;
-
+  // Question answers are optional; participation is confirmed separately.
+  bool get _canSubmit => _presenceConfirmed && !_isSubmitting;
   @override
   void dispose() {
     _allergiesController.dispose();
@@ -184,12 +167,12 @@ class _TripTravellerQuestionnairePageState
 
     try {
       final profile = TripTravellerProfile(
-        hasEsimOrInternet: _hasEsimOrInternet!,
-        hasCheckedBaggage: _hasCheckedBaggage!,
-        hasCabinBaggage10Kg: _hasCabinBaggage10Kg!,
-        hasAllergies: _hasAllergies!,
-        hasIntolerances: _hasIntolerances!,
-        hasMedicalAccessibilityInfo: _hasMedicalAccessibilityInfo!,
+        hasEsimOrInternet: _hasEsimOrInternet,
+        hasCheckedBaggage: _hasCheckedBaggage,
+        hasCabinBaggage10Kg: _hasCabinBaggage10Kg,
+        hasAllergies: _hasAllergies,
+        hasIntolerances: _hasIntolerances,
+        hasMedicalAccessibilityInfo: _hasMedicalAccessibilityInfo,
         allergies: _hasAllergies == true
             ? _trimOrEmpty(_allergiesController.text)
             : '',
@@ -204,12 +187,23 @@ class _TripTravellerQuestionnairePageState
         ),
         emergencyContactPhone: _buildEmergencyPhone(),
       );
+      final uid = FirebaseAuth.instance.currentUser?.uid;
+      if (uid == null) {
+        throw StateError('Authentication is required for E2EE.');
+      }
+      final session = await VerifiedTripProfileSessions.instance.requireLease(
+        tripId: widget.tripId,
+        profileUid: uid,
+        currentUserUid: uid,
+      );
+
       await ref
           .read(tripInviteRepositoryProvider)
-          .acceptTripInvite(
+          .acceptTripInviteEncrypted(
             tripId: widget.tripId,
             token: widget.token,
             travellerProfile: profile,
+            verifiedSession: session,
           );
 
       if (!mounted) {
@@ -217,10 +211,7 @@ class _TripTravellerQuestionnairePageState
       }
 
       context.go('/trips/${widget.tripId}');
-    } catch (error, stackTrace) {
-      debugPrint('Trip invite acceptance failed: $error');
-      debugPrintStack(stackTrace: stackTrace);
-
+    } catch (_) {
       if (!mounted) {
         return;
       }
@@ -293,10 +284,11 @@ class _TripTravellerQuestionnairePageState
                       children: [
                         _YesNoQuestion(
                           title: l10n.tripQuestionnaireEsim,
-                          required: true,
+                          required: false,
                           value: _hasEsimOrInternet,
                           yesLabel: l10n.tripQuestionnaireYes,
                           noLabel: l10n.tripQuestionnaireNo,
+                          skipLabel: l10n.tripQuestionnairePreferNotToAnswer,
                           enabled: !_isSubmitting,
                           onChanged: (value) {
                             setState(() {
@@ -307,10 +299,11 @@ class _TripTravellerQuestionnairePageState
                         const SizedBox(height: 24),
                         _YesNoQuestion(
                           title: l10n.tripQuestionnaireCheckedBaggage,
-                          required: true,
+                          required: false,
                           value: _hasCheckedBaggage,
                           yesLabel: l10n.tripQuestionnaireYes,
                           noLabel: l10n.tripQuestionnaireNo,
+                          skipLabel: l10n.tripQuestionnairePreferNotToAnswer,
                           enabled: !_isSubmitting,
                           onChanged: (value) {
                             setState(() {
@@ -321,10 +314,11 @@ class _TripTravellerQuestionnairePageState
                         const SizedBox(height: 24),
                         _YesNoQuestion(
                           title: l10n.tripQuestionnaireCabinBaggage,
-                          required: true,
+                          required: false,
                           value: _hasCabinBaggage10Kg,
                           yesLabel: l10n.tripQuestionnaireYes,
                           noLabel: l10n.tripQuestionnaireNo,
+                          skipLabel: l10n.tripQuestionnairePreferNotToAnswer,
                           enabled: !_isSubmitting,
                           onChanged: (value) {
                             setState(() {
@@ -342,18 +336,28 @@ class _TripTravellerQuestionnairePageState
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        Text(
+                          l10n.tripQuestionnaireOptionalExplanation,
+                          style: const TextStyle(
+                            color: _mutedCream,
+                            fontSize: 13,
+                            height: 1.4,
+                          ),
+                        ),
+                        const SizedBox(height: 18),
                         _YesNoQuestion(
                           title: l10n.tripQuestionnaireAllergiesQuestion,
-                          required: true,
+                          required: false,
                           value: _hasAllergies,
                           yesLabel: l10n.tripQuestionnaireYes,
                           noLabel: l10n.tripQuestionnaireNo,
+                          skipLabel: l10n.tripQuestionnairePreferNotToAnswer,
                           enabled: !_isSubmitting,
                           onChanged: (value) {
                             setState(() {
                               _hasAllergies = value;
 
-                              if (!value) {
+                              if (value != true) {
                                 _allergiesController.clear();
                               }
                             });
@@ -377,16 +381,17 @@ class _TripTravellerQuestionnairePageState
                         const SizedBox(height: 24),
                         _YesNoQuestion(
                           title: l10n.tripQuestionnaireIntolerancesQuestion,
-                          required: true,
+                          required: false,
                           value: _hasIntolerances,
                           yesLabel: l10n.tripQuestionnaireYes,
                           noLabel: l10n.tripQuestionnaireNo,
+                          skipLabel: l10n.tripQuestionnairePreferNotToAnswer,
                           enabled: !_isSubmitting,
                           onChanged: (value) {
                             setState(() {
                               _hasIntolerances = value;
 
-                              if (!value) {
+                              if (value != true) {
                                 _intolerancesController.clear();
                               }
                             });
@@ -411,16 +416,17 @@ class _TripTravellerQuestionnairePageState
                         _YesNoQuestion(
                           title: l10n
                               .tripQuestionnaireMedicalAccessibilityQuestion,
-                          required: true,
+                          required: false,
                           value: _hasMedicalAccessibilityInfo,
                           yesLabel: l10n.tripQuestionnaireYes,
                           noLabel: l10n.tripQuestionnaireNo,
+                          skipLabel: l10n.tripQuestionnairePreferNotToAnswer,
                           enabled: !_isSubmitting,
                           onChanged: (value) {
                             setState(() {
                               _hasMedicalAccessibilityInfo = value;
 
-                              if (!value) {
+                              if (value != true) {
                                 _medicalAccessibilityController.clear();
                               }
                             });
@@ -578,40 +584,6 @@ class _TripTravellerQuestionnairePageState
                     ),
                   ),
                   const SizedBox(height: 20),
-                  if (!_requiredAnswersCompleted ||
-                      !_conditionalDetailsCompleted)
-                    Container(
-                      padding: const EdgeInsets.all(14),
-                      decoration: BoxDecoration(
-                        color: _deepVermilion.withValues(alpha: 0.20),
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                          color: _vermilion.withValues(alpha: 0.45),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.info_outline_rounded,
-                            color: _gold,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              l10n.tripQuestionnaireRequiredHint,
-                              style: const TextStyle(
-                                color: _mutedCream,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  if (!_requiredAnswersCompleted ||
-                      !_conditionalDetailsCompleted)
-                    const SizedBox(height: 12),
                   Theme(
                     data: Theme.of(context).copyWith(
                       checkboxTheme: CheckboxThemeData(
@@ -871,6 +843,7 @@ class _YesNoQuestion extends StatelessWidget {
     required this.value,
     required this.yesLabel,
     required this.noLabel,
+    required this.skipLabel,
     required this.enabled,
     required this.onChanged,
   });
@@ -880,8 +853,9 @@ class _YesNoQuestion extends StatelessWidget {
   final bool? value;
   final String yesLabel;
   final String noLabel;
+  final String skipLabel;
   final bool enabled;
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool?> onChanged;
 
   static const _cream = Color(0xFFF4E7D3);
   static const _mutedCream = Color(0xFFCDBDA8);
@@ -963,11 +937,22 @@ class _YesNoQuestion extends StatelessWidget {
           ),
           onSelectionChanged: enabled
               ? (selection) {
-                  if (selection.isNotEmpty) {
-                    onChanged(selection.first);
-                  }
+                  onChanged(selection.isEmpty ? null : selection.first);
                 }
               : null,
+        ),
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton.icon(
+            onPressed: enabled ? () => onChanged(null) : null,
+            icon: const Icon(Icons.remove_circle_outline, size: 18),
+            label: Text(skipLabel),
+            style: TextButton.styleFrom(
+              foregroundColor: _mutedCream,
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
+            ),
+          ),
         ),
       ],
     );

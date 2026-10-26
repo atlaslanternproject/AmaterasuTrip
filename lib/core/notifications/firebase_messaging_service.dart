@@ -36,6 +36,11 @@ class FirebaseMessagingService {
   String? get token => _token;
 
   Future<void> initialize() async {
+    if (kIsWeb) {
+      debugPrint('FCM Web initialization deferred.');
+      return;
+    }
+
     const initializationSettings = InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
     );
@@ -100,6 +105,10 @@ class FirebaseMessagingService {
   }
 
   Future<void> syncCurrentUserToken() async {
+    if (kIsWeb) {
+      return;
+    }
+
     try {
       await _registerCurrentToken();
     } catch (error, stackTrace) {

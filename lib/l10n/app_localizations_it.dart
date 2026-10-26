@@ -9,6 +9,66 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
+  String get accountRecoveryTitle => 'Sicurezza e recupero';
+
+  @override
+  String get accountRecoverySubtitle => 'Protezione e recupero dei tuoi dati';
+
+  @override
+  String get accountRecoveryStatus => 'In preparazione';
+
+  @override
+  String get accountRecoveryStatusTitle => 'Recupero cifrato non ancora attivo';
+
+  @override
+  String get accountRecoveryStatusDescription => 'La funzione è in sviluppo. Non è stato creato alcun backup dei tuoi dati tramite questa schermata.';
+
+  @override
+  String get accountRecoverySectionTitle => 'Come funzionerà';
+
+  @override
+  String get accountRecoveryCodeTitle => 'Codice personale';
+
+  @override
+  String get accountRecoveryCodeDescription => 'Potrai generare un codice di recupero da conservare in un luogo sicuro.';
+
+  @override
+  String get accountRecoveryStorageTitle => 'Dati protetti';
+
+  @override
+  String get accountRecoveryStorageDescription => 'Il codice servirà a recuperare le chiavi dei dati ancora accessibili al tuo account.';
+
+  @override
+  String get accountRecoveryDeviceTitle => 'Nuovo dispositivo';
+
+  @override
+  String get accountRecoveryDeviceDescription => 'Il recupero richiederà verifiche di sicurezza prima di autorizzare un nuovo dispositivo.';
+
+  @override
+  String get accountRecoveryNotice => 'Il recupero della password e il recupero dei dati cifrati sono due procedure differenti.';
+
+  @override
+  String get notificationsWebUnavailable => 'Le notifiche push non sono ancora disponibili sul Web. Le tue preferenze salvate non verranno modificate.';
+
+  @override
+  String get tripNotificationsWebUnavailable => 'Le notifiche push dei viaggi non sono ancora disponibili sul Web. Le preferenze salvate per Android rimangono invariate.';
+
+  @override
+  String get webMediaCameraTitle => 'Aprire la fotocamera?';
+
+  @override
+  String get webMediaCameraBody => 'Amaterasu aprirà la fotocamera, se supportata dal browser. In alternativa, potrai scegliere un\'immagine dal dispositivo. Nessuna foto verrà utilizzata senza una tua scelta.';
+
+  @override
+  String get webMediaGalleryTitle => 'Selezionare una foto?';
+
+  @override
+  String get webMediaGalleryBody => 'Potrai scegliere una foto dal dispositivo. Amaterasu utilizzerà soltanto il file che selezioni, senza accedere all\'intera galleria.';
+
+  @override
+  String get webMediaContinue => 'Continua';
+
+  @override
   String get settingsLanguage => 'Lingua';
 
   @override
@@ -1707,7 +1767,19 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripQuestionnaireCabinBaggage => 'Avrai un bagaglio a mano fino a 10 kg?';
 
   @override
+  String get tripTravellersProfileEditIntro => 'Aggiorna il tuo profilo viaggio. Tutte le risposte sono facoltative e puoi cambiarle o ritirarle quando vuoi.';
+
+  @override
+  String get tripTravellersProfileEditOptionalNote => 'Puoi scegliere Sì, No o Preferisco non rispondere. Se ritiri una risposta sanitaria, i dettagli collegati saranno rimossi dal profilo quando salvi.';
+
+  @override
   String get tripQuestionnaireOptionalSection => 'Salute e accessibilità';
+
+  @override
+  String get tripQuestionnairePreferNotToAnswer => 'Preferisco non rispondere';
+
+  @override
+  String get tripQuestionnaireOptionalExplanation => 'Puoi lasciare qualsiasi domanda senza risposta. Solo la conferma finale della partecipazione è obbligatoria.';
 
   @override
   String get tripQuestionnaireAllergies => 'Allergie';
@@ -1740,7 +1812,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripQuestionnaireSubmitError => 'Non è stato possibile confermare la partecipazione. Riprova.';
 
   @override
-  String get tripQuestionnaireRequiredLegend => 'domanda obbligatoria';
+  String get tripQuestionnaireRequiredLegend => 'Solo la conferma della partecipazione è obbligatoria';
 
   @override
   String get tripQuestionnaireOrganisationSection => 'Organizzazione';
@@ -1770,7 +1842,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripQuestionnaireSafetyNoticeTitle => 'Informazioni importanti';
 
   @override
-  String get tripQuestionnaireSafetyNoticeBody => 'Indica tutte le informazioni rilevanti per salute, sicurezza e accessibilità. Informazioni non dichiarate potrebbero impedire al gruppo di organizzare in anticipo assistenza, alternative o accorgimenti adeguati.';
+  String get tripQuestionnaireSafetyNoticeBody => 'Le informazioni su salute e accessibilità sono facoltative. Se scegli di inserirle, sono attualmente condivise con gli altri partecipanti del viaggio per esigenze organizzative. Puoi modificarle o rimuoverle dal tuo profilo viaggio.';
 
   @override
   String tripCreatedInviteShareSubject(String tripName) {
@@ -1802,6 +1874,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripTravellersLoadError => 'Impossibile caricare i partecipanti.';
+
+  @override
+  String get tripTravellersE2eeLocked => 'Profilo viaggio protetto. Verifica E2EE necessaria per visualizzare o modificare queste informazioni.';
 
   @override
   String get tripTravellersOwnerRole => 'OWNER';
@@ -2328,4 +2403,187 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripManagementFinalAccessDenied => 'Non hai accesso alla gestione di questo viaggio.';
+
+  @override
+  String get accountE2eeDeviceTitle => 'Sicurezza dispositivi';
+
+  @override
+  String get accountE2eeDeviceSubtitle => 'Proteggi l\'accesso ai tuoi dati';
+
+  @override
+  String get accountE2eeDeviceExplanation => 'Questo dispositivo non è ancora autorizzato a leggere i dati protetti. Puoi preparare una richiesta, ma servirà un dispositivo già attendibile oppure una procedura di recupero sicura.';
+
+  @override
+  String get accountE2eeDeviceConsentTitle => 'Preparare una richiesta?';
+
+  @override
+  String get accountE2eeDeviceConsentText => 'Verranno preparate chiavi conservate sul dispositivo. Questa operazione non concede accesso ai dati protetti e non autorizza il dispositivo. La funzione è ancora sperimentale.';
+
+  @override
+  String get accountE2eeDevicePrepare => 'Prepara richiesta';
+
+  @override
+  String get accountE2eeDevicePending => 'In attesa di autorizzazione';
+
+  @override
+  String get accountE2eeDeviceCopy => 'Copia codice';
+
+  @override
+  String get accountE2eeDeviceCopied => 'Codice copiato';
+
+  @override
+  String get accountE2eeDeviceUnavailable => 'La gestione sicura dei dispositivi sul Web non è ancora disponibile. Il semplice accesso all\'account non permette di leggere i dati protetti.';
+
+  @override
+  String get accountE2eeDeviceError => 'Impossibile completare l\'operazione. Controlla la verifica dell\'account oppure lo stato di sicurezza del dispositivo.';
+
+  @override
+  String get accountE2eePinChecking => 'Controllo della sicurezza del dispositivo...';
+
+  @override
+  String get accountE2eePinPresent => 'È presente un\'identità attendibile salvata. L\'accesso ai dati richiede comunque le verifiche di sicurezza.';
+
+  @override
+  String get accountE2eePinMissing => 'Questo dispositivo non dispone ancora di un\'identità attendibile verificata.';
+
+  @override
+  String get accountE2eePinUnavailable => 'Impossibile verificare l\'identità locale. Accesso ai dati protetti bloccato.';
+
+  @override
+  String get accountE2eeQrScan => 'Scansiona un codice';
+
+  @override
+  String get accountE2eeQrScanTitle => 'Scansiona codice';
+
+  @override
+  String get accountE2eeQrCameraTitle => 'Utilizzare la fotocamera?';
+
+  @override
+  String get accountE2eeQrCameraText => 'Amaterasu utilizzerà la fotocamera per leggere un codice. La scansione non autorizza automaticamente il dispositivo.';
+
+  @override
+  String get accountE2eeQrContinue => 'Ho capito';
+
+  @override
+  String get accountE2eeQrInvalid => 'Questo codice non è valido, è scaduto oppure appartiene a un altro account. Se necessario, prepara una nuova richiesta.';
+
+  @override
+  String get accountE2eeQrReadOnly => 'Codice riconosciuto. Per autorizzare un dispositivo serve ancora una verifica crittografica firmata. Nessun accesso è stato concesso.';
+
+  @override
+  String get accountE2eeQrCameraError => 'Impossibile accedere alla fotocamera. Controlla i permessi del dispositivo.';
+
+  @override
+  String get accountE2eeQrHint => 'Posiziona il codice nel riquadro. La scansione non concede accesso ai dati.';
+
+  @override
+  String get accountE2eeQrRemaining => 'Scade tra';
+
+  @override
+  String get accountE2eeQrExpired => 'Questo codice è scaduto. Genera una nuova richiesta.';
+
+  @override
+  String get accountE2eeQrRegenerate => 'Rigenera richiesta';
+
+  @override
+  String get accountE2eeQrPendingHint => 'Mostra il codice a un altro dispositivo già attendibile. Lo stesso dispositivo non può autorizzare sé stesso.';
+
+  @override
+  String get accountE2eeQrResultTitle => 'Verifica del codice';
+
+  @override
+  String get accountE2eeQrSelfScan => 'Hai scansionato il codice di questo stesso dispositivo. Per sicurezza non può autorizzare sé stesso.';
+
+  @override
+  String get accountE2eeQrWebNotice => 'L\'attivazione e il recupero sicuro da browser sono ancora in preparazione. Nessun dispositivo viene autorizzato con il solo login.';
+
+  @override
+  String get accountRootTitle => 'Primo dispositivo attendibile';
+
+  @override
+  String get accountRootAvailable => 'Questo account non ha ancora un\'identità protetta registrata. Puoi attivare il primo dispositivo direttamente qui, anche da browser.';
+
+  @override
+  String get accountRootActive => 'Identità iniziale verificata su questo dispositivo. La firma e le chiavi locali corrispondono alla radice di fiducia.';
+
+  @override
+  String get accountRootRecoveryNeeded => 'L\'account possiede già un\'identità protetta. Su questo dispositivo serve l\'approvazione oppure un recupero verificato.';
+
+  @override
+  String get accountRootBlocked => 'Identità locale e identità registrata non corrispondono, oppure mancano dati necessari. L\'accesso protetto rimane bloccato.';
+
+  @override
+  String get accountRootVerify => 'Accedi con un account verificato per configurare la protezione.';
+
+  @override
+  String get accountRootChecking => 'Verifica dell\'identità protetta...';
+
+  @override
+  String get accountRootExperimental => 'Funzione sperimentale: il recupero completo e l\'accesso ai dati sanitari cifrati non sono ancora abilitati.';
+
+  @override
+  String get accountRootRecoveryTitle => 'Conserva il codice di recupero';
+
+  @override
+  String get accountRootRecoveryWarning => 'Questo codice è segreto. Conservalo fuori dall\'app, in un luogo sicuro. Non inviarlo a nessuno. Una copia cifrata delle chiavi verrà salvata online, ma il ripristino automatico non è ancora disponibile. Se perdi il codice o i dati del browser, potresti perdere l\'accesso.';
+
+  @override
+  String get accountRootRecoveryConfirm => 'Ho salvato il codice in un luogo sicuro e comprendo il rischio.';
+
+  @override
+  String get accountRootActivate => 'Attiva questo dispositivo';
+
+  @override
+  String get accountRootActivated => 'Prima identità registrata e verificata. Conserva il tuo codice di recupero.';
+
+  @override
+  String get accountRootError => 'Impossibile completare la verifica o l\'attivazione. Controlla la connessione e accedi nuovamente se la sessione non è recente. Non cancellare i dati locali.';
+
+  @override
+  String get accountRootCancel => 'Annulla';
+
+  @override
+  String get accountRootClose => 'Chiudi';
+
+  @override
+  String get accountRootRefresh => 'Aggiorna stato';
+
+  @override
+  String get accountWebDevicesInfo => 'La gestione dei dispositivi attendibili dal browser e in preparazione. Nessuna approvazione o scansione QR e attiva qui. L\'attivazione del primo browser sara disponibile dopo la verifica delle regole Firestore e del recupero sicuro.';
+
+  @override
+  String get accountRecoveryPreflightTitle => 'Dispositivo e recupero';
+
+  @override
+  String get accountRecoveryPreflightDescription => 'Prepara questo dispositivo e utilizza il codice di recupero per firmare la richiesta. La registrazione non sblocca automaticamente i dati cifrati.';
+
+  @override
+  String get accountRecoveryPreflightPending => 'Identita locale pronta. Questo dispositivo deve ancora essere autorizzato.';
+
+  @override
+  String get accountRecoveryPreflightPrepare => 'Prepara questo dispositivo';
+
+  @override
+  String get accountRecoveryPreflightVerify => 'Richiedi autorizzazione con codice';
+
+  @override
+  String get accountRecoveryPreflightVerified => 'Registrazione confermata dal server. L\'accesso ai dati cifrati resta bloccato fino alla verifica delle autorizzazioni.';
+
+  @override
+  String get accountRecoveryPreflightError => 'Autorizzazione non completata. Controlla la connessione e l\'accesso recente. Il servizio server potrebbe non essere disponibile.';
+
+  @override
+  String get accountRecoveryPreflightDialog => 'Verifica del codice di recupero';
+
+  @override
+  String get accountRecoveryPreflightHelp => 'Il codice rimane su questo dispositivo. A Firebase viene inviata soltanto una prova crittografica firmata.';
+
+  @override
+  String get accountRecoveryPreflightInput => 'Codice di recupero';
+
+  @override
+  String get accountRecoveryPreflightCancel => 'Annulla';
+
+  @override
+  String get accountRecoveryPreflightUnavailable => 'Stato della sicurezza non disponibile. Le operazioni protette rimangono bloccate.';
 }

@@ -1,4 +1,4 @@
-package com.amaterasutrip
+﻿package com.amaterasutrip
 
 import com.amaterasutrip.currency.CurrencyResolver
 import com.amaterasutrip.drive.GoogleDrivePicker
@@ -472,7 +472,6 @@ class MainActivity : FlutterFragmentActivity() {
 
         val request = FindAutocompletePredictionsRequest.builder()
             .setQuery(query)
-            .setTypesFilter(listOf("geocode"))
             .setSessionToken(sessionToken)
             .build()
 
@@ -752,5 +751,4 @@ class MainActivity : FlutterFragmentActivity() {
         )
     }
 }
-
 

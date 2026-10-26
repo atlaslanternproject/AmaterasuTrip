@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:amaterasutrip/core/security/verified_trip_profile_sessions.dart';
 import '../../../../auth/providers/auth_controller.dart';
 import '../../../../../l10n/app_localizations.dart';
 
 class AccountLogoutPage extends ConsumerWidget {
   const AccountLogoutPage({super.key});
   Future<void> _logout(BuildContext context, WidgetRef ref) async {
+    VerifiedTripProfileSessions.instance.clear();
     await ref.read(authControllerProvider).logout();
     if (!context.mounted) return;
     context.go('/');

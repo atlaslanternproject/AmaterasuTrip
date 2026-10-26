@@ -49,6 +49,19 @@ android {
         buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
     }
 
+    // Isolated Android test variant.
+    // Normal builds remain unchanged.
+    if (System.getenv("AMATERASU_LOCAL_TEST") == "1") {
+        flavorDimensions += "environment"
+
+        productFlavors {
+            create("localtest") {
+                dimension = "environment"
+                applicationIdSuffix = ".test"
+                versionNameSuffix = "-test"
+            }
+        }
+    }
     signingConfigs {
         create("release") {
             keyAlias = keystoreProperties["keyAlias"] as String

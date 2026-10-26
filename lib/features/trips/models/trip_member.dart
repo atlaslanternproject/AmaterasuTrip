@@ -98,6 +98,7 @@ class TripMember {
     required this.role,
     required this.travellerProfileCompleted,
     required this.travellerProfile,
+    this.sensitiveProfileLocked = false,
     this.joinedAt,
     this.username,
     this.firstName,
@@ -111,6 +112,7 @@ class TripMember {
 
   final bool travellerProfileCompleted;
   final TripTravellerProfileData travellerProfile;
+  final bool sensitiveProfileLocked;
 
   /// Safe projection from the global profile.
   final String? username;
@@ -153,6 +155,7 @@ class TripMember {
           : null,
       travellerProfileCompleted:
           data['travellerProfileCompleted'] as bool? ?? false,
+      sensitiveProfileLocked: data['sensitiveProfileLocked'] == true,
       travellerProfile: TripTravellerProfileData.fromMap(
         data['travellerProfile'],
       ),

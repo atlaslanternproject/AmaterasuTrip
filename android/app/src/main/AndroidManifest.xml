@@ -1,11 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />      
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
     <application
+        android:fullBackupContent="@xml/amaterasu_backup_rules"
+        android:dataExtractionRules="@xml/amaterasu_data_extraction_rules"
         android:label="Amaterasu Trip"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -38,7 +37,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="amaterasutrip" />
+                <data android:scheme="amaterasutrip" android:pathPrefix="/trip-invite/" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

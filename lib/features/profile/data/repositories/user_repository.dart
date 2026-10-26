@@ -31,17 +31,22 @@ class UserRepository {
       throw FirebaseAuthException(code: 'username-already-in-use');
     }
 
-    await usernameRef.set({
+    final profileRef = _firestore.collection('viaggiatori').doc(user.uid);
+    final batch = _firestore.batch();
+
+    batch.set(usernameRef, {
       'uid': user.uid,
       'createdAt': FieldValue.serverTimestamp(),
     });
 
-    await _firestore.collection('viaggiatori').doc(user.uid).set({
+    batch.set(profileRef, {
       'username': username.trim(),
       'usernameLower': normalizedUsername,
       'email': user.email,
       'createdAt': FieldValue.serverTimestamp(),
     });
+
+    await batch.commit();
   }
 
   Stream<UserProfile?> watchCurrentUserProfile() {
@@ -184,22 +189,6 @@ class UserRepository {
     await _firestore.collection('viaggiatori').doc(user.uid).update({
       'email': email,
     });
-  }
-
-  Future<String?> getEmailFromUsername({required String username}) async {
-    final normalizedUsername = username.trim().toLowerCase();
-
-    final snapshot = await _firestore
-        .collection('viaggiatori')
-        .where('usernameLower', isEqualTo: normalizedUsername)
-        .limit(1)
-        .get();
-
-    if (snapshot.docs.isEmpty) {
-      return null;
-    }
-
-    return snapshot.docs.first.data()['email'] as String?;
   }
 
   Future<String?> getUsernameFromUid({required String uid}) async {

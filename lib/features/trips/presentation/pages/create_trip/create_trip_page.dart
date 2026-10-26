@@ -1,13 +1,12 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/media/web_media_consent_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/cloud_archive/trip_cloud_archive_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:amaterasutrip/core/permissions/app_permission.dart';
-import 'package:amaterasutrip/core/permissions/permission_provider.dart';
-import 'package:amaterasutrip/core/permissions/permission_request_handler.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -361,31 +360,21 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
 
   Future<void> _pickCover({required bool fromCamera}) async {
     final l10n = AppLocalizations.of(context)!;
-    final permissionService = ref.read(permissionServiceProvider);
-
-    final permissionGranted = await requestAppPermission(
-      context: context,
-      permissionService: permissionService,
-      permission: fromCamera ? AppPermission.camera : AppPermission.photos,
-      deniedMessage: fromCamera
-          ? l10n.tripCoverCameraPermissionDenied
-          : l10n.tripCoverGalleryPermissionDenied,
-      permanentlyDeniedMessage: fromCamera
-          ? l10n.tripCoverCameraPermissionPermanentlyDenied
-          : l10n.tripCoverGalleryPermissionPermanentlyDenied,
-      openSettingsLabel: l10n.tripCoverOpenSettings,
-    );
-
-    if (!permissionGranted || !mounted) {
-      return;
-    }
-
     try {
       final picker = ref.read(tripCoverPickerServiceProvider);
 
-      final selectedCover = fromCamera
-          ? await picker.pickFromCamera()
-          : await picker.pickFromGallery();
+      final selectedCover = kIsWeb
+          ? await showWebMediaConsentDialog(
+              context: context,
+              fromCamera: fromCamera,
+              pickImage: fromCamera
+                  ? picker.pickFromCamera
+                  : picker.pickFromGallery,
+              errorMessage: l10n.tripCoverPickerError,
+            )
+          : await (fromCamera
+                ? picker.pickFromCamera()
+                : picker.pickFromGallery());
 
       if (!mounted || selectedCover == null) {
         return;
@@ -580,7 +569,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
             children: [
               TripCoverPicker(
                 changePhotoLabel: l10n.createTripChangePhoto,
-                localImagePath: _selectedCover?.path,
+                localImage: _selectedCover,
                 onTap: _changeCover,
               ),
               const SizedBox(height: 20),

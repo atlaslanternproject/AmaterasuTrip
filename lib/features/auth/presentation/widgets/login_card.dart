@@ -49,8 +49,8 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       debugPrint("REMEMBER SALVATO: $rememberMe");
       final credential = await ref
           .read(authControllerProvider)
-          .loginWithEmailorUsername(
-            identifier: emailController.text.trim(),
+          .login(
+            email: emailController.text.trim(),
             password: passwordController.text,
           );
       final user = credential.user;
@@ -107,7 +107,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
           ),
           const SizedBox(height: 24),
           AmaterasuTextField(
-            hintText: l10n.authEmailOrUsernameHint,
+            hintText: l10n.authEmailHint,
             controller: emailController,
             prefixIcon: Icons.person_outline,
             onChanged: (_) {

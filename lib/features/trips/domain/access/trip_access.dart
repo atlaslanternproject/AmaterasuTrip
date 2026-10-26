@@ -62,13 +62,14 @@ abstract final class TripAccessPolicy {
     required TripPermission permission,
   }) {
     // Phase iniziale:
-    // OWNER e TRAVELER possono fare tutto.
+    // Solo OWNER puo' eliminare il viaggio.
     //
     // La matrice definitiva verrà modificata soltanto qui.
     switch (role) {
       case TripRole.owner:
-      case TripRole.traveler:
         return true;
+      case TripRole.traveler:
+        return permission != TripPermission.deleteTrip;
     }
   }
 }
