@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
@@ -212,10 +213,52 @@ class _LoginCardState extends ConsumerState<LoginCard> {
           const AmaterasuDivider(),
           const SizedBox(height: 20),
           AmaterasuGoogleButton(
-            onPressed: () {
-              context.go(
-                InviteAuthReturn.route('/google-auth', widget.returnTo),
-              );
+            onPressed: () async {
+              try {
+                final credential = await ref
+                    .read(authControllerProvider)
+                    .loginWithGoogle();
+
+                if (!mounted) return;
+
+                final user = credential?.user;
+                if (user == null) return;
+
+                final doc = await FirebaseFirestore.instance
+                    .collection('viaggiatori')
+                    .doc(user.uid)
+                    .get();
+
+                if (!mounted) return;
+
+                if (doc.exists) {
+                  this.context.go(
+                    InviteAuthReturn.destinationOrHome(widget.returnTo),
+                  );
+                } else {
+                  this.context.go(
+                    InviteAuthReturn.route('/create-username', widget.returnTo),
+                  );
+                }
+              } on FirebaseAuthException catch (e) {
+                debugPrint('AMATERASU_GOOGLE_AUTH: ${e.code}');
+
+                if (!mounted) return;
+
+                ScaffoldMessenger.of(this.context).showSnackBar(
+                  SnackBar(content: Text('Errore Google: ${e.code}')),
+                );
+              } catch (e) {
+                debugPrint('AMATERASU_GOOGLE_AUTH_ERROR: $e');
+
+                if (!mounted) return;
+
+                ScaffoldMessenger.of(this.context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Impossibile accedere con Google.'),
+                  ),
+                );
+              }
             },
           ),
           const SizedBox(height: 12),

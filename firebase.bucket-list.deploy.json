@@ -1,0 +1,23 @@
+﻿{
+    "hosting":  {
+                    "public":  ".bucket_list_release_web",
+                    "ignore":  [
+                                   "firebase.json",
+                                   "**/.*",
+                                   "**/node_modules/**"
+                               ],
+                    "rewrites":  [
+                                     {
+                                         "destination":  "/invite/index.html",
+                                         "source":  "/invite/**"
+                                     },
+                                     {
+                                         "destination":  "/index.html",
+                                         "source":  "**"
+                                     }
+                                 ]
+                },
+    "firestore":  {
+                      "rules":  "firestore.bucket-list.candidate.rules"
+                  }
+}

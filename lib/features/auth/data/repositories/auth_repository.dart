@@ -130,6 +130,10 @@ class AuthRepository {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
 
+    // Firebase Auth e la fonte di verita della sessione Web.
+    // Il plugin GoogleSignIn viene utilizzato solo su Android.
+    if (kIsWeb) return;
+
     try {
       await GoogleSignIn().signOut();
     } catch (_) {

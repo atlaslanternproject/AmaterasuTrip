@@ -8,10 +8,24 @@ import '../../../../../l10n/app_localizations.dart';
 class AccountLogoutPage extends ConsumerWidget {
   const AccountLogoutPage({super.key});
   Future<void> _logout(BuildContext context, WidgetRef ref) async {
-    VerifiedTripProfileSessions.instance.clear();
-    await ref.read(authControllerProvider).logout();
-    if (!context.mounted) return;
-    context.go('/');
+    try {
+      await ref.read(authControllerProvider).logout();
+
+      // Invalida soltanto la sessione di visualizzazione
+      // dei dati protetti, senza eliminare chiavi persistenti.
+      VerifiedTripProfileSessions.instance.clear();
+
+      if (!context.mounted) return;
+      context.go('/');
+    } catch (error) {
+      debugPrint('AMATERASU_LOGOUT_ERROR: $error');
+
+      if (!context.mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Logout non riuscito. Riprova.')),
+      );
+    }
   }
 
   void _showLogoutDialog(BuildContext context, WidgetRef ref) {
