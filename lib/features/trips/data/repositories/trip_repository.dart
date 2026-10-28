@@ -124,7 +124,6 @@ class TripRepository {
       'uid': user.uid,
       'role': 'admin',
       'joinedAt': FieldValue.serverTimestamp(),
-      'travellerProfileCompleted': true,
     });
 
     await batch.commit();

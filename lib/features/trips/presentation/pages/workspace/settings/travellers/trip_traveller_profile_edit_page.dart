@@ -1,16 +1,11 @@
-import 'package:country_picker/country_picker.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:amaterasutrip/core/widgets/dialogs/amaterasu_unsaved_changes_dialog.dart';
 import 'package:amaterasutrip/features/trips/models/trip_member.dart';
+import 'package:amaterasutrip/features/trips/models/trip_organizational_profile.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_member_provider.dart';
-import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
-import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class TripTravellerProfileEditPage extends ConsumerStatefulWidget {
   const TripTravellerProfileEditPage({super.key, required this.tripId});
@@ -24,1592 +19,402 @@ class TripTravellerProfileEditPage extends ConsumerStatefulWidget {
 
 class _TripTravellerProfileEditPageState
     extends ConsumerState<TripTravellerProfileEditPage> {
-  // Stessa famiglia visiva del questionario reale.
-  static const Color _background = Color(0xFF120E0B);
-  static const Color _settingsHeader = Color(0xFF100C0A);
-  static const Color _surface = Color(0xFF1D1612);
-  static const Color _surfaceRaised = Color(0xFF261C16);
+  static const _background = Color(0xFF120E0B);
+  static const _surface = Color(0xFF211812);
+  static const _cream = Color(0xFFF4E7D3);
+  static const _muted = Color(0xFFCDBDA8);
+  static const _gold = Color(0xFFD6A34A);
+  static const _vermilion = Color(0xFFB9432F);
 
-  static const Color _cream = Color(0xFFF4E7D3);
-  static const Color _muted = Color(0xFFCDBDA8);
-
-  static const Color _gold = Color(0xFFD6A34A);
-  static const Color _vermilion = Color(0xFFB9432F);
-  static const Color _deepVermilion = Color(0xFF70261D);
-
-  TextEditingController? _allergiesController;
-  TextEditingController? _intolerancesController;
-  TextEditingController? _accessibilityController;
-  TextEditingController? _emergencyNameController;
-  TextEditingController? _emergencyPhoneController;
-
-  bool? _hasEsimOrInternet;
-  bool? _hasCheckedBaggage;
-  bool? _hasCabinBaggage10Kg;
-  bool? _hasAllergies;
-  bool? _hasIntolerances;
-  bool? _hasMedicalAccessibilityInfo;
-
-  String _emergencyCountryFlag = '🇮🇹';
-  String _emergencyPhonePrefix = '+39';
+  bool? _internet;
+  bool? _checked;
+  bool? _cabin;
 
   bool _initialized = false;
   bool _dirty = false;
   bool _saving = false;
-  bool _replaceLocked = false;
 
-  // Questionnaire answers and health details are optional.
-  bool get _canSave => _initialized && !_saving;
-  void _initialize(TripMember member) {
-    if (_initialized) {
-      return;
-    }
+  bool get _complete => _internet != null && _checked != null && _cabin != null;
 
-    final profile = member.travellerProfile;
+  String _t(String italian, String english) {
+    final language = Localizations.localeOf(context).languageCode;
+    return language == 'it' ? italian : english;
+  }
 
-    _hasEsimOrInternet = profile.hasEsimOrInternet;
-    _hasCheckedBaggage = profile.hasCheckedBaggage;
-    _hasCabinBaggage10Kg = profile.hasCabinBaggage10Kg;
+  void _load(TripMember member) {
+    if (_initialized) return;
 
-    _hasAllergies =
-        profile.hasAllergies ??
-        (profile.allergies.trim().isNotEmpty ? true : null);
+    final profile = member.organizationalProfile;
 
-    _hasIntolerances =
-        profile.hasIntolerances ??
-        (profile.intolerances.trim().isNotEmpty ? true : null);
-
-    _hasMedicalAccessibilityInfo =
-        profile.hasMedicalAccessibilityInfo ??
-        (profile.medicalAccessibilityInfo.trim().isNotEmpty ? true : null);
-
-    _allergiesController = TextEditingController(text: profile.allergies);
-
-    _intolerancesController = TextEditingController(text: profile.intolerances);
-
-    _accessibilityController = TextEditingController(
-      text: profile.medicalAccessibilityInfo,
-    );
-
-    _emergencyNameController = TextEditingController(
-      text: profile.emergencyContactName,
-    );
-
-    _emergencyPhoneController = TextEditingController(
-      text: _prepareEmergencyPhone(profile.emergencyContactPhone),
-    );
-
-    _allergiesController!.addListener(_markDirty);
-    _intolerancesController!.addListener(_markDirty);
-    _accessibilityController!.addListener(_markDirty);
-    _emergencyNameController!.addListener(_markDirty);
-    _emergencyPhoneController!.addListener(_markDirty);
+    _internet = profile?.hasEsimOrInternet;
+    _checked = profile?.hasCheckedBaggage;
+    _cabin = profile?.hasCabinBaggage10Kg;
 
     _initialized = true;
   }
 
-  void _markDirty() {
-    if (!_initialized || !mounted) {
-      return;
-    }
-
+  void _changeInternet(bool value) {
     setState(() {
+      _internet = value;
       _dirty = true;
     });
   }
 
-  void _setEsim(bool value) {
+  void _changeChecked(bool value) {
     setState(() {
-      _hasEsimOrInternet = value;
+      _checked = value;
       _dirty = true;
     });
   }
 
-  void _setCheckedBaggage(bool value) {
+  void _changeCabin(bool value) {
     setState(() {
-      _hasCheckedBaggage = value;
+      _cabin = value;
       _dirty = true;
     });
   }
 
-  void _setCabinBaggage(bool value) {
-    setState(() {
-      _hasCabinBaggage10Kg = value;
-      _dirty = true;
-    });
-  }
+  Future<bool> _save() async {
+    if (!_complete || _saving) return false;
 
-  void _setAllergies(bool? value) {
-    setState(() {
-      _hasAllergies = value;
-      _dirty = true;
-    });
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) return false;
 
-    if (value != true) {
-      _allergiesController!.clear();
-    }
-  }
-
-  void _setIntolerances(bool? value) {
-    setState(() {
-      _hasIntolerances = value;
-      _dirty = true;
-    });
-
-    if (value != true) {
-      _intolerancesController!.clear();
-    }
-  }
-
-  void _setMedicalAccessibility(bool? value) {
-    setState(() {
-      _hasMedicalAccessibilityInfo = value;
-      _dirty = true;
-    });
-
-    if (value != true) {
-      _accessibilityController!.clear();
-    }
-  }
-
-  String _prepareEmergencyPhone(String storedPhone) {
-    final value = storedPhone.trim();
-
-    if (value.isEmpty) {
-      _emergencyCountryFlag = '🇮🇹';
-      _emergencyPhonePrefix = '+39';
-      return '';
-    }
-
-    final match = RegExp(r'^(\+\d{1,4})\s+(.+)$').firstMatch(value);
-
-    if (match == null) {
-      return value;
-    }
-
-    final prefix = match.group(1)!;
-
-    _emergencyPhonePrefix = prefix;
-
-    if (prefix == '+39') {
-      _emergencyCountryFlag = '🇮🇹';
-    } else {
-      _emergencyCountryFlag = '🌐';
-    }
-
-    return match.group(2)!.trim();
-  }
-
-  String _buildEmergencyPhone() {
-    final number = _emergencyPhoneController!.text.trim();
-
-    if (number.isEmpty) {
-      return '';
-    }
-
-    return '$_emergencyPhonePrefix $number';
-  }
-
-  void _selectEmergencyCountry() {
-    final l10n = AppLocalizations.of(context)!;
-
-    showCountryPicker(
-      context: context,
-      showPhoneCode: true,
-      useSafeArea: true,
-      favorite: const ['IT', 'GB', 'US', 'JP'],
-      countryListTheme: CountryListThemeData(
-        flagSize: 26,
-        backgroundColor: _surface,
-        textStyle: const TextStyle(color: _cream, fontSize: 16),
-        searchTextStyle: const TextStyle(color: _cream, fontSize: 16),
-        bottomSheetHeight: MediaQuery.sizeOf(context).height * 0.72,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
-        inputDecoration: InputDecoration(
-          labelText: l10n.tripQuestionnaireCountrySearch,
-          hintText: l10n.tripQuestionnaireCountrySearchHint,
-          labelStyle: const TextStyle(color: _muted),
-          hintStyle: const TextStyle(color: _muted),
-          prefixIcon: const Icon(Icons.search_rounded, color: _gold),
-          filled: true,
-          fillColor: _surfaceRaised,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(color: _gold.withValues(alpha: 0.28)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: const BorderSide(color: _gold, width: 1.5),
-          ),
-        ),
-      ),
-      onSelect: (country) {
-        if (!mounted) {
-          return;
-        }
-
-        setState(() {
-          _emergencyCountryFlag = country.flagEmoji;
-          _emergencyPhonePrefix = '+${country.phoneCode}';
-          _dirty = true;
-        });
-      },
-    );
-  }
-
-  TripTravellerProfileData _currentProfile() {
-    return TripTravellerProfileData(
-      hasEsimOrInternet: _hasEsimOrInternet,
-      hasCheckedBaggage: _hasCheckedBaggage,
-      hasCabinBaggage10Kg: _hasCabinBaggage10Kg,
-      hasAllergies: _hasAllergies,
-      hasIntolerances: _hasIntolerances,
-      hasMedicalAccessibilityInfo: _hasMedicalAccessibilityInfo,
-      allergies: _hasAllergies == true ? _allergiesController!.text.trim() : '',
-      intolerances: _hasIntolerances == true
-          ? _intolerancesController!.text.trim()
-          : '',
-      medicalAccessibilityInfo: _hasMedicalAccessibilityInfo == true
-          ? _accessibilityController!.text.trim()
-          : '',
-      emergencyContactName: _emergencyNameController!.text.trim(),
-      emergencyContactPhone: _buildEmergencyPhone(),
-    );
-  }
-
-  String _localText(String it, String en) =>
-      Localizations.localeOf(context).languageCode == 'it' ? it : en;
-
-  Future<void> _recoverProfile() async {
-    final controller = TextEditingController();
+    setState(() => _saving = true);
 
     try {
-      final recovery = await showDialog<String>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text(
-            _localText(
-              'Recupera il mio questionario',
-              'Recover my questionnaire',
-            ),
-          ),
-          content: TextField(
-            controller: controller,
-            maxLines: 3,
-            decoration: InputDecoration(
-              labelText: _localText(
-                'Codice personale di recupero',
-                'Personal recovery code',
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: Text(_localText('Annulla', 'Cancel')),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(ctx, controller.text.trim()),
-              child: Text(_localText('Recupera', 'Recover')),
-            ),
-          ],
-        ),
+      final profile = TripOrganizationalProfile(
+        hasEsimOrInternet: _internet,
+        hasCheckedBaggage: _checked,
+        hasCabinBaggage10Kg: _cabin,
       );
-
-      if (recovery == null || recovery.isEmpty || !mounted) {
-        return;
-      }
 
       await ref
           .read(tripMemberRepositoryProvider)
-          .recoverMyPersonalProfile(
-            tripId: widget.tripId,
-            recoveryCode: recovery,
-          );
-
-      if (!mounted) return;
+          .saveMyOrganizationalProfile(tripId: widget.tripId, profile: profile);
 
       ref.invalidate(tripMembersProvider(widget.tripId));
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            _localText('Questionario sbloccato.', 'Questionnaire unlocked.'),
-          ),
-        ),
-      );
-    } catch (_) {
+      if (!mounted) return false;
+
+      setState(() => _dirty = false);
+      return true;
+    } catch (error) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              _localText(
-                'Il codice non decifra questo questionario.',
-                'This code cannot decrypt the questionnaire.',
+              _t(
+                'Salvataggio non riuscito. Riprova.',
+                'Unable to save. Please try again.',
               ),
             ),
           ),
         );
       }
+      return false;
     } finally {
-      controller.dispose();
+      if (mounted) {
+        setState(() => _saving = false);
+      }
     }
   }
 
-  Future<void> _recompileProfile() async {
-    final confirmed = await showDialog<bool>(
+  Future<bool> _confirmDiscard() async {
+    if (!_dirty) return true;
+
+    final result = await showDialog<bool>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(
-          _localText(
-            'Ricompilare il questionario?',
-            'Complete a new questionnaire?',
-          ),
-        ),
+      builder: (dialogContext) => AlertDialog(
+        title: Text(_t('Modifiche non salvate', 'Unsaved changes')),
         content: Text(
-          _localText(
-            'Le vecchie risposte sono cifrate con una chiave non '
-                'disponibile su questo dispositivo. '
-                'Potrai inserire nuove risposte. Il vecchio record '
-                'verrà conservato separatamente, ma resterà necessario '
-                'possedere la sua chiave originale per recuperarlo.',
-            'Previous answers are encrypted with a key unavailable '
-                'on this device. You can enter new answers. '
-                'The previous record will be retained separately, '
-                'but its original key will still be required to read it.',
+          _t(
+            'Vuoi uscire senza salvare le risposte?',
+            'Leave without saving your answers?',
           ),
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: Text(_localText('Annulla', 'Cancel')),
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(_t('Resta', 'Stay')),
           ),
           FilledButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: Text(_localText('Ricompila', 'Complete again')),
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: Text(_t('Esci', 'Leave')),
           ),
         ],
       ),
     );
 
-    if (!mounted || confirmed != true) return;
-
-    setState(() {
-      _replaceLocked = true;
-      _dirty = true;
-    });
+    return result == true;
   }
 
-  Widget _lockedPanel() {
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 460),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.lock_outline_rounded, size: 46, color: _gold),
-              const SizedBox(height: 16),
-              Text(
-                _localText(
-                  'Il tuo questionario è protetto',
-                  'Your questionnaire is protected',
-                ),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: _cream,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                _localText(
-                  'Non devi autenticarti nuovamente. '
-                      'Manca soltanto la chiave delle vecchie risposte '
-                      'su questo dispositivo.',
-                  'No second sign-in is required. '
-                      'This device is missing the key for the old answers.',
-                ),
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: _muted),
-              ),
-              const SizedBox(height: 24),
-              FilledButton.icon(
-                onPressed: _recoverProfile,
-                icon: const Icon(Icons.key_rounded),
-                label: Text(
-                  _localText(
-                    'Ho il codice di recupero',
-                    'I have a recovery code',
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextButton(
-                onPressed: _recompileProfile,
-                child: Text(
-                  _localText(
-                    'Ricompila il mio questionario',
-                    'Complete a new questionnaire',
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  Future<void> _back() async {
+    if (_saving) return;
 
-  Future<void> _showRecoveryCode(String code) async {
-    if (!mounted) return;
-
-    await showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        title: Text(_localText('Conserva questo codice', 'Keep this code')),
-        content: SizedBox(
-          width: 440,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                _localText(
-                  'Il questionario è stato salvato cifrato. '
-                      'Conserva questo codice in un luogo privato. '
-                      'Potrà servirti su un altro dispositivo.',
-                  'Your questionnaire was saved encrypted. '
-                      'Keep this code somewhere private. '
-                      'You may need it on another device.',
-                ),
-              ),
-              const SizedBox(height: 16),
-              SelectableText(code),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Clipboard.setData(ClipboardData(text: code)),
-            child: Text(_localText('Copia codice', 'Copy code')),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<bool> _save() async {
-    if (!_canSave) {
-      return false;
-    }
-
-    final l10n = AppLocalizations.of(context)!;
-
-    setState(() {
-      _saving = true;
-    });
-
-    try {
-      final uid = FirebaseAuth.instance.currentUser?.uid;
-
-      if (uid == null) {
-        throw StateError('Sign-in required.');
-      }
-
-      final members = await ref.read(tripMembersProvider(widget.tripId).future);
-
-      TripMember? myMember;
-
-      for (final member in members) {
-        if (member.uid == uid) {
-          myMember = member;
-          break;
-        }
-      }
-
-      if (myMember == null) {
-        throw StateError('Active trip membership required.');
-      }
-
-      final recoveryCode = await ref
-          .read(tripMemberRepositoryProvider)
-          .saveMyPersonalProfile(
-            tripId: widget.tripId,
-            member: myMember,
-            profile: _currentProfile(),
-            replaceLocked: _replaceLocked,
-          );
-      ref.invalidate(tripMembersProvider(widget.tripId));
-
-      _dirty = false;
-
-      if (recoveryCode != null) {
-        await _showRecoveryCode(recoveryCode);
-      }
-
-      return true;
-    } catch (error) {
-      if (mounted) {
-        String detail;
-
-        if (error is FirebaseFunctionsException) {
-          detail = 'FIREBASE_${error.code}';
-        } else if (error is StateError) {
-          if (error.message.contains('profile revision')) {
-            detail = 'BACKEND_NON_COMPATIBILE';
-          } else if (error.message.contains('key')) {
-            detail = 'CHIAVE_E2EE_NON_DISPONIBILE';
-          } else {
-            detail = 'STATE_ERROR';
-          }
-        } else if (error is FormatException) {
-          detail = 'FORMATO_E2EE_NON_VALIDO';
-        } else {
-          detail = error.runtimeType.toString();
-        }
-
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              duration: const Duration(seconds: 12),
-              content: Text(
-                '${l10n.tripTravellersProfileUpdateError} [$detail]',
-              ),
-            ),
-          );
-      }
-
-      return false;
-    } finally {
-      if (mounted) {
-        setState(() {
-          _saving = false;
-        });
-      }
+    if (await _confirmDiscard() && mounted) {
+      context.pop();
     }
   }
 
   Future<void> _saveAndExit() async {
-    final saved = await _save();
-
-    if (!mounted || !saved) {
-      return;
-    }
-
-    context.pop(true);
-  }
-
-  void _discardAndExit() {
-    if (!mounted) {
-      return;
-    }
-
-    context.pop(false);
-  }
-
-  Future<void> _requestExit() async {
-    if (_saving) {
-      return;
-    }
-
-    if (!_initialized || !_dirty) {
-      context.pop(false);
-      return;
-    }
-
-    final action = await showAmaterasuUnsavedChangesDialog(context);
-
-    if (!mounted) {
-      return;
-    }
-
-    switch (action) {
-      case AmaterasuUnsavedChangesAction.saveAndExit:
-        await _saveAndExit();
-
-      case AmaterasuUnsavedChangesAction.discard:
-        _discardAndExit();
-
-      case AmaterasuUnsavedChangesAction.cancel:
-        return;
+    if (await _save() && mounted) {
+      context.pop();
     }
   }
 
-  @override
-  void dispose() {
-    _allergiesController?.dispose();
-    _intolerancesController?.dispose();
-    _accessibilityController?.dispose();
-    _emergencyNameController?.dispose();
-    _emergencyPhoneController?.dispose();
-
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
-    final membersAsync = ref.watch(tripMembersProvider(widget.tripId));
-
-    final tripAsync = ref.watch(tripProvider(widget.tripId));
-
-    final currentUid = FirebaseAuth.instance.currentUser?.uid;
-
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        if (!didPop) {
-          _requestExit();
-        }
-      },
-      child: Scaffold(
-        backgroundColor: _background,
-        body: SafeArea(
-          child: Column(
-            children: [
-              _EditHeader(
-                title: l10n.tripTravellersEditProfileTitle,
-                subtitle: l10n.tripTravellersEditProfileNote,
-                saving: _saving,
-                onBack: _requestExit,
-              ),
-              Expanded(
-                child: membersAsync.when(
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  error: (error, stackTrace) {
-                    return _StateMessage(
-                      icon: Icons.error_outline_rounded,
-                      text: l10n.tripTravellersLoadError,
-                    );
-                  },
-                  data: (members) {
-                    TripMember? currentMember;
-
-                    for (final member in members) {
-                      if (member.uid == currentUid) {
-                        currentMember = member;
-                        break;
-                      }
-                    }
-
-                    if (currentMember == null) {
-                      return _StateMessage(
-                        icon: Icons.person_off_outlined,
-                        text: l10n.tripTravellersLoadError,
-                      );
-                    }
-
-                    if (currentMember.sensitiveProfileLocked &&
-                        !_replaceLocked) {
-                      return _lockedPanel();
-                    }
-                    _initialize(currentMember);
-
-                    final trip = tripAsync.asData?.value;
-
-                    return SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(20, 14, 20, 32),
-                      child: Center(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 620),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              _QuestionnaireHero(
-                                tripName: trip?.name ?? '',
-                                coverUrl: trip?.coverUrl,
-                                subtitle: l10n.tripQuestionnaireIntro,
-                              ),
-                              const SizedBox(height: 18),
-
-                              Row(
-                                children: [
-                                  const Text(
-                                    '*',
-                                    style: TextStyle(
-                                      color: _vermilion,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 6),
-                                  Text(
-                                    l10n.tripQuestionnaireRequiredLegend,
-                                    style: const TextStyle(
-                                      color: _muted,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 18),
-
-                              Text(
-                                l10n.tripTravellersProfileEditIntro,
-                                style: const TextStyle(
-                                  color: _muted,
-                                  fontSize: 13,
-                                  height: 1.4,
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              _QuestionnaireSection(
-                                icon: Icons.route_rounded,
-                                title:
-                                    l10n.tripQuestionnaireOrganisationSection,
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    _YesNoQuestion(
-                                      title: l10n.tripQuestionnaireEsim,
-                                      required: false,
-                                      value: _hasEsimOrInternet,
-                                      yesLabel: l10n.tripQuestionnaireYes,
-                                      noLabel: l10n.tripQuestionnaireNo,
-                                      skipLabel: l10n
-                                          .tripQuestionnairePreferNotToAnswer,
-                                      onSkip: () => setState(() {
-                                        _hasEsimOrInternet = null;
-                                        _dirty = true;
-                                      }),
-                                      enabled: !_saving,
-                                      onChanged: _setEsim,
-                                    ),
-
-                                    const SizedBox(height: 24),
-
-                                    _YesNoQuestion(
-                                      title:
-                                          l10n.tripQuestionnaireCheckedBaggage,
-                                      required: false,
-                                      value: _hasCheckedBaggage,
-                                      yesLabel: l10n.tripQuestionnaireYes,
-                                      noLabel: l10n.tripQuestionnaireNo,
-                                      skipLabel: l10n
-                                          .tripQuestionnairePreferNotToAnswer,
-                                      onSkip: () => setState(() {
-                                        _hasCheckedBaggage = null;
-                                        _dirty = true;
-                                      }),
-                                      enabled: !_saving,
-                                      onChanged: _setCheckedBaggage,
-                                    ),
-
-                                    const SizedBox(height: 24),
-
-                                    _YesNoQuestion(
-                                      title: l10n.tripQuestionnaireCabinBaggage,
-                                      required: false,
-                                      value: _hasCabinBaggage10Kg,
-                                      yesLabel: l10n.tripQuestionnaireYes,
-                                      noLabel: l10n.tripQuestionnaireNo,
-                                      skipLabel: l10n
-                                          .tripQuestionnairePreferNotToAnswer,
-                                      onSkip: () => setState(() {
-                                        _hasCabinBaggage10Kg = null;
-                                        _dirty = true;
-                                      }),
-                                      enabled: !_saving,
-                                      onChanged: _setCabinBaggage,
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              _QuestionnaireSection(
-                                icon: Icons.health_and_safety_outlined,
-                                title: l10n.tripQuestionnaireOptionalSection,
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Text(
-                                      l10n.tripTravellersProfileEditOptionalNote,
-                                      style: const TextStyle(
-                                        color: _muted,
-                                        fontSize: 13,
-                                        height: 1.4,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 18),
-                                    _YesNoQuestion(
-                                      title: l10n
-                                          .tripQuestionnaireAllergiesQuestion,
-                                      required: false,
-                                      value: _hasAllergies,
-                                      yesLabel: l10n.tripQuestionnaireYes,
-                                      noLabel: l10n.tripQuestionnaireNo,
-                                      skipLabel: l10n
-                                          .tripQuestionnairePreferNotToAnswer,
-                                      onSkip: () => _setAllergies(null),
-                                      enabled: !_saving,
-                                      onChanged: _setAllergies,
-                                    ),
-
-                                    if (_hasAllergies == true) ...[
-                                      const SizedBox(height: 14),
-                                      _QuestionnaireTextField(
-                                        controller: _allergiesController!,
-                                        label: l10n.tripQuestionnaireAllergies,
-                                        hint: l10n.tripQuestionnaireDetailsHint,
-                                        enabled: !_saving,
-                                      ),
-                                    ],
-
-                                    const SizedBox(height: 24),
-
-                                    _YesNoQuestion(
-                                      title: l10n
-                                          .tripQuestionnaireIntolerancesQuestion,
-                                      required: false,
-                                      value: _hasIntolerances,
-                                      yesLabel: l10n.tripQuestionnaireYes,
-                                      noLabel: l10n.tripQuestionnaireNo,
-                                      skipLabel: l10n
-                                          .tripQuestionnairePreferNotToAnswer,
-                                      onSkip: () => _setIntolerances(null),
-                                      enabled: !_saving,
-                                      onChanged: _setIntolerances,
-                                    ),
-
-                                    if (_hasIntolerances == true) ...[
-                                      const SizedBox(height: 14),
-                                      _QuestionnaireTextField(
-                                        controller: _intolerancesController!,
-                                        label:
-                                            l10n.tripQuestionnaireIntolerances,
-                                        hint: l10n.tripQuestionnaireDetailsHint,
-                                        enabled: !_saving,
-                                      ),
-                                    ],
-
-                                    const SizedBox(height: 24),
-
-                                    _YesNoQuestion(
-                                      title: l10n
-                                          .tripQuestionnaireMedicalAccessibilityQuestion,
-                                      required: false,
-                                      value: _hasMedicalAccessibilityInfo,
-                                      yesLabel: l10n.tripQuestionnaireYes,
-                                      noLabel: l10n.tripQuestionnaireNo,
-                                      skipLabel: l10n
-                                          .tripQuestionnairePreferNotToAnswer,
-                                      onSkip: () =>
-                                          _setMedicalAccessibility(null),
-                                      enabled: !_saving,
-                                      onChanged: _setMedicalAccessibility,
-                                    ),
-
-                                    if (_hasMedicalAccessibilityInfo ==
-                                        true) ...[
-                                      const SizedBox(height: 14),
-                                      _QuestionnaireTextField(
-                                        controller: _accessibilityController!,
-                                        label:
-                                            l10n.tripQuestionnaireAccessibility,
-                                        hint: l10n.tripQuestionnaireDetailsHint,
-                                        enabled: !_saving,
-                                        minLines: 2,
-                                        maxLines: 4,
-                                      ),
-                                    ],
-
-                                    const SizedBox(height: 22),
-
-                                    Container(
-                                      padding: const EdgeInsets.all(14),
-                                      decoration: BoxDecoration(
-                                        color: _gold.withValues(alpha: 0.07),
-                                        borderRadius: BorderRadius.circular(14),
-                                        border: Border.all(
-                                          color: _gold.withValues(alpha: 0.24),
-                                        ),
-                                      ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Icon(
-                                            Icons.shield_outlined,
-                                            color: _gold,
-                                            size: 21,
-                                          ),
-                                          const SizedBox(width: 10),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  l10n.tripQuestionnaireSafetyNoticeTitle,
-                                                  style: const TextStyle(
-                                                    color: _cream,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 5),
-                                                Text(
-                                                  l10n.tripQuestionnaireSafetyNoticeBody,
-                                                  style: const TextStyle(
-                                                    color: _muted,
-                                                    fontSize: 13,
-                                                    height: 1.4,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              const SizedBox(height: 16),
-
-                              _QuestionnaireSection(
-                                icon: Icons.emergency_outlined,
-                                title: l10n.tripQuestionnaireEmergencySection,
-                                child: Column(
-                                  children: [
-                                    _QuestionnaireTextField(
-                                      controller: _emergencyNameController!,
-                                      label:
-                                          l10n.tripQuestionnaireEmergencyName,
-                                      enabled: !_saving,
-                                      textCapitalization:
-                                          TextCapitalization.words,
-                                    ),
-
-                                    const SizedBox(height: 14),
-
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: 126,
-                                          height: 58,
-                                          child: OutlinedButton(
-                                            onPressed: _saving
-                                                ? null
-                                                : _selectEmergencyCountry,
-                                            style: OutlinedButton.styleFrom(
-                                              foregroundColor: _cream,
-                                              backgroundColor: _surfaceRaised,
-                                              side: BorderSide(
-                                                color: _gold.withValues(
-                                                  alpha: 0.28,
-                                                ),
-                                              ),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(16),
-                                              ),
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    horizontal: 10,
-                                                  ),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  _emergencyCountryFlag,
-                                                  style: const TextStyle(
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 6),
-                                                Flexible(
-                                                  child: Text(
-                                                    _emergencyPhonePrefix,
-                                                    style: const TextStyle(
-                                                      color: _cream,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 2),
-                                                const Icon(
-                                                  Icons
-                                                      .keyboard_arrow_down_rounded,
-                                                  size: 18,
-                                                  color: _gold,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-
-                                        const SizedBox(width: 10),
-
-                                        Expanded(
-                                          child: _QuestionnaireTextField(
-                                            controller:
-                                                _emergencyPhoneController!,
-                                            label: l10n
-                                                .tripQuestionnaireEmergencyPhone,
-                                            hint:
-                                                l10n.tripQuestionnairePhoneHint,
-                                            enabled: !_saving,
-                                            keyboardType: TextInputType.phone,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              const SizedBox(height: 20),
-
-                              FilledButton.icon(
-                                onPressed: _canSave ? _saveAndExit : null,
-                                icon: _saving
-                                    ? const SizedBox(
-                                        width: 18,
-                                        height: 18,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                        ),
-                                      )
-                                    : const Icon(Icons.save_outlined),
-                                label: Text(l10n.unsavedChangesSaveAndExit),
-                              ),
-
-                              const SizedBox(height: 8),
-
-                              TextButton.icon(
-                                onPressed: _saving ? null : _discardAndExit,
-                                icon: const Icon(Icons.logout_rounded),
-                                label: Text(l10n.unsavedChangesDiscard),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _EditHeader extends StatelessWidget {
-  const _EditHeader({
-    required this.title,
-    required this.subtitle,
-    required this.saving,
-    required this.onBack,
-  });
-
-  final String title;
-  final String subtitle;
-  final bool saving;
-  final VoidCallback onBack;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _question({
+    required String title,
+    required bool? value,
+    required ValueChanged<bool> onChanged,
+  }) {
     return Container(
-      color: _TripTravellerProfileEditPageState._settingsHeader,
-      padding: const EdgeInsets.fromLTRB(12, 12, 20, 12),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: saving ? null : onBack,
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: _TripTravellerProfileEditPageState._cream,
-            ),
-          ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: _TripTravellerProfileEditPageState._cream,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  subtitle,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: _TripTravellerProfileEditPageState._muted,
-                    fontSize: 12,
-                    height: 1.3,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _QuestionnaireHero extends StatelessWidget {
-  const _QuestionnaireHero({
-    required this.tripName,
-    required this.coverUrl,
-    required this.subtitle,
-  });
-
-  final String tripName;
-  final String? coverUrl;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    final normalized = coverUrl?.trim();
-    final hasCover = normalized != null && normalized.isNotEmpty;
-
-    return Container(
-      height: 238,
-      clipBehavior: Clip.antiAlias,
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            _TripTravellerProfileEditPageState._deepVermilion,
-            Color(0xFF321A13),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: _TripTravellerProfileEditPageState._gold.withValues(
-            alpha: 0.45,
-          ),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: _TripTravellerProfileEditPageState._vermilion.withValues(
-              alpha: 0.14,
-            ),
-            blurRadius: 28,
-            offset: const Offset(0, 12),
-          ),
-        ],
-      ),
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          if (hasCover)
-            Image.network(
-              normalized,
-              fit: BoxFit.cover,
-              filterQuality: FilterQuality.high,
-              errorBuilder: (context, error, stackTrace) {
-                return const SizedBox.shrink();
-              },
-            ),
-          const DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0, 0.42, 1],
-                colors: [
-                  Color(0x33120E0B),
-                  Color(0x8A120E0B),
-                  Color(0xF0120E0B),
-                ],
-              ),
-            ),
-          ),
-          const DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  _TripTravellerProfileEditPageState._deepVermilion,
-                  Color(0x6670261D),
-                  Colors.transparent,
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(22),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  width: 42,
-                  height: 42,
-                  decoration: BoxDecoration(
-                    color: const Color(0xB3120E0B),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: _TripTravellerProfileEditPageState._gold
-                          .withValues(alpha: 0.72),
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.wb_sunny_outlined,
-                    color: _TripTravellerProfileEditPageState._gold,
-                    size: 22,
-                  ),
-                ),
-                const SizedBox(height: 13),
-                Text(
-                  tripName,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: _TripTravellerProfileEditPageState._cream,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w800,
-                    height: 1.08,
-                    shadows: [Shadow(color: Color(0xCC000000), blurRadius: 8)],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  subtitle,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: _TripTravellerProfileEditPageState._cream,
-                    fontSize: 14,
-                    height: 1.38,
-                    shadows: [Shadow(color: Color(0xDD000000), blurRadius: 7)],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _QuestionnaireSection extends StatelessWidget {
-  const _QuestionnaireSection({
-    required this.icon,
-    required this.title,
-    required this.child,
-  });
-
-  final IconData icon;
-  final String title;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: _TripTravellerProfileEditPageState._surface,
+        color: _surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: _TripTravellerProfileEditPageState._gold.withValues(
-            alpha: 0.18,
-          ),
-        ),
+        border: Border.all(color: _gold.withValues(alpha: 0.22)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: [
-              Icon(
-                icon,
-                color: _TripTravellerProfileEditPageState._gold,
-                size: 21,
+          Text(
+            title,
+            style: const TextStyle(
+              color: _cream,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              height: 1.4,
+            ),
+          ),
+          const SizedBox(height: 16),
+          SegmentedButton<bool>(
+            showSelectedIcon: false,
+            emptySelectionAllowed: true,
+            selected: value == null ? <bool>{} : <bool>{value},
+            segments: [
+              ButtonSegment<bool>(
+                value: true,
+                label: Text(_t('Sì', 'Yes')),
+                icon: const Icon(Icons.check_rounded),
               ),
-              const SizedBox(width: 9),
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    color: _TripTravellerProfileEditPageState._cream,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+              ButtonSegment<bool>(
+                value: false,
+                label: Text(_t('No', 'No')),
+                icon: const Icon(Icons.close_rounded),
               ),
             ],
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.resolveWith((states) {
+                return states.contains(WidgetState.selected)
+                    ? _vermilion
+                    : const Color(0xFF30231B);
+              }),
+              foregroundColor: const WidgetStatePropertyAll(_cream),
+            ),
+            onSelectionChanged: _saving
+                ? null
+                : (selection) {
+                    if (selection.isNotEmpty) {
+                      onChanged(selection.first);
+                    }
+                  },
           ),
-          const SizedBox(height: 20),
-          child,
         ],
       ),
     );
   }
-}
-
-class _YesNoQuestion extends StatelessWidget {
-  const _YesNoQuestion({
-    required this.title,
-    required this.required,
-    required this.value,
-    required this.yesLabel,
-    required this.noLabel,
-    required this.skipLabel,
-    required this.onSkip,
-    required this.enabled,
-    required this.onChanged,
-  });
-
-  final String title;
-  final bool required;
-  final bool? value;
-  final String yesLabel;
-  final String noLabel;
-  final String skipLabel;
-  final VoidCallback onSkip;
-  final bool enabled;
-  final ValueChanged<bool> onChanged;
 
   @override
   Widget build(BuildContext context) {
-    final selected = value == null ? <bool>{} : <bool>{value!};
+    final members = ref.watch(tripMembersProvider(widget.tripId));
+    final uid = FirebaseAuth.instance.currentUser?.uid;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        RichText(
-          text: TextSpan(
-            style: const TextStyle(
-              color: _TripTravellerProfileEditPageState._cream,
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              height: 1.35,
-            ),
-            children: [
-              TextSpan(text: title),
-              if (required)
-                const TextSpan(
-                  text: ' *',
-                  style: TextStyle(
-                    color: _TripTravellerProfileEditPageState._vermilion,
-                    fontWeight: FontWeight.w900,
-                  ),
+    return PopScope(
+      canPop: !_dirty && !_saving,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop && !_saving) {
+          _back();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: _background,
+        appBar: AppBar(
+          backgroundColor: _background,
+          foregroundColor: _cream,
+          leading: IconButton(
+            onPressed: _saving ? null : _back,
+            icon: const Icon(Icons.arrow_back_rounded),
+          ),
+          title: Text(_t('Il mio questionario', 'My questionnaire')),
+        ),
+        body: members.when(
+          loading: () =>
+              const Center(child: CircularProgressIndicator(color: _gold)),
+          error: (error, stack) => Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Text(
+                _t(
+                  'Impossibile caricare i dati del viaggio.',
+                  'Unable to load trip information.',
                 ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        SegmentedButton<bool>(
-          segments: [
-            ButtonSegment<bool>(
-              value: true,
-              label: Text(yesLabel),
-              icon: const Icon(Icons.check_rounded),
-            ),
-            ButtonSegment<bool>(
-              value: false,
-              label: Text(noLabel),
-              icon: const Icon(Icons.close_rounded),
-            ),
-          ],
-          selected: selected,
-          emptySelectionAllowed: true,
-          showSelectedIcon: false,
-          style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.resolveWith((states) {
-              if (states.contains(WidgetState.selected)) {
-                return _TripTravellerProfileEditPageState._vermilion;
-              }
-
-              return _TripTravellerProfileEditPageState._surfaceRaised;
-            }),
-            foregroundColor: WidgetStateProperty.resolveWith((states) {
-              if (!enabled) {
-                return _TripTravellerProfileEditPageState._muted.withValues(
-                  alpha: 0.35,
-                );
-              }
-
-              if (states.contains(WidgetState.selected)) {
-                return _TripTravellerProfileEditPageState._cream;
-              }
-
-              return _TripTravellerProfileEditPageState._muted;
-            }),
-            side: WidgetStateProperty.resolveWith((states) {
-              if (states.contains(WidgetState.selected)) {
-                return const BorderSide(
-                  color: _TripTravellerProfileEditPageState._gold,
-                  width: 1.2,
-                );
-              }
-
-              return BorderSide(
-                color: _TripTravellerProfileEditPageState._gold.withValues(
-                  alpha: 0.20,
-                ),
-              );
-            }),
-          ),
-          onSelectionChanged: enabled
-              ? (selection) {
-                  if (selection.isEmpty) {
-                    onSkip();
-                  } else {
-                    onChanged(selection.first);
-                  }
-                }
-              : null,
-        ),
-        const SizedBox(height: 8),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: TextButton.icon(
-            onPressed: enabled ? onSkip : null,
-            icon: const Icon(Icons.remove_circle_outline, size: 18),
-            label: Text(skipLabel),
-            style: TextButton.styleFrom(
-              foregroundColor: const Color(0xFFCDBDA8),
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _QuestionnaireTextField extends StatelessWidget {
-  const _QuestionnaireTextField({
-    required this.controller,
-    required this.label,
-    required this.enabled,
-    this.hint,
-    this.minLines = 1,
-    this.maxLines = 1,
-    this.keyboardType,
-    this.textCapitalization = TextCapitalization.sentences,
-  });
-
-  final TextEditingController controller;
-  final String label;
-  final String? hint;
-  final bool enabled;
-  final int minLines;
-  final int maxLines;
-  final TextInputType? keyboardType;
-  final TextCapitalization textCapitalization;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      enabled: enabled,
-      minLines: minLines,
-      maxLines: maxLines,
-      keyboardType: keyboardType,
-      textCapitalization: textCapitalization,
-      cursorColor: _TripTravellerProfileEditPageState._gold,
-      style: const TextStyle(color: _TripTravellerProfileEditPageState._cream),
-      decoration: InputDecoration(
-        labelText: label,
-        hintText: hint,
-        labelStyle: const TextStyle(
-          color: _TripTravellerProfileEditPageState._muted,
-        ),
-        hintStyle: TextStyle(
-          color: _TripTravellerProfileEditPageState._muted.withValues(
-            alpha: 0.65,
-          ),
-        ),
-        filled: true,
-        fillColor: _TripTravellerProfileEditPageState._surfaceRaised,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 18,
-          vertical: 17,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-            color: _TripTravellerProfileEditPageState._gold.withValues(
-              alpha: 0.22,
-            ),
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(
-            color: _TripTravellerProfileEditPageState._gold,
-            width: 1.5,
-          ),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-            color: _TripTravellerProfileEditPageState._gold.withValues(
-              alpha: 0.10,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _StateMessage extends StatelessWidget {
-  const _StateMessage({required this.icon, required this.text});
-
-  final IconData icon;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(28),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              color: _TripTravellerProfileEditPageState._muted,
-              size: 40,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: _TripTravellerProfileEditPageState._muted,
+                style: const TextStyle(color: _cream),
+                textAlign: TextAlign.center,
               ),
             ),
-          ],
+          ),
+          data: (items) {
+            TripMember? me;
+
+            for (final item in items) {
+              if (item.uid == uid) {
+                me = item;
+                break;
+              }
+            }
+
+            if (me == null) {
+              return Center(
+                child: Text(
+                  _t(
+                    'Non sei un membro attivo di questo viaggio.',
+                    'You are not an active member of this trip.',
+                  ),
+                  style: const TextStyle(color: _cream),
+                ),
+              );
+            }
+
+            _load(me);
+
+            return SafeArea(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 660),
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(20, 16, 20, 40),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(24),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24),
+                            gradient: const LinearGradient(
+                              colors: [Color(0xFF70261D), Color(0xFF302018)],
+                            ),
+                            border: Border.all(
+                              color: _gold.withValues(alpha: 0.5),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(
+                                Icons.wb_sunny_outlined,
+                                color: _gold,
+                                size: 34,
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                _t(
+                                  'Organizza il tuo viaggio',
+                                  'Plan your journey',
+                                ),
+                                style: const TextStyle(
+                                  color: _cream,
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                _t(
+                                  'Tre semplici domande per organizzarti '
+                                      'insieme agli altri viaggiatori.',
+                                  'Three simple questions to help you '
+                                      'plan with your fellow travelers.',
+                                ),
+                                style: const TextStyle(
+                                  color: _muted,
+                                  fontSize: 14,
+                                  height: 1.5,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _question(
+                          title: _t(
+                            'Avrai una connessione Internet o una eSIM?',
+                            'Will you have Internet access or an eSIM?',
+                          ),
+                          value: _internet,
+                          onChanged: _changeInternet,
+                        ),
+                        const SizedBox(height: 14),
+                        _question(
+                          title: _t(
+                            'Porterai un bagaglio da stiva?',
+                            'Will you bring checked baggage?',
+                          ),
+                          value: _checked,
+                          onChanged: _changeChecked,
+                        ),
+                        const SizedBox(height: 14),
+                        _question(
+                          title: _t(
+                            'Porterai un bagaglio a mano da 10 kg?',
+                            'Will you bring 10 kg cabin baggage?',
+                          ),
+                          value: _cabin,
+                          onChanged: _changeCabin,
+                        ),
+                        const SizedBox(height: 24),
+                        FilledButton.icon(
+                          onPressed: _complete && !_saving
+                              ? _saveAndExit
+                              : null,
+                          icon: _saving
+                              ? const SizedBox(
+                                  width: 18,
+                                  height: 18,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : const Icon(Icons.save_outlined),
+                          label: Text(
+                            _saving
+                                ? _t('Salvataggio...', 'Saving...')
+                                : _t(
+                                    'Salva e torna al viaggio',
+                                    'Save and exit',
+                                  ),
+                          ),
+                          style: FilledButton.styleFrom(
+                            backgroundColor: _vermilion,
+                            foregroundColor: _cream,
+                            padding: const EdgeInsets.symmetric(vertical: 17),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextButton(
+                          onPressed: _saving ? null : _back,
+                          child: Text(
+                            _t('Indietro', 'Back'),
+                            style: const TextStyle(color: _muted),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

@@ -1,4 +1,4 @@
-﻿import { readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { after, before, beforeEach, test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
@@ -142,7 +142,6 @@ async function createTripAs(db, uid, tripId = 'trip-created') {
       uid,
       role: 'admin',
       joinedAt: serverTimestamp(),
-      travellerProfileCompleted: true,
     },
   );
 

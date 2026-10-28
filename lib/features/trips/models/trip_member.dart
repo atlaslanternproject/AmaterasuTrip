@@ -1,106 +1,10 @@
-class TripTravellerProfileData {
-  const TripTravellerProfileData({
-    this.hasEsimOrInternet,
-    this.hasCheckedBaggage,
-    this.hasCabinBaggage10Kg,
-    this.hasAllergies,
-    this.hasIntolerances,
-    this.hasMedicalAccessibilityInfo,
-    this.allergies = '',
-    this.intolerances = '',
-    this.medicalAccessibilityInfo = '',
-    this.emergencyContactName = '',
-    this.emergencyContactPhone = '',
-  });
-
-  final bool? hasEsimOrInternet;
-  final bool? hasCheckedBaggage;
-  final bool? hasCabinBaggage10Kg;
-
-  final bool? hasAllergies;
-  final bool? hasIntolerances;
-  final bool? hasMedicalAccessibilityInfo;
-
-  final String allergies;
-  final String intolerances;
-  final String medicalAccessibilityInfo;
-  final String emergencyContactName;
-  final String emergencyContactPhone;
-
-  bool get hasProfile =>
-      hasEsimOrInternet != null &&
-      hasCheckedBaggage != null &&
-      hasCabinBaggage10Kg != null &&
-      hasAllergies != null &&
-      hasIntolerances != null &&
-      hasMedicalAccessibilityInfo != null;
-
-  factory TripTravellerProfileData.fromMap(dynamic raw) {
-    if (raw is! Map) {
-      return const TripTravellerProfileData();
-    }
-
-    final allergies = _string(raw['allergies']);
-    final intolerances = _string(raw['intolerances']);
-    final medicalAccessibilityInfo = _string(raw['medicalAccessibilityInfo']);
-
-    return TripTravellerProfileData(
-      hasEsimOrInternet: raw['hasEsimOrInternet'] as bool?,
-      hasCheckedBaggage: raw['hasCheckedBaggage'] as bool?,
-      hasCabinBaggage10Kg: raw['hasCabinBaggage10Kg'] as bool?,
-
-      // Backward compatibility:
-      // - se il nuovo bool esiste, è autoritativo;
-      // - se manca ma esiste già un dettaglio, inferiamo SI;
-      // - se manca ed il dettaglio è vuoto, resta null e l'utente
-      //   dovrà dare esplicitamente una risposta.
-      hasAllergies:
-          raw['hasAllergies'] as bool? ?? (allergies.isNotEmpty ? true : null),
-      hasIntolerances:
-          raw['hasIntolerances'] as bool? ??
-          (intolerances.isNotEmpty ? true : null),
-      hasMedicalAccessibilityInfo:
-          raw['hasMedicalAccessibilityInfo'] as bool? ??
-          (medicalAccessibilityInfo.isNotEmpty ? true : null),
-
-      allergies: allergies,
-      intolerances: intolerances,
-      medicalAccessibilityInfo: medicalAccessibilityInfo,
-      emergencyContactName: _string(raw['emergencyContactName']),
-      emergencyContactPhone: _string(raw['emergencyContactPhone']),
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'hasEsimOrInternet': hasEsimOrInternet,
-      'hasCheckedBaggage': hasCheckedBaggage,
-      'hasCabinBaggage10Kg': hasCabinBaggage10Kg,
-      'hasAllergies': hasAllergies,
-      'hasIntolerances': hasIntolerances,
-      'hasMedicalAccessibilityInfo': hasMedicalAccessibilityInfo,
-      'allergies': allergies.trim(),
-      'intolerances': intolerances.trim(),
-      'medicalAccessibilityInfo': medicalAccessibilityInfo.trim(),
-      'emergencyContactName': emergencyContactName.trim(),
-      'emergencyContactPhone': emergencyContactPhone.trim(),
-    };
-  }
-
-  static String _string(dynamic value) {
-    return value is String ? value.trim() : '';
-  }
-}
+import 'package:amaterasutrip/features/trips/models/trip_organizational_profile.dart';
 
 class TripMember {
   const TripMember({
     required this.uid,
     required this.role,
-    required this.travellerProfileCompleted,
-    required this.travellerProfile,
-    this.sensitiveProfileLocked = false,
-    this.profileRevision,
-    this.profileFormat = 'unknown',
+    this.organizationalProfile,
     this.joinedAt,
     this.username,
     this.firstName,
@@ -112,11 +16,7 @@ class TripMember {
   final String role;
   final DateTime? joinedAt;
 
-  final bool travellerProfileCompleted;
-  final TripTravellerProfileData travellerProfile;
-  final bool sensitiveProfileLocked;
-  final String? profileRevision;
-  final String profileFormat;
+  final TripOrganizationalProfile? organizationalProfile;
 
   /// Safe projection from the global profile.
   final String? username;
@@ -157,14 +57,9 @@ class TripMember {
       joinedAt: joinedAtMilliseconds is num
           ? DateTime.fromMillisecondsSinceEpoch(joinedAtMilliseconds.toInt())
           : null,
-      travellerProfileCompleted:
-          data['travellerProfileCompleted'] as bool? ?? false,
-      sensitiveProfileLocked: data['sensitiveProfileLocked'] == true,
-      profileRevision: data['profileRevision'] as String?,
-      profileFormat: data['travellerProfileFormat'] as String? ?? 'unknown',
-      travellerProfile: TripTravellerProfileData.fromMap(
-        data['travellerProfile'],
-      ),
+      organizationalProfile: data['organizationalProfile'] is Map
+          ? TripOrganizationalProfile.fromMap(data['organizationalProfile'])
+          : null,
       username: _nullableString(profile['username']),
       firstName: _nullableString(profile['firstName']),
       lastName: _nullableString(profile['lastName']),

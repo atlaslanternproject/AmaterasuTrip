@@ -6,8 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
-import 'trip_protected_access_page.dart';
-import 'trip_profile_qr_exchange_page.dart';
 
 import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repository.dart';
 import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
@@ -291,10 +289,6 @@ class _TripTravellersSettingsPageState
                   _editMyProfile(member);
                 }
               : null,
-          onProfileQr: () {
-            Navigator.of(context).pop();
-            _openProfileQr(member, isCurrentUser);
-          },
           onRemove: !member.isAdmin && (isCurrentUser || canManage)
               ? () {
                   Navigator.of(context).pop();
@@ -304,18 +298,6 @@ class _TripTravellersSettingsPageState
               : null,
         );
       },
-    );
-  }
-
-  Future<void> _openProfileQr(TripMember member, bool ownerMode) async {
-    await Navigator.of(context).push<void>(
-      MaterialPageRoute(
-        builder: (_) => TripProfileQrExchangePage(
-          tripId: widget.tripId,
-          profileUid: member.uid,
-          ownerMode: ownerMode,
-        ),
-      ),
     );
   }
 
@@ -476,41 +458,10 @@ class _TripTravellersSettingsPageState
                     ),
                     const SizedBox(height: 14),
                     _PrivacyNotice(
-                      text: l10n.tripTravellersSensitiveDataNotice,
+                      text: Localizations.localeOf(context).languageCode == 'it'
+                          ? 'Le risposte organizzative sono visibili ai membri del viaggio. Non inserire informazioni sanitarie.'
+                          : 'Organizational answers are visible to trip members. Do not enter medical information.',
                     ),
-                    if (const bool.fromEnvironment(
-                      'AMATERASU_E2EE_ACCESS_TEST',
-                      defaultValue: false,
-                    )) ...[
-                      const SizedBox(height: 12),
-                      Card(
-                        color: const Color(0xFF221915),
-                        child: ListTile(
-                          leading: const Icon(
-                            Icons.shield_outlined,
-                            color: Color(0xFFE7A044),
-                          ),
-                          title: Text(
-                            Localizations.localeOf(context).languageCode == 'it'
-                                ? 'Accesso ai dati protetti'
-                                : 'Protected data access',
-                            style: const TextStyle(color: Color(0xFFF2E7D5)),
-                          ),
-                          onTap: () {
-                            final members = membersAsync.asData?.value;
-                            if (members == null) return;
-                            Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (_) => TripProtectedAccessPage(
-                                  tripId: widget.tripId,
-                                  members: members,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
                     const SizedBox(height: 24),
                     Text(
                       l10n.tripTravellersParticipants,
@@ -1004,7 +955,6 @@ class _MemberDetailsSheet extends StatelessWidget {
     required this.canManage,
     required this.busy,
     required this.onEdit,
-    required this.onProfileQr,
     required this.onRemove,
   });
 
@@ -1013,14 +963,13 @@ class _MemberDetailsSheet extends StatelessWidget {
   final bool canManage;
   final bool busy;
   final VoidCallback? onEdit;
-  final VoidCallback onProfileQr;
   final VoidCallback? onRemove;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    final profile = member.travellerProfile;
+    final profile = member.organizationalProfile;
 
     final role = member.isAdmin
         ? l10n.tripTravellersOwnerRole
@@ -1041,12 +990,6 @@ class _MemberDetailsSheet extends StatelessWidget {
       }
 
       return value ? l10n.tripTravellersYes : l10n.tripTravellersNo;
-    }
-
-    String textOrMissing(String value) {
-      final trimmed = value.trim();
-
-      return trimmed.isEmpty ? l10n.tripTravellersNotProvided : trimmed;
     }
 
     return SafeArea(
@@ -1089,63 +1032,23 @@ class _MemberDetailsSheet extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            if (!member.sensitiveProfileLocked)
-              _InfoSection(
-                title: l10n.tripTravellersOrganisation,
-                rows: [
-                  _InfoRowData(
-                    label: l10n.tripTravellersEsim,
-                    value: yesNo(profile.hasEsimOrInternet),
-                  ),
-                  _InfoRowData(
-                    label: l10n.tripTravellersCheckedBaggage,
-                    value: yesNo(profile.hasCheckedBaggage),
-                  ),
-                  _InfoRowData(
-                    label: l10n.tripTravellersCabinBaggage,
-                    value: yesNo(profile.hasCabinBaggage10Kg),
-                  ),
-                ],
-              ),
-            const SizedBox(height: 12),
-            if (!member.sensitiveProfileLocked)
-              _InfoSection(
-                title: l10n.tripTravellersHealth,
-                rows: [
-                  _InfoRowData(
-                    label: l10n.tripTravellersAllergies,
-                    value: textOrMissing(profile.allergies),
-                  ),
-                  _InfoRowData(
-                    label: l10n.tripTravellersIntolerances,
-                    value: textOrMissing(profile.intolerances),
-                  ),
-                  _InfoRowData(
-                    label: l10n.tripTravellersAccessibility,
-                    value: textOrMissing(profile.medicalAccessibilityInfo),
-                  ),
-                ],
-              ),
-            const SizedBox(height: 12),
-            if (!member.sensitiveProfileLocked)
-              _InfoSection(
-                title: l10n.tripTravellersEmergency,
-                rows: [
-                  _InfoRowData(
-                    label: l10n.tripTravellersEmergencyName,
-                    value: textOrMissing(profile.emergencyContactName),
-                  ),
-                  _InfoRowData(
-                    label: l10n.tripTravellersEmergencyPhone,
-                    value: textOrMissing(profile.emergencyContactPhone),
-                  ),
-                ],
-              ),
-            if (member.sensitiveProfileLocked)
-              _MessageCard(
-                icon: Icons.lock_outline_rounded,
-                message: l10n.tripTravellersE2eeLocked,
-              ),
+            _InfoSection(
+              title: l10n.tripTravellersOrganisation,
+              rows: [
+                _InfoRowData(
+                  label: l10n.tripTravellersEsim,
+                  value: yesNo(profile?.hasEsimOrInternet),
+                ),
+                _InfoRowData(
+                  label: l10n.tripTravellersCheckedBaggage,
+                  value: yesNo(profile?.hasCheckedBaggage),
+                ),
+                _InfoRowData(
+                  label: l10n.tripTravellersCabinBaggage,
+                  value: yesNo(profile?.hasCabinBaggage10Kg),
+                ),
+              ],
+            ),
             const SizedBox(height: 18),
             if (onEdit != null)
               FilledButton.icon(
@@ -1153,27 +1056,6 @@ class _MemberDetailsSheet extends StatelessWidget {
                 icon: const Icon(Icons.edit_rounded),
                 label: Text(l10n.tripTravellersEditMyProfile),
               ),
-            if (member.profileFormat == 'encrypted' &&
-                (isCurrentUser || member.sensitiveProfileLocked)) ...[
-              const SizedBox(height: 10),
-              OutlinedButton.icon(
-                onPressed: busy ? null : onProfileQr,
-                icon: Icon(
-                  isCurrentUser
-                      ? Icons.qr_code_rounded
-                      : Icons.qr_code_scanner_rounded,
-                ),
-                label: Text(
-                  isCurrentUser
-                      ? (Localizations.localeOf(context).languageCode == 'it'
-                            ? 'Autorizza un viaggiatore'
-                            : 'Authorize a traveler')
-                      : (Localizations.localeOf(context).languageCode == 'it'
-                            ? 'Scansiona QR per visualizzare'
-                            : 'Scan QR to view'),
-                ),
-              ),
-            ],
             if (onRemove != null) ...[
               const SizedBox(height: 10),
               OutlinedButton.icon(

@@ -4,10 +4,6 @@ import {initializeApp} from "firebase-admin/app";
 import {getFirestore, FieldValue} from "firebase-admin/firestore";
 import {setGlobalOptions} from "firebase-functions";
 import {HttpsError, onCall} from "firebase-functions/v2/https";
-import {
-  requireEncryptedTravellerProfile,
-  projectEncryptedTravellerProfile,
-} from "./security/live-traveller-profile-boundary";
 
 initializeApp();
 
@@ -341,7 +337,6 @@ export const migrateOwnedTripsMembership = onCall(async (request) => {
         uid,
         role: "admin",
         joinedAt: FieldValue.serverTimestamp(),
-        travellerProfileCompleted: true,
       },
       {merge: true},
     );
@@ -374,7 +369,13 @@ export const acceptTripInvite = onCall(async (request) => {
   const tripId = request.data?.tripId;
   const token = request.data?.token;
   const presenceConfirmed = request.data?.presenceConfirmed;
-  const travellerProfile = request.data?.travellerProfile;
+
+  if (request.data?.travellerProfile !== undefined) {
+    throw new HttpsError(
+      "invalid-argument",
+      "The legacy traveller questionnaire is no longer supported.",
+    );
+  }
 
   if (
     typeof tripId !== "string" ||
@@ -394,12 +395,6 @@ export const acceptTripInvite = onCall(async (request) => {
       "Final participation confirmation is required.",
     );
   }
-
-  // Membership may be accepted without a questionnaire.
-  // Supplied health profiles must still pass encryption validation.
-  const encryptedProfile = travellerProfile == null ?
-    null :
-    requireEncryptedTravellerProfile(travellerProfile);
 
   const inviteRef = db.collection("tripInvites").doc(tripId);
   const tripRef = db.collection("trips").doc(tripId);
@@ -463,8 +458,6 @@ export const acceptTripInvite = onCall(async (request) => {
       uid,
       role: "traveler",
       joinedAt: FieldValue.serverTimestamp(),
-      travellerProfileCompleted: encryptedProfile !== null,
-      travellerProfile: encryptedProfile,
     });
   });
 
@@ -552,9 +545,6 @@ export const listTripMembers = onCall(async (request) => {
           .get();
 
         const profileData = profileSnapshot.data();
-        const protectedProfile = projectEncryptedTravellerProfile(
-          memberData.travellerProfile,
-        );
 
         return {
           uid: memberUid,
@@ -564,8 +554,6 @@ export const listTripMembers = onCall(async (request) => {
             "traveler",
           joinedAt:
           memberData.joinedAt?.toMillis?.() ?? null,
-          travellerProfileCompleted:
-          memberData.travellerProfileCompleted === true,
 
           // Safe projection of the global profile.
           // Email, FCM token, Storage path and internal data are
@@ -589,17 +577,29 @@ export const listTripMembers = onCall(async (request) => {
               "",
           },
 
-          // Legacy plaintext is redacted and flagged for remediation.
-          travellerProfile: protectedProfile,
-          travellerProfileFormat: memberData.travellerProfile == null ?
-            "missing" :
-            (protectedProfile == null ? "legacy-redacted" : "encrypted"),
-          profileRevision: memberUid === uid ?
-            [
-              memberSnapshot.updateTime?.seconds ?? 0,
-              memberSnapshot.updateTime?.nanoseconds ?? 0,
-            ].join(":") :
-            null,
+          // Only these three non-medical answers may be shared.
+          // The caller has already passed the trip membership check.
+          organizationalProfile: (() => {
+            const value = memberData.organizationalProfile;
+
+            if (!value || typeof value !== "object" ||
+                Array.isArray(value)) {
+              return null;
+            }
+
+            if (typeof value.hasEsimOrInternet !== "boolean" ||
+                typeof value.hasCheckedBaggage !== "boolean" ||
+                typeof value.hasCabinBaggage10Kg !== "boolean") {
+              return null;
+            }
+
+            return {
+              hasEsimOrInternet: value.hasEsimOrInternet,
+              hasCheckedBaggage: value.hasCheckedBaggage,
+              hasCabinBaggage10Kg: value.hasCabinBaggage10Kg,
+            };
+          })(),
+
         };
       }),
   );
@@ -610,122 +610,96 @@ export const listTripMembers = onCall(async (request) => {
   };
 });
 
-export const updateMyTripTravellerProfile = onCall(
+export const saveMyTripOrganizationalProfile = onCall(
   async (request) => {
     const uid = request.auth?.uid;
-
-    if (uid == null) {
-      throw new HttpsError(
-        "unauthenticated",
-        "Authentication is required.",
-      );
+    if (!uid) {
+      throw new HttpsError("unauthenticated", "Sign-in required.");
     }
 
-    const rawTripId = request.data?.tripId;
-    const profile = request.data?.travellerProfile;
+    const tripId = request.data?.tripId;
+    const input = request.data?.organizationalProfile;
 
-    if (
-      typeof rawTripId !== "string" ||
-      rawTripId.trim().length === 0
-    ) {
-      throw new HttpsError(
-        "invalid-argument",
-        "A valid tripId is required.",
-      );
+    if (typeof tripId !== "string" || tripId.trim().length === 0) {
+      throw new HttpsError("invalid-argument", "Invalid tripId.");
     }
 
-    const encryptedProfile = requireEncryptedTravellerProfile(profile);
-    const expectedRevision = request.data?.expectedProfileRevision;
-    const replaceLocked = request.data?.replaceLockedProfile === true;
+    if (input === null || typeof input !== "object" ||
+        Array.isArray(input)) {
+      throw new HttpsError("invalid-argument", "Invalid profile.");
+    }
 
-    if (expectedRevision !== undefined &&
-        (typeof expectedRevision !== "string" ||
-         !/^\d+:\d+$/.test(expectedRevision))) {
+    const allowed = [
+      "hasEsimOrInternet",
+      "hasCheckedBaggage",
+      "hasCabinBaggage10Kg",
+    ];
+
+    const actual = Object.keys(input);
+
+    if (actual.length !== allowed.length ||
+        actual.some((key) => !allowed.includes(key))) {
       throw new HttpsError(
         "invalid-argument",
-        "Invalid questionnaire revision.",
+        "Only organizational answers are permitted.",
       );
     }
 
-    if (replaceLocked && expectedRevision === undefined) {
-      throw new HttpsError(
-        "invalid-argument",
-        "A profile revision is required for replacement.",
-      );
+    for (const key of allowed) {
+      if (typeof input[key] !== "boolean") {
+        throw new HttpsError(
+          "invalid-argument",
+          "All organizational answers must be boolean.",
+        );
+      }
     }
 
-    const tripId = rawTripId.trim();
-    const tripRef = db.collection("trips").doc(tripId);
+    const profile = {
+      hasEsimOrInternet: input.hasEsimOrInternet as boolean,
+      hasCheckedBaggage: input.hasCheckedBaggage as boolean,
+      hasCabinBaggage10Kg: input.hasCabinBaggage10Kg as boolean,
+    };
+
+    const tripRef = db.collection("trips").doc(tripId.trim());
     const memberRef = tripRef.collection("members").doc(uid);
-    const historyRef = memberRef
-      .collection("profileRecoveryHistory")
-      .doc();
 
-    // Read and write inside the SAME transaction. The old implementation
-    // could recreate a removed member and re-add their uid to memberUids.
     await db.runTransaction(async (transaction) => {
-      const [tripSnapshot, memberSnapshot] = await Promise.all([
-        transaction.get(tripRef),
-        transaction.get(memberRef),
-      ]);
+      const tripSnapshot = await transaction.get(tripRef);
+      const memberSnapshot = await transaction.get(memberRef);
 
-      if (!tripSnapshot.exists) {
-        throw new HttpsError("not-found", "Trip not found.");
+      if (!tripSnapshot.exists || !memberSnapshot.exists) {
+        throw new HttpsError(
+          "permission-denied",
+          "Active trip membership required.",
+        );
       }
 
       const tripData = tripSnapshot.data();
       const memberUids = tripData?.memberUids;
-      const isMember = tripData?.ownerUid === uid ||
+
+      const activeMember = tripData?.ownerUid === uid ||
         (Array.isArray(memberUids) && memberUids.includes(uid));
 
-      if (!isMember || !memberSnapshot.exists ||
-          memberSnapshot.data()?.uid !== uid) {
+      if (!activeMember || memberSnapshot.data()?.uid !== uid) {
         throw new HttpsError(
           "permission-denied",
-          "An active trip membership is required.",
+          "Active trip membership required.",
         );
-      }
-
-      const revision = [
-        memberSnapshot.updateTime?.seconds ?? 0,
-        memberSnapshot.updateTime?.nanoseconds ?? 0,
-      ].join(":");
-
-      if (expectedRevision !== undefined &&
-          revision !== expectedRevision) {
-        throw new HttpsError(
-          "aborted",
-          "Questionnaire changed. Reload before saving.",
-        );
-      }
-
-      if (replaceLocked &&
-          memberSnapshot.data()?.travellerProfile != null) {
-        // Archive only ciphertext or legacy record as-is.
-        // Never return old protected contents in a response.
-        transaction.set(historyRef, {
-          previousProfile: memberSnapshot.data()?.travellerProfile,
-          previousRevision: revision,
-          replacedAt: FieldValue.serverTimestamp(),
-          replacedByUid: uid,
-        });
       }
 
       transaction.update(memberRef, {
-        travellerProfileCompleted: true,
-        travellerProfile: encryptedProfile,
+        organizationalProfile: profile,
         updatedAt: FieldValue.serverTimestamp(),
       });
     });
 
     return {
       updated: true,
-      tripId,
+      tripId: tripId.trim(),
       uid,
     };
   },
 );
-
 export const removeTripMember = onCall(async (request) => {
   const uid = request.auth?.uid;
 
@@ -764,12 +738,6 @@ export const removeTripMember = onCall(async (request) => {
         transaction.get(tripRef),
         transaction.get(targetMemberRef),
       ]);
-
-    // All reads occur before writes. Check encrypted profiles
-    // so removal cannot silently bypass E2EE rotation.
-    const allMemberSnapshots = await transaction.get(
-      tripRef.collection("members")
-    );
 
     if (!tripSnapshot.exists) {
       throw new HttpsError(
@@ -818,25 +786,6 @@ export const removeTripMember = onCall(async (request) => {
       );
     }
 
-    // Until a signed, verified key-rotation transaction exists,
-    // deleting an encrypted member would give a false impression
-    // that their previously shared decryption access was revoked.
-    const containsProtectedProfiles = allMemberSnapshots.docs.some(
-      (memberDoc) => {
-        const profile = memberDoc.data()?.travellerProfile;
-        return profile !== null &&
-          typeof profile === "object" &&
-          !Array.isArray(profile) &&
-          "protectedDetails" in profile;
-      }
-    );
-
-    if (containsProtectedProfiles) {
-      throw new HttpsError(
-        "failed-precondition",
-        "E2EE key rotation is required before changing trip membership."
-      );
-    }
     transaction.update(tripRef, {
       memberUids: FieldValue.arrayRemove(targetUid),
       updatedAt: FieldValue.serverTimestamp(),
@@ -870,22 +819,3 @@ export {
 
 export {inspectAccountDeletionTrips} from
   "./account-deletion/inspect-account-deletion-trips";
-
-export {recoveryDeviceEnrollmentCandidate} from
-  "./security/recovery-device-enrollment-callable";
-
-export {recoveryDeviceEnrollmentStatus} from
-  "./security/recovery-device-enrollment-callable";
-
-export {registerFirstE2eeRoot} from
-  "./security/first-root-registration-callable";
-export {
-  requestTripProfileAccess,
-  listMyTripProfileAccessRequests,
-  declineTripProfileAccessRequest,
-} from "./security/trip-profile-access-relay";
-export {
-  getPendingTripAccessRoot,
-  approveInitialTripProfileBundle,
-  getApprovedTripProfileBundle,
-} from "./security/trip-profile-bundle-callables";

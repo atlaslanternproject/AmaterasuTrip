@@ -247,12 +247,10 @@ service cloud.firestore {
           && request.resource.data.keys().hasOnly([
             'uid',
             'role',
-            'joinedAt',
-            'travellerProfileCompleted'
+            'joinedAt'
           ])
           && request.resource.data.uid == request.auth.uid
-          && request.resource.data.role == 'admin'
-          && request.resource.data.travellerProfileCompleted == true;
+          && request.resource.data.role == 'admin';
 
         allow update, delete: if false;
       }
@@ -266,75 +264,9 @@ service cloud.firestore {
     }
 
     // =========================================================
-    // FIRST ROOT IDENTITY - CREATE ONLY
-    // Never stores plaintext private keys.
-    // Client bootstrap requires a recently authenticated account.
-    // =========================================================
+    // E2EE legacy: accesso client disabilitato.
     match /e2eeRoots/{uid} {
-      allow get: if verifiedUser()
-        && request.auth.uid == uid;
-
-      allow list: if false;
-
-      allow create: if verifiedUser()
-        && request.auth.uid == uid
-        && request.auth.token.auth_time is int
-        && request.auth.token.auth_time * 1000
-             >= request.time.toMillis() - 300000
-        && request.resource.data.keys().hasOnly([
-          'version',
-          'userUid',
-          'deviceId',
-          'createdAtMs',
-          'x25519PublicKey',
-          'ed25519PublicKey',
-          'signature',
-          'fingerprint',
-          'recovery'
-        ])
-        && request.resource.data.keys().hasAll([
-          'version',
-          'userUid',
-          'deviceId',
-          'createdAtMs',
-          'x25519PublicKey',
-          'ed25519PublicKey',
-          'signature',
-          'fingerprint',
-          'recovery'
-        ])
-        && request.resource.data.version == 1
-        && request.resource.data.userUid == uid
-        && request.resource.data.deviceId is string
-        && request.resource.data.deviceId.size() == 43
-        && request.resource.data.createdAtMs is int
-        && request.resource.data.createdAtMs > 0
-        && request.resource.data.x25519PublicKey is string
-        && request.resource.data.x25519PublicKey.size() == 44
-        && request.resource.data.ed25519PublicKey is string
-        && request.resource.data.ed25519PublicKey.size() == 44
-        && request.resource.data.signature is string
-        && request.resource.data.signature.size() == 88
-        && request.resource.data.fingerprint is string
-        && request.resource.data.fingerprint.size() == 43
-        && request.resource.data.recovery is map
-        && request.resource.data.recovery.keys().hasOnly([
-          'version', 'salt', 'nonce', 'ciphertext', 'mac'
-        ])
-        && request.resource.data.recovery.keys().hasAll([
-          'version', 'salt', 'nonce', 'ciphertext', 'mac'
-        ])
-        && request.resource.data.recovery.version == 1
-        && request.resource.data.recovery.salt is string
-        && request.resource.data.recovery.salt.size() == 44
-        && request.resource.data.recovery.nonce is string
-        && request.resource.data.recovery.nonce.size() == 16
-        && request.resource.data.recovery.ciphertext is string
-        && request.resource.data.recovery.ciphertext.size() == 88
-        && request.resource.data.recovery.mac is string
-        && request.resource.data.recovery.mac.size() == 24;
-
-      allow update, delete: if false;
+      allow read, write: if false;
     }
 
     // =========================================================

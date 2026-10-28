@@ -1,24 +1,24 @@
 {
-  "accountRecoveryTitle": "Security and recovery",
-  "accountRecoverySubtitle": "Protect and recover your data",
-  "accountRecoveryStatus": "In development",
-  "accountRecoveryStatusTitle": "Encrypted recovery is not yet active",
-  "accountRecoveryStatusDescription": "This feature is being developed. No backup of your data has been created through this screen.",
-  "accountRecoverySectionTitle": "How it will work",
-  "accountRecoveryCodeTitle": "Personal recovery code",
-  "accountRecoveryCodeDescription": "You will be able to generate a recovery code and keep it somewhere safe.",
-  "accountRecoveryStorageTitle": "Protected data",
-  "accountRecoveryStorageDescription": "The code will help recover keys for data your account is still allowed to access.",
-  "accountRecoveryDeviceTitle": "New device",
-  "accountRecoveryDeviceDescription": "Security checks will be required before a new device can be authorised.",
-  "accountRecoveryNotice": "Password recovery and encrypted data recovery are two different processes.",
-  "notificationsWebUnavailable": "Push notifications are not yet available on the Web. Your saved preferences will not be changed.",
-  "tripNotificationsWebUnavailable": "Trip push notifications are not yet available on the Web. Your saved Android preferences remain unchanged.",
-  "webMediaCameraTitle": "Open the camera?",
-  "webMediaCameraBody": "Amaterasu will open the camera if supported by your browser. Otherwise, you can choose an image from your device. No photo will be used without your choice.",
-  "webMediaGalleryTitle": "Select a photo?",
-  "webMediaGalleryBody": "You can choose a photo from your device. Amaterasu will only use the file you select, without accessing your entire gallery.",
-  "webMediaContinue": "Continue",
+    "accountRecoveryTitle":  "Security and recovery",
+    "accountRecoverySubtitle":  "Protect and recover your data",
+    "accountRecoveryStatus":  "In development",
+    "accountRecoveryStatusTitle":  "Encrypted recovery is not yet active",
+    "accountRecoveryStatusDescription":  "This feature is being developed. No backup of your data has been created through this screen.",
+    "accountRecoverySectionTitle":  "How it will work",
+    "accountRecoveryCodeTitle":  "Personal recovery code",
+    "accountRecoveryCodeDescription":  "You will be able to generate a recovery code and keep it somewhere safe.",
+    "accountRecoveryStorageTitle":  "Protected data",
+    "accountRecoveryStorageDescription":  "The code will help recover keys for data your account is still allowed to access.",
+    "accountRecoveryDeviceTitle":  "New device",
+    "accountRecoveryDeviceDescription":  "Security checks will be required before a new device can be authorised.",
+    "accountRecoveryNotice":  "Password recovery and encrypted data recovery are two different processes.",
+    "notificationsWebUnavailable":  "Push notifications are not yet available on the Web. Your saved preferences will not be changed.",
+    "tripNotificationsWebUnavailable":  "Trip push notifications are not yet available on the Web. Your saved Android preferences remain unchanged.",
+    "webMediaCameraTitle":  "Open the camera?",
+    "webMediaCameraBody":  "Amaterasu will open the camera if supported by your browser. Otherwise, you can choose an image from your device. No photo will be used without your choice.",
+    "webMediaGalleryTitle":  "Select a photo?",
+    "webMediaGalleryBody":  "You can choose a photo from your device. Amaterasu will only use the file you select, without accessing your entire gallery.",
+    "webMediaContinue":  "Continue",
     "settingsLanguage":  "Language",
     "@@locale":  "en",
     "authWelcomeBack":  "Welcome back",
@@ -522,7 +522,7 @@
     "tripManagementExport":  "Export trip",
     "tripManagementExportSubtitle":  "Create an exportable copy of the trip data",
     "tripManagementDuplicate":  "Duplicate trip",
-    "tripManagementDuplicateSubtitle":  "Copy the trip's Firestore content without members, cloud storage or external files",
+    "tripManagementDuplicateSubtitle":  "Copy the trip\u0027s Firestore content without members, cloud storage or external files",
     "tripManagementDelete":  "Delete trip",
     "tripManagementDeleteSubtitle":  "Permanently delete the trip data from Amaterasu; personal cloud files remain untouched",
     "tripMapTitle":  "Map",
@@ -628,375 +628,295 @@
     "tripInformationCancel":  "Cancel",
     "tripInformationUpdated":  "Trip information updated.",
     "tripInformationUpdateError":  "Unable to update the trip information.",
-"tripInviteAppBarTitle": "Trip invitation",
-  "tripInviteHeading": "You've been invited to a trip",
-  "tripInviteContinue": "Continue",
-  "tripInviteUnavailableTitle": "Invitation unavailable",
-  "tripInviteUnavailableBody": "The link may be invalid, revoked or replaced by a newer invitation.",
-  "tripInviteRetry": "Try again",
-
-  "tripQuestionnaireTitle": "Trip profile",
-  "tripQuestionnaireIntro": "This information helps the group organise the trip more easily and safely.",
-  "tripQuestionnaireYes": "Yes",
-  "tripQuestionnaireNo": "No",
-  "tripQuestionnaireEsim": "Will you have an eSIM or internet connection during the trip?",
-  "tripQuestionnaireCheckedBaggage": "Will you have checked baggage?",
-  "tripQuestionnaireCabinBaggage": "Will you have cabin baggage up to 10 kg?",
-  "tripTravellersProfileEditIntro": "Update your trip profile. All answers are optional, and you can change or withdraw them whenever you like.",
-  "tripTravellersProfileEditOptionalNote": "You can choose Yes, No or I prefer not to answer. If you withdraw a health-related answer, its associated details will be removed from your profile when you save.",
-  "tripQuestionnaireOptionalSection": "Health and accessibility",
-  "tripQuestionnairePreferNotToAnswer": "I prefer not to answer",
-  "tripQuestionnaireOptionalExplanation": "You may leave any question unanswered. Only the final confirmation of your participation is required.",
-  "tripQuestionnaireAllergies": "Allergies",
-  "tripQuestionnaireIntolerances": "Intolerances",
-  "tripQuestionnaireAccessibility": "Medical information or accessibility requirements",
-  "tripQuestionnaireEmergencySection": "Emergency contact",
-  "tripQuestionnaireEmergencyName": "Full name",
-  "tripQuestionnaireEmergencyPhone": "Phone number",
-  "tripQuestionnaireRequiredHint": "Complete all required questions and, when you answer Yes, provide the requested details.",
-  "tripQuestionnairePresenceConfirm": "I confirm that I will take part in this trip.",
-  "tripQuestionnaireSubmit": "Confirm participation",
-  "tripQuestionnaireSubmitError": "Your participation could not be confirmed. Please try again.",
-  "tripQuestionnaireRequiredLegend": "Only the participation confirmation is required",
-  "tripQuestionnaireOrganisationSection": "Organisation",
-  "tripQuestionnaireCountrySearch": "Search country",
-  "tripQuestionnaireCountrySearchHint": "Country name or calling code",
-  "tripQuestionnairePhoneHint": "Number",
-"tripQuestionnaireAllergiesQuestion": "Do you have any allergies?",
-  "tripQuestionnaireIntolerancesQuestion": "Do you have any intolerances?",
-  "tripQuestionnaireMedicalAccessibilityQuestion": "Do you have any medical conditions or accessibility requirements relevant to the trip?",
-  "tripQuestionnaireDetailsHint": "Provide details",
-  "tripQuestionnaireSafetyNoticeTitle": "Important information",
-  "tripQuestionnaireSafetyNoticeBody": "Health and accessibility information is optional. If you choose to provide it, it is currently shared with other trip participants for organisational purposes. You can edit or remove it from your trip profile.",
-"tripCreatedInviteShareSubject": "Invitation to {tripName}",
-  "@tripCreatedInviteShareSubject": {
-    "placeholders": {
-      "tripName": {
-        "type": "String"
-      }
-    }
-  },
-  "tripCreatedInviteShareText": "Join the trip {tripName} on Amaterasu Trip.\nOpen this invitation:\n{link}",
-  "@tripCreatedInviteShareText": {
-    "placeholders": {
-      "tripName": {
-        "type": "String"
-      },
-      "link": {
-        "type": "String"
-      }
-    }
-  },
-  "tripCreatedInviteError": "The invitation could not be prepared. Please try again.",
-"tripTravellersSettingsIntro": "Manage trip participants, invitations and profiles.",
-  "tripTravellersInvite": "Invite traveller",
-  "tripTravellersInviteSubtitle": "Create and share a private invitation link",
-  "tripTravellersParticipants": "Participants",
-  "tripTravellersEmpty": "There are no participants in this trip yet.",
-  "tripTravellersLoadError": "Unable to load trip participants.",
-  "tripTravellersE2eeLocked": "Trip profile locked. E2EE verification is required to view or edit these details.",
-  "tripTravellersOwnerRole": "OWNER",
-  "tripTravellersTravelerRole": "TRAVELER",
-  "tripTravellersYou": "You",
-  "tripTravellersProfileComplete": "Trip profile complete",
-  "tripTravellersProfileIncomplete": "Trip profile incomplete",
-"tripTravellersSensitiveDataNotice": "The trip profile may contain sensitive information such as allergies, medical or accessibility needs and emergency contacts. This information is shared with trip participants only for organisation and assistance during the trip.",
-  "tripTravellersCopyInvite": "Copy invitation link",
-  "tripTravellersShareInvite": "Share invitation",
-  "tripTravellersRegenerateInvite": "Regenerate invitation link",
-  "tripTravellersRevokeInvite": "Revoke invitation link",
-  "tripTravellersInviteCopied": "Invitation link copied.",
-  "tripTravellersInviteRegenerated": "A new invitation link has been generated. The previous link is no longer valid.",
-  "tripTravellersInviteRevoked": "Invitation link revoked.",
-  "tripTravellersInviteActionError": "Unable to manage the invitation link.",
-  "tripTravellersRevokeInviteTitle": "Revoke the invitation link?",
-  "tripTravellersRevokeInviteBody": "Anyone with the current link will no longer be able to use it to join the trip.",
-  "tripTravellersRevoke": "Revoke",
-  "tripTravellersCancel": "Cancel",
-  "tripTravellersMembership": "Membership",
-  "tripTravellersRole": "Role",
-  "tripTravellersJoinedAt": "Member since",
-  "tripTravellersOrganisation": "Trip organisation",
-  "tripTravellersHealth": "Health and accessibility",
-  "tripTravellersEmergency": "Emergency contact",
-  "tripTravellersEsim": "eSIM / internet connection",
-  "tripTravellersCheckedBaggage": "Checked baggage",
-  "tripTravellersCabinBaggage": "10 kg cabin baggage",
-  "tripTravellersAllergies": "Allergies",
-  "tripTravellersIntolerances": "Intolerances",
-  "tripTravellersAccessibility": "Medical / accessibility information",
-  "tripTravellersEmergencyName": "Contact name",
-  "tripTravellersEmergencyPhone": "Contact phone",
-  "tripTravellersYes": "Yes",
-  "tripTravellersNo": "No",
-  "tripTravellersUnknown": "Unavailable",
-  "tripTravellersNotProvided": "Not provided",
-  "tripTravellersEditMyProfile": "Edit my trip profile",
-  "tripTravellersEditProfileTitle": "Edit trip profile",
-  "tripTravellersEditProfileNote": "This information belongs to this trip. Only you can edit your personal trip-profile information.",
-  "tripTravellersSave": "Save changes",
-  "tripTravellersProfileUpdated": "Trip profile updated.",
-  "tripTravellersProfileUpdateError": "Unable to update the trip profile.",
-  "tripTravellersRemove": "Remove from trip",
-  "tripTravellersLeave": "Leave trip",
-  "tripTravellersRemoveTitle": "Remove traveller?",
-  "tripTravellersRemoveBody": "{name} will lose access to the trip and to data shared with trip participants.",
-  "@tripTravellersRemoveBody": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "tripTravellersRemoveConfirm": "Remove",
-  "tripTravellersLeaveTitle": "Leave the trip?",
-  "tripTravellersLeaveBody": "You will lose access to the trip and to data shared with participants. You will only be able to rejoin through a new invitation.",
-  "tripTravellersLeaveConfirm": "Leave trip",
-  "tripTravellersRemovedSuccess": "Traveller removed from the trip.",
-  "tripTravellersRemoveError": "Unable to complete the operation.",
-  "tripTravellersOwnerProtected": "The OWNER cannot be removed from the trip. Any ownership change must use a dedicated transfer procedure.",
-"tripNotificationsIntro": "Choose which updates you want to receive for this trip. Preferences are personal and do not change notification settings for other travellers.",
-  "tripNotificationsMaster": "Notifications for this trip",
-  "tripNotificationsMasterSubtitle": "Turn all notifications for this trip on or off",
-  "tripNotificationsAccessDenied": "You do not have access to this trip's notification settings.",
-  "tripNotificationsSaveError": "Unable to save notification preferences.",
-  "tripNotificationsPermissionDenied": "Notification permission is not enabled on this device.",
-  "tripNotificationsSystemPermission": "Android notification permission",
-  "tripNotificationsSystemPermissionBlocked": "Android is blocking app notifications. Your preferences will remain saved, but notifications cannot be shown until permission is enabled again.",
-  "tripNotificationsOpenAndroidSettings": "Open Android settings",
-
-  "tripNotificationsTimingSection": "Dates, itinerary and bookings",
-  "tripNotificationsPlanningSection": "Planning and expenses",
-  "tripNotificationsGroupSection": "Group and collaboration",
-  "tripNotificationsContentSection": "Content and memories",
-  "tripNotificationsSystemSection": "Trip and services",
-
-  "tripNotificationsDepartureDates": "Departure and trip dates",
-  "tripNotificationsDepartureDatesSubtitle": "Reminders for departure, return and important changes to trip dates",
-  "tripNotificationsItineraryReminders": "Itinerary reminders",
-  "tripNotificationsItineraryRemindersSubtitle": "Alerts for upcoming itinerary activities and appointments",
-  "tripNotificationsItineraryUpdates": "Itinerary changes",
-  "tripNotificationsItineraryUpdatesSubtitle": "Additions, changes and removals in the shared itinerary",
-  "tripNotificationsBookingReminders": "Bookings to make",
-  "tripNotificationsBookingRemindersSubtitle": "Deadlines and booking windows for reservations that need to be completed in advance",
-  "tripNotificationsBookingUpdates": "Bookings and tickets",
-  "tripNotificationsBookingUpdatesSubtitle": "Updates about bookings, tickets and travel documents",
-
-  "tripNotificationsBucketList": "Bucket List",
-  "tripNotificationsBucketListSubtitle": "New items and changes to the Bucket List",
-  "tripNotificationsBucketListVotes": "Bucket List voting",
-  "tripNotificationsBucketListVotesSubtitle": "New votes and changes to group priorities",
-  "tripNotificationsBudget": "Budget",
-  "tripNotificationsBudgetSubtitle": "Important updates to the trip budget",
-  "tripNotificationsNewExpenses": "New expenses",
-  "tripNotificationsNewExpensesSubtitle": "Alerts when a new group expense is recorded",
-  "tripNotificationsExpenseChanges": "Expense changes",
-  "tripNotificationsExpenseChangesSubtitle": "Changes or removals of expenses that affect the group",
-  "tripNotificationsReimbursements": "Reimbursements and balances",
-  "tripNotificationsReimbursementsSubtitle": "Recorded reimbursements and changes to balances between travellers",
-
-  "tripNotificationsTravellers": "Travellers",
-  "tripNotificationsTravellersSubtitle": "Participants joining, leaving or being removed from the trip",
-  "tripNotificationsInvitations": "Invitations",
-  "tripNotificationsInvitationsSubtitle": "Relevant updates to invitation links and invitation status",
-  "tripNotificationsRolesPermissions": "Roles and permissions",
-  "tripNotificationsRolesPermissionsSubtitle": "Changes to your role or permissions within the trip",
-  "tripNotificationsGroupActivity": "Group activity",
-  "tripNotificationsGroupActivitySubtitle": "General updates generated by other participants",
-  "tripNotificationsSharedNotes": "Shared notes",
-  "tripNotificationsSharedNotesSubtitle": "Creation and changes to shared trip notes",
-
-  "tripNotificationsMedia": "Photos and videos",
-  "tripNotificationsMediaSubtitle": "New media shared within the trip",
-  "tripNotificationsMemories": "Memories",
-  "tripNotificationsMemoriesSubtitle": "New memories and updates to saved content",
-
-  "tripNotificationsCloudArchive": "Trip archive",
-  "tripNotificationsCloudArchiveSubtitle": "Problems accessing, connecting to or using the cloud archive",
-  "tripNotificationsSync": "Synchronisation",
-  "tripNotificationsSyncSubtitle": "Errors or important data synchronisation operations",
-  "tripNotificationsTripInformationChanges": "Important trip changes",
-  "tripNotificationsTripInformationChangesSubtitle": "Changes to the name, destination, dates, currency or other key trip information",
-  "tripNotificationsTripStatus": "Trip status",
-  "tripNotificationsTripStatusSubtitle": "Closing, reopening or other changes to the trip status",
-  "tripNotificationsImportantCommunications": "Important communications",
-  "tripNotificationsImportantCommunicationsSubtitle": "Critical alerts needed for organisation, safety or the correct use of the trip",
-"tripPrivacyAccessSection": "Access and invitations",
-  "tripPrivacyAccessPrivateDetail": "This trip is private. Only authorised trip members can access it. Amaterasu does not provide a \"public trip\" mode: the invitation link only starts the joining process and does not automatically make someone a member.",
-  "tripPrivacyInviteStatusChecking": "Checking",
-  "tripPrivacyInviteStatusMissing": "Not created yet",
-  "tripPrivacyInviteStatusActive": "Active",
-  "tripPrivacyInviteStatusRevoked": "Revoked",
-  "tripPrivacyInviteStatusUnavailable": "Status unavailable",
-  "tripPrivacyInviteLinkWithStatus": "Status: {status} · create, copy, share, regenerate or revoke the link from the Travellers section",
-  "@tripPrivacyInviteLinkWithStatus": {
-    "placeholders": {
-      "status": {
-        "type": "String"
-      }
-    }
-  },
-
-  "tripPrivacyProfileSection": "Trip profile data",
-  "tripPrivacyProfileData": "Travellers' trip profiles",
-  "tripPrivacyProfileDataSubtitle": "Allergies, intolerances, accessibility and emergency contacts",
-
-  "tripPrivacyRolesSection": "Roles and permissions",
-  "tripPrivacyRolesCurrentAllowed": "Your role is {role}. At this stage OWNER and TRAVELER have the same trip permissions. Authorisation is determined by the trip's central access policy.",
-  "@tripPrivacyRolesCurrentAllowed": {
-    "placeholders": {
-      "role": {
-        "type": "String"
-      }
-    }
-  },
-  "tripPrivacyRolesCurrentReadOnly": "Your role is {role}. You can view this information, but the trip policy does not authorise you to manage roles and permissions.",
-  "@tripPrivacyRolesCurrentReadOnly": {
-    "placeholders": {
-      "role": {
-        "type": "String"
-      }
-    }
-  },
-
-  "tripPrivacyExternalSection": "External sharing",
-  "tripPrivacyExternalArchive": "External cloud archive",
-  "tripPrivacyExternalArchiveNone": "No external cloud archive is currently linked to this trip.",
-  "tripPrivacyExternalArchiveConnected": "{provider} is linked to this trip.",
-  "@tripPrivacyExternalArchiveConnected": {
-    "placeholders": {
-      "provider": {
-        "type": "String"
-      }
-    }
-  },
-  "tripPrivacyExternalControl": "Amaterasu invitation links and the cloud archive are separate. Files, available storage and Google Drive, OneDrive or Dropbox permissions remain under the control of the external provider account and are not made public by Amaterasu.",
-
-  "tripPrivacyAccessDenied": "You do not have access to this trip's privacy and sharing settings.",
-  "tripPrivacyLoadError": "Unable to load privacy and sharing settings.",
-"tripManagementFinalConfigureArchive": "Configure storage",
-  "tripManagementFinalConfigureArchiveSubtitle": "Link personal cloud storage to this trip",
-
-  "tripManagementFinalArchiveOwnershipTitle": "Personal cloud storage",
-  "tripManagementFinalArchiveOwnershipBody": "Amaterasu stores the link to the archive, but the files remain under the control of the user's Google Drive, OneDrive or Dropbox account.",
-
-  "tripManagementFinalArchiveProviderUnsupported": "This provider is registered for the trip, but verification, opening and reconnection are not yet available. You can still change the archive.",
-
-  "tripManagementFinalStatusSection": "Trip status",
-  "tripManagementFinalTripStatus": "Status",
-  "tripManagementFinalStatusActive": "Active",
-  "tripManagementFinalStatusClosed": "Archived",
-  "tripManagementFinalStatusActiveBody": "The trip is active and appears normally among current or upcoming trips.",
-  "tripManagementFinalStatusClosedBody": "The trip is archived, but remains fully viewable and editable.",
-  "tripManagementFinalArchiveAction": "Archive trip",
-  "tripManagementFinalArchiveActionSubtitle": "Move the trip to archived trips without preventing viewing or editing",
-  "tripManagementFinalReactivateAction": "Reactivate trip",
-  "tripManagementFinalReactivateActionSubtitle": "Return the trip to active status",
-  "tripManagementFinalArchiveConfirmTitle": "Archive this trip?",
-  "tripManagementFinalArchiveConfirmBody": "The trip will be marked as archived. All data will remain available and you will still be able to view and edit it.",
-  "tripManagementFinalArchiveConfirmAction": "Archive",
-  "tripManagementFinalReactivateConfirmTitle": "Reactivate this trip?",
-  "tripManagementFinalReactivateConfirmBody": "The trip will return to active status without losing or changing any content.",
-  "tripManagementFinalReactivateConfirmAction": "Reactivate",
-  "tripManagementFinalStatusUpdated": "Trip status updated",
-
-  "tripManagementFinalOperationsSection": "Operations",
-  "tripManagementFinalDuplicateConfirmTitle": "Duplicate this trip?",
-  "tripManagementFinalDuplicateConfirmBody": "Amaterasu will create a new trip by copying the trip document and all Firestore content stored in its subcollections, including subcollections added in the future. Members, invitations, trip profiles, Drive/OneDrive/Dropbox storage, file-backed cover references and external file references will not be copied. The new trip will be active and the person creating the duplicate will be its only initial member.",
-  "tripManagementFinalDuplicateConfirmAction": "Duplicate",
-  "tripManagementFinalDuplicateCopyName": "Copy of {name}",
-  "@tripManagementFinalDuplicateCopyName": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "tripManagementFinalDuplicateSuccessTitle": "Trip duplicated",
-  "tripManagementFinalDuplicateSuccessBody": "The copy \"{name}\" was created successfully.",
-  "@tripManagementFinalDuplicateSuccessBody": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "tripManagementFinalDuplicateOpen": "Open copy",
-  "tripManagementFinalStayHere": "Stay here",
-
-  "tripManagementFinalDangerSection": "Danger zone",
-  "tripManagementFinalDeleteCloudWarning": "Deleting the trip from Amaterasu does NOT delete personal files stored in Google Drive, OneDrive or Dropbox. Those files remain under the control of the external cloud account.",
-  "tripManagementFinalDeleteConfirmInstruction": "To confirm permanent deletion, type \"{name}\" exactly.",
-  "@tripManagementFinalDeleteConfirmInstruction": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "tripManagementFinalDeleteInputLabel": "Trip name",
-
-  "tripManagementFinalAccessDenied": "You do not have access to manage this trip.",
-  "accountE2eeDeviceTitle": "Device security",
-  "accountE2eeDeviceSubtitle": "Protect access to your data",
-  "accountE2eeDeviceExplanation": "This device is not yet authorised to read protected data. You can prepare a request, but approval from an already trusted device or secure recovery is still required.",
-  "accountE2eeDeviceConsentTitle": "Prepare a request?",
-  "accountE2eeDeviceConsentText": "Keys will be prepared and stored on this device. This does not grant access to protected information or authorise the device. This feature is still experimental.",
-  "accountE2eeDevicePrepare": "Prepare request",
-  "accountE2eeDevicePending": "Awaiting authorisation",
-  "accountE2eeDeviceCopy": "Copy code",
-  "accountE2eeDeviceCopied": "Code copied",
-  "accountE2eeDeviceUnavailable": "Secure device management is not yet available on the Web. Simply signing in does not grant access to protected information.",
-  "accountE2eeDeviceError": "Unable to complete this operation. Check your account verification or the security status of this device.",
-  "accountE2eePinChecking": "Checking device security...",
-  "accountE2eePinPresent": "A locally trusted identity is stored. Access to protected data still requires security checks.",
-  "accountE2eePinMissing": "This device does not yet have a verified trusted identity.",
-  "accountE2eePinUnavailable": "Unable to verify the local identity. Access to protected data remains blocked."
-,
-  "accountE2eeQrScan": "Scan a code",
-  "accountE2eeQrScanTitle": "Scan a code",
-  "accountE2eeQrCameraTitle": "Use the camera?",
-  "accountE2eeQrCameraText": "Amaterasu will use the camera to read a code. Scanning does not automatically authorise the device.",
-  "accountE2eeQrContinue": "Understood",
-  "accountE2eeQrInvalid": "This code is invalid, expired or belongs to another account. Prepare a new request if necessary.",
-  "accountE2eeQrReadOnly": "Code recognised. Authorising a device still requires cryptographic signature verification. No access has been granted.",
-  "accountE2eeQrCameraError": "Unable to access the camera. Check your device permissions.",
-  "accountE2eeQrHint": "Position the code inside the frame. Scanning does not grant access to data.",
-  "accountE2eeQrRemaining": "Expires in",
-  "accountE2eeQrExpired": "This code has expired. Generate a new request.",
-  "accountE2eeQrRegenerate": "Regenerate request",
-  "accountE2eeQrPendingHint": "Show this code to another already trusted device. A device cannot authorise itself.",
-  "accountE2eeQrResultTitle": "Code verification",
-  "accountE2eeQrSelfScan": "You scanned the code belonging to this same device. For security reasons, it cannot authorise itself.",
-  "accountE2eeQrWebNotice": "Secure browser activation and recovery are still being developed. Signing in alone does not authorise a device.",
-  "accountRootTitle": "First trusted device",
-  "accountRootAvailable": "This account has no registered protected identity yet. You can activate the first device here, including directly in a browser.",
-  "accountRootActive": "The initial identity has been verified on this device. The signature and local keys match the trusted root.",
-  "accountRootRecoveryNeeded": "This account already has a protected identity. This device requires approval or independently verified recovery.",
-  "accountRootBlocked": "The local identity does not match the registered identity, or required information is missing. Protected access remains blocked.",
-  "accountRootVerify": "Sign in with a verified account to configure protection.",
-  "accountRootChecking": "Checking protected identity...",
-  "accountRootExperimental": "Experimental feature: full recovery and access to encrypted health information are not enabled yet.",
-  "accountRootRecoveryTitle": "Save your recovery code",
-  "accountRootRecoveryWarning": "This code is secret. Keep it somewhere safe outside the app. Never share it. An encrypted copy of the keys will be stored online, but automatic recovery is not available yet. Losing the code or browser data may permanently prevent access.",
-  "accountRootRecoveryConfirm": "I have stored the code securely and understand the risk.",
-  "accountRootActivate": "Activate this device",
-  "accountRootActivated": "First identity registered and verified. Keep your recovery code safe.",
-  "accountRootError": "Unable to complete verification or activation. Check your connection and sign in again if your session is not recent. Do not clear local data.",
-  "accountRootCancel": "Cancel",
-  "accountRootClose": "Close",
-  "accountRootRefresh": "Refresh status",
-  "accountWebDevicesInfo": "Trusted device management in the browser is being prepared. No approval or QR scanning is active here. First-browser activation will become available after Firestore rules and secure recovery have been verified.",
-  "accountRecoveryPreflightTitle": "Device and recovery",
-  "accountRecoveryPreflightDescription": "Prepare this device and use your recovery code to sign the request. Registration does not automatically unlock encrypted data.",
-  "accountRecoveryPreflightPending": "Local identity ready. This device still needs authorisation.",
-  "accountRecoveryPreflightPrepare": "Prepare this device",
-  "accountRecoveryPreflightVerify": "Request authorisation with recovery code",
-  "accountRecoveryPreflightVerified": "Registration confirmed by the server. Encrypted data remains locked until permissions have been verified.",
-  "accountRecoveryPreflightError": "Authorisation could not be completed. Check your connection and recent sign-in. The server service may be unavailable.",
-  "accountRecoveryPreflightDialog": "Recovery code verification",
-  "accountRecoveryPreflightHelp": "The code stays on this device. Only a signed cryptographic proof is sent to Firebase.",
-  "accountRecoveryPreflightInput": "Recovery code",
-  "accountRecoveryPreflightCancel": "Cancel",
-  "accountRecoveryPreflightUnavailable": "Security status unavailable. Protected operations remain blocked."
+    "tripInviteAppBarTitle":  "Trip invitation",
+    "tripInviteHeading":  "You\u0027ve been invited to a trip",
+    "tripInviteContinue":  "Continue",
+    "tripInviteUnavailableTitle":  "Invitation unavailable",
+    "tripInviteUnavailableBody":  "The link may be invalid, revoked or replaced by a newer invitation.",
+    "tripInviteRetry":  "Try again",
+    "tripQuestionnaireTitle":  "Trip profile",
+    "tripQuestionnaireIntro":  "This information helps the group organise the trip more easily and safely.",
+    "tripQuestionnaireYes":  "Yes",
+    "tripQuestionnaireNo":  "No",
+    "tripQuestionnaireEsim":  "Will you have an eSIM or internet connection during the trip?",
+    "tripQuestionnaireCheckedBaggage":  "Will you have checked baggage?",
+    "tripQuestionnaireCabinBaggage":  "Will you have cabin baggage up to 10 kg?",
+    "tripTravellersProfileEditIntro":  "Update your trip profile. All answers are optional, and you can change or withdraw them whenever you like.",
+    "tripTravellersProfileEditOptionalNote":  "You can choose Yes, No or I prefer not to answer. If you withdraw a health-related answer, its associated details will be removed from your profile when you save.",
+    "tripQuestionnaireOptionalSection":  "Health and accessibility",
+    "tripQuestionnairePreferNotToAnswer":  "I prefer not to answer",
+    "tripQuestionnaireOptionalExplanation":  "You may leave any question unanswered. Only the final confirmation of your participation is required.",
+    "tripQuestionnaireAllergies":  "Allergies",
+    "tripQuestionnaireIntolerances":  "Intolerances",
+    "tripQuestionnaireAccessibility":  "Medical information or accessibility requirements",
+    "tripQuestionnaireEmergencySection":  "Emergency contact",
+    "tripQuestionnaireEmergencyName":  "Full name",
+    "tripQuestionnaireEmergencyPhone":  "Phone number",
+    "tripQuestionnaireRequiredHint":  "Complete all required questions and, when you answer Yes, provide the requested details.",
+    "tripQuestionnairePresenceConfirm":  "I confirm that I will take part in this trip.",
+    "tripQuestionnaireSubmit":  "Confirm participation",
+    "tripQuestionnaireSubmitError":  "Your participation could not be confirmed. Please try again.",
+    "tripQuestionnaireRequiredLegend":  "Only the participation confirmation is required",
+    "tripQuestionnaireOrganisationSection":  "Organisation",
+    "tripQuestionnaireCountrySearch":  "Search country",
+    "tripQuestionnaireCountrySearchHint":  "Country name or calling code",
+    "tripQuestionnairePhoneHint":  "Number",
+    "tripQuestionnaireAllergiesQuestion":  "Do you have any allergies?",
+    "tripQuestionnaireIntolerancesQuestion":  "Do you have any intolerances?",
+    "tripQuestionnaireMedicalAccessibilityQuestion":  "Do you have any medical conditions or accessibility requirements relevant to the trip?",
+    "tripQuestionnaireDetailsHint":  "Provide details",
+    "tripQuestionnaireSafetyNoticeTitle":  "Important information",
+    "tripQuestionnaireSafetyNoticeBody":  "Health and accessibility information is optional. If you choose to provide it, it is currently shared with other trip participants for organisational purposes. You can edit or remove it from your trip profile.",
+    "tripCreatedInviteShareSubject":  "Invitation to {tripName}",
+    "@tripCreatedInviteShareSubject":  {
+                                           "placeholders":  {
+                                                                "tripName":  {
+                                                                                 "type":  "String"
+                                                                             }
+                                                            }
+                                       },
+    "tripCreatedInviteShareText":  "Join the trip {tripName} on Amaterasu Trip.\nOpen this invitation:\n{link}",
+    "@tripCreatedInviteShareText":  {
+                                        "placeholders":  {
+                                                             "tripName":  {
+                                                                              "type":  "String"
+                                                                          },
+                                                             "link":  {
+                                                                          "type":  "String"
+                                                                      }
+                                                         }
+                                    },
+    "tripCreatedInviteError":  "The invitation could not be prepared. Please try again.",
+    "tripTravellersSettingsIntro":  "Manage trip participants, invitations and profiles.",
+    "tripTravellersInvite":  "Invite traveller",
+    "tripTravellersInviteSubtitle":  "Create and share a private invitation link",
+    "tripTravellersParticipants":  "Participants",
+    "tripTravellersEmpty":  "There are no participants in this trip yet.",
+    "tripTravellersLoadError":  "Unable to load trip participants.",
+    "tripTravellersOwnerRole":  "OWNER",
+    "tripTravellersTravelerRole":  "TRAVELER",
+    "tripTravellersYou":  "You",
+    "tripTravellersProfileComplete":  "Trip profile complete",
+    "tripTravellersProfileIncomplete":  "Trip profile incomplete",
+    "tripTravellersSensitiveDataNotice":  "The trip profile may contain sensitive information such as allergies, medical or accessibility needs and emergency contacts. This information is shared with trip participants only for organisation and assistance during the trip.",
+    "tripTravellersCopyInvite":  "Copy invitation link",
+    "tripTravellersShareInvite":  "Share invitation",
+    "tripTravellersRegenerateInvite":  "Regenerate invitation link",
+    "tripTravellersRevokeInvite":  "Revoke invitation link",
+    "tripTravellersInviteCopied":  "Invitation link copied.",
+    "tripTravellersInviteRegenerated":  "A new invitation link has been generated. The previous link is no longer valid.",
+    "tripTravellersInviteRevoked":  "Invitation link revoked.",
+    "tripTravellersInviteActionError":  "Unable to manage the invitation link.",
+    "tripTravellersRevokeInviteTitle":  "Revoke the invitation link?",
+    "tripTravellersRevokeInviteBody":  "Anyone with the current link will no longer be able to use it to join the trip.",
+    "tripTravellersRevoke":  "Revoke",
+    "tripTravellersCancel":  "Cancel",
+    "tripTravellersMembership":  "Membership",
+    "tripTravellersRole":  "Role",
+    "tripTravellersJoinedAt":  "Member since",
+    "tripTravellersOrganisation":  "Trip organisation",
+    "tripTravellersHealth":  "Health and accessibility",
+    "tripTravellersEmergency":  "Emergency contact",
+    "tripTravellersEsim":  "eSIM / internet connection",
+    "tripTravellersCheckedBaggage":  "Checked baggage",
+    "tripTravellersCabinBaggage":  "10 kg cabin baggage",
+    "tripTravellersAllergies":  "Allergies",
+    "tripTravellersIntolerances":  "Intolerances",
+    "tripTravellersAccessibility":  "Medical / accessibility information",
+    "tripTravellersEmergencyName":  "Contact name",
+    "tripTravellersEmergencyPhone":  "Contact phone",
+    "tripTravellersYes":  "Yes",
+    "tripTravellersNo":  "No",
+    "tripTravellersUnknown":  "Unavailable",
+    "tripTravellersNotProvided":  "Not provided",
+    "tripTravellersEditMyProfile":  "Edit my trip profile",
+    "tripTravellersEditProfileTitle":  "Edit trip profile",
+    "tripTravellersEditProfileNote":  "This information belongs to this trip. Only you can edit your personal trip-profile information.",
+    "tripTravellersSave":  "Save changes",
+    "tripTravellersProfileUpdated":  "Trip profile updated.",
+    "tripTravellersProfileUpdateError":  "Unable to update the trip profile.",
+    "tripTravellersRemove":  "Remove from trip",
+    "tripTravellersLeave":  "Leave trip",
+    "tripTravellersRemoveTitle":  "Remove traveller?",
+    "tripTravellersRemoveBody":  "{name} will lose access to the trip and to data shared with trip participants.",
+    "@tripTravellersRemoveBody":  {
+                                      "placeholders":  {
+                                                           "name":  {
+                                                                        "type":  "String"
+                                                                    }
+                                                       }
+                                  },
+    "tripTravellersRemoveConfirm":  "Remove",
+    "tripTravellersLeaveTitle":  "Leave the trip?",
+    "tripTravellersLeaveBody":  "You will lose access to the trip and to data shared with participants. You will only be able to rejoin through a new invitation.",
+    "tripTravellersLeaveConfirm":  "Leave trip",
+    "tripTravellersRemovedSuccess":  "Traveller removed from the trip.",
+    "tripTravellersRemoveError":  "Unable to complete the operation.",
+    "tripTravellersOwnerProtected":  "The OWNER cannot be removed from the trip. Any ownership change must use a dedicated transfer procedure.",
+    "tripNotificationsIntro":  "Choose which updates you want to receive for this trip. Preferences are personal and do not change notification settings for other travellers.",
+    "tripNotificationsMaster":  "Notifications for this trip",
+    "tripNotificationsMasterSubtitle":  "Turn all notifications for this trip on or off",
+    "tripNotificationsAccessDenied":  "You do not have access to this trip\u0027s notification settings.",
+    "tripNotificationsSaveError":  "Unable to save notification preferences.",
+    "tripNotificationsPermissionDenied":  "Notification permission is not enabled on this device.",
+    "tripNotificationsSystemPermission":  "Android notification permission",
+    "tripNotificationsSystemPermissionBlocked":  "Android is blocking app notifications. Your preferences will remain saved, but notifications cannot be shown until permission is enabled again.",
+    "tripNotificationsOpenAndroidSettings":  "Open Android settings",
+    "tripNotificationsTimingSection":  "Dates, itinerary and bookings",
+    "tripNotificationsPlanningSection":  "Planning and expenses",
+    "tripNotificationsGroupSection":  "Group and collaboration",
+    "tripNotificationsContentSection":  "Content and memories",
+    "tripNotificationsSystemSection":  "Trip and services",
+    "tripNotificationsDepartureDates":  "Departure and trip dates",
+    "tripNotificationsDepartureDatesSubtitle":  "Reminders for departure, return and important changes to trip dates",
+    "tripNotificationsItineraryReminders":  "Itinerary reminders",
+    "tripNotificationsItineraryRemindersSubtitle":  "Alerts for upcoming itinerary activities and appointments",
+    "tripNotificationsItineraryUpdates":  "Itinerary changes",
+    "tripNotificationsItineraryUpdatesSubtitle":  "Additions, changes and removals in the shared itinerary",
+    "tripNotificationsBookingReminders":  "Bookings to make",
+    "tripNotificationsBookingRemindersSubtitle":  "Deadlines and booking windows for reservations that need to be completed in advance",
+    "tripNotificationsBookingUpdates":  "Bookings and tickets",
+    "tripNotificationsBookingUpdatesSubtitle":  "Updates about bookings, tickets and travel documents",
+    "tripNotificationsBucketList":  "Bucket List",
+    "tripNotificationsBucketListSubtitle":  "New items and changes to the Bucket List",
+    "tripNotificationsBucketListVotes":  "Bucket List voting",
+    "tripNotificationsBucketListVotesSubtitle":  "New votes and changes to group priorities",
+    "tripNotificationsBudget":  "Budget",
+    "tripNotificationsBudgetSubtitle":  "Important updates to the trip budget",
+    "tripNotificationsNewExpenses":  "New expenses",
+    "tripNotificationsNewExpensesSubtitle":  "Alerts when a new group expense is recorded",
+    "tripNotificationsExpenseChanges":  "Expense changes",
+    "tripNotificationsExpenseChangesSubtitle":  "Changes or removals of expenses that affect the group",
+    "tripNotificationsReimbursements":  "Reimbursements and balances",
+    "tripNotificationsReimbursementsSubtitle":  "Recorded reimbursements and changes to balances between travellers",
+    "tripNotificationsTravellers":  "Travellers",
+    "tripNotificationsTravellersSubtitle":  "Participants joining, leaving or being removed from the trip",
+    "tripNotificationsInvitations":  "Invitations",
+    "tripNotificationsInvitationsSubtitle":  "Relevant updates to invitation links and invitation status",
+    "tripNotificationsRolesPermissions":  "Roles and permissions",
+    "tripNotificationsRolesPermissionsSubtitle":  "Changes to your role or permissions within the trip",
+    "tripNotificationsGroupActivity":  "Group activity",
+    "tripNotificationsGroupActivitySubtitle":  "General updates generated by other participants",
+    "tripNotificationsSharedNotes":  "Shared notes",
+    "tripNotificationsSharedNotesSubtitle":  "Creation and changes to shared trip notes",
+    "tripNotificationsMedia":  "Photos and videos",
+    "tripNotificationsMediaSubtitle":  "New media shared within the trip",
+    "tripNotificationsMemories":  "Memories",
+    "tripNotificationsMemoriesSubtitle":  "New memories and updates to saved content",
+    "tripNotificationsCloudArchive":  "Trip archive",
+    "tripNotificationsCloudArchiveSubtitle":  "Problems accessing, connecting to or using the cloud archive",
+    "tripNotificationsSync":  "Synchronisation",
+    "tripNotificationsSyncSubtitle":  "Errors or important data synchronisation operations",
+    "tripNotificationsTripInformationChanges":  "Important trip changes",
+    "tripNotificationsTripInformationChangesSubtitle":  "Changes to the name, destination, dates, currency or other key trip information",
+    "tripNotificationsTripStatus":  "Trip status",
+    "tripNotificationsTripStatusSubtitle":  "Closing, reopening or other changes to the trip status",
+    "tripNotificationsImportantCommunications":  "Important communications",
+    "tripNotificationsImportantCommunicationsSubtitle":  "Critical alerts needed for organisation, safety or the correct use of the trip",
+    "tripPrivacyAccessSection":  "Access and invitations",
+    "tripPrivacyAccessPrivateDetail":  "This trip is private. Only authorised trip members can access it. Amaterasu does not provide a \"public trip\" mode: the invitation link only starts the joining process and does not automatically make someone a member.",
+    "tripPrivacyInviteStatusChecking":  "Checking",
+    "tripPrivacyInviteStatusMissing":  "Not created yet",
+    "tripPrivacyInviteStatusActive":  "Active",
+    "tripPrivacyInviteStatusRevoked":  "Revoked",
+    "tripPrivacyInviteStatusUnavailable":  "Status unavailable",
+    "tripPrivacyInviteLinkWithStatus":  "Status: {status} · create, copy, share, regenerate or revoke the link from the Travellers section",
+    "@tripPrivacyInviteLinkWithStatus":  {
+                                             "placeholders":  {
+                                                                  "status":  {
+                                                                                 "type":  "String"
+                                                                             }
+                                                              }
+                                         },
+    "tripPrivacyProfileSection":  "Trip profile data",
+    "tripPrivacyProfileData":  "Travellers\u0027 trip profiles",
+    "tripPrivacyProfileDataSubtitle":  "Allergies, intolerances, accessibility and emergency contacts",
+    "tripPrivacyRolesSection":  "Roles and permissions",
+    "tripPrivacyRolesCurrentAllowed":  "Your role is {role}. At this stage OWNER and TRAVELER have the same trip permissions. Authorisation is determined by the trip\u0027s central access policy.",
+    "@tripPrivacyRolesCurrentAllowed":  {
+                                            "placeholders":  {
+                                                                 "role":  {
+                                                                              "type":  "String"
+                                                                          }
+                                                             }
+                                        },
+    "tripPrivacyRolesCurrentReadOnly":  "Your role is {role}. You can view this information, but the trip policy does not authorise you to manage roles and permissions.",
+    "@tripPrivacyRolesCurrentReadOnly":  {
+                                             "placeholders":  {
+                                                                  "role":  {
+                                                                               "type":  "String"
+                                                                           }
+                                                              }
+                                         },
+    "tripPrivacyExternalSection":  "External sharing",
+    "tripPrivacyExternalArchive":  "External cloud archive",
+    "tripPrivacyExternalArchiveNone":  "No external cloud archive is currently linked to this trip.",
+    "tripPrivacyExternalArchiveConnected":  "{provider} is linked to this trip.",
+    "@tripPrivacyExternalArchiveConnected":  {
+                                                 "placeholders":  {
+                                                                      "provider":  {
+                                                                                       "type":  "String"
+                                                                                   }
+                                                                  }
+                                             },
+    "tripPrivacyExternalControl":  "Amaterasu invitation links and the cloud archive are separate. Files, available storage and Google Drive, OneDrive or Dropbox permissions remain under the control of the external provider account and are not made public by Amaterasu.",
+    "tripPrivacyAccessDenied":  "You do not have access to this trip\u0027s privacy and sharing settings.",
+    "tripPrivacyLoadError":  "Unable to load privacy and sharing settings.",
+    "tripManagementFinalConfigureArchive":  "Configure storage",
+    "tripManagementFinalConfigureArchiveSubtitle":  "Link personal cloud storage to this trip",
+    "tripManagementFinalArchiveOwnershipTitle":  "Personal cloud storage",
+    "tripManagementFinalArchiveOwnershipBody":  "Amaterasu stores the link to the archive, but the files remain under the control of the user\u0027s Google Drive, OneDrive or Dropbox account.",
+    "tripManagementFinalArchiveProviderUnsupported":  "This provider is registered for the trip, but verification, opening and reconnection are not yet available. You can still change the archive.",
+    "tripManagementFinalStatusSection":  "Trip status",
+    "tripManagementFinalTripStatus":  "Status",
+    "tripManagementFinalStatusActive":  "Active",
+    "tripManagementFinalStatusClosed":  "Archived",
+    "tripManagementFinalStatusActiveBody":  "The trip is active and appears normally among current or upcoming trips.",
+    "tripManagementFinalStatusClosedBody":  "The trip is archived, but remains fully viewable and editable.",
+    "tripManagementFinalArchiveAction":  "Archive trip",
+    "tripManagementFinalArchiveActionSubtitle":  "Move the trip to archived trips without preventing viewing or editing",
+    "tripManagementFinalReactivateAction":  "Reactivate trip",
+    "tripManagementFinalReactivateActionSubtitle":  "Return the trip to active status",
+    "tripManagementFinalArchiveConfirmTitle":  "Archive this trip?",
+    "tripManagementFinalArchiveConfirmBody":  "The trip will be marked as archived. All data will remain available and you will still be able to view and edit it.",
+    "tripManagementFinalArchiveConfirmAction":  "Archive",
+    "tripManagementFinalReactivateConfirmTitle":  "Reactivate this trip?",
+    "tripManagementFinalReactivateConfirmBody":  "The trip will return to active status without losing or changing any content.",
+    "tripManagementFinalReactivateConfirmAction":  "Reactivate",
+    "tripManagementFinalStatusUpdated":  "Trip status updated",
+    "tripManagementFinalOperationsSection":  "Operations",
+    "tripManagementFinalDuplicateConfirmTitle":  "Duplicate this trip?",
+    "tripManagementFinalDuplicateConfirmBody":  "Amaterasu will create a new trip by copying the trip document and all Firestore content stored in its subcollections, including subcollections added in the future. Members, invitations, trip profiles, Drive/OneDrive/Dropbox storage, file-backed cover references and external file references will not be copied. The new trip will be active and the person creating the duplicate will be its only initial member.",
+    "tripManagementFinalDuplicateConfirmAction":  "Duplicate",
+    "tripManagementFinalDuplicateCopyName":  "Copy of {name}",
+    "@tripManagementFinalDuplicateCopyName":  {
+                                                  "placeholders":  {
+                                                                       "name":  {
+                                                                                    "type":  "String"
+                                                                                }
+                                                                   }
+                                              },
+    "tripManagementFinalDuplicateSuccessTitle":  "Trip duplicated",
+    "tripManagementFinalDuplicateSuccessBody":  "The copy \"{name}\" was created successfully.",
+    "@tripManagementFinalDuplicateSuccessBody":  {
+                                                     "placeholders":  {
+                                                                          "name":  {
+                                                                                       "type":  "String"
+                                                                                   }
+                                                                      }
+                                                 },
+    "tripManagementFinalDuplicateOpen":  "Open copy",
+    "tripManagementFinalStayHere":  "Stay here",
+    "tripManagementFinalDangerSection":  "Danger zone",
+    "tripManagementFinalDeleteCloudWarning":  "Deleting the trip from Amaterasu does NOT delete personal files stored in Google Drive, OneDrive or Dropbox. Those files remain under the control of the external cloud account.",
+    "tripManagementFinalDeleteConfirmInstruction":  "To confirm permanent deletion, type \"{name}\" exactly.",
+    "@tripManagementFinalDeleteConfirmInstruction":  {
+                                                         "placeholders":  {
+                                                                              "name":  {
+                                                                                           "type":  "String"
+                                                                                       }
+                                                                          }
+                                                     },
+    "tripManagementFinalDeleteInputLabel":  "Trip name",
+    "tripManagementFinalAccessDenied":  "You do not have access to manage this trip."
 }

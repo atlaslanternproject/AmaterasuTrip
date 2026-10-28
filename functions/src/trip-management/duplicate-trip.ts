@@ -268,8 +268,6 @@ export const duplicateTrip = onCall(
           role: "admin",
           joinedAt:
             FieldValue.serverTimestamp(),
-          travellerProfileCompleted:
-            true,
         });
 
       return {
