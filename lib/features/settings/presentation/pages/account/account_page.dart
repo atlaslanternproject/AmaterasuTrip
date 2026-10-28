@@ -6,7 +6,6 @@ import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_email_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_password_page.dart';
-import 'package:amaterasutrip/features/settings/presentation/pages/account/account_security_content.dart';
 import 'package:amaterasutrip/features/settings/providers/account_provider_access.dart';
 
 class AccountPage extends StatefulWidget {
@@ -20,7 +19,6 @@ class _AccountPageState extends State<AccountPage> {
   bool _emailExpanded = false;
   bool _passwordExpanded = false;
   bool _deleteExpanded = false;
-  bool _recoveryExpanded = false;
 
   static const Color _backgroundColor = Color(0xFF100C0A);
   static const Color _titleColor = Color(0xFFF2E7D5);
@@ -94,21 +92,6 @@ class _AccountPageState extends State<AccountPage> {
             title: l10n.accountLinkedAccounts,
             subtitle: l10n.accountLinkedAccountsSubtitle,
             onTap: () {},
-          ),
-          const SizedBox(height: 10),
-          AmaterasuSettingsCard(
-            icon: Icons.shield_outlined,
-            title: l10n.accountRecoveryTitle,
-            subtitle: l10n.accountRecoverySubtitle,
-            isExpanded: _recoveryExpanded,
-            onTap: () {
-              setState(() {
-                _recoveryExpanded = !_recoveryExpanded;
-              });
-            },
-            children: _recoveryExpanded
-                ? const [AccountSecurityContent()]
-                : const [],
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(

@@ -100,6 +100,25 @@ class TripInviteRepository {
     );
   }
 
+  /// Accept trip membership without uploading health information.
+  Future<void> joinTripInvite({
+    required String tripId,
+    required String token,
+  }) async {
+    final callable = _functions.httpsCallable('acceptTripInvite');
+    final result = await callable.call<Map<String, dynamic>>({
+      'tripId': tripId,
+      'token': token,
+      'presenceConfirmed': true,
+    });
+
+    if (result.data['accepted'] != true ||
+        result.data['tripId'] != tripId ||
+        result.data['role'] != 'traveler') {
+      throw StateError('Invalid invitation acceptance response.');
+    }
+  }
+
   /// Legacy plaintext submission is forbidden, including empty answers.
   /// Until trusted keys are provisioned, invitation completion is blocked.
   Future<void> acceptTripInvite({

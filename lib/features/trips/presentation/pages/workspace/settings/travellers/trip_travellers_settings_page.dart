@@ -1,11 +1,13 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 import 'trip_protected_access_page.dart';
+import 'trip_profile_qr_exchange_page.dart';
 
 import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repository.dart';
 import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
@@ -118,6 +120,13 @@ class _TripTravellersSettingsPageState
         return;
       }
 
+      if (kIsWeb) {
+        await Clipboard.setData(ClipboardData(text: url));
+        if (!mounted) return;
+        _showMessage(l10n.tripTravellersInviteCopied);
+        return;
+      }
+
       await SharePlus.instance.share(
         ShareParams(
           subject: l10n.tripCreatedInviteShareSubject(tripName),
@@ -213,6 +222,13 @@ class _TripTravellersSettingsPageState
 
       _showMessage(l10n.tripTravellersInviteRegenerated);
 
+      if (kIsWeb) {
+        await Clipboard.setData(ClipboardData(text: url));
+        if (!mounted) return;
+        _showMessage(l10n.tripTravellersInviteCopied);
+        return;
+      }
+
       await SharePlus.instance.share(
         ShareParams(
           subject: l10n.tripCreatedInviteShareSubject(tripName),
@@ -269,13 +285,16 @@ class _TripTravellersSettingsPageState
           isCurrentUser: isCurrentUser,
           canManage: canManage,
           busy: _busyMemberUid == member.uid,
-          onEdit: isCurrentUser && !member.sensitiveProfileLocked
+          onEdit: isCurrentUser
               ? () {
                   Navigator.of(context).pop();
-
                   _editMyProfile(member);
                 }
               : null,
+          onProfileQr: () {
+            Navigator.of(context).pop();
+            _openProfileQr(member, isCurrentUser);
+          },
           onRemove: !member.isAdmin && (isCurrentUser || canManage)
               ? () {
                   Navigator.of(context).pop();
@@ -285,6 +304,18 @@ class _TripTravellersSettingsPageState
               : null,
         );
       },
+    );
+  }
+
+  Future<void> _openProfileQr(TripMember member, bool ownerMode) async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute(
+        builder: (_) => TripProfileQrExchangePage(
+          tripId: widget.tripId,
+          profileUid: member.uid,
+          ownerMode: ownerMode,
+        ),
+      ),
     );
   }
 
@@ -973,6 +1004,7 @@ class _MemberDetailsSheet extends StatelessWidget {
     required this.canManage,
     required this.busy,
     required this.onEdit,
+    required this.onProfileQr,
     required this.onRemove,
   });
 
@@ -981,6 +1013,7 @@ class _MemberDetailsSheet extends StatelessWidget {
   final bool canManage;
   final bool busy;
   final VoidCallback? onEdit;
+  final VoidCallback onProfileQr;
   final VoidCallback? onRemove;
 
   @override
@@ -1120,6 +1153,27 @@ class _MemberDetailsSheet extends StatelessWidget {
                 icon: const Icon(Icons.edit_rounded),
                 label: Text(l10n.tripTravellersEditMyProfile),
               ),
+            if (member.profileFormat == 'encrypted' &&
+                (isCurrentUser || member.sensitiveProfileLocked)) ...[
+              const SizedBox(height: 10),
+              OutlinedButton.icon(
+                onPressed: busy ? null : onProfileQr,
+                icon: Icon(
+                  isCurrentUser
+                      ? Icons.qr_code_rounded
+                      : Icons.qr_code_scanner_rounded,
+                ),
+                label: Text(
+                  isCurrentUser
+                      ? (Localizations.localeOf(context).languageCode == 'it'
+                            ? 'Autorizza un viaggiatore'
+                            : 'Authorize a traveler')
+                      : (Localizations.localeOf(context).languageCode == 'it'
+                            ? 'Scansiona QR per visualizzare'
+                            : 'Scan QR to view'),
+                ),
+              ),
+            ],
             if (onRemove != null) ...[
               const SizedBox(height: 10),
               OutlinedButton.icon(

@@ -395,9 +395,11 @@ export const acceptTripInvite = onCall(async (request) => {
     );
   }
 
-  // Only the encrypted envelope is allowed beyond this point. No
-  // plaintext questionnaire fields may be accepted or stored.
-  const encryptedProfile = requireEncryptedTravellerProfile(travellerProfile);
+  // Membership may be accepted without a questionnaire.
+  // Supplied health profiles must still pass encryption validation.
+  const encryptedProfile = travellerProfile == null ?
+    null :
+    requireEncryptedTravellerProfile(travellerProfile);
 
   const inviteRef = db.collection("tripInvites").doc(tripId);
   const tripRef = db.collection("trips").doc(tripId);
@@ -461,7 +463,7 @@ export const acceptTripInvite = onCall(async (request) => {
       uid,
       role: "traveler",
       joinedAt: FieldValue.serverTimestamp(),
-      travellerProfileCompleted: true,
+      travellerProfileCompleted: encryptedProfile !== null,
       travellerProfile: encryptedProfile,
     });
   });
@@ -592,6 +594,12 @@ export const listTripMembers = onCall(async (request) => {
           travellerProfileFormat: memberData.travellerProfile == null ?
             "missing" :
             (protectedProfile == null ? "legacy-redacted" : "encrypted"),
+          profileRevision: memberUid === uid ?
+            [
+              memberSnapshot.updateTime?.seconds ?? 0,
+              memberSnapshot.updateTime?.nanoseconds ?? 0,
+            ].join(":") :
+            null,
         };
       }),
   );
@@ -627,10 +635,31 @@ export const updateMyTripTravellerProfile = onCall(
     }
 
     const encryptedProfile = requireEncryptedTravellerProfile(profile);
+    const expectedRevision = request.data?.expectedProfileRevision;
+    const replaceLocked = request.data?.replaceLockedProfile === true;
+
+    if (expectedRevision !== undefined &&
+        (typeof expectedRevision !== "string" ||
+         !/^\d+:\d+$/.test(expectedRevision))) {
+      throw new HttpsError(
+        "invalid-argument",
+        "Invalid questionnaire revision.",
+      );
+    }
+
+    if (replaceLocked && expectedRevision === undefined) {
+      throw new HttpsError(
+        "invalid-argument",
+        "A profile revision is required for replacement.",
+      );
+    }
 
     const tripId = rawTripId.trim();
     const tripRef = db.collection("trips").doc(tripId);
     const memberRef = tripRef.collection("members").doc(uid);
+    const historyRef = memberRef
+      .collection("profileRecoveryHistory")
+      .doc();
 
     // Read and write inside the SAME transaction. The old implementation
     // could recreate a removed member and re-add their uid to memberUids.
@@ -655,6 +684,31 @@ export const updateMyTripTravellerProfile = onCall(
           "permission-denied",
           "An active trip membership is required.",
         );
+      }
+
+      const revision = [
+        memberSnapshot.updateTime?.seconds ?? 0,
+        memberSnapshot.updateTime?.nanoseconds ?? 0,
+      ].join(":");
+
+      if (expectedRevision !== undefined &&
+          revision !== expectedRevision) {
+        throw new HttpsError(
+          "aborted",
+          "Questionnaire changed. Reload before saving.",
+        );
+      }
+
+      if (replaceLocked &&
+          memberSnapshot.data()?.travellerProfile != null) {
+        // Archive only ciphertext or legacy record as-is.
+        // Never return old protected contents in a response.
+        transaction.set(historyRef, {
+          previousProfile: memberSnapshot.data()?.travellerProfile,
+          previousRevision: revision,
+          replacedAt: FieldValue.serverTimestamp(),
+          replacedByUid: uid,
+        });
       }
 
       transaction.update(memberRef, {

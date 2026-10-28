@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:amaterasutrip/core/security/verified_trip_profile_sessions.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -55,6 +56,7 @@ class _TripTravellerProfileEditPageState
   bool _initialized = false;
   bool _dirty = false;
   bool _saving = false;
+  bool _replaceLocked = false;
 
   // Questionnaire answers and health details are optional.
   bool get _canSave => _initialized && !_saving;
@@ -275,6 +277,234 @@ class _TripTravellerProfileEditPageState
     );
   }
 
+  String _localText(String it, String en) =>
+      Localizations.localeOf(context).languageCode == 'it' ? it : en;
+
+  Future<void> _recoverProfile() async {
+    final controller = TextEditingController();
+
+    try {
+      final recovery = await showDialog<String>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            _localText(
+              'Recupera il mio questionario',
+              'Recover my questionnaire',
+            ),
+          ),
+          content: TextField(
+            controller: controller,
+            maxLines: 3,
+            decoration: InputDecoration(
+              labelText: _localText(
+                'Codice personale di recupero',
+                'Personal recovery code',
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: Text(_localText('Annulla', 'Cancel')),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, controller.text.trim()),
+              child: Text(_localText('Recupera', 'Recover')),
+            ),
+          ],
+        ),
+      );
+
+      if (recovery == null || recovery.isEmpty || !mounted) {
+        return;
+      }
+
+      await ref
+          .read(tripMemberRepositoryProvider)
+          .recoverMyPersonalProfile(
+            tripId: widget.tripId,
+            recoveryCode: recovery,
+          );
+
+      if (!mounted) return;
+
+      ref.invalidate(tripMembersProvider(widget.tripId));
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            _localText('Questionario sbloccato.', 'Questionnaire unlocked.'),
+          ),
+        ),
+      );
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              _localText(
+                'Il codice non decifra questo questionario.',
+                'This code cannot decrypt the questionnaire.',
+              ),
+            ),
+          ),
+        );
+      }
+    } finally {
+      controller.dispose();
+    }
+  }
+
+  Future<void> _recompileProfile() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(
+          _localText(
+            'Ricompilare il questionario?',
+            'Complete a new questionnaire?',
+          ),
+        ),
+        content: Text(
+          _localText(
+            'Le vecchie risposte sono cifrate con una chiave non '
+                'disponibile su questo dispositivo. '
+                'Potrai inserire nuove risposte. Il vecchio record '
+                'verrà conservato separatamente, ma resterà necessario '
+                'possedere la sua chiave originale per recuperarlo.',
+            'Previous answers are encrypted with a key unavailable '
+                'on this device. You can enter new answers. '
+                'The previous record will be retained separately, '
+                'but its original key will still be required to read it.',
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(_localText('Annulla', 'Cancel')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(_localText('Ricompila', 'Complete again')),
+          ),
+        ],
+      ),
+    );
+
+    if (!mounted || confirmed != true) return;
+
+    setState(() {
+      _replaceLocked = true;
+      _dirty = true;
+    });
+  }
+
+  Widget _lockedPanel() {
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 460),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.lock_outline_rounded, size: 46, color: _gold),
+              const SizedBox(height: 16),
+              Text(
+                _localText(
+                  'Il tuo questionario è protetto',
+                  'Your questionnaire is protected',
+                ),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: _cream,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                _localText(
+                  'Non devi autenticarti nuovamente. '
+                      'Manca soltanto la chiave delle vecchie risposte '
+                      'su questo dispositivo.',
+                  'No second sign-in is required. '
+                      'This device is missing the key for the old answers.',
+                ),
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: _muted),
+              ),
+              const SizedBox(height: 24),
+              FilledButton.icon(
+                onPressed: _recoverProfile,
+                icon: const Icon(Icons.key_rounded),
+                label: Text(
+                  _localText(
+                    'Ho il codice di recupero',
+                    'I have a recovery code',
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextButton(
+                onPressed: _recompileProfile,
+                child: Text(
+                  _localText(
+                    'Ricompila il mio questionario',
+                    'Complete a new questionnaire',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showRecoveryCode(String code) async {
+    if (!mounted) return;
+
+    await showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        title: Text(_localText('Conserva questo codice', 'Keep this code')),
+        content: SizedBox(
+          width: 440,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                _localText(
+                  'Il questionario è stato salvato cifrato. '
+                      'Conserva questo codice in un luogo privato. '
+                      'Potrà servirti su un altro dispositivo.',
+                  'Your questionnaire was saved encrypted. '
+                      'Keep this code somewhere private. '
+                      'You may need it on another device.',
+                ),
+              ),
+              const SizedBox(height: 16),
+              SelectableText(code),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Clipboard.setData(ClipboardData(text: code)),
+            child: Text(_localText('Copia codice', 'Copy code')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
   Future<bool> _save() async {
     if (!_canSave) {
       return false;
@@ -288,34 +518,72 @@ class _TripTravellerProfileEditPageState
 
     try {
       final uid = FirebaseAuth.instance.currentUser?.uid;
+
       if (uid == null) {
-        throw StateError('Authentication is required for E2EE.');
+        throw StateError('Sign-in required.');
       }
-      final session = await VerifiedTripProfileSessions.instance.requireLease(
-        tripId: widget.tripId,
-        profileUid: uid,
-        currentUserUid: uid,
-      );
 
-      await ref
+      final members = await ref.read(tripMembersProvider(widget.tripId).future);
+
+      TripMember? myMember;
+
+      for (final member in members) {
+        if (member.uid == uid) {
+          myMember = member;
+          break;
+        }
+      }
+
+      if (myMember == null) {
+        throw StateError('Active trip membership required.');
+      }
+
+      final recoveryCode = await ref
           .read(tripMemberRepositoryProvider)
-          .updateMyTravellerProfileEncrypted(
+          .saveMyPersonalProfile(
             tripId: widget.tripId,
+            member: myMember,
             profile: _currentProfile(),
-            verifiedSession: session,
+            replaceLocked: _replaceLocked,
           );
-
       ref.invalidate(tripMembersProvider(widget.tripId));
 
       _dirty = false;
 
+      if (recoveryCode != null) {
+        await _showRecoveryCode(recoveryCode);
+      }
+
       return true;
-    } catch (_) {
+    } catch (error) {
       if (mounted) {
+        String detail;
+
+        if (error is FirebaseFunctionsException) {
+          detail = 'FIREBASE_${error.code}';
+        } else if (error is StateError) {
+          if (error.message.contains('profile revision')) {
+            detail = 'BACKEND_NON_COMPATIBILE';
+          } else if (error.message.contains('key')) {
+            detail = 'CHIAVE_E2EE_NON_DISPONIBILE';
+          } else {
+            detail = 'STATE_ERROR';
+          }
+        } else if (error is FormatException) {
+          detail = 'FORMATO_E2EE_NON_VALIDO';
+        } else {
+          detail = error.runtimeType.toString();
+        }
+
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(
-            SnackBar(content: Text(l10n.tripTravellersProfileUpdateError)),
+            SnackBar(
+              duration: const Duration(seconds: 12),
+              content: Text(
+                '${l10n.tripTravellersProfileUpdateError} [$detail]',
+              ),
+            ),
           );
       }
 
@@ -441,6 +709,10 @@ class _TripTravellerProfileEditPageState
                       );
                     }
 
+                    if (currentMember.sensitiveProfileLocked &&
+                        !_replaceLocked) {
+                      return _lockedPanel();
+                    }
                     _initialize(currentMember);
 
                     final trip = tripAsync.asData?.value;

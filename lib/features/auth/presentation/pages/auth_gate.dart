@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -88,7 +89,7 @@ class _AuthGateState extends ConsumerState<AuthGate> {
               lo stato signed-out, significa che l'utente ha appena
               effettuato login manualmente e può entrare nell'app.
             */
-            if (!rememberMe && !_sawSignedOutState) {
+            if (!kIsWeb && !rememberMe && !_sawSignedOutState) {
               if (!_signOutScheduled) {
                 _signOutScheduled = true;
 

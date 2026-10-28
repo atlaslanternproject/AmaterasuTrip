@@ -60,3 +60,7 @@ hosting/invite/*.backup_*
 
 # Local runtime configuration
 .env.local.json
+
+.bucket_list_release_web/
+
+.bucket_list_release_web/

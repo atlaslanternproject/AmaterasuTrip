@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -106,6 +107,16 @@ class _TripCreatedPageState extends ConsumerState<TripCreatedPage> {
       final url = await _ensureInvitationUrl();
 
       if (!mounted) {
+        return;
+      }
+
+      if (kIsWeb) {
+        await Clipboard.setData(ClipboardData(text: url));
+        if (!mounted) return;
+
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(l10n.tripCreatedLinkCopied)));
         return;
       }
 

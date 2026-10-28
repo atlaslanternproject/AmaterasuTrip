@@ -55,5 +55,5 @@ test("the invitation and update endpoints still require encryption", () => {
 
 test("local project version is unchanged", () => {
   const yaml = source("pubspec.yaml");
-  assert.match(yaml, /^version: 1\.7\.1\+8\s*$/m);
+  assert.match(yaml, /^version: 1\.7\.2\+9\s*$/m);
 });

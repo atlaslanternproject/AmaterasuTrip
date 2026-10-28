@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repository.dart';
-import 'package:amaterasutrip/features/trips/presentation/pages/invite/trip_traveller_questionnaire_page.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
@@ -68,7 +68,7 @@ class _TripInvitePageState extends ConsumerState<TripInvitePage> {
 
             return _InviteContent(
               invite: invite,
-              onContinue: () {
+              onContinue: () async {
                 final returnTo = Uri(
                   path: '/trip-invite/${widget.tripId}',
                   queryParameters: {'token': widget.token},
@@ -86,39 +86,37 @@ class _TripInvitePageState extends ConsumerState<TripInvitePage> {
                   return;
                 }
 
-                Navigator.of(context).push(
-                  PageRouteBuilder<void>(
-                    transitionDuration: const Duration(milliseconds: 160),
-                    reverseTransitionDuration: const Duration(
-                      milliseconds: 140,
+                try {
+                  await ref
+                      .read(tripInviteRepositoryProvider)
+                      .joinTripInvite(
+                        tripId: widget.tripId,
+                        token: widget.token,
+                      );
+                  if (!mounted) return;
+                  this.context.go('/trips/${widget.tripId}');
+                } on FirebaseFunctionsException catch (error) {
+                  if (!mounted) return;
+                  final message = switch (error.code) {
+                    'already-exists' => 'Sei gia membro del viaggio.',
+                    'permission-denied' => 'Invito non valido o revocato.',
+                    'failed-precondition' => 'Verifica la tua email.',
+                    _ => 'Impossibile confermare la partecipazione.',
+                  };
+                  ScaffoldMessenger.of(
+                    this.context,
+                  ).showSnackBar(SnackBar(content: Text(message)));
+                } catch (error) {
+                  debugPrint('AMATERASU_JOIN_ERROR_TYPE: ${error.runtimeType}');
+                  if (!mounted) return;
+                  ScaffoldMessenger.of(this.context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Impossibile confermare la partecipazione.',
+                      ),
                     ),
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        TripTravellerQuestionnairePage(
-                          tripId: widget.tripId,
-                          token: widget.token,
-                          tripName: invite.name,
-                          coverUrl: invite.coverUrl,
-                        ),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                          final curved = CurvedAnimation(
-                            parent: animation,
-                            curve: Curves.easeOutCubic,
-                          );
-
-                          return FadeTransition(
-                            opacity: curved,
-                            child: SlideTransition(
-                              position: Tween<Offset>(
-                                begin: const Offset(0, 0.025),
-                                end: Offset.zero,
-                              ).animate(curved),
-                              child: child,
-                            ),
-                          );
-                        },
-                  ),
-                );
+                  );
+                }
               },
             );
           },
@@ -214,7 +212,11 @@ class _InviteContent extends StatelessWidget {
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: onContinue,
-                child: Text(l10n.tripInviteContinue),
+                child: Text(
+                  Localizations.localeOf(context).languageCode == 'it'
+                      ? 'Partecipa al viaggio'
+                      : 'Join the trip',
+                ),
               ),
             ],
           ),

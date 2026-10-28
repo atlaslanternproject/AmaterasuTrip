@@ -28,7 +28,9 @@ class _E2eeQrScannerPageState extends State<E2eeQrScannerPage> {
       }
 
       if (!value.startsWith('amaterasu-enroll-v1:') &&
-          !value.startsWith('amaterasu-approval-v1:')) {
+          !value.startsWith('amaterasu-approval-v1:') &&
+          !value.startsWith('amaterasu-profile-request-v1:') &&
+          !value.startsWith('amaterasu-profile-grant-v1:')) {
         continue;
       }
 
