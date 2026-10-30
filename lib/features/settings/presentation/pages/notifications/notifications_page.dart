@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/notifications/notification_email_page.dart';
@@ -40,6 +41,33 @@ class _NotificationsPageState extends State<NotificationsPage> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
         children: [
+          Card(
+            color: const Color(0xFF1A1411),
+            child: ListTile(
+              leading: const Icon(
+                Icons.inbox_outlined,
+                color: Color(0xFFE28A32),
+              ),
+              title: Text(
+                l10n.inboxTitle,
+                style: const TextStyle(
+                  color: Color(0xFFF2E7D5),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              subtitle: Text(
+                l10n.inboxSubtitle,
+                style: const TextStyle(color: Color(0xFF9E9287)),
+              ),
+              trailing: const Icon(
+                Icons.chevron_right,
+                color: Color(0xFF9E9287),
+              ),
+              onTap: () => context.go('/settings/notifications/inbox'),
+            ),
+          ),
+          const SizedBox(height: 10),
+
           AmaterasuSettingsCard(
             icon: Icons.notifications_active_outlined,
             title: l10n.notificationsAppSection,

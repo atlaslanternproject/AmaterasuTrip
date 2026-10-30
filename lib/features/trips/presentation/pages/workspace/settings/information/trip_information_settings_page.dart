@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/features/trips/presentation/utils/trip_date_formatter.dart';
 import 'package:amaterasutrip/core/media/web_media_consent_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -127,13 +128,15 @@ class _TripInformationSettingsPageState
     AppLocalizations l10n,
     Trip trip,
   ) {
-    final startDate = MaterialLocalizations.of(
-      context,
-    ).formatMediumDate(trip.startDate);
+    final startDate = formatTripDateWithYear(
+      trip.startDate,
+      Localizations.localeOf(context),
+    );
 
-    final endDate = MaterialLocalizations.of(
-      context,
-    ).formatMediumDate(trip.endDate);
+    final endDate = formatTripDateWithYear(
+      trip.endDate,
+      Localizations.localeOf(context),
+    );
 
     final description = trip.description?.trim();
 

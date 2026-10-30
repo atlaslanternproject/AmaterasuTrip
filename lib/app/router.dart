@@ -46,6 +46,7 @@ import '../features/settings/presentation/pages/settings_page.dart';
 import '../features/settings/presentation/pages/profile/profile_page.dart';
 import '../features/settings/presentation/pages/language/language_page.dart';
 import '../features/settings/presentation/pages/notifications/notifications_page.dart';
+import '../core/notifications/inbox/inbox_page.dart';
 import '../features/settings/presentation/pages/account/account_page.dart';
 import '../features/settings/presentation/pages/account/account_security_recovery_page.dart';
 import '../features/settings/presentation/pages/privacy/privacy_page.dart';
@@ -219,6 +220,12 @@ final amaterasuRouter = GoRouter(
                     return const NotificationsPage();
                   },
                   routes: [
+                    GoRoute(
+                      path: 'inbox',
+                      builder: (context, state) {
+                        return const InboxPage();
+                      },
+                    ),
                     GoRoute(
                       path: 'types',
                       builder: (context, state) {

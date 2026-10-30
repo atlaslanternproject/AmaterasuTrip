@@ -3569,18 +3569,6 @@ abstract class AppLocalizations {
   /// **'Update your trip profile. All answers are optional, and you can change or withdraw them whenever you like.'**
   String get tripTravellersProfileEditIntro;
 
-  /// No description provided for @tripTravellersProfileEditOptionalNote.
-  ///
-  /// In en, this message translates to:
-  /// **'You can choose Yes, No or I prefer not to answer. If you withdraw a health-related answer, its associated details will be removed from your profile when you save.'**
-  String get tripTravellersProfileEditOptionalNote;
-
-  /// No description provided for @tripQuestionnaireOptionalSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Health and accessibility'**
-  String get tripQuestionnaireOptionalSection;
-
   /// No description provided for @tripQuestionnairePreferNotToAnswer.
   ///
   /// In en, this message translates to:
@@ -3592,30 +3580,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You may leave any question unanswered. Only the final confirmation of your participation is required.'**
   String get tripQuestionnaireOptionalExplanation;
-
-  /// No description provided for @tripQuestionnaireAllergies.
-  ///
-  /// In en, this message translates to:
-  /// **'Allergies'**
-  String get tripQuestionnaireAllergies;
-
-  /// No description provided for @tripQuestionnaireIntolerances.
-  ///
-  /// In en, this message translates to:
-  /// **'Intolerances'**
-  String get tripQuestionnaireIntolerances;
-
-  /// No description provided for @tripQuestionnaireAccessibility.
-  ///
-  /// In en, this message translates to:
-  /// **'Medical information or accessibility requirements'**
-  String get tripQuestionnaireAccessibility;
-
-  /// No description provided for @tripQuestionnaireEmergencySection.
-  ///
-  /// In en, this message translates to:
-  /// **'Emergency contact'**
-  String get tripQuestionnaireEmergencySection;
 
   /// No description provided for @tripQuestionnaireEmergencyName.
   ///
@@ -3683,24 +3647,6 @@ abstract class AppLocalizations {
   /// **'Number'**
   String get tripQuestionnairePhoneHint;
 
-  /// No description provided for @tripQuestionnaireAllergiesQuestion.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you have any allergies?'**
-  String get tripQuestionnaireAllergiesQuestion;
-
-  /// No description provided for @tripQuestionnaireIntolerancesQuestion.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you have any intolerances?'**
-  String get tripQuestionnaireIntolerancesQuestion;
-
-  /// No description provided for @tripQuestionnaireMedicalAccessibilityQuestion.
-  ///
-  /// In en, this message translates to:
-  /// **'Do you have any medical conditions or accessibility requirements relevant to the trip?'**
-  String get tripQuestionnaireMedicalAccessibilityQuestion;
-
   /// No description provided for @tripQuestionnaireDetailsHint.
   ///
   /// In en, this message translates to:
@@ -3712,12 +3658,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Important information'**
   String get tripQuestionnaireSafetyNoticeTitle;
-
-  /// No description provided for @tripQuestionnaireSafetyNoticeBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Health and accessibility information is optional. If you choose to provide it, it is currently shared with other trip participants for organisational purposes. You can edit or remove it from your trip profile.'**
-  String get tripQuestionnaireSafetyNoticeBody;
 
   /// No description provided for @tripCreatedInviteShareSubject.
   ///
@@ -3806,7 +3746,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripTravellersSensitiveDataNotice.
   ///
   /// In en, this message translates to:
-  /// **'The trip profile may contain sensitive information such as allergies, medical or accessibility needs and emergency contacts. This information is shared with trip participants only for organisation and assistance during the trip.'**
+  /// **'The trip profile contains organisational information, such as Internet connectivity and baggage preferences. Answers are visible to trip participants and can be updated by the person they belong to.'**
   String get tripTravellersSensitiveDataNotice;
 
   /// No description provided for @tripTravellersCopyInvite.
@@ -3905,18 +3845,6 @@ abstract class AppLocalizations {
   /// **'Trip organisation'**
   String get tripTravellersOrganisation;
 
-  /// No description provided for @tripTravellersHealth.
-  ///
-  /// In en, this message translates to:
-  /// **'Health and accessibility'**
-  String get tripTravellersHealth;
-
-  /// No description provided for @tripTravellersEmergency.
-  ///
-  /// In en, this message translates to:
-  /// **'Emergency contact'**
-  String get tripTravellersEmergency;
-
   /// No description provided for @tripTravellersEsim.
   ///
   /// In en, this message translates to:
@@ -3934,24 +3862,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'10 kg cabin baggage'**
   String get tripTravellersCabinBaggage;
-
-  /// No description provided for @tripTravellersAllergies.
-  ///
-  /// In en, this message translates to:
-  /// **'Allergies'**
-  String get tripTravellersAllergies;
-
-  /// No description provided for @tripTravellersIntolerances.
-  ///
-  /// In en, this message translates to:
-  /// **'Intolerances'**
-  String get tripTravellersIntolerances;
-
-  /// No description provided for @tripTravellersAccessibility.
-  ///
-  /// In en, this message translates to:
-  /// **'Medical / accessibility information'**
-  String get tripTravellersAccessibility;
 
   /// No description provided for @tripTravellersEmergencyName.
   ///
@@ -4514,7 +4424,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripPrivacyProfileDataSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Allergies, intolerances, accessibility and emergency contacts'**
+  /// **'Travellers\' organisational information'**
   String get tripPrivacyProfileDataSubtitle;
 
   /// No description provided for @tripPrivacyRolesSection.
@@ -4792,6 +4702,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You do not have access to manage this trip.'**
   String get tripManagementFinalAccessDenied;
+
+  /// No description provided for @inboxTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification center'**
+  String get inboxTitle;
+
+  /// No description provided for @inboxSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View and manage your notifications.'**
+  String get inboxSubtitle;
+
+  /// No description provided for @inboxActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inbox'**
+  String get inboxActive;
+
+  /// No description provided for @inboxArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get inboxArchived;
+
+  /// No description provided for @inboxMarkRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as read'**
+  String get inboxMarkRead;
+
+  /// No description provided for @inboxArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get inboxArchive;
+
+  /// No description provided for @inboxRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get inboxRestore;
+
+  /// No description provided for @inboxDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get inboxDelete;
+
+  /// No description provided for @inboxCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get inboxCancel;
+
+  /// No description provided for @inboxDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete notification?'**
+  String get inboxDeleteTitle;
+
+  /// No description provided for @inboxDeleteDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This notification will be removed from your list and cannot be restored.'**
+  String get inboxDeleteDescription;
+
+  /// No description provided for @inboxEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications to show.'**
+  String get inboxEmpty;
+
+  /// No description provided for @inboxEmptyArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no archived notifications.'**
+  String get inboxEmptyArchive;
+
+  /// No description provided for @inboxLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load notifications. Check your connection and try again.'**
+  String get inboxLoadError;
+
+  /// No description provided for @inboxActionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Action failed. Please try again.'**
+  String get inboxActionError;
+
+  /// No description provided for @inboxAuthenticationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to view your notifications.'**
+  String get inboxAuthenticationRequired;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

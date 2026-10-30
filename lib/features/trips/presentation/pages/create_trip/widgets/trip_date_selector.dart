@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/features/trips/presentation/utils/trip_date_formatter.dart';
 
 class TripDateSelector extends StatelessWidget {
   const TripDateSelector({
@@ -68,11 +69,9 @@ class _DateBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final materialLocalizations = MaterialLocalizations.of(context);
-
     final formattedDate = date == null
         ? '—'
-        : materialLocalizations.formatMediumDate(date!);
+        : formatTripDateWithYear(date!, Localizations.localeOf(context));
 
     return Material(
       color: Colors.transparent,

@@ -1770,28 +1770,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripTravellersProfileEditIntro => 'Aggiorna il tuo profilo viaggio. Tutte le risposte sono facoltative e puoi cambiarle o ritirarle quando vuoi.';
 
   @override
-  String get tripTravellersProfileEditOptionalNote => 'Puoi scegliere Sì, No o Preferisco non rispondere. Se ritiri una risposta sanitaria, i dettagli collegati saranno rimossi dal profilo quando salvi.';
-
-  @override
-  String get tripQuestionnaireOptionalSection => 'Salute e accessibilità';
-
-  @override
   String get tripQuestionnairePreferNotToAnswer => 'Preferisco non rispondere';
 
   @override
   String get tripQuestionnaireOptionalExplanation => 'Puoi lasciare qualsiasi domanda senza risposta. Solo la conferma finale della partecipazione è obbligatoria.';
-
-  @override
-  String get tripQuestionnaireAllergies => 'Allergie';
-
-  @override
-  String get tripQuestionnaireIntolerances => 'Intolleranze';
-
-  @override
-  String get tripQuestionnaireAccessibility => 'Informazioni mediche o esigenze di accessibilità';
-
-  @override
-  String get tripQuestionnaireEmergencySection => 'Contatto di emergenza';
 
   @override
   String get tripQuestionnaireEmergencyName => 'Nome e cognome';
@@ -1827,22 +1809,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripQuestionnairePhoneHint => 'Numero';
 
   @override
-  String get tripQuestionnaireAllergiesQuestion => 'Hai allergie?';
-
-  @override
-  String get tripQuestionnaireIntolerancesQuestion => 'Hai intolleranze?';
-
-  @override
-  String get tripQuestionnaireMedicalAccessibilityQuestion => 'Hai condizioni mediche o esigenze di accessibilità rilevanti per il viaggio?';
-
-  @override
   String get tripQuestionnaireDetailsHint => 'Specifica i dettagli';
 
   @override
   String get tripQuestionnaireSafetyNoticeTitle => 'Informazioni importanti';
-
-  @override
-  String get tripQuestionnaireSafetyNoticeBody => 'Le informazioni su salute e accessibilità sono facoltative. Se scegli di inserirle, sono attualmente condivise con gli altri partecipanti del viaggio per esigenze organizzative. Puoi modificarle o rimuoverle dal tuo profilo viaggio.';
 
   @override
   String tripCreatedInviteShareSubject(String tripName) {
@@ -1891,7 +1861,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripTravellersProfileIncomplete => 'Profilo viaggio non completato';
 
   @override
-  String get tripTravellersSensitiveDataNotice => 'Le informazioni del profilo viaggio possono includere dati sensibili come allergie, esigenze mediche o di accessibilità e contatti di emergenza. Sono condivise con i partecipanti del viaggio esclusivamente per esigenze organizzative e di assistenza durante il viaggio.';
+  String get tripTravellersSensitiveDataNotice => 'Il profilo viaggio contiene informazioni organizzative, come la disponibilità di una connessione Internet e le preferenze sui bagagli. Le risposte sono visibili ai partecipanti del viaggio e possono essere aggiornate dal rispettivo proprietario.';
 
   @override
   String get tripTravellersCopyInvite => 'Copia link invito';
@@ -1942,12 +1912,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripTravellersOrganisation => 'Organizzazione del viaggio';
 
   @override
-  String get tripTravellersHealth => 'Salute e accessibilità';
-
-  @override
-  String get tripTravellersEmergency => 'Contatto di emergenza';
-
-  @override
   String get tripTravellersEsim => 'eSIM / connessione internet';
 
   @override
@@ -1955,15 +1919,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripTravellersCabinBaggage => 'Bagaglio a mano 10 kg';
-
-  @override
-  String get tripTravellersAllergies => 'Allergie';
-
-  @override
-  String get tripTravellersIntolerances => 'Intolleranze';
-
-  @override
-  String get tripTravellersAccessibility => 'Informazioni mediche / accessibilità';
 
   @override
   String get tripTravellersEmergencyName => 'Nome contatto';
@@ -2249,7 +2204,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripPrivacyProfileData => 'Profilo viaggio dei partecipanti';
 
   @override
-  String get tripPrivacyProfileDataSubtitle => 'Allergie, intolleranze, accessibilità e contatti di emergenza';
+  String get tripPrivacyProfileDataSubtitle => 'Informazioni organizzative dei partecipanti';
 
   @override
   String get tripPrivacyRolesSection => 'Ruoli e permessi';
@@ -2400,4 +2355,52 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripManagementFinalAccessDenied => 'Non hai accesso alla gestione di questo viaggio.';
+
+  @override
+  String get inboxTitle => 'Centro notifiche';
+
+  @override
+  String get inboxSubtitle => 'Consulta e gestisci gli avvisi ricevuti.';
+
+  @override
+  String get inboxActive => 'Ricevute';
+
+  @override
+  String get inboxArchived => 'Archiviate';
+
+  @override
+  String get inboxMarkRead => 'Segna come letta';
+
+  @override
+  String get inboxArchive => 'Archivia';
+
+  @override
+  String get inboxRestore => 'Ripristina';
+
+  @override
+  String get inboxDelete => 'Elimina';
+
+  @override
+  String get inboxCancel => 'Annulla';
+
+  @override
+  String get inboxDeleteTitle => 'Eliminare la notifica?';
+
+  @override
+  String get inboxDeleteDescription => 'La notifica sarà rimossa dal tuo elenco e non potrà essere ripristinata.';
+
+  @override
+  String get inboxEmpty => 'Nessuna notifica da mostrare.';
+
+  @override
+  String get inboxEmptyArchive => 'Non hai notifiche archiviate.';
+
+  @override
+  String get inboxLoadError => 'Impossibile caricare le notifiche. Verifica la connessione e riprova.';
+
+  @override
+  String get inboxActionError => 'Operazione non riuscita. Riprova.';
+
+  @override
+  String get inboxAuthenticationRequired => 'Accedi al tuo account per vedere le notifiche.';
 }

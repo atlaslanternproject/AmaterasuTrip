@@ -126,6 +126,70 @@ service cloud.firestore {
         );
 
       allow delete: if isSelf(uid);
+
+      match /notifications/{notificationId} {
+        allow get, list: if isSelf(uid);
+
+        // Only trusted backend processes create notifications.
+        allow create: if false;
+
+        // Immutable notification content and metadata.
+        // Clients may change only their own state fields.
+        allow update: if isSelf(uid)
+          && request.resource.data.diff(resource.data)
+            .affectedKeys().hasOnly([
+              'readAt',
+              'archivedAt',
+              'deletedAt'
+            ])
+          && request.resource.data.keys() == resource.data.keys()
+          && (
+            request.resource.data.get('readAt', null) == null
+            || request.resource.data.get('readAt', null) is timestamp
+          )
+          && (
+            request.resource.data.get('archivedAt', null) == null
+            || request.resource.data.get('archivedAt', null) is timestamp
+          )
+          && (
+            request.resource.data.get('deletedAt', null) == null
+            || request.resource.data.get('deletedAt', null) is timestamp
+          )
+          && (
+            request.resource.data.get('readAt', null)
+              == resource.data.get('readAt', null)
+            || (
+              resource.data.get('readAt', null) == null
+              && request.resource.data.get('readAt', null) == request.time
+            )
+          )
+          && (
+            request.resource.data.get('archivedAt', null)
+              == resource.data.get('archivedAt', null)
+            || (
+              request.resource.data.get('archivedAt', null) == null
+              && resource.data.get('archivedAt', null) is timestamp
+            )
+            || (
+              resource.data.get('archivedAt', null) == null
+              && request.resource.data.get('archivedAt', null) == request.time
+            )
+          )
+          && (
+            request.resource.data.get('deletedAt', null)
+              == resource.data.get('deletedAt', null)
+            || (
+              resource.data.get('deletedAt', null) == null
+              && request.resource.data.get('deletedAt', null) == request.time
+            )
+          )
+          && (
+            resource.data.get('deletedAt', null) == null
+          );
+
+        // Soft deletion only; backend owns physical retention.
+        allow delete: if false;
+      }
     }
 
     // =========================================================

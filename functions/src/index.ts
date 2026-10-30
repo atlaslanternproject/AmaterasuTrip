@@ -819,3 +819,7 @@ export {
 
 export {inspectAccountDeletionTrips} from
   "./account-deletion/inspect-account-deletion-trips";
+
+export {
+  notifyTripInformationUpdated,
+} from "./notifications/trip-update-notifications.js";

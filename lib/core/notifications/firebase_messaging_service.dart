@@ -75,7 +75,6 @@ class FirebaseMessagingService {
       _token = await _messaging.getToken();
 
       if (_token != null) {
-        debugPrint('FCM TEST TOKEN: $_token');
         await _registerCurrentToken();
       } else {
         debugPrint('FCM token not available.');
@@ -88,7 +87,6 @@ class FirebaseMessagingService {
     _tokenRefreshSubscription ??= _messaging.onTokenRefresh.listen(
       (token) async {
         _token = token;
-        debugPrint('FCM TEST TOKEN REFRESHED: $token');
 
         try {
           await _registerCurrentToken();
