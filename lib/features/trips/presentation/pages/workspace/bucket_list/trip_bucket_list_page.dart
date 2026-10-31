@@ -34,6 +34,7 @@ part 'bucket_method_visible_items.dart';
 part 'bucket_method_save_activity.dart';
 part 'bucket_method_vote.dart';
 part 'bucket_method_page_view.dart';
+part 'bucket_total_count.dart';
 part 'bucket_method_preferences.dart';
 
 class TripBucketListPage extends StatefulWidget {
@@ -66,6 +67,7 @@ class _TripBucketListPageState extends State<TripBucketListPage> {
   DocumentSnapshot<Map<String, dynamic>>? _cursor;
 
   List<String> _members = [];
+  late Future<int> _totalCountFuture;
   bool _loading = true;
   bool _busy = false;
   bool _hasMore = false;
@@ -82,6 +84,7 @@ class _TripBucketListPageState extends State<TripBucketListPage> {
     _votes = BucketVoteRepository(firestore, auth);
 
     _loadBucketPreferences();
+    _totalCountFuture = _readBucketTotal();
     _refresh();
   }
 

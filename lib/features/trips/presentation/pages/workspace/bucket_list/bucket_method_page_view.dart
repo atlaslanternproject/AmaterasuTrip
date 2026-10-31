@@ -483,6 +483,31 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                       physics: const AlwaysScrollableScrollPhysics(),
                       padding: const EdgeInsets.fromLTRB(16, 14, 16, 30),
                       children: [
+                        FutureBuilder<int>(
+                          future: _totalCountFuture,
+                          builder: (context, snapshot) {
+                            final total = snapshot.data;
+
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: Text(
+                                total == null
+                                    ? _t(
+                                        'Conteggio attività…',
+                                        'Counting activities…',
+                                      )
+                                    : _t(
+                                        '\$total attività totali · ${visible.length} visualizzate',
+                                        '\$total total activities · ${visible.length} shown',
+                                      ),
+                                style: const TextStyle(
+                                  color: muted,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                         if (_hasMore)
                           Text(
                             _t(

@@ -6,6 +6,7 @@ extension _BucketMethodRefresh on _TripBucketListPageState {
     if (!mounted) return;
 
     setState(() {
+      _totalCountFuture = _readBucketTotal();
       _loading = true;
       _busy = false;
       _error = null;
