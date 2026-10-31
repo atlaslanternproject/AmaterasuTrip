@@ -7,6 +7,9 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:amaterasutrip/features/trips/models/trip.dart';
+import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_management_provider.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/models/trip_destination.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
@@ -433,6 +436,118 @@ class _TripInformationSettingsPageState
     await _saveTripInformation(trip: trip, currency: selected.label);
   }
 
+  Future<bool> _syncArchiveNameAfterSave({
+    required Trip trip,
+    required String newName,
+    required String newDestination,
+    required DateTime newStartDate,
+    required DateTime newEndDate,
+  }) async {
+    final archive = trip.cloudArchive;
+
+    if (archive == null ||
+        archive.provider != TripCloudProvider.googleDrive ||
+        archive.folderId.trim().isEmpty) {
+      return true;
+    }
+
+    final naming = ref.read(tripArchiveNamingServiceProvider);
+
+    final oldFolderName = naming.buildTripFolderName(
+      tripName: trip.name,
+      destination: trip.destinationData?.country ?? trip.destination,
+      startDate: trip.startDate,
+      endDate: trip.endDate,
+    );
+
+    // Non gestiamo automaticamente nomi personalizzati.
+    if (archive.folderName != oldFolderName) {
+      return true;
+    }
+
+    final newFolderName = naming.buildTripFolderName(
+      tripName: newName,
+      destination: newDestination,
+      startDate: newStartDate,
+      endDate: newEndDate,
+    );
+
+    if (newFolderName == archive.folderName) {
+      return true;
+    }
+
+    // Il supporto alla rinomina automatica e' per ora Web.
+    // Non aprire popup OAuth durante un salvataggio.
+    if (!kIsWeb) {
+      return false;
+    }
+
+    final driveService = ref.read(googleDriveArchiveServiceProvider);
+
+    if (!driveService.isAuthorized) {
+      return false;
+    }
+
+    try {
+      // Controllare la situazione effettiva su Google Drive.
+      final actual = await driveService.getFolder(archive.folderId);
+
+      if (actual == null) {
+        return false;
+      }
+
+      // Una rinomina manuale non deve essere sovrascritta.
+      // Se il nome nuovo e' gia' presente, invece,
+      // possiamo riconciliare una sincronizzazione incompleta.
+      final alreadyRenamed = actual.name == newFolderName;
+
+      if (!alreadyRenamed && actual.name != archive.folderName) {
+        return false;
+      }
+
+      final renamed = alreadyRenamed
+          ? actual
+          : await driveService.renameFolder(
+              folderId: archive.folderId,
+              newName: newFolderName,
+            );
+
+      final updatedArchive = TripCloudArchive(
+        provider: archive.provider,
+        folderId: archive.folderId,
+        folderName: renamed.name,
+        folderUrl: renamed.webViewLink ?? archive.folderUrl,
+        accountEmail: archive.accountEmail,
+      );
+
+      try {
+        await ref
+            .read(tripManagementRepositoryProvider)
+            .updateCloudArchive(tripId: trip.id, archive: updatedArchive);
+
+        return true;
+      } catch (_) {
+        // Se il nome e' stato cambiato da questa operazione
+        // e Firestore fallisce, proviamo a tornare indietro.
+        if (!alreadyRenamed) {
+          try {
+            await driveService.renameFolder(
+              folderId: archive.folderId,
+              newName: actual.name,
+            );
+          } catch (_) {
+            // Non nascondiamo il problema: il chiamante
+            // mostrera' che la sincronizzazione e' fallita.
+          }
+        }
+
+        return false;
+      }
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<void> _saveTripInformation({
     required Trip trip,
     String? name,
@@ -484,11 +599,33 @@ class _TripInformationSettingsPageState
             description: description ?? trip.description,
           );
 
+      final archiveSynced = await _syncArchiveNameAfterSave(
+        trip: trip,
+        newName: name ?? trip.name,
+        newDestination:
+            destination?.country ??
+            destination?.displayName ??
+            trip.destinationData?.country ??
+            trip.destination,
+        newStartDate: startDate ?? trip.startDate,
+        newEndDate: endDate ?? trip.endDate,
+      );
+
       if (!mounted) {
         return;
       }
 
-      _showMessage(l10n.tripInformationUpdated);
+      if (archiveSynced) {
+        _showMessage(l10n.tripInformationUpdated);
+      } else {
+        _showMessage(
+          Localizations.localeOf(context).languageCode == 'it'
+              ? 'Viaggio salvato. Nome archivio Drive non sincronizzato: '
+                    'ricollega Google Drive e riprova la modifica.'
+              : 'Trip saved. Drive archive name was not synchronized: '
+                    'reconnect Google Drive and retry the change.',
+        );
+      }
     } catch (_) {
       if (!mounted) {
         return;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
@@ -69,17 +70,18 @@ class _TripCloudArchivePageState extends ConsumerState<TripCloudArchivePage> {
                     Navigator.of(context).pop(_GoogleDriveLocationOption.root);
                   },
                 ),
-                const SizedBox(height: 10),
-                _LocationOptionTile(
-                  icon: Icons.folder_open_rounded,
-                  title: l10n.tripCloudGoogleDriveChooseFolder,
-                  subtitle: l10n.tripCloudGoogleDriveChooseFolderSubtitle,
-                  onTap: () {
-                    Navigator.of(
-                      context,
-                    ).pop(_GoogleDriveLocationOption.folder);
-                  },
-                ),
+                if (!kIsWeb) const SizedBox(height: 10),
+                if (!kIsWeb)
+                  _LocationOptionTile(
+                    icon: Icons.folder_open_rounded,
+                    title: l10n.tripCloudGoogleDriveChooseFolder,
+                    subtitle: l10n.tripCloudGoogleDriveChooseFolderSubtitle,
+                    onTap: () {
+                      Navigator.of(
+                        context,
+                      ).pop(_GoogleDriveLocationOption.folder);
+                    },
+                  ),
               ],
             ),
           ),

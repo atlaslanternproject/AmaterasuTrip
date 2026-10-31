@@ -88,7 +88,7 @@ class _TripManagementSettingsPageState
     try {
       final result = await ref
           .read(tripArchiveManagementServiceProvider)
-          .verify(archive);
+          .verify(archive, requestAuthorization: showSuccess);
 
       if (!mounted) {
         return;

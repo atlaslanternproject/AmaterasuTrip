@@ -1,4 +1,6 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'drive_web_authorization.dart' as web_auth;
 import 'package:googleapis/drive/v3.dart' as drive;
 import 'package:http/http.dart' as http;
 
@@ -14,6 +16,12 @@ class GoogleDriveArchiveService {
   bool get isAuthorized => _accessToken?.isNotEmpty == true;
 
   Future<GoogleDriveNativeAuthorization?> authorizeNative() async {
+    if (kIsWeb) {
+      throw UnsupportedError(
+        'Selecting existing Google Drive folders on Web is not available.',
+      );
+    }
+
     try {
       final response = await _driveChannel.invokeMapMethod<String, dynamic>(
         'authorizeDrive',
@@ -59,6 +67,19 @@ class GoogleDriveArchiveService {
   }
 
   Future<GoogleDriveNativeAuthorization?> reauthorizeNative() async {
+    if (kIsWeb) {
+      final token = await web_auth.authorizeGoogleDriveWeb();
+      _accessToken = token;
+
+      return GoogleDriveNativeAuthorization(
+        accessToken: token,
+        grantedScopes: const <String>[
+          'https://www.googleapis.com/auth/drive.file',
+        ],
+        folderId: 'root',
+      );
+    }
+
     try {
       final response = await _driveChannel.invokeMapMethod<String, dynamic>(
         'reauthorizeDrive',
@@ -95,6 +116,19 @@ class GoogleDriveArchiveService {
   }
 
   Future<GoogleDriveNativeAuthorization?> authorizeRootNative() async {
+    if (kIsWeb) {
+      final token = await web_auth.authorizeGoogleDriveWeb();
+      _accessToken = token;
+
+      return GoogleDriveNativeAuthorization(
+        accessToken: token,
+        grantedScopes: const <String>[
+          'https://www.googleapis.com/auth/drive.file',
+        ],
+        folderId: 'root',
+      );
+    }
+
     try {
       final response = await _driveChannel.invokeMapMethod<String, dynamic>(
         'authorizeDriveRoot',
@@ -129,6 +163,51 @@ class GoogleDriveArchiveService {
         code: exception.code,
         message: exception.message,
       );
+    }
+  }
+
+  Future<GoogleDriveFolder> renameFolder({
+    required String folderId,
+    required String newName,
+  }) async {
+    final id = folderId.trim();
+    final name = _normaliseFolderName(newName);
+
+    if (id.isEmpty || id == 'root') {
+      throw ArgumentError.value(folderId, 'folderId');
+    }
+
+    final existing = await getFolder(id);
+
+    if (existing == null) {
+      throw StateError('Google Drive folder not found.');
+    }
+
+    final client = _createClient();
+
+    try {
+      final api = drive.DriveApi(client);
+      final request = drive.File()..name = name;
+
+      final result = await api.files.update(
+        request,
+        id,
+        $fields: 'id,name,mimeType,webViewLink',
+      );
+
+      if (result.id != id ||
+          result.name != name ||
+          result.mimeType != 'application/vnd.google-apps.folder') {
+        throw StateError('Google Drive folder rename not confirmed.');
+      }
+
+      return GoogleDriveFolder(
+        id: id,
+        name: name,
+        webViewLink: result.webViewLink ?? existing.webViewLink,
+      );
+    } finally {
+      client.close();
     }
   }
 
