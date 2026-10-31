@@ -497,8 +497,8 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                                         'Counting activities…',
                                       )
                                     : _t(
-                                        '\$total attività totali · ${visible.length} visualizzate',
-                                        '\$total total activities · ${visible.length} shown',
+                                        '$total attività totali · ${visible.length} caricate',
+                                        '$total total activities · ${visible.length} loaded',
                                       ),
                                 style: const TextStyle(
                                   color: muted,
