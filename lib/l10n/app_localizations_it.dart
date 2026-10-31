@@ -48,9 +48,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountRecoveryNotice => 'Il recupero della password e il recupero dei dati cifrati sono due procedure differenti.';
 
   @override
-  String get notificationsWebUnavailable => 'Le notifiche push non sono ancora disponibili sul Web. Le tue preferenze salvate non verranno modificate.';
-
-  @override
   String get tripNotificationsWebUnavailable => 'Le notifiche push dei viaggi non sono ancora disponibili sul Web. Le preferenze salvate per Android rimangono invariate.';
 
   @override
@@ -225,9 +222,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settingsProfile => 'Profilo';
 
   @override
-  String get settingsNotifications => 'Notifiche';
-
-  @override
   String get settingsAccount => 'Account';
 
   @override
@@ -299,9 +293,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get settingsProfileSubtitle => 'Personalizza il tuo profilo';
-
-  @override
-  String get settingsNotificationsSubtitle => 'Gestisci le tue notifiche';
 
   @override
   String get settingsPrivacySubtitle => 'Controlla la tua privacy';
@@ -843,81 +834,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get profilePhotoRemoveError => 'Impossibile rimuovere la foto profilo.';
 
   @override
-  String get notificationsAppSection => 'Notifiche dell\'app';
-
-  @override
-  String get notificationsPush => 'Notifiche push';
-
-  @override
-  String get notificationsPushSubtitle => 'Attiva o disattiva le notifiche dell\'app';
-
-  @override
-  String get notificationsTripReminders => 'Promemoria viaggio';
-
-  @override
-  String get notificationsTripRemindersSubtitle => 'Ricevi promemoria relativi ai tuoi viaggi';
-
-  @override
-  String get notificationsItineraryReminders => 'Promemoria itinerario';
-
-  @override
-  String get notificationsItineraryRemindersSubtitle => 'Ricevi promemoria per attività, prenotazioni e tappe dell\'itinerario';
-
-  @override
-  String get notificationsTripUpdates => 'Aggiornamenti viaggio';
-
-  @override
-  String get notificationsTripUpdatesSubtitle => 'Ricevi notifiche quando vengono aggiornati i tuoi viaggi';
-
-  @override
-  String get notificationsGroupInvitations => 'Inviti ai gruppi';
-
-  @override
-  String get notificationsGroupInvitationsSubtitle => 'Ricevi notifiche quando vieni invitato a un viaggio';
-
-  @override
-  String get notificationsGroupActivity => 'Attività dei gruppi';
-
-  @override
-  String get notificationsGroupActivitySubtitle => 'Ricevi notifiche sulle attività dei gruppi di viaggio';
-
-  @override
-  String get notificationsAppUpdates => 'Aggiornamenti dell\'app';
-
-  @override
-  String get notificationsAppUpdatesSubtitle => 'Ricevi notifiche sulle novità e sugli aggiornamenti di Amaterasu Trip';
-
-  @override
-  String get notificationsImportantCommunications => 'Comunicazioni importanti';
-
-  @override
-  String get notificationsImportantCommunicationsSubtitle => 'Ricevi comunicazioni importanti relative al servizio';
-
-  @override
-  String get notificationsEmailSection => 'Comunicazioni email';
-
-  @override
-  String get notificationsEmailSubtitle => 'Gestisci le comunicazioni ricevute via email';
-
-  @override
-  String get notificationsAccountEmails => 'Comunicazioni relative all\'account';
-
-  @override
-  String get notificationsAccountEmailsSubtitle => 'Email necessarie per sicurezza, accesso e gestione dell\'account';
-
-  @override
-  String get notificationsServiceEmails => 'Comunicazioni di servizio';
-
-  @override
-  String get notificationsServiceEmailsSubtitle => 'Email necessarie per il funzionamento e l\'utilizzo del servizio';
-
-  @override
-  String get notificationsPromotionalEmails => 'Comunicazioni promozionali';
-
-  @override
-  String get notificationsPromotionalEmailsSubtitle => 'Ricevi novità, iniziative e comunicazioni promozionali di Amaterasu Trip';
-
-  @override
   String get informationApp => 'App';
 
   @override
@@ -1304,12 +1220,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripSettingsTravellersSubtitle => 'Gestisci partecipanti, inviti e ruoli';
-
-  @override
-  String get tripSettingsNotifications => 'Notifiche';
-
-  @override
-  String get tripSettingsNotificationsSubtitle => 'Gestisci le notifiche di questo viaggio';
 
   @override
   String get tripSettingsPrivacy => 'Privacy e condivisione';
@@ -2355,52 +2265,4 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripManagementFinalAccessDenied => 'Non hai accesso alla gestione di questo viaggio.';
-
-  @override
-  String get inboxTitle => 'Centro notifiche';
-
-  @override
-  String get inboxSubtitle => 'Consulta e gestisci gli avvisi ricevuti.';
-
-  @override
-  String get inboxActive => 'Ricevute';
-
-  @override
-  String get inboxArchived => 'Archiviate';
-
-  @override
-  String get inboxMarkRead => 'Segna come letta';
-
-  @override
-  String get inboxArchive => 'Archivia';
-
-  @override
-  String get inboxRestore => 'Ripristina';
-
-  @override
-  String get inboxDelete => 'Elimina';
-
-  @override
-  String get inboxCancel => 'Annulla';
-
-  @override
-  String get inboxDeleteTitle => 'Eliminare la notifica?';
-
-  @override
-  String get inboxDeleteDescription => 'La notifica sarà rimossa dal tuo elenco e non potrà essere ripristinata.';
-
-  @override
-  String get inboxEmpty => 'Nessuna notifica da mostrare.';
-
-  @override
-  String get inboxEmptyArchive => 'Non hai notifiche archiviate.';
-
-  @override
-  String get inboxLoadError => 'Impossibile caricare le notifiche. Verifica la connessione e riprova.';
-
-  @override
-  String get inboxActionError => 'Operazione non riuscita. Riprova.';
-
-  @override
-  String get inboxAuthenticationRequired => 'Accedi al tuo account per vedere le notifiche.';
 }

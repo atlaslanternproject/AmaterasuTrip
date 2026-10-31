@@ -9,10 +9,9 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'app/app.dart';
 import 'firebase_options.dart';
 import 'core/security/firebase_app_check_bootstrap.dart';
-import 'core/notifications/firebase_messaging_service.dart';
+
 import 'core/maps/google_maps_loader.dart';
 import 'dart:async';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 const bool _localFirebaseTest = bool.fromEnvironment(
   'AMATERASU_LOCAL_TEST',
@@ -62,16 +61,6 @@ Future<void> _configureFirebase() async {
   debugPrint('AMATERASU TEST: Firebase demo emulators configured.');
 }
 
-@pragma('vm:entry-point')
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  if (_localFirebaseTest) {
-    return;
-  }
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  debugPrint('FCM background message received: ${message.messageId}');
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureFirebase();
@@ -83,23 +72,18 @@ void main() async {
     // Maps must never block the initial Flutter screen.
     if (kIsWeb) {
       unawaited(
-        initializeGoogleMaps().catchError(
-          (Object error, StackTrace stackTrace) {
-            debugPrint('Google Maps initialization failed: $error');
-            debugPrintStack(stackTrace: stackTrace);
-          },
-        ),
+        initializeGoogleMaps().catchError((
+          Object error,
+          StackTrace stackTrace,
+        ) {
+          debugPrint('Google Maps initialization failed: $error');
+          debugPrintStack(stackTrace: stackTrace);
+        }),
       );
     } else {
       await initializeGoogleMaps();
     }
-    if (!kIsWeb) {
-      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-    }
   }
   debugPrint("START USER: ${FirebaseAuth.instance.currentUser?.email}");
   runApp(const ProviderScope(child: AmaterasuTripApp()));
-  if (!kIsWeb && !_localFirebaseTest) {
-    unawaited(FirebaseMessagingService.instance.initialize());
-  }
 }

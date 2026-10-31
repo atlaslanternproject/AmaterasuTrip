@@ -64,9 +64,6 @@ service cloud.firestore {
           'updatedAt',
           'photoUrl',
           'photoPath',
-          'fcmToken',
-          'notificationLocale',
-          'fcmUpdatedAt'
         ])
         && (
           !('email' in request.resource.data)
@@ -93,9 +90,6 @@ service cloud.firestore {
             'updatedAt',
             'photoUrl',
             'photoPath',
-            'fcmToken',
-            'notificationLocale',
-            'fcmUpdatedAt'
           ])
         && (
           (
@@ -127,7 +121,7 @@ service cloud.firestore {
 
       allow delete: if isSelf(uid);
 
-      match /notifications/{notificationId} {
+       {
         allow get, list: if isSelf(uid);
 
         // Only trusted backend processes create notifications.

@@ -73,15 +73,6 @@ class SettingsPage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
-            icon: Icons.notifications_none,
-            title: l10n.settingsNotifications,
-            subtitle: l10n.settingsNotificationsSubtitle,
-            onTap: () {
-              context.push('/settings/notifications');
-            },
-          ),
-          const SizedBox(height: 10),
-          AmaterasuSettingsCard(
             icon: Icons.cloud_outlined,
             title: l10n.settingsDataSync,
             subtitle: l10n.settingsDataSyncSubtitle,

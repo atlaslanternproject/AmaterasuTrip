@@ -38,22 +38,17 @@ import '../features/trips/presentation/pages/workspace/settings/trip_settings_pa
 import '../features/trips/presentation/pages/workspace/settings/information/trip_information_settings_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/travellers/trip_travellers_settings_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/travellers/trip_traveller_profile_edit_page.dart';
-import '../features/trips/presentation/pages/workspace/settings/notifications/trip_notifications_settings_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/privacy/trip_privacy_settings_page.dart';
 import '../features/trips/presentation/pages/workspace/settings/management/trip_management_settings_page.dart';
 
 import '../features/settings/presentation/pages/settings_page.dart';
 import '../features/settings/presentation/pages/profile/profile_page.dart';
 import '../features/settings/presentation/pages/language/language_page.dart';
-import '../features/settings/presentation/pages/notifications/notifications_page.dart';
-import '../core/notifications/inbox/inbox_page.dart';
 import '../features/settings/presentation/pages/account/account_page.dart';
 import '../features/settings/presentation/pages/account/account_security_recovery_page.dart';
 import '../features/settings/presentation/pages/privacy/privacy_page.dart';
 import '../features/settings/presentation/pages/data/data_sync_page.dart';
 import '../features/settings/presentation/pages/information/information_page.dart';
-import '../features/settings/presentation/pages/notifications/notification_types_page.dart';
-import '../features/settings/presentation/pages/notifications/notification_email_page.dart';
 
 final amaterasuRouter = GoRouter(
   initialLocation: '/',
@@ -213,32 +208,6 @@ final amaterasuRouter = GoRouter(
                   builder: (context, state) {
                     return const LanguagePage();
                   },
-                ),
-                GoRoute(
-                  path: 'notifications',
-                  builder: (context, state) {
-                    return const NotificationsPage();
-                  },
-                  routes: [
-                    GoRoute(
-                      path: 'inbox',
-                      builder: (context, state) {
-                        return const InboxPage();
-                      },
-                    ),
-                    GoRoute(
-                      path: 'types',
-                      builder: (context, state) {
-                        return const NotificationTypesPage();
-                      },
-                    ),
-                    GoRoute(
-                      path: 'email',
-                      builder: (context, state) {
-                        return const NotificationEmailPage();
-                      },
-                    ),
-                  ],
                 ),
                 GoRoute(
                   path: 'account',
@@ -547,14 +516,6 @@ final amaterasuRouter = GoRouter(
         // ------------------------------------------------------
         // IMPOSTAZIONI VIAGGIO > NOTIFICHE
         // ------------------------------------------------------
-        GoRoute(
-          path: '/trips/:tripId/settings/notifications',
-          builder: (context, state) {
-            final tripId = state.pathParameters['tripId']!;
-
-            return TripNotificationsSettingsPage(tripId: tripId);
-          },
-        ),
 
         // ------------------------------------------------------
         // IMPOSTAZIONI VIAGGIO > PRIVACY

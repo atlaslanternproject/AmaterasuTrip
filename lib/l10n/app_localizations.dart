@@ -173,12 +173,6 @@ abstract class AppLocalizations {
   /// **'Password recovery and encrypted data recovery are two different processes.'**
   String get accountRecoveryNotice;
 
-  /// No description provided for @notificationsWebUnavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Push notifications are not yet available on the Web. Your saved preferences will not be changed.'**
-  String get notificationsWebUnavailable;
-
   /// No description provided for @tripNotificationsWebUnavailable.
   ///
   /// In en, this message translates to:
@@ -527,12 +521,6 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get settingsProfile;
 
-  /// No description provided for @settingsNotifications.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications'**
-  String get settingsNotifications;
-
   /// No description provided for @settingsAccount.
   ///
   /// In en, this message translates to:
@@ -658,12 +646,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Personalize your profile'**
   String get settingsProfileSubtitle;
-
-  /// No description provided for @settingsNotificationsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage your notifications'**
-  String get settingsNotificationsSubtitle;
 
   /// No description provided for @settingsPrivacySubtitle.
   ///
@@ -1739,156 +1721,6 @@ abstract class AppLocalizations {
   /// **'Unable to remove profile photo.'**
   String get profilePhotoRemoveError;
 
-  /// No description provided for @notificationsAppSection.
-  ///
-  /// In en, this message translates to:
-  /// **'App notifications'**
-  String get notificationsAppSection;
-
-  /// No description provided for @notificationsPush.
-  ///
-  /// In en, this message translates to:
-  /// **'Push notifications'**
-  String get notificationsPush;
-
-  /// No description provided for @notificationsPushSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Turn app notifications on or off'**
-  String get notificationsPushSubtitle;
-
-  /// No description provided for @notificationsTripReminders.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip reminders'**
-  String get notificationsTripReminders;
-
-  /// No description provided for @notificationsTripRemindersSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Receive reminders about your trips'**
-  String get notificationsTripRemindersSubtitle;
-
-  /// No description provided for @notificationsItineraryReminders.
-  ///
-  /// In en, this message translates to:
-  /// **'Itinerary reminders'**
-  String get notificationsItineraryReminders;
-
-  /// No description provided for @notificationsItineraryRemindersSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Receive reminders for itinerary activities, bookings and stops'**
-  String get notificationsItineraryRemindersSubtitle;
-
-  /// No description provided for @notificationsTripUpdates.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip updates'**
-  String get notificationsTripUpdates;
-
-  /// No description provided for @notificationsTripUpdatesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Receive notifications when your trips are updated'**
-  String get notificationsTripUpdatesSubtitle;
-
-  /// No description provided for @notificationsGroupInvitations.
-  ///
-  /// In en, this message translates to:
-  /// **'Group invitations'**
-  String get notificationsGroupInvitations;
-
-  /// No description provided for @notificationsGroupInvitationsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Receive notifications when you are invited to a trip'**
-  String get notificationsGroupInvitationsSubtitle;
-
-  /// No description provided for @notificationsGroupActivity.
-  ///
-  /// In en, this message translates to:
-  /// **'Group activity'**
-  String get notificationsGroupActivity;
-
-  /// No description provided for @notificationsGroupActivitySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Receive notifications about activity in your travel groups'**
-  String get notificationsGroupActivitySubtitle;
-
-  /// No description provided for @notificationsAppUpdates.
-  ///
-  /// In en, this message translates to:
-  /// **'App updates'**
-  String get notificationsAppUpdates;
-
-  /// No description provided for @notificationsAppUpdatesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Receive notifications about what\'s new and updates to Amaterasu Trip'**
-  String get notificationsAppUpdatesSubtitle;
-
-  /// No description provided for @notificationsImportantCommunications.
-  ///
-  /// In en, this message translates to:
-  /// **'Important communications'**
-  String get notificationsImportantCommunications;
-
-  /// No description provided for @notificationsImportantCommunicationsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Receive important communications about the service'**
-  String get notificationsImportantCommunicationsSubtitle;
-
-  /// No description provided for @notificationsEmailSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Email communications'**
-  String get notificationsEmailSection;
-
-  /// No description provided for @notificationsEmailSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage communications received by email'**
-  String get notificationsEmailSubtitle;
-
-  /// No description provided for @notificationsAccountEmails.
-  ///
-  /// In en, this message translates to:
-  /// **'Account communications'**
-  String get notificationsAccountEmails;
-
-  /// No description provided for @notificationsAccountEmailsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Emails required for account security, access and management'**
-  String get notificationsAccountEmailsSubtitle;
-
-  /// No description provided for @notificationsServiceEmails.
-  ///
-  /// In en, this message translates to:
-  /// **'Service communications'**
-  String get notificationsServiceEmails;
-
-  /// No description provided for @notificationsServiceEmailsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Emails required for the operation and use of the service'**
-  String get notificationsServiceEmailsSubtitle;
-
-  /// No description provided for @notificationsPromotionalEmails.
-  ///
-  /// In en, this message translates to:
-  /// **'Promotional communications'**
-  String get notificationsPromotionalEmails;
-
-  /// No description provided for @notificationsPromotionalEmailsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Receive news, initiatives and promotional communications from Amaterasu Trip'**
-  String get notificationsPromotionalEmailsSubtitle;
-
   /// No description provided for @informationApp.
   ///
   /// In en, this message translates to:
@@ -2644,18 +2476,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Manage travellers, invitations and roles'**
   String get tripSettingsTravellersSubtitle;
-
-  /// No description provided for @tripSettingsNotifications.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications'**
-  String get tripSettingsNotifications;
-
-  /// No description provided for @tripSettingsNotificationsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage notifications for this trip'**
-  String get tripSettingsNotificationsSubtitle;
 
   /// No description provided for @tripSettingsPrivacy.
   ///
@@ -4702,102 +4522,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You do not have access to manage this trip.'**
   String get tripManagementFinalAccessDenied;
-
-  /// No description provided for @inboxTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Notification center'**
-  String get inboxTitle;
-
-  /// No description provided for @inboxSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'View and manage your notifications.'**
-  String get inboxSubtitle;
-
-  /// No description provided for @inboxActive.
-  ///
-  /// In en, this message translates to:
-  /// **'Inbox'**
-  String get inboxActive;
-
-  /// No description provided for @inboxArchived.
-  ///
-  /// In en, this message translates to:
-  /// **'Archived'**
-  String get inboxArchived;
-
-  /// No description provided for @inboxMarkRead.
-  ///
-  /// In en, this message translates to:
-  /// **'Mark as read'**
-  String get inboxMarkRead;
-
-  /// No description provided for @inboxArchive.
-  ///
-  /// In en, this message translates to:
-  /// **'Archive'**
-  String get inboxArchive;
-
-  /// No description provided for @inboxRestore.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore'**
-  String get inboxRestore;
-
-  /// No description provided for @inboxDelete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get inboxDelete;
-
-  /// No description provided for @inboxCancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get inboxCancel;
-
-  /// No description provided for @inboxDeleteTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete notification?'**
-  String get inboxDeleteTitle;
-
-  /// No description provided for @inboxDeleteDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'This notification will be removed from your list and cannot be restored.'**
-  String get inboxDeleteDescription;
-
-  /// No description provided for @inboxEmpty.
-  ///
-  /// In en, this message translates to:
-  /// **'No notifications to show.'**
-  String get inboxEmpty;
-
-  /// No description provided for @inboxEmptyArchive.
-  ///
-  /// In en, this message translates to:
-  /// **'You have no archived notifications.'**
-  String get inboxEmptyArchive;
-
-  /// No description provided for @inboxLoadError.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load notifications. Check your connection and try again.'**
-  String get inboxLoadError;
-
-  /// No description provided for @inboxActionError.
-  ///
-  /// In en, this message translates to:
-  /// **'Action failed. Please try again.'**
-  String get inboxActionError;
-
-  /// No description provided for @inboxAuthenticationRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in to view your notifications.'**
-  String get inboxAuthenticationRequired;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

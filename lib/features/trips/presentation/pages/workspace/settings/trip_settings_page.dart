@@ -39,13 +39,6 @@ class TripSettingsPage extends ConsumerWidget {
         permission: TripPermission.viewTravellers,
       ),
       _TripSettingsItem(
-        title: l10n.tripSettingsNotifications,
-        subtitle: l10n.tripSettingsNotificationsSubtitle,
-        icon: Icons.notifications_none_rounded,
-        route: '/trips/$tripId/settings/notifications',
-        permission: TripPermission.viewNotifications,
-      ),
-      _TripSettingsItem(
         title: l10n.tripSettingsPrivacy,
         subtitle: l10n.tripSettingsPrivacySubtitle,
         icon: Icons.lock_outline_rounded,
