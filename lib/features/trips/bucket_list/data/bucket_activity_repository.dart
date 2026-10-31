@@ -122,6 +122,7 @@ class BucketActivityRepository {
         'city': desired['city'],
         'country': desired['country'],
         'type': desired['type'],
+        'customCategory': desired['customCategory'],
         'durationMinutes': desired['durationMinutes'],
         'notes': desired['notes'],
         'usefulLinks': desired['usefulLinks'],

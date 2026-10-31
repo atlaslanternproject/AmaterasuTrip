@@ -18,6 +18,7 @@ class BucketListItem {
     this.address,
     this.latitude,
     this.longitude,
+    this.customCategory,
   });
 
   final String id;
@@ -37,6 +38,7 @@ class BucketListItem {
   final List<String> usefulLinks;
 
   // Stable Places identifier, not a temporary photo URL.
+  final String? customCategory;
   final String? googlePlaceId;
 
   // Photo resource reference. Retrieval is handled by a separate service.
@@ -57,6 +59,10 @@ class BucketListItem {
         country.trim().isEmpty ||
         createdByUid.trim().isEmpty) {
       throw ArgumentError('Required Bucket List field is empty.');
+    }
+
+    if (customCategory != null && customCategory!.length > 60) {
+      throw ArgumentError('Custom category too long.');
     }
 
     if (name.length > 200) {
@@ -133,6 +139,7 @@ class BucketListItem {
 
   BucketListItem copyWith({
     String? name,
+    String? customCategory,
     String? city,
     String? country,
     BucketItemType? type,
@@ -161,6 +168,7 @@ class BucketListItem {
       id: id,
       tripId: tripId,
       name: name ?? this.name,
+      customCategory: customCategory ?? this.customCategory,
       city: city ?? this.city,
       country: country ?? this.country,
       type: type ?? this.type,
