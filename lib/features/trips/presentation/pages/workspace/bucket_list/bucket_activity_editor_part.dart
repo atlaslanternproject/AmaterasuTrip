@@ -14,6 +14,8 @@ extension _BucketActivityEditor on _TripBucketListPageState {
         message.contains('stesso nome e città') ||
         message.contains('stesso luogo') ||
         message.contains('same Google Place') ||
+        message.contains('già nella Bucket List') ||
+        message.contains('already in the Bucket List') ||
         message.contains('Google Place ID already') ||
         message.contains('già presente nella Bucket List');
   }
