@@ -5,6 +5,16 @@ extension _BucketMethodVisibleItems on _TripBucketListPageState {
   List<BucketListItem> get _visibleItems {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     final list = _items.where((item) {
+      final term = _filterSearch.trim().toLowerCase();
+      final searchable = [
+        item.name,
+        item.city,
+        item.country,
+        item.address ?? '',
+        item.customCategory ?? '',
+        item.type.name,
+      ].join(' ').toLowerCase();
+      if (term.isNotEmpty && !searchable.contains(term)) return false;
       final votes = _itemVotes[item.id] ?? const <String, BucketPriority>{};
       final count = _members.where((m) => votes.containsKey(m)).length;
       if (_filterCity.isNotEmpty && item.city != _filterCity) {

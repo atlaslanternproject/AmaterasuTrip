@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/data/bucket_deletion_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -63,6 +64,8 @@ class _TripBucketListPageState extends State<TripBucketListPage> {
   String _filterPriority = '';
   String _filterVoting = '';
   String _filterMine = '';
+  String _filterSearch = '';
+  bool _searchLoading = false;
 
   DocumentSnapshot<Map<String, dynamic>>? _cursor;
 

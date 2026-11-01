@@ -23,11 +23,55 @@ extension _BucketMethodSaveActivity on _TripBucketListPageState {
       throw StateError('Authentication required');
     }
 
+    final normalizedName = name.trim().toLowerCase().replaceAll(
+      RegExp(r'[^\p{L}\p{N}]', unicode: true),
+      '',
+    );
+    final normalizedCity = city.trim().toLowerCase().replaceAll(
+      RegExp(r'[^\p{L}\p{N}]', unicode: true),
+      '',
+    );
+    final existingDocs = await FirebaseFirestore.instance
+        .collection('trips')
+        .doc(widget.tripId)
+        .collection('bucketList')
+        .get();
+    for (final doc in existingDocs.docs) {
+      if (doc.id == existing?.id) continue;
+      final fields = doc.data();
+      final otherPlace = (fields['googlePlaceId'] as String? ?? '').trim();
+      if (placeId != null &&
+          placeId.trim().isNotEmpty &&
+          otherPlace == placeId.trim()) {
+        throw StateError(
+          _t(
+            'Questo luogo Google Maps è già nella Bucket List.',
+            'This Google Maps place is already in the Bucket List.',
+          ),
+        );
+      }
+      String norm(Object? v) => (v?.toString() ?? '')
+          .trim()
+          .toLowerCase()
+          .replaceAll(RegExp(r'[^\p{L}\p{N}]', unicode: true), '');
+      if (normalizedName.isNotEmpty &&
+          normalizedName == norm(fields['name']) &&
+          normalizedCity == norm(fields['city'])) {
+        throw StateError(
+          _t(
+            'Un’attività con lo stesso nome e città è già presente.',
+            'An activity with the same name and city already exists.',
+          ),
+        );
+      }
+    }
     await _registerCategory(customCategory);
     final now = DateTime.now().toUtc();
 
     if (existing == null) {
-      final id = _activities.newActivityId(widget.tripId);
+      final id = (placeId?.trim().isNotEmpty ?? false)
+          ? 'place_${base64Url.encode(utf8.encode(placeId!.trim())).replaceAll('=', '')}'
+          : _activities.newActivityId(widget.tripId);
 
       final item = BucketListItem(
         id: id,

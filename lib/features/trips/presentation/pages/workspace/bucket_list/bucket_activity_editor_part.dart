@@ -137,7 +137,8 @@ extension _BucketActivityEditor on _TripBucketListPageState {
               ),
               titlePadding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
               contentPadding: const EdgeInsets.fromLTRB(20, 4, 20, 12),
-              actionsPadding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
+              actionsPadding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+              scrollable: false,
               title: Row(
                 children: [
                   const Icon(
@@ -161,7 +162,11 @@ extension _BucketActivityEditor on _TripBucketListPageState {
               ),
               content: ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: MediaQuery.sizeOf(dialogContext).height * 0.53,
+                  maxHeight:
+                      (MediaQuery.sizeOf(dialogContext).height -
+                              MediaQuery.viewInsetsOf(dialogContext).bottom -
+                              180)
+                          .clamp(160.0, 620.0),
                 ),
                 child: SizedBox(
                   width: 560,
@@ -537,124 +542,151 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                 ),
               ),
               actions: [
-                if (existing != null)
-                  TextButton.icon(
-                    onPressed: saving || selecting
-                        ? null
-                        : () async {
-                            final requested = await _confirmDeletionRequest(
-                              dialogContext,
-                              existing,
-                            );
-                            if (requested && dialogContext.mounted) {
-                              Navigator.pop(dialogContext);
-                            }
-                          },
-                    icon: const Icon(
-                      Icons.delete_outline,
-                      color: Color(0xFFFF9B80),
-                    ),
-                    label: Text(
-                      _t('Richiedi eliminazione', 'Request deletion'),
-                      style: const TextStyle(color: Color(0xFFFF9B80)),
-                    ),
-                  ),
-                TextButton(
-                  onPressed: saving ? null : () => Navigator.pop(dialogContext),
-                  child: Text(_t('Annulla', 'Cancel')),
-                ),
-                FilledButton.icon(
-                  onPressed: saving || selecting
-                      ? null
-                      : () async {
-                          final durationText = duration.text.trim();
-                          final minutes = durationText.isEmpty
+                SizedBox(
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      if (existing != null)
+                        Expanded(
+                          child: TextButton.icon(
+                            onPressed: saving || selecting
+                                ? null
+                                : () async {
+                                    final requested =
+                                        await _confirmDeletionRequest(
+                                          dialogContext,
+                                          existing,
+                                        );
+                                    if (requested && dialogContext.mounted) {
+                                      Navigator.pop(dialogContext);
+                                    }
+                                  },
+                            icon: const Icon(
+                              Icons.delete_outline,
+                              color: Color(0xFFFF9B80),
+                            ),
+                            label: Text(
+                              _t('Elimina', 'Delete'),
+                              style: const TextStyle(color: Color(0xFFFF9B80)),
+                            ),
+                          ),
+                        ),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: saving
                               ? null
-                              : int.tryParse(durationText);
+                              : () => Navigator.pop(dialogContext),
+                          child: Text(_t('Annulla', 'Cancel')),
+                        ),
+                      ),
+                      Expanded(
+                        child: FilledButton.icon(
+                          onPressed: saving || selecting
+                              ? null
+                              : () async {
+                                  final durationText = duration.text.trim();
+                                  final minutes = durationText.isEmpty
+                                      ? null
+                                      : int.tryParse(durationText);
 
-                          final usefulLinks = linkControllers
-                              .map((controller) => controller.text.trim())
-                              .where((link) => link.isNotEmpty)
-                              .toList();
+                                  final usefulLinks = linkControllers
+                                      .map(
+                                        (controller) => controller.text.trim(),
+                                      )
+                                      .where((link) => link.isNotEmpty)
+                                      .toList();
 
-                          final validLinks =
-                              usefulLinks.length <= 20 &&
-                              usefulLinks.every((link) {
-                                final url = Uri.tryParse(link);
-                                return link.length <= 2048 &&
-                                    url != null &&
-                                    (url.scheme == 'https' ||
-                                        url.scheme == 'http') &&
-                                    url.host.isNotEmpty;
-                              });
+                                  final validLinks =
+                                      usefulLinks.length <= 20 &&
+                                      usefulLinks.every((link) {
+                                        final url = Uri.tryParse(link);
+                                        return link.length <= 2048 &&
+                                            url != null &&
+                                            (url.scheme == 'https' ||
+                                                url.scheme == 'http') &&
+                                            url.host.isNotEmpty;
+                                      });
 
-                          if (name.text.trim().isEmpty ||
-                              city.text.trim().isEmpty ||
-                              country.text.trim().isEmpty ||
-                              (durationText.isNotEmpty &&
-                                  (minutes == null ||
-                                      minutes <= 0 ||
-                                      minutes > 10080)) ||
-                              !validLinks) {
-                            ScaffoldMessenger.of(dialogContext).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  _t(
-                                    'Controlla campi obbligatori, durata '
-                                        'e link (massimo 20 URL validi).',
-                                    'Check required fields, duration '
-                                        'and links (up to 20 valid URLs).',
-                                  ),
-                                ),
-                              ),
-                            );
-                            return;
-                          }
+                                  if (name.text.trim().isEmpty ||
+                                      city.text.trim().isEmpty ||
+                                      country.text.trim().isEmpty ||
+                                      (durationText.isNotEmpty &&
+                                          (minutes == null ||
+                                              minutes <= 0 ||
+                                              minutes > 10080)) ||
+                                      !validLinks) {
+                                    ScaffoldMessenger.of(
+                                      dialogContext,
+                                    ).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          _t(
+                                            'Controlla campi obbligatori, durata '
+                                                'e link (massimo 20 URL validi).',
+                                            'Check required fields, duration '
+                                                'and links (up to 20 valid URLs).',
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                    return;
+                                  }
 
-                          setDialogState(() => saving = true);
-                          try {
-                            await _saveActivity(
-                              existing: existing,
-                              name: name.text,
-                              city: city.text,
-                              country: country.text,
-                              type: type,
-                              duration: minutes,
-                              notes: notes.text,
-                              customCategory: type == BucketItemType.other
-                                  ? customCategory.text
-                                  : '',
-                              usefulLinks: usefulLinks,
-                              placeId: placeId,
-                              address: address,
-                              latitude: latitude,
-                              longitude: longitude,
-                            );
-                            if (dialogContext.mounted) {
-                              Navigator.pop(dialogContext);
-                            }
-                            await _refresh();
-                          } catch (error) {
-                            if (dialogContext.mounted) {
-                              setDialogState(() => saving = false);
-                              ScaffoldMessenger.of(dialogContext).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    _t(
-                                      'Impossibile salvare l’attività.',
-                                      'Unable to save activity.',
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                          }
-                        },
-                  icon: const Icon(Icons.check),
-                  label: Text(
-                    saving
-                        ? _t('Salvataggio...', 'Saving...')
-                        : _t('Salva attività', 'Save activity'),
+                                  setDialogState(() => saving = true);
+                                  try {
+                                    await _saveActivity(
+                                      existing: existing,
+                                      name: name.text,
+                                      city: city.text,
+                                      country: country.text,
+                                      type: type,
+                                      duration: minutes,
+                                      notes: notes.text,
+                                      customCategory:
+                                          type == BucketItemType.other
+                                          ? customCategory.text
+                                          : '',
+                                      usefulLinks: usefulLinks,
+                                      placeId: placeId,
+                                      address: address,
+                                      latitude: latitude,
+                                      longitude: longitude,
+                                    );
+                                    if (dialogContext.mounted) {
+                                      Navigator.pop(dialogContext);
+                                    }
+                                    await _refresh();
+                                  } catch (error) {
+                                    if (dialogContext.mounted) {
+                                      setDialogState(() => saving = false);
+                                      ScaffoldMessenger.of(
+                                        dialogContext,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            _t(
+                                              error is StateError
+                                                  ? error.message.toString()
+                                                  : 'Impossibile salvare l’attività.',
+                                              error is StateError
+                                                  ? error.message.toString()
+                                                  : 'Unable to save activity.',
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  }
+                                },
+                          icon: const Icon(Icons.check),
+                          label: Text(
+                            saving
+                                ? _t('Salvataggio...', 'Saving...')
+                                : _t('Salva', 'Save'),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

@@ -202,6 +202,29 @@ extension _BucketMethodPageView on _TripBucketListPageState {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            TextField(
+              decoration: InputDecoration(
+                hintText: _t(
+                  'Cerca attività, città, categoria...',
+                  'Search activity, city, category...',
+                ),
+                prefixIcon: const Icon(Icons.search),
+                border: const OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                setState(() => _filterSearch = value);
+                update(() {});
+                if (value.trim().isNotEmpty) _loadAllForSearch();
+              },
+            ),
+            const SizedBox(height: 10),
+            if (_searchLoading)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  _t('Caricamento attività...', 'Loading activities...'),
+                ),
+              ),
             SizedBox(
               height: 270,
               child: SingleChildScrollView(
@@ -327,6 +350,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                   _filterPriority = '';
                   _filterVoting = '';
                   _filterMine = '';
+                  _filterSearch = '';
                   _sortMode = 'priority';
                   _sortAscending = false;
                 }),

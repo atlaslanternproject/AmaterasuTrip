@@ -2,6 +2,26 @@
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketMethodLoadMore on _TripBucketListPageState {
+  Future<void> _loadAllForSearch() async {
+    if (_searchLoading) return;
+    setState(() => _searchLoading = true);
+    try {
+      var attempts = 0;
+      while (mounted && _hasMore && attempts < 100) {
+        if (_busy || _loading) {
+          await Future<void>.delayed(const Duration(milliseconds: 120));
+          continue;
+        }
+        final before = _items.length;
+        await _loadMore();
+        if (_items.length == before && _hasMore) break;
+        attempts++;
+      }
+    } finally {
+      if (mounted) setState(() => _searchLoading = false);
+    }
+  }
+
   Future<void> _loadMore() async {
     if (_busy) return;
 
