@@ -74,6 +74,8 @@ extension _BucketActivityEditor on _TripBucketListPageState {
   }
 
   Future<void> _openEditor([BucketListItem? existing]) async {
+    // AMATERASU_DUPLICATE_OPEN_EXISTING_V2
+    BucketListItem? openExistingAfterDialog;
     final name = TextEditingController(text: existing?.name ?? '');
     final city = TextEditingController(text: existing?.city ?? '');
     final country = TextEditingController(text: existing?.country ?? '');
@@ -737,6 +739,54 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                           _bucketIsDuplicateError(error);
 
                                       if (isDuplicate) {
+                                        String normalizeDuplicateText(
+                                          String value,
+                                        ) => value
+                                            .toLowerCase()
+                                            .trim()
+                                            .replaceAll(
+                                              RegExp(
+                                                r'[^\\p{L}\\p{N}]',
+                                                unicode: true,
+                                              ),
+                                              '',
+                                            );
+
+                                        final matchingActivities = _items.where(
+                                          (candidate) {
+                                            if (candidate.id == existing?.id) {
+                                              return false;
+                                            }
+
+                                            final samePlace =
+                                                placeId != null &&
+                                                placeId!.trim().isNotEmpty &&
+                                                candidate.googlePlaceId ==
+                                                    placeId;
+
+                                            final sameNameAndCity =
+                                                normalizeDuplicateText(
+                                                      candidate.name,
+                                                    ) ==
+                                                    normalizeDuplicateText(
+                                                      name.text,
+                                                    ) &&
+                                                normalizeDuplicateText(
+                                                      candidate.city,
+                                                    ) ==
+                                                    normalizeDuplicateText(
+                                                      city.text,
+                                                    );
+
+                                            return samePlace || sameNameAndCity;
+                                          },
+                                        ).toList();
+
+                                        final BucketListItem? duplicateTarget =
+                                            matchingActivities.length == 1
+                                            ? matchingActivities.single
+                                            : null;
+
                                         await showDialog<void>(
                                           context: dialogContext,
                                           builder: (duplicateContext) => AlertDialog(
@@ -801,9 +851,19 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                             ),
                                             actions: [
                                               FilledButton(
-                                                onPressed: () => Navigator.pop(
-                                                  duplicateContext,
-                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(
+                                                    duplicateContext,
+                                                  );
+
+                                                  if (duplicateTarget != null) {
+                                                    openExistingAfterDialog =
+                                                        duplicateTarget;
+                                                    Navigator.pop(
+                                                      dialogContext,
+                                                    );
+                                                  }
+                                                },
                                                 style: FilledButton.styleFrom(
                                                   backgroundColor: const Color(
                                                     0xFFF0B6A6,
@@ -813,10 +873,15 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                                   ),
                                                 ),
                                                 child: Text(
-                                                  _t(
-                                                    'Continua a modificare',
-                                                    'Continue editing',
-                                                  ),
+                                                  duplicateTarget == null
+                                                      ? _t(
+                                                          'Continua a modificare',
+                                                          'Continue editing',
+                                                        )
+                                                      : _t(
+                                                          'Apri attività esistente',
+                                                          'Open existing activity',
+                                                        ),
                                                 ),
                                               ),
                                             ],
@@ -863,6 +928,10 @@ extension _BucketActivityEditor on _TripBucketListPageState {
         controller.dispose();
       }
       search.dispose();
+    }
+
+    if (openExistingAfterDialog != null && mounted) {
+      await _openEditor(openExistingAfterDialog);
     }
   }
 }

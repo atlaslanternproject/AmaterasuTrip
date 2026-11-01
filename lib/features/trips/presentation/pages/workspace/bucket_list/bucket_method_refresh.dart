@@ -48,6 +48,28 @@ extension _BucketMethodRefresh on _TripBucketListPageState {
       setState(() => _members = ids.toList(growable: false));
 
       await _loadMore();
+
+      var loadedPages = 1;
+
+      while (mounted && _hasMore) {
+        if (_error != null) {
+          throw StateError('Bucket List loading interrupted');
+        }
+
+        final previousCount = _items.length;
+        await _loadMore();
+
+        if (_error != null || _items.length <= previousCount) {
+          throw StateError('Bucket List pagination stopped unexpectedly');
+        }
+
+        loadedPages++;
+
+        if (loadedPages > 200) {
+          throw StateError('Bucket List pagination safety limit reached');
+        }
+      }
+
       await _loadCategories();
     } catch (error) {
       if (mounted) {
