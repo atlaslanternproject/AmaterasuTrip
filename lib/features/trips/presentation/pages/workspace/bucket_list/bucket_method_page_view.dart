@@ -225,8 +225,8 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                   _t('Caricamento attività...', 'Loading activities...'),
                 ),
               ),
-            SizedBox(
-              height: 270,
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 360),
               child: SingleChildScrollView(
                 child: Wrap(
                   spacing: 7,
@@ -412,8 +412,14 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                             builder: (sheetContext) {
                               return StatefulBuilder(
                                 builder: (sheetContext, setSheetState) {
-                                  return FractionallySizedBox(
-                                    heightFactor: 0.68,
+                                  return ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      maxHeight:
+                                          MediaQuery.sizeOf(
+                                            sheetContext,
+                                          ).height *
+                                          0.90,
+                                    ),
                                     child: SingleChildScrollView(
                                       padding: const EdgeInsets.all(16),
                                       child: Column(

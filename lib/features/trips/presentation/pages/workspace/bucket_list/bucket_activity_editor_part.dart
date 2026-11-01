@@ -1,6 +1,76 @@
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketActivityEditor on _TripBucketListPageState {
+  // AMATERASU_L10N_ERROR_MAPPING_V3
+
+  bool _bucketIsDuplicateError(Object error) {
+    if (error is! StateError) return false;
+
+    final message = error.message.toString();
+
+    return message == 'Activity ID already exists' ||
+        message.contains('already exists in this Bucket List') ||
+        message.contains('same name and city') ||
+        message.contains('stesso nome e città') ||
+        message.contains('stesso luogo') ||
+        message.contains('same Google Place') ||
+        message.contains('Google Place ID already') ||
+        message.contains('già presente nella Bucket List');
+  }
+
+  String _bucketErrorText(Object error) {
+    if (error is! StateError) {
+      return _t(
+        'Impossibile salvare l’attività. Riprova.',
+        'Unable to save the activity. Please try again.',
+      );
+    }
+
+    final message = error.message.toString();
+
+    if (_bucketIsDuplicateError(error)) {
+      return _t(
+        'Questa attività è già presente nella Bucket List.',
+        'This activity already exists in the Bucket List.',
+      );
+    }
+
+    switch (message) {
+      case 'Authentication required':
+        return _t(
+          'Accedi al tuo account per salvare l’attività.',
+          'Sign in to save the activity.',
+        );
+      case 'Creator must be current user':
+        return _t(
+          'Non hai il permesso di creare questa attività.',
+          'You do not have permission to create this activity.',
+        );
+      case 'Activity not found':
+        return _t(
+          'L’attività non esiste più. Aggiorna la Bucket List.',
+          'This activity no longer exists. Refresh the Bucket List.',
+        );
+      case 'Outdated activity update':
+        return _t(
+          'L’attività è stata modificata altrove. Aggiorna la Bucket List.',
+          'The activity was changed elsewhere. Refresh the Bucket List.',
+        );
+    }
+
+    if (message.startsWith('Immutable activity field changed:')) {
+      return _t(
+        'Alcuni dati protetti dell’attività non possono essere modificati.',
+        'Some protected activity information cannot be changed.',
+      );
+    }
+
+    return _t(
+      'Impossibile salvare l’attività. Riprova.',
+      'Unable to save the activity. Please try again.',
+    );
+  }
+
   Future<void> _openEditor([BucketListItem? existing]) async {
     final name = TextEditingController(text: existing?.name ?? '');
     final city = TextEditingController(text: existing?.city ?? '');
@@ -659,19 +729,105 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                   } catch (error) {
                                     if (dialogContext.mounted) {
                                       setDialogState(() => saving = false);
+                                      // AMATERASU_DUPLICATE_DIALOG_V1
+
+                                      final isDuplicate =
+                                          _bucketIsDuplicateError(error);
+
+                                      if (isDuplicate) {
+                                        await showDialog<void>(
+                                          context: dialogContext,
+                                          builder: (duplicateContext) => AlertDialog(
+                                            backgroundColor: const Color(
+                                              0xFF261C17,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(22),
+                                            ),
+                                            title: Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.warning_amber_rounded,
+                                                  color: Color(0xFFEAB676),
+                                                ),
+                                                const SizedBox(width: 10),
+                                                Expanded(
+                                                  child: Text(
+                                                    _t(
+                                                      'Attività già presente',
+                                                      'Activity already exists',
+                                                    ),
+                                                    style: const TextStyle(
+                                                      color: Color(0xFFF9EDE4),
+                                                      fontSize: 19,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  _bucketErrorText(error),
+                                                  style: const TextStyle(
+                                                    color: Color(0xFFEAB676),
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 12),
+                                                Text(
+                                                  _t(
+                                                    'Non è stata creata una seconda attività. '
+                                                        'Puoi modificare il nome o scegliere '
+                                                        'un luogo diverso.',
+                                                    'No duplicate was created. '
+                                                        'You can change the name or select '
+                                                        'another place.',
+                                                  ),
+                                                  style: const TextStyle(
+                                                    color: Color(0xFFDECBC0),
+                                                    height: 1.4,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            actions: [
+                                              FilledButton(
+                                                onPressed: () => Navigator.pop(
+                                                  duplicateContext,
+                                                ),
+                                                style: FilledButton.styleFrom(
+                                                  backgroundColor: const Color(
+                                                    0xFFF0B6A6,
+                                                  ),
+                                                  foregroundColor: const Color(
+                                                    0xFF33211C,
+                                                  ),
+                                                ),
+                                                child: Text(
+                                                  _t(
+                                                    'Continua a modificare',
+                                                    'Continue editing',
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                        return;
+                                      }
                                       ScaffoldMessenger.of(
                                         dialogContext,
                                       ).showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            _t(
-                                              error is StateError
-                                                  ? error.message.toString()
-                                                  : 'Impossibile salvare l’attività.',
-                                              error is StateError
-                                                  ? error.message.toString()
-                                                  : 'Unable to save activity.',
-                                            ),
+                                            _bucketErrorText(error),
                                           ),
                                         ),
                                       );
