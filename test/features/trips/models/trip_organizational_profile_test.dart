@@ -15,9 +15,7 @@ void main() {
     });
 
     test('incompleto se manca una risposta', () {
-      const profile = TripOrganizationalProfile(
-        hasEsimOrInternet: true,
-      );
+      const profile = TripOrganizationalProfile(hasEsimOrInternet: true);
 
       expect(profile.isComplete, isFalse);
     });

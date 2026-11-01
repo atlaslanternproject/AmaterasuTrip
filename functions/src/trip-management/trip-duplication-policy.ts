@@ -13,6 +13,8 @@ const excludedRootFields = new Set<string>([
 
 const excludedSubcollections = new Set<string>([
   "members",
+  "budgetSharedExpenses",
+  "budgetPrivateOwners",
 ]);
 
 const excludedExternalReferenceFields =

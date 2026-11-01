@@ -455,6 +455,49 @@ service cloud.firestore {
         }
       }
 
+      // =========================================================
+      // BUDGET SECURITY B2.2
+      //
+      // Read-only for Firebase clients.
+      // Financial writes require trusted server operations.
+      // =========================================================
+
+      function budgetActiveMember() {
+        return verifiedUser()
+          && exists(
+            /databases/$(database)/documents/trips/$(tripId)
+          )
+          && isTripMember(
+            get(
+              /databases/$(database)/documents/trips/$(tripId)
+            ).data
+          );
+      }
+
+      function budgetPrivateOwner(ownerUid) {
+        return budgetActiveMember()
+          && request.auth.uid == ownerUid;
+      }
+
+      match /budgetSharedExpenses/{expenseId} {
+        allow get, list: if budgetActiveMember();
+        allow create, update, delete: if false;
+
+        match /{budgetChild=**} {
+          allow get, list: if budgetActiveMember();
+          allow create, update, delete: if false;
+        }
+      }
+
+      match /budgetPrivateOwners/{ownerUid} {
+        allow get, list: if budgetPrivateOwner(ownerUid);
+        allow create, update, delete: if false;
+
+        match /{privateChild=**} {
+          allow get, list: if budgetPrivateOwner(ownerUid);
+          allow create, update, delete: if false;
+        }
+      }
       match /members/{memberUid} {
         allow read: if false;
 

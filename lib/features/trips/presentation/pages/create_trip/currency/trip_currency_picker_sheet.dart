@@ -166,9 +166,13 @@ class _TripCurrencyPickerSheetState extends State<TripCurrencyPickerSheet> {
                     itemBuilder: (context, index) {
                       final currency = currencies[index];
 
+                      final selectedCode = widget.selectedCurrency
+                          ?.trim()
+                          .toUpperCase()
+                          .split(RegExp(r'[\s·\-]+'))
+                          .first;
                       final isSelected =
-                          widget.selectedCurrency?.startsWith(currency.code) ??
-                          false;
+                          selectedCode == currency.code.toUpperCase();
 
                       return ListTile(
                         onTap: () => Navigator.of(context).pop(currency),

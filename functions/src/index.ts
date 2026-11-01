@@ -823,3 +823,17 @@ export {inspectAccountDeletionTrips} from
 export {
   approveBucketActivityDeletion,
 } from "./bucket-list/approve-bucket-activity-deletion";
+
+export {
+  createBudgetExpense,
+  proposeBudgetRevision,
+  approveBudgetRevision,
+  requestBudgetReimbursement,
+  confirmBudgetReimbursement,
+} from "./budget/budget-functions";
+
+export {
+  requestBudgetCancellation,
+  decideBudgetCancellation,
+  cancelPrivateBudgetExpense,
+} from "./budget/budget-functions";
