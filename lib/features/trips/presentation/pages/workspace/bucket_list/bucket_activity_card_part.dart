@@ -183,11 +183,63 @@ extension _BucketActivityCard on _TripBucketListPageState {
                       Uri.tryParse(link)?.host ?? _t('Apri link', 'Open link'),
                       overflow: TextOverflow.ellipsis,
                     ),
+                    // AMATERASU_USEFUL_LINK_DESKTOP_V1
                     onPressed: () async {
-                      final uri = Uri.tryParse(link);
-                      if (uri != null) {
-                        await launchUrl(uri, mode: LaunchMode.platformDefault);
+                      final uri = Uri.tryParse(link.trim());
+
+                      if (uri == null ||
+                          (uri.scheme != 'https' && uri.scheme != 'http') ||
+                          uri.host.isEmpty) {
+                        if (!mounted) return;
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              _t(
+                                'Il link non è valido.',
+                                'The link is invalid.',
+                              ),
+                            ),
+                          ),
+                        );
+                        return;
                       }
+
+                      bool opened = false;
+
+                      try {
+                        opened = await launchUrl(
+                          uri,
+                          mode: LaunchMode.externalApplication,
+                          webOnlyWindowName: '_blank',
+                        );
+                      } catch (_) {
+                        opened = false;
+                      }
+
+                      if (!mounted || opened) return;
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            _t(
+                              'Impossibile aprire il link. '
+                                  'Puoi copiarlo e aprirlo nel browser.',
+                              'Could not open the link. '
+                                  'You can copy it and open it '
+                                  'in your browser.',
+                            ),
+                          ),
+                          action: SnackBarAction(
+                            label: _t('Copia link', 'Copy link'),
+                            onPressed: () {
+                              Clipboard.setData(
+                                ClipboardData(text: uri.toString()),
+                              );
+                            },
+                          ),
+                        ),
+                      );
                     },
                   ),
               ],

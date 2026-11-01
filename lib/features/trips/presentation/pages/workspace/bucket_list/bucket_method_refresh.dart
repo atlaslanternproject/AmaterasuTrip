@@ -30,6 +30,7 @@ extension _BucketMethodRefresh on _TripBucketListPageState {
 
       final ids = <String>{};
       final owner = data['ownerUid'];
+      _bucketOwnerUid = owner is String ? owner : null;
 
       if (owner is String && owner.isNotEmpty) {
         ids.add(owner);
@@ -71,6 +72,11 @@ extension _BucketMethodRefresh on _TripBucketListPageState {
       }
 
       await _loadCategories();
+      if (mounted) {
+        setState(() {
+          _pendingDeletionFuture = _loadPendingDeletionGroups();
+        });
+      }
     } catch (error) {
       if (mounted) {
         setState(() => _error = error.toString());

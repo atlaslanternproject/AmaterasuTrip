@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/data/bucket_deletion_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_deletion_request.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +22,7 @@ import 'package:amaterasutrip/features/trips/bucket_list/presentation/widgets/bu
 
 part 'bucket_activity_editor_part.dart';
 part 'bucket_activity_delete_request_part.dart';
+part 'bucket_deletion_review_part.dart';
 part 'bucket_activity_card_part.dart';
 part 'bucket_category_labels_part.dart';
 
@@ -53,6 +57,8 @@ class _TripBucketListPageState extends State<TripBucketListPage> {
   final DestinationPlacesService _places = const DestinationPlacesService();
 
   final List<BucketListItem> _items = [];
+  String? _bucketOwnerUid;
+  Future<List<_BucketPendingGroup>> _pendingDeletionFuture = Future.value([]);
   final Map<String, Map<String, BucketPriority>> _itemVotes = {};
   final Set<String> _pendingVoteIds = {};
   final List<String> _categories = [];

@@ -513,6 +513,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                       physics: const AlwaysScrollableScrollPhysics(),
                       padding: const EdgeInsets.fromLTRB(16, 14, 16, 30),
                       children: [
+                        _pendingDeletionEntry(),
                         FutureBuilder<int>(
                           future: _totalCountFuture,
                           builder: (context, snapshot) {

@@ -819,3 +819,7 @@ export {
 
 export {inspectAccountDeletionTrips} from
   "./account-deletion/inspect-account-deletion-trips";
+
+export {
+  approveBucketActivityDeletion,
+} from "./bucket-list/approve-bucket-activity-deletion";

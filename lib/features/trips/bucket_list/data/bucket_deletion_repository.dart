@@ -145,6 +145,61 @@ class BucketDeletionRepository {
         .toList(growable: false);
   }
 
+  // AMATERASU_PENDING_REQUESTS_A3
+  // Reads every pending request, regardless of earlier rejected
+  // or approved documents and the former 50-document limit.
+  Future<List<BucketDeletionRequest>> getPendingRequests({
+    required String tripId,
+    required String activityId,
+  }) async {
+    await _access.requireMember(tripId);
+
+    final results = <BucketDeletionRequest>[];
+    DocumentSnapshot<Map<String, dynamic>>? cursor;
+
+    while (true) {
+      var query = _requests(tripId, activityId)
+          .where('status', isEqualTo: BucketDeletionStatus.pending.name)
+          .orderBy(FieldPath.documentId)
+          .limit(50);
+
+      if (cursor != null) {
+        query = query.startAfterDocument(cursor);
+      }
+
+      final page = await query.get();
+
+      for (final doc in page.docs) {
+        final data = doc.data();
+        final created = data['createdAt'];
+
+        if (created is! Timestamp) {
+          throw const FormatException('Missing creation timestamp');
+        }
+
+        final request = BucketDeletionRequest(
+          id: doc.id,
+          activityId: data['activityId'] as String? ?? '',
+          requestedByUid: data['requestedByUid'] as String? ?? '',
+          reason: data['reason'] as String? ?? '',
+          status: BucketDeletionStatus.pending,
+          createdAt: created.toDate(),
+        );
+
+        request.validate();
+        results.add(request);
+      }
+
+      if (page.docs.length < 50) {
+        break;
+      }
+
+      cursor = page.docs.last;
+    }
+
+    return results;
+  }
+
   Future<void> reviewRequest({
     required String tripId,
     required String activityId,
