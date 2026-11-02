@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'budget_api.dart';
+import 'budget_reimbursements_panel.dart';
+import 'budget_revision_panel.dart';
 
 class BudgetExpenseControls extends StatefulWidget {
   const BudgetExpenseControls({
@@ -178,6 +180,18 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                 ],
               );
             },
+          ),
+        if (!widget.isPrivate)
+          BudgetRevisionPanel(
+            api: widget.api,
+            expenseId: widget.expenseId,
+            expense: widget.expense,
+          ),
+        if (!widget.isPrivate)
+          BudgetReimbursementsPanel(
+            api: widget.api,
+            expenseId: widget.expenseId,
+            expense: widget.expense,
           ),
         if (_busy) const LinearProgressIndicator(),
         if (_message != null)

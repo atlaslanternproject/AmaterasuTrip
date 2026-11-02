@@ -50,16 +50,7 @@ export const proposeBudgetRevision = onCall(
         );
       }
 
-      // A revised payment cannot be attributed to a traveler
-      // without a dedicated payer-approval workflow.
-      for (const [payerUid, amount] of Object.entries(snapshot.advances)) {
-        if (payerUid !== uid && amount.minorUnits > 0) {
-          throw new HttpsError(
-            "failed-precondition",
-            "Other payer advances require explicit approval.",
-          );
-        }
-      }
+      // Every affected payer must approve before this revision applies.
       const required = [...new Set([
         ...Object.keys(old.shares),
         ...Object.keys(old.advances),

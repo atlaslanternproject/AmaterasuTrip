@@ -1,3 +1,4 @@
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'budget_api.dart';
 import 'budget_expense_controls.dart';
@@ -68,8 +69,10 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
         return it ? 'Attività' : 'Activities';
       case 'shopping':
         return 'Shopping';
-      default:
+      case 'other':
         return it ? 'Altro' : 'Other';
+      default:
+        return value.trim().isEmpty ? (it ? 'Altro' : 'Other') : value;
     }
   }
 
@@ -156,6 +159,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';
+    final l10n = AppLocalizations.of(context)!;
     final snapshot = _asMap(expense['snapshot']);
     final shares = _asMap(snapshot['shares']);
     final advances = _asMap(snapshot['advances']);
@@ -237,31 +241,15 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                           style: const TextStyle(color: Color(0xFFF2E7D5)),
                         ),
                       ],
-                      _sectionTitle(
-                        it ? 'Quote dei partecipanti' : 'Participant shares',
-                      ),
+                      _sectionTitle(l10n.budgetSplitExpense),
                       _amountRows(shares, it),
-                      _sectionTitle(
-                        it ? 'Anticipi registrati' : 'Recorded advances',
-                      ),
+                      _sectionTitle(l10n.budgetSupplierPayments),
                       _amountRows(advances, it),
                       BudgetExpenseControls(
                         api: api,
                         expenseId: expenseId,
                         isPrivate: isPrivate,
                         expense: expense,
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        it
-                            ? 'Modifiche, eliminazione e rimborsi saranno '
-                                  'disponibili nei prossimi passaggi.'
-                            : 'Editing, deletion and reimbursements will '
-                                  'be available in future steps.',
-                        style: const TextStyle(
-                          color: Color(0xFFB7A99B),
-                          fontSize: 12,
-                        ),
                       ),
                     ],
                   ),

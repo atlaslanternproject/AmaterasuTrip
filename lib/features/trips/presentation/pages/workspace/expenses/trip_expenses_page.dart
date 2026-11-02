@@ -1,11 +1,12 @@
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_dashboard.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_dialog.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_list.dart';
-
-import 'package:amaterasutrip/features/trips/budget/presentation/budget_overview.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_user_settlement_summary.dart';
 
 class TripExpensesPage extends StatefulWidget {
   const TripExpensesPage({super.key, required this.tripId});
@@ -20,13 +21,21 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
   late final BudgetApi _api = BudgetApi(widget.tripId);
   late final Future<String> _currency = _api.tripCurrency();
 
-  Future<void> _add(String currency) async {
+  bool _showPersonal = false;
+
+  static const _background = Color(0xFF100C0A);
+  static const _cream = Color(0xFFF2E7D5);
+  static const _muted = Color(0xFFB7A99B);
+  static const _orange = Color(0xFFD96C32);
+  static const _gold = Color(0xFFE3A66C);
+
+  Future<void> _addExpense(String currency) async {
     await showDialog<bool>(
       context: context,
-      builder: (context) => Theme(
-        data: Theme.of(context).copyWith(
+      builder: (dialogContext) => Theme(
+        data: Theme.of(dialogContext).copyWith(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFFD96C32),
+            seedColor: _orange,
             brightness: Brightness.dark,
           ),
         ),
@@ -35,16 +44,98 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
     );
   }
 
+  Widget _sectionHeading(String title, IconData icon) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Icon(icon, size: 21, color: _gold),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: _cream,
+                fontSize: 19,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _tab({
+    required String label,
+    required IconData icon,
+    required bool selected,
+    required VoidCallback onTap,
+  }) {
+    return Expanded(
+      child: Material(
+        color: selected ? const Color(0xFF594038) : Colors.transparent,
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(12),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 13),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, size: 18, color: selected ? _cream : _muted),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    label,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: selected ? _cream : _muted,
+                      fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF100C0A),
+      backgroundColor: _background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF100C0A),
-        foregroundColor: const Color(0xFFF2E7D5),
-        title: Text(it ? 'Budget e Spese' : 'Budget & Expenses'),
+        backgroundColor: _background,
+        foregroundColor: _cream,
+        title: Text(l10n.budgetScreenTitle),
+        actions: [
+          FutureBuilder<String>(
+            future: _currency,
+            builder: (context, currencyResult) {
+              if (!currencyResult.hasData) {
+                return const SizedBox.shrink();
+              }
+
+              return IconButton(
+                tooltip: l10n.budgetAddExpense,
+                onPressed: () => _addExpense(currencyResult.data!),
+                icon: const Icon(
+                  Icons.add_circle_outline_rounded,
+                  size: 28,
+                  color: Color(0xFFE3A66C),
+                ),
+              );
+            },
+          ),
+          const SizedBox(width: 12),
+        ],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_rounded),
           onPressed: () => context.go('/trips/${widget.tripId}/more'),
@@ -52,87 +143,95 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
       ),
       body: FutureBuilder<String>(
         future: _currency,
-        builder: (context, currencySnapshot) {
-          if (currencySnapshot.hasError) {
+        builder: (context, result) {
+          if (result.hasError) {
             return Center(
               child: Text(
-                '${it ? "Impossibile caricare il viaggio" : "Unable to load trip"}'
-                ': ${currencySnapshot.error}',
+                it
+                    ? 'Impossibile caricare il viaggio.'
+                    : 'Unable to load trip.',
+                style: const TextStyle(color: _cream),
               ),
             );
           }
 
-          if (!currencySnapshot.hasData) {
+          if (!result.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final currency = currencySnapshot.data!;
+          final currency = result.data!;
 
           return Align(
             alignment: Alignment.topCenter,
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 1050),
               child: ListView(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.fromLTRB(16, 14, 16, 40),
                 children: [
-                  Wrap(
-                    spacing: 16,
-                    runSpacing: 12,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            it ? 'Le spese del viaggio' : 'Trip expenses',
-                            style: const TextStyle(
-                              color: Color(0xFFF2E7D5),
-                              fontSize: 27,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '${it ? "Valuta principale" : "Main currency"}: $currency',
-                            style: const TextStyle(color: Color(0xFFB7A99B)),
-                          ),
-                        ],
-                      ),
-                      FilledButton.icon(
-                        onPressed: () => _add(currency),
-                        icon: const Icon(Icons.add),
-                        label: Text(it ? 'Aggiungi spesa' : 'Add expense'),
-                        style: FilledButton.styleFrom(
-                          backgroundColor: const Color(0xFFD96C32),
-                          foregroundColor: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.public_outlined,
+                          size: 17,
+                          color: Color(0xFFB7A99B),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    it ? 'Spese condivise' : 'Shared expenses',
-                    style: const TextStyle(
-                      color: Color(0xFFF2E7D5),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                        const SizedBox(width: 8),
+                        Text(
+                          l10n.budgetTripCurrency(currency),
+                          style: const TextStyle(
+                            color: Color(0xFFB7A99B),
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  BudgetOverview(api: _api),
-                  const SizedBox(height: 12),
-                  BudgetExpenseList(api: _api, private: false),
+                  _sectionHeading(
+                    it ? 'La tua situazione' : 'Your finances',
+                    Icons.account_balance_wallet_outlined,
+                  ),
+                  BudgetUserSettlementSummary(api: _api),
+
+                  const SizedBox(height: 26),
+
+                  BudgetCategoryDashboard(api: _api, mainCurrency: currency),
+
                   const SizedBox(height: 28),
-                  Text(
-                    it ? 'Le mie spese personali' : 'My personal expenses',
-                    style: const TextStyle(
-                      color: Color(0xFFF2E7D5),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+
+                  _sectionHeading(
+                    it ? 'Le spese del viaggio' : 'Trip expense list',
+                    Icons.receipt_long_outlined,
+                  ),
+
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF241A16),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Row(
+                      children: [
+                        _tab(
+                          label: it ? 'Condivise' : 'Shared',
+                          icon: Icons.groups_outlined,
+                          selected: !_showPersonal,
+                          onTap: () => setState(() => _showPersonal = false),
+                        ),
+                        _tab(
+                          label: it ? 'Personali' : 'Personal',
+                          icon: Icons.lock_outline_rounded,
+                          selected: _showPersonal,
+                          onTap: () => setState(() => _showPersonal = true),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  BudgetExpenseList(api: _api, private: true),
+
+                  const SizedBox(height: 14),
+
+                  BudgetExpenseList(api: _api, private: _showPersonal),
                 ],
               ),
             ),
