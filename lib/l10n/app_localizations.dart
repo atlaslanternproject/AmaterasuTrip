@@ -62,8 +62,7 @@ import 'app_localizations_it.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,18 +82,17 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('it'),
+    Locale('it')
   ];
 
   /// No description provided for @accountRecoveryTitle.
@@ -4525,10 +4522,519 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You do not have access to manage this trip.'**
   String get tripManagementFinalAccessDenied;
+
+  /// No description provided for @budgetScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget & Expenses'**
+  String get budgetScreenTitle;
+
+  /// No description provided for @budgetAddExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Add expense'**
+  String get budgetAddExpense;
+
+  /// No description provided for @budgetTripCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip currency: {currency}'**
+  String budgetTripCurrency(String currency);
+
+  /// No description provided for @budgetSplitExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'How the expense is split'**
+  String get budgetSplitExpense;
+
+  /// No description provided for @budgetSupplierPayments.
+  ///
+  /// In en, this message translates to:
+  /// **'Who paid the supplier'**
+  String get budgetSupplierPayments;
+
+  /// No description provided for @budgetBalanceLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to update balances.'**
+  String get budgetBalanceLoadError;
+
+  /// No description provided for @budgetMovementConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get budgetMovementConfirmed;
+
+  /// No description provided for @budgetMovementHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Reimbursement history'**
+  String get budgetMovementHistory;
+
+  /// No description provided for @budgetMovementPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get budgetMovementPending;
+
+  /// No description provided for @budgetMovementRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get budgetMovementRejected;
+
+  /// No description provided for @budgetNamesUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Traveler names are unavailable.'**
+  String get budgetNamesUnavailable;
+
+  /// No description provided for @budgetNoMovements.
+  ///
+  /// In en, this message translates to:
+  /// **'No reimbursements recorded.'**
+  String get budgetNoMovements;
+
+  /// No description provided for @budgetNothingToPay.
+  ///
+  /// In en, this message translates to:
+  /// **'No reimbursements to make.'**
+  String get budgetNothingToPay;
+
+  /// No description provided for @budgetNothingToReceive.
+  ///
+  /// In en, this message translates to:
+  /// **'No reimbursements to receive.'**
+  String get budgetNothingToReceive;
+
+  /// No description provided for @budgetOthersOweYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Owed to you'**
+  String get budgetOthersOweYou;
+
+  /// No description provided for @budgetPendingConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Awaiting confirmation'**
+  String get budgetPendingConfirmation;
+
+  /// No description provided for @budgetYouOwe.
+  ///
+  /// In en, this message translates to:
+  /// **'You owe'**
+  String get budgetYouOwe;
+
+  /// No description provided for @budgetYourBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Your finances'**
+  String get budgetYourBalance;
+
+  /// No description provided for @budgetRevisionApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get budgetRevisionApprove;
+
+  /// No description provided for @budgetRevisionApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get budgetRevisionApproved;
+
+  /// No description provided for @budgetRevisionCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get budgetRevisionCancel;
+
+  /// No description provided for @budgetRevisionEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit expense'**
+  String get budgetRevisionEdit;
+
+  /// No description provided for @budgetRevisionInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial changes must be approved by affected travelers before taking effect.'**
+  String get budgetRevisionInfo;
+
+  /// No description provided for @budgetRevisionInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Check amounts, shares and payment status for consistency.'**
+  String get budgetRevisionInvalid;
+
+  /// No description provided for @budgetRevisionLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load proposed changes.'**
+  String get budgetRevisionLoadError;
+
+  /// No description provided for @budgetRevisionLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'This expense has recorded reimbursements. Financial revisions are locked to preserve history.'**
+  String get budgetRevisionLocked;
+
+  /// No description provided for @budgetRevisionMyAdvance.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount you paid to the supplier'**
+  String get budgetRevisionMyAdvance;
+
+  /// No description provided for @budgetRevisionNoOtherPayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Advances attributed to other travelers require a separate confirmation flow.'**
+  String get budgetRevisionNoOtherPayers;
+
+  /// No description provided for @budgetRevisionOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get budgetRevisionOutstanding;
+
+  /// No description provided for @budgetRevisionPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get budgetRevisionPaid;
+
+  /// No description provided for @budgetRevisionPaymentStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplier payment status'**
+  String get budgetRevisionPaymentStatus;
+
+  /// No description provided for @budgetRevisionPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Change awaiting approval'**
+  String get budgetRevisionPending;
+
+  /// No description provided for @budgetRevisionPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get budgetRevisionPlanned;
+
+  /// No description provided for @budgetRevisionPropose.
+  ///
+  /// In en, this message translates to:
+  /// **'Propose changes'**
+  String get budgetRevisionPropose;
+
+  /// No description provided for @budgetRevisionReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get budgetRevisionReject;
+
+  /// No description provided for @budgetRevisionSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes and approvals'**
+  String get budgetRevisionSection;
+
+  /// No description provided for @budgetRevisionSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Request recorded. The status will update after approval.'**
+  String get budgetRevisionSent;
+
+  /// No description provided for @budgetRevisionShares.
+  ///
+  /// In en, this message translates to:
+  /// **'Individual shares'**
+  String get budgetRevisionShares;
+
+  /// No description provided for @budgetRevisionTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total amount'**
+  String get budgetRevisionTotal;
+
+  /// No description provided for @budgetRevisionTraveler.
+  ///
+  /// In en, this message translates to:
+  /// **'Traveler'**
+  String get budgetRevisionTraveler;
+
+  /// No description provided for @budgetRevisionWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get budgetRevisionWaiting;
+
+  /// No description provided for @budgetMultiPayerHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Who actually paid the supplier'**
+  String get budgetMultiPayerHeading;
+
+  /// No description provided for @budgetMultiPayerApproval.
+  ///
+  /// In en, this message translates to:
+  /// **'Every affected traveler, including each named payer, must approve the change.'**
+  String get budgetMultiPayerApproval;
+
+  /// No description provided for @b6Group.
+  ///
+  /// In en, this message translates to:
+  /// **'Group expenses'**
+  String get b6Group;
+
+  /// No description provided for @b6Personal.
+  ///
+  /// In en, this message translates to:
+  /// **'My personal expenses'**
+  String get b6Personal;
+
+  /// No description provided for @b6GroupByCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Group expenses by category'**
+  String get b6GroupByCategory;
+
+  /// No description provided for @b6PersonalByCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'My expenses by category'**
+  String get b6PersonalByCategory;
+
+  /// No description provided for @b6SummaryCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary currency'**
+  String get b6SummaryCurrency;
+
+  /// No description provided for @b6Historical.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical rates'**
+  String get b6Historical;
+
+  /// No description provided for @b6Latest.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest available rates'**
+  String get b6Latest;
+
+  /// No description provided for @b6AllCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'All categories'**
+  String get b6AllCategories;
+
+  /// No description provided for @b6Category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get b6Category;
+
+  /// No description provided for @b6CreateCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'New category'**
+  String get b6CreateCategory;
+
+  /// No description provided for @b6EditCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit category'**
+  String get b6EditCategory;
+
+  /// No description provided for @b6CategoryName.
+  ///
+  /// In en, this message translates to:
+  /// **'Category name'**
+  String get b6CategoryName;
+
+  /// No description provided for @b6AllStatuses.
+  ///
+  /// In en, this message translates to:
+  /// **'All statuses'**
+  String get b6AllStatuses;
+
+  /// No description provided for @b6Planned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get b6Planned;
+
+  /// No description provided for @b6Outstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get b6Outstanding;
+
+  /// No description provided for @b6Paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get b6Paid;
+
+  /// No description provided for @b6AllPeriods.
+  ///
+  /// In en, this message translates to:
+  /// **'All dates'**
+  String get b6AllPeriods;
+
+  /// No description provided for @b6Last30Days.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 30 days'**
+  String get b6Last30Days;
+
+  /// No description provided for @b6Last90Days.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 90 days'**
+  String get b6Last90Days;
+
+  /// No description provided for @b6Newest.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest'**
+  String get b6Newest;
+
+  /// No description provided for @b6Oldest.
+  ///
+  /// In en, this message translates to:
+  /// **'Oldest'**
+  String get b6Oldest;
+
+  /// No description provided for @b6LoadingError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load summary.'**
+  String get b6LoadingError;
+
+  /// No description provided for @b6PersonalTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'My expense total'**
+  String get b6PersonalTotal;
+
+  /// No description provided for @b6GroupTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total of shared expenses involving me'**
+  String get b6GroupTotal;
+
+  /// No description provided for @b6PartialTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Partial total: some currencies are unavailable.'**
+  String get b6PartialTotal;
+
+  /// No description provided for @b6ExpenseCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense count'**
+  String get b6ExpenseCount;
+
+  /// No description provided for @b6MyShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Your share of group expenses'**
+  String get b6MyShare;
+
+  /// No description provided for @b6AveragePerTraveler.
+  ///
+  /// In en, this message translates to:
+  /// **'Average per involved traveler'**
+  String get b6AveragePerTraveler;
+
+  /// No description provided for @b6LatestExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest expense'**
+  String get b6LatestExpense;
+
+  /// No description provided for @b6PaidToSuppliers.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid to suppliers'**
+  String get b6PaidToSuppliers;
+
+  /// No description provided for @b6OutstandingSuppliers.
+  ///
+  /// In en, this message translates to:
+  /// **'Still to pay'**
+  String get b6OutstandingSuppliers;
+
+  /// No description provided for @b6NoExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'No expenses available for the chart.'**
+  String get b6NoExpenses;
+
+  /// No description provided for @b6RateSource.
+  ///
+  /// In en, this message translates to:
+  /// **'FX observations and sources:'**
+  String get b6RateSource;
+
+  /// No description provided for @b6RateDoesNotChangeDebts.
+  ///
+  /// In en, this message translates to:
+  /// **'FX is for information only: shares, debts and repayments remain in the original currency.'**
+  String get b6RateDoesNotChangeDebts;
+
+  /// No description provided for @b6MissingRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Exchange rate unavailable. Amounts excluded, no invented values:'**
+  String get b6MissingRate;
+
+  /// No description provided for @b6ExcludedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'expenses not converted.'**
+  String get b6ExcludedCount;
+
+  /// No description provided for @b6ManualRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct rate manually'**
+  String get b6ManualRate;
+
+  /// No description provided for @b6RateValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate (target units per 1 original unit)'**
+  String get b6RateValue;
+
+  /// No description provided for @b6RateReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason for correction (required)'**
+  String get b6RateReason;
+
+  /// No description provided for @b6InvalidRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a positive rate and a reason.'**
+  String get b6InvalidRate;
+
+  /// No description provided for @b6Cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get b6Cancel;
+
+  /// No description provided for @b6Save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get b6Save;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -4537,26 +5043,25 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'it'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'it'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return AppLocalizationsEn();
-    case 'it':
-      return AppLocalizationsIt();
+    case 'en': return AppLocalizationsEn();
+    case 'it': return AppLocalizationsIt();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
+    'that was used.'
   );
 }

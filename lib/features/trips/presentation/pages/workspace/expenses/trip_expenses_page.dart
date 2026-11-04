@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_dashboard.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_filters.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_dialog.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_list.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_user_settlement_summary.dart';
@@ -22,6 +23,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
   late final Future<String> _currency = _api.tripCurrency();
 
   bool _showPersonal = false;
+  BudgetExpenseFilters _filters = const BudgetExpenseFilters();
 
   static const _background = Color(0xFF100C0A);
   static const _cream = Color(0xFFF2E7D5);
@@ -74,7 +76,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
   }) {
     return Expanded(
       child: Material(
-        color: selected ? const Color(0xFF594038) : Colors.transparent,
+        color: selected ? const Color(0xFFE17A43) : Colors.transparent,
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
           onTap: onTap,
@@ -84,14 +86,14 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, size: 18, color: selected ? _cream : _muted),
+                Icon(icon, size: 18, color: selected ? _background : _muted),
                 const SizedBox(width: 8),
                 Flexible(
                   child: Text(
                     label,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: selected ? _cream : _muted,
+                      color: selected ? _background : _muted,
                       fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                     ),
                   ),
@@ -113,6 +115,10 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
       backgroundColor: _background,
       appBar: AppBar(
         backgroundColor: _background,
+        scrolledUnderElevation: 0,
+        surfaceTintColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        elevation: 0,
         foregroundColor: _cream,
         title: Text(l10n.budgetScreenTitle),
         actions: [
@@ -196,7 +202,13 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
 
                   const SizedBox(height: 26),
 
-                  BudgetCategoryDashboard(api: _api, mainCurrency: currency),
+                  BudgetCategoryDashboard(
+                    api: _api,
+                    mainCurrency: currency,
+                    filters: _filters,
+                    onFiltersChanged: (value) =>
+                        setState(() => _filters = value),
+                  ),
 
                   const SizedBox(height: 28),
 
@@ -231,7 +243,15 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
 
                   const SizedBox(height: 14),
 
-                  BudgetExpenseList(api: _api, private: _showPersonal),
+                  StreamBuilder<Map<String, String>>(
+                    stream: _api.budgetCategories(),
+                    builder: (context, categories) => BudgetExpenseList(
+                      api: _api,
+                      private: _showPersonal,
+                      filters: _filters,
+                      categoryNames: categories.data ?? const {},
+                    ),
+                  ),
                 ],
               ),
             ),

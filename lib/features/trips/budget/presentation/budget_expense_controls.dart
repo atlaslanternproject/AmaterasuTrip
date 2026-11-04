@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'budget_api.dart';
+import 'budget_category_edit_dialog.dart';
 import 'budget_reimbursements_panel.dart';
 import 'budget_revision_panel.dart';
 
@@ -103,6 +105,25 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
           _it ? 'Gestione spesa' : 'Expense management',
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
+        const SizedBox(height: 10),
+        if (data['createdByUid'] == widget.api.currentUid)
+          OutlinedButton.icon(
+            onPressed: _busy
+                ? null
+                : () async {
+                    await showDialog<bool>(
+                      context: context,
+                      builder: (_) => BudgetCategoryEditDialog(
+                        api: widget.api,
+                        expenseId: widget.expenseId,
+                        private: widget.isPrivate,
+                        initialCategory: data['category']?.toString() ?? 'other',
+                      ),
+                    );
+                  },
+            icon: const Icon(Icons.category_outlined),
+            label: Text(AppLocalizations.of(context)!.b6EditCategory),
+          ),
         const SizedBox(height: 10),
         OutlinedButton.icon(
           onPressed: _busy

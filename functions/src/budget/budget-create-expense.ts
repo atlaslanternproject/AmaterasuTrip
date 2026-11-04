@@ -47,7 +47,8 @@ export const createBudgetExpense = onCall(
 
     if (rawCategory !== undefined &&
         (typeof rawCategory !== "string" ||
-         !categories.includes(rawCategory))) {
+         (!categories.includes(rawCategory) &&
+          !/^custom:[a-z0-9-]{1,60}$/.test(rawCategory)))) {
       throw new HttpsError("invalid-argument", "Invalid expense category.");
     }
 
@@ -79,6 +80,15 @@ export const createBudgetExpense = onCall(
 
       if (existing.exists) {
         throw new HttpsError("already-exists", "Expense exists.");
+      }
+
+      if (category.startsWith("custom:")) {
+        const categoryRef = db.collection("trips").doc(tripId)
+          .collection("budgetCategories").doc(category.slice(7));
+        const categoryDoc = await tx.get(categoryRef);
+        if (!categoryDoc.exists) {
+          throw new HttpsError("invalid-argument", "Unknown custom category.");
+        }
       }
 
       const participants = new Set([
@@ -115,6 +125,7 @@ export const createBudgetExpense = onCall(
       }
 
       tx.create(expenseRef, {
+        participantUids: [...participants].sort(),
         title,
         category,
         notes,

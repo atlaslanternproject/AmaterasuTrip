@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'budget_api.dart';
+import 'budget_category_picker.dart';
 import 'budget_money_input.dart';
 import 'budget_currency.dart';
 import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
@@ -268,41 +269,11 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                DropdownButtonFormField<String>(
-                  initialValue: _category,
-                  decoration: InputDecoration(
-                    labelText: it ? 'Categoria' : 'Category',
-                    border: const OutlineInputBorder(),
-                  ),
-                  items: [
-                    DropdownMenuItem(
-                      value: 'accommodation',
-                      child: Text(it ? 'Alloggio' : 'Accommodation'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'food',
-                      child: Text(it ? 'Cibo e ristoranti' : 'Food'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'transport',
-                      child: Text(it ? 'Trasporti' : 'Transport'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'activities',
-                      child: Text(it ? 'Attività' : 'Activities'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'shopping',
-                      child: Text(it ? 'Shopping' : 'Shopping'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'other',
-                      child: Text(it ? 'Altro' : 'Other'),
-                    ),
-                  ],
-                  onChanged: _saving
-                      ? null
-                      : (value) => setState(() => _category = value ?? 'other'),
+                BudgetCategoryPicker(
+                  api: widget.api,
+                  selected: _category,
+                  enabled: !_saving,
+                  onChanged: (value) => setState(() => _category = value),
                 ),
                 const SizedBox(height: 12),
                 TextField(

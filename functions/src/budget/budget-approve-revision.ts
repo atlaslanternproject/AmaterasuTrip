@@ -110,7 +110,14 @@ export const approveBudgetRevision = onCall(
         createdAt: FieldValue.serverTimestamp(),
       });
 
+      const nextSnapshot = data.proposedSnapshot;
+      const participantUids = [...new Set<string>([
+        ...Object.keys(nextSnapshot.shares ?? {}),
+        ...Object.keys(nextSnapshot.advances ?? {}),
+      ])].sort();
+
       tx.update(ref, {
+        participantUids,
         snapshot: data.proposedSnapshot,
         version,
         updatedAt: FieldValue.serverTimestamp(),

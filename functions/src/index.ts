@@ -837,3 +837,10 @@ export {
   decideBudgetCancellation,
   cancelPrivateBudgetExpense,
 } from "./budget/budget-functions";
+
+export {
+  createBudgetCategory,
+  updateBudgetExpenseCategory,
+  ensureBudgetExpenseFx,
+  overrideBudgetExpenseFx,
+} from "./budget/budget-functions";

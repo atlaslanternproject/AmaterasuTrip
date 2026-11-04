@@ -1,4 +1,12 @@
 export {createBudgetExpense} from "./budget-create-expense";
+export {
+  createBudgetCategory,
+  updateBudgetExpenseCategory,
+} from "./budget-category";
+export {
+  ensureBudgetExpenseFx,
+  overrideBudgetExpenseFx,
+} from "./budget-fx";
 export {proposeBudgetRevision} from "./budget-propose-revision";
 export {approveBudgetRevision} from "./budget-approve-revision";
 export {

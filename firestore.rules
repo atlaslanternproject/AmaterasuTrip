@@ -479,14 +479,30 @@ service cloud.firestore {
           && request.auth.uid == ownerUid;
       }
 
+      function budgetExpenseParticipant(expenseId) {
+        return budgetActiveMember()
+          && exists(
+            /databases/$(database)/documents/trips/$(tripId)/budgetSharedExpenses/$(expenseId)
+          )
+          && get(
+            /databases/$(database)/documents/trips/$(tripId)/budgetSharedExpenses/$(expenseId)
+          ).data.get('participantUids', []).hasAny([request.auth.uid]);
+      }
+
       match /budgetSharedExpenses/{expenseId} {
-        allow get, list: if budgetActiveMember();
+        allow get, list: if budgetActiveMember()
+          && resource.data.get('participantUids', []).hasAny([request.auth.uid]);
         allow create, update, delete: if false;
 
         match /{budgetChild=**} {
-          allow get, list: if budgetActiveMember();
+          allow get, list: if budgetExpenseParticipant(expenseId);
           allow create, update, delete: if false;
         }
+      }
+
+      match /budgetCategories/{categoryId} {
+        allow get, list: if budgetActiveMember();
+        allow create, update, delete: if false;
       }
 
       match /budgetPrivateOwners/{ownerUid} {

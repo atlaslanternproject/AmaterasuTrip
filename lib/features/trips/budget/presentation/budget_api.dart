@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -88,7 +90,7 @@ class BudgetApi {
       .collection('trips')
       .doc(tripId)
       .collection('budgetSharedExpenses')
-      .orderBy('createdAt', descending: true)
+      .where('participantUids', arrayContains: currentUid)
       .snapshots();
 
   Stream<QuerySnapshot<Map<String, dynamic>>> privateExpenses() => _db
@@ -99,6 +101,70 @@ class BudgetApi {
       .collection('expenses')
       .orderBy('createdAt', descending: true)
       .snapshots();
+
+  /// All custom categories are common to every member of this trip.
+  Stream<Map<String, String>> budgetCategories() => _db
+      .collection('trips')
+      .doc(tripId)
+      .collection('budgetCategories')
+      .snapshots()
+      .map(
+        (snapshot) => <String, String>{
+          for (final doc in snapshot.docs)
+            'custom:${doc.id}': doc.data()['label']?.toString() ?? doc.id,
+        },
+      );
+
+  Future<String> createBudgetCategory(String label) async {
+    final response = await _functions
+        .httpsCallable('createBudgetCategory')
+        .call({'tripId': tripId, 'label': label});
+    final value = Map<String, dynamic>.from(response.data as Map);
+    final id = value['category'];
+    if (id is! String || !id.startsWith('custom:')) {
+      throw StateError('Category response invalid.');
+    }
+    return id;
+  }
+
+  Future<void> ensureExpenseFx({
+    required String expenseId,
+    required bool private,
+  }) async {
+    await _functions.httpsCallable('ensureBudgetExpenseFx').call({
+      'tripId': tripId,
+      'expenseId': expenseId,
+      'visibility': private ? 'private' : 'shared',
+    });
+  }
+
+  Future<void> overrideExpenseFx({
+    required String expenseId,
+    required bool private,
+    required double rate,
+    required String reason,
+  }) async {
+    await _functions.httpsCallable('overrideBudgetExpenseFx').call({
+      'tripId': tripId,
+      'expenseId': expenseId,
+      'visibility': private ? 'private' : 'shared',
+      'rate': rate,
+      'reason': reason,
+    });
+  }
+
+  Future<void> updateExpenseCategory({
+    required String expenseId,
+    required bool private,
+    required String category,
+  }) async {
+    await _functions.httpsCallable('updateBudgetExpenseCategory').call({
+      'tripId': tripId,
+      'expenseId': expenseId,
+      'visibility': private ? 'private' : 'shared',
+      'category': category,
+    });
+  }
 
   Future<void> requestCancellation(String expenseId) async {
     await _functions.httpsCallable('requestBudgetCancellation').call({
@@ -142,13 +208,14 @@ class BudgetApi {
     }
 
     if (!const {
-      'accommodation',
-      'food',
-      'transport',
-      'activities',
-      'shopping',
-      'other',
-    }.contains(category)) {
+          'accommodation',
+          'food',
+          'transport',
+          'activities',
+          'shopping',
+          'other',
+        }.contains(category) &&
+        !RegExp(r'^custom:[a-z0-9-]{1,60}$').hasMatch(category)) {
       throw ArgumentError('Categoria non valida.');
     }
 
@@ -237,5 +304,19 @@ class BudgetApi {
         'advances': advances,
       },
     });
+    // A failed rate provider must never undo a successfully created expense.
+    try {
+      final tripBase = await tripCurrency();
+      if (currency != tripBase) {
+        unawaited(
+          ensureExpenseFx(
+            expenseId: docId,
+            private: !shared,
+          ).catchError((Object _) {}),
+        );
+      }
+    } catch (_) {
+      // The record remains valid in its original currency.
+    }
   }
 }

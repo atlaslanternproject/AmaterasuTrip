@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../calculations/currency_minor_units.dart';
 import 'budget_api.dart';
+import 'budget_expense_filters.dart';
 import 'budget_expense_details_dialog.dart';
 
 class BudgetExpenseList extends StatelessWidget {
@@ -10,10 +11,14 @@ class BudgetExpenseList extends StatelessWidget {
     super.key,
     required this.api,
     required this.private,
+    required this.filters,
+    this.categoryNames = const {},
   });
 
   final BudgetApi api;
   final bool private;
+  final BudgetExpenseFilters filters;
+  final Map<String, String> categoryNames;
 
   static const _cream = Color(0xFFF2E7D5);
   static const _muted = Color(0xFFB7A99B);
@@ -118,8 +123,17 @@ class BudgetExpenseList extends StatelessWidget {
         }
 
         final docs = snapshot.data!.docs
-            .where((doc) => doc.data()['lifecycle'] != 'cancelled')
+            .where((doc) => filters.matches(doc.data(), DateTime.now()))
             .toList();
+        docs.sort((a, b) => filters.compare(a.data(), b.data()));
+        docs.sort((a, b) {
+          final left = a.data()['createdAt'];
+          final right = b.data()['createdAt'];
+          if (left is Timestamp && right is Timestamp) {
+            return right.compareTo(left);
+          }
+          return 0;
+        });
 
         if (docs.isEmpty) {
           return Padding(
@@ -230,7 +244,8 @@ class BudgetExpenseList extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 5),
                                   Text(
-                                    _categoryLabel(category, it),
+                                    categoryNames[category] ??
+                                        _categoryLabel(category, it),
                                     style: const TextStyle(
                                       color: _muted,
                                       fontSize: 13,
