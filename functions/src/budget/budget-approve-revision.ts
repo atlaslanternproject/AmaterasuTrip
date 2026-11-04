@@ -46,16 +46,6 @@ export const approveBudgetRevision = onCall(
         );
       }
 
-      const reimbursements = await tx.get(
-        ref.collection("reimbursements"),
-      );
-
-      if (!reimbursements.empty) {
-        throw new HttpsError(
-          "failed-precondition",
-          "Reimbursements prevent automatic revision.",
-        );
-      }
 
       const required = data.requiredUids as string[];
       const previous = data.approvedUids as string[];
@@ -80,6 +70,17 @@ export const approveBudgetRevision = onCall(
           decidedAt: FieldValue.serverTimestamp(),
         });
         return {applied: false, state: "rejected"};
+      }
+
+      const reimbursements = await tx.get(
+        ref.collection("reimbursements"),
+      );
+
+      if (!reimbursements.empty) {
+        throw new HttpsError(
+          "failed-precondition",
+          "Reimbursements prevent automatic revision.",
+        );
       }
 
       const nextApprovals = [...previous, uid];

@@ -68,6 +68,17 @@ export const requestBudgetReimbursement = onCall(
         expense.collection("reimbursements"),
       );
 
+      const pendingRevisions = await tx.get(
+        expense.collection("proposals")
+          .where("state", "==", "pending"),
+      );
+      if (!pendingRevisions.empty) {
+        throw new HttpsError(
+          "failed-precondition",
+          "Resolve pending revision before reimbursement.",
+        );
+      }
+
       let reserved = 0;
       for (const item of previous.docs) {
         const value = item.data();

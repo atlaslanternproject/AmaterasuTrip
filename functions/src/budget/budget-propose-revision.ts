@@ -87,6 +87,10 @@ export const proposeBudgetRevision = onCall(
         );
       }
 
+      tx.update(ref, {
+        budgetLockRevision: FieldValue.increment(1),
+      });
+
       tx.create(proposalRef, {
         baseVersion: data.version,
         proposedSnapshot: snapshot,
