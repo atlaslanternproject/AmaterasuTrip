@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'budget_currency.dart';
+import '../models/budget_payment_plan.dart';
 
 class BudgetApi {
   BudgetApi(this.tripId);
@@ -198,6 +199,7 @@ class BudgetApi {
     required String status,
     required List<String> participants,
     Map<String, int>? customShares,
+    BudgetPaymentPlan? paymentPlan,
   }) async {
     if (title.trim().isEmpty || title.trim().length > 100) {
       throw ArgumentError('Titolo obbligatorio (max 100 caratteri).');
@@ -283,11 +285,34 @@ class BudgetApi {
     }
 
     final paid = status == 'paid';
-    final advances = paid
-        ? <String, dynamic>{
-            currentUid: {'currency': currency, 'minorUnits': minorUnits},
-          }
-        : <String, dynamic>{};
+
+    final declared = paymentPlan?.amountByPayer;
+
+    if (paymentPlan != null) {
+      paymentPlan.validate(
+        status: status,
+        expenseTotalMinor: minorUnits,
+        advancesMinor: declared!,
+        activeTravelerUids: {...sorted, currentUid},
+      );
+
+      if (declared.keys.any((uid) => uid != currentUid)) {
+        throw ArgumentError(
+          'I pagamenti di altri viaggiatori richiedono approvazione.',
+        );
+      }
+    }
+
+    final advances = paymentPlan == null
+        ? (paid
+              ? <String, dynamic>{
+                  currentUid: {'currency': currency, 'minorUnits': minorUnits},
+                }
+              : <String, dynamic>{})
+        : <String, dynamic>{
+            for (final entry in declared!.entries)
+              entry.key: {'currency': currency, 'minorUnits': entry.value},
+          };
 
     final docId = _db.collection('trips').doc().id;
     await _functions.httpsCallable('createBudgetExpense').call({
@@ -297,6 +322,7 @@ class BudgetApi {
       'title': title.trim(),
       'category': category,
       'notes': notes.trim(),
+      if (paymentPlan != null) 'paymentMethods': paymentPlan.toPayload(),
       'snapshot': {
         'total': {'currency': currency, 'minorUnits': minorUnits},
         'status': status,

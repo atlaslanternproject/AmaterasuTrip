@@ -3,6 +3,9 @@ import 'budget_api.dart';
 import 'budget_category_picker.dart';
 import 'budget_money_input.dart';
 import 'budget_currency.dart';
+import 'budget_payment_methods_editor.dart';
+import '../models/budget_payment_allocation.dart';
+import '../models/budget_payment_plan.dart';
 import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
 import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 
@@ -36,6 +39,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
   final Set<String> _selected = {};
   bool _customSplit = false;
   final Map<String, TextEditingController> _shareInputs = {};
+  List<BudgetPaymentAllocation> _paymentAllocations = [];
 
   @override
   void initState() {
@@ -122,6 +126,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
     if (code != _selectedCurrency) {
       setState(() {
         _selectedCurrency = code;
+        _paymentAllocations = [];
         _amount.clear();
         for (final controller in _shareInputs.values) {
           controller.clear();
@@ -175,6 +180,9 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
       }
 
       await widget.api.create(
+        paymentPlan: BudgetPaymentPlan(
+          _status == 'planned' ? [] : _paymentAllocations,
+        ),
         customShares: customShares,
         title: _title.text,
         category: _category,
@@ -348,8 +356,23 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                   ],
                   onChanged: _saving
                       ? null
-                      : (value) => setState(() => _status = value ?? 'planned'),
+                      : (value) => setState(() {
+                          _status = value ?? 'planned';
+                          _paymentAllocations = [];
+                        }),
                 ),
+                if (_status != 'planned') ...[
+                  const SizedBox(height: 16),
+                  BudgetPaymentMethodsEditor(
+                    key: ValueKey('$_status-$_selectedCurrency'),
+                    currency: _selectedCurrency,
+                    payerUid: widget.api.currentUid,
+                    enabled: !_saving,
+                    onChanged: (value) {
+                      _paymentAllocations = value;
+                    },
+                  ),
+                ],
                 if (_shared) ...[
                   const SizedBox(height: 16),
                   Text(
@@ -455,10 +478,10 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
               const SizedBox(height: 12),
               Text(
                 it
-                    ? 'Prima versione: quote uguali. I pagamenti di altri '
-                          'viaggiatori richiederanno conferma.'
-                    : 'First version: equal shares. Payments made by '
-                          'other travelers require approval.',
+                    ? 'Registra soltanto i tuoi pagamenti.'
+                          ''
+                    : 'Record only payments made by you.'
+                          '',
                 style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 12),
               ),
             ],

@@ -2,6 +2,7 @@ import {getFirestore, FieldValue} from "firebase-admin/firestore";
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
 import {validId, validateSnapshot} from "./budget-validation";
+import {validatePaymentMethods} from "./budget-payment-methods";
 
 const db = getFirestore();
 
@@ -22,6 +23,9 @@ export const createBudgetExpense = onCall(
     }
 
     const snapshot = validateSnapshot(request.data?.snapshot);
+    const paymentMethods = validatePaymentMethods(
+      request.data?.paymentMethods, snapshot,
+    );
 
     // Optional metadata remains backward-compatible with expenses
     // created by previous clients and integration tests.
@@ -132,6 +136,7 @@ export const createBudgetExpense = onCall(
         createdByUid: uid,
         visibility,
         snapshot,
+        ...(paymentMethods === null ? {} : {paymentMethods}),
         version: 1,
         createdAt: FieldValue.serverTimestamp(),
         updatedAt: FieldValue.serverTimestamp(),
@@ -140,6 +145,7 @@ export const createBudgetExpense = onCall(
       tx.create(expenseRef.collection("revisions").doc("1"), {
         number: 1,
         snapshot,
+        ...(paymentMethods === null ? {} : {paymentMethods}),
         actorUid: uid,
         createdAt: FieldValue.serverTimestamp(),
       });
