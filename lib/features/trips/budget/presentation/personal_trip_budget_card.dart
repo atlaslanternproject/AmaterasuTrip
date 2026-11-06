@@ -6,6 +6,8 @@ import '../calculations/personal_budget_spending_calculator.dart';
 import '../data/budget_fx_service.dart';
 import '../data/personal_trip_budget_repository.dart';
 import '../models/personal_trip_budget.dart';
+import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
+import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'budget_api.dart';
 import 'budget_currency.dart';
 import 'budget_money_input.dart';
@@ -32,15 +34,17 @@ class _SpendingResult {
 }
 
 class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
-  static const _dark = Color(0xFF241A16);
+  static const _background = Color(0xFF241A16);
   static const _cream = Color(0xFFF2E7D5);
   static const _muted = Color(0xFFB7A99B);
   static const _gold = Color(0xFFE3A66C);
   static const _orange = Color(0xFFE17A43);
   static const _red = Color(0xFFFF8A80);
 
-  final _repository = PersonalTripBudgetRepository();
-  final _fx = BudgetFxService();
+  final PersonalTripBudgetRepository _repository =
+      PersonalTripBudgetRepository();
+
+  final BudgetFxService _fx = BudgetFxService();
 
   late Stream<PersonalTripBudget?> _budgetStream;
   late Stream<QuerySnapshot<Map<String, dynamic>>> _sharedStream;
@@ -59,6 +63,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
     _budgetStream = _repository.watch(widget.api.tripId);
     _sharedStream = widget.api.sharedExpenses();
     _privateStream = widget.api.privateExpenses();
+
     _cacheKey = null;
     _cacheFuture = null;
   }
@@ -66,153 +71,133 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
   @override
   void didUpdateWidget(covariant PersonalTripBudgetCard oldWidget) {
     super.didUpdateWidget(oldWidget);
+
     if (oldWidget.api.tripId != widget.api.tripId) {
       _initialize();
     }
   }
 
-  String _money(int value, String currency) {
+  String _money(int amount, String currency) {
     final factor = CurrencyMinorUnits.factor(currency);
     final digits = CurrencyMinorUnits.decimals(currency);
-    final absolute = value.abs();
-    final sign = value < 0 ? '-' : '';
+
+    final sign = amount < 0 ? '-' : '';
+    final absolute = amount.abs();
     final whole = absolute ~/ factor;
 
-    if (digits == 0) return '$sign$whole $currency';
+    if (digits == 0) {
+      return '$sign$whole $currency';
+    }
 
-    final decimal = (absolute % factor).toString().padLeft(digits, '0');
-    return '$sign$whole,$decimal $currency';
+    final fraction = (absolute % factor).toString().padLeft(digits, '0');
+
+    return '$sign$whole,$fraction $currency';
   }
 
   String _editableAmount(PersonalTripBudget budget) {
     final factor = CurrencyMinorUnits.factor(budget.currency);
     final digits = CurrencyMinorUnits.decimals(budget.currency);
+
     final whole = budget.amountMinor ~/ factor;
 
-    if (digits == 0) return '$whole';
+    if (digits == 0) {
+      return '$whole';
+    }
 
-    final decimal = (budget.amountMinor % factor).toString().padLeft(
+    final fraction = (budget.amountMinor % factor).toString().padLeft(
       digits,
       '0',
     );
-    return '$whole,$decimal';
+
+    return '$whole,$fraction';
   }
 
-  Future<_SpendingResult> _compute(
-    List<QueryDocumentSnapshot<Map<String, dynamic>>> shared,
-    List<QueryDocumentSnapshot<Map<String, dynamic>>> personal,
-    String targetCurrency,
+  Future<String?> _pickCurrency(
+    BuildContext dialogContext,
+    String selected,
   ) async {
-    var spent = 0;
-    var missing = 0;
+    final it = Localizations.localeOf(context).languageCode == 'it';
+    final supported = BudgetCurrency.supported.toSet();
 
-    Future<void> addExpense(
-      QueryDocumentSnapshot<Map<String, dynamic>> document,
-      bool isPrivate,
-    ) async {
-      final data = document.data();
+    List<TripCurrency> currencies;
 
-      if (!PersonalBudgetSpendingCalculator.isIncluded(data)) return;
-
-      final share = PersonalBudgetSpendingCalculator.ownShare(
-        data,
-        uid: widget.api.currentUid,
-        privateExpense: isPrivate,
+    try {
+      final fetched = await const DestinationPlacesService().getCurrencies(
+        languageCode: it ? 'it' : 'en',
       );
 
-      if (share == null || !BudgetFxService.validCurrency(share.currency)) {
-        missing++;
-        return;
-      }
+      currencies = fetched
+          .where((item) => supported.contains(item.code.toUpperCase()))
+          .toList();
 
-      if (share.minorUnits == 0) return;
+      final found = currencies.map((item) => item.code.toUpperCase()).toSet();
 
-      if (share.currency == targetCurrency) {
-        spent += share.minorUnits;
-        return;
-      }
-
-      try {
-        BudgetFxQuote? quote;
-
-        final locked = BudgetFxQuote.fromLocked(data['fxHistorical']);
-        if (locked != null &&
-            locked.base == share.currency &&
-            locked.quote == targetCurrency) {
-          quote = locked;
-        } else {
-          final created = data['createdAt'];
-          if (created is Timestamp) {
-            quote = await _fx.historical(
-              share.currency,
-              targetCurrency,
-              created.toDate(),
-            );
-          }
-        }
-
-        final converted = BudgetFxService.convertMinor(
-          share.minorUnits,
-          share.currency,
-          targetCurrency,
-          quote,
-        );
-
-        if (converted == null) {
-          missing++;
-        } else {
-          spent += converted;
-        }
-      } catch (_) {
-        missing++;
-      }
+      currencies.addAll(
+        supported
+            .difference(found)
+            .map((code) => TripCurrency(code: code, name: code, symbol: code)),
+      );
+    } catch (_) {
+      currencies = supported
+          .map((code) => TripCurrency(code: code, name: code, symbol: code))
+          .toList();
     }
 
-    for (final document in shared) {
-      await addExpense(document, false);
-    }
+    currencies.sort((a, b) => a.code.compareTo(b.code));
 
-    for (final document in personal) {
-      await addExpense(document, true);
-    }
+    if (!dialogContext.mounted) return null;
 
-    return _SpendingResult(spent: spent, missing: missing);
+    final chosen = await showModalBottomSheet<TripCurrency>(
+      context: dialogContext,
+      useRootNavigator: true,
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFF231915),
+      builder: (sheetContext) => SafeArea(
+        top: false,
+        child: TripCurrencyPickerSheet(
+          currencies: currencies,
+          selectedCurrency: selected,
+          title: it ? 'Valuta del budget' : 'Budget currency',
+          searchHint: it ? 'Cerca una valuta' : 'Search currencies',
+          noResultsText: it ? 'Nessuna valuta trovata' : 'No currencies found',
+        ),
+      ),
+    );
+
+    if (chosen == null) return null;
+
+    return BudgetCurrency.normalize(chosen.code);
   }
 
-  Future<_SpendingResult> _spending(
-    List<QueryDocumentSnapshot<Map<String, dynamic>>> shared,
-    List<QueryDocumentSnapshot<Map<String, dynamic>>> personal,
-    String currency,
-  ) {
-    String fingerprint(QueryDocumentSnapshot<Map<String, dynamic>> doc) {
-      final data = doc.data();
-      return '${doc.id}:${data['version']}:${data['lifecycle']}:'
-          '${data['snapshot']}:${data['fxHistorical']}:${data['createdAt']}';
+  String _friendlyError(Object error, bool it) {
+    if (error is FirebaseException && error.code == 'permission-denied') {
+      return it
+          ? 'Firestore ha negato il salvataggio. '
+                'Le regole B7 devono essere presenti nel '
+                'progetto Firebase utilizzato.'
+          : 'Firestore denied the write. '
+                'B7 rules must be deployed to the '
+                'Firebase project in use.';
     }
 
-    final key = [
-      widget.api.tripId,
-      widget.api.currentUid,
-      currency,
-      ...shared.map((doc) => 'S:${fingerprint(doc)}'),
-      ...personal.map((doc) => 'P:${fingerprint(doc)}'),
-    ].join('|');
-
-    if (key != _cacheKey || _cacheFuture == null) {
-      _cacheKey = key;
-      _cacheFuture = _compute(shared, personal, currency);
+    if (error is ArgumentError || error is FormatException) {
+      return it
+          ? 'Importo o valuta non validi.'
+          : 'Invalid amount or currency.';
     }
 
-    return _cacheFuture!;
+    return it ? 'Operazione non riuscita: $error' : 'Operation failed: $error';
   }
 
   Future<void> _edit(PersonalTripBudget? existing) async {
     final it = Localizations.localeOf(context).languageCode == 'it';
+
     final input = TextEditingController(
       text: existing == null ? '' : _editableAmount(existing),
     );
-    var currency = existing?.currency ?? widget.defaultCurrency;
-    var saving = false;
+
+    String currency = existing?.currency ?? widget.defaultCurrency;
+    bool saving = false;
     String? error;
 
     try {
@@ -234,10 +219,10 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                   children: [
                     Text(
                       it
-                          ? 'Questo importo è privato. Superarlo non '
-                                'impedisce di registrare altre spese.'
-                          : 'This amount is private. Exceeding it '
-                                'never prevents recording more expenses.',
+                          ? 'Solo tu puoi vedere questo budget. '
+                                'Superarlo non blocca nuove spese.'
+                          : 'Only you can see this budget. '
+                                'Exceeding it never blocks new expenses.',
                       style: const TextStyle(color: _muted),
                     ),
                     const SizedBox(height: 18),
@@ -249,31 +234,37 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                       ),
                       decoration: InputDecoration(
                         labelText: it ? 'Importo previsto' : 'Planned amount',
+                        suffixText: currency,
                         border: const OutlineInputBorder(),
                       ),
                     ),
                     const SizedBox(height: 14),
-                    DropdownButtonFormField<String>(
-                      initialValue: currency,
-                      isExpanded: true,
-                      decoration: InputDecoration(
-                        labelText: it ? 'Valuta' : 'Currency',
-                        border: const OutlineInputBorder(),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        onPressed: saving
+                            ? null
+                            : () async {
+                                final chosen = await _pickCurrency(
+                                  dialogContext,
+                                  currency,
+                                );
+
+                                if (chosen == null ||
+                                    !dialogContext.mounted ||
+                                    chosen == currency) {
+                                  return;
+                                }
+
+                                update(() {
+                                  currency = chosen;
+                                  input.clear();
+                                  error = null;
+                                });
+                              },
+                        icon: const Icon(Icons.currency_exchange_rounded),
+                        label: Text('${it ? 'Valuta' : 'Currency'}: $currency'),
                       ),
-                      items: [
-                        for (final code in BudgetCurrency.supported)
-                          DropdownMenuItem(value: code, child: Text(code)),
-                      ],
-                      onChanged: saving
-                          ? null
-                          : (value) {
-                              if (value == null) return;
-                              update(() {
-                                currency = value;
-                                input.clear();
-                                error = null;
-                              });
-                            },
                     ),
                     if (error != null) ...[
                       const SizedBox(height: 12),
@@ -293,16 +284,18 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             saving = true;
                             error = null;
                           });
+
                           try {
                             await _repository.remove(widget.api.tripId);
+
                             if (dialogContext.mounted) {
-                              Navigator.pop(dialogContext);
+                              Navigator.of(dialogContext).pop();
                             }
                           } catch (e) {
                             if (dialogContext.mounted) {
                               update(() {
                                 saving = false;
-                                error = '$e';
+                                error = _friendlyError(e, it);
                               });
                             }
                           }
@@ -310,7 +303,9 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                   child: Text(it ? 'Rimuovi' : 'Remove'),
                 ),
               TextButton(
-                onPressed: saving ? null : () => Navigator.pop(dialogContext),
+                onPressed: saving
+                    ? null
+                    : () => Navigator.of(dialogContext).pop(),
                 child: Text(it ? 'Annulla' : 'Cancel'),
               ),
               FilledButton(
@@ -325,26 +320,32 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                           saving = true;
                           error = null;
                         });
+
                         try {
-                          final value = BudgetMoneyInput.parse(
+                          final amountMinor = BudgetMoneyInput.parse(
                             input.text,
                             currency,
                           );
-                          await _repository.save(
-                            widget.api.tripId,
-                            PersonalTripBudget(
-                              amountMinor: value,
-                              currency: currency,
-                            ),
+
+                          final budget = PersonalTripBudget(
+                            amountMinor: amountMinor,
+                            currency: currency,
                           );
+
+                          if (!budget.isValid) {
+                            throw ArgumentError('Invalid personal budget.');
+                          }
+
+                          await _repository.save(widget.api.tripId, budget);
+
                           if (dialogContext.mounted) {
-                            Navigator.pop(dialogContext);
+                            Navigator.of(dialogContext).pop();
                           }
                         } catch (e) {
                           if (dialogContext.mounted) {
                             update(() {
                               saving = false;
-                              error = '$e';
+                              error = _friendlyError(e, it);
                             });
                           }
                         }
@@ -360,11 +361,127 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
     }
   }
 
-  Widget _panel(Widget content) => Card(
-    color: _dark,
-    margin: const EdgeInsets.symmetric(vertical: 8),
-    child: Padding(padding: const EdgeInsets.all(18), child: content),
-  );
+  Future<_SpendingResult> _compute(
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> shared,
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> personal,
+    String target,
+  ) async {
+    int spent = 0;
+    int missing = 0;
+
+    Future<void> add(
+      QueryDocumentSnapshot<Map<String, dynamic>> document,
+      bool isPrivate,
+    ) async {
+      final data = document.data();
+
+      if (!PersonalBudgetSpendingCalculator.isIncluded(data)) {
+        return;
+      }
+
+      final share = PersonalBudgetSpendingCalculator.ownShare(
+        data,
+        uid: widget.api.currentUid,
+        privateExpense: isPrivate,
+      );
+
+      if (share == null || !BudgetFxService.validCurrency(share.currency)) {
+        missing++;
+        return;
+      }
+
+      if (share.minorUnits == 0) return;
+
+      if (share.currency == target) {
+        spent += share.minorUnits;
+        return;
+      }
+
+      try {
+        BudgetFxQuote? quote;
+
+        final locked = BudgetFxQuote.fromLocked(data['fxHistorical']);
+
+        if (locked != null &&
+            locked.base == share.currency &&
+            locked.quote == target) {
+          quote = locked;
+        } else {
+          final createdAt = data['createdAt'];
+
+          if (createdAt is Timestamp) {
+            quote = await _fx.historical(
+              share.currency,
+              target,
+              createdAt.toDate(),
+            );
+          }
+        }
+
+        final converted = BudgetFxService.convertMinor(
+          share.minorUnits,
+          share.currency,
+          target,
+          quote,
+        );
+
+        if (converted == null) {
+          missing++;
+        } else {
+          spent += converted;
+        }
+      } catch (_) {
+        missing++;
+      }
+    }
+
+    for (final document in shared) {
+      await add(document, false);
+    }
+
+    for (final document in personal) {
+      await add(document, true);
+    }
+
+    return _SpendingResult(spent: spent, missing: missing);
+  }
+
+  Future<_SpendingResult> _spending(
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> shared,
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> personal,
+    String currency,
+  ) {
+    String fingerprint(QueryDocumentSnapshot<Map<String, dynamic>> document) {
+      final data = document.data();
+
+      return '${document.id}:${data['version']}:'
+          '${data['lifecycle']}:${data['snapshot']}:'
+          '${data['fxHistorical']}:${data['createdAt']}';
+    }
+
+    final key = [
+      widget.api.tripId,
+      widget.api.currentUid,
+      currency,
+      ...shared.map((doc) => 'S:${fingerprint(doc)}'),
+      ...personal.map((doc) => 'P:${fingerprint(doc)}'),
+    ].join('|');
+
+    if (key != _cacheKey || _cacheFuture == null) {
+      _cacheKey = key;
+      _cacheFuture = _compute(shared, personal, currency);
+    }
+
+    return _cacheFuture!;
+  }
+
+  Widget _panel(Widget content) {
+    return Card(
+      color: _background,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Padding(padding: const EdgeInsets.all(18), child: content),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -406,7 +523,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                   it
                       ? 'Imposta un budget personale facoltativo, '
                             'visibile soltanto a te.'
-                      : 'Set an optional personal travel budget, '
+                      : 'Set an optional personal budget '
                             'visible only to you.',
                   style: const TextStyle(color: _muted),
                 ),
@@ -434,6 +551,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                 ),
               );
             }
+
             if (!shared.hasData) {
               return const LinearProgressIndicator();
             }
@@ -451,6 +569,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                     ),
                   );
                 }
+
                 if (!personal.hasData) {
                   return const LinearProgressIndicator();
                 }
@@ -463,10 +582,16 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                   ),
                   builder: (context, result) {
                     final spending = result.data;
-                    final incomplete = spending == null || spending.missing > 0;
+
+                    final incomplete =
+                        spending == null ||
+                        spending.missing > 0 ||
+                        result.hasError;
+
                     final remaining = spending == null
                         ? 0
                         : budget.remainingMinor(spending.spent);
+
                     final exceeded = !incomplete && remaining < 0;
 
                     return _panel(
@@ -526,8 +651,10 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                           ),
                           Text(
                             it
-                                ? 'Spesa a tuo carico (pagata e da saldare)'
-                                : 'Your share (paid and outstanding)',
+                                ? 'Spesa a tuo carico '
+                                      '(pagata e da saldare)'
+                                : 'Your share '
+                                      '(paid and outstanding)',
                             style: const TextStyle(color: _muted),
                           ),
                           const SizedBox(height: 14),
@@ -535,9 +662,9 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             Text(
                               it
                                   ? 'Rimanente non determinabile: '
-                                        'alcuni importi o tassi non sono disponibili.'
-                                  : 'Remaining amount unavailable: '
-                                        'some amounts or exchange rates are missing.',
+                                        'manca un importo o un tasso di cambio.'
+                                  : 'Remaining unavailable: '
+                                        'an amount or exchange rate is missing.',
                               style: const TextStyle(color: _gold),
                             )
                           else ...[
@@ -573,7 +700,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                                 ? 'Le spese previste sono escluse. '
                                       'Il superamento non blocca nuove spese.'
                                 : 'Planned expenses are excluded. '
-                                      'Exceeding your budget never blocks expenses.',
+                                      'Exceeding the budget never blocks expenses.',
                             style: const TextStyle(color: _muted, fontSize: 12),
                           ),
                         ],
