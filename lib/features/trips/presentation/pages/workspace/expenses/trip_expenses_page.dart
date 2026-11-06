@@ -8,6 +8,7 @@ import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_dialog.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_list.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_user_settlement_summary.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/personal_trip_budget_card.dart';
 
 class TripExpensesPage extends StatefulWidget {
   const TripExpensesPage({super.key, required this.tripId});
@@ -199,6 +200,10 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
                     Icons.account_balance_wallet_outlined,
                   ),
                   BudgetUserSettlementSummary(api: _api),
+
+                  const SizedBox(height: 22),
+
+                  PersonalTripBudgetCard(api: _api, defaultCurrency: currency),
 
                   const SizedBox(height: 26),
 

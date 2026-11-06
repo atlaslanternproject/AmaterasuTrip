@@ -509,6 +509,31 @@ service cloud.firestore {
         allow get, list: if budgetPrivateOwner(ownerUid);
         allow create, update, delete: if false;
 
+        // B7.1: optional personal travel budget, never shared.
+        match /settings/{settingId} {
+          allow get: if settingId == 'personalBudget'
+            && budgetPrivateOwner(ownerUid);
+          allow list: if false;
+
+          allow create, update: if settingId == 'personalBudget'
+            && budgetPrivateOwner(ownerUid)
+            && request.resource.data.keys().hasOnly([
+              'amountMinor', 'currency', 'updatedAt'
+            ])
+            && request.resource.data.keys().hasAll([
+              'amountMinor', 'currency', 'updatedAt'
+            ])
+            && request.resource.data.amountMinor is int
+            && request.resource.data.amountMinor > 0
+            && request.resource.data.amountMinor <= 9000000000000
+            && request.resource.data.currency is string
+            && request.resource.data.currency.matches('^[A-Z]{3}$')
+            && request.resource.data.updatedAt == request.time;
+
+          allow delete: if settingId == 'personalBudget'
+            && budgetPrivateOwner(ownerUid);
+        }
+
         match /{privateChild=**} {
           allow get, list: if budgetPrivateOwner(ownerUid);
           allow create, update, delete: if false;
