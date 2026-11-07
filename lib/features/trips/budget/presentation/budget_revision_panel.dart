@@ -1,3 +1,4 @@
+import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
@@ -65,20 +66,12 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
   }
 
   String _formatted(int minor, String currency) {
-    final decimals = CurrencyMinorUnits.decimals(currency);
-    final factor = CurrencyMinorUnits.factor(currency);
-
-    final absolute = minor.abs();
-    final whole = absolute ~/ factor;
-    final sign = minor < 0 ? '-' : '';
-
-    if (decimals == 0) {
-      return '$sign$whole';
-    }
-
-    final fraction = (absolute % factor).toString().padLeft(decimals, '0');
-
-    return '$sign$whole.$fraction';
+    return BudgetMoneyFormatter.format(
+      minor,
+      currency,
+      decimalSeparator: '.',
+      includeCurrency: false,
+    );
   }
 
   int? _parse(String text, String currency) {

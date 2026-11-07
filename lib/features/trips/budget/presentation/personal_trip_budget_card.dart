@@ -1,7 +1,7 @@
+import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../calculations/currency_minor_units.dart';
 import '../calculations/personal_budget_spending_calculator.dart';
 import '../data/budget_fx_service.dart';
 import '../data/personal_trip_budget_repository.dart';
@@ -78,38 +78,15 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
   }
 
   String _money(int amount, String currency) {
-    final factor = CurrencyMinorUnits.factor(currency);
-    final digits = CurrencyMinorUnits.decimals(currency);
-
-    final sign = amount < 0 ? '-' : '';
-    final absolute = amount.abs();
-    final whole = absolute ~/ factor;
-
-    if (digits == 0) {
-      return '$sign$whole $currency';
-    }
-
-    final fraction = (absolute % factor).toString().padLeft(digits, '0');
-
-    return '$sign$whole,$fraction $currency';
+    return BudgetMoneyFormatter.format(amount, currency);
   }
 
   String _editableAmount(PersonalTripBudget budget) {
-    final factor = CurrencyMinorUnits.factor(budget.currency);
-    final digits = CurrencyMinorUnits.decimals(budget.currency);
-
-    final whole = budget.amountMinor ~/ factor;
-
-    if (digits == 0) {
-      return '$whole';
-    }
-
-    final fraction = (budget.amountMinor % factor).toString().padLeft(
-      digits,
-      '0',
+    return BudgetMoneyFormatter.format(
+      budget.amountMinor,
+      budget.currency,
+      includeCurrency: false,
     );
-
-    return '$whole,$fraction';
   }
 
   Future<String?> _pickCurrency(

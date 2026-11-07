@@ -1,3 +1,4 @@
+import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -157,15 +158,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
       raw is Map ? Map<String, dynamic>.from(raw) : <String, dynamic>{};
 
   String _money(int value, String currency) {
-    final digits = CurrencyMinorUnits.decimals(currency);
-    final factor = CurrencyMinorUnits.factor(currency);
-    final sign = value < 0 ? '-' : '';
-    final whole = value.abs() ~/ factor;
-    if (digits == 0) {
-      return '$sign$whole $currency';
-    }
-    final rest = (value.abs() % factor).toString().padLeft(digits, '0');
-    return '$sign$whole,$rest $currency';
+    return BudgetMoneyFormatter.format(value, currency);
   }
 
   DateTime? _createdAt(Map<String, dynamic> data) {

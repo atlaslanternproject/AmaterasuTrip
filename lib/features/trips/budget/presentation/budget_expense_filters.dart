@@ -50,9 +50,15 @@ class BudgetExpenseFilters {
 
   int compare(Map<String, dynamic> a, Map<String, dynamic> b) {
     if (sort == 'amount-desc' || sort == 'amount-asc') {
-      final aa = _minor(a);
-      final bb = _minor(b);
-      final delta = aa.compareTo(bb);
+      final currencyA = _currency(a);
+      final currencyB = _currency(b);
+
+      // Importi in valute diverse non sono confrontabili
+      // senza un cambio valido: prima raggruppiamo per valuta.
+      final currencyOrder = currencyA.compareTo(currencyB);
+      if (currencyOrder != 0) return currencyOrder;
+
+      final delta = _minor(a).compareTo(_minor(b));
       if (delta != 0) {
         return sort == 'amount-desc' ? -delta : delta;
       }
@@ -64,8 +70,15 @@ class BudgetExpenseFilters {
     return sort == 'oldest' ? left.compareTo(right) : right.compareTo(left);
   }
 
-  // Raw amounts in different currencies are NOT truly comparable.
-  // Cross-currency amount sorting must not be presented as a financial rank.
+  // Codice valuta del totale originale, senza conversioni implicite.
+  static String _currency(Map<String, dynamic> data) {
+    final snapshot = data['snapshot'];
+    final total = snapshot is Map ? snapshot['total'] : null;
+    final currency = total is Map ? total['currency'] : null;
+    return currency is String ? currency : '';
+  }
+
+  // Leggere solo le unità minime del documento originale.
   static int _minor(Map<String, dynamic> data) {
     final snapshot = data['snapshot'];
     final total = snapshot is Map ? snapshot['total'] : null;

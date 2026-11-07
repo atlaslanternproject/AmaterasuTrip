@@ -1,7 +1,7 @@
+import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../calculations/currency_minor_units.dart';
 import 'budget_api.dart';
 
 class BudgetOverview extends StatelessWidget {
@@ -11,16 +11,11 @@ class BudgetOverview extends StatelessWidget {
 
   String _amount(int minorUnits, String currency) {
     try {
-      final decimals = CurrencyMinorUnits.decimals(currency);
-      final factor = CurrencyMinorUnits.factor(currency);
-      final sign = minorUnits < 0 ? '-' : '';
-      final absolute = minorUnits.abs();
-      final whole = absolute ~/ factor;
-      final fraction = absolute % factor;
-
-      if (decimals == 0) return '$sign$whole $currency';
-
-      return '$sign$whole.${fraction.toString().padLeft(decimals, '0')} $currency';
+      return BudgetMoneyFormatter.format(
+        minorUnits,
+        currency,
+        decimalSeparator: '.',
+      );
     } catch (_) {
       return '$minorUnits unità minime · $currency';
     }

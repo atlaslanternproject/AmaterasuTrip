@@ -1,9 +1,8 @@
+import '../calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'budget_api.dart';
 import 'budget_expense_controls.dart';
-
-import '../calculations/currency_minor_units.dart';
 
 class BudgetExpenseDetailsDialog extends StatelessWidget {
   const BudgetExpenseDetailsDialog({
@@ -33,28 +32,15 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
 
     if (minor is! int || currency.isEmpty) return '—';
 
-    int decimals;
     try {
-      decimals = CurrencyMinorUnits.decimals(currency);
+      return BudgetMoneyFormatter.format(
+        minor,
+        currency,
+        decimalSeparator: '.',
+      );
     } catch (_) {
       return '$minor · $currency';
     }
-
-    var factor = 1;
-    for (var i = 0; i < decimals; i++) {
-      factor *= 10;
-    }
-
-    final absolute = minor.abs();
-    final whole = absolute ~/ factor;
-    final fraction = absolute % factor;
-    final sign = minor < 0 ? '-' : '';
-
-    final formatted = decimals == 0
-        ? '$sign$whole'
-        : '$sign$whole.${fraction.toString().padLeft(decimals, '0')}';
-
-    return '$formatted $currency';
   }
 
   String _categoryLabel(String value, bool it) {

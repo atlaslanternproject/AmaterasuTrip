@@ -1,7 +1,7 @@
+import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../calculations/currency_minor_units.dart';
 import 'budget_api.dart';
 import 'budget_expense_filters.dart';
 import 'budget_expense_details_dialog.dart';
@@ -74,26 +74,11 @@ class BudgetExpenseList extends StatelessWidget {
   }
 
   String _money(int minor, String currency) {
-    int decimals;
-
     try {
-      decimals = CurrencyMinorUnits.decimals(currency);
+      return BudgetMoneyFormatter.format(minor, currency);
     } catch (_) {
       return '$minor $currency';
     }
-
-    final factor = CurrencyMinorUnits.factor(currency);
-    final negative = minor < 0 ? '-' : '';
-    final absolute = minor.abs();
-    final whole = absolute ~/ factor;
-
-    if (decimals == 0) {
-      return '$negative$whole $currency';
-    }
-
-    final fraction = (absolute % factor).toString().padLeft(decimals, '0');
-
-    return '$negative$whole,$fraction $currency';
   }
 
   @override
@@ -125,15 +110,8 @@ class BudgetExpenseList extends StatelessWidget {
         final docs = snapshot.data!.docs
             .where((doc) => filters.matches(doc.data(), DateTime.now()))
             .toList();
+        // B8.1.1: applicare un solo ordinamento, quello scelto.
         docs.sort((a, b) => filters.compare(a.data(), b.data()));
-        docs.sort((a, b) {
-          final left = a.data()['createdAt'];
-          final right = b.data()['createdAt'];
-          if (left is Timestamp && right is Timestamp) {
-            return right.compareTo(left);
-          }
-          return 0;
-        });
 
         if (docs.isEmpty) {
           return Padding(

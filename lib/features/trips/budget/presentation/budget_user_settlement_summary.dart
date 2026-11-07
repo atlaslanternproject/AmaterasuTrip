@@ -1,3 +1,4 @@
+import '../calculations/budget_money_formatter.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -5,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
-import '../calculations/currency_minor_units.dart';
 import 'budget_api.dart';
 
 class BudgetUserSettlementSummary extends StatefulWidget {
@@ -178,17 +178,7 @@ class _BudgetUserSettlementSummaryState
 
   String _money(int minor, String currency) {
     try {
-      final decimals = CurrencyMinorUnits.decimals(currency);
-      final factor = CurrencyMinorUnits.factor(currency);
-      final absolute = minor.abs();
-      final whole = absolute ~/ factor;
-      final sign = minor < 0 ? '-' : '';
-
-      if (decimals == 0) return '$sign$whole $currency';
-
-      final fraction = (absolute % factor).toString().padLeft(decimals, '0');
-
-      return '$sign$whole,$fraction $currency';
+      return BudgetMoneyFormatter.format(minor, currency);
     } catch (_) {
       return '$minor $currency';
     }

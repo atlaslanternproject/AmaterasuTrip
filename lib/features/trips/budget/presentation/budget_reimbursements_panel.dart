@@ -1,3 +1,4 @@
+import '../calculations/budget_money_formatter.dart';
 import 'dart:math' as math;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -86,18 +87,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
   }
 
   String _money(int minorUnits, String currency) {
-    final decimals = CurrencyMinorUnits.decimals(currency);
-    final factor = CurrencyMinorUnits.factor(currency);
-    final negative = minorUnits < 0 ? '-' : '';
-    final absolute = minorUnits.abs();
-    final whole = absolute ~/ factor;
-
-    if (decimals == 0) {
-      return '$negative$whole $currency';
-    }
-
-    final fraction = (absolute % factor).toString().padLeft(decimals, '0');
-    return '$negative$whole,$fraction $currency';
+    return BudgetMoneyFormatter.format(minorUnits, currency);
   }
 
   List<_DebtRow> _buildDebts(Map<String, dynamic> snapshot) {
