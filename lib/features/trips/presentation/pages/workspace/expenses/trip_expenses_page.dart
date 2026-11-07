@@ -1,10 +1,12 @@
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_dashboard.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_filters.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_expenses_toolbar.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_dialog.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_list.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_user_settlement_summary.dart';
@@ -21,16 +23,92 @@ class TripExpensesPage extends StatefulWidget {
 
 class _TripExpensesPageState extends State<TripExpensesPage> {
   late final BudgetApi _api = BudgetApi(widget.tripId);
-  late final Future<String> _currency = _api.tripCurrency();
+  late Future<String> _currency = _api.tripCurrency();
+  int _refreshTick = 0;
+
+  void _refresh() {
+    setState(() {
+      _currency = _api.tripCurrency();
+      _refreshTick++;
+    });
+  }
 
   bool _showPersonal = false;
   BudgetExpenseFilters _filters = const BudgetExpenseFilters();
+  String? _displayCurrency;
+
+  String get _displayPreferenceKey =>
+      'amaterasu.b6.summary.${_api.currentUid}.${widget.tripId}';
+
+  @override
+  void initState() {
+    super.initState();
+    _restoreDisplayCurrency();
+  }
+
+  Future<void> _restoreDisplayCurrency() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final stored = prefs.getString(_displayPreferenceKey);
+      if (stored != null && stored.length == 3 && mounted) {
+        setState(() => _displayCurrency = stored);
+      }
+    } catch (_) {
+      // Preference unavailable: trip currency remains the default.
+    }
+  }
+
+  Future<void> _setDisplayCurrency(String value) async {
+    setState(() => _displayCurrency = value);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_displayPreferenceKey, value);
+    } catch (_) {
+      // Keep the selection active for this session.
+    }
+  }
 
   static const _background = Color(0xFF100C0A);
   static const _cream = Color(0xFFF2E7D5);
   static const _muted = Color(0xFFB7A99B);
   static const _orange = Color(0xFFD96C32);
   static const _gold = Color(0xFFE3A66C);
+
+  Future<void> _openExpenseFilters() async {
+    Map<String, String> categories;
+
+    try {
+      categories = await _api.budgetCategories().first;
+    } catch (_) {
+      categories = <String, String>{};
+    }
+
+    String tripCurrency;
+
+    try {
+      tripCurrency = await _currency;
+    } catch (_) {
+      return;
+    }
+
+    if (!mounted) return;
+
+    final selected = await BudgetExpensesToolbar.chooseFilters(
+      context,
+      filters: _filters,
+      categoryNames: categories,
+      displayCurrency: _displayCurrency ?? tripCurrency,
+      tripCurrency: tripCurrency,
+    );
+
+    if (!mounted || selected == null) return;
+
+    setState(() => _filters = selected.filters);
+
+    if (_displayCurrency != selected.currency) {
+      await _setDisplayCurrency(selected.currency);
+    }
+  }
 
   Future<void> _addExpense(String currency) async {
     await showDialog<bool>(
@@ -121,27 +199,39 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
         shadowColor: Colors.transparent,
         elevation: 0,
         foregroundColor: _cream,
-        title: Text(l10n.budgetScreenTitle),
+        title: Text(
+          l10n.budgetScreenTitle,
+          style: const TextStyle(color: _cream, fontWeight: FontWeight.w700),
+        ),
         actions: [
+          IconButton(
+            tooltip: it ? 'Aggiorna' : 'Refresh',
+            onPressed: _refresh,
+            icon: const Icon(Icons.refresh_rounded, color: _cream),
+          ),
+          IconButton(
+            tooltip: it ? 'Filtri' : 'Filters',
+            onPressed: _openExpenseFilters,
+            icon: const Icon(Icons.tune_rounded, color: _gold),
+          ),
           FutureBuilder<String>(
             future: _currency,
             builder: (context, currencyResult) {
               if (!currencyResult.hasData) {
                 return const SizedBox.shrink();
               }
-
               return IconButton(
                 tooltip: l10n.budgetAddExpense,
                 onPressed: () => _addExpense(currencyResult.data!),
                 icon: const Icon(
                   Icons.add_circle_outline_rounded,
-                  size: 28,
-                  color: Color(0xFFE3A66C),
+                  color: _orange,
+                  size: 27,
                 ),
               );
             },
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 8),
         ],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_rounded),
@@ -149,6 +239,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
         ),
       ),
       body: FutureBuilder<String>(
+        key: ValueKey<int>(_refreshTick),
         future: _currency,
         builder: (context, result) {
           if (result.hasError) {
@@ -175,41 +266,25 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 14, 16, 40),
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.public_outlined,
-                          size: 17,
-                          color: Color(0xFFB7A99B),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          l10n.budgetTripCurrency(currency),
-                          style: const TextStyle(
-                            color: Color(0xFFB7A99B),
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ),
+                  BudgetUserSettlementSummary(
+                    api: _api,
+                    displayCurrency: _displayCurrency ?? currency,
                   ),
-                  _sectionHeading(
-                    it ? 'La tua situazione' : 'Your finances',
-                    Icons.account_balance_wallet_outlined,
-                  ),
-                  BudgetUserSettlementSummary(api: _api),
 
                   const SizedBox(height: 22),
 
-                  PersonalTripBudgetCard(api: _api, defaultCurrency: currency),
+                  PersonalTripBudgetCard(
+                    api: _api,
+                    defaultCurrency: currency,
+                    displayCurrency: _displayCurrency ?? currency,
+                  ),
 
                   const SizedBox(height: 26),
 
                   BudgetCategoryDashboard(
                     api: _api,
                     mainCurrency: currency,
+                    displayCurrency: _displayCurrency ?? currency,
                     filters: _filters,
                     onFiltersChanged: (value) =>
                         setState(() => _filters = value),
@@ -253,6 +328,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
                     builder: (context, categories) => BudgetExpenseList(
                       api: _api,
                       private: _showPersonal,
+                      displayCurrency: _displayCurrency ?? currency,
                       filters: _filters,
                       categoryNames: categories.data ?? const {},
                     ),

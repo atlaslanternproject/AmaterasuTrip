@@ -1,10 +1,10 @@
+import 'budget_money_input.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
-import '../calculations/currency_minor_units.dart';
 import 'budget_api.dart';
 
 class BudgetRevisionPanel extends StatefulWidget {
@@ -75,36 +75,13 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
   }
 
   int? _parse(String text, String currency) {
-    final value = text.trim().replaceAll(',', '.');
-    final decimals = CurrencyMinorUnits.decimals(currency);
-    final factor = CurrencyMinorUnits.factor(currency);
-
-    if (!RegExp(r'^\d+(\.\d+)?$').hasMatch(value)) {
+    try {
+      return BudgetMoneyInput.parse(text, currency, allowZero: true);
+    } on FormatException {
+      return null;
+    } on ArgumentError {
       return null;
     }
-
-    final parts = value.split('.');
-
-    if (parts.length == 2 && parts[1].length > decimals) {
-      return null;
-    }
-
-    final major = int.tryParse(parts.first);
-    final fractional = parts.length == 2
-        ? int.tryParse(parts.last.padRight(decimals, '0'))
-        : 0;
-
-    if (major == null || fractional == null) {
-      return null;
-    }
-
-    final result = major * factor + fractional;
-
-    if (result < 0 || result > 9007199254740991) {
-      return null;
-    }
-
-    return result;
   }
 
   Future<void> _call(String name, Map<String, dynamic> payload) async {

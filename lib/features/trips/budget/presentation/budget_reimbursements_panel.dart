@@ -1,4 +1,3 @@
-import '../calculations/budget_money_formatter.dart';
 import 'dart:math' as math;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../calculations/currency_minor_units.dart';
 import 'budget_api.dart';
+import 'budget_display_amount.dart';
 
 class BudgetReimbursementsPanel extends StatefulWidget {
   const BudgetReimbursementsPanel({
@@ -14,11 +14,13 @@ class BudgetReimbursementsPanel extends StatefulWidget {
     required this.api,
     required this.expenseId,
     required this.expense,
+    required this.displayCurrency,
   });
 
   final BudgetApi api;
   final String expenseId;
   final Map<String, dynamic> expense;
+  final String displayCurrency;
 
   @override
   State<BudgetReimbursementsPanel> createState() =>
@@ -84,10 +86,6 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     final map = _map(money);
     final value = map['minorUnits'];
     return value is int ? value : 0;
-  }
-
-  String _money(int minorUnits, String currency) {
-    return BudgetMoneyFormatter.format(minorUnits, currency);
   }
 
   List<_DebtRow> _buildDebts(Map<String, dynamic> snapshot) {
@@ -245,9 +243,13 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                       : 'You are reporting a reimbursement to $creditorName.',
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  '${_it ? "Importo massimo" : "Maximum amount"}: '
-                  '${_money(maximumMinorUnits, currency)}',
+                Text(_it ? 'Importo massimo' : 'Maximum amount'),
+                const SizedBox(height: 4),
+                BudgetDisplayAmount(
+                  minorUnits: maximumMinorUnits,
+                  originalCurrency: currency,
+                  displayCurrency: widget.displayCurrency,
+                  fontSize: 16,
                 ),
                 const SizedBox(height: 12),
                 TextField(
@@ -257,6 +259,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                   ),
                   decoration: InputDecoration(
                     labelText: _it ? 'Importo rimborsato' : 'Reimbursed amount',
+                    suffixText: currency,
                     helperText: _it
                         ? 'Il destinatario dovrà confermare.'
                         : 'The recipient must confirm it.',
@@ -447,11 +450,11 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              Text(
-                                _money(minorUnits, currency),
-                                style: const TextStyle(
-                                  color: Color(0xFFE3A66C),
-                                ),
+                              BudgetDisplayAmount(
+                                minorUnits: minorUnits,
+                                originalCurrency: currency,
+                                displayCurrency: widget.displayCurrency,
+                                fontSize: 16,
                               ),
                               Wrap(
                                 spacing: 8,
@@ -515,20 +518,38 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            Text(
-                              '${_it ? "Da restituire" : "Outstanding"}: ${_money(remaining, currency)}',
+                            Text(_it ? 'Da restituire' : 'Outstanding'),
+                            const SizedBox(height: 3),
+                            BudgetDisplayAmount(
+                              minorUnits: remaining,
+                              originalCurrency: currency,
+                              displayCurrency: widget.displayCurrency,
+                              fontSize: 17,
                             ),
-                            if (confirmed > 0)
-                              Text(
-                                '${_it ? "Confermato" : "Confirmed"}: ${_money(confirmed, currency)}',
+                            if (confirmed > 0) ...[
+                              const SizedBox(height: 8),
+                              Text(_it ? 'Confermato' : 'Confirmed'),
+                              BudgetDisplayAmount(
+                                minorUnits: confirmed,
+                                originalCurrency: currency,
+                                displayCurrency: widget.displayCurrency,
+                                fontSize: 15,
                               ),
-                            if (pending > 0)
+                            ],
+                            if (pending > 0) ...[
+                              const SizedBox(height: 8),
                               Text(
-                                '${_it ? "In attesa di conferma" : "Pending confirmation"}: ${_money(pending, currency)}',
-                                style: const TextStyle(
-                                  color: Color(0xFFE3A66C),
-                                ),
+                                _it
+                                    ? 'In attesa di conferma'
+                                    : 'Pending confirmation',
                               ),
+                              BudgetDisplayAmount(
+                                minorUnits: pending,
+                                originalCurrency: currency,
+                                displayCurrency: widget.displayCurrency,
+                                fontSize: 15,
+                              ),
+                            ],
                             if (isDebtor && availableToDeclare > 0)
                               TextButton.icon(
                                 onPressed: _busy
@@ -586,9 +607,23 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
 
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 8),
-                          child: Text(
-                            '${_name(debtorUid, names)} → ${_name(creditorUid, names)} · ${_money(minorUnits, currency)} · $label',
-                            style: const TextStyle(color: Color(0xFFB7A99B)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${_name(debtorUid, names)} → ${_name(creditorUid, names)} · $label',
+                                style: const TextStyle(
+                                  color: Color(0xFFB7A99B),
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              BudgetDisplayAmount(
+                                minorUnits: minorUnits,
+                                originalCurrency: currency,
+                                displayCurrency: widget.displayCurrency,
+                                fontSize: 15,
+                              ),
+                            ],
                           ),
                         );
                       },

@@ -3,6 +3,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
 import 'budget_category_picker.dart';
+import 'budget_dialog_chrome.dart';
 
 class BudgetCategoryEditDialog extends StatefulWidget {
   const BudgetCategoryEditDialog({
@@ -29,7 +30,10 @@ class _BudgetCategoryEditDialogState extends State<BudgetCategoryEditDialog> {
   String? _error;
 
   Future<void> _save() async {
-    setState(() { _busy = true; _error = null; });
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
     try {
       await widget.api.updateExpenseCategory(
         expenseId: widget.expenseId,
@@ -54,8 +58,16 @@ class _BudgetCategoryEditDialogState extends State<BudgetCategoryEditDialog> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
-      backgroundColor: const Color(0xFF241A16),
-      title: Text(l10n.b6EditCategory),
+      backgroundColor: BudgetDialogChrome.background,
+      shape: BudgetDialogChrome.shape,
+      insetPadding: BudgetDialogChrome.insetPadding,
+      titlePadding: BudgetDialogChrome.titlePadding,
+      contentPadding: BudgetDialogChrome.contentPadding,
+      actionsPadding: BudgetDialogChrome.actionsPadding,
+      title: BudgetDialogChrome.header(
+        title: l10n.b6EditCategory,
+        icon: Icons.category_outlined,
+      ),
       content: SizedBox(
         width: 430,
         child: Column(
@@ -77,10 +89,7 @@ class _BudgetCategoryEditDialogState extends State<BudgetCategoryEditDialog> {
           onPressed: _busy ? null : () => Navigator.pop(context),
           child: Text(l10n.b6Cancel),
         ),
-        FilledButton(
-          onPressed: _busy ? null : _save,
-          child: Text(l10n.b6Save),
-        ),
+        FilledButton(onPressed: _busy ? null : _save, child: Text(l10n.b6Save)),
       ],
     );
   }

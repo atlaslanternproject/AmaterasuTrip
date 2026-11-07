@@ -1,6 +1,8 @@
 import '../calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'budget_dialog_chrome.dart';
+import 'budget_display_amount.dart';
 import 'budget_api.dart';
 import 'budget_expense_controls.dart';
 
@@ -11,12 +13,14 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
     required this.expenseId,
     required this.api,
     required this.isPrivate,
+    this.displayCurrency,
   });
 
   final Map<String, dynamic> expense;
   final String expenseId;
   final BudgetApi api;
   final bool isPrivate;
+  final String? displayCurrency;
 
   Map<String, dynamic> _asMap(dynamic value) {
     if (value is Map) {
@@ -74,18 +78,6 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
         return it ? 'Non disponibile' : 'Unavailable';
     }
   }
-
-  Widget _sectionTitle(String title) => Padding(
-    padding: const EdgeInsets.only(top: 22, bottom: 10),
-    child: Text(
-      title,
-      style: const TextStyle(
-        color: Color(0xFFF2E7D5),
-        fontWeight: FontWeight.w700,
-        fontSize: 16,
-      ),
-    ),
-  );
 
   Widget _amountRows(Map<String, dynamic> amounts, bool it) {
     if (amounts.isEmpty) {
@@ -147,6 +139,9 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
     final it = Localizations.localeOf(context).languageCode == 'it';
     final l10n = AppLocalizations.of(context)!;
     final snapshot = _asMap(expense['snapshot']);
+    final totalMoney = _asMap(snapshot['total']);
+    final originalMinor = totalMoney['minorUnits'];
+    final originalCurrency = totalMoney['currency']?.toString() ?? '';
     final shares = _asMap(snapshot['shares']);
     final advances = _asMap(snapshot['advances']);
 
@@ -156,8 +151,9 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
     final status = snapshot['status']?.toString() ?? '';
 
     return Dialog(
-      backgroundColor: const Color(0xFF231915),
-      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      backgroundColor: BudgetDialogChrome.background,
+      shape: BudgetDialogChrome.shape,
+      insetPadding: BudgetDialogChrome.insetPadding,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 560, maxHeight: 720),
         child: Padding(
@@ -207,35 +203,64 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                         style: const TextStyle(color: Color(0xFFB7A99B)),
                       ),
                       const SizedBox(height: 18),
-                      Text(
-                        _formatMoney(snapshot['total']),
-                        style: const TextStyle(
-                          color: Color(0xFFE3A66C),
+                      if (originalMinor is int && originalCurrency.isNotEmpty)
+                        BudgetDisplayAmount(
+                          minorUnits: originalMinor,
+                          originalCurrency: originalCurrency,
+                          displayCurrency: displayCurrency ?? originalCurrency,
                           fontSize: 30,
-                          fontWeight: FontWeight.w800,
+                        )
+                      else
+                        Text(
+                          _formatMoney(snapshot['total']),
+                          style: const TextStyle(
+                            color: Color(0xFFE3A66C),
+                            fontSize: 30,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                      ),
                       const SizedBox(height: 8),
                       Text(
                         _statusLabel(status, it),
                         style: const TextStyle(color: Color(0xFFB7A99B)),
                       ),
-                      if (notes.isNotEmpty) ...[
-                        _sectionTitle(it ? 'Note' : 'Notes'),
-                        Text(
-                          notes,
-                          style: const TextStyle(color: Color(0xFFF2E7D5)),
+                      const SizedBox(height: 16),
+                      BudgetDialogChrome.section(
+                        title: l10n.budgetSplitExpense,
+                        icon: Icons.groups_outlined,
+                        children: [_amountRows(shares, it)],
+                      ),
+                      BudgetDialogChrome.section(
+                        title: l10n.budgetSupplierPayments,
+                        icon: Icons.account_balance_wallet_outlined,
+                        children: [_amountRows(advances, it)],
+                      ),
+                      if (notes.isNotEmpty)
+                        BudgetDialogChrome.section(
+                          title: it ? 'Note' : 'Notes',
+                          icon: Icons.notes_rounded,
+                          children: [
+                            Text(
+                              notes,
+                              style: const TextStyle(
+                                color: BudgetDialogChrome.cream,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                      _sectionTitle(l10n.budgetSplitExpense),
-                      _amountRows(shares, it),
-                      _sectionTitle(l10n.budgetSupplierPayments),
-                      _amountRows(advances, it),
-                      BudgetExpenseControls(
-                        api: api,
-                        expenseId: expenseId,
-                        isPrivate: isPrivate,
-                        expense: expense,
+                      BudgetDialogChrome.section(
+                        title: it ? 'Gestisci spesa' : 'Manage expense',
+                        icon: Icons.settings_outlined,
+                        children: [
+                          BudgetExpenseControls(
+                            api: api,
+                            expenseId: expenseId,
+                            isPrivate: isPrivate,
+                            expense: expense,
+                            displayCurrency:
+                                displayCurrency ?? originalCurrency,
+                          ),
+                        ],
                       ),
                     ],
                   ),

@@ -1,7 +1,7 @@
 import 'package:amaterasutrip/features/trips/budget/calculations/currency_minor_units.dart';
 
 abstract final class BudgetMoneyInput {
-  static int parse(String input, String currency) {
+  static int parse(String input, String currency, {bool allowZero = false}) {
     final decimals = CurrencyMinorUnits.decimals(currency);
     final normalized = input.trim().replaceAll(',', '.');
 
@@ -23,7 +23,7 @@ abstract final class BudgetMoneyInput {
 
     final total = whole * CurrencyMinorUnits.factor(currency) + fraction;
 
-    if (total <= 0 || total > 9007199254740991) {
+    if (total < 0 || (!allowZero && total == 0) || total > 9007199254740991) {
       throw const FormatException('Importo fuori intervallo.');
     }
     return total;

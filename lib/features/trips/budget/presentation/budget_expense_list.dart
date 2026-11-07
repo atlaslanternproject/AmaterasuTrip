@@ -1,10 +1,10 @@
-import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'budget_api.dart';
 import 'budget_expense_filters.dart';
 import 'budget_expense_details_dialog.dart';
+import 'budget_display_amount.dart';
 
 class BudgetExpenseList extends StatelessWidget {
   const BudgetExpenseList({
@@ -12,12 +12,14 @@ class BudgetExpenseList extends StatelessWidget {
     required this.api,
     required this.private,
     required this.filters,
+    required this.displayCurrency,
     this.categoryNames = const {},
   });
 
   final BudgetApi api;
   final bool private;
   final BudgetExpenseFilters filters;
+  final String displayCurrency;
   final Map<String, String> categoryNames;
 
   static const _cream = Color(0xFFF2E7D5);
@@ -70,14 +72,6 @@ class BudgetExpenseList extends StatelessWidget {
         return it ? 'Da saldare' : 'Outstanding';
       default:
         return it ? 'Stato non disponibile' : 'Status unavailable';
-    }
-  }
-
-  String _money(int minor, String currency) {
-    try {
-      return BudgetMoneyFormatter.format(minor, currency);
-    } catch (_) {
-      return '$minor $currency';
     }
   }
 
@@ -173,10 +167,12 @@ class BudgetExpenseList extends StatelessWidget {
                       : <String, dynamic>{};
 
                   return Card(
-                    color: const Color(0xFF241A16),
+                    color: const Color(0xFF211815),
+                    elevation: 0,
                     margin: const EdgeInsets.symmetric(vertical: 7),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(17),
+                      side: const BorderSide(color: Color(0xFF543429)),
                     ),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(17),
@@ -187,6 +183,7 @@ class BudgetExpenseList extends StatelessWidget {
                           expenseId: doc.id,
                           api: api,
                           isPrivate: private,
+                          displayCurrency: displayCurrency,
                         ),
                       ),
                       child: Padding(
@@ -236,13 +233,10 @@ class BudgetExpenseList extends StatelessWidget {
                                     crossAxisAlignment:
                                         WrapCrossAlignment.center,
                                     children: [
-                                      Text(
-                                        _money(units, currency),
-                                        style: const TextStyle(
-                                          color: _gold,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                                      BudgetDisplayAmount(
+                                        minorUnits: units,
+                                        originalCurrency: currency,
+                                        displayCurrency: displayCurrency,
                                       ),
                                       Container(
                                         padding: const EdgeInsets.symmetric(

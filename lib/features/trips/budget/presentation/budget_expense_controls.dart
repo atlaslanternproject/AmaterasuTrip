@@ -13,12 +13,14 @@ class BudgetExpenseControls extends StatefulWidget {
     required this.expenseId,
     required this.isPrivate,
     required this.expense,
+    required this.displayCurrency,
   });
 
   final BudgetApi api;
   final String expenseId;
   final bool isPrivate;
   final Map<String, dynamic> expense;
+  final String displayCurrency;
 
   @override
   State<BudgetExpenseControls> createState() => _BudgetExpenseControlsState();
@@ -117,7 +119,8 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                         api: widget.api,
                         expenseId: widget.expenseId,
                         private: widget.isPrivate,
-                        initialCategory: data['category']?.toString() ?? 'other',
+                        initialCategory:
+                            data['category']?.toString() ?? 'other',
                       ),
                     );
                   },
@@ -213,6 +216,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
             api: widget.api,
             expenseId: widget.expenseId,
             expense: widget.expense,
+            displayCurrency: widget.displayCurrency,
           ),
         if (_busy) const LinearProgressIndicator(),
         if (_message != null)

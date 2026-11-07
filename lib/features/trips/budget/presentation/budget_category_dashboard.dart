@@ -1,17 +1,12 @@
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
-import '../calculations/currency_minor_units.dart';
 import '../data/budget_fx_service.dart';
 import 'budget_api.dart';
 import 'budget_category_picker.dart';
 import 'budget_expense_filters.dart';
-import 'budget_fx_manual_dialog.dart';
-import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
-import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 
 /// B6: participant-scoped category totals. Shared and personal never mix.
 /// All FX operations are presentation-only; original financial data is intact.
@@ -20,12 +15,14 @@ class BudgetCategoryDashboard extends StatefulWidget {
     super.key,
     required this.api,
     required this.mainCurrency,
+    required this.displayCurrency,
     required this.filters,
     required this.onFiltersChanged,
   });
 
   final BudgetApi api;
   final String mainCurrency;
+  final String displayCurrency;
   final BudgetExpenseFilters filters;
   final ValueChanged<BudgetExpenseFilters> onFiltersChanged;
 
@@ -46,9 +43,9 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   late Stream<QuerySnapshot<Map<String, dynamic>>> _shared;
   late Stream<QuerySnapshot<Map<String, dynamic>>> _private;
   late Stream<Map<String, String>> _categories;
-  String? _targetCurrency;
+
   bool _chartPersonal = false;
-  String _fxMode = 'historical';
+  final String _fxMode = 'latest';
   String? _cachedFxKey;
   Future<Map<String, BudgetFxQuote?>>? _cachedFx;
 
@@ -56,7 +53,6 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   void initState() {
     super.initState();
     _loadStreams();
-    _restoreCurrency();
   }
 
   void _loadStreams() {
@@ -72,86 +68,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
       _loadStreams();
       _cachedFxKey = null;
       _pinsRequested.clear();
-      _targetCurrency = null;
-      _restoreCurrency();
     }
-  }
-
-  String get _preferenceKey =>
-      'amaterasu.b6.summary.${widget.api.currentUid}.${widget.api.tripId}';
-
-  Future<void> _restoreCurrency() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final stored = prefs.getString(_preferenceKey);
-      if (mounted && stored != null && BudgetFxService.validCurrency(stored)) {
-        setState(() => _targetCurrency = stored);
-      }
-    } catch (_) {
-      // A missing browser preference must never block the dashboard.
-    }
-  }
-
-  Future<void> _setCurrency(String value) async {
-    setState(() => _targetCurrency = value);
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_preferenceKey, value);
-    } catch (_) {
-      // The in-memory selection is still usable.
-    }
-  }
-
-  Future<void> _pickSummaryCurrency() async {
-    final it = Localizations.localeOf(context).languageCode == 'it';
-    final codes = CurrencyMinorUnits.supportedCodes.toSet();
-    List<TripCurrency> currencies;
-
-    try {
-      final fetched = await const DestinationPlacesService().getCurrencies(
-        languageCode: it ? 'it' : 'en',
-      );
-
-      currencies = fetched
-          .where((item) => codes.contains(item.code.toUpperCase()))
-          .toList();
-
-      final found = currencies.map((item) => item.code.toUpperCase()).toSet();
-
-      currencies.addAll(
-        codes
-            .difference(found)
-            .map((code) => TripCurrency(code: code, name: code, symbol: code)),
-      );
-    } catch (_) {
-      currencies = codes
-          .map((code) => TripCurrency(code: code, name: code, symbol: code))
-          .toList();
-    }
-
-    currencies.sort((a, b) => a.code.compareTo(b.code));
-
-    if (!mounted) return;
-
-    final chosen = await showModalBottomSheet<TripCurrency>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: const Color(0xFF231915),
-      builder: (sheetContext) => SafeArea(
-        top: false,
-        child: TripCurrencyPickerSheet(
-          currencies: currencies,
-          selectedCurrency: _targetCurrency ?? widget.mainCurrency,
-          title: it ? 'Valuta di riepilogo' : 'Summary currency',
-          searchHint: it ? 'Cerca una valuta' : 'Search currencies',
-          noResultsText: it ? 'Nessuna valuta trovata' : 'No currencies found',
-        ),
-      ),
-    );
-
-    if (!mounted || chosen == null) return;
-
-    await _setCurrency(chosen.code.toUpperCase());
   }
 
   Map<String, dynamic> _map(dynamic raw) =>
@@ -295,181 +212,11 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
     );
   }
 
-  Widget _filterDropdown({
-    required String value,
-    required Map<String, String> options,
-    required ValueChanged<String> changed,
-  }) {
-    return DropdownButton<String>(
-      value: options.containsKey(value) ? value : options.keys.first,
-      dropdownColor: _dark,
-      underline: const SizedBox.shrink(),
-      style: const TextStyle(color: _cream, fontSize: 13),
-      items: [
-        for (final entry in options.entries)
-          DropdownMenuItem(value: entry.key, child: Text(entry.value)),
-      ],
-      onChanged: (next) {
-        if (next != null) {
-          changed(next);
-        }
-      },
-    );
-  }
-
-  Widget _filters(
-    Map<String, String> custom,
-    bool it,
-    AppLocalizations l10n,
-    BudgetExpenseFilters current,
-    ValueChanged<BudgetExpenseFilters> onChanged,
-  ) {
-    final categories = <String, String>{
-      '': l10n.b6AllCategories,
-      for (final id in const [
-        'accommodation',
-        'food',
-        'transport',
-        'activities',
-        'shopping',
-        'other',
-      ])
-        id: BudgetCategoryPicker.label(id, it),
-      ...custom,
-    };
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 14,
-      runSpacing: 4,
-      children: [
-        _filterDropdown(
-          value: current.category,
-          options: categories,
-          changed: (category) =>
-              onChanged(current.copyWith(category: category)),
-        ),
-        _filterDropdown(
-          value: current.status,
-          options: {
-            '': l10n.b6AllStatuses,
-            'planned': l10n.b6Planned,
-            'outstanding': l10n.b6Outstanding,
-            'paid': l10n.b6Paid,
-          },
-          changed: (status) => onChanged(current.copyWith(status: status)),
-        ),
-        _filterDropdown(
-          value: current.days.toString(),
-          options: {
-            '0': l10n.b6AllPeriods,
-            '30': l10n.b6Last30Days,
-            '90': l10n.b6Last90Days,
-          },
-          changed: (days) => onChanged(current.copyWith(days: int.parse(days))),
-        ),
-        _filterDropdown(
-          value: current.sort,
-          options: {'newest': l10n.b6Newest, 'oldest': l10n.b6Oldest},
-          changed: (sort) => onChanged(current.copyWith(sort: sort)),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _showFilterSheet(
-    Map<String, String> custom,
-    bool it,
-    AppLocalizations l10n,
-  ) async {
-    var draft = widget.filters;
-
-    await showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: _dark,
-      builder: (sheetContext) => SafeArea(
-        top: false,
-        child: StatefulBuilder(
-          builder: (sheetContext, updateSheet) => Padding(
-            padding: EdgeInsets.fromLTRB(
-              20,
-              20,
-              20,
-              MediaQuery.viewInsetsOf(sheetContext).bottom + 24,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        it ? 'Filtri e ordinamento' : 'Filters and sorting',
-                        style: const TextStyle(
-                          color: _cream,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () => Navigator.pop(sheetContext),
-                      icon: const Icon(Icons.close_rounded, color: _cream),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 18),
-                _filters(
-                  custom,
-                  it,
-                  l10n,
-                  draft,
-                  (value) => updateSheet(() => draft = value),
-                ),
-                const SizedBox(height: 18),
-                Row(
-                  children: [
-                    TextButton.icon(
-                      onPressed: () => updateSheet(
-                        () => draft = const BudgetExpenseFilters(),
-                      ),
-                      icon: const Icon(
-                        Icons.restart_alt_rounded,
-                        color: _orange,
-                      ),
-                      label: Text(
-                        it ? 'Ripristina' : 'Reset',
-                        style: const TextStyle(color: _cream),
-                      ),
-                    ),
-                    const Spacer(),
-                    FilledButton(
-                      onPressed: () {
-                        widget.onFiltersChanged(draft);
-                        Navigator.pop(sheetContext);
-                      },
-                      style: FilledButton.styleFrom(
-                        backgroundColor: _orange,
-                        foregroundColor: _dark,
-                      ),
-                      child: Text(it ? 'Applica' : 'Apply'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final it = Localizations.localeOf(context).languageCode == 'it';
-    final target = _targetCurrency ?? widget.mainCurrency;
+    final target = widget.displayCurrency;
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
       stream: _shared,
       builder: (context, shared) {
@@ -540,52 +287,9 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: OutlinedButton.icon(
-                            onPressed: () => _showFilterSheet(custom, it, l10n),
-                            icon: const Icon(
-                              Icons.tune_rounded,
-                              color: _orange,
-                            ),
-                            label: Text(
-                              it
-                                  ? 'Filtri e ordinamento'
-                                  : 'Filters and sorting',
-                              style: const TextStyle(color: _cream),
-                            ),
-                          ),
-                        ),
-                        Wrap(
-                          spacing: 16,
-                          runSpacing: 2,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Text(
-                              l10n.b6SummaryCurrency,
-                              style: const TextStyle(color: _muted),
-                            ),
-                            OutlinedButton.icon(
-                              onPressed: _pickSummaryCurrency,
-                              icon: const Icon(
-                                Icons.currency_exchange_rounded,
-                                size: 18,
-                                color: _orange,
-                              ),
-                              label: Text(
-                                target,
-                                style: const TextStyle(color: _cream),
-                              ),
-                            ),
-                            _filterDropdown(
-                              value: _fxMode,
-                              options: {
-                                'historical': l10n.b6Historical,
-                                'latest': l10n.b6Latest,
-                              },
-                              changed: (next) => setState(() => _fxMode = next),
-                            ),
-                          ],
+                        Text(
+                          target,
+                          style: const TextStyle(color: _gold, fontSize: 12),
                         ),
                         const SizedBox(height: 10),
                         FutureBuilder<Map<String, BudgetFxQuote?>>(
@@ -614,6 +318,33 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
           },
         );
       },
+    );
+  }
+
+  Widget _overviewMetric(String label, String value, {bool accent = false}) {
+    return Container(
+      width: 220,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFF30231E),
+        borderRadius: BorderRadius.circular(13),
+        border: Border.all(color: const Color(0xFF49352A)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: const TextStyle(color: _muted, fontSize: 12)),
+          const SizedBox(height: 6),
+          Text(
+            value,
+            style: TextStyle(
+              color: accent ? _gold : _cream,
+              fontSize: 17,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -705,59 +436,83 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
       ..sort((a, b) => b.value.compareTo(a.value));
     final partial = excludedCount > 0;
     final hasExpenses = docs.isNotEmpty;
+    final visiblePrimary = converted == 0 && hasExpenses
+        ? '— $target'
+        : _money(_chartPersonal ? total : myShare, target);
+    final visiblePaid = converted == 0 && hasExpenses
+        ? '—'
+        : _money(paid, target);
+    final visibleRemaining = converted == 0 && hasExpenses
+        ? '—'
+        : _money(total - paid, target);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          converted == 0 && hasExpenses
-              ? '— $target'
-              : _money(_chartPersonal ? total : myShare, target),
-          style: const TextStyle(
-            color: _cream,
-            fontSize: 28,
-            fontWeight: FontWeight.w700,
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            color: const Color(0xFF30231E),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: const Color(0xFF49352A)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                _chartPersonal ? l10n.b6PersonalTotal : l10n.b6MyShare,
+                style: const TextStyle(color: _muted, fontSize: 13),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                visiblePrimary,
+                style: const TextStyle(
+                  color: _cream,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              if (partial)
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    l10n.b6PartialTotal,
+                    style: const TextStyle(color: _gold, fontSize: 12),
+                  ),
+                ),
+              const SizedBox(height: 8),
+              Text(
+                '${l10n.b6ExpenseCount}: ${docs.length}',
+                style: const TextStyle(color: _muted, fontSize: 12),
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 4),
-        Text(
-          _chartPersonal ? l10n.b6PersonalTotal : l10n.b6MyShare,
-          style: const TextStyle(color: _muted, fontSize: 12),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            if (!_chartPersonal && people.isNotEmpty)
+              _overviewMetric(l10n.b6GroupTotal, _money(total, target)),
+            _overviewMetric(l10n.b6PaidToSuppliers, visiblePaid),
+            _overviewMetric(
+              l10n.b6OutstandingSuppliers,
+              visibleRemaining,
+              accent: true,
+            ),
+          ],
         ),
-        if (partial)
-          Text(
-            l10n.b6PartialTotal,
-            style: const TextStyle(color: _gold, fontSize: 12),
-          ),
-        const SizedBox(height: 10),
-        Text(
-          '${l10n.b6ExpenseCount}: ${docs.length}',
-          style: const TextStyle(color: _muted, fontSize: 12),
-        ),
-        if (!_chartPersonal && people.isNotEmpty) ...[
-          Text(
-            '${l10n.b6GroupTotal}: ${_money(total, target)}',
-            style: const TextStyle(color: _cream),
-          ),
-          Text(
-            '${l10n.b6AveragePerTraveler}: ${_money((total / people.length).round(), target)}',
-            style: const TextStyle(color: _muted, fontSize: 12),
-          ),
-        ],
         if (mostRecentTitle != null && mostRecentTitle.isNotEmpty)
-          Text(
-            '${l10n.b6LatestExpense}: $mostRecentTitle',
-            style: const TextStyle(color: _muted, fontSize: 12),
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Text(
+              '${l10n.b6LatestExpense}: $mostRecentTitle',
+              style: const TextStyle(color: _muted, fontSize: 12),
+            ),
           ),
-        const SizedBox(height: 10),
-        Text(
-          '${l10n.b6PaidToSuppliers}: ${converted == 0 && hasExpenses ? '—' : _money(paid, target)}',
-          style: const TextStyle(color: _cream),
-        ),
-        Text(
-          '${l10n.b6OutstandingSuppliers}: ${converted == 0 && hasExpenses ? '—' : _money(total - paid, target)}',
-          style: const TextStyle(color: _gold),
-        ),
-        const Divider(height: 26),
+        const Divider(height: 30),
         if (ordered.isEmpty)
           Text(l10n.b6NoExpenses, style: const TextStyle(color: _muted)),
         for (final entry in ordered) ...[
@@ -792,19 +547,31 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
           const SizedBox(height: 13),
         ],
         if (observations.isNotEmpty) ...[
-          const Divider(height: 23),
-          Text(
-            l10n.b6RateSource,
-            style: const TextStyle(color: _muted, fontSize: 12),
-          ),
-          for (final entry in observations.entries)
-            Text(
-              '${entry.key}: ${entry.value}',
+          const SizedBox(height: 8),
+          ExpansionTile(
+            tilePadding: EdgeInsets.zero,
+            childrenPadding: EdgeInsets.zero,
+            collapsedIconColor: _gold,
+            iconColor: _gold,
+            title: Text(
+              l10n.b6RateSource,
               style: const TextStyle(color: _muted, fontSize: 12),
             ),
-          Text(
-            l10n.b6RateDoesNotChangeDebts,
-            style: const TextStyle(color: _muted, fontSize: 12),
+            children: [
+              for (final entry in observations.entries)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '${entry.key}: ${entry.value}',
+                    style: const TextStyle(color: _muted, fontSize: 12),
+                  ),
+                ),
+              const SizedBox(height: 6),
+              Text(
+                l10n.b6RateDoesNotChangeDebts,
+                style: const TextStyle(color: _muted, fontSize: 12),
+              ),
+            ],
           ),
         ],
         if (excluded.isNotEmpty) ...[
@@ -823,36 +590,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
             style: const TextStyle(color: _muted, fontSize: 12),
           ),
         ],
-        if (_fxMode == 'historical' && target == widget.mainCurrency)
-          for (final doc in docs)
-            if (_canCorrect(doc))
-              TextButton.icon(
-                onPressed: () => showDialog<bool>(
-                  context: context,
-                  builder: (_) => BudgetFxManualDialog(
-                    api: widget.api,
-                    expenseId: doc.id,
-                    private: _chartPersonal,
-                    from: _map(
-                      _map(doc.data()['snapshot'])['total'],
-                    )['currency'].toString(),
-                    to: target,
-                  ),
-                ),
-                icon: const Icon(Icons.edit_outlined, size: 16),
-                label: Text(
-                  '${l10n.b6ManualRate}: ${doc.data()['title'] ?? ''}',
-                ),
-              ),
       ],
     );
-  }
-
-  bool _canCorrect(QueryDocumentSnapshot<Map<String, dynamic>> doc) {
-    final data = doc.data();
-    final source = _map(_map(data['snapshot'])['total'])['currency'];
-    return data['createdByUid'] == widget.api.currentUid &&
-        source is String &&
-        source != widget.mainCurrency;
   }
 }

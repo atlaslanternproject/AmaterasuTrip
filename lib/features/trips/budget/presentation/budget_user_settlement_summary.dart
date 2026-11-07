@@ -1,4 +1,3 @@
-import '../calculations/budget_money_formatter.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -7,11 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
+import 'budget_display_amount.dart';
 
 class BudgetUserSettlementSummary extends StatefulWidget {
-  const BudgetUserSettlementSummary({super.key, required this.api});
+  const BudgetUserSettlementSummary({
+    super.key,
+    required this.api,
+    required this.displayCurrency,
+  });
 
   final BudgetApi api;
+  final String displayCurrency;
 
   @override
   State<BudgetUserSettlementSummary> createState() =>
@@ -174,14 +179,6 @@ class _BudgetUserSettlementSummaryState
   int _amount(dynamic value) {
     final raw = _asMap(value)['minorUnits'];
     return raw is int ? raw : 0;
-  }
-
-  String _money(int minor, String currency) {
-    try {
-      return BudgetMoneyFormatter.format(minor, currency);
-    } catch (_) {
-      return '$minor $currency';
-    }
   }
 
   List<_DebtLine> _debts(Map<String, dynamic> snapshot) {
@@ -364,8 +361,10 @@ class _BudgetUserSettlementSummaryState
           String title,
           String emptyText,
           Map<String, Map<String, int>> amounts,
-          Map<String, Map<String, int>> pending,
-        ) {
+          Map<String, Map<String, int>> pending, {
+          required IconData icon,
+          required bool incomingBalance,
+        }) {
           final rows = <({String currency, String person, int value})>[];
 
           for (final entry in amounts.entries) {
@@ -385,43 +384,120 @@ class _BudgetUserSettlementSummaryState
             return currency != 0 ? currency : a.person.compareTo(b.person);
           });
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _heading(title),
-              const SizedBox(height: 10),
-              if (rows.isEmpty)
-                Text(emptyText, style: const TextStyle(color: _muted)),
-              for (final row in rows) ...[
+          final accent = incomingBalance
+              ? const Color(0xFFE3A66C)
+              : const Color(0xFFE17A43);
+
+          return Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFF30231E),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: const Color(0xFF543A2E)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Row(
                   children: [
-                    Expanded(
-                      child: Text(
-                        _person(row.person, names),
-                        style: const TextStyle(color: _cream),
+                    Container(
+                      width: 38,
+                      height: 38,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF442D23),
+                        borderRadius: BorderRadius.circular(11),
                       ),
+                      child: Icon(icon, color: accent, size: 21),
                     ),
+                    const SizedBox(width: 11),
+                    Expanded(child: _heading(title)),
                     Text(
-                      _money(row.value, row.currency),
-                      style: const TextStyle(
-                        color: _gold,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      '${rows.length}',
+                      style: const TextStyle(color: _muted, fontSize: 13),
                     ),
                   ],
                 ),
-                if ((pending[row.currency]?[row.person] ?? 0) > 0)
+                const SizedBox(height: 15),
+                if (rows.isEmpty)
                   Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      '${l10n.budgetPendingConfirmation}: '
-                      '${_money(pending[row.currency]![row.person]!, row.currency)}',
-                      style: const TextStyle(color: _muted, fontSize: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.check_circle_outline_rounded,
+                          color: _muted,
+                          size: 18,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            emptyText,
+                            style: const TextStyle(color: _muted),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                const SizedBox(height: 12),
+                for (final row in rows) ...[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                _person(row.person, names),
+                                style: const TextStyle(
+                                  color: _cream,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: BudgetDisplayAmount(
+                                minorUnits: row.value,
+                                originalCurrency: row.currency,
+                                displayCurrency: widget.displayCurrency,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                        if ((pending[row.currency]?[row.person] ?? 0) > 0)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  l10n.budgetPendingConfirmation,
+                                  style: const TextStyle(
+                                    color: _muted,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                BudgetDisplayAmount(
+                                  minorUnits:
+                                      pending[row.currency]![row.person]!,
+                                  originalCurrency: row.currency,
+                                  displayCurrency: widget.displayCurrency,
+                                  fontSize: 13,
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  const Divider(color: Color(0xFF49342B), height: 1),
+                ],
               ],
-            ],
+            ),
           );
         }
 
@@ -438,9 +514,11 @@ class _BudgetUserSettlementSummaryState
 
         return Card(
           color: const Color(0xFF241A16),
+          elevation: 0,
           margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
+            side: const BorderSide(color: Color(0xFF49352A)),
           ),
           child: Padding(
             padding: const EdgeInsets.all(18),
@@ -456,20 +534,44 @@ class _BudgetUserSettlementSummaryState
                   ),
                 ),
                 const SizedBox(height: 20),
-                balanceGroup(
-                  l10n.budgetOthersOweYou,
-                  l10n.budgetNothingToReceive,
-                  incoming,
-                  incomingPending,
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    final wide = constraints.maxWidth >= 680;
+                    final cardWidth = wide
+                        ? (constraints.maxWidth - 12) / 2
+                        : constraints.maxWidth;
+
+                    return Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: [
+                        SizedBox(
+                          width: cardWidth,
+                          child: balanceGroup(
+                            l10n.budgetOthersOweYou,
+                            l10n.budgetNothingToReceive,
+                            incoming,
+                            incomingPending,
+                            icon: Icons.south_west_rounded,
+                            incomingBalance: true,
+                          ),
+                        ),
+                        SizedBox(
+                          width: cardWidth,
+                          child: balanceGroup(
+                            l10n.budgetYouOwe,
+                            l10n.budgetNothingToPay,
+                            outgoing,
+                            outgoingPending,
+                            icon: Icons.north_east_rounded,
+                            incomingBalance: false,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
-                const Divider(color: Color(0xFF49342B), height: 26),
-                balanceGroup(
-                  l10n.budgetYouOwe,
-                  l10n.budgetNothingToPay,
-                  outgoing,
-                  outgoingPending,
-                ),
-                const Divider(color: Color(0xFF49342B), height: 26),
+                const Divider(color: Color(0xFF49342B), height: 30),
                 InkWell(
                   onTap: () {
                     setState(() => _showMovements = !_showMovements);
@@ -533,11 +635,12 @@ class _BudgetUserSettlementSummaryState
                             style: const TextStyle(color: _muted),
                           ),
                         ),
-                        Text(
-                          _money(movement.amount, movement.currency),
-                          style: const TextStyle(
-                            color: _gold,
-                            fontWeight: FontWeight.w700,
+                        Flexible(
+                          child: BudgetDisplayAmount(
+                            minorUnits: movement.amount,
+                            originalCurrency: movement.currency,
+                            displayCurrency: widget.displayCurrency,
+                            fontSize: 14,
                           ),
                         ),
                       ],

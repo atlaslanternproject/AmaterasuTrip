@@ -11,16 +11,19 @@ import '../../presentation/pages/create_trip/destination/services/destination_pl
 import 'budget_api.dart';
 import 'budget_currency.dart';
 import 'budget_money_input.dart';
+import 'budget_display_amount.dart';
 
 class PersonalTripBudgetCard extends StatefulWidget {
   const PersonalTripBudgetCard({
     super.key,
     required this.api,
     required this.defaultCurrency,
+    required this.displayCurrency,
   });
 
   final BudgetApi api;
   final String defaultCurrency;
+  final String displayCurrency;
 
   @override
   State<PersonalTripBudgetCard> createState() => _PersonalTripBudgetCardState();
@@ -75,10 +78,6 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
     if (oldWidget.api.tripId != widget.api.tripId) {
       _initialize();
     }
-  }
-
-  String _money(int amount, String currency) {
-    return BudgetMoneyFormatter.format(amount, currency);
   }
 
   String _editableAmount(PersonalTripBudget budget) {
@@ -603,29 +602,32 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             ],
                           ),
                           const SizedBox(height: 12),
-                          Text(
-                            _money(budget.amountMinor, budget.currency),
-                            style: const TextStyle(
-                              color: _cream,
-                              fontSize: 26,
-                              fontWeight: FontWeight.w700,
-                            ),
+                          BudgetDisplayAmount(
+                            minorUnits: budget.amountMinor,
+                            originalCurrency: budget.currency,
+                            displayCurrency: widget.displayCurrency,
+                            fontSize: 26,
                           ),
                           Text(
                             it ? 'Budget previsto' : 'Planned budget',
                             style: const TextStyle(color: _muted),
                           ),
                           const SizedBox(height: 16),
-                          Text(
-                            spending == null
-                                ? '— ${budget.currency}'
-                                : _money(spending.spent, budget.currency),
-                            style: const TextStyle(
-                              color: _cream,
+                          if (spending == null)
+                            Text(
+                              '— ${widget.displayCurrency}',
+                              style: const TextStyle(
+                                color: _muted,
+                                fontSize: 18,
+                              ),
+                            )
+                          else
+                            BudgetDisplayAmount(
+                              minorUnits: spending.spent,
+                              originalCurrency: budget.currency,
+                              displayCurrency: widget.displayCurrency,
                               fontSize: 18,
-                              fontWeight: FontWeight.w600,
                             ),
-                          ),
                           Text(
                             it
                                 ? 'Spesa a tuo carico '
@@ -651,13 +653,11 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                                   : (it ? 'Disponibile' : 'Remaining'),
                               style: const TextStyle(color: _muted),
                             ),
-                            Text(
-                              _money(remaining.abs(), budget.currency),
-                              style: TextStyle(
-                                color: exceeded ? _red : _gold,
-                                fontSize: 23,
-                                fontWeight: FontWeight.w700,
-                              ),
+                            BudgetDisplayAmount(
+                              minorUnits: remaining.abs(),
+                              originalCurrency: budget.currency,
+                              displayCurrency: widget.displayCurrency,
+                              fontSize: 23,
                             ),
                             const SizedBox(height: 12),
                             ClipRRect(

@@ -82,6 +82,7 @@ class BudgetApi {
             'name': username.isNotEmpty
                 ? username
                 : (display.isNotEmpty ? display : 'Viaggiatore'),
+            'photoUrl': profile['photoUrl']?.toString().trim() ?? '',
           };
         })
         .toList(growable: false);
@@ -230,6 +231,12 @@ class BudgetApi {
     }
 
     final sorted = participants.toSet().toList()..sort();
+
+    if (!shared && (sorted.length != 1 || sorted.single != currentUid)) {
+      throw ArgumentError(
+        'Una spesa personale puo riguardare solo il titolare.',
+      );
+    }
 
     if (sorted.length != participants.length) {
       throw ArgumentError('Viaggiatori duplicati.');
