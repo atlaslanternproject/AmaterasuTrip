@@ -5,6 +5,8 @@ import {
   validId, debtAmount, Snapshot,
 } from "./budget-validation";
 
+import {validateReimbursementMethods} from "./budget-reimbursement-methods";
+
 const db = getFirestore();
 
 /**
@@ -37,11 +39,16 @@ export const requestBudgetReimbursement = onCall(
     const refundId = validId(request.data?.refundId);
     const creditorUid = validId(request.data?.creditorUid);
     const minorUnits = request.data?.minorUnits;
+    const rawPaymentMethods = request.data?.paymentMethods;
 
     if (!Number.isSafeInteger(minorUnits) || minorUnits <= 0 ||
         creditorUid === uid) {
       throw new HttpsError("invalid-argument", "Invalid reimbursement.");
     }
+
+    const paymentMethods = validateReimbursementMethods(
+      rawPaymentMethods, uid, minorUnits,
+    );
 
     const {expense, refund} = refs(tripId, expenseId, refundId);
 
@@ -105,6 +112,7 @@ export const requestBudgetReimbursement = onCall(
         debtorUid: uid,
         creditorUid,
         minorUnits,
+        ...(paymentMethods === null ? {} : {paymentMethods}),
         currency: snapshot.total.currency,
         expenseVersion: doc.data()!.version,
         status: "pending",

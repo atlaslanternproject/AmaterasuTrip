@@ -194,6 +194,58 @@ async function run() {
     }),
   );
 
+  await expectFailure("B8.3 invalid method total", () =>
+    callable("requestBudgetReimbursement", b, {
+      tripId,
+      expenseId: "shared1",
+      refundId: "invalidMethodTotal",
+      creditorUid: uidA,
+      minorUnits: 500,
+      paymentMethods: [
+        {payerUid: uidB, method: "cash", minorUnits: 400},
+      ],
+    }),
+  );
+
+  await expectFailure("B8.3 forged payer", () =>
+    callable("requestBudgetReimbursement", b, {
+      tripId,
+      expenseId: "shared1",
+      refundId: "forgedMethodPayer",
+      creditorUid: uidA,
+      minorUnits: 500,
+      paymentMethods: [
+        {payerUid: uidA, method: "cash", minorUnits: 500},
+      ],
+    }),
+  );
+
+  await expectFailure("B8.3 unknown method", () =>
+    callable("requestBudgetReimbursement", b, {
+      tripId,
+      expenseId: "shared1",
+      refundId: "unknownMethod",
+      creditorUid: uidA,
+      minorUnits: 500,
+      paymentMethods: [
+        {payerUid: uidB, method: "crypto", minorUnits: 500},
+      ],
+    }),
+  );
+
+  await expectFailure("B8.3 missing other label", () =>
+    callable("requestBudgetReimbursement", b, {
+      tripId,
+      expenseId: "shared1",
+      refundId: "missingOtherLabel",
+      creditorUid: uidA,
+      minorUnits: 500,
+      paymentMethods: [
+        {payerUid: uidB, method: "other", minorUnits: 500},
+      ],
+    }),
+  );
+
   const requests = await Promise.allSettled([
     callable("requestBudgetReimbursement", b, {
       tripId,
@@ -250,6 +302,44 @@ async function run() {
       approved: true,
     }),
   );
+
+  await callable("requestBudgetReimbursement", b, {
+    tripId,
+    expenseId: "shared1",
+    refundId: "splitReimbursement",
+    creditorUid: uidA,
+    minorUnits: 2000,
+    paymentMethods: [
+      {payerUid: uidB, method: "cash", minorUnits: 800},
+      {payerUid: uidB, method: "bankTransfer", minorUnits: 1200},
+    ],
+  });
+
+  const splitRef = db.collection("trips").doc(tripId)
+    .collection("budgetSharedExpenses").doc("shared1")
+    .collection("reimbursements").doc("splitReimbursement");
+
+  const pendingSplit = await splitRef.get();
+  assert.equal(pendingSplit.data().status, "pending");
+  assert.deepEqual(pendingSplit.data().paymentMethods, [
+    {payerUid: uidB, method: "cash", minorUnits: 800},
+    {payerUid: uidB, method: "bankTransfer", minorUnits: 1200},
+  ]);
+
+  await callable("confirmBudgetReimbursement", a, {
+    tripId,
+    expenseId: "shared1",
+    refundId: "splitReimbursement",
+    approved: true,
+  });
+
+  const confirmedSplit = await splitRef.get();
+  assert.equal(confirmedSplit.data().status, "confirmed");
+  assert.deepEqual(
+    confirmedSplit.data().paymentMethods,
+    pendingSplit.data().paymentMethods,
+  );
+  console.log("PASS: B8.3 split reimbursement and recipient approval");
 
   await expectFailure("financial revision after reimbursement", () =>
     callable("proposeBudgetRevision", a, {

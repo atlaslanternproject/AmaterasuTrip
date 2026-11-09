@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 
-import '../calculations/currency_minor_units.dart';
+import '../calculations/budget_money_formatter.dart';
+import '../models/budget_payment_allocation.dart';
+import 'budget_payment_methods_editor.dart';
 import 'budget_api.dart';
 import 'budget_display_amount.dart';
 
@@ -157,32 +159,6 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     return sum;
   }
 
-  int? _parseAmount(String text, String currency) {
-    final cleaned = text.trim().replaceAll(',', '.');
-    final decimals = CurrencyMinorUnits.decimals(currency);
-    final factor = CurrencyMinorUnits.factor(currency);
-
-    if (!RegExp(r'^\d+(\.\d+)?$').hasMatch(cleaned)) {
-      return null;
-    }
-
-    final parts = cleaned.split('.');
-    if (parts.length == 2 && parts[1].length > decimals) {
-      return null;
-    }
-
-    final whole = int.tryParse(parts.first);
-    final fraction = parts.length == 2
-        ? int.tryParse(parts.last.padRight(decimals, '0'))
-        : 0;
-
-    if (whole == null || fraction == null) {
-      return null;
-    }
-
-    return whole * factor + fraction;
-  }
-
   Future<void> _run(Future<void> Function() action) async {
     if (_busy) {
       return;
@@ -225,100 +201,208 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     String currency,
     String creditorName,
   ) async {
-    final controller = TextEditingController();
+    final selected = await showDialog<List<BudgetPaymentAllocation>>(
+      context: context,
+      builder: (dialogContext) {
+        List<BudgetPaymentAllocation> allocations = [];
 
-    try {
-      final selected = await showDialog<int>(
-        context: context,
-        builder: (dialogContext) {
-          return AlertDialog(
-            title: Text(_it ? 'Segnala rimborso' : 'Report reimbursement'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  _it
-                      ? 'Stai segnalando un rimborso verso $creditorName.'
-                      : 'You are reporting a reimbursement to $creditorName.',
-                ),
-                const SizedBox(height: 8),
-                Text(_it ? 'Importo massimo' : 'Maximum amount'),
-                const SizedBox(height: 4),
-                BudgetDisplayAmount(
-                  minorUnits: maximumMinorUnits,
-                  originalCurrency: currency,
-                  displayCurrency: widget.displayCurrency,
-                  fontSize: 16,
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: controller,
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  decoration: InputDecoration(
-                    labelText: _it ? 'Importo rimborsato' : 'Reimbursed amount',
-                    suffixText: currency,
-                    helperText: _it
-                        ? 'Il destinatario dovrà confermare.'
-                        : 'The recipient must confirm it.',
-                  ),
-                ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(dialogContext),
-                child: Text(_it ? 'Annulla' : 'Cancel'),
+        return StatefulBuilder(
+          builder: (dialogContext, update) {
+            final total = allocations.fold<int>(
+              0,
+              (accumulated, item) => accumulated + item.minorUnits,
+            );
+            final valid =
+                allocations.isNotEmpty &&
+                allocations.length <= 20 &&
+                allocations.every(
+                  (item) =>
+                      item.isValid && item.payerUid == widget.api.currentUid,
+                ) &&
+                total > 0 &&
+                total <= maximumMinorUnits;
+
+            return AlertDialog(
+              backgroundColor: const Color(0xFF231915),
+              title: Text(
+                _it ? 'Segnala un rimborso' : 'Report reimbursement',
+                style: const TextStyle(color: Color(0xFFF2E7D5)),
               ),
-              FilledButton(
-                onPressed: () {
-                  final minor = _parseAmount(controller.text, currency);
-
-                  if (minor == null ||
-                      minor <= 0 ||
-                      minor > maximumMinorUnits) {
-                    ScaffoldMessenger.of(dialogContext).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          _it ? 'Importo non valido.' : 'Invalid amount.',
+              content: SizedBox(
+                width: 440,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _it
+                            ? 'Rimborso verso $creditorName'
+                            : 'Reimbursement to $creditorName',
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        _it ? 'Massimo rimborsabile' : 'Maximum reimbursable',
+                      ),
+                      BudgetDisplayAmount(
+                        minorUnits: maximumMinorUnits,
+                        originalCurrency: currency,
+                        displayCurrency: widget.displayCurrency,
+                        fontSize: 17,
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        _it
+                            ? 'Indica come hai rimborsato in $currency. '
+                                  'Il destinatario dovrà confermare.'
+                            : 'Record how you reimbursed in $currency. '
+                                  'The recipient must confirm.',
+                        style: const TextStyle(color: Color(0xFFB7A99B)),
+                      ),
+                      const SizedBox(height: 12),
+                      BudgetPaymentMethodsEditor(
+                        currency: currency,
+                        payerUid: widget.api.currentUid,
+                        enabled: true,
+                        onChanged: (values) {
+                          update(() {
+                            allocations = List<BudgetPaymentAllocation>.of(
+                              values,
+                            );
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        '${_it ? "Totale dichiarato" : "Declared total"}: '
+                        '${BudgetMoneyFormatter.format(total, currency)}',
+                        style: const TextStyle(
+                          color: Color(0xFFE3A66C),
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
-                    );
-                    return;
-                  }
-
-                  Navigator.pop(dialogContext, minor);
-                },
-                child: Text(_it ? 'Invia' : 'Submit'),
+                      if (!valid)
+                        Text(
+                          _it
+                              ? 'Aggiungi metodi validi. Il totale deve '
+                                    'essere positivo e non superare il massimo.'
+                              : 'Add valid methods. The total must '
+                                    'be positive and within the maximum.',
+                          style: const TextStyle(
+                            color: Color(0xFFFFA78A),
+                            fontSize: 12,
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
               ),
-            ],
-          );
-        },
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(dialogContext),
+                  child: Text(_it ? 'Annulla' : 'Cancel'),
+                ),
+                FilledButton(
+                  onPressed: valid
+                      ? () => Navigator.pop(
+                          dialogContext,
+                          List<BudgetPaymentAllocation>.of(allocations),
+                        )
+                      : null,
+                  child: Text(_it ? 'Invia richiesta' : 'Submit request'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+
+    if (selected == null || selected.isEmpty) return;
+
+    final amount = selected.fold<int>(
+      0,
+      (accumulated, item) => accumulated + item.minorUnits,
+    );
+
+    await _run(() async {
+      final refundId = FirebaseFirestore.instance.collection('trips').doc().id;
+
+      await _functions.httpsCallable('requestBudgetReimbursement').call({
+        'tripId': widget.api.tripId,
+        'expenseId': widget.expenseId,
+        'refundId': refundId,
+        'creditorUid': debt.creditorUid,
+        'minorUnits': amount,
+        'paymentMethods': selected.map((item) => item.toMap()).toList(),
+      });
+    });
+  }
+
+  String _methodLabel(BudgetPaymentMethod method) {
+    switch (method) {
+      case BudgetPaymentMethod.cash:
+        return _it ? 'Contanti' : 'Cash';
+      case BudgetPaymentMethod.card:
+        return _it ? 'Carta' : 'Card';
+      case BudgetPaymentMethod.bankTransfer:
+        return _it ? 'Bonifico' : 'Bank transfer';
+      case BudgetPaymentMethod.paypal:
+        return 'PayPal';
+      case BudgetPaymentMethod.satispay:
+        return 'Satispay';
+      case BudgetPaymentMethod.other:
+        return _it ? 'Altro' : 'Other';
+    }
+  }
+
+  Widget _paymentDetails(Map<String, dynamic> reimbursement, String currency) {
+    final raw = reimbursement['paymentMethods'];
+
+    if (raw is! List || raw.isEmpty) {
+      return Text(
+        _it
+            ? 'Metodo di rimborso non registrato'
+            : 'Reimbursement method not recorded',
+        style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 12),
+      );
+    }
+
+    final entries = <BudgetPaymentAllocation>[];
+
+    for (final item in raw) {
+      if (item is! Map) continue;
+
+      final parsed = BudgetPaymentAllocation.fromMap(
+        Map<String, dynamic>.from(item),
       );
 
-      if (selected == null) {
-        return;
-      }
-
-      await _run(() async {
-        final refundId = FirebaseFirestore.instance
-            .collection('trips')
-            .doc()
-            .id;
-
-        await _functions.httpsCallable('requestBudgetReimbursement').call({
-          'tripId': widget.api.tripId,
-          'expenseId': widget.expenseId,
-          'refundId': refundId,
-          'creditorUid': debt.creditorUid,
-          'minorUnits': selected,
-        });
-      });
-    } finally {
-      controller.dispose();
+      if (parsed != null) entries.add(parsed);
     }
+
+    if (entries.isEmpty) {
+      return Text(_it ? 'Dettagli non disponibili' : 'Details unavailable');
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          _it ? 'Metodi dichiarati' : 'Declared methods',
+          style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 12),
+        ),
+        for (final entry in entries)
+          Padding(
+            padding: const EdgeInsets.only(top: 3),
+            child: Text(
+              '${_methodLabel(entry.method)}'
+              '${entry.otherLabel == null ? "" : " (${entry.otherLabel})"}'
+              ' · ${BudgetMoneyFormatter.format(entry.minorUnits, currency)}',
+              style: const TextStyle(color: Color(0xFFF2E7D5), fontSize: 12),
+            ),
+          ),
+      ],
+    );
   }
 
   Future<void> _confirmReimbursement(String refundId, bool approved) async {
@@ -456,6 +540,9 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 displayCurrency: widget.displayCurrency,
                                 fontSize: 16,
                               ),
+                              const SizedBox(height: 5),
+                              _paymentDetails(data, currency),
+                              const SizedBox(height: 8),
                               Wrap(
                                 spacing: 8,
                                 children: [
@@ -623,6 +710,8 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 displayCurrency: widget.displayCurrency,
                                 fontSize: 15,
                               ),
+                              const SizedBox(height: 5),
+                              _paymentDetails(data, currency),
                             ],
                           ),
                         );
