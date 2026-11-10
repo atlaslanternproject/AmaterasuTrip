@@ -1,0 +1,149 @@
+{
+  "description": "Shared cases checked by the Flutter app (test/features/trips/budget/calculations/budget_debt_parity_test.dart) and by the Cloud Functions (functions/test/budget-calc-parity.test.cjs). Debts are listed in allocation order.",
+  "debtCases": [
+    {
+      "name": "one payer, two equal shares",
+      "snapshot": {
+        "total": {"currency": "EUR", "minorUnits": 10000},
+        "status": "paid",
+        "shares": {"A": {"currency": "EUR", "minorUnits": 5000}, "B": {"currency": "EUR", "minorUnits": 5000}},
+        "advances": {"A": {"currency": "EUR", "minorUnits": 10000}}
+      },
+      "debts": [{"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000}]
+    },
+    {
+      "name": "two payers, one debtor",
+      "snapshot": {
+        "total": {"currency": "EUR", "minorUnits": 9000},
+        "status": "paid",
+        "shares": {"A": {"currency": "EUR", "minorUnits": 3000}, "B": {"currency": "EUR", "minorUnits": 3000}, "C": {"currency": "EUR", "minorUnits": 3000}},
+        "advances": {"A": {"currency": "EUR", "minorUnits": 6000}, "B": {"currency": "EUR", "minorUnits": 3000}}
+      },
+      "debts": [{"debtorUid": "C", "creditorUid": "A", "minorUnits": 3000}]
+    },
+    {
+      "name": "two creditors, two debtors, split allocation",
+      "snapshot": {
+        "total": {"currency": "EUR", "minorUnits": 10000},
+        "status": "paid",
+        "shares": {"a": {"currency": "EUR", "minorUnits": 2500}, "b": {"currency": "EUR", "minorUnits": 2500}, "c": {"currency": "EUR", "minorUnits": 2500}, "d": {"currency": "EUR", "minorUnits": 2500}},
+        "advances": {"a": {"currency": "EUR", "minorUnits": 6000}, "b": {"currency": "EUR", "minorUnits": 4000}}
+      },
+      "debts": [
+        {"debtorUid": "c", "creditorUid": "a", "minorUnits": 2500},
+        {"debtorUid": "d", "creditorUid": "a", "minorUnits": 1000},
+        {"debtorUid": "d", "creditorUid": "b", "minorUnits": 1500}
+      ]
+    },
+    {
+      "name": "payer without a share",
+      "snapshot": {
+        "total": {"currency": "JPY", "minorUnits": 3000},
+        "status": "paid",
+        "shares": {"b": {"currency": "JPY", "minorUnits": 1500}, "c": {"currency": "JPY", "minorUnits": 1500}},
+        "advances": {"a": {"currency": "JPY", "minorUnits": 3000}}
+      },
+      "debts": [
+        {"debtorUid": "b", "creditorUid": "a", "minorUnits": 1500},
+        {"debtorUid": "c", "creditorUid": "a", "minorUnits": 1500}
+      ]
+    },
+    {
+      "name": "uppercase IDs sort before lowercase in both languages",
+      "snapshot": {
+        "total": {"currency": "EUR", "minorUnits": 900},
+        "status": "paid",
+        "shares": {"anna": {"currency": "EUR", "minorUnits": 300}, "Zed": {"currency": "EUR", "minorUnits": 300}, "bob": {"currency": "EUR", "minorUnits": 300}},
+        "advances": {"bob": {"currency": "EUR", "minorUnits": 500}, "anna": {"currency": "EUR", "minorUnits": 400}}
+      },
+      "debts": [
+        {"debtorUid": "Zed", "creditorUid": "anna", "minorUnits": 100},
+        {"debtorUid": "Zed", "creditorUid": "bob", "minorUnits": 200}
+      ]
+    },
+    {
+      "name": "odd cents remain exact",
+      "snapshot": {
+        "total": {"currency": "EUR", "minorUnits": 1001},
+        "status": "paid",
+        "shares": {"x": {"currency": "EUR", "minorUnits": 334}, "y": {"currency": "EUR", "minorUnits": 334}, "z": {"currency": "EUR", "minorUnits": 333}},
+        "advances": {"z": {"currency": "EUR", "minorUnits": 1001}}
+      },
+      "debts": [
+        {"debtorUid": "x", "creditorUid": "z", "minorUnits": 334},
+        {"debtorUid": "y", "creditorUid": "z", "minorUnits": 334}
+      ]
+    },
+    {
+      "name": "outstanding expense creates no final debts",
+      "snapshot": {
+        "total": {"currency": "EUR", "minorUnits": 10000},
+        "status": "outstanding",
+        "shares": {"A": {"currency": "EUR", "minorUnits": 5000}, "B": {"currency": "EUR", "minorUnits": 5000}},
+        "advances": {"A": {"currency": "EUR", "minorUnits": 4000}}
+      },
+      "debts": []
+    },
+    {
+      "name": "planned expense creates no debts",
+      "snapshot": {
+        "total": {"currency": "EUR", "minorUnits": 10000},
+        "status": "planned",
+        "shares": {"A": {"currency": "EUR", "minorUnits": 5000}, "B": {"currency": "EUR", "minorUnits": 5000}},
+        "advances": {}
+      },
+      "debts": []
+    },
+    {
+      "name": "everyone paid their own share",
+      "snapshot": {
+        "total": {"currency": "EUR", "minorUnits": 2000},
+        "status": "paid",
+        "shares": {"A": {"currency": "EUR", "minorUnits": 1000}, "B": {"currency": "EUR", "minorUnits": 1000}},
+        "advances": {"A": {"currency": "EUR", "minorUnits": 1000}, "B": {"currency": "EUR", "minorUnits": 1000}}
+      },
+      "debts": []
+    }
+  ],
+  "settlementCases": [
+    {
+      "name": "only confirmed reimbursements reduce the debt",
+      "debt": {"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000},
+      "reimbursements": [
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 1000, "status": "confirmed"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 700, "status": "pending"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 900, "status": "rejected"},
+        {"debtorUid": "C", "creditorUid": "A", "minorUnits": 500, "status": "confirmed"},
+        {"debtorUid": "A", "creditorUid": "B", "minorUnits": 500, "status": "confirmed"}
+      ],
+      "settled": 1000,
+      "pending": 700,
+      "remaining": 4000
+    },
+    {
+      "name": "malformed amounts are ignored",
+      "debt": {"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000},
+      "reimbursements": [
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": -100, "status": "confirmed"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": "300", "status": "confirmed"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 0, "status": "confirmed"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 12.5, "status": "confirmed"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 2000, "status": "confirmed"}
+      ],
+      "settled": 2000,
+      "pending": 0,
+      "remaining": 3000
+    },
+    {
+      "name": "fully settled debt",
+      "debt": {"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000},
+      "reimbursements": [
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 2000, "status": "confirmed"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 3000, "status": "confirmed"}
+      ],
+      "settled": 5000,
+      "pending": 0,
+      "remaining": 0
+    }
+  ]
+}

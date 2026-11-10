@@ -98,6 +98,116 @@ async function expectFailure(label, fn) {
   assert.equal(failed, true, `Must reject: ${label}`);
 }
 
+/**
+ * B8.4: automatic historical rate lock with a simulated provider.
+ * The real handler runs in this process (callable.run), so the global
+ * fetch can be replaced: no request ever reaches the internet.
+ * Requires `npm run build` (compiled functions/lib).
+ */
+async function automaticFxScenarios(foreignSnapshot, dated) {
+  const {ensureBudgetExpenseFx} = require("../lib/budget/budget-fx.js");
+  const realFetch = globalThis.fetch;
+  const providerCalls = [];
+  let reply = null;
+  globalThis.fetch = async (input, init) => {
+    const url = String(input);
+    if (!url.includes("api.frankfurter.dev")) {
+      return realFetch(input, init);
+    }
+    providerCalls.push(url);
+    if (reply instanceof Error) throw reply;
+    return new Response(JSON.stringify(reply.body), {status: reply.status});
+  };
+  const expenses = db.collection("trips").doc(tripId)
+    .collection("budgetSharedExpenses");
+  const lock = (expenseId, uid = uidA) => ensureBudgetExpenseFx.run({
+    auth: {uid, token: {email_verified: true}},
+    data: {tripId, expenseId, visibility: "shared"},
+  });
+  const expectCode = async (label, code, fn) => {
+    try {
+      await fn();
+    } catch (error) {
+      assert.equal(error.code, code, `${label}: ${error.message}`);
+      console.log("PASS (rejected):", label, code);
+      return;
+    }
+    assert.fail(`Must reject: ${label}`);
+  };
+  const create = (expenseId) => callable("createBudgetExpense", tokenA, {
+    ...dated, expenseId, snapshot: foreignSnapshot,
+  });
+
+  try {
+    await create("fxAuto");
+    reply = {status: 200, body: {
+      base: "JPY", quote: "EUR", rate: 0.0062, date: "2024-02-29"}};
+    assert.deepEqual(await lock("fxAuto"), {stored: true, alreadyStored: false});
+    const url = new URL(providerCalls.at(-1));
+    assert.equal(url.pathname, "/v2/rate/JPY/EUR");
+    assert.equal(url.searchParams.get("date"), "2024-02-29");
+    const stored = (await expenses.doc("fxAuto").get()).get("fxHistorical");
+    assert.equal(stored.rate, 0.0062);
+    assert.equal(stored.date, "2024-02-29");
+    assert.equal(stored.requestedDate, "2024-02-29");
+    assert.equal(stored.source, "Frankfurter");
+    assert.equal(stored.manual, false);
+    assert.ok(stored.lockedAt);
+    console.log("PASS: automatic historical rate locked from provider");
+
+    const before = providerCalls.length;
+    reply = {status: 200, body: {
+      base: "JPY", quote: "EUR", rate: 9, date: "2024-02-29"}};
+    assert.deepEqual(await lock("fxAuto"), {stored: true, alreadyStored: true});
+    assert.equal(providerCalls.length, before);
+    assert.equal(
+      (await expenses.doc("fxAuto").get()).get("fxHistorical.rate"), 0.0062);
+    console.log("PASS: locked rate is never replaced automatically");
+
+    await create("fxWeekend");
+    reply = {status: 200, body: {
+      base: "JPY", quote: "EUR", rate: 0.0061, date: "2024-02-28"}};
+    await lock("fxWeekend");
+    const weekend = (await expenses.doc("fxWeekend").get()).get("fxHistorical");
+    assert.equal(weekend.date, "2024-02-28");
+    assert.equal(weekend.requestedDate, "2024-02-29");
+    console.log("PASS: earlier provider observation keeps both dates");
+
+    const failures = [
+      ["observation after the expense day", "data-loss",
+        {status: 200, body: {
+          base: "JPY", quote: "EUR", rate: 0.006, date: "2024-03-01"}}],
+      ["wrong currency pair", "data-loss",
+        {status: 200, body: {
+          base: "USD", quote: "EUR", rate: 0.9, date: "2024-02-29"}}],
+      ["non-positive rate", "data-loss",
+        {status: 200, body: {
+          base: "JPY", quote: "EUR", rate: 0, date: "2024-02-29"}}],
+      ["provider has no rate", "unavailable", {status: 404, body: {}}],
+      ["provider unreachable", "unavailable", new Error("offline")],
+    ];
+    await create("fxMissing");
+    for (const [label, code, response] of failures) {
+      reply = response;
+      await expectCode(label, code, () => lock("fxMissing"));
+    }
+    assert.equal(
+      (await expenses.doc("fxMissing").get()).get("fxHistorical"), undefined);
+    console.log("PASS: missing or doubtful rates are never stored");
+
+    const calls = providerCalls.length;
+    assert.deepEqual(await lock("shared1"), {stored: false, sameCurrency: true});
+    assert.equal(providerCalls.length, calls);
+    await expectCode("outsider cannot lock a rate", "permission-denied",
+      () => lock("fxMissing", uidC));
+    console.log("PASS: same currency and outsider checks");
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+}
+
+let tokenA = "";
+
 async function run() {
   const password = "LocalTest-Only-2026!";
 
@@ -119,6 +229,7 @@ async function run() {
     signIn("member@budget-rc.example", password),
     signIn("outsider@budget-rc.example", password),
   ]);
+  tokenA = a;
 
   await db.collection("trips").doc(tripId).set({
     ownerUid: uidA,
@@ -182,6 +293,8 @@ async function run() {
   assert.equal(audit.docs[1].get("previous.rate"), 0.006);
   assert.equal(audit.docs[1].get("actorUid"), uidA);
   console.log("PASS: manual historical rate, scope and audit");
+
+  await automaticFxScenarios(foreignSnapshot, dated);
 
   await expectFailure("outsider creates shared expense", () =>
     callable("createBudgetExpense", c, {

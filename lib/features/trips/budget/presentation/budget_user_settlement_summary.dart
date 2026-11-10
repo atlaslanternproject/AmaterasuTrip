@@ -7,6 +7,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
 import 'budget_display_amount.dart';
+import '../calculations/budget_snapshot_debts.dart';
 
 class BudgetUserSettlementSummary extends StatefulWidget {
   const BudgetUserSettlementSummary({
@@ -178,46 +179,10 @@ class _BudgetUserSettlementSummaryState
         : <String, dynamic>{};
   }
 
-  int _amount(dynamic value) {
-    final raw = _asMap(value)['minorUnits'];
-    return raw is int ? raw : 0;
-  }
-
-  List<_DebtLine> _debts(Map<String, dynamic> snapshot) {
-    if (snapshot['status'] != 'paid') return [];
-
-    final shares = _asMap(snapshot['shares']);
-    final advances = _asMap(snapshot['advances']);
-
-    final ids = {...shares.keys, ...advances.keys}.toList()..sort();
-    final debtors = <String, int>{};
-    final creditors = <String, int>{};
-
-    for (final uid in ids) {
-      final net = _amount(advances[uid]) - _amount(shares[uid]);
-      if (net < 0) debtors[uid] = -net;
-      if (net > 0) creditors[uid] = net;
-    }
-
-    final lines = <_DebtLine>[];
-
-    for (final debtor in debtors.keys) {
-      var remaining = debtors[debtor]!;
-
-      for (final creditor in creditors.keys) {
-        final available = creditors[creditor]!;
-        final allocated = math.min(remaining, available);
-
-        if (allocated <= 0) continue;
-
-        lines.add(_DebtLine(debtor, creditor, allocated));
-        remaining -= allocated;
-        creditors[creditor] = available - allocated;
-      }
-    }
-
-    return lines;
-  }
+  List<_DebtLine> _debts(Map<String, dynamic> snapshot) => [
+    for (final debt in BudgetSnapshotDebts.allocate(snapshot))
+      _DebtLine(debt.debtorUid, debt.creditorUid, debt.minorUnits),
+  ];
 
   String _person(String uid, Map<String, String> names) {
     return names[uid] ?? uid;
@@ -317,24 +282,18 @@ class _BudgetUserSettlementSummaryState
           }
 
           for (final debt in _debts(snapshot)) {
-            var confirmed = 0;
-            var pending = 0;
-
-            for (final refund in refunds) {
-              if (refund['debtorUid'] != debt.debtor ||
-                  refund['creditorUid'] != debt.creditor) {
-                continue;
-              }
-
-              final amount = refund['minorUnits'];
-              if (amount is! int || amount <= 0) continue;
-
-              if (refund['status'] == 'confirmed') {
-                confirmed += amount;
-              } else if (refund['status'] == 'pending') {
-                pending += amount;
-              }
-            }
+            final confirmed = BudgetSnapshotDebts.sumFor(
+              refunds,
+              debt.debtor,
+              debt.creditor,
+              BudgetSnapshotDebts.settledStatuses,
+            );
+            final pending = BudgetSnapshotDebts.sumFor(
+              refunds,
+              debt.debtor,
+              debt.creditor,
+              const {'pending'},
+            );
 
             final remaining = math.max(0, debt.amount - confirmed);
             final waiting = math.min(remaining, pending);

@@ -1,10 +1,9 @@
-import 'dart:math' as math;
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../calculations/budget_money_formatter.dart';
+import '../calculations/budget_snapshot_debts.dart';
 import '../models/budget_payment_allocation.dart';
 import 'budget_payment_methods_editor.dart';
 import 'budget_api.dart';
@@ -29,13 +28,7 @@ class BudgetReimbursementsPanel extends StatefulWidget {
       _BudgetReimbursementsPanelState();
 }
 
-class _DebtRow {
-  const _DebtRow(this.debtorUid, this.creditorUid, this.minorUnits);
-
-  final String debtorUid;
-  final String creditorUid;
-  final int minorUnits;
-}
+typedef _DebtRow = BudgetPairDebt;
 
 class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
   bool _busy = false;
@@ -83,80 +76,20 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     return {};
   }
 
-  int _minor(dynamic money) {
-    final map = _map(money);
-    final value = map['minorUnits'];
-    return value is int ? value : 0;
-  }
-
-  List<_DebtRow> _buildDebts(Map<String, dynamic> snapshot) {
-    if (snapshot['status'] != 'paid') {
-      return [];
-    }
-
-    final shares = _map(snapshot['shares']);
-    final advances = _map(snapshot['advances']);
-
-    final uids = {...shares.keys, ...advances.keys}.toList()..sort();
-    final debtors = <String, int>{};
-    final creditors = <String, int>{};
-
-    for (final uid in uids) {
-      final net = _minor(advances[uid]) - _minor(shares[uid]);
-
-      if (net < 0) {
-        debtors[uid] = -net;
-      } else if (net > 0) {
-        creditors[uid] = net;
-      }
-    }
-
-    final rows = <_DebtRow>[];
-
-    for (final debtorUid in debtors.keys) {
-      var remaining = debtors[debtorUid]!;
-
-      for (final creditorUid in creditors.keys) {
-        final available = creditors[creditorUid]!;
-        final amount = math.min(remaining, available);
-
-        if (amount <= 0) {
-          continue;
-        }
-
-        rows.add(_DebtRow(debtorUid, creditorUid, amount));
-        remaining -= amount;
-        creditors[creditorUid] = available - amount;
-      }
-
-      if (remaining != 0) {
-        throw StateError('Debt allocation mismatch.');
-      }
-    }
-
-    return rows;
-  }
+  List<_DebtRow> _buildDebts(Map<String, dynamic> snapshot) =>
+      BudgetSnapshotDebts.allocate(snapshot);
 
   int _sumStatus(
     Iterable<QueryDocumentSnapshot<Map<String, dynamic>>> docs,
     String debtorUid,
     String creditorUid,
     Set<String> statuses,
-  ) {
-    var sum = 0;
-
-    for (final doc in docs) {
-      final data = doc.data();
-      if (data['debtorUid'] == debtorUid &&
-          data['creditorUid'] == creditorUid &&
-          statuses.contains(data['status']) &&
-          data['minorUnits'] is int) {
-        sum += data['minorUnits'] as int;
-      }
-    }
-
-    return sum;
-  }
+  ) => BudgetSnapshotDebts.sumFor(
+    docs.map((doc) => doc.data()),
+    debtorUid,
+    creditorUid,
+    statuses,
+  );
 
   Future<void> _run(Future<void> Function() action) async {
     if (_busy) {

@@ -216,3 +216,37 @@ export function debtAmount(
 
   return result;
 }
+
+/** Reimbursement statuses that reduce an original debt. */
+export const settledStatuses: readonly string[] = ["confirmed"];
+
+/**
+ * Sums reimbursement records of one debt pair with the given statuses.
+ * Mirrors BudgetSnapshotDebts.sumFor in the Flutter app.
+ *
+ * @param {Iterable<Record<string, unknown>>} items Reimbursement records.
+ * @param {string} debtorUid Debtor identifier.
+ * @param {string} creditorUid Creditor identifier.
+ * @param {string[]} statuses Statuses to include.
+ * @return {number} Sum in minor currency units.
+ */
+export function sumReimbursements(
+  items: Iterable<Record<string, unknown>>,
+  debtorUid: string,
+  creditorUid: string,
+  statuses: readonly string[],
+): number {
+  let sum = 0;
+  for (const item of items) {
+    const amount = item.minorUnits;
+    if (item.debtorUid === debtorUid &&
+        item.creditorUid === creditorUid &&
+        typeof item.status === "string" &&
+        statuses.includes(item.status) &&
+        typeof amount === "number" &&
+        Number.isSafeInteger(amount) && amount > 0) {
+      sum += amount;
+    }
+  }
+  return sum;
+}
