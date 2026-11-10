@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'budget_expense_day.dart';
 
 /// Shared filter contract: dashboard and expense list always agree.
 class BudgetExpenseFilters {
@@ -39,9 +39,10 @@ class BudgetExpenseFilters {
       return false;
     }
     if (days > 0) {
-      final created = doc['createdAt'];
-      if (created is! Timestamp ||
-          created.toDate().isBefore(now.subtract(Duration(days: days)))) {
+      final created = budgetExpenseDay(doc);
+      if (created == null ||
+          created.isBefore(DateTime(now.year, now.month, now.day - days + 1)) ||
+          !created.isBefore(DateTime(now.year, now.month, now.day + 1))) {
         return false;
       }
     }
@@ -63,10 +64,10 @@ class BudgetExpenseFilters {
         return sort == 'amount-desc' ? -delta : delta;
       }
     }
-    final aDate = a['createdAt'];
-    final bDate = b['createdAt'];
-    final left = aDate is Timestamp ? aDate.millisecondsSinceEpoch : 0;
-    final right = bDate is Timestamp ? bDate.millisecondsSinceEpoch : 0;
+    final aDate = budgetExpenseDay(a);
+    final bDate = budgetExpenseDay(b);
+    final left = aDate?.millisecondsSinceEpoch ?? 0;
+    final right = bDate?.millisecondsSinceEpoch ?? 0;
     return sort == 'oldest' ? left.compareTo(right) : right.compareTo(left);
   }
 

@@ -29,6 +29,7 @@ class BudgetCreateDialog extends StatefulWidget {
 }
 
 class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
+  DateTime _expenseDate = DateUtils.dateOnly(DateTime.now());
   final _title = TextEditingController();
   final _notes = TextEditingController();
   String _category = 'other';
@@ -394,6 +395,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
         ),
         customShares: customShares,
         title: _title.text,
+        expenseDate: _expenseDate,
         category: _category,
         notes: _notes.text,
         shared: _shared,
@@ -564,6 +566,28 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                       ),
                     ),
                     const SizedBox(height: 8),
+                    ListTile(
+                      leading: const Icon(Icons.calendar_today_outlined),
+                      title: Text(it ? "Data della spesa" : "Expense date"),
+                      subtitle: Text(
+                        MaterialLocalizations.of(
+                          context,
+                        ).formatMediumDate(_expenseDate),
+                      ),
+                      onTap: _saving
+                          ? null
+                          : () async {
+                              final date = await showDatePicker(
+                                context: context,
+                                initialDate: _expenseDate,
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime(9999, 12, 31),
+                              );
+                              if (mounted && date != null) {
+                                setState(() => _expenseDate = date);
+                              }
+                            },
+                    ),
                     BudgetCategoryPicker(
                       api: widget.api,
                       selected: _category,
@@ -737,6 +761,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                     children: [
                       BudgetPaymentMethodsEditor(
                         key: ValueKey('$_status-$_selectedCurrency'),
+                        showAccount: true,
                         currency: _selectedCurrency,
                         payerUid: widget.api.currentUid,
                         enabled: !_saving,

@@ -192,6 +192,7 @@ class BudgetApi {
 
   Future<void> create({
     required String title,
+    DateTime? expenseDate,
     required String category,
     required String notes,
     required bool shared,
@@ -327,6 +328,8 @@ class BudgetApi {
       'expenseId': docId,
       'visibility': shared ? 'shared' : 'private',
       'title': title.trim(),
+      if (expenseDate != null)
+        'expenseDate': expenseDate.toIso8601String().substring(0, 10),
       'category': category,
       'notes': notes.trim(),
       if (paymentPlan != null) 'paymentMethods': paymentPlan.toPayload(),

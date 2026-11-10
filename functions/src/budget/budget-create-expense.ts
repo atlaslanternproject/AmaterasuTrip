@@ -22,10 +22,37 @@ export const createBudgetExpense = onCall(
       throw new HttpsError("invalid-argument", "Invalid visibility.");
     }
 
+    const expenseDate = request.data?.expenseDate;
+    if (expenseDate !== undefined &&
+        (typeof expenseDate !== "string" ||
+        !/^\d{4}-\d{2}-\d{2}$/.test(expenseDate) ||
+        !Number.isFinite(Date.parse(expenseDate)) ||
+        new Date(expenseDate).toISOString().slice(0, 10) !== expenseDate)) {
+      throw new HttpsError("invalid-argument", "Invalid expense date.");
+    }
+
     const snapshot = validateSnapshot(request.data?.snapshot);
-    const paymentMethods = validatePaymentMethods(
+    const validatedMethods = validatePaymentMethods(
       request.data?.paymentMethods, snapshot,
     );
+
+    const accountPayments = validatedMethods?.flatMap((entry, index) => {
+      if (!entry.accountCurrency) return [];
+      return [{
+        index, payerUid: entry.payerUid, accountCurrency: entry.accountCurrency,
+        ...(entry.accountDebitMinor === undefined ? {} :
+          {accountDebitMinor: entry.accountDebitMinor}),
+      }];
+    }) ?? [];
+    const paymentMethods = validatedMethods?.map((entry) => ({
+      payerUid: entry.payerUid, method: entry.method,
+      minorUnits: entry.minorUnits,
+      ...(entry.otherLabel === undefined ? {} : {otherLabel: entry.otherLabel}),
+    }));
+    const paymentFields = {
+      ...(paymentMethods === undefined ? {} : {paymentMethods}),
+      ...(accountPayments.length ? {accountPayments} : {}),
+    };
 
     // Optional metadata remains backward-compatible with expenses
     // created by previous clients and integration tests.
@@ -136,7 +163,8 @@ export const createBudgetExpense = onCall(
         createdByUid: uid,
         visibility,
         snapshot,
-        ...(paymentMethods === null ? {} : {paymentMethods}),
+        ...(expenseDate === undefined ? {} : {expenseDate}),
+        ...paymentFields,
         version: 1,
         createdAt: FieldValue.serverTimestamp(),
         updatedAt: FieldValue.serverTimestamp(),
@@ -145,7 +173,8 @@ export const createBudgetExpense = onCall(
       tx.create(expenseRef.collection("revisions").doc("1"), {
         number: 1,
         snapshot,
-        ...(paymentMethods === null ? {} : {paymentMethods}),
+        ...(expenseDate === undefined ? {} : {expenseDate}),
+        ...paymentFields,
         actorUid: uid,
         createdAt: FieldValue.serverTimestamp(),
       });

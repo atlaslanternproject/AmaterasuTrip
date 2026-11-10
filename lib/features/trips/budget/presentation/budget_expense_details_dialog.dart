@@ -2,6 +2,9 @@ import '../calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'budget_dialog_chrome.dart';
+import 'budget_expense_day.dart';
+import 'budget_expense_history.dart';
+import 'budget_fx_manual_dialog.dart';
 import 'budget_display_amount.dart';
 import 'budget_api.dart';
 import 'budget_expense_controls.dart';
@@ -147,6 +150,8 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
 
     final title = (expense['title']?.toString() ?? '').trim();
     final category = expense['category']?.toString() ?? 'other';
+    final day = budgetExpenseDay(expense);
+    final methods = expense['accountPayments'];
     final notes = (expense['notes']?.toString() ?? '').trim();
     final status = snapshot['status']?.toString() ?? '';
 
@@ -203,8 +208,54 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                         style: const TextStyle(color: Color(0xFFB7A99B)),
                       ),
                       const SizedBox(height: 18),
+                      if (day != null)
+                        Text(
+                          MaterialLocalizations.of(
+                            context,
+                          ).formatMediumDate(day),
+                        ),
+                      if (expense['createdByUid'] == api.currentUid)
+                        FutureBuilder<String>(
+                          future: api.tripCurrency(),
+                          builder: (context, result) {
+                            final target = result.data;
+                            if (target == null || target == originalCurrency) {
+                              return const SizedBox.shrink();
+                            }
+                            return TextButton.icon(
+                              icon: const Icon(Icons.currency_exchange),
+                              label: Text(
+                                it
+                                    ? 'Rettifica cambio $originalCurrency/$target'
+                                    : 'Adjust rate $originalCurrency/$target',
+                              ),
+                              onPressed: () async {
+                                final saved = await showDialog<bool>(
+                                  context: context,
+                                  builder: (_) => BudgetFxManualDialog(
+                                    api: api,
+                                    expenseId: expenseId,
+                                    private: isPrivate,
+                                    from: originalCurrency,
+                                    to: target,
+                                  ),
+                                );
+                                if (context.mounted && saved == true) {
+                                  Navigator.pop(context);
+                                }
+                              },
+                            );
+                          },
+                        ),
+                      if (methods is List)
+                        for (final method in methods.whereType<Map>())
+                          if (method['accountCurrency'] is String)
+                            Text(
+                              '${it ? "Conto" : "Account"} · ${method['accountDebitMinor'] == null ? method['accountCurrency'] : _formatMoney({'currency': method['accountCurrency'], 'minorUnits': method['accountDebitMinor']})}',
+                            ),
                       if (originalMinor is int && originalCurrency.isNotEmpty)
                         BudgetDisplayAmount(
+                          expense: expense,
                           minorUnits: originalMinor,
                           originalCurrency: originalCurrency,
                           displayCurrency: displayCurrency ?? originalCurrency,
@@ -234,6 +285,11 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                         title: l10n.budgetSupplierPayments,
                         icon: Icons.account_balance_wallet_outlined,
                         children: [_amountRows(advances, it)],
+                      ),
+                      BudgetExpenseHistory(
+                        api: api,
+                        expenseId: expenseId,
+                        private: isPrivate,
                       ),
                       if (notes.isNotEmpty)
                         BudgetDialogChrome.section(

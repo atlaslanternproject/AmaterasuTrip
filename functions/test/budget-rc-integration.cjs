@@ -138,6 +138,51 @@ async function run() {
   });
   console.log("PASS: shared expense creation");
 
+  const dated = {
+    tripId, expenseId: "backdated", visibility: "shared",
+    expenseDate: "2024-02-29", snapshot: paidExpense,
+    paymentMethods: [{payerUid: uidA, method: "card", minorUnits: 10000,
+      accountCurrency: "JPY", accountDebitMinor: 16000}],
+  };
+  await callable("createBudgetExpense", a, dated);
+  const ref = db.collection("trips").doc(tripId)
+    .collection("budgetSharedExpenses").doc("backdated");
+  for (const record of [await ref.get(), await ref.collection("revisions").doc("1").get()]) {
+    assert.equal(record.get("expenseDate"), dated.expenseDate);
+    assert.equal(record.get("accountPayments")[0].accountDebitMinor, 16000);
+    assert.equal(record.get("paymentMethods")[0].accountCurrency, undefined);
+    assert.equal(record.get("snapshot.total.minorUnits"), 10000);
+  }
+  await expectFailure("invalid calendar date", () => callable("createBudgetExpense", a,
+    {...dated, expenseId: "invalidDate", expenseDate: "2025-02-29"}));
+  await expectFailure("invalid debit", () => callable("createBudgetExpense", a,
+    {...dated, expenseId: "invalidDebit", paymentMethods: [{...dated.paymentMethods[0], accountDebitMinor: -1}]}));
+  console.log("PASS: effective date, account debit and revision");
+
+  const foreignSnapshot = JSON.parse(JSON.stringify(paidExpense, (key, value) =>
+    key === "currency" ? "JPY" : value));
+  await callable("createBudgetExpense", a, {
+    ...dated, expenseId: "foreign", snapshot: foreignSnapshot,
+  });
+  const foreign = ref.parent.doc("foreign");
+  const adjustment = {tripId, expenseId: "foreign", visibility: "shared",
+    rate: 0.006, reason: "Verified statement"};
+  await expectFailure("participant cannot change another author's rate", () =>
+    callable("overrideBudgetExpenseFx", b, adjustment));
+  await callable("overrideBudgetExpenseFx", a, adjustment);
+  await callable("overrideBudgetExpenseFx", a, {...adjustment, rate: 0.007});
+  const locked = (await foreign.get()).get("fxHistorical");
+  assert.equal(locked.date, "2024-02-29");
+  assert.equal(locked.requestedDate, "2024-02-29");
+  assert.equal(locked.source, "Manual");
+  assert.equal(locked.rate, 0.007);
+  assert.equal((await foreign.get()).get("snapshot.total.minorUnits"), 10000);
+  const audit = await foreign.collection("fxRateChanges").orderBy("createdAt").get();
+  assert.equal(audit.size, 2);
+  assert.equal(audit.docs[1].get("previous.rate"), 0.006);
+  assert.equal(audit.docs[1].get("actorUid"), uidA);
+  console.log("PASS: manual historical rate, scope and audit");
+
   await expectFailure("outsider creates shared expense", () =>
     callable("createBudgetExpense", c, {
       tripId,
@@ -350,6 +395,20 @@ async function run() {
     }),
   );
 
+  const pair = {tripId, expenseId: "backdated", refundId: "declined", creditorUid: uidA, minorUnits: 900};
+  await callable("requestBudgetReimbursement", b, pair);
+  await callable("confirmBudgetReimbursement", a, {...pair, approved: false});
+  const declined = (await ref.collection("reimbursements").doc("declined").get()).data();
+  assert.equal(declined.status, "rejected");
+  assert.equal(declined.decidedByUid, uidA);
+  assert.ok(declined.decidedAt && declined.createdAt);
+  assert.deepEqual((await ref.get()).get("snapshot"), paidExpense);
+  await db.collection("trips").doc(tripId).update({memberUids: [uidA]});
+  await expectFailure("former debtor cannot request", () =>
+    callable("requestBudgetReimbursement", b, {...pair, refundId: "afterExit"}));
+  assert.deepEqual((await ref.get()).get("snapshot"), paidExpense);
+  assert.equal((await ref.collection("reimbursements").doc("declined").get()).get("status"), "rejected");
+  console.log("PASS: rejection, financial history and membership revocation");
   console.log("ALL BACKEND INTEGRATION SCENARIOS PASSED");
 }
 

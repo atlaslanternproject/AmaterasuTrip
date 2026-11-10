@@ -266,17 +266,35 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 14, 16, 40),
                 children: [
-                  BudgetUserSettlementSummary(
-                    api: _api,
-                    displayCurrency: _displayCurrency ?? currency,
-                  ),
-
-                  const SizedBox(height: 22),
-
-                  PersonalTripBudgetCard(
-                    api: _api,
-                    defaultCurrency: currency,
-                    displayCurrency: _displayCurrency ?? currency,
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final personal = PersonalTripBudgetCard(
+                        api: _api,
+                        defaultCurrency: currency,
+                        displayCurrency: _displayCurrency ?? currency,
+                      );
+                      final balances = BudgetUserSettlementSummary(
+                        api: _api,
+                        displayCurrency: _displayCurrency ?? currency,
+                      );
+                      if (constraints.maxWidth < 900) {
+                        return Column(
+                          children: [
+                            personal,
+                            const SizedBox(height: 20),
+                            balances,
+                          ],
+                        );
+                      }
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(child: personal),
+                          const SizedBox(width: 20),
+                          Expanded(child: balances),
+                        ],
+                      );
+                    },
                   ),
 
                   const SizedBox(height: 26),

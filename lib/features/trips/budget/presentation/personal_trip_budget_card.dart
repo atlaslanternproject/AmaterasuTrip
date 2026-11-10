@@ -1,3 +1,4 @@
+import 'budget_expense_day.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -383,14 +384,10 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
             locked.quote == target) {
           quote = locked;
         } else {
-          final createdAt = data['createdAt'];
+          final createdAt = budgetExpenseDay(data);
 
-          if (createdAt is Timestamp) {
-            quote = await _fx.historical(
-              share.currency,
-              target,
-              createdAt.toDate(),
-            );
+          if (createdAt != null) {
+            quote = await _fx.historical(share.currency, target, createdAt);
           }
         }
 
@@ -432,7 +429,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
 
       return '${document.id}:${data['version']}:'
           '${data['lifecycle']}:${data['snapshot']}:'
-          '${data['fxHistorical']}:${data['createdAt']}';
+          '${data['fxHistorical']}:${budgetExpenseDay(data)}';
     }
 
     final key = [

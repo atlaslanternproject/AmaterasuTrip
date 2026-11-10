@@ -39,6 +39,7 @@ class _Movement {
     required this.status,
     required this.date,
     required this.expenseTitle,
+    required this.expense,
   });
 
   final String debtor;
@@ -48,6 +49,7 @@ class _Movement {
   final String status;
   final DateTime? date;
   final String expenseTitle;
+  final Map<String, dynamic> expense;
 }
 
 class _BudgetUserSettlementSummaryState
@@ -218,7 +220,7 @@ class _BudgetUserSettlementSummaryState
   }
 
   String _person(String uid, Map<String, String> names) {
-    return names[uid] ?? '—';
+    return names[uid] ?? uid;
   }
 
   Widget _heading(String text) {
@@ -308,6 +310,7 @@ class _BudgetUserSettlementSummaryState
                 currency: currency,
                 status: refund['status']?.toString() ?? 'pending',
                 date: timestamp is Timestamp ? timestamp.toDate() : null,
+                expense: data,
                 expenseTitle: data['title']?.toString() ?? '',
               ),
             );
@@ -637,6 +640,7 @@ class _BudgetUserSettlementSummaryState
                         ),
                         Flexible(
                           child: BudgetDisplayAmount(
+                            expense: movement.expense,
                             minorUnits: movement.amount,
                             originalCurrency: movement.currency,
                             displayCurrency: widget.displayCurrency,

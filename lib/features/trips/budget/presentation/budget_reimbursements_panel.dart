@@ -74,8 +74,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     return result;
   }
 
-  String _name(String uid, Map<String, String> names) =>
-      names[uid] ?? (_it ? 'Viaggiatore' : 'Traveler');
+  String _name(String uid, Map<String, String> names) => names[uid] ?? uid;
 
   Map<String, dynamic> _map(dynamic value) {
     if (value is Map) {
@@ -245,6 +244,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                         _it ? 'Massimo rimborsabile' : 'Maximum reimbursable',
                       ),
                       BudgetDisplayAmount(
+                        expense: widget.expense,
                         minorUnits: maximumMinorUnits,
                         originalCurrency: currency,
                         displayCurrency: widget.displayCurrency,
@@ -535,12 +535,22 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 ),
                               ),
                               BudgetDisplayAmount(
+                                expense: widget.expense,
                                 minorUnits: minorUnits,
                                 originalCurrency: currency,
                                 displayCurrency: widget.displayCurrency,
                                 fontSize: 16,
                               ),
                               const SizedBox(height: 5),
+                              for (final field in ['createdAt', 'decidedAt'])
+                                if (data[field] is Timestamp)
+                                  Text(
+                                    '${field == "createdAt" ? (_it ? "Richiesto" : "Requested") : (_it ? "Decisione" : "Decision")} · ${MaterialLocalizations.of(context).formatMediumDate((data[field] as Timestamp).toDate())} · ${MaterialLocalizations.of(context).formatTimeOfDay(TimeOfDay.fromDateTime((data[field] as Timestamp).toDate()))}',
+                                  ),
+                              if (data['decidedByUid'] is String)
+                                Text(
+                                  '${_it ? "Deciso da" : "Decided by"} ${_name(data['decidedByUid'] as String, names)}',
+                                ),
                               _paymentDetails(data, currency),
                               const SizedBox(height: 8),
                               Wrap(
@@ -608,6 +618,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                             Text(_it ? 'Da restituire' : 'Outstanding'),
                             const SizedBox(height: 3),
                             BudgetDisplayAmount(
+                              expense: widget.expense,
                               minorUnits: remaining,
                               originalCurrency: currency,
                               displayCurrency: widget.displayCurrency,
@@ -617,6 +628,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                               const SizedBox(height: 8),
                               Text(_it ? 'Confermato' : 'Confirmed'),
                               BudgetDisplayAmount(
+                                expense: widget.expense,
                                 minorUnits: confirmed,
                                 originalCurrency: currency,
                                 displayCurrency: widget.displayCurrency,
@@ -631,6 +643,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                     : 'Pending confirmation',
                               ),
                               BudgetDisplayAmount(
+                                expense: widget.expense,
                                 minorUnits: pending,
                                 originalCurrency: currency,
                                 displayCurrency: widget.displayCurrency,
@@ -705,6 +718,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                               ),
                               const SizedBox(height: 4),
                               BudgetDisplayAmount(
+                                expense: widget.expense,
                                 minorUnits: minorUnits,
                                 originalCurrency: currency,
                                 displayCurrency: widget.displayCurrency,

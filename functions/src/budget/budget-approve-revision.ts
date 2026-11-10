@@ -1,7 +1,7 @@
 import {getFirestore, FieldValue} from "firebase-admin/firestore";
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
-import {validId} from "./budget-validation";
+import {validId, Snapshot} from "./budget-validation";
 
 const db = getFirestore();
 
@@ -102,7 +102,23 @@ export const approveBudgetRevision = onCall(
         );
       }
 
+      const nextSnapshot = data.proposedSnapshot as Snapshot;
+      const oldAdvances = (current.snapshot as Snapshot).advances;
+      const payerIds = new Set([
+        ...Object.keys(oldAdvances), ...Object.keys(nextSnapshot.advances),
+      ]);
+      const samePayments = [...payerIds].every((payer) =>
+        (oldAdvances[payer]?.minorUnits ?? 0) ===
+        (nextSnapshot.advances[payer]?.minorUnits ?? 0));
+      const paymentFields = {
+        ...(samePayments && current.paymentMethods ?
+          {paymentMethods: current.paymentMethods} : {}),
+        ...(samePayments && current.accountPayments ?
+          {accountPayments: current.accountPayments} : {}),
+      };
       tx.create(revisionRef, {
+        ...paymentFields,
+        ...(current.expenseDate ? {expenseDate: current.expenseDate} : {}),
         number: version,
         snapshot: data.proposedSnapshot,
         actorUid: uid,
@@ -110,13 +126,16 @@ export const approveBudgetRevision = onCall(
         createdAt: FieldValue.serverTimestamp(),
       });
 
-      const nextSnapshot = data.proposedSnapshot;
       const participantUids = [...new Set<string>([
         ...Object.keys(nextSnapshot.shares ?? {}),
         ...Object.keys(nextSnapshot.advances ?? {}),
       ])].sort();
 
       tx.update(ref, {
+        ...(!samePayments ? {
+          paymentMethods: FieldValue.delete(),
+          accountPayments: FieldValue.delete(),
+        } : {}),
         participantUids,
         snapshot: data.proposedSnapshot,
         version,

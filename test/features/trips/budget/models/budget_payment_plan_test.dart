@@ -4,6 +4,26 @@ import 'package:amaterasutrip/features/trips/budget/models/budget_payment_alloca
 import 'package:amaterasutrip/features/trips/budget/models/budget_payment_plan.dart';
 
 void main() {
+  test('account debit is independent of expense allocation', () {
+    const payment = BudgetPaymentAllocation(
+      payerUid: 'u',
+      method: BudgetPaymentMethod.card,
+      minorUnits: 9000,
+      accountCurrency: 'EUR',
+      accountDebitMinor: 5555,
+    );
+    final restored = BudgetPaymentAllocation.fromMap(payment.toMap())!;
+    expect(restored.minorUnits, 9000);
+    expect(restored.accountDebitMinor, 5555);
+    expect(restored.accountCurrency, 'EUR');
+    expect(
+      BudgetPaymentAllocation.fromMap({
+        ...payment.toMap(),
+        'accountDebitMinor': -1,
+      }),
+      isNull,
+    );
+  });
   BudgetPaymentAllocation pay(
     String uid,
     BudgetPaymentMethod method,

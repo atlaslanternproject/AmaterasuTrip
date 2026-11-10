@@ -100,7 +100,7 @@ async function run() {
 
   await trip.collection("budgetSharedExpenses")
     .doc("hotel")
-    .set({createdByUid: "anna", currency: "EUR"});
+    .set({createdByUid: "anna", participantUids: ["anna", "luca"], currency: "EUR"});
 
   await trip.collection("budgetPrivateOwners")
     .doc("anna")

@@ -10,8 +10,10 @@ class BudgetPaymentMethodsEditor extends StatefulWidget {
     required this.payerUid,
     required this.enabled,
     required this.onChanged,
+    this.showAccount = false,
   });
 
+  final bool showAccount;
   final String currency;
   final String payerUid;
   final bool enabled;
@@ -23,11 +25,15 @@ class BudgetPaymentMethodsEditor extends StatefulWidget {
 }
 
 class _PaymentRow {
+  final account = TextEditingController();
+  final debit = TextEditingController();
   final amount = TextEditingController();
   final other = TextEditingController();
   BudgetPaymentMethod method = BudgetPaymentMethod.cash;
 
   void dispose() {
+    account.dispose();
+    debit.dispose();
     amount.dispose();
     other.dispose();
   }
@@ -46,10 +52,23 @@ class _BudgetPaymentMethodsEditorState
       } catch (_) {
         minorUnits = 0;
       }
+      final account = row.account.text.trim().toUpperCase();
+      int? debit;
+      if (row.debit.text.trim().isNotEmpty) {
+        try {
+          debit = BudgetMoneyInput.parse(row.debit.text, account);
+        } on ArgumentError {
+          debit = 0;
+        } on FormatException {
+          debit = 0;
+        }
+      }
       values.add(
         BudgetPaymentAllocation(
           payerUid: widget.payerUid,
           method: row.method,
+          accountCurrency: account.isEmpty ? null : account,
+          accountDebitMinor: debit,
           minorUnits: minorUnits,
           otherLabel: row.method == BudgetPaymentMethod.other
               ? row.other.text
@@ -157,6 +176,33 @@ class _BudgetPaymentMethodsEditorState
                     ),
                     onChanged: (_) => _notify(),
                   ),
+                  if (widget.showAccount) ...[
+                    TextField(
+                      controller: row.account,
+                      enabled: widget.enabled,
+                      maxLength: 3,
+                      textCapitalization: TextCapitalization.characters,
+                      decoration: InputDecoration(
+                        labelText: it
+                            ? 'Valuta del conto (es. EUR)'
+                            : 'Account currency (e.g. EUR)',
+                      ),
+                      onChanged: (_) => _notify(),
+                    ),
+                    TextField(
+                      controller: row.debit,
+                      enabled: widget.enabled,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
+                      decoration: InputDecoration(
+                        labelText: it
+                            ? 'Addebito effettivo, se noto'
+                            : 'Actual account debit, if known',
+                      ),
+                      onChanged: (_) => _notify(),
+                    ),
+                  ],
                   if (row.method == BudgetPaymentMethod.other) ...[
                     const SizedBox(height: 10),
                     TextField(

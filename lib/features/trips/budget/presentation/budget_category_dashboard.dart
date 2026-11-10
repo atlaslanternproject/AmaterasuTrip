@@ -1,3 +1,4 @@
+import 'budget_expense_day.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   late Stream<Map<String, String>> _categories;
 
   bool _chartPersonal = false;
-  final String _fxMode = 'latest';
+
   String? _cachedFxKey;
   Future<Map<String, BudgetFxQuote?>>? _cachedFx;
 
@@ -79,8 +80,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   }
 
   DateTime? _createdAt(Map<String, dynamic> data) {
-    final value = data['createdAt'];
-    return value is Timestamp ? value.toDate() : null;
+    return budgetExpenseDay(data);
   }
 
   Future<BudgetFxQuote?> _quoteFor(
@@ -95,9 +95,6 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
       return null;
     }
     try {
-      if (_fxMode == 'latest') {
-        return await _fx.latest(source, target);
-      }
       final locked = BudgetFxQuote.fromLocked(data['fxHistorical']);
       if (locked != null && locked.base == source && locked.quote == target) {
         return locked;
@@ -130,7 +127,6 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   ) {
     final key = [
       target,
-      _fxMode,
       _chartPersonal.toString(),
       for (final doc in docs)
         '${doc.id}:${doc.data()['version']}:${doc.data()['fxHistorical']}',
@@ -143,9 +139,6 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   }
 
   void _pinLegacyRates(List<QueryDocumentSnapshot<Map<String, dynamic>>> docs) {
-    if (_fxMode != 'historical') {
-      return;
-    }
     final relevant = docs
         .where((doc) {
           final data = doc.data();
@@ -365,6 +358,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
     var converted = 0;
     var excludedCount = 0;
     var myShare = 0;
+    var myAdvances = 0;
     final people = <String>{};
     String? mostRecentTitle;
     DateTime? mostRecentDate;
@@ -417,6 +411,19 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
         if (advance['currency'] == source && advance['minorUnits'] is int) {
           advanceTotal += advance['minorUnits'] as int;
         }
+      }
+      final ownAdvance = _map(
+        _map(financial['advances'])[widget.api.currentUid],
+      );
+      if (ownAdvance['currency'] == source && ownAdvance['minorUnits'] is int) {
+        myAdvances +=
+            BudgetFxService.convertMinor(
+              ownAdvance['minorUnits'] as int,
+              source,
+              target,
+              fx,
+            ) ??
+            0;
       }
       final convertedPaid = BudgetFxService.convertMinor(
         advanceTotal,
@@ -496,6 +503,12 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
           children: [
             if (!_chartPersonal && people.isNotEmpty)
               _overviewMetric(l10n.b6GroupTotal, _money(total, target)),
+            _overviewMetric(
+              it ? 'I miei anticipi' : 'My advances',
+              converted == 0 && hasExpenses
+                  ? '— $target'
+                  : _money(myAdvances, target),
+            ),
             _overviewMetric(l10n.b6PaidToSuppliers, visiblePaid),
             _overviewMetric(
               l10n.b6OutstandingSuppliers,

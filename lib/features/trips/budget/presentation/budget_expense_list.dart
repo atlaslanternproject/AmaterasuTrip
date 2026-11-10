@@ -234,6 +234,7 @@ class BudgetExpenseList extends StatelessWidget {
                                         WrapCrossAlignment.center,
                                     children: [
                                       BudgetDisplayAmount(
+                                        expense: data,
                                         minorUnits: units,
                                         originalCurrency: currency,
                                         displayCurrency: displayCurrency,

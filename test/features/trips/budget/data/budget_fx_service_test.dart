@@ -26,6 +26,12 @@ void main() {
     expect(used!.queryParameters['date'], '2026-11-01');
   });
 
+  test('historical quote must not use the following day', () async {
+    final service = BudgetFxService(load: (_) async =>
+        '{"date":"2024-02-29","base":"EUR","quote":"JPY","rate":160}');
+    await expectLater(service.historical('EUR', 'JPY', DateTime(2024, 2, 28)), throwsFormatException);
+  });
+
   test('invalid quote is rejected instead of inventing a rate', () async {
     final service = BudgetFxService(
       load: (_) async =>
