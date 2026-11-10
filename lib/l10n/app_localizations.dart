@@ -5212,6 +5212,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Date unavailable'**
   String get b86UnknownTime;
+
+  /// No description provided for @b85CategoryChart.
+  ///
+  /// In en, this message translates to:
+  /// **'Breakdown by category'**
+  String get b85CategoryChart;
+
+  /// No description provided for @b85TrendChart.
+  ///
+  /// In en, this message translates to:
+  /// **'Spending over time'**
+  String get b85TrendChart;
+
+  /// No description provided for @b85TrendByDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Total per day'**
+  String get b85TrendByDay;
+
+  /// No description provided for @b85TrendByMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Total per month'**
+  String get b85TrendByMonth;
+
+  /// No description provided for @b85ChartsExcludeMissingRates.
+  ///
+  /// In en, this message translates to:
+  /// **'Charts do not include expenses without an exchange rate.'**
+  String get b85ChartsExcludeMissingRates;
+
+  /// No description provided for @b85ChartSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Chart: {description}'**
+  String b85ChartSemantics(String description);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

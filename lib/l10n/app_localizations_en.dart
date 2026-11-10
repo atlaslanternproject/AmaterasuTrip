@@ -2638,4 +2638,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get b86UnknownTime => 'Date unavailable';
+
+  @override
+  String get b85CategoryChart => 'Breakdown by category';
+
+  @override
+  String get b85TrendChart => 'Spending over time';
+
+  @override
+  String get b85TrendByDay => 'Total per day';
+
+  @override
+  String get b85TrendByMonth => 'Total per month';
+
+  @override
+  String get b85ChartsExcludeMissingRates => 'Charts do not include expenses without an exchange rate.';
+
+  @override
+  String b85ChartSemantics(String description) {
+    return 'Chart: $description';
+  }
 }

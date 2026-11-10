@@ -2638,4 +2638,24 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get b86UnknownTime => 'Data non disponibile';
+
+  @override
+  String get b85CategoryChart => 'Ripartizione per categoria';
+
+  @override
+  String get b85TrendChart => 'Andamento nel tempo';
+
+  @override
+  String get b85TrendByDay => 'Totale per giorno';
+
+  @override
+  String get b85TrendByMonth => 'Totale per mese';
+
+  @override
+  String get b85ChartsExcludeMissingRates => 'I grafici non includono le spese senza tasso di cambio.';
+
+  @override
+  String b85ChartSemantics(String description) {
+    return 'Grafico: $description';
+  }
 }

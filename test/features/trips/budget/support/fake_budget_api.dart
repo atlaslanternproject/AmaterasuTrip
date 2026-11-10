@@ -3,6 +3,8 @@
 
 import 'dart:async';
 
+import 'package:amaterasutrip/features/trips/budget/data/personal_trip_budget_repository.dart';
+import 'package:amaterasutrip/features/trips/budget/models/personal_trip_budget.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -63,6 +65,19 @@ class FakeBudgetApi extends BudgetApi {
   final String currency;
 
   final closures = <Map<String, String>>[];
+  final fxPins = <String>[];
+  Map<String, String> categories = const {};
+
+  @override
+  Stream<Map<String, String>> budgetCategories() => Stream.value(categories);
+
+  @override
+  Future<void> ensureExpenseFx({
+    required String expenseId,
+    required bool private,
+  }) async {
+    fxPins.add(expenseId);
+  }
 
   @override
   String get currentUid => uid;
@@ -131,3 +146,55 @@ Widget budgetTestApp(Widget child, {String locale = 'it'}) => MaterialApp(
   ],
   home: Scaffold(body: SingleChildScrollView(child: child)),
 );
+
+/// Personal budget kept in memory instead of Firestore.
+class FakePersonalBudgetRepository extends PersonalTripBudgetRepository {
+  FakePersonalBudgetRepository([this.budget]);
+
+  PersonalTripBudget? budget;
+
+  @override
+  Stream<PersonalTripBudget?> watch(String tripId) => Stream.value(budget);
+
+  @override
+  Future<void> save(String tripId, PersonalTripBudget value) async {
+    budget = value;
+  }
+
+  @override
+  Future<void> remove(String tripId) async {
+    budget = null;
+  }
+}
+
+/// Shared or private expense document in the stored format.
+FakeDoc expenseDoc(
+  String id, {
+  required String category,
+  required int total,
+  String currency = 'EUR',
+  String status = 'paid',
+  Map<String, int> shares = const {},
+  Map<String, int> advances = const {},
+  String? day,
+  Map<String, dynamic> extra = const {},
+}) {
+  Map<String, dynamic> money(int value) => {
+    'currency': currency,
+    'minorUnits': value,
+  };
+  return FakeDoc(id, {
+    'title': id,
+    'category': category,
+    'snapshot': {
+      'total': money(total),
+      'status': status,
+      'shares': {for (final e in shares.entries) e.key: money(e.value)},
+      'advances': {for (final e in advances.entries) e.key: money(e.value)},
+    },
+    'participantUids': {...shares.keys, ...advances.keys}.toList(),
+    'expenseDate': ?day,
+    'version': 1,
+    ...extra,
+  });
+}

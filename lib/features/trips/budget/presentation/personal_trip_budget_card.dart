@@ -20,11 +20,15 @@ class PersonalTripBudgetCard extends StatefulWidget {
     required this.api,
     required this.defaultCurrency,
     required this.displayCurrency,
+    this.repository,
   });
 
   final BudgetApi api;
   final String defaultCurrency;
   final String displayCurrency;
+
+  /// Defaults to the Firestore repository; replaceable in tests.
+  final PersonalTripBudgetRepository? repository;
 
   @override
   State<PersonalTripBudgetCard> createState() => _PersonalTripBudgetCardState();
@@ -45,8 +49,8 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
   static const _orange = Color(0xFFE17A43);
   static const _red = Color(0xFFFF8A80);
 
-  final PersonalTripBudgetRepository _repository =
-      PersonalTripBudgetRepository();
+  late final PersonalTripBudgetRepository _repository =
+      widget.repository ?? PersonalTripBudgetRepository();
 
   final BudgetFxService _fx = BudgetFxService();
 

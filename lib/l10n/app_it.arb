@@ -989,5 +989,11 @@
   "b86EvRateChanged": "{actor} ha corretto il tasso di cambio ({rate})",
   "b86EvUnknown": "Operazione registrata",
   "b86PrivateTag": "Privata",
-  "b86UnknownTime": "Data non disponibile"
+  "b86UnknownTime": "Data non disponibile",
+  "b85CategoryChart": "Ripartizione per categoria",
+  "b85TrendChart": "Andamento nel tempo",
+  "b85TrendByDay": "Totale per giorno",
+  "b85TrendByMonth": "Totale per mese",
+  "b85ChartsExcludeMissingRates": "I grafici non includono le spese senza tasso di cambio.",
+  "b85ChartSemantics": "Grafico: {description}"
 }

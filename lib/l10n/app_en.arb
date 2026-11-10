@@ -1002,5 +1002,12 @@
   "@b86EvRateChanged": {"placeholders":{"actor":{"type":"String"},"rate":{"type":"String"}}},
   "b86EvUnknown": "Operation recorded",
   "b86PrivateTag": "Private",
-  "b86UnknownTime": "Date unavailable"
+  "b86UnknownTime": "Date unavailable",
+  "b85CategoryChart": "Breakdown by category",
+  "b85TrendChart": "Spending over time",
+  "b85TrendByDay": "Total per day",
+  "b85TrendByMonth": "Total per month",
+  "b85ChartsExcludeMissingRates": "Charts do not include expenses without an exchange rate.",
+  "b85ChartSemantics": "Chart: {description}",
+  "@b85ChartSemantics": {"placeholders":{"description":{"type":"String"}}}
 }
