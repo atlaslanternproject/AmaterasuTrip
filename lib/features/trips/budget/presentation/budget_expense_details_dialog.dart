@@ -8,6 +8,7 @@ import 'budget_fx_manual_dialog.dart';
 import 'budget_display_amount.dart';
 import 'budget_api.dart';
 import 'budget_expense_controls.dart';
+import 'budget_people.dart';
 
 class BudgetExpenseDetailsDialog extends StatelessWidget {
   const BudgetExpenseDetailsDialog({
@@ -104,14 +105,16 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                   child: FutureBuilder<Map<String, String>>(
                     future: api.travelerNameMap,
                     builder: (context, result) {
-                      final name = result.data?[entry.key];
+                      final name =
+                          result.data?[entry.key] ??
+                          BudgetPeople.recorded(expense)[entry.key];
 
                       final label = name != null && name.isNotEmpty
                           ? name
                           : result.hasError
                           ? (it ? 'Nome non disponibile' : 'Name unavailable')
                           : result.hasData
-                          ? (it ? 'Viaggiatore' : 'Traveler')
+                          ? AppLocalizations.of(context)!.b86FormerTraveler
                           : (it ? 'Caricamento...' : 'Loading...');
 
                       return Text(
@@ -290,6 +293,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                         api: api,
                         expenseId: expenseId,
                         private: isPrivate,
+                        expense: expense,
                       ),
                       if (notes.isNotEmpty)
                         BudgetDialogChrome.section(

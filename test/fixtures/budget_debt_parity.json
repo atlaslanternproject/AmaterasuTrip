@@ -107,6 +107,17 @@
   ],
   "settlementCases": [
     {
+      "name": "closure of a former member's debt settles the rest",
+      "debt": {"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000},
+      "reimbursements": [
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 1500, "status": "confirmed"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 3500, "status": "writtenOff", "kind": "closure"}
+      ],
+      "settled": 5000,
+      "pending": 0,
+      "remaining": 0
+    },
+    {
       "name": "only confirmed reimbursements reduce the debt",
       "debt": {"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000},
       "reimbursements": [

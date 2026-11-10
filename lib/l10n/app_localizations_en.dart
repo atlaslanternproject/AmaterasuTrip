@@ -2522,4 +2522,120 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get b6Save => 'Save';
+
+  @override
+  String get b86FormerTraveler => 'Former traveler';
+
+  @override
+  String get b86ReadOnlyFormer => 'Former traveler: this debt is read-only';
+
+  @override
+  String get b86CloseDebt => 'Close debt';
+
+  @override
+  String get b86CloseDebtTitle => 'Close a former traveler\'s debt';
+
+  @override
+  String get b86CloseDebtExplain => 'The original debt stays in the history. Who closed it, when and why will be recorded.';
+
+  @override
+  String get b86CloseDebtReason => 'Reason (required)';
+
+  @override
+  String get b86CloseDebtInvalid => 'Write a reason of at least 3 characters.';
+
+  @override
+  String get b86Closed => 'Closed (former traveler)';
+
+  @override
+  String b86ClosedBy(String name) {
+    return 'Closed by $name';
+  }
+
+  @override
+  String b86Reason(String reason) {
+    return 'Reason: $reason';
+  }
+
+  @override
+  String get b86History => 'History';
+
+  @override
+  String get b86TripHistory => 'Trip history';
+
+  @override
+  String get b86ExpenseHistory => 'Expense history';
+
+  @override
+  String get b86HistoryEmpty => 'No operations recorded.';
+
+  @override
+  String get b86HistoryError => 'Unable to load the history.';
+
+  @override
+  String get b86HistoryVisibility => 'Only travelers who take part in an expense see its operations. Private expenses are visible only to you.';
+
+  @override
+  String b86EvCreated(String actor) {
+    return '$actor created the expense';
+  }
+
+  @override
+  String b86EvRevised(String actor, String version) {
+    return '$actor applied revision #$version';
+  }
+
+  @override
+  String b86EvRefundRequested(String actor, String other) {
+    return '$actor reported a reimbursement to $other';
+  }
+
+  @override
+  String b86EvRefundConfirmed(String actor, String other) {
+    return '$actor confirmed the reimbursement from $other';
+  }
+
+  @override
+  String b86EvRefundRejected(String actor, String other) {
+    return '$actor rejected the reimbursement from $other';
+  }
+
+  @override
+  String b86EvDebtClosed(String actor, String other) {
+    return '$actor closed the debt of $other';
+  }
+
+  @override
+  String b86EvCancelRequested(String actor) {
+    return '$actor asked to cancel the expense';
+  }
+
+  @override
+  String b86EvCancelApproved(String actor) {
+    return '$actor approved the cancellation';
+  }
+
+  @override
+  String b86EvCancelRejected(String actor) {
+    return '$actor rejected the cancellation';
+  }
+
+  @override
+  String b86EvCancelled(String actor) {
+    return 'Expense cancelled by $actor';
+  }
+
+  @override
+  String b86EvRateChanged(String actor, String rate) {
+    return '$actor corrected the exchange rate ($rate)';
+  }
+
+  @override
+  String get b86EvUnknown => 'Operation recorded';
+
+  @override
+  String get b86PrivateTag => 'Private';
+
+  @override
+  String get b86UnknownTime => 'Date unavailable';
 }

@@ -1,6 +1,7 @@
 import {getFirestore, FieldValue} from "firebase-admin/firestore";
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
+import {loadDisplayNames} from "./budget-names";
 import {validId, validateSnapshot} from "./budget-validation";
 import {validatePaymentMethods} from "./budget-payment-methods";
 
@@ -105,6 +106,14 @@ export const createBudgetExpense = onCall(
 
     const expenseRef = collection.doc(expenseId);
 
+    // B8.6: names survive in the record if a traveler leaves the trip.
+    const participantNames = visibility === "shared" ?
+      await loadDisplayNames([
+        ...Object.keys(snapshot.shares),
+        ...Object.keys(snapshot.advances),
+      ]) :
+      {};
+
     await db.runTransaction(async (tx) => {
       const active = await checkBudgetMembership(tx, tripId, uid);
       const existing = await tx.get(expenseRef);
@@ -157,6 +166,7 @@ export const createBudgetExpense = onCall(
 
       tx.create(expenseRef, {
         participantUids: [...participants].sort(),
+        ...(visibility === "shared" ? {participantNames} : {}),
         title,
         category,
         notes,

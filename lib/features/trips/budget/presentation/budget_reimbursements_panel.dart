@@ -8,6 +8,8 @@ import '../models/budget_payment_allocation.dart';
 import 'budget_payment_methods_editor.dart';
 import 'budget_api.dart';
 import 'budget_display_amount.dart';
+import 'budget_people.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class BudgetReimbursementsPanel extends StatefulWidget {
   const BudgetReimbursementsPanel({
@@ -36,16 +38,10 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
 
   late final Future<Map<String, String>> _names = _loadNames();
 
-  late final Stream<QuerySnapshot<Map<String, dynamic>>> _refunds =
-      FirebaseFirestore.instance
-          .collection('trips')
-          .doc(widget.api.tripId)
-          .collection('budgetSharedExpenses')
-          .doc(widget.expenseId)
-          .collection('reimbursements')
-          .snapshots();
+  late final Stream<QuerySnapshot<Map<String, dynamic>>> _refunds = widget.api
+      .reimbursements(widget.expenseId);
 
-  final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
+  late final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
     region: 'europe-west1',
   );
 
@@ -67,7 +63,28 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     return result;
   }
 
-  String _name(String uid, Map<String, String> names) => names[uid] ?? uid;
+  String _name(String uid, Map<String, String> names) => BudgetPeople.name(
+    uid,
+    live: names,
+    expense: widget.expense,
+    fallback: AppLocalizations.of(context)!.b86FormerTraveler,
+  );
+
+  /// B8.6: the creditor closes the remaining debt of a former traveler.
+  Future<void> _closeDebt(_DebtRow debt, String debtorName) async {
+    final reason = await showDialog<String>(
+      context: context,
+      builder: (_) => _CloseDebtDialog(debtorName: debtorName),
+    );
+    if (reason == null || reason.length < 3) return;
+    await _run(
+      () => widget.api.closeFormerTravelerDebt(
+        expenseId: widget.expenseId,
+        debtorUid: debt.debtorUid,
+        reason: reason,
+      ),
+    );
+  }
 
   Map<String, dynamic> _map(dynamic value) {
     if (value is Map) {
@@ -527,15 +544,34 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                         debt.creditorUid,
                         {'confirmed'},
                       );
+                      final closed = _sumStatus(
+                        docs,
+                        debt.debtorUid,
+                        debt.creditorUid,
+                        {BudgetSnapshotDebts.writtenOff},
+                      );
                       final pending = _sumStatus(
                         docs,
                         debt.debtorUid,
                         debt.creditorUid,
                         {'pending'},
                       );
-                      final remaining = debt.minorUnits - confirmed;
+                      final l10n = AppLocalizations.of(context)!;
+                      final remaining = debt.minorUnits - confirmed - closed;
                       final availableToDeclare = remaining - pending;
                       final isDebtor = widget.api.currentUid == debt.debtorUid;
+                      final isCreditor =
+                          widget.api.currentUid == debt.creditorUid;
+                      // B8.6: debts involving a former traveler are
+                      // read-only; only the creditor may close them.
+                      final active = names.keys.toSet();
+                      final formerDebtor = BudgetPeople.isFormer(
+                        debt.debtorUid,
+                        active,
+                      );
+                      final involvesFormer =
+                          formerDebtor ||
+                          BudgetPeople.isFormer(debt.creditorUid, active);
 
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 14),
@@ -568,6 +604,17 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 fontSize: 15,
                               ),
                             ],
+                            if (closed > 0) ...[
+                              const SizedBox(height: 8),
+                              Text(l10n.b86Closed),
+                              BudgetDisplayAmount(
+                                expense: widget.expense,
+                                minorUnits: closed,
+                                originalCurrency: currency,
+                                displayCurrency: widget.displayCurrency,
+                                fontSize: 15,
+                              ),
+                            ],
                             if (pending > 0) ...[
                               const SizedBox(height: 8),
                               Text(
@@ -583,7 +630,35 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 fontSize: 15,
                               ),
                             ],
-                            if (isDebtor && availableToDeclare > 0)
+                            if (involvesFormer && remaining > 0)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: Text(
+                                  l10n.b86ReadOnlyFormer,
+                                  style: const TextStyle(
+                                    color: Color(0xFFB7A99B),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            if (isCreditor &&
+                                formerDebtor &&
+                                remaining > 0 &&
+                                pending == 0)
+                              TextButton.icon(
+                                key: Key('b86-close-${debt.debtorUid}'),
+                                onPressed: _busy
+                                    ? null
+                                    : () => _closeDebt(
+                                        debt,
+                                        _name(debt.debtorUid, names),
+                                      ),
+                                icon: const Icon(Icons.task_alt_outlined),
+                                label: Text(l10n.b86CloseDebt),
+                              ),
+                            if (isDebtor &&
+                                !involvesFormer &&
+                                availableToDeclare > 0)
                               TextButton.icon(
                                 onPressed: _busy
                                     ? null
@@ -634,6 +709,9 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                           case 'rejected':
                             label = _it ? 'Rifiutato' : 'Rejected';
                             break;
+                          case BudgetSnapshotDebts.writtenOff:
+                            label = AppLocalizations.of(context)!.b86Closed;
+                            break;
                           default:
                             label = _it ? 'In attesa' : 'Pending';
                         }
@@ -658,7 +736,26 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 fontSize: 15,
                               ),
                               const SizedBox(height: 5),
-                              _paymentDetails(data, currency),
+                              if (status == BudgetSnapshotDebts.writtenOff) ...[
+                                if (data['decidedByUid'] is String)
+                                  Text(
+                                    AppLocalizations.of(context)!.b86ClosedBy(
+                                      _name(
+                                        data['decidedByUid'] as String,
+                                        names,
+                                      ),
+                                    ),
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                if (data['reason'] is String)
+                                  Text(
+                                    AppLocalizations.of(
+                                      context,
+                                    )!.b86Reason(data['reason'] as String),
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                              ] else
+                                _paymentDetails(data, currency),
                             ],
                           ),
                         );
@@ -681,6 +778,82 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
           },
         );
       },
+    );
+  }
+}
+
+/// B8.6: asks the creditor for the reason of a debt closure.
+class _CloseDebtDialog extends StatefulWidget {
+  const _CloseDebtDialog({required this.debtorName});
+
+  final String debtorName;
+
+  @override
+  State<_CloseDebtDialog> createState() => _CloseDebtDialogState();
+}
+
+class _CloseDebtDialogState extends State<_CloseDebtDialog> {
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final valid = _controller.text.trim().length >= 3;
+    return AlertDialog(
+      backgroundColor: const Color(0xFF231915),
+      title: Text(
+        l10n.b86CloseDebtTitle,
+        style: const TextStyle(color: Color(0xFFF2E7D5)),
+      ),
+      content: SizedBox(
+        width: 440,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.debtorName,
+              style: const TextStyle(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              l10n.b86CloseDebtExplain,
+              style: const TextStyle(color: Color(0xFFB7A99B)),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              key: const Key('b86-close-reason'),
+              controller: _controller,
+              maxLength: 400,
+              onChanged: (_) => setState(() {}),
+              decoration: InputDecoration(labelText: l10n.b86CloseDebtReason),
+            ),
+            if (!valid)
+              Text(
+                l10n.b86CloseDebtInvalid,
+                style: const TextStyle(color: Color(0xFFFFA78A), fontSize: 12),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.b6Cancel),
+        ),
+        FilledButton(
+          onPressed: valid
+              ? () => Navigator.pop(context, _controller.text.trim())
+              : null,
+          child: Text(l10n.b86CloseDebt),
+        ),
+      ],
     );
   }
 }

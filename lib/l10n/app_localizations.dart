@@ -5032,6 +5032,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get b6Save;
+
+  /// No description provided for @b86FormerTraveler.
+  ///
+  /// In en, this message translates to:
+  /// **'Former traveler'**
+  String get b86FormerTraveler;
+
+  /// No description provided for @b86ReadOnlyFormer.
+  ///
+  /// In en, this message translates to:
+  /// **'Former traveler: this debt is read-only'**
+  String get b86ReadOnlyFormer;
+
+  /// No description provided for @b86CloseDebt.
+  ///
+  /// In en, this message translates to:
+  /// **'Close debt'**
+  String get b86CloseDebt;
+
+  /// No description provided for @b86CloseDebtTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Close a former traveler\'s debt'**
+  String get b86CloseDebtTitle;
+
+  /// No description provided for @b86CloseDebtExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'The original debt stays in the history. Who closed it, when and why will be recorded.'**
+  String get b86CloseDebtExplain;
+
+  /// No description provided for @b86CloseDebtReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason (required)'**
+  String get b86CloseDebtReason;
+
+  /// No description provided for @b86CloseDebtInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a reason of at least 3 characters.'**
+  String get b86CloseDebtInvalid;
+
+  /// No description provided for @b86Closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed (former traveler)'**
+  String get b86Closed;
+
+  /// No description provided for @b86ClosedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed by {name}'**
+  String b86ClosedBy(String name);
+
+  /// No description provided for @b86Reason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason: {reason}'**
+  String b86Reason(String reason);
+
+  /// No description provided for @b86History.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get b86History;
+
+  /// No description provided for @b86TripHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip history'**
+  String get b86TripHistory;
+
+  /// No description provided for @b86ExpenseHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense history'**
+  String get b86ExpenseHistory;
+
+  /// No description provided for @b86HistoryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No operations recorded.'**
+  String get b86HistoryEmpty;
+
+  /// No description provided for @b86HistoryError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the history.'**
+  String get b86HistoryError;
+
+  /// No description provided for @b86HistoryVisibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Only travelers who take part in an expense see its operations. Private expenses are visible only to you.'**
+  String get b86HistoryVisibility;
+
+  /// No description provided for @b86EvCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} created the expense'**
+  String b86EvCreated(String actor);
+
+  /// No description provided for @b86EvRevised.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} applied revision #{version}'**
+  String b86EvRevised(String actor, String version);
+
+  /// No description provided for @b86EvRefundRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} reported a reimbursement to {other}'**
+  String b86EvRefundRequested(String actor, String other);
+
+  /// No description provided for @b86EvRefundConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} confirmed the reimbursement from {other}'**
+  String b86EvRefundConfirmed(String actor, String other);
+
+  /// No description provided for @b86EvRefundRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} rejected the reimbursement from {other}'**
+  String b86EvRefundRejected(String actor, String other);
+
+  /// No description provided for @b86EvDebtClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} closed the debt of {other}'**
+  String b86EvDebtClosed(String actor, String other);
+
+  /// No description provided for @b86EvCancelRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} asked to cancel the expense'**
+  String b86EvCancelRequested(String actor);
+
+  /// No description provided for @b86EvCancelApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} approved the cancellation'**
+  String b86EvCancelApproved(String actor);
+
+  /// No description provided for @b86EvCancelRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} rejected the cancellation'**
+  String b86EvCancelRejected(String actor);
+
+  /// No description provided for @b86EvCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense cancelled by {actor}'**
+  String b86EvCancelled(String actor);
+
+  /// No description provided for @b86EvRateChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} corrected the exchange rate ({rate})'**
+  String b86EvRateChanged(String actor, String rate);
+
+  /// No description provided for @b86EvUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Operation recorded'**
+  String get b86EvUnknown;
+
+  /// No description provided for @b86PrivateTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get b86PrivateTag;
+
+  /// No description provided for @b86UnknownTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Date unavailable'**
+  String get b86UnknownTime;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

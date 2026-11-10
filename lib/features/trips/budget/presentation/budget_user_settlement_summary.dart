@@ -7,6 +7,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
 import 'budget_display_amount.dart';
+import 'budget_people.dart';
 import '../calculations/budget_snapshot_debts.dart';
 
 class BudgetUserSettlementSummary extends StatefulWidget {
@@ -184,9 +185,14 @@ class _BudgetUserSettlementSummaryState
       _DebtLine(debt.debtorUid, debt.creditorUid, debt.minorUnits),
   ];
 
-  String _person(String uid, Map<String, String> names) {
-    return names[uid] ?? uid;
-  }
+  /// B8.6: current name, then the name recorded in the expenses,
+  /// never an internal ID.
+  String _person(String uid, Map<String, String> names) => BudgetPeople.name(
+    uid,
+    live: names,
+    recordedNames: BudgetPeople.recordedAll(_expenses.values),
+    fallback: AppLocalizations.of(context)!.b86FormerTraveler,
+  );
 
   Widget _heading(String text) {
     return Text(
@@ -469,6 +475,8 @@ class _BudgetUserSettlementSummaryState
               return l10n.budgetMovementConfirmed;
             case 'rejected':
               return l10n.budgetMovementRejected;
+            case BudgetSnapshotDebts.writtenOff:
+              return l10n.b86Closed;
             default:
               return l10n.budgetMovementPending;
           }

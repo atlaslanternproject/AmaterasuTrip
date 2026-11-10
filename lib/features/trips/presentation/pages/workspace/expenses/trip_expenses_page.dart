@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_history_view.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_dashboard.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_filters.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expenses_toolbar.dart';
@@ -44,6 +45,8 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
   void initState() {
     super.initState();
     _restoreDisplayCurrency();
+    // B8.6: keep traveler names inside shared expenses (best effort).
+    _api.syncParticipantNames;
   }
 
   Future<void> _restoreDisplayCurrency() async {
@@ -208,6 +211,14 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
             tooltip: it ? 'Aggiorna' : 'Refresh',
             onPressed: _refresh,
             icon: const Icon(Icons.refresh_rounded, color: _cream),
+          ),
+          IconButton(
+            tooltip: l10n.b86TripHistory,
+            onPressed: () => showDialog<void>(
+              context: context,
+              builder: (_) => BudgetTripHistoryDialog(api: _api),
+            ),
+            icon: const Icon(Icons.history_rounded, color: _cream),
           ),
           IconButton(
             tooltip: it ? 'Filtri' : 'Filters',

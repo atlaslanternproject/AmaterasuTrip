@@ -2522,4 +2522,120 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get b6Save => 'Salva';
+
+  @override
+  String get b86FormerTraveler => 'Ex viaggiatore';
+
+  @override
+  String get b86ReadOnlyFormer => 'Ex viaggiatore: debito in sola lettura';
+
+  @override
+  String get b86CloseDebt => 'Chiudi debito';
+
+  @override
+  String get b86CloseDebtTitle => 'Chiudi il debito di un ex viaggiatore';
+
+  @override
+  String get b86CloseDebtExplain => 'Il debito originale resta nello storico. Verranno registrati chi lo ha chiuso, quando e perché.';
+
+  @override
+  String get b86CloseDebtReason => 'Motivo (obbligatorio)';
+
+  @override
+  String get b86CloseDebtInvalid => 'Scrivi un motivo di almeno 3 caratteri.';
+
+  @override
+  String get b86Closed => 'Chiuso (ex viaggiatore)';
+
+  @override
+  String b86ClosedBy(String name) {
+    return 'Chiuso da $name';
+  }
+
+  @override
+  String b86Reason(String reason) {
+    return 'Motivo: $reason';
+  }
+
+  @override
+  String get b86History => 'Storico';
+
+  @override
+  String get b86TripHistory => 'Storico del viaggio';
+
+  @override
+  String get b86ExpenseHistory => 'Storico della spesa';
+
+  @override
+  String get b86HistoryEmpty => 'Nessuna operazione registrata.';
+
+  @override
+  String get b86HistoryError => 'Impossibile caricare lo storico.';
+
+  @override
+  String get b86HistoryVisibility => 'Ogni viaggiatore vede solo le operazioni delle spese a cui partecipa. Le spese private sono visibili solo a te.';
+
+  @override
+  String b86EvCreated(String actor) {
+    return '$actor ha creato la spesa';
+  }
+
+  @override
+  String b86EvRevised(String actor, String version) {
+    return '$actor ha applicato la modifica n. $version';
+  }
+
+  @override
+  String b86EvRefundRequested(String actor, String other) {
+    return '$actor ha segnalato un rimborso a $other';
+  }
+
+  @override
+  String b86EvRefundConfirmed(String actor, String other) {
+    return '$actor ha confermato il rimborso di $other';
+  }
+
+  @override
+  String b86EvRefundRejected(String actor, String other) {
+    return '$actor ha rifiutato il rimborso di $other';
+  }
+
+  @override
+  String b86EvDebtClosed(String actor, String other) {
+    return '$actor ha chiuso il debito di $other';
+  }
+
+  @override
+  String b86EvCancelRequested(String actor) {
+    return '$actor ha chiesto di annullare la spesa';
+  }
+
+  @override
+  String b86EvCancelApproved(String actor) {
+    return '$actor ha approvato l\'annullamento';
+  }
+
+  @override
+  String b86EvCancelRejected(String actor) {
+    return '$actor ha rifiutato l\'annullamento';
+  }
+
+  @override
+  String b86EvCancelled(String actor) {
+    return 'Spesa annullata da $actor';
+  }
+
+  @override
+  String b86EvRateChanged(String actor, String rate) {
+    return '$actor ha corretto il tasso di cambio ($rate)';
+  }
+
+  @override
+  String get b86EvUnknown => 'Operazione registrata';
+
+  @override
+  String get b86PrivateTag => 'Privata';
+
+  @override
+  String get b86UnknownTime => 'Data non disponibile';
 }

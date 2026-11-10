@@ -11,8 +11,9 @@ class BudgetApi {
 
   final String tripId;
 
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
-  final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
+  // Created on first use, so the object can exist in widget tests.
+  late final FirebaseFirestore _db = FirebaseFirestore.instance;
+  late final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
     region: 'europe-west1',
   );
 
@@ -104,6 +105,17 @@ class BudgetApi {
       .orderBy('createdAt', descending: true)
       .snapshots();
 
+  /// Reimbursements and debt closures of one shared expense.
+  Stream<QuerySnapshot<Map<String, dynamic>>> reimbursements(
+    String expenseId,
+  ) => _db
+      .collection('trips')
+      .doc(tripId)
+      .collection('budgetSharedExpenses')
+      .doc(expenseId)
+      .collection('reimbursements')
+      .snapshots();
+
   /// All custom categories are common to every member of this trip.
   Stream<Map<String, String>> budgetCategories() => _db
       .collection('trips')
@@ -153,6 +165,42 @@ class BudgetApi {
       'rate': rate,
       'reason': reason,
     });
+  }
+
+  /// B8.6: records traveler names inside shared expenses, so a traveler
+  /// who leaves the trip keeps being shown by name. Best effort.
+  late final Future<void> syncParticipantNames = _functions
+      .httpsCallable('syncBudgetParticipantNames')
+      .call({'tripId': tripId})
+      .then((_) {}, onError: (Object _) {});
+
+  /// B8.6: the creditor closes the remaining debt of a former traveler.
+  Future<void> closeFormerTravelerDebt({
+    required String expenseId,
+    required String debtorUid,
+    required String reason,
+  }) async {
+    await _functions.httpsCallable('closeBudgetDebt').call({
+      'tripId': tripId,
+      'expenseId': expenseId,
+      'closureId': _db.collection('trips').doc().id,
+      'debtorUid': debtorUid,
+      'reason': reason.trim(),
+    });
+  }
+
+  /// B8.6: history of one expense, or of the whole trip when [expenseId]
+  /// is null. Only what the current traveler may see is returned.
+  Future<Map<String, dynamic>> history({
+    String? expenseId,
+    bool private = false,
+  }) async {
+    final response = await _functions.httpsCallable('listBudgetHistory').call({
+      'tripId': tripId,
+      'expenseId': ?expenseId,
+      if (expenseId != null) 'visibility': private ? 'private' : 'shared',
+    });
+    return Map<String, dynamic>.from(response.data as Map);
   }
 
   Future<void> updateExpenseCategory({

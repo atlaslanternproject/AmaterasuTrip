@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
+import 'budget_people.dart';
 
 class BudgetRevisionPanel extends StatefulWidget {
   const BudgetRevisionPanel({
@@ -243,7 +244,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                           ),
                           decoration: InputDecoration(
                             labelText:
-                                '${names[payer.key] ?? l10n.budgetRevisionTraveler} ($currency)',
+                                '${names[payer.key] ?? BudgetPeople.recorded(widget.expense)[payer.key] ?? l10n.b86FormerTraveler} ($currency)',
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -269,7 +270,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                           ),
                           decoration: InputDecoration(
                             labelText:
-                                '${names[share.key] ?? l10n.budgetRevisionTraveler} ($currency)',
+                                '${names[share.key] ?? BudgetPeople.recorded(widget.expense)[share.key] ?? l10n.b86FormerTraveler} ($currency)',
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -509,7 +510,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                               const SizedBox(height: 6),
                               for (final person in required)
                                 Text(
-                                  '${names[person] ?? l10n.budgetRevisionTraveler}: '
+                                  '${names[person] ?? BudgetPeople.recorded(widget.expense)[person] ?? l10n.b86FormerTraveler}: '
                                   '${approved.contains(person) ? l10n.budgetRevisionApproved : l10n.budgetRevisionWaiting}',
                                 ),
                               if (canVote)

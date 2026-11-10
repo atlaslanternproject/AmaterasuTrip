@@ -1,6 +1,7 @@
 import {getFirestore, FieldValue} from "firebase-admin/firestore";
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
+import {loadDisplayNames} from "./budget-names";
 import {validId, Snapshot} from "./budget-validation";
 
 const db = getFirestore();
@@ -131,7 +132,14 @@ export const approveBudgetRevision = onCall(
         ...Object.keys(nextSnapshot.advances ?? {}),
       ])].sort();
 
+      // B8.6: keep names of everyone who ever took part in the expense.
+      const participantNames = {
+        ...(current.participantNames ?? {}),
+        ...await loadDisplayNames(participantUids),
+      };
+
       tx.update(ref, {
+        participantNames,
         ...(!samePayments ? {
           paymentMethods: FieldValue.delete(),
           accountPayments: FieldValue.delete(),

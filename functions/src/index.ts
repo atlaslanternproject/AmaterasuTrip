@@ -843,4 +843,7 @@ export {
   updateBudgetExpenseCategory,
   ensureBudgetExpenseFx,
   overrideBudgetExpenseFx,
+  syncBudgetParticipantNames,
+  closeBudgetDebt,
+  listBudgetHistory,
 } from "./budget/budget-functions";

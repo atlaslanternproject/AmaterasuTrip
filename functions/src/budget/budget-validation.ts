@@ -217,8 +217,11 @@ export function debtAmount(
   return result;
 }
 
-/** Reimbursement statuses that reduce an original debt. */
-export const settledStatuses: readonly string[] = ["confirmed"];
+/**
+ * Reimbursement statuses that reduce an original debt: confirmed
+ * reimbursements and B8.6 closures of a former member's debt.
+ */
+export const settledStatuses: readonly string[] = ["confirmed", "writtenOff"];
 
 /**
  * Sums reimbursement records of one debt pair with the given statuses.

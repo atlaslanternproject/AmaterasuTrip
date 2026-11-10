@@ -149,7 +149,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
 
     for (final traveler in _travelers) {
       if (traveler['uid'] == uid) {
-        return traveler['name'] ?? uid;
+        return traveler['name'] ?? (it ? 'Viaggiatore' : 'Traveler');
       }
     }
 

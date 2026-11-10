@@ -28,8 +28,12 @@ class BudgetPairDebt {
 /// The shared fixture test/fixtures/budget_debt_parity.json is checked
 /// against both implementations.
 abstract final class BudgetSnapshotDebts {
-  /// Reimbursement statuses that reduce the original debt.
-  static const settledStatuses = {'confirmed'};
+  /// Reimbursement statuses that reduce the original debt: confirmed
+  /// reimbursements and closures of a former member's debt (B8.6).
+  static const settledStatuses = {'confirmed', writtenOff};
+
+  /// Status of a closure record (see closeBudgetDebt in Cloud Functions).
+  static const writtenOff = 'writtenOff';
 
   static List<BudgetPairDebt> allocate(Object? rawSnapshot) {
     final snapshot = _map(rawSnapshot);
