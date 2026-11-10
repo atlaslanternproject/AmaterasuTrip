@@ -119,13 +119,8 @@ class _BudgetUserSettlementSummaryState
           if (!_refundSubs.containsKey(doc.id)) {
             final id = doc.id;
 
-            _refundSubs[id] = FirebaseFirestore.instance
-                .collection('trips')
-                .doc(widget.api.tripId)
-                .collection('budgetSharedExpenses')
-                .doc(id)
-                .collection('reimbursements')
-                .snapshots()
+            _refundSubs[id] = widget.api
+                .reimbursements(id)
                 .listen(
                   (refunds) {
                     if (!mounted) return;

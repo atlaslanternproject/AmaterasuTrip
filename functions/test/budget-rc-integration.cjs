@@ -173,6 +173,24 @@ async function automaticFxScenarios(foreignSnapshot, dated) {
     assert.equal(weekend.requestedDate, "2024-02-29");
     console.log("PASS: earlier provider observation keeps both dates");
 
+    // B8.7: expense in the old format, without expenseDate: the rate of
+    // the creation day is used.
+    await expenses.doc("fxLegacy").set({
+      participantUids: [uidA, uidB], title: "Legacy JPY", category: "food",
+      notes: "", createdByUid: uidA, visibility: "shared",
+      snapshot: foreignSnapshot, version: 1,
+      createdAt: new Date("2025-06-01T10:00:00Z"),
+    });
+    reply = {status: 200, body: {
+      base: "JPY", quote: "EUR", rate: 0.006, date: "2025-05-30"}};
+    await lock("fxLegacy");
+    assert.equal(
+      new URL(providerCalls.at(-1)).searchParams.get("date"), "2025-06-01");
+    const legacy = (await expenses.doc("fxLegacy").get()).get("fxHistorical");
+    assert.equal(legacy.requestedDate, "2025-06-01");
+    assert.equal(legacy.date, "2025-05-30");
+    console.log("PASS: old expense without effective date uses creation day");
+
     const failures = [
       ["observation after the expense day", "data-loss",
         {status: 200, body: {

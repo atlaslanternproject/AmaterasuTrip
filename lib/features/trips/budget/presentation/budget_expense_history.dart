@@ -4,7 +4,6 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../calculations/budget_money_formatter.dart';
 import '../data/budget_fx_service.dart';
-import '../data/paths/budget_firestore_paths.dart';
 import 'budget_api.dart';
 import 'budget_history_view.dart';
 import 'budget_people.dart';
@@ -45,14 +44,6 @@ class BudgetExpenseHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';
     final l10n = AppLocalizations.of(context)!;
-    final path = private
-        ? BudgetFirestorePaths.privateExpense(
-            api.tripId,
-            api.currentUid,
-            expenseId,
-          )
-        : BudgetFirestorePaths.sharedExpense(api.tripId, expenseId);
-    final ref = FirebaseFirestore.instance.doc(path);
     return ExpansionTile(
       title: Text(l10n.b86ExpenseHistory),
       children: [
@@ -78,10 +69,11 @@ class BudgetExpenseHistory extends StatelessWidget {
               children: [
                 for (final collection in ['revisions', 'fxRateChanges'])
                   StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                    stream: ref
-                        .collection(collection)
-                        .orderBy('createdAt', descending: true)
-                        .snapshots(),
+                    stream: api.expenseRecords(
+                      expenseId,
+                      private: private,
+                      collection: collection,
+                    ),
                     builder: (context, result) {
                       if (result.hasError) {
                         return Text(

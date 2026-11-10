@@ -146,9 +146,7 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
-    testWidgets('personal view never mixes in shared expenses', (
-      tester,
-    ) async {
+    testWidgets('personal view never mixes in shared expenses', (tester) async {
       await setScreen(tester, const Size(1200, 1800));
       await tester.pumpWidget(dashboard(tripApi()));
       await tester.pumpAndSettle();
@@ -199,7 +197,11 @@ void main() {
       expect(find.byKey(const Key('b85-trend-chart')), findsNothing);
     });
 
-    for (final size in const [Size(320, 900), Size(390, 844), Size(800, 1200)]) {
+    for (final size in const [
+      Size(320, 900),
+      Size(390, 844),
+      Size(800, 1200),
+    ]) {
       testWidgets('layout holds on ${size.width.toInt()} px', (tester) async {
         await setScreen(tester, size);
         await tester.pumpWidget(dashboard(tripApi(foreign: true)));
@@ -252,7 +254,10 @@ void main() {
       );
       await tester.pumpWidget(card(tripApi(foreign: true), repo));
       await tester.pumpAndSettle();
-      expect(find.textContaining('Rimanente non determinabile'), findsOneWidget);
+      expect(
+        find.textContaining('Rimanente non determinabile'),
+        findsOneWidget,
+      );
     });
 
     for (final size in const [Size(320, 900), Size(1200, 900)]) {

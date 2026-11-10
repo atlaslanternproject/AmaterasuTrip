@@ -50,7 +50,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
   static const _red = Color(0xFFFF8A80);
 
   late final PersonalTripBudgetRepository _repository =
-      widget.repository ?? PersonalTripBudgetRepository();
+      widget.repository ?? widget.api.personalBudgetRepository;
 
   final BudgetFxService _fx = BudgetFxService();
 

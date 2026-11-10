@@ -42,6 +42,11 @@ class FakeQuery implements QuerySnapshot<Map<String, dynamic>> {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
+/// Like a Firestore listener: every subscriber gets the current value.
+Stream<T> _replay<T>(T value) => Stream.multi((listener) {
+  listener.add(value);
+});
+
 /// BudgetApi with in-memory data; records the calls made by the screens.
 class FakeBudgetApi extends BudgetApi {
   FakeBudgetApi({
@@ -65,11 +70,44 @@ class FakeBudgetApi extends BudgetApi {
   final String currency;
 
   final closures = <Map<String, String>>[];
+
+  final _personalBudget = FakePersonalBudgetRepository();
+
+  @override
+  PersonalTripBudgetRepository get personalBudgetRepository => _personalBudget;
   final fxPins = <String>[];
   Map<String, String> categories = const {};
 
   @override
-  Stream<Map<String, String>> budgetCategories() => Stream.value(categories);
+  Stream<Map<String, String>> budgetCategories() => _replay(categories);
+
+  /// Pending revision proposals and cancellation requests by expense.
+  Map<String, List<FakeDoc>> proposalDocs = const {};
+  Map<String, Map<String, dynamic>> cancellations = const {};
+
+  /// Revision records by expense ID.
+  Map<String, List<FakeDoc>> revisionDocs = const {};
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> proposals(String expenseId) =>
+      _replay(FakeQuery(proposalDocs[expenseId] ?? const []));
+
+  @override
+  Stream<Map<String, dynamic>?> cancellationRequest(String expenseId) =>
+      _replay(cancellations[expenseId]);
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> expenseRecords(
+    String expenseId, {
+    required bool private,
+    required String collection,
+  }) => _replay(
+    FakeQuery(
+      collection == 'revisions'
+          ? (revisionDocs[expenseId] ?? const [])
+          : const [],
+    ),
+  );
 
   @override
   Future<void> ensureExpenseFx({
@@ -96,15 +134,15 @@ class FakeBudgetApi extends BudgetApi {
   @override
   Stream<QuerySnapshot<Map<String, dynamic>>> reimbursements(
     String expenseId,
-  ) => Stream.value(FakeQuery(refunds[expenseId] ?? const []));
+  ) => _replay(FakeQuery(refunds[expenseId] ?? const []));
 
   @override
   Stream<QuerySnapshot<Map<String, dynamic>>> sharedExpenses() =>
-      Stream.value(FakeQuery(shared));
+      _replay(FakeQuery(shared));
 
   @override
   Stream<QuerySnapshot<Map<String, dynamic>>> privateExpenses() =>
-      Stream.value(FakeQuery(private));
+      _replay(FakeQuery(private));
 
   @override
   Future<Map<String, dynamic>> history({
@@ -154,7 +192,7 @@ class FakePersonalBudgetRepository extends PersonalTripBudgetRepository {
   PersonalTripBudget? budget;
 
   @override
-  Stream<PersonalTripBudget?> watch(String tripId) => Stream.value(budget);
+  Stream<PersonalTripBudget?> watch(String tripId) => _replay(budget);
 
   @override
   Future<void> save(String tripId, PersonalTripBudget value) async {

@@ -14,16 +14,19 @@ import 'package:amaterasutrip/features/trips/budget/presentation/budget_user_set
 import 'package:amaterasutrip/features/trips/budget/presentation/personal_trip_budget_card.dart';
 
 class TripExpensesPage extends StatefulWidget {
-  const TripExpensesPage({super.key, required this.tripId});
+  const TripExpensesPage({super.key, required this.tripId, this.api});
 
   final String tripId;
+
+  /// Defaults to the Firebase-backed API; replaceable in widget tests.
+  final BudgetApi? api;
 
   @override
   State<TripExpensesPage> createState() => _TripExpensesPageState();
 }
 
 class _TripExpensesPageState extends State<TripExpensesPage> {
-  late final BudgetApi _api = BudgetApi(widget.tripId);
+  late final BudgetApi _api = widget.api ?? BudgetApi(widget.tripId);
   late Future<String> _currency = _api.tripCurrency();
   int _refreshTick = 0;
 

@@ -114,7 +114,10 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('Anna ha creato la spesa'), findsOneWidget);
-    expect(find.textContaining('Motivo: Ha lasciato il gruppo'), findsOneWidget);
+    expect(
+      find.textContaining('Motivo: Ha lasciato il gruppo'),
+      findsOneWidget,
+    );
     expect(find.textContaining('Cena'), findsNWidgets(2));
     expect(find.textContaining('Museo · Privata'), findsOneWidget);
     expect(find.textContaining('Data non disponibile'), findsOneWidget);

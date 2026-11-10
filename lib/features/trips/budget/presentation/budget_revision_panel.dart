@@ -25,7 +25,7 @@ class BudgetRevisionPanel extends StatefulWidget {
 }
 
 class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
-  final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
+  late final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
     region: 'europe-west1',
   );
 
@@ -33,23 +33,11 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
   String? _feedback;
   late Future<Map<String, String>> _names;
 
-  late final Stream<QuerySnapshot<Map<String, dynamic>>> _proposals =
-      FirebaseFirestore.instance
-          .collection('trips')
-          .doc(widget.api.tripId)
-          .collection('budgetSharedExpenses')
-          .doc(widget.expenseId)
-          .collection('proposals')
-          .snapshots();
+  late final Stream<QuerySnapshot<Map<String, dynamic>>> _proposals = widget.api
+      .proposals(widget.expenseId);
 
   late final Stream<QuerySnapshot<Map<String, dynamic>>> _reimbursements =
-      FirebaseFirestore.instance
-          .collection('trips')
-          .doc(widget.api.tripId)
-          .collection('budgetSharedExpenses')
-          .doc(widget.expenseId)
-          .collection('reimbursements')
-          .snapshots();
+      widget.api.reimbursements(widget.expenseId);
 
   @override
   void initState() {

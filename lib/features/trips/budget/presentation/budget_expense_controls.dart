@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'budget_api.dart';
@@ -90,14 +89,6 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
       );
     }
 
-    final ref = FirebaseFirestore.instance
-        .collection('trips')
-        .doc(widget.api.tripId)
-        .collection('budgetSharedExpenses')
-        .doc(widget.expenseId)
-        .collection('cancellation')
-        .doc('current');
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -149,10 +140,10 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
           ),
         ),
         if (!widget.isPrivate)
-          StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-            stream: ref.snapshots(),
+          StreamBuilder<Map<String, dynamic>?>(
+            stream: widget.api.cancellationRequest(widget.expenseId),
             builder: (context, result) {
-              final pending = result.data?.data();
+              final pending = result.data;
               if (pending == null || pending['state'] != 'pending') {
                 return const SizedBox.shrink();
               }

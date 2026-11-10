@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'budget_currency.dart';
+import '../data/personal_trip_budget_repository.dart';
 import '../models/budget_payment_plan.dart';
 
 class BudgetApi {
@@ -16,6 +17,10 @@ class BudgetApi {
   late final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
     region: 'europe-west1',
   );
+
+  /// Private personal budget of the current traveler (B7).
+  late final PersonalTripBudgetRepository personalBudgetRepository =
+      PersonalTripBudgetRepository();
 
   String get currentUid {
     final uid = FirebaseAuth.instance.currentUser?.uid;
@@ -115,6 +120,50 @@ class BudgetApi {
       .doc(expenseId)
       .collection('reimbursements')
       .snapshots();
+
+  /// Revision proposals of one shared expense.
+  Stream<QuerySnapshot<Map<String, dynamic>>> proposals(String expenseId) => _db
+      .collection('trips')
+      .doc(tripId)
+      .collection('budgetSharedExpenses')
+      .doc(expenseId)
+      .collection('proposals')
+      .snapshots();
+
+  /// Current cancellation request of one shared expense, if any.
+  Stream<Map<String, dynamic>?> cancellationRequest(String expenseId) => _db
+      .collection('trips')
+      .doc(tripId)
+      .collection('budgetSharedExpenses')
+      .doc(expenseId)
+      .collection('cancellation')
+      .doc('current')
+      .snapshots()
+      .map((doc) => doc.data());
+
+  /// Revisions or manual rate changes of one expense, newest first.
+  Stream<QuerySnapshot<Map<String, dynamic>>> expenseRecords(
+    String expenseId, {
+    required bool private,
+    required String collection,
+  }) {
+    final expenses = private
+        ? _db
+              .collection('trips')
+              .doc(tripId)
+              .collection('budgetPrivateOwners')
+              .doc(currentUid)
+              .collection('expenses')
+        : _db
+              .collection('trips')
+              .doc(tripId)
+              .collection('budgetSharedExpenses');
+    return expenses
+        .doc(expenseId)
+        .collection(collection)
+        .orderBy('createdAt', descending: true)
+        .snapshots();
+  }
 
   /// All custom categories are common to every member of this trip.
   Stream<Map<String, String>> budgetCategories() => _db

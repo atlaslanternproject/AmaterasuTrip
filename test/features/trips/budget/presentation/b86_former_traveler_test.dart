@@ -101,7 +101,10 @@ void main() {
 
       expect(find.text('Bruno → Anna'), findsOneWidget);
       expect(find.textContaining('B →'), findsNothing);
-      expect(find.text('Ex viaggiatore: debito in sola lettura'), findsOneWidget);
+      expect(
+        find.text('Ex viaggiatore: debito in sola lettura'),
+        findsOneWidget,
+      );
       expect(find.text('Segnala un rimborso'), findsNothing);
 
       await tester.tap(find.byKey(const Key('b86-close-B')));
@@ -171,7 +174,10 @@ void main() {
 
       expect(find.byKey(const Key('b86-close-B')), findsNothing);
       expect(find.text('Chiuso (ex viaggiatore)'), findsOneWidget);
-      expect(find.text('Bruno → Anna · Chiuso (ex viaggiatore)'), findsOneWidget);
+      expect(
+        find.text('Bruno → Anna · Chiuso (ex viaggiatore)'),
+        findsOneWidget,
+      );
       expect(find.text('Chiuso da Anna'), findsOneWidget);
       expect(find.text('Motivo: Ha lasciato il gruppo'), findsOneWidget);
     });
