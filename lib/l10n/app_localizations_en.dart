@@ -2658,4 +2658,690 @@ class AppLocalizationsEn extends AppLocalizations {
   String b85ChartSemantics(String description) {
     return 'Chart: $description';
   }
+
+  @override
+  String get btAmountOriginal => 'Original';
+
+  @override
+  String get btAmountAutomaticExchangeRate => 'Automatic exchange rate';
+
+  @override
+  String get btAmountConverting => 'Converting';
+
+  @override
+  String get btAmountExchangeRateUnavailable => 'Exchange rate unavailable';
+
+  @override
+  String get btDashMyAdvances => 'My advances';
+
+  @override
+  String get btCatAccommodation => 'Accommodation';
+
+  @override
+  String get btCatFoodDrinks => 'Food & drinks';
+
+  @override
+  String get btCatTransport => 'Transport';
+
+  @override
+  String get btCatActivities => 'Activities';
+
+  @override
+  String get btCatOther => 'Other';
+
+  @override
+  String get btHistHistoryUnavailable => 'History unavailable';
+
+  @override
+  String get btHistShare => 'Share';
+
+  @override
+  String get btHistAdvance => 'Advance';
+
+  @override
+  String get btHistAccount => 'Account';
+
+  @override
+  String get btHistRevision => 'Revision';
+
+  @override
+  String get btOverviewOverviewError => 'Overview error';
+
+  @override
+  String get btOverviewFinancialOverview => 'Financial overview';
+
+  @override
+  String get btOverviewRecordedExpenses => 'Recorded expenses';
+
+  @override
+  String get btOverviewNoExpenses => 'No expenses.';
+
+  @override
+  String get btOverviewTotal => 'Total';
+
+  @override
+  String get btOverviewAdvanced => 'Advanced';
+
+  @override
+  String get btOverviewOutstanding => 'Outstanding';
+
+  @override
+  String get btOverviewAmountsSeparatedByCurrency => 'Amounts separated by currency, without automatic conversion.';
+
+  @override
+  String get btMethodsCash => 'Cash';
+
+  @override
+  String get btMethodsCard => 'Card';
+
+  @override
+  String get btMethodsBankTransfer => 'Bank transfer';
+
+  @override
+  String get btMethodsOther => 'Other';
+
+  @override
+  String get btMethodsPaymentMethods => 'Payment methods';
+
+  @override
+  String get btMethodsRecordHowYouPaid => 'Record how you paid, using multiple methods if needed.';
+
+  @override
+  String get btMethodsMethod => 'Method';
+
+  @override
+  String get btMethodsAmountPaid => 'Amount paid';
+
+  @override
+  String get btMethodsAccountCurrencyEG => 'Account currency (e.g. EUR)';
+
+  @override
+  String get btMethodsActualAccountDebitIf => 'Actual account debit, if known';
+
+  @override
+  String get btMethodsMethodDescription => 'Method description';
+
+  @override
+  String get btMethodsRemove => 'Remove';
+
+  @override
+  String get btMethodsAddMethod => 'Add method';
+
+  @override
+  String get btControlsRequestRecorded => 'Request recorded.';
+
+  @override
+  String get btControlsConfirmAction => 'Confirm action';
+
+  @override
+  String get btControlsTheExpenseWillBe => 'The expense will be cancelled only after required approvals. History is preserved.';
+
+  @override
+  String get btControlsCancel => 'Cancel';
+
+  @override
+  String get btControlsConfirm => 'Confirm';
+
+  @override
+  String get btControlsCancelledExpenseHistoryRetained => 'Cancelled expense · history retained';
+
+  @override
+  String get btControlsExpenseManagement => 'Expense management';
+
+  @override
+  String get btControlsCancelPersonalExpense => 'Cancel personal expense';
+
+  @override
+  String get btControlsProposeCancellation => 'Propose cancellation';
+
+  @override
+  String btControlsPendingCancellation(Object value1, Object value2) {
+    return 'Pending cancellation: $value1/$value2';
+  }
+
+  @override
+  String get btControlsReject => 'Reject';
+
+  @override
+  String get btControlsApprove => 'Approve';
+
+  @override
+  String get btListAccommodation => 'Accommodation';
+
+  @override
+  String get btListFoodDrinks => 'Food & drinks';
+
+  @override
+  String get btListTransport => 'Transport';
+
+  @override
+  String get btListActivities => 'Activities';
+
+  @override
+  String get btListOther => 'Other';
+
+  @override
+  String get btListPaid => 'Paid';
+
+  @override
+  String get btListPlanned => 'Planned';
+
+  @override
+  String get btListOutstanding => 'Outstanding';
+
+  @override
+  String get btListStatusUnavailable => 'Status unavailable';
+
+  @override
+  String get btListUnableToLoadExpenses => 'Unable to load expenses.';
+
+  @override
+  String get btListNoExpensesToDisplay => 'No expenses to display.';
+
+  @override
+  String get btListUntitledExpense => 'Untitled expense';
+
+  @override
+  String btListTravelers(Object value1) {
+    return '$value1 travelers';
+  }
+
+  @override
+  String get btDetailsAccommodation => 'Accommodation';
+
+  @override
+  String get btDetailsFood => 'Food';
+
+  @override
+  String get btDetailsTransport => 'Transport';
+
+  @override
+  String get btDetailsActivities => 'Activities';
+
+  @override
+  String get btDetailsOther => 'Other';
+
+  @override
+  String get btDetailsPlanned => 'Planned';
+
+  @override
+  String get btDetailsOutstanding => 'Outstanding';
+
+  @override
+  String get btDetailsPaid => 'Paid';
+
+  @override
+  String get btDetailsUnavailable => 'Unavailable';
+
+  @override
+  String get btDetailsNoAmountsRecorded => 'No amounts recorded.';
+
+  @override
+  String get btDetailsNameUnavailable => 'Name unavailable';
+
+  @override
+  String get btDetailsLoading => 'Loading...';
+
+  @override
+  String get btDetailsExpenseDetails => 'Expense details';
+
+  @override
+  String get btDetailsUntitledExpense => 'Untitled expense';
+
+  @override
+  String btDetailsAdjustRate(Object originalCurrency, Object target) {
+    return 'Adjust rate $originalCurrency/$target';
+  }
+
+  @override
+  String get btDetailsAccount => 'Account';
+
+  @override
+  String get btDetailsNotes => 'Notes';
+
+  @override
+  String get btDetailsManageExpense => 'Manage expense';
+
+  @override
+  String get btRefundsOperationRecorded => 'Operation recorded.';
+
+  @override
+  String get btRefundsReportReimbursement => 'Report reimbursement';
+
+  @override
+  String btRefundsReimbursementTo(Object creditorName) {
+    return 'Reimbursement to $creditorName';
+  }
+
+  @override
+  String get btRefundsMaximumReimbursable => 'Maximum reimbursable';
+
+  @override
+  String btRefundsRecordHowYouReimbursed(Object currency) {
+    return 'Record how you reimbursed in $currency. The recipient must confirm.';
+  }
+
+  @override
+  String get btRefundsDeclaredTotal => 'Declared total';
+
+  @override
+  String get btRefundsAddValidMethodsThe => 'Add valid methods. The total must be positive and within the maximum.';
+
+  @override
+  String get btRefundsCancel => 'Cancel';
+
+  @override
+  String get btRefundsSubmitRequest => 'Submit request';
+
+  @override
+  String get btRefundsCash => 'Cash';
+
+  @override
+  String get btRefundsCard => 'Card';
+
+  @override
+  String get btRefundsBankTransfer => 'Bank transfer';
+
+  @override
+  String get btRefundsOther => 'Other';
+
+  @override
+  String get btRefundsReimbursementMethodNotRecorded => 'Reimbursement method not recorded';
+
+  @override
+  String get btRefundsDetailsUnavailable => 'Details unavailable';
+
+  @override
+  String get btRefundsDeclaredMethods => 'Declared methods';
+
+  @override
+  String get btRefundsDebtsBetweenTravelersBecome => 'Debts between travelers become final only once the supplier has been paid.';
+
+  @override
+  String get btRefundsUnableToLoadTraveler => 'Unable to load traveler names.';
+
+  @override
+  String get btRefundsUnableToLoadReimbursements => 'Unable to load reimbursements.';
+
+  @override
+  String get btRefundsDebtsAndReimbursements => 'Debts and reimbursements';
+
+  @override
+  String get btRefundsWhoOwesMoneyCan => 'Who owes money can report a reimbursement. Who should receive it must confirm it.';
+
+  @override
+  String get btRefundsRequestsWaitingForYour => 'Requests waiting for your confirmation';
+
+  @override
+  String get btRefundsRequested => 'Requested';
+
+  @override
+  String get btRefundsDecision => 'Decision';
+
+  @override
+  String get btRefundsDecidedBy => 'Decided by';
+
+  @override
+  String get btRefundsReject => 'Reject';
+
+  @override
+  String get btRefundsConfirm => 'Confirm';
+
+  @override
+  String get btRefundsOutstanding => 'Outstanding';
+
+  @override
+  String get btRefundsConfirmed => 'Confirmed';
+
+  @override
+  String get btRefundsPendingConfirmation => 'Pending confirmation';
+
+  @override
+  String get btRefundsReportAReimbursement => 'Report a reimbursement';
+
+  @override
+  String get btRefundsReimbursementHistory => 'Reimbursement history';
+
+  @override
+  String get btRefundsRejected => 'Rejected';
+
+  @override
+  String get btRefundsPending => 'Pending';
+
+  @override
+  String get btPersonalEn => 'en';
+
+  @override
+  String get btPersonalBudgetCurrency => 'Budget currency';
+
+  @override
+  String get btPersonalSearchCurrencies => 'Search currencies';
+
+  @override
+  String get btPersonalNoCurrenciesFound => 'No currencies found';
+
+  @override
+  String get btPersonalFirestoreDeniedTheWrite => 'Firestore denied the write. B7 rules must be deployed to the Firebase project in use.';
+
+  @override
+  String get btPersonalInvalidAmountOrCurrency => 'Invalid amount or currency.';
+
+  @override
+  String btPersonalOperationFailed(Object error) {
+    return 'Operation failed: $error';
+  }
+
+  @override
+  String get btPersonalMyTravelBudget => 'My travel budget';
+
+  @override
+  String get btPersonalOnlyYouCanSee => 'Only you can see this budget. Exceeding it never blocks new expenses.';
+
+  @override
+  String get btPersonalPlannedAmount => 'Planned amount';
+
+  @override
+  String get btPersonalCurrency => 'Currency';
+
+  @override
+  String get btPersonalRemove => 'Remove';
+
+  @override
+  String get btPersonalCancel => 'Cancel';
+
+  @override
+  String get btPersonalSave => 'Save';
+
+  @override
+  String get btPersonalBudgetLoadError => 'Budget load error.';
+
+  @override
+  String get btPersonalSetAnOptionalPersonal => 'Set an optional personal budget visible only to you.';
+
+  @override
+  String get btPersonalSetBudget => 'Set budget';
+
+  @override
+  String get btPersonalUnableToLoadExpenses => 'Unable to load expenses.';
+
+  @override
+  String get btPersonalUnableToLoadPersonal => 'Unable to load personal expenses.';
+
+  @override
+  String get btPersonalEditBudget => 'Edit budget';
+
+  @override
+  String get btPersonalPlannedBudget => 'Planned budget';
+
+  @override
+  String get btPersonalYourSharePaidAnd => 'Your share (paid and outstanding)';
+
+  @override
+  String get btPersonalRemainingUnavailableAnAmount => 'Remaining unavailable: an amount or exchange rate is missing.';
+
+  @override
+  String get btPersonalOverBudget => 'Over budget';
+
+  @override
+  String get btPersonalRemaining => 'Remaining';
+
+  @override
+  String get btPersonalPlannedExpensesAreExcluded => 'Planned expenses are excluded. Exceeding the budget never blocks expenses.';
+
+  @override
+  String get btToolbarEn => 'en';
+
+  @override
+  String get btToolbarDisplayCurrency => 'Display currency';
+
+  @override
+  String get btToolbarSearchCurrencies => 'Search currencies';
+
+  @override
+  String get btToolbarNoCurrenciesFound => 'No currencies found';
+
+  @override
+  String get btToolbarAllCategories => 'All categories';
+
+  @override
+  String get btToolbarFiltersAndDisplay => 'Filters and display';
+
+  @override
+  String get btToolbarCustomizeHowYouView => 'Customize how you view expenses.';
+
+  @override
+  String get btToolbarOriginalAmountsRemainUnchanged => 'Original amounts remain unchanged.';
+
+  @override
+  String get btToolbarSortExpenses => 'Sort expenses';
+
+  @override
+  String get btToolbarNewest => 'Newest';
+
+  @override
+  String get btToolbarOldest => 'Oldest';
+
+  @override
+  String get btToolbarAmountAscending => 'Amount ascending';
+
+  @override
+  String get btToolbarAmountDescending => 'Amount descending';
+
+  @override
+  String get btToolbarCategory => 'Category';
+
+  @override
+  String get btToolbarStatus => 'Status';
+
+  @override
+  String get btToolbarAllStatuses => 'All statuses';
+
+  @override
+  String get btToolbarPlanned => 'Planned';
+
+  @override
+  String get btToolbarOutstanding => 'Outstanding';
+
+  @override
+  String get btToolbarPaid => 'Paid';
+
+  @override
+  String get btToolbarPeriod => 'Period';
+
+  @override
+  String get btToolbarAnyTime => 'Any time';
+
+  @override
+  String get btToolbarLast30Days => 'Last 30 days';
+
+  @override
+  String get btToolbarLast90Days => 'Last 90 days';
+
+  @override
+  String get btToolbarReset => 'Reset';
+
+  @override
+  String get btToolbarApply => 'Apply';
+
+  @override
+  String get btToolbarAmountsSortedWithinEach => 'Amounts sorted within each original currency.';
+
+  @override
+  String get btCreateEn => 'en';
+
+  @override
+  String get btCreateExpenseCurrency => 'Expense currency';
+
+  @override
+  String get btCreateSearchCurrencies => 'Search currencies';
+
+  @override
+  String get btCreateNoCurrenciesFound => 'No currencies found';
+
+  @override
+  String get btCreateYou => 'You';
+
+  @override
+  String get btCreateTraveler => 'Traveler';
+
+  @override
+  String get btCreatePaymentsExceedTotal => 'Payments exceed total.';
+
+  @override
+  String get btCreateSplitPreview => 'Split preview';
+
+  @override
+  String get btCreateRecordedBy => 'Recorded by';
+
+  @override
+  String get btCreateTotal => 'Total';
+
+  @override
+  String get btCreateDeclaredPayments => 'Declared payments';
+
+  @override
+  String get btCreateRemaining => 'Remaining';
+
+  @override
+  String get btCreateCompleteTheAmountParticipants => 'Complete the amount, participants and shares to see the preview.';
+
+  @override
+  String get btCreateConfirmNewExpense => 'Confirm new expense';
+
+  @override
+  String get btCreateCategory => 'Category';
+
+  @override
+  String get btCreateType => 'Type';
+
+  @override
+  String get btCreateShared => 'Shared';
+
+  @override
+  String get btCreatePersonal => 'Personal';
+
+  @override
+  String get btCreateStatus => 'Status';
+
+  @override
+  String get btCreatePaymentsRecordedInThis => 'Payments recorded in this version must have been made by you.';
+
+  @override
+  String get btCreateBackToEditing => 'Back to editing';
+
+  @override
+  String get btCreateConfirmAndSave => 'Confirm and save';
+
+  @override
+  String get btCreateNewExpense => 'New expense';
+
+  @override
+  String get btCreateEssentialDetails => 'Essential details';
+
+  @override
+  String get btCreateAmountsAndTravelers => 'Amounts and travelers';
+
+  @override
+  String get btCreate1Details => '1. Details';
+
+  @override
+  String get btCreate2Amounts => '2. Amounts';
+
+  @override
+  String get btCreateEnterAnExpenseName => 'Enter an expense name.';
+
+  @override
+  String get btCreateExpenseType => 'Expense type';
+
+  @override
+  String get btCreateChooseWhoCanSee => 'Choose who can see this expense.';
+
+  @override
+  String get btCreateExpenseDetails => 'Expense details';
+
+  @override
+  String get btCreateExpenseName => 'Expense name';
+
+  @override
+  String get btCreateEGKyotoHotel => 'E.g. Kyoto hotel';
+
+  @override
+  String get btCreateExpenseDate => 'Expense date';
+
+  @override
+  String get btCreateNotesOptional => 'Notes (optional)';
+
+  @override
+  String get btCreateExpenseAmount => 'Expense amount';
+
+  @override
+  String get btCreateCurrency => 'Currency';
+
+  @override
+  String get btCreateTotalAmount => 'Total amount';
+
+  @override
+  String get btCreateExpenseStatus => 'Expense status';
+
+  @override
+  String get btCreatePlanned => 'Planned';
+
+  @override
+  String get btCreateOutstanding => 'Outstanding';
+
+  @override
+  String get btCreatePaid => 'Paid';
+
+  @override
+  String get btCreateSplitBetweenTravelers => 'Split between travelers';
+
+  @override
+  String get btCreateEqualShares => 'Equal shares';
+
+  @override
+  String get btCreateCustomShares => 'Custom shares';
+
+  @override
+  String btCreateShare(Object value1) {
+    return '$value1 share';
+  }
+
+  @override
+  String get btCreateHowWasItPaid => 'How was it paid?';
+
+  @override
+  String get btCreateRecordOnlyPaymentsYou => 'Record only payments you actually made.';
+
+  @override
+  String get btCreateSummary => 'Summary';
+
+  @override
+  String get btCreateCancel => 'Cancel';
+
+  @override
+  String get btCreateBack => 'Back';
+
+  @override
+  String get btCreateContinue => 'Continue';
+
+  @override
+  String get btCreateSaveExpense => 'Save expense';
+
+  @override
+  String get btPageRefresh => 'Refresh';
+
+  @override
+  String get btPageFilters => 'Filters';
+
+  @override
+  String get btPageUnableToLoadTrip => 'Unable to load trip.';
+
+  @override
+  String get btPageTripExpenseList => 'Trip expense list';
+
+  @override
+  String get btPageShared => 'Shared';
+
+  @override
+  String get btPagePersonal => 'Personal';
 }

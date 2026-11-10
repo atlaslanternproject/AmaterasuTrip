@@ -513,7 +513,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
             if (!_chartPersonal && people.isNotEmpty)
               _overviewMetric(l10n.b6GroupTotal, _money(total, target)),
             _overviewMetric(
-              it ? 'I miei anticipi' : 'My advances',
+              _l10n(it).btDashMyAdvances,
               converted == 0 && hasExpenses
                   ? '— $target'
                   : _money(myAdvances, target),
@@ -664,3 +664,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

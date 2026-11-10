@@ -1,4 +1,5 @@
 import 'budget_expense_day.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../calculations/budget_money_formatter.dart';
@@ -119,7 +120,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
           ),
           const SizedBox(height: 3),
           Text(
-            '${it ? "Originale" : "Original"}: $original',
+            '${_l10n(it).btAmountOriginal}: $original',
             style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 11),
           ),
           if (warning != null)
@@ -131,7 +132,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
             Tooltip(
               message: source,
               child: Text(
-                it ? 'Cambio automatico' : 'Automatic exchange rate',
+                _l10n(it).btAmountAutomaticExchangeRate,
                 style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 10),
               ),
             ),
@@ -149,7 +150,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
         if (result.connectionState != ConnectionState.done) {
           return content(
             prominent: '— ${widget.displayCurrency}',
-            warning: it ? 'Conversione in corso' : 'Converting',
+            warning: _l10n(it).btAmountConverting,
           );
         }
 
@@ -170,9 +171,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
         if (converted == null) {
           return content(
             prominent: '— ${widget.displayCurrency}',
-            warning: it
-                ? 'Tasso di cambio non disponibile'
-                : 'Exchange rate unavailable',
+            warning: _l10n(it).btAmountExchangeRateUnavailable,
           );
         }
 
@@ -186,3 +185,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

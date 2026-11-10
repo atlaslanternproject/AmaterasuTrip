@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../models/budget_payment_allocation.dart';
 import 'budget_money_input.dart';
@@ -102,19 +103,19 @@ class _BudgetPaymentMethodsEditorState
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';
     final labels = <BudgetPaymentMethod, String>{
-      BudgetPaymentMethod.cash: it ? 'Contanti' : 'Cash',
-      BudgetPaymentMethod.card: it ? 'Carta' : 'Card',
-      BudgetPaymentMethod.bankTransfer: it ? 'Bonifico' : 'Bank transfer',
+      BudgetPaymentMethod.cash: _l10n(it).btMethodsCash,
+      BudgetPaymentMethod.card: _l10n(it).btMethodsCard,
+      BudgetPaymentMethod.bankTransfer: _l10n(it).btMethodsBankTransfer,
       BudgetPaymentMethod.paypal: 'PayPal',
       BudgetPaymentMethod.satispay: 'Satispay',
-      BudgetPaymentMethod.other: it ? 'Altro' : 'Other',
+      BudgetPaymentMethod.other: _l10n(it).btMethodsOther,
     };
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          it ? 'Metodi di pagamento' : 'Payment methods',
+          _l10n(it).btMethodsPaymentMethods,
           style: const TextStyle(
             color: Color(0xFFF2E7D5),
             fontWeight: FontWeight.w700,
@@ -122,9 +123,7 @@ class _BudgetPaymentMethodsEditorState
         ),
         const SizedBox(height: 8),
         Text(
-          it
-              ? 'Indica come hai pagato, anche usando piu metodi.'
-              : 'Record how you paid, using multiple methods if needed.',
+          _l10n(it).btMethodsRecordHowYouPaid,
           style: const TextStyle(color: Color(0xFFB7A99B)),
         ),
         const SizedBox(height: 12),
@@ -144,7 +143,7 @@ class _BudgetPaymentMethodsEditorState
                     initialValue: row.method,
                     isExpanded: true,
                     decoration: InputDecoration(
-                      labelText: it ? 'Metodo' : 'Method',
+                      labelText: _l10n(it).btMethodsMethod,
                       border: const OutlineInputBorder(),
                     ),
                     items: [
@@ -170,7 +169,7 @@ class _BudgetPaymentMethodsEditorState
                       decimal: true,
                     ),
                     decoration: InputDecoration(
-                      labelText: it ? 'Importo pagato' : 'Amount paid',
+                      labelText: _l10n(it).btMethodsAmountPaid,
                       suffixText: widget.currency,
                       border: const OutlineInputBorder(),
                     ),
@@ -183,9 +182,7 @@ class _BudgetPaymentMethodsEditorState
                       maxLength: 3,
                       textCapitalization: TextCapitalization.characters,
                       decoration: InputDecoration(
-                        labelText: it
-                            ? 'Valuta del conto (es. EUR)'
-                            : 'Account currency (e.g. EUR)',
+                        labelText: _l10n(it).btMethodsAccountCurrencyEG,
                       ),
                       onChanged: (_) => _notify(),
                     ),
@@ -196,9 +193,7 @@ class _BudgetPaymentMethodsEditorState
                         decimal: true,
                       ),
                       decoration: InputDecoration(
-                        labelText: it
-                            ? 'Addebito effettivo, se noto'
-                            : 'Actual account debit, if known',
+                        labelText: _l10n(it).btMethodsActualAccountDebitIf,
                       ),
                       onChanged: (_) => _notify(),
                     ),
@@ -210,9 +205,7 @@ class _BudgetPaymentMethodsEditorState
                       enabled: widget.enabled,
                       maxLength: 40,
                       decoration: InputDecoration(
-                        labelText: it
-                            ? 'Descrizione metodo'
-                            : 'Method description',
+                        labelText: _l10n(it).btMethodsMethodDescription,
                         border: const OutlineInputBorder(),
                       ),
                       onChanged: (_) => _notify(),
@@ -223,7 +216,7 @@ class _BudgetPaymentMethodsEditorState
                     child: TextButton.icon(
                       onPressed: widget.enabled ? () => _remove(row) : null,
                       icon: const Icon(Icons.delete_outline_rounded),
-                      label: Text(it ? 'Rimuovi' : 'Remove'),
+                      label: Text(_l10n(it).btMethodsRemove),
                     ),
                   ),
                 ],
@@ -233,9 +226,13 @@ class _BudgetPaymentMethodsEditorState
         OutlinedButton.icon(
           onPressed: widget.enabled ? _add : null,
           icon: const Icon(Icons.add_rounded),
-          label: Text(it ? 'Aggiungi metodo' : 'Add method'),
+          label: Text(_l10n(it).btMethodsAddMethod),
         ),
       ],
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

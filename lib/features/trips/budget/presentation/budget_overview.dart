@@ -1,4 +1,5 @@
 import '../calculations/budget_money_formatter.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -29,9 +30,7 @@ class BudgetOverview extends StatelessWidget {
       stream: api.sharedExpenses(),
       builder: (context, shared) {
         if (shared.hasError) {
-          return Text(
-            '${it ? "Errore riepilogo" : "Overview error"}: ${shared.error}',
-          );
+          return Text('${_l10n(it).btOverviewOverviewError}: ${shared.error}');
         }
 
         if (!shared.hasData) {
@@ -43,7 +42,7 @@ class BudgetOverview extends StatelessWidget {
           builder: (context, personal) {
             if (personal.hasError) {
               return Text(
-                '${it ? "Errore riepilogo" : "Overview error"}: ${personal.error}',
+                '${_l10n(it).btOverviewOverviewError}: ${personal.error}',
               );
             }
 
@@ -99,7 +98,7 @@ class BudgetOverview extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      it ? 'Riepilogo contabile' : 'Financial overview',
+                      _l10n(it).btOverviewFinancialOverview,
                       style: const TextStyle(
                         color: Color(0xFFF2E7D5),
                         fontSize: 19,
@@ -108,14 +107,14 @@ class BudgetOverview extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '${it ? "Spese registrate" : "Recorded expenses"}: $expenseCount',
+                      '${_l10n(it).btOverviewRecordedExpenses}: $expenseCount',
                       style: const TextStyle(color: Color(0xFFB7A99B)),
                     ),
                     if (currencies.isEmpty)
                       Padding(
                         padding: const EdgeInsets.only(top: 12),
                         child: Text(
-                          it ? 'Nessuna spesa.' : 'No expenses.',
+                          _l10n(it).btOverviewNoExpenses,
                           style: const TextStyle(color: Color(0xFFB7A99B)),
                         ),
                       ),
@@ -130,20 +129,18 @@ class BudgetOverview extends StatelessWidget {
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        '${it ? "Totale" : "Total"}: ${_amount(totals[currency]![0], currency)}',
+                        '${_l10n(it).btOverviewTotal}: ${_amount(totals[currency]![0], currency)}',
                       ),
                       Text(
-                        '${it ? "Anticipato" : "Advanced"}: ${_amount(totals[currency]![1], currency)}',
+                        '${_l10n(it).btOverviewAdvanced}: ${_amount(totals[currency]![1], currency)}',
                       ),
                       Text(
-                        '${it ? "Da saldare" : "Outstanding"}: ${_amount(totals[currency]![2], currency)}',
+                        '${_l10n(it).btOverviewOutstanding}: ${_amount(totals[currency]![2], currency)}',
                       ),
                     ],
                     const SizedBox(height: 10),
                     Text(
-                      it
-                          ? 'Importi separati per valuta, senza conversioni automatiche.'
-                          : 'Amounts separated by currency, without automatic conversion.',
+                      _l10n(it).btOverviewAmountsSeparatedByCurrency,
                       style: const TextStyle(
                         color: Color(0xFFB7A99B),
                         fontSize: 12,
@@ -159,3 +156,7 @@ class BudgetOverview extends StatelessWidget {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

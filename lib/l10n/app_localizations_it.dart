@@ -2658,4 +2658,690 @@ class AppLocalizationsIt extends AppLocalizations {
   String b85ChartSemantics(String description) {
     return 'Grafico: $description';
   }
+
+  @override
+  String get btAmountOriginal => 'Originale';
+
+  @override
+  String get btAmountAutomaticExchangeRate => 'Cambio automatico';
+
+  @override
+  String get btAmountConverting => 'Conversione in corso';
+
+  @override
+  String get btAmountExchangeRateUnavailable => 'Tasso di cambio non disponibile';
+
+  @override
+  String get btDashMyAdvances => 'I miei anticipi';
+
+  @override
+  String get btCatAccommodation => 'Alloggio';
+
+  @override
+  String get btCatFoodDrinks => 'Cibo e bevande';
+
+  @override
+  String get btCatTransport => 'Trasporti';
+
+  @override
+  String get btCatActivities => 'Attività';
+
+  @override
+  String get btCatOther => 'Altro';
+
+  @override
+  String get btHistHistoryUnavailable => 'Storico non disponibile';
+
+  @override
+  String get btHistShare => 'Quota';
+
+  @override
+  String get btHistAdvance => 'Anticipo';
+
+  @override
+  String get btHistAccount => 'Conto';
+
+  @override
+  String get btHistRevision => 'Revisione';
+
+  @override
+  String get btOverviewOverviewError => 'Errore riepilogo';
+
+  @override
+  String get btOverviewFinancialOverview => 'Riepilogo contabile';
+
+  @override
+  String get btOverviewRecordedExpenses => 'Spese registrate';
+
+  @override
+  String get btOverviewNoExpenses => 'Nessuna spesa.';
+
+  @override
+  String get btOverviewTotal => 'Totale';
+
+  @override
+  String get btOverviewAdvanced => 'Anticipato';
+
+  @override
+  String get btOverviewOutstanding => 'Da saldare';
+
+  @override
+  String get btOverviewAmountsSeparatedByCurrency => 'Importi separati per valuta, senza conversioni automatiche.';
+
+  @override
+  String get btMethodsCash => 'Contanti';
+
+  @override
+  String get btMethodsCard => 'Carta';
+
+  @override
+  String get btMethodsBankTransfer => 'Bonifico';
+
+  @override
+  String get btMethodsOther => 'Altro';
+
+  @override
+  String get btMethodsPaymentMethods => 'Metodi di pagamento';
+
+  @override
+  String get btMethodsRecordHowYouPaid => 'Indica come hai pagato, anche usando piu metodi.';
+
+  @override
+  String get btMethodsMethod => 'Metodo';
+
+  @override
+  String get btMethodsAmountPaid => 'Importo pagato';
+
+  @override
+  String get btMethodsAccountCurrencyEG => 'Valuta del conto (es. EUR)';
+
+  @override
+  String get btMethodsActualAccountDebitIf => 'Addebito effettivo, se noto';
+
+  @override
+  String get btMethodsMethodDescription => 'Descrizione metodo';
+
+  @override
+  String get btMethodsRemove => 'Rimuovi';
+
+  @override
+  String get btMethodsAddMethod => 'Aggiungi metodo';
+
+  @override
+  String get btControlsRequestRecorded => 'Richiesta registrata.';
+
+  @override
+  String get btControlsConfirmAction => 'Conferma operazione';
+
+  @override
+  String get btControlsTheExpenseWillBe => 'La spesa sarà annullata solo dopo tutte le approvazioni necessarie. Lo storico sarà conservato.';
+
+  @override
+  String get btControlsCancel => 'Annulla';
+
+  @override
+  String get btControlsConfirm => 'Conferma';
+
+  @override
+  String get btControlsCancelledExpenseHistoryRetained => 'Spesa annullata · storico conservato';
+
+  @override
+  String get btControlsExpenseManagement => 'Gestione spesa';
+
+  @override
+  String get btControlsCancelPersonalExpense => 'Annulla spesa personale';
+
+  @override
+  String get btControlsProposeCancellation => 'Proponi annullamento';
+
+  @override
+  String btControlsPendingCancellation(Object value1, Object value2) {
+    return 'Annullamento in attesa: $value1/$value2';
+  }
+
+  @override
+  String get btControlsReject => 'Rifiuta';
+
+  @override
+  String get btControlsApprove => 'Approva';
+
+  @override
+  String get btListAccommodation => 'Alloggio';
+
+  @override
+  String get btListFoodDrinks => 'Cibo e bevande';
+
+  @override
+  String get btListTransport => 'Trasporti';
+
+  @override
+  String get btListActivities => 'Attività';
+
+  @override
+  String get btListOther => 'Altro';
+
+  @override
+  String get btListPaid => 'Saldata';
+
+  @override
+  String get btListPlanned => 'Prevista';
+
+  @override
+  String get btListOutstanding => 'Da saldare';
+
+  @override
+  String get btListStatusUnavailable => 'Stato non disponibile';
+
+  @override
+  String get btListUnableToLoadExpenses => 'Impossibile caricare le spese.';
+
+  @override
+  String get btListNoExpensesToDisplay => 'Nessuna spesa da mostrare.';
+
+  @override
+  String get btListUntitledExpense => 'Spesa senza titolo';
+
+  @override
+  String btListTravelers(Object value1) {
+    return '$value1 partecipanti';
+  }
+
+  @override
+  String get btDetailsAccommodation => 'Alloggio';
+
+  @override
+  String get btDetailsFood => 'Cibo e ristoranti';
+
+  @override
+  String get btDetailsTransport => 'Trasporti';
+
+  @override
+  String get btDetailsActivities => 'Attività';
+
+  @override
+  String get btDetailsOther => 'Altro';
+
+  @override
+  String get btDetailsPlanned => 'Prevista';
+
+  @override
+  String get btDetailsOutstanding => 'Da saldare';
+
+  @override
+  String get btDetailsPaid => 'Pagata';
+
+  @override
+  String get btDetailsUnavailable => 'Non disponibile';
+
+  @override
+  String get btDetailsNoAmountsRecorded => 'Nessun importo registrato.';
+
+  @override
+  String get btDetailsNameUnavailable => 'Nome non disponibile';
+
+  @override
+  String get btDetailsLoading => 'Caricamento...';
+
+  @override
+  String get btDetailsExpenseDetails => 'Dettaglio spesa';
+
+  @override
+  String get btDetailsUntitledExpense => 'Spesa senza titolo';
+
+  @override
+  String btDetailsAdjustRate(Object originalCurrency, Object target) {
+    return 'Rettifica cambio $originalCurrency/$target';
+  }
+
+  @override
+  String get btDetailsAccount => 'Conto';
+
+  @override
+  String get btDetailsNotes => 'Note';
+
+  @override
+  String get btDetailsManageExpense => 'Gestisci spesa';
+
+  @override
+  String get btRefundsOperationRecorded => 'Operazione registrata.';
+
+  @override
+  String get btRefundsReportReimbursement => 'Segnala un rimborso';
+
+  @override
+  String btRefundsReimbursementTo(Object creditorName) {
+    return 'Rimborso verso $creditorName';
+  }
+
+  @override
+  String get btRefundsMaximumReimbursable => 'Massimo rimborsabile';
+
+  @override
+  String btRefundsRecordHowYouReimbursed(Object currency) {
+    return 'Indica come hai rimborsato in $currency. Il destinatario dovrà confermare.';
+  }
+
+  @override
+  String get btRefundsDeclaredTotal => 'Totale dichiarato';
+
+  @override
+  String get btRefundsAddValidMethodsThe => 'Aggiungi metodi validi. Il totale deve essere positivo e non superare il massimo.';
+
+  @override
+  String get btRefundsCancel => 'Annulla';
+
+  @override
+  String get btRefundsSubmitRequest => 'Invia richiesta';
+
+  @override
+  String get btRefundsCash => 'Contanti';
+
+  @override
+  String get btRefundsCard => 'Carta';
+
+  @override
+  String get btRefundsBankTransfer => 'Bonifico';
+
+  @override
+  String get btRefundsOther => 'Altro';
+
+  @override
+  String get btRefundsReimbursementMethodNotRecorded => 'Metodo di rimborso non registrato';
+
+  @override
+  String get btRefundsDetailsUnavailable => 'Dettagli non disponibili';
+
+  @override
+  String get btRefundsDeclaredMethods => 'Metodi dichiarati';
+
+  @override
+  String get btRefundsDebtsBetweenTravelersBecome => 'I debiti tra viaggiatori saranno definitivi solo quando la spesa risulterà pagata al fornitore.';
+
+  @override
+  String get btRefundsUnableToLoadTraveler => 'Impossibile caricare i nomi dei viaggiatori.';
+
+  @override
+  String get btRefundsUnableToLoadReimbursements => 'Impossibile caricare i rimborsi.';
+
+  @override
+  String get btRefundsDebtsAndReimbursements => 'Debiti e rimborsi';
+
+  @override
+  String get btRefundsWhoOwesMoneyCan => 'Chi deve restituire denaro può segnalare un rimborso. Chi deve riceverlo deve confermarlo.';
+
+  @override
+  String get btRefundsRequestsWaitingForYour => 'Richieste in attesa della tua conferma';
+
+  @override
+  String get btRefundsRequested => 'Richiesto';
+
+  @override
+  String get btRefundsDecision => 'Decisione';
+
+  @override
+  String get btRefundsDecidedBy => 'Deciso da';
+
+  @override
+  String get btRefundsReject => 'Rifiuta';
+
+  @override
+  String get btRefundsConfirm => 'Conferma';
+
+  @override
+  String get btRefundsOutstanding => 'Da restituire';
+
+  @override
+  String get btRefundsConfirmed => 'Confermato';
+
+  @override
+  String get btRefundsPendingConfirmation => 'In attesa di conferma';
+
+  @override
+  String get btRefundsReportAReimbursement => 'Segnala un rimborso';
+
+  @override
+  String get btRefundsReimbursementHistory => 'Storico rimborsi';
+
+  @override
+  String get btRefundsRejected => 'Rifiutato';
+
+  @override
+  String get btRefundsPending => 'In attesa';
+
+  @override
+  String get btPersonalEn => 'it';
+
+  @override
+  String get btPersonalBudgetCurrency => 'Valuta del budget';
+
+  @override
+  String get btPersonalSearchCurrencies => 'Cerca una valuta';
+
+  @override
+  String get btPersonalNoCurrenciesFound => 'Nessuna valuta trovata';
+
+  @override
+  String get btPersonalFirestoreDeniedTheWrite => 'Firestore ha negato il salvataggio. Le regole B7 devono essere presenti nel progetto Firebase utilizzato.';
+
+  @override
+  String get btPersonalInvalidAmountOrCurrency => 'Importo o valuta non validi.';
+
+  @override
+  String btPersonalOperationFailed(Object error) {
+    return 'Operazione non riuscita: $error';
+  }
+
+  @override
+  String get btPersonalMyTravelBudget => 'Il mio budget';
+
+  @override
+  String get btPersonalOnlyYouCanSee => 'Solo tu puoi vedere questo budget. Superarlo non blocca nuove spese.';
+
+  @override
+  String get btPersonalPlannedAmount => 'Importo previsto';
+
+  @override
+  String get btPersonalCurrency => 'Valuta';
+
+  @override
+  String get btPersonalRemove => 'Rimuovi';
+
+  @override
+  String get btPersonalCancel => 'Annulla';
+
+  @override
+  String get btPersonalSave => 'Salva';
+
+  @override
+  String get btPersonalBudgetLoadError => 'Errore nel caricamento del budget.';
+
+  @override
+  String get btPersonalSetAnOptionalPersonal => 'Imposta un budget personale facoltativo, visibile soltanto a te.';
+
+  @override
+  String get btPersonalSetBudget => 'Imposta budget';
+
+  @override
+  String get btPersonalUnableToLoadExpenses => 'Impossibile caricare le spese.';
+
+  @override
+  String get btPersonalUnableToLoadPersonal => 'Impossibile caricare le spese personali.';
+
+  @override
+  String get btPersonalEditBudget => 'Modifica budget';
+
+  @override
+  String get btPersonalPlannedBudget => 'Budget previsto';
+
+  @override
+  String get btPersonalYourSharePaidAnd => 'Spesa a tuo carico (pagata e da saldare)';
+
+  @override
+  String get btPersonalRemainingUnavailableAnAmount => 'Rimanente non determinabile: manca un importo o un tasso di cambio.';
+
+  @override
+  String get btPersonalOverBudget => 'Oltre il budget';
+
+  @override
+  String get btPersonalRemaining => 'Disponibile';
+
+  @override
+  String get btPersonalPlannedExpensesAreExcluded => 'Le spese previste sono escluse. Il superamento non blocca nuove spese.';
+
+  @override
+  String get btToolbarEn => 'it';
+
+  @override
+  String get btToolbarDisplayCurrency => 'Valuta di visualizzazione';
+
+  @override
+  String get btToolbarSearchCurrencies => 'Cerca una valuta';
+
+  @override
+  String get btToolbarNoCurrenciesFound => 'Nessuna valuta trovata';
+
+  @override
+  String get btToolbarAllCategories => 'Tutte le categorie';
+
+  @override
+  String get btToolbarFiltersAndDisplay => 'Filtri e visualizzazione';
+
+  @override
+  String get btToolbarCustomizeHowYouView => 'Personalizza come consulti le spese.';
+
+  @override
+  String get btToolbarOriginalAmountsRemainUnchanged => 'Gli importi originali rimangono invariati.';
+
+  @override
+  String get btToolbarSortExpenses => 'Ordina le spese';
+
+  @override
+  String get btToolbarNewest => 'Più recenti';
+
+  @override
+  String get btToolbarOldest => 'Meno recenti';
+
+  @override
+  String get btToolbarAmountAscending => 'Importo crescente';
+
+  @override
+  String get btToolbarAmountDescending => 'Importo decrescente';
+
+  @override
+  String get btToolbarCategory => 'Categoria';
+
+  @override
+  String get btToolbarStatus => 'Stato';
+
+  @override
+  String get btToolbarAllStatuses => 'Tutti gli stati';
+
+  @override
+  String get btToolbarPlanned => 'Prevista';
+
+  @override
+  String get btToolbarOutstanding => 'Da saldare';
+
+  @override
+  String get btToolbarPaid => 'Pagata';
+
+  @override
+  String get btToolbarPeriod => 'Periodo';
+
+  @override
+  String get btToolbarAnyTime => 'Sempre';
+
+  @override
+  String get btToolbarLast30Days => 'Ultimi 30 giorni';
+
+  @override
+  String get btToolbarLast90Days => 'Ultimi 90 giorni';
+
+  @override
+  String get btToolbarReset => 'Ripristina';
+
+  @override
+  String get btToolbarApply => 'Applica';
+
+  @override
+  String get btToolbarAmountsSortedWithinEach => 'Importi ordinati all’interno della stessa valuta originale.';
+
+  @override
+  String get btCreateEn => 'it';
+
+  @override
+  String get btCreateExpenseCurrency => 'Valuta della spesa';
+
+  @override
+  String get btCreateSearchCurrencies => 'Cerca una valuta';
+
+  @override
+  String get btCreateNoCurrenciesFound => 'Nessuna valuta trovata';
+
+  @override
+  String get btCreateYou => 'Tu';
+
+  @override
+  String get btCreateTraveler => 'Viaggiatore';
+
+  @override
+  String get btCreatePaymentsExceedTotal => 'I pagamenti superano il totale.';
+
+  @override
+  String get btCreateSplitPreview => 'Riepilogo della ripartizione';
+
+  @override
+  String get btCreateRecordedBy => 'Registrata da';
+
+  @override
+  String get btCreateTotal => 'Totale';
+
+  @override
+  String get btCreateDeclaredPayments => 'Pagamenti dichiarati';
+
+  @override
+  String get btCreateRemaining => 'Da saldare';
+
+  @override
+  String get btCreateCompleteTheAmountParticipants => 'Completa importo, partecipanti e quote per visualizzare l’anteprima.';
+
+  @override
+  String get btCreateConfirmNewExpense => 'Conferma nuova spesa';
+
+  @override
+  String get btCreateCategory => 'Categoria';
+
+  @override
+  String get btCreateType => 'Tipo';
+
+  @override
+  String get btCreateShared => 'Condivisa';
+
+  @override
+  String get btCreatePersonal => 'Personale';
+
+  @override
+  String get btCreateStatus => 'Stato';
+
+  @override
+  String get btCreatePaymentsRecordedInThis => 'I pagamenti registrati in questa versione devono essere stati effettuati da te.';
+
+  @override
+  String get btCreateBackToEditing => 'Torna a modificare';
+
+  @override
+  String get btCreateConfirmAndSave => 'Conferma e salva';
+
+  @override
+  String get btCreateNewExpense => 'Nuova spesa';
+
+  @override
+  String get btCreateEssentialDetails => 'Informazioni essenziali';
+
+  @override
+  String get btCreateAmountsAndTravelers => 'Importi e partecipanti';
+
+  @override
+  String get btCreate1Details => '1. Dettagli';
+
+  @override
+  String get btCreate2Amounts => '2. Importi';
+
+  @override
+  String get btCreateEnterAnExpenseName => 'Inserisci il nome della spesa.';
+
+  @override
+  String get btCreateExpenseType => 'Tipo di spesa';
+
+  @override
+  String get btCreateChooseWhoCanSee => 'Scegli chi potrà vedere questa spesa.';
+
+  @override
+  String get btCreateExpenseDetails => 'Informazioni della spesa';
+
+  @override
+  String get btCreateExpenseName => 'Nome della spesa';
+
+  @override
+  String get btCreateEGKyotoHotel => 'Es. Hotel a Kyoto';
+
+  @override
+  String get btCreateExpenseDate => 'Data della spesa';
+
+  @override
+  String get btCreateNotesOptional => 'Note (facoltative)';
+
+  @override
+  String get btCreateExpenseAmount => 'Importo della spesa';
+
+  @override
+  String get btCreateCurrency => 'Valuta';
+
+  @override
+  String get btCreateTotalAmount => 'Importo totale';
+
+  @override
+  String get btCreateExpenseStatus => 'Stato della spesa';
+
+  @override
+  String get btCreatePlanned => 'Prevista';
+
+  @override
+  String get btCreateOutstanding => 'Da saldare';
+
+  @override
+  String get btCreatePaid => 'Pagata';
+
+  @override
+  String get btCreateSplitBetweenTravelers => 'Dividi tra i viaggiatori';
+
+  @override
+  String get btCreateEqualShares => 'Quote uguali';
+
+  @override
+  String get btCreateCustomShares => 'Personalizzate';
+
+  @override
+  String btCreateShare(Object value1) {
+    return 'Quota di $value1';
+  }
+
+  @override
+  String get btCreateHowWasItPaid => 'Come è stata pagata?';
+
+  @override
+  String get btCreateRecordOnlyPaymentsYou => 'Registra solo pagamenti effettuati da te.';
+
+  @override
+  String get btCreateSummary => 'Riepilogo';
+
+  @override
+  String get btCreateCancel => 'Annulla';
+
+  @override
+  String get btCreateBack => 'Indietro';
+
+  @override
+  String get btCreateContinue => 'Continua';
+
+  @override
+  String get btCreateSaveExpense => 'Salva spesa';
+
+  @override
+  String get btPageRefresh => 'Aggiorna';
+
+  @override
+  String get btPageFilters => 'Filtri';
+
+  @override
+  String get btPageUnableToLoadTrip => 'Impossibile caricare il viaggio.';
+
+  @override
+  String get btPageTripExpenseList => 'Le spese del viaggio';
+
+  @override
+  String get btPageShared => 'Condivise';
+
+  @override
+  String get btPagePersonal => 'Personali';
 }

@@ -1,4 +1,5 @@
 import 'budget_expense_day.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +105,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
 
     try {
       final fetched = await const DestinationPlacesService().getCurrencies(
-        languageCode: it ? 'it' : 'en',
+        languageCode: _l10n(it).btPersonalEn,
       );
 
       currencies = fetched
@@ -138,9 +139,9 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
         child: TripCurrencyPickerSheet(
           currencies: currencies,
           selectedCurrency: selected,
-          title: it ? 'Valuta del budget' : 'Budget currency',
-          searchHint: it ? 'Cerca una valuta' : 'Search currencies',
-          noResultsText: it ? 'Nessuna valuta trovata' : 'No currencies found',
+          title: _l10n(it).btPersonalBudgetCurrency,
+          searchHint: _l10n(it).btPersonalSearchCurrencies,
+          noResultsText: _l10n(it).btPersonalNoCurrenciesFound,
         ),
       ),
     );
@@ -152,22 +153,14 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
 
   String _friendlyError(Object error, bool it) {
     if (error is FirebaseException && error.code == 'permission-denied') {
-      return it
-          ? 'Firestore ha negato il salvataggio. '
-                'Le regole B7 devono essere presenti nel '
-                'progetto Firebase utilizzato.'
-          : 'Firestore denied the write. '
-                'B7 rules must be deployed to the '
-                'Firebase project in use.';
+      return _l10n(it).btPersonalFirestoreDeniedTheWrite;
     }
 
     if (error is ArgumentError || error is FormatException) {
-      return it
-          ? 'Importo o valuta non validi.'
-          : 'Invalid amount or currency.';
+      return _l10n(it).btPersonalInvalidAmountOrCurrency;
     }
 
-    return it ? 'Operazione non riuscita: $error' : 'Operation failed: $error';
+    return _l10n(it).btPersonalOperationFailed(error);
   }
 
   Future<void> _edit(PersonalTripBudget? existing) async {
@@ -188,7 +181,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
           builder: (dialogContext, update) => AlertDialog(
             backgroundColor: const Color(0xFF231915),
             title: Text(
-              it ? 'Il mio budget' : 'My travel budget',
+              _l10n(it).btPersonalMyTravelBudget,
               style: const TextStyle(color: _cream),
             ),
             content: SizedBox(
@@ -199,11 +192,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      it
-                          ? 'Solo tu puoi vedere questo budget. '
-                                'Superarlo non blocca nuove spese.'
-                          : 'Only you can see this budget. '
-                                'Exceeding it never blocks new expenses.',
+                      _l10n(it).btPersonalOnlyYouCanSee,
                       style: const TextStyle(color: _muted),
                     ),
                     const SizedBox(height: 18),
@@ -214,7 +203,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                         decimal: true,
                       ),
                       decoration: InputDecoration(
-                        labelText: it ? 'Importo previsto' : 'Planned amount',
+                        labelText: _l10n(it).btPersonalPlannedAmount,
                         suffixText: currency,
                         border: const OutlineInputBorder(),
                       ),
@@ -244,7 +233,9 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                                 });
                               },
                         icon: const Icon(Icons.currency_exchange_rounded),
-                        label: Text('${it ? 'Valuta' : 'Currency'}: $currency'),
+                        label: Text(
+                          '${_l10n(it).btPersonalCurrency}: $currency',
+                        ),
                       ),
                     ),
                     if (error != null) ...[
@@ -281,13 +272,13 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             }
                           }
                         },
-                  child: Text(it ? 'Rimuovi' : 'Remove'),
+                  child: Text(_l10n(it).btPersonalRemove),
                 ),
               TextButton(
                 onPressed: saving
                     ? null
                     : () => Navigator.of(dialogContext).pop(),
-                child: Text(it ? 'Annulla' : 'Cancel'),
+                child: Text(_l10n(it).btPersonalCancel),
               ),
               FilledButton(
                 style: FilledButton.styleFrom(
@@ -331,7 +322,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                           }
                         }
                       },
-                child: Text(it ? 'Salva' : 'Save'),
+                child: Text(_l10n(it).btPersonalSave),
               ),
             ],
           ),
@@ -470,7 +461,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
         if (state.hasError) {
           return _panel(
             Text(
-              it ? 'Errore nel caricamento del budget.' : 'Budget load error.',
+              _l10n(it).btPersonalBudgetLoadError,
               style: const TextStyle(color: _red),
             ),
           );
@@ -488,7 +479,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  it ? 'Il mio budget' : 'My travel budget',
+                  _l10n(it).btPersonalMyTravelBudget,
                   style: const TextStyle(
                     color: _cream,
                     fontSize: 19,
@@ -497,18 +488,14 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  it
-                      ? 'Imposta un budget personale facoltativo, '
-                            'visibile soltanto a te.'
-                      : 'Set an optional personal budget '
-                            'visible only to you.',
+                  _l10n(it).btPersonalSetAnOptionalPersonal,
                   style: const TextStyle(color: _muted),
                 ),
                 const SizedBox(height: 12),
                 OutlinedButton.icon(
                   onPressed: () => _edit(null),
                   icon: const Icon(Icons.add_rounded),
-                  label: Text(it ? 'Imposta budget' : 'Set budget'),
+                  label: Text(_l10n(it).btPersonalSetBudget),
                 ),
               ],
             ),
@@ -521,9 +508,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
             if (shared.hasError) {
               return _panel(
                 Text(
-                  it
-                      ? 'Impossibile caricare le spese.'
-                      : 'Unable to load expenses.',
+                  _l10n(it).btPersonalUnableToLoadExpenses,
                   style: const TextStyle(color: _red),
                 ),
               );
@@ -539,9 +524,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                 if (personal.hasError) {
                   return _panel(
                     Text(
-                      it
-                          ? 'Impossibile caricare le spese personali.'
-                          : 'Unable to load personal expenses.',
+                      _l10n(it).btPersonalUnableToLoadPersonal,
                       style: const TextStyle(color: _red),
                     ),
                   );
@@ -584,7 +567,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                               const SizedBox(width: 9),
                               Expanded(
                                 child: Text(
-                                  it ? 'Il mio budget' : 'My travel budget',
+                                  _l10n(it).btPersonalMyTravelBudget,
                                   style: const TextStyle(
                                     color: _cream,
                                     fontSize: 19,
@@ -593,7 +576,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                                 ),
                               ),
                               IconButton(
-                                tooltip: it ? 'Modifica budget' : 'Edit budget',
+                                tooltip: _l10n(it).btPersonalEditBudget,
                                 onPressed: () => _edit(budget),
                                 icon: const Icon(
                                   Icons.edit_outlined,
@@ -610,7 +593,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             fontSize: 26,
                           ),
                           Text(
-                            it ? 'Budget previsto' : 'Planned budget',
+                            _l10n(it).btPersonalPlannedBudget,
                             style: const TextStyle(color: _muted),
                           ),
                           const SizedBox(height: 16),
@@ -630,28 +613,20 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                               fontSize: 18,
                             ),
                           Text(
-                            it
-                                ? 'Spesa a tuo carico '
-                                      '(pagata e da saldare)'
-                                : 'Your share '
-                                      '(paid and outstanding)',
+                            _l10n(it).btPersonalYourSharePaidAnd,
                             style: const TextStyle(color: _muted),
                           ),
                           const SizedBox(height: 14),
                           if (incomplete)
                             Text(
-                              it
-                                  ? 'Rimanente non determinabile: '
-                                        'manca un importo o un tasso di cambio.'
-                                  : 'Remaining unavailable: '
-                                        'an amount or exchange rate is missing.',
+                              _l10n(it).btPersonalRemainingUnavailableAnAmount,
                               style: const TextStyle(color: _gold),
                             )
                           else ...[
                             Text(
                               exceeded
-                                  ? (it ? 'Oltre il budget' : 'Over budget')
-                                  : (it ? 'Disponibile' : 'Remaining'),
+                                  ? (_l10n(it).btPersonalOverBudget)
+                                  : (_l10n(it).btPersonalRemaining),
                               style: const TextStyle(color: _muted),
                             ),
                             BudgetDisplayAmount(
@@ -674,11 +649,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                           ],
                           const SizedBox(height: 12),
                           Text(
-                            it
-                                ? 'Le spese previste sono escluse. '
-                                      'Il superamento non blocca nuove spese.'
-                                : 'Planned expenses are excluded. '
-                                      'Exceeding the budget never blocks expenses.',
+                            _l10n(it).btPersonalPlannedExpensesAreExcluded,
                             style: const TextStyle(color: _muted, fontSize: 12),
                           ),
                         ],
@@ -694,3 +665,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

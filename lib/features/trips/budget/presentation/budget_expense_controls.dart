@@ -38,9 +38,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
     try {
       await action();
       if (mounted) {
-        setState(
-          () => _message = _it ? 'Richiesta registrata.' : 'Request recorded.',
-        );
+        setState(() => _message = _l10n(_it).btControlsRequestRecorded);
       }
     } catch (e) {
       if (mounted) {
@@ -57,20 +55,16 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
       await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text(_it ? 'Conferma operazione' : 'Confirm action'),
-          content: Text(
-            _it
-                ? 'La spesa sarà annullata solo dopo tutte le approvazioni necessarie. Lo storico sarà conservato.'
-                : 'The expense will be cancelled only after required approvals. History is preserved.',
-          ),
+          title: Text(_l10n(_it).btControlsConfirmAction),
+          content: Text(_l10n(_it).btControlsTheExpenseWillBe),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: Text(_it ? 'Annulla' : 'Cancel'),
+              child: Text(_l10n(_it).btControlsCancel),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
-              child: Text(_it ? 'Conferma' : 'Confirm'),
+              child: Text(_l10n(_it).btControlsConfirm),
             ),
           ],
         ),
@@ -82,11 +76,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
     final data = widget.expense;
     final cancelled = data['lifecycle'] == 'cancelled';
     if (cancelled) {
-      return Text(
-        _it
-            ? 'Spesa annullata · storico conservato'
-            : 'Cancelled expense · history retained',
-      );
+      return Text(_l10n(_it).btControlsCancelledExpenseHistoryRetained);
     }
 
     return Column(
@@ -95,7 +85,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
         const SizedBox(height: 14),
         const Divider(),
         Text(
-          _it ? 'Gestione spesa' : 'Expense management',
+          _l10n(_it).btControlsExpenseManagement,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
@@ -135,8 +125,8 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
           icon: const Icon(Icons.delete_outline),
           label: Text(
             widget.isPrivate
-                ? (_it ? 'Annulla spesa personale' : 'Cancel personal expense')
-                : (_it ? 'Proponi annullamento' : 'Propose cancellation'),
+                ? (_l10n(_it).btControlsCancelPersonalExpense)
+                : (_l10n(_it).btControlsProposeCancellation),
           ),
         ),
         if (!widget.isPrivate)
@@ -160,9 +150,10 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _it
-                        ? 'Annullamento in attesa: ${approved.length}/${required.length}'
-                        : 'Pending cancellation: ${approved.length}/${required.length}',
+                    _l10n(_it).btControlsPendingCancellation(
+                      approved.length,
+                      required.length,
+                    ),
                   ),
                   if (canVote)
                     Wrap(
@@ -177,7 +168,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                                     false,
                                   ),
                                 ),
-                          child: Text(_it ? 'Rifiuta' : 'Reject'),
+                          child: Text(_l10n(_it).btControlsReject),
                         ),
                         FilledButton(
                           onPressed: _busy
@@ -188,7 +179,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                                     true,
                                   ),
                                 ),
-                          child: Text(_it ? 'Approva' : 'Approve'),
+                          child: Text(_l10n(_it).btControlsApprove),
                         ),
                       ],
                     ),
@@ -222,3 +213,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

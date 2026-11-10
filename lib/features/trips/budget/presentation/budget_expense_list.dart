@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import 'budget_api.dart';
@@ -29,19 +30,19 @@ class BudgetExpenseList extends StatelessWidget {
   String _categoryLabel(String value, bool it) {
     switch (value) {
       case 'accommodation':
-        return it ? 'Alloggio' : 'Accommodation';
+        return _l10n(it).btListAccommodation;
       case 'food':
-        return it ? 'Cibo e bevande' : 'Food & drinks';
+        return _l10n(it).btListFoodDrinks;
       case 'transport':
-        return it ? 'Trasporti' : 'Transport';
+        return _l10n(it).btListTransport;
       case 'activities':
-        return it ? 'Attività' : 'Activities';
+        return _l10n(it).btListActivities;
       case 'shopping':
         return 'Shopping';
       case 'other':
-        return it ? 'Altro' : 'Other';
+        return _l10n(it).btListOther;
       default:
-        return value.trim().isEmpty ? (it ? 'Altro' : 'Other') : value;
+        return value.trim().isEmpty ? (_l10n(it).btListOther) : value;
     }
   }
 
@@ -65,13 +66,13 @@ class BudgetExpenseList extends StatelessWidget {
   String _statusLabel(String status, bool it) {
     switch (status) {
       case 'paid':
-        return it ? 'Saldata' : 'Paid';
+        return _l10n(it).btListPaid;
       case 'planned':
-        return it ? 'Prevista' : 'Planned';
+        return _l10n(it).btListPlanned;
       case 'outstanding':
-        return it ? 'Da saldare' : 'Outstanding';
+        return _l10n(it).btListOutstanding;
       default:
-        return it ? 'Stato non disponibile' : 'Status unavailable';
+        return _l10n(it).btListStatusUnavailable;
     }
   }
 
@@ -86,9 +87,7 @@ class BudgetExpenseList extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
-              it
-                  ? 'Impossibile caricare le spese.'
-                  : 'Unable to load expenses.',
+              _l10n(it).btListUnableToLoadExpenses,
               style: const TextStyle(color: _muted),
             ),
           );
@@ -119,7 +118,7 @@ class BudgetExpenseList extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  it ? 'Nessuna spesa da mostrare.' : 'No expenses to display.',
+                  _l10n(it).btListNoExpensesToDisplay,
                   textAlign: TextAlign.center,
                   style: const TextStyle(color: _muted),
                 ),
@@ -158,7 +157,7 @@ class BudgetExpenseList extends StatelessWidget {
 
                   final title = rawTitle.isNotEmpty
                       ? rawTitle
-                      : (it ? 'Spesa senza titolo' : 'Untitled expense');
+                      : (_l10n(it).btListUntitledExpense);
 
                   final notes = (data['notes']?.toString() ?? '').trim();
 
@@ -260,9 +259,9 @@ class BudgetExpenseList extends StatelessWidget {
                                       ),
                                       if (!private)
                                         Text(
-                                          it
-                                              ? '${shares.length} partecipanti'
-                                              : '${shares.length} travelers',
+                                          _l10n(
+                                            it,
+                                          ).btListTravelers(shares.length),
                                           style: const TextStyle(
                                             color: _muted,
                                             fontSize: 12,
@@ -300,3 +299,7 @@ class BudgetExpenseList extends StatelessWidget {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

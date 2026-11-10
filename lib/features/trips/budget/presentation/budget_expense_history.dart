@@ -76,11 +76,7 @@ class BudgetExpenseHistory extends StatelessWidget {
                     ),
                     builder: (context, result) {
                       if (result.hasError) {
-                        return Text(
-                          it
-                              ? 'Storico non disponibile'
-                              : 'History unavailable',
-                        );
+                        return Text(_l10n(it).btHistHistoryUnavailable);
                       }
                       if (!result.hasData) {
                         return const LinearProgressIndicator();
@@ -125,8 +121,8 @@ class BudgetExpenseHistory extends StatelessWidget {
                                   final values = snapshot[key];
                                   if (values is! Map) continue;
                                   final label = key == 'shares'
-                                      ? (it ? 'Quota' : 'Share')
-                                      : (it ? 'Anticipo' : 'Advance');
+                                      ? (_l10n(it).btHistShare)
+                                      : (_l10n(it).btHistAdvance);
                                   for (final value in values.entries) {
                                     details.add(
                                       '$label · ${person(value.key)} · ${money(value.value)}',
@@ -140,13 +136,13 @@ class BudgetExpenseHistory extends StatelessWidget {
                                     final currency = payment['accountCurrency'];
                                     final debit = payment['accountDebitMinor'];
                                     details.add(
-                                      '${it ? "Conto" : "Account"} · ${person(payment['payerUid'])} · ${debit == null ? currency : money({'currency': currency, 'minorUnits': debit})}',
+                                      '${_l10n(it).btHistAccount} · ${person(payment['payerUid'])} · ${debit == null ? currency : money({'currency': currency, 'minorUnits': debit})}',
                                     );
                                   }
                                 }
                                 return ListTile(
                                   title: Text(
-                                    '${it ? "Revisione" : "Revision"} ${entry['number']} · ${money(snapshot['total'])}',
+                                    '${_l10n(it).btHistRevision} ${entry['number']} · ${money(snapshot['total'])}',
                                   ),
                                   subtitle: Text(details.join('\n')),
                                 );
@@ -164,3 +160,7 @@ class BudgetExpenseHistory extends StatelessWidget {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

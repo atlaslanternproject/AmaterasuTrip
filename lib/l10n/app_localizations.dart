@@ -5248,6 +5248,1350 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Chart: {description}'**
   String b85ChartSemantics(String description);
+
+  /// No description provided for @btAmountOriginal.
+  ///
+  /// In en, this message translates to:
+  /// **'Original'**
+  String get btAmountOriginal;
+
+  /// No description provided for @btAmountAutomaticExchangeRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic exchange rate'**
+  String get btAmountAutomaticExchangeRate;
+
+  /// No description provided for @btAmountConverting.
+  ///
+  /// In en, this message translates to:
+  /// **'Converting'**
+  String get btAmountConverting;
+
+  /// No description provided for @btAmountExchangeRateUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Exchange rate unavailable'**
+  String get btAmountExchangeRateUnavailable;
+
+  /// No description provided for @btDashMyAdvances.
+  ///
+  /// In en, this message translates to:
+  /// **'My advances'**
+  String get btDashMyAdvances;
+
+  /// No description provided for @btCatAccommodation.
+  ///
+  /// In en, this message translates to:
+  /// **'Accommodation'**
+  String get btCatAccommodation;
+
+  /// No description provided for @btCatFoodDrinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Food & drinks'**
+  String get btCatFoodDrinks;
+
+  /// No description provided for @btCatTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get btCatTransport;
+
+  /// No description provided for @btCatActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities'**
+  String get btCatActivities;
+
+  /// No description provided for @btCatOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get btCatOther;
+
+  /// No description provided for @btHistHistoryUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'History unavailable'**
+  String get btHistHistoryUnavailable;
+
+  /// No description provided for @btHistShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get btHistShare;
+
+  /// No description provided for @btHistAdvance.
+  ///
+  /// In en, this message translates to:
+  /// **'Advance'**
+  String get btHistAdvance;
+
+  /// No description provided for @btHistAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get btHistAccount;
+
+  /// No description provided for @btHistRevision.
+  ///
+  /// In en, this message translates to:
+  /// **'Revision'**
+  String get btHistRevision;
+
+  /// No description provided for @btOverviewOverviewError.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview error'**
+  String get btOverviewOverviewError;
+
+  /// No description provided for @btOverviewFinancialOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial overview'**
+  String get btOverviewFinancialOverview;
+
+  /// No description provided for @btOverviewRecordedExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded expenses'**
+  String get btOverviewRecordedExpenses;
+
+  /// No description provided for @btOverviewNoExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'No expenses.'**
+  String get btOverviewNoExpenses;
+
+  /// No description provided for @btOverviewTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get btOverviewTotal;
+
+  /// No description provided for @btOverviewAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get btOverviewAdvanced;
+
+  /// No description provided for @btOverviewOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get btOverviewOutstanding;
+
+  /// No description provided for @btOverviewAmountsSeparatedByCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Amounts separated by currency, without automatic conversion.'**
+  String get btOverviewAmountsSeparatedByCurrency;
+
+  /// No description provided for @btMethodsCash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get btMethodsCash;
+
+  /// No description provided for @btMethodsCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Card'**
+  String get btMethodsCard;
+
+  /// No description provided for @btMethodsBankTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank transfer'**
+  String get btMethodsBankTransfer;
+
+  /// No description provided for @btMethodsOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get btMethodsOther;
+
+  /// No description provided for @btMethodsPaymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment methods'**
+  String get btMethodsPaymentMethods;
+
+  /// No description provided for @btMethodsRecordHowYouPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Record how you paid, using multiple methods if needed.'**
+  String get btMethodsRecordHowYouPaid;
+
+  /// No description provided for @btMethodsMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Method'**
+  String get btMethodsMethod;
+
+  /// No description provided for @btMethodsAmountPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount paid'**
+  String get btMethodsAmountPaid;
+
+  /// No description provided for @btMethodsAccountCurrencyEG.
+  ///
+  /// In en, this message translates to:
+  /// **'Account currency (e.g. EUR)'**
+  String get btMethodsAccountCurrencyEG;
+
+  /// No description provided for @btMethodsActualAccountDebitIf.
+  ///
+  /// In en, this message translates to:
+  /// **'Actual account debit, if known'**
+  String get btMethodsActualAccountDebitIf;
+
+  /// No description provided for @btMethodsMethodDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Method description'**
+  String get btMethodsMethodDescription;
+
+  /// No description provided for @btMethodsRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get btMethodsRemove;
+
+  /// No description provided for @btMethodsAddMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Add method'**
+  String get btMethodsAddMethod;
+
+  /// No description provided for @btControlsRequestRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Request recorded.'**
+  String get btControlsRequestRecorded;
+
+  /// No description provided for @btControlsConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm action'**
+  String get btControlsConfirmAction;
+
+  /// No description provided for @btControlsTheExpenseWillBe.
+  ///
+  /// In en, this message translates to:
+  /// **'The expense will be cancelled only after required approvals. History is preserved.'**
+  String get btControlsTheExpenseWillBe;
+
+  /// No description provided for @btControlsCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get btControlsCancel;
+
+  /// No description provided for @btControlsConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get btControlsConfirm;
+
+  /// No description provided for @btControlsCancelledExpenseHistoryRetained.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled expense · history retained'**
+  String get btControlsCancelledExpenseHistoryRetained;
+
+  /// No description provided for @btControlsExpenseManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense management'**
+  String get btControlsExpenseManagement;
+
+  /// No description provided for @btControlsCancelPersonalExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel personal expense'**
+  String get btControlsCancelPersonalExpense;
+
+  /// No description provided for @btControlsProposeCancellation.
+  ///
+  /// In en, this message translates to:
+  /// **'Propose cancellation'**
+  String get btControlsProposeCancellation;
+
+  /// No description provided for @btControlsPendingCancellation.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending cancellation: {value1}/{value2}'**
+  String btControlsPendingCancellation(Object value1, Object value2);
+
+  /// No description provided for @btControlsReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get btControlsReject;
+
+  /// No description provided for @btControlsApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get btControlsApprove;
+
+  /// No description provided for @btListAccommodation.
+  ///
+  /// In en, this message translates to:
+  /// **'Accommodation'**
+  String get btListAccommodation;
+
+  /// No description provided for @btListFoodDrinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Food & drinks'**
+  String get btListFoodDrinks;
+
+  /// No description provided for @btListTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get btListTransport;
+
+  /// No description provided for @btListActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities'**
+  String get btListActivities;
+
+  /// No description provided for @btListOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get btListOther;
+
+  /// No description provided for @btListPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get btListPaid;
+
+  /// No description provided for @btListPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get btListPlanned;
+
+  /// No description provided for @btListOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get btListOutstanding;
+
+  /// No description provided for @btListStatusUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Status unavailable'**
+  String get btListStatusUnavailable;
+
+  /// No description provided for @btListUnableToLoadExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load expenses.'**
+  String get btListUnableToLoadExpenses;
+
+  /// No description provided for @btListNoExpensesToDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'No expenses to display.'**
+  String get btListNoExpensesToDisplay;
+
+  /// No description provided for @btListUntitledExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled expense'**
+  String get btListUntitledExpense;
+
+  /// No description provided for @btListTravelers.
+  ///
+  /// In en, this message translates to:
+  /// **'{value1} travelers'**
+  String btListTravelers(Object value1);
+
+  /// No description provided for @btDetailsAccommodation.
+  ///
+  /// In en, this message translates to:
+  /// **'Accommodation'**
+  String get btDetailsAccommodation;
+
+  /// No description provided for @btDetailsFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get btDetailsFood;
+
+  /// No description provided for @btDetailsTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get btDetailsTransport;
+
+  /// No description provided for @btDetailsActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities'**
+  String get btDetailsActivities;
+
+  /// No description provided for @btDetailsOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get btDetailsOther;
+
+  /// No description provided for @btDetailsPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get btDetailsPlanned;
+
+  /// No description provided for @btDetailsOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get btDetailsOutstanding;
+
+  /// No description provided for @btDetailsPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get btDetailsPaid;
+
+  /// No description provided for @btDetailsUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get btDetailsUnavailable;
+
+  /// No description provided for @btDetailsNoAmountsRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'No amounts recorded.'**
+  String get btDetailsNoAmountsRecorded;
+
+  /// No description provided for @btDetailsNameUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Name unavailable'**
+  String get btDetailsNameUnavailable;
+
+  /// No description provided for @btDetailsLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get btDetailsLoading;
+
+  /// No description provided for @btDetailsExpenseDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense details'**
+  String get btDetailsExpenseDetails;
+
+  /// No description provided for @btDetailsUntitledExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled expense'**
+  String get btDetailsUntitledExpense;
+
+  /// No description provided for @btDetailsAdjustRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust rate {originalCurrency}/{target}'**
+  String btDetailsAdjustRate(Object originalCurrency, Object target);
+
+  /// No description provided for @btDetailsAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get btDetailsAccount;
+
+  /// No description provided for @btDetailsNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get btDetailsNotes;
+
+  /// No description provided for @btDetailsManageExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage expense'**
+  String get btDetailsManageExpense;
+
+  /// No description provided for @btRefundsOperationRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Operation recorded.'**
+  String get btRefundsOperationRecorded;
+
+  /// No description provided for @btRefundsReportReimbursement.
+  ///
+  /// In en, this message translates to:
+  /// **'Report reimbursement'**
+  String get btRefundsReportReimbursement;
+
+  /// No description provided for @btRefundsReimbursementTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Reimbursement to {creditorName}'**
+  String btRefundsReimbursementTo(Object creditorName);
+
+  /// No description provided for @btRefundsMaximumReimbursable.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum reimbursable'**
+  String get btRefundsMaximumReimbursable;
+
+  /// No description provided for @btRefundsRecordHowYouReimbursed.
+  ///
+  /// In en, this message translates to:
+  /// **'Record how you reimbursed in {currency}. The recipient must confirm.'**
+  String btRefundsRecordHowYouReimbursed(Object currency);
+
+  /// No description provided for @btRefundsDeclaredTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Declared total'**
+  String get btRefundsDeclaredTotal;
+
+  /// No description provided for @btRefundsAddValidMethodsThe.
+  ///
+  /// In en, this message translates to:
+  /// **'Add valid methods. The total must be positive and within the maximum.'**
+  String get btRefundsAddValidMethodsThe;
+
+  /// No description provided for @btRefundsCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get btRefundsCancel;
+
+  /// No description provided for @btRefundsSubmitRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit request'**
+  String get btRefundsSubmitRequest;
+
+  /// No description provided for @btRefundsCash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get btRefundsCash;
+
+  /// No description provided for @btRefundsCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Card'**
+  String get btRefundsCard;
+
+  /// No description provided for @btRefundsBankTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank transfer'**
+  String get btRefundsBankTransfer;
+
+  /// No description provided for @btRefundsOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get btRefundsOther;
+
+  /// No description provided for @btRefundsReimbursementMethodNotRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Reimbursement method not recorded'**
+  String get btRefundsReimbursementMethodNotRecorded;
+
+  /// No description provided for @btRefundsDetailsUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Details unavailable'**
+  String get btRefundsDetailsUnavailable;
+
+  /// No description provided for @btRefundsDeclaredMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Declared methods'**
+  String get btRefundsDeclaredMethods;
+
+  /// No description provided for @btRefundsDebtsBetweenTravelersBecome.
+  ///
+  /// In en, this message translates to:
+  /// **'Debts between travelers become final only once the supplier has been paid.'**
+  String get btRefundsDebtsBetweenTravelersBecome;
+
+  /// No description provided for @btRefundsUnableToLoadTraveler.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load traveler names.'**
+  String get btRefundsUnableToLoadTraveler;
+
+  /// No description provided for @btRefundsUnableToLoadReimbursements.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load reimbursements.'**
+  String get btRefundsUnableToLoadReimbursements;
+
+  /// No description provided for @btRefundsDebtsAndReimbursements.
+  ///
+  /// In en, this message translates to:
+  /// **'Debts and reimbursements'**
+  String get btRefundsDebtsAndReimbursements;
+
+  /// No description provided for @btRefundsWhoOwesMoneyCan.
+  ///
+  /// In en, this message translates to:
+  /// **'Who owes money can report a reimbursement. Who should receive it must confirm it.'**
+  String get btRefundsWhoOwesMoneyCan;
+
+  /// No description provided for @btRefundsRequestsWaitingForYour.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests waiting for your confirmation'**
+  String get btRefundsRequestsWaitingForYour;
+
+  /// No description provided for @btRefundsRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'Requested'**
+  String get btRefundsRequested;
+
+  /// No description provided for @btRefundsDecision.
+  ///
+  /// In en, this message translates to:
+  /// **'Decision'**
+  String get btRefundsDecision;
+
+  /// No description provided for @btRefundsDecidedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Decided by'**
+  String get btRefundsDecidedBy;
+
+  /// No description provided for @btRefundsReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get btRefundsReject;
+
+  /// No description provided for @btRefundsConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get btRefundsConfirm;
+
+  /// No description provided for @btRefundsOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get btRefundsOutstanding;
+
+  /// No description provided for @btRefundsConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get btRefundsConfirmed;
+
+  /// No description provided for @btRefundsPendingConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending confirmation'**
+  String get btRefundsPendingConfirmation;
+
+  /// No description provided for @btRefundsReportAReimbursement.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a reimbursement'**
+  String get btRefundsReportAReimbursement;
+
+  /// No description provided for @btRefundsReimbursementHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Reimbursement history'**
+  String get btRefundsReimbursementHistory;
+
+  /// No description provided for @btRefundsRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get btRefundsRejected;
+
+  /// No description provided for @btRefundsPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get btRefundsPending;
+
+  /// No description provided for @btPersonalEn.
+  ///
+  /// In en, this message translates to:
+  /// **'en'**
+  String get btPersonalEn;
+
+  /// No description provided for @btPersonalBudgetCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget currency'**
+  String get btPersonalBudgetCurrency;
+
+  /// No description provided for @btPersonalSearchCurrencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Search currencies'**
+  String get btPersonalSearchCurrencies;
+
+  /// No description provided for @btPersonalNoCurrenciesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No currencies found'**
+  String get btPersonalNoCurrenciesFound;
+
+  /// No description provided for @btPersonalFirestoreDeniedTheWrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Firestore denied the write. B7 rules must be deployed to the Firebase project in use.'**
+  String get btPersonalFirestoreDeniedTheWrite;
+
+  /// No description provided for @btPersonalInvalidAmountOrCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid amount or currency.'**
+  String get btPersonalInvalidAmountOrCurrency;
+
+  /// No description provided for @btPersonalOperationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Operation failed: {error}'**
+  String btPersonalOperationFailed(Object error);
+
+  /// No description provided for @btPersonalMyTravelBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'My travel budget'**
+  String get btPersonalMyTravelBudget;
+
+  /// No description provided for @btPersonalOnlyYouCanSee.
+  ///
+  /// In en, this message translates to:
+  /// **'Only you can see this budget. Exceeding it never blocks new expenses.'**
+  String get btPersonalOnlyYouCanSee;
+
+  /// No description provided for @btPersonalPlannedAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned amount'**
+  String get btPersonalPlannedAmount;
+
+  /// No description provided for @btPersonalCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get btPersonalCurrency;
+
+  /// No description provided for @btPersonalRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get btPersonalRemove;
+
+  /// No description provided for @btPersonalCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get btPersonalCancel;
+
+  /// No description provided for @btPersonalSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get btPersonalSave;
+
+  /// No description provided for @btPersonalBudgetLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget load error.'**
+  String get btPersonalBudgetLoadError;
+
+  /// No description provided for @btPersonalSetAnOptionalPersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Set an optional personal budget visible only to you.'**
+  String get btPersonalSetAnOptionalPersonal;
+
+  /// No description provided for @btPersonalSetBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Set budget'**
+  String get btPersonalSetBudget;
+
+  /// No description provided for @btPersonalUnableToLoadExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load expenses.'**
+  String get btPersonalUnableToLoadExpenses;
+
+  /// No description provided for @btPersonalUnableToLoadPersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load personal expenses.'**
+  String get btPersonalUnableToLoadPersonal;
+
+  /// No description provided for @btPersonalEditBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit budget'**
+  String get btPersonalEditBudget;
+
+  /// No description provided for @btPersonalPlannedBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned budget'**
+  String get btPersonalPlannedBudget;
+
+  /// No description provided for @btPersonalYourSharePaidAnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Your share (paid and outstanding)'**
+  String get btPersonalYourSharePaidAnd;
+
+  /// No description provided for @btPersonalRemainingUnavailableAnAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining unavailable: an amount or exchange rate is missing.'**
+  String get btPersonalRemainingUnavailableAnAmount;
+
+  /// No description provided for @btPersonalOverBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Over budget'**
+  String get btPersonalOverBudget;
+
+  /// No description provided for @btPersonalRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining'**
+  String get btPersonalRemaining;
+
+  /// No description provided for @btPersonalPlannedExpensesAreExcluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned expenses are excluded. Exceeding the budget never blocks expenses.'**
+  String get btPersonalPlannedExpensesAreExcluded;
+
+  /// No description provided for @btToolbarEn.
+  ///
+  /// In en, this message translates to:
+  /// **'en'**
+  String get btToolbarEn;
+
+  /// No description provided for @btToolbarDisplayCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Display currency'**
+  String get btToolbarDisplayCurrency;
+
+  /// No description provided for @btToolbarSearchCurrencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Search currencies'**
+  String get btToolbarSearchCurrencies;
+
+  /// No description provided for @btToolbarNoCurrenciesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No currencies found'**
+  String get btToolbarNoCurrenciesFound;
+
+  /// No description provided for @btToolbarAllCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'All categories'**
+  String get btToolbarAllCategories;
+
+  /// No description provided for @btToolbarFiltersAndDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters and display'**
+  String get btToolbarFiltersAndDisplay;
+
+  /// No description provided for @btToolbarCustomizeHowYouView.
+  ///
+  /// In en, this message translates to:
+  /// **'Customize how you view expenses.'**
+  String get btToolbarCustomizeHowYouView;
+
+  /// No description provided for @btToolbarOriginalAmountsRemainUnchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Original amounts remain unchanged.'**
+  String get btToolbarOriginalAmountsRemainUnchanged;
+
+  /// No description provided for @btToolbarSortExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort expenses'**
+  String get btToolbarSortExpenses;
+
+  /// No description provided for @btToolbarNewest.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest'**
+  String get btToolbarNewest;
+
+  /// No description provided for @btToolbarOldest.
+  ///
+  /// In en, this message translates to:
+  /// **'Oldest'**
+  String get btToolbarOldest;
+
+  /// No description provided for @btToolbarAmountAscending.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount ascending'**
+  String get btToolbarAmountAscending;
+
+  /// No description provided for @btToolbarAmountDescending.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount descending'**
+  String get btToolbarAmountDescending;
+
+  /// No description provided for @btToolbarCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get btToolbarCategory;
+
+  /// No description provided for @btToolbarStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get btToolbarStatus;
+
+  /// No description provided for @btToolbarAllStatuses.
+  ///
+  /// In en, this message translates to:
+  /// **'All statuses'**
+  String get btToolbarAllStatuses;
+
+  /// No description provided for @btToolbarPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get btToolbarPlanned;
+
+  /// No description provided for @btToolbarOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get btToolbarOutstanding;
+
+  /// No description provided for @btToolbarPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get btToolbarPaid;
+
+  /// No description provided for @btToolbarPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Period'**
+  String get btToolbarPeriod;
+
+  /// No description provided for @btToolbarAnyTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Any time'**
+  String get btToolbarAnyTime;
+
+  /// No description provided for @btToolbarLast30Days.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 30 days'**
+  String get btToolbarLast30Days;
+
+  /// No description provided for @btToolbarLast90Days.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 90 days'**
+  String get btToolbarLast90Days;
+
+  /// No description provided for @btToolbarReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get btToolbarReset;
+
+  /// No description provided for @btToolbarApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get btToolbarApply;
+
+  /// No description provided for @btToolbarAmountsSortedWithinEach.
+  ///
+  /// In en, this message translates to:
+  /// **'Amounts sorted within each original currency.'**
+  String get btToolbarAmountsSortedWithinEach;
+
+  /// No description provided for @btCreateEn.
+  ///
+  /// In en, this message translates to:
+  /// **'en'**
+  String get btCreateEn;
+
+  /// No description provided for @btCreateExpenseCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense currency'**
+  String get btCreateExpenseCurrency;
+
+  /// No description provided for @btCreateSearchCurrencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Search currencies'**
+  String get btCreateSearchCurrencies;
+
+  /// No description provided for @btCreateNoCurrenciesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No currencies found'**
+  String get btCreateNoCurrenciesFound;
+
+  /// No description provided for @btCreateYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get btCreateYou;
+
+  /// No description provided for @btCreateTraveler.
+  ///
+  /// In en, this message translates to:
+  /// **'Traveler'**
+  String get btCreateTraveler;
+
+  /// No description provided for @btCreatePaymentsExceedTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments exceed total.'**
+  String get btCreatePaymentsExceedTotal;
+
+  /// No description provided for @btCreateSplitPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Split preview'**
+  String get btCreateSplitPreview;
+
+  /// No description provided for @btCreateRecordedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded by'**
+  String get btCreateRecordedBy;
+
+  /// No description provided for @btCreateTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get btCreateTotal;
+
+  /// No description provided for @btCreateDeclaredPayments.
+  ///
+  /// In en, this message translates to:
+  /// **'Declared payments'**
+  String get btCreateDeclaredPayments;
+
+  /// No description provided for @btCreateRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining'**
+  String get btCreateRemaining;
+
+  /// No description provided for @btCreateCompleteTheAmountParticipants.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the amount, participants and shares to see the preview.'**
+  String get btCreateCompleteTheAmountParticipants;
+
+  /// No description provided for @btCreateConfirmNewExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm new expense'**
+  String get btCreateConfirmNewExpense;
+
+  /// No description provided for @btCreateCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get btCreateCategory;
+
+  /// No description provided for @btCreateType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get btCreateType;
+
+  /// No description provided for @btCreateShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared'**
+  String get btCreateShared;
+
+  /// No description provided for @btCreatePersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal'**
+  String get btCreatePersonal;
+
+  /// No description provided for @btCreateStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get btCreateStatus;
+
+  /// No description provided for @btCreatePaymentsRecordedInThis.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments recorded in this version must have been made by you.'**
+  String get btCreatePaymentsRecordedInThis;
+
+  /// No description provided for @btCreateBackToEditing.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to editing'**
+  String get btCreateBackToEditing;
+
+  /// No description provided for @btCreateConfirmAndSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm and save'**
+  String get btCreateConfirmAndSave;
+
+  /// No description provided for @btCreateNewExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'New expense'**
+  String get btCreateNewExpense;
+
+  /// No description provided for @btCreateEssentialDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Essential details'**
+  String get btCreateEssentialDetails;
+
+  /// No description provided for @btCreateAmountsAndTravelers.
+  ///
+  /// In en, this message translates to:
+  /// **'Amounts and travelers'**
+  String get btCreateAmountsAndTravelers;
+
+  /// No description provided for @btCreate1Details.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Details'**
+  String get btCreate1Details;
+
+  /// No description provided for @btCreate2Amounts.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Amounts'**
+  String get btCreate2Amounts;
+
+  /// No description provided for @btCreateEnterAnExpenseName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an expense name.'**
+  String get btCreateEnterAnExpenseName;
+
+  /// No description provided for @btCreateExpenseType.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense type'**
+  String get btCreateExpenseType;
+
+  /// No description provided for @btCreateChooseWhoCanSee.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose who can see this expense.'**
+  String get btCreateChooseWhoCanSee;
+
+  /// No description provided for @btCreateExpenseDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense details'**
+  String get btCreateExpenseDetails;
+
+  /// No description provided for @btCreateExpenseName.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense name'**
+  String get btCreateExpenseName;
+
+  /// No description provided for @btCreateEGKyotoHotel.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. Kyoto hotel'**
+  String get btCreateEGKyotoHotel;
+
+  /// No description provided for @btCreateExpenseDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense date'**
+  String get btCreateExpenseDate;
+
+  /// No description provided for @btCreateNotesOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get btCreateNotesOptional;
+
+  /// No description provided for @btCreateExpenseAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense amount'**
+  String get btCreateExpenseAmount;
+
+  /// No description provided for @btCreateCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get btCreateCurrency;
+
+  /// No description provided for @btCreateTotalAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Total amount'**
+  String get btCreateTotalAmount;
+
+  /// No description provided for @btCreateExpenseStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense status'**
+  String get btCreateExpenseStatus;
+
+  /// No description provided for @btCreatePlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get btCreatePlanned;
+
+  /// No description provided for @btCreateOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get btCreateOutstanding;
+
+  /// No description provided for @btCreatePaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get btCreatePaid;
+
+  /// No description provided for @btCreateSplitBetweenTravelers.
+  ///
+  /// In en, this message translates to:
+  /// **'Split between travelers'**
+  String get btCreateSplitBetweenTravelers;
+
+  /// No description provided for @btCreateEqualShares.
+  ///
+  /// In en, this message translates to:
+  /// **'Equal shares'**
+  String get btCreateEqualShares;
+
+  /// No description provided for @btCreateCustomShares.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom shares'**
+  String get btCreateCustomShares;
+
+  /// No description provided for @btCreateShare.
+  ///
+  /// In en, this message translates to:
+  /// **'{value1} share'**
+  String btCreateShare(Object value1);
+
+  /// No description provided for @btCreateHowWasItPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'How was it paid?'**
+  String get btCreateHowWasItPaid;
+
+  /// No description provided for @btCreateRecordOnlyPaymentsYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Record only payments you actually made.'**
+  String get btCreateRecordOnlyPaymentsYou;
+
+  /// No description provided for @btCreateSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get btCreateSummary;
+
+  /// No description provided for @btCreateCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get btCreateCancel;
+
+  /// No description provided for @btCreateBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get btCreateBack;
+
+  /// No description provided for @btCreateContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get btCreateContinue;
+
+  /// No description provided for @btCreateSaveExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Save expense'**
+  String get btCreateSaveExpense;
+
+  /// No description provided for @btPageRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get btPageRefresh;
+
+  /// No description provided for @btPageFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get btPageFilters;
+
+  /// No description provided for @btPageUnableToLoadTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load trip.'**
+  String get btPageUnableToLoadTrip;
+
+  /// No description provided for @btPageTripExpenseList.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip expense list'**
+  String get btPageTripExpenseList;
+
+  /// No description provided for @btPageShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared'**
+  String get btPageShared;
+
+  /// No description provided for @btPagePersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal'**
+  String get btPagePersonal;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../calculations/currency_minor_units.dart';
 import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
@@ -31,7 +32,7 @@ abstract final class BudgetExpensesToolbar {
 
     try {
       final fetched = await const DestinationPlacesService().getCurrencies(
-        languageCode: it ? 'it' : 'en',
+        languageCode: _l10n(it).btToolbarEn,
       );
       currencies = fetched
           .where((item) => supported.contains(item.code.toUpperCase()))
@@ -62,9 +63,9 @@ abstract final class BudgetExpensesToolbar {
         child: TripCurrencyPickerSheet(
           currencies: currencies,
           selectedCurrency: selected,
-          title: it ? 'Valuta di visualizzazione' : 'Display currency',
-          searchHint: it ? 'Cerca una valuta' : 'Search currencies',
-          noResultsText: it ? 'Nessuna valuta trovata' : 'No currencies found',
+          title: _l10n(it).btToolbarDisplayCurrency,
+          searchHint: _l10n(it).btToolbarSearchCurrencies,
+          noResultsText: _l10n(it).btToolbarNoCurrenciesFound,
         ),
       ),
     );
@@ -85,7 +86,7 @@ abstract final class BudgetExpensesToolbar {
     var currency = displayCurrency;
 
     final categories = <String, String>{
-      '': it ? 'Tutte le categorie' : 'All categories',
+      '': _l10n(it).btToolbarAllCategories,
       for (final code in const [
         'accommodation',
         'food',
@@ -121,7 +122,7 @@ abstract final class BudgetExpensesToolbar {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      it ? 'Filtri e visualizzazione' : 'Filters and display',
+                      _l10n(it).btToolbarFiltersAndDisplay,
                       style: const TextStyle(
                         color: _cream,
                         fontSize: 21,
@@ -130,14 +131,12 @@ abstract final class BudgetExpensesToolbar {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      it
-                          ? 'Personalizza come consulti le spese.'
-                          : 'Customize how you view expenses.',
+                      _l10n(it).btToolbarCustomizeHowYouView,
                       style: const TextStyle(color: _muted),
                     ),
                     const SizedBox(height: 22),
                     Text(
-                      it ? 'Valuta di visualizzazione' : 'Display currency',
+                      _l10n(it).btToolbarDisplayCurrency,
                       style: const TextStyle(
                         color: _cream,
                         fontWeight: FontWeight.w600,
@@ -160,31 +159,25 @@ abstract final class BudgetExpensesToolbar {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      it
-                          ? 'Gli importi originali rimangono invariati.'
-                          : 'Original amounts remain unchanged.',
+                      _l10n(it).btToolbarOriginalAmountsRemainUnchanged,
                       style: const TextStyle(color: _muted, fontSize: 12),
                     ),
                     const SizedBox(height: 20),
                     _field(
-                      label: it ? 'Ordina le spese' : 'Sort expenses',
+                      label: _l10n(it).btToolbarSortExpenses,
                       value: draft.sort,
                       options: {
-                        'newest': it ? 'Più recenti' : 'Newest',
-                        'oldest': it ? 'Meno recenti' : 'Oldest',
-                        'amount-asc': it
-                            ? 'Importo crescente'
-                            : 'Amount ascending',
-                        'amount-desc': it
-                            ? 'Importo decrescente'
-                            : 'Amount descending',
+                        'newest': _l10n(it).btToolbarNewest,
+                        'oldest': _l10n(it).btToolbarOldest,
+                        'amount-asc': _l10n(it).btToolbarAmountAscending,
+                        'amount-desc': _l10n(it).btToolbarAmountDescending,
                       },
                       onChanged: (value) =>
                           update(() => draft = draft.copyWith(sort: value)),
                     ),
                     const SizedBox(height: 14),
                     _field(
-                      label: it ? 'Categoria' : 'Category',
+                      label: _l10n(it).btToolbarCategory,
                       value: draft.category,
                       options: categories,
                       onChanged: (value) =>
@@ -192,25 +185,25 @@ abstract final class BudgetExpensesToolbar {
                     ),
                     const SizedBox(height: 14),
                     _field(
-                      label: it ? 'Stato' : 'Status',
+                      label: _l10n(it).btToolbarStatus,
                       value: draft.status,
                       options: {
-                        '': it ? 'Tutti gli stati' : 'All statuses',
-                        'planned': it ? 'Prevista' : 'Planned',
-                        'outstanding': it ? 'Da saldare' : 'Outstanding',
-                        'paid': it ? 'Pagata' : 'Paid',
+                        '': _l10n(it).btToolbarAllStatuses,
+                        'planned': _l10n(it).btToolbarPlanned,
+                        'outstanding': _l10n(it).btToolbarOutstanding,
+                        'paid': _l10n(it).btToolbarPaid,
                       },
                       onChanged: (value) =>
                           update(() => draft = draft.copyWith(status: value)),
                     ),
                     const SizedBox(height: 14),
                     _field(
-                      label: it ? 'Periodo' : 'Period',
+                      label: _l10n(it).btToolbarPeriod,
                       value: draft.days.toString(),
                       options: {
-                        '0': it ? 'Sempre' : 'Any time',
-                        '30': it ? 'Ultimi 30 giorni' : 'Last 30 days',
-                        '90': it ? 'Ultimi 90 giorni' : 'Last 90 days',
+                        '0': _l10n(it).btToolbarAnyTime,
+                        '30': _l10n(it).btToolbarLast30Days,
+                        '90': _l10n(it).btToolbarLast90Days,
                       },
                       onChanged: (value) => update(
                         () => draft = draft.copyWith(days: int.parse(value)),
@@ -225,7 +218,7 @@ abstract final class BudgetExpensesToolbar {
                             currency = tripCurrency;
                           }),
                           child: Text(
-                            it ? 'Ripristina' : 'Reset',
+                            _l10n(it).btToolbarReset,
                             style: const TextStyle(color: _gold),
                           ),
                         ),
@@ -242,7 +235,7 @@ abstract final class BudgetExpensesToolbar {
                               currency: currency,
                             ),
                           ),
-                          child: Text(it ? 'Applica' : 'Apply'),
+                          child: Text(_l10n(it).btToolbarApply),
                         ),
                       ],
                     ),
@@ -250,9 +243,7 @@ abstract final class BudgetExpensesToolbar {
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                          it
-                              ? 'Importi ordinati all’interno della stessa valuta originale.'
-                              : 'Amounts sorted within each original currency.',
+                          _l10n(it).btToolbarAmountsSortedWithinEach,
                           style: const TextStyle(color: _muted, fontSize: 12),
                         ),
                       ),
@@ -299,3 +290,7 @@ abstract final class BudgetExpensesToolbar {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

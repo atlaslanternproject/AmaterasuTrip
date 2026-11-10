@@ -54,39 +54,39 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
   String _categoryLabel(String value, bool it) {
     switch (value) {
       case 'accommodation':
-        return it ? 'Alloggio' : 'Accommodation';
+        return _l10n(it).btDetailsAccommodation;
       case 'food':
-        return it ? 'Cibo e ristoranti' : 'Food';
+        return _l10n(it).btDetailsFood;
       case 'transport':
-        return it ? 'Trasporti' : 'Transport';
+        return _l10n(it).btDetailsTransport;
       case 'activities':
-        return it ? 'Attività' : 'Activities';
+        return _l10n(it).btDetailsActivities;
       case 'shopping':
         return 'Shopping';
       case 'other':
-        return it ? 'Altro' : 'Other';
+        return _l10n(it).btDetailsOther;
       default:
-        return value.trim().isEmpty ? (it ? 'Altro' : 'Other') : value;
+        return value.trim().isEmpty ? (_l10n(it).btDetailsOther) : value;
     }
   }
 
   String _statusLabel(String value, bool it) {
     switch (value) {
       case 'planned':
-        return it ? 'Prevista' : 'Planned';
+        return _l10n(it).btDetailsPlanned;
       case 'outstanding':
-        return it ? 'Da saldare' : 'Outstanding';
+        return _l10n(it).btDetailsOutstanding;
       case 'paid':
-        return it ? 'Pagata' : 'Paid';
+        return _l10n(it).btDetailsPaid;
       default:
-        return it ? 'Non disponibile' : 'Unavailable';
+        return _l10n(it).btDetailsUnavailable;
     }
   }
 
   Widget _amountRows(Map<String, dynamic> amounts, bool it) {
     if (amounts.isEmpty) {
       return Text(
-        it ? 'Nessun importo registrato.' : 'No amounts recorded.',
+        _l10n(it).btDetailsNoAmountsRecorded,
         style: const TextStyle(color: Color(0xFFB7A99B)),
       );
     }
@@ -112,10 +112,10 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       final label = name != null && name.isNotEmpty
                           ? name
                           : result.hasError
-                          ? (it ? 'Nome non disponibile' : 'Name unavailable')
+                          ? (_l10n(it).btDetailsNameUnavailable)
                           : result.hasData
                           ? AppLocalizations.of(context)!.b86FormerTraveler
-                          : (it ? 'Caricamento...' : 'Loading...');
+                          : (_l10n(it).btDetailsLoading);
 
                       return Text(
                         label,
@@ -174,7 +174,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      it ? 'Dettaglio spesa' : 'Expense details',
+                      _l10n(it).btDetailsExpenseDetails,
                       style: const TextStyle(
                         color: Color(0xFFF2E7D5),
                         fontSize: 19,
@@ -197,7 +197,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       const SizedBox(height: 12),
                       Text(
                         title.isEmpty
-                            ? (it ? 'Spesa senza titolo' : 'Untitled expense')
+                            ? (_l10n(it).btDetailsUntitledExpense)
                             : title,
                         style: const TextStyle(
                           color: Color(0xFFF2E7D5),
@@ -228,9 +228,9 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                             return TextButton.icon(
                               icon: const Icon(Icons.currency_exchange),
                               label: Text(
-                                it
-                                    ? 'Rettifica cambio $originalCurrency/$target'
-                                    : 'Adjust rate $originalCurrency/$target',
+                                _l10n(
+                                  it,
+                                ).btDetailsAdjustRate(originalCurrency, target),
                               ),
                               onPressed: () async {
                                 final saved = await showDialog<bool>(
@@ -254,7 +254,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                         for (final method in methods.whereType<Map>())
                           if (method['accountCurrency'] is String)
                             Text(
-                              '${it ? "Conto" : "Account"} · ${method['accountDebitMinor'] == null ? method['accountCurrency'] : _formatMoney({'currency': method['accountCurrency'], 'minorUnits': method['accountDebitMinor']})}',
+                              '${_l10n(it).btDetailsAccount} · ${method['accountDebitMinor'] == null ? method['accountCurrency'] : _formatMoney({'currency': method['accountCurrency'], 'minorUnits': method['accountDebitMinor']})}',
                             ),
                       if (originalMinor is int && originalCurrency.isNotEmpty)
                         BudgetDisplayAmount(
@@ -297,7 +297,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       ),
                       if (notes.isNotEmpty)
                         BudgetDialogChrome.section(
-                          title: it ? 'Note' : 'Notes',
+                          title: _l10n(it).btDetailsNotes,
                           icon: Icons.notes_rounded,
                           children: [
                             Text(
@@ -309,7 +309,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                           ],
                         ),
                       BudgetDialogChrome.section(
-                        title: it ? 'Gestisci spesa' : 'Manage expense',
+                        title: _l10n(it).btDetailsManageExpense,
                         icon: Icons.settings_outlined,
                         children: [
                           BudgetExpenseControls(
@@ -333,3 +333,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));
