@@ -51,6 +51,10 @@
                                      {
                                          "source":  "/invite/**",
                                          "destination":  "/invite/index.html"
+                                     },
+                                     {
+                                         "source":  "**",
+                                         "destination":  "/index.html"
                                      }
                                  ]
                 }
