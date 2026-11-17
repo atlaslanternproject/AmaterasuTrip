@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:amaterasutrip/core/widgets/buttons/Amaterasu_primary_button.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart';
 import 'package:amaterasutrip/core/widgets/inputs/amaterasu_password_field.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 

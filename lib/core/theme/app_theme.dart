@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Amaterasu_colors.dart';
+import 'amaterasu_colors.dart';
 
 final ThemeData appTheme = ThemeData(
   useMaterial3: true,

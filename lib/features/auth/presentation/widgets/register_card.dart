@@ -4,13 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
-import '../../../../core/widgets/buttons/Amaterasu_discord_button.dart';
-import '../../../../core/widgets/buttons/Amaterasu_google_button.dart';
-import '../../../../core/widgets/buttons/Amaterasu_primary_button.dart';
-import '../../../../core/widgets/cards/Amaterasu_card.dart';
-import '../../../../core/widgets/common/Amaterasu_divider.dart';
-import '../../../../core/widgets/inputs/Amaterasu_password_field.dart';
-import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
+import '../../../../core/widgets/buttons/amaterasu_discord_button.dart';
+import '../../../../core/widgets/buttons/amaterasu_google_button.dart';
+import '../../../../core/widgets/buttons/amaterasu_primary_button.dart';
+import '../../../../core/widgets/cards/amaterasu_card.dart';
+import '../../../../core/widgets/common/amaterasu_divider.dart';
+import '../../../../core/widgets/inputs/amaterasu_password_field.dart';
+import '../../../../core/widgets/inputs/amaterasu_text_field.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class RegisterCard extends ConsumerStatefulWidget {

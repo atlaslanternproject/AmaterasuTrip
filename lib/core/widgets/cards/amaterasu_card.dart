@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../theme/Amaterasu_colors.dart';
-import '../../theme/Amaterasu_radius.dart';
-import '../../theme/Amaterasu_spacing.dart';
+import '../../theme/amaterasu_colors.dart';
+import '../../theme/amaterasu_radius.dart';
+import '../../theme/amaterasu_spacing.dart';
 
 class AmaterasuCard extends StatelessWidget {
   final Widget child;

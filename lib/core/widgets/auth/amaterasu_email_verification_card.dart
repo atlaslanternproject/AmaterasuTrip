@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:amaterasutrip/core/widgets/buttons/Amaterasu_primary_button.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart';
 
 class AmaterasuEmailVerificationCard extends StatelessWidget {
   final String title;

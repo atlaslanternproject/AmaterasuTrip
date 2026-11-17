@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
-import '../../../../core/widgets/layout/Amaterasu_background.dart';
-import '../../../../core/widgets/layout/Amaterasu_hero.dart';
+import '../../../../core/widgets/layout/amaterasu_background.dart';
+import '../../../../core/widgets/layout/amaterasu_hero.dart';
 import '../../../../core/widgets/auth/amaterasu_email_verification_card.dart';
 import '../../../../l10n/app_localizations.dart';
 

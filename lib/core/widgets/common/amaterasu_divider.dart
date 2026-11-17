@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import '../../theme/Amaterasu_colors.dart';
+import '../../theme/amaterasu_colors.dart';
 
 class AmaterasuDivider extends StatelessWidget {
   final String? text;

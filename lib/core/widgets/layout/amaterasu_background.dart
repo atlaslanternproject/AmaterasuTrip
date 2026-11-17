@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/Amaterasu_colors.dart';
+import '../../theme/amaterasu_colors.dart';
 
 class AmaterasuBackground extends StatelessWidget {
   final Widget child;
