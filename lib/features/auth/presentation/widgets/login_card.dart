@@ -17,6 +17,8 @@ import '../../../../core/widgets/inputs/amaterasu_text_field.dart';
 import '../../../../core/storage/remember_me_storage.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
+part 'login_card_login.dart';
+
 class LoginCard extends ConsumerStatefulWidget {
   const LoginCard({super.key, this.returnTo});
 
@@ -38,59 +40,6 @@ class _LoginCardState extends ConsumerState<LoginCard> {
     passwordController.dispose();
     resetEmailController.dispose();
     super.dispose();
-  }
-
-  Future<void> login() async {
-    if (loading) return;
-    setState(() {
-      loading = true;
-      loginError = null;
-    });
-    try {
-      debugPrint("LOGIN: inizio");
-      await RememberMeStorage.save(rememberMe);
-      debugPrint("REMEMBER SALVATO: $rememberMe");
-      final credential = await ref
-          .read(authControllerProvider)
-          .login(
-            email: emailController.text.trim(),
-            password: passwordController.text,
-          );
-      final user = credential.user;
-      await user?.reload();
-      final refreshedUser = FirebaseAuth.instance.currentUser;
-      if (kDebugMode) debugPrint("LOGIN OK: ${refreshedUser?.email}");
-      if (!mounted) return;
-      if (refreshedUser == null) {
-        return;
-      }
-      if (!refreshedUser.emailVerified) {
-        context.go(InviteAuthReturn.route('/verify-email', widget.returnTo));
-      } else {
-        context.go(InviteAuthReturn.destinationOrHome(widget.returnTo));
-      }
-    } on FirebaseAuthException catch (e) {
-      debugPrint("ERRORE LOGIN: ${e.code}");
-      if (!mounted) return;
-      setState(() {
-        loginError = e.code;
-      });
-    } finally {
-      if (mounted) {
-        setState(() {
-          loading = false;
-        });
-      }
-    }
-  }
-
-  String getLoginErrorMessage(AppLocalizations l10n, String errorCode) {
-    return switch (errorCode) {
-      'user-not-found' => l10n.authLoginErrorUserNotFound,
-      'wrong-password' => l10n.authLoginErrorWrongPassword,
-      'invalid-email' => l10n.authLoginErrorInvalidEmail,
-      _ => l10n.authLoginErrorGeneric,
-    };
   }
 
   @override
