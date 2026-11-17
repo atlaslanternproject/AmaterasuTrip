@@ -38,32 +38,32 @@ Base di partenza (Fase 0): analisi 0 avvisi · 384 test Flutter · controllo tra
 | C14 validId | non era un doppione: quello del budget lancia un errore con un formato UID, quello della bucket list restituisce vero/falso con regole diverse | — |
 | 3.1 file grandi non approvati | risolti 17 su 20 (dettaglio sotto) | bc8c4e1 … dc3d9d4 |
 
-Dettaglio divisione (righe prima → dopo, file principale). Metodo: i metodi della classe State sono stati spostati identici in file  come  (stesso schema della bucket list); le classi di primo livello spostate in ; nelle functions moduli separati riesportati con gli stessi nomi. Verificato per ogni file che le righe di codice siano le stesse.
+Dettaglio divisione (righe prima → dopo, file principale). Metodo: i metodi della classe State sono stati spostati identici in file `part` come `extension` (stesso schema della bucket list); le classi di primo livello spostate in `part`; nelle functions moduli separati riesportati con gli stessi nomi. Verificato per ogni file che le righe di codice siano le stesse.
 
 | File | Prima | Dopo | Nota |
 |---|---|---|---|
-| budget_create_dialog.dart | 840 | 489 | resta  di 415 righe |
-| budget_reimbursements_panel.dart | 827 | 453 | resta  di 394 righe |
-| personal_trip_budget_card.dart | 671 | 292 | resta  di 213 righe |
-| budget_category_dashboard.dart | 670 | 185 | la parte  è un metodo unico di 321 righe |
-| budget_user_settlement_summary.dart | 624 | 511 | resta  di 421 righe |
-| budget_revision_panel.dart | 548 | 220 | la parte  è un metodo unico di 252 righe |
+| budget_create_dialog.dart | 840 | 489 | resta `build` di 415 righe |
+| budget_reimbursements_panel.dart | 827 | 453 | resta `build` di 394 righe |
+| personal_trip_budget_card.dart | 671 | 292 | resta `build` di 213 righe |
+| budget_category_dashboard.dart | 670 | 185 | la parte `_summary` è un metodo unico di 321 righe |
+| budget_user_settlement_summary.dart | 624 | 511 | resta `build` di 421 righe |
+| budget_revision_panel.dart | 548 | 220 | la parte `_edit` è un metodo unico di 252 righe |
 | budget_api.dart | 455 | 455 | non diviso: i test ne fanno una versione finta che sovrascrive i metodi, impossibile con le extension |
-| budget_expense_details_dialog.dart | 339 | 226 | resta  di 192 righe |
+| budget_expense_details_dialog.dart | 339 | 226 | resta `build` di 192 righe |
 | budget_history_view.dart | 331 | 143 | |
-| budget_expense_list.dart | 305 | 256 | resta  di 222 righe |
-| budget_expenses_toolbar.dart | 296 | 294 | non diviso: è quasi tutto un unico  |
+| budget_expense_list.dart | 305 | 256 | resta `build` di 222 righe |
+| budget_expenses_toolbar.dart | 296 | 294 | non diviso: è quasi tutto un unico `build` |
 | budget_charts.dart | 294 | 101 | |
-| trip_expenses_page.dart | 378 | 240 | resta  di 180 righe |
+| trip_expenses_page.dart | 378 | 240 | resta `build` di 180 righe |
 | router.dart | 546 | 546 | non diviso: è un'unica espressione GoRouter; dividerla vuol dire riorganizzare le rotte |
 | trip_overview_page.dart | 545 | 137 | |
-| login_card.dart | 277 | 228 | resta  di 183 righe |
+| login_card.dart | 277 | 228 | resta `build` di 183 righe |
 | functions/src/index.ts | 849 | 73 | 9 funzioni in src/trip-invites e src/trip-members |
 | functions/src/trip-management/duplicate-trip.ts | 297 | 200 | |
 | functions/src/budget/budget-fx.ts | 258 | 135 | |
 | functions/src/budget/budget-validation.ts | 255 | 172 | |
 
-Per scendere sotto le 200 righe nei file con un  lungo bisogna estrarre pezzi di interfaccia in widget: è una riorganizzazione del codice (stesso aspetto, ma struttura diversa) che va decisa e provata a parte. Segnata con TODO(audit) nel passo e.
+Per scendere sotto le 200 righe nei file con un `build` lungo bisogna estrarre pezzi di interfaccia in widget: è una riorganizzazione del codice (stesso aspetto, ma struttura diversa) che va decisa e provata a parte. Segnata con TODO(audit) nel passo e.
 
 ---
 
