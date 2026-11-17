@@ -12,9 +12,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountRecoveryTitle => 'Security and recovery';
 
   @override
-  String get accountRecoverySubtitle => 'Protect and recover your data';
-
-  @override
   String get accountRecoveryStatus => 'In development';
 
   @override
@@ -48,9 +45,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountRecoveryNotice => 'Password recovery and encrypted data recovery are two different processes.';
 
   @override
-  String get tripNotificationsWebUnavailable => 'Trip push notifications are not yet available on the Web. Your saved Android preferences remain unchanged.';
-
-  @override
   String get webMediaCameraTitle => 'Open the camera?';
 
   @override
@@ -70,9 +64,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authWelcomeBack => 'Welcome back';
-
-  @override
-  String get authEmailOrUsernameHint => 'Enter Email or Username';
 
   @override
   String get authPasswordHint => 'Password';
@@ -210,15 +201,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonGoogleSignIn => 'Sign in with Google';
 
   @override
-  String get commonPassword => 'Password';
-
-  @override
-  String get homeGoogleUser => 'Google user';
-
-  @override
-  String get homeNoUid => 'No UID';
-
-  @override
   String get settingsProfile => 'Profile';
 
   @override
@@ -232,9 +214,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsInformation => 'Information';
-
-  @override
-  String get settingsPlaceholder => 'This section will be available soon.';
 
   @override
   String settingsLanguageName(String languageCode) {
@@ -325,9 +304,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountEmailVerify => 'Verify email';
 
   @override
-  String get accountEmailResendVerification => 'Resend verification email';
-
-  @override
   String get accountEmailChange => 'Change email';
 
   @override
@@ -355,37 +331,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountLinkedAccountsSubtitle => 'Manage your linked accounts';
 
   @override
-  String get accountLinkedGoogle => 'Google';
-
-  @override
-  String get accountLinkedOtherProviders => 'Other providers';
-
-  @override
-  String get accountLinkedConnected => 'Connected';
-
-  @override
-  String get accountLinkedNotConnected => 'Not connected';
-
-  @override
   String get accountSession => 'Session';
 
   @override
   String get accountSessionSubtitle => 'Manage access to your account';
 
   @override
-  String get accountSessionActive => 'Active sessions';
-
-  @override
-  String get accountSessionSignOutAll => 'Sign out of all devices';
-
-  @override
   String get accountDelete => 'Delete account';
 
   @override
   String get accountDeleteDescription => 'Deleting your account is permanent and will remove the associated data.';
-
-  @override
-  String get accountDeleteConfirm => 'Confirm account deletion';
 
   @override
   String get accountLogout => 'Sign out';
@@ -395,9 +350,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountEmailVerificationSent => 'Verification email sent. Also check your Spam or Junk folder.';
-
-  @override
-  String get accountEmailChangeVerificationSent => 'We\'ve sent a verification email to the new address. Also check your Spam or Junk folder.';
 
   @override
   String get accountEmailVerifiedDescription => 'Your email address is verified.';
@@ -612,66 +564,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get privacyExportSubtitle => 'Information about obtaining a copy of your data.';
 
   @override
-  String get privacyPolicyOverviewTitle => 'General information';
-
-  @override
-  String get privacyPolicyOverviewBody => 'Amaterasu Trip is an application designed to help organise and manage travel. This policy explains which data may be processed while using the app and for what purposes.';
-
-  @override
-  String get privacyPolicyCollectedDataTitle => 'Data processed';
-
-  @override
-  String get privacyPolicyCollectedDataBody => 'Amaterasu may process data required to create and manage an account, such as your email address, user identifier, username and authentication method. Some app preferences, such as language and remembered sign-in settings, may be stored locally on your device.';
-
-  @override
-  String get privacyPolicyPurposeTitle => 'Purpose of processing';
-
-  @override
-  String get privacyPolicyPurposeBody => 'Data is used solely to provide the app\'s features, authenticate users, maintain the Amaterasu profile, allow account management and ensure the correct operation of associated services.';
-
-  @override
-  String get privacyPolicyFirebaseTitle => 'Firebase';
-
-  @override
-  String get privacyPolicyFirebaseBody => 'Amaterasu uses Google\'s Firebase services for features such as authentication and account data storage. Data required for these services may be processed through Firebase infrastructure in accordance with Google\'s applicable terms and policies.';
-
-  @override
-  String get privacyPolicyGoogleTitle => 'Sign in with Google';
-
-  @override
-  String get privacyPolicyGoogleBody => 'If you choose to sign in to Amaterasu using Google, Google provides the information required to authenticate your account. Amaterasu does not receive or store your Google account password.';
-
-  @override
-  String get privacyPolicyStorageTitle => 'Data retention';
-
-  @override
-  String get privacyPolicyStorageBody => 'Data associated with your account is retained while your Amaterasu account remains active or for as long as required to provide the requested services. Some preferences may be stored locally on your device.';
-
-  @override
-  String get privacyPolicyDeletionTitle => 'Account deletion';
-
-  @override
-  String get privacyPolicyDeletionBody => 'You can permanently delete your account from Amaterasu settings. Deletion removes the Firebase Authentication account and the account data currently associated with your Amaterasu profile. When new features and additional categories of data are introduced, this policy will be updated accordingly.';
-
-  @override
-  String get privacyPolicySecurityTitle => 'Security';
-
-  @override
-  String get privacyPolicySecurityBody => 'Amaterasu uses appropriate technical measures to limit unauthorised access to data and relies on the authentication and security systems provided by the Firebase services used by the app.';
-
-  @override
-  String get privacyPolicyChangesTitle => 'Changes to this Privacy Policy';
-
-  @override
-  String get privacyPolicyChangesBody => 'This policy may be updated when Amaterasu introduces new features, services or categories of data. The updated version will be made available within the app and through the public Privacy Policy page.';
-
-  @override
-  String get privacyPolicyContactTitle => 'Contact';
-
-  @override
-  String get privacyPolicyContactBody => 'For requests relating to privacy or personal data processing, you can contact the Amaterasu team through the official support channels listed in the app.';
-
-  @override
   String get privacyPermissionsIntro => 'Amaterasu only requests permissions required by the features you choose to use. Additional permissions may be introduced when new features become available.';
 
   @override
@@ -747,9 +639,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileSave => 'Save';
 
   @override
-  String get profileSaving => 'Saving...';
-
-  @override
   String get profileSaveSuccess => 'Profile updated.';
 
   @override
@@ -801,9 +690,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileEmailReadOnly => 'Your email address can be changed from the Account section.';
 
   @override
-  String get profilePhotoChange => 'Change profile photo';
-
-  @override
   String get profilePhotoCamera => 'Take a photo';
 
   @override
@@ -814,21 +700,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profilePhotoPickerError => 'The photo could not be selected.';
-
-  @override
-  String get profilePhotoCameraPermissionDenied => 'Camera permission was denied.';
-
-  @override
-  String get profilePhotoCameraPermissionPermanentlyDenied => 'Camera permission is disabled. You can enable it from the app settings.';
-
-  @override
-  String get profilePhotoOpenSettings => 'Open settings';
-
-  @override
-  String get profilePhotoGalleryPermissionDenied => 'Permission to access photos was denied.';
-
-  @override
-  String get profilePhotoGalleryPermissionPermanentlyDenied => 'Permission to access photos is disabled. You can enable it from the app settings.';
 
   @override
   String get profilePhotoRemoveError => 'Unable to remove profile photo.';
@@ -1012,16 +883,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String tripsTodayActivities(int count) {
-    return 'Today: $count activities';
-  }
-
-  @override
-  String tripsOrganisationProgress(int percentage) {
-    return '$percentage% organised';
-  }
-
-  @override
   String get tripsCompletedStatus => 'Trip completed';
 
   @override
@@ -1074,9 +935,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createTripStorageSubtitle => 'Connect Google Drive, OneDrive or Dropbox.';
-
-  @override
-  String get createTripStorageLater => 'Set up later';
 
   @override
   String get createTripCreate => 'CREATE TRIP';
@@ -1240,13 +1098,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripPrivacyAccess => 'Trip access';
 
   @override
-  String get tripPrivacyAccessPrivate => 'Private · Only authorised travellers can access';
-
-  @override
   String get tripPrivacyInviteLink => 'Invitation link';
-
-  @override
-  String get tripPrivacyInviteLinkSubtitle => 'Create and manage the private link used to invite new travellers';
 
   @override
   String get tripPrivacyTravellers => 'Travellers';
@@ -1258,12 +1110,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripPrivacyRoles => 'Roles and permissions';
 
   @override
-  String get tripPrivacyRolesSubtitle => 'Manage what OWNER and TRAVELER can do';
-
-  @override
-  String get tripManagementIntro => 'Manage trip storage and administrative operations.';
-
-  @override
   String get tripManagementLoadError => 'Unable to load trip management information.';
 
   @override
@@ -1271,11 +1117,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripManagementArchiveStatus => 'Storage status';
-
-  @override
-  String tripManagementArchiveConfigured(String provider) {
-    return 'Configured · $provider';
-  }
 
   @override
   String get tripManagementArchiveNotConfigured => 'No storage configured';
@@ -1306,15 +1147,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripManagementArchiveReconnectSubtitle => 'Restore authorisation without moving trip files';
-
-  @override
-  String get tripManagementOperationsSection => 'Trip operations';
-
-  @override
-  String get tripManagementExport => 'Export trip';
-
-  @override
-  String get tripManagementExportSubtitle => 'Create an exportable copy of the trip data';
 
   @override
   String get tripManagementDuplicate => 'Duplicate trip';
@@ -1356,16 +1188,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripOverviewMore => 'More';
 
   @override
-  String get tripOverviewExploreTitle => 'Plan your trip';
-
-  @override
   String get tripOverviewNotFound => 'Trip not found';
 
   @override
   String get tripOverviewTitle => 'Overview';
-
-  @override
-  String get tripOverviewNotFoundSubtitle => 'This trip is not available.';
 
   @override
   String get tripOverviewError => 'Unable to load the trip';
@@ -1390,9 +1216,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripCoverTitle => 'Trip cover';
-
-  @override
-  String get tripCoverUploading => 'Uploading cover...';
 
   @override
   String get tripCoverAdd => 'Add cover';
@@ -1422,27 +1245,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripCoverRemove => 'Remove cover';
 
   @override
-  String get tripCoverGalleryPermissionDenied => 'To choose a cover, allow Amaterasu Trip to access your photos.';
-
-  @override
-  String get tripCoverOpenSettings => 'Settings';
-
-  @override
-  String get tripCoverGalleryPermissionPermanentlyDenied => 'Photo access is disabled. You can enable it in the app settings.';
-
-  @override
-  String get tripCoverCameraPermissionDenied => 'To take a photo, allow Amaterasu Trip to use the camera.';
-
-  @override
-  String get tripCoverCameraPermissionPermanentlyDenied => 'Camera access is disabled. You can enable it in the app settings.';
-
-  @override
-  String get tripCreatedInviteComingSoon => 'Traveller invitations will be available soon.';
-
-  @override
-  String get tripCreatedShareComingSoon => 'Trip sharing will be available soon.';
-
-  @override
   String get destinationPickerTitle => 'Choose destination';
 
   @override
@@ -1464,9 +1266,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get destinationMapResolving => 'Identifying location...';
 
   @override
-  String get destinationCurrencySuggested => 'Suggested currency';
-
-  @override
   String get destinationMapNoPlace => 'No geographic location was found at this point.';
 
   @override
@@ -1474,9 +1273,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get destinationMapTwoFingers => 'Use two fingers to explore';
-
-  @override
-  String get destinationCountryLabel => 'Country';
 
   @override
   String get createTripCurrencyNoResults => 'No currencies found';
@@ -1587,12 +1383,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripManagementDeleteTitle => 'Delete trip?';
 
   @override
-  String get tripManagementDeleteDriveWarning => 'Files on Google Drive will not be deleted.';
-
-  @override
-  String get tripManagementDeleteBody => 'Deleting the trip will remove its associated data from Amaterasu, while the Google Drive folder and its files will remain unchanged.';
-
-  @override
   String get tripManagementDeleteConfirm => 'Delete trip';
 
   @override
@@ -1644,9 +1434,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripInviteHeading => 'You\'ve been invited to a trip';
 
   @override
-  String get tripInviteContinue => 'Continue';
-
-  @override
   String get tripInviteUnavailableTitle => 'Invitation unavailable';
 
   @override
@@ -1654,75 +1441,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripInviteRetry => 'Try again';
-
-  @override
-  String get tripQuestionnaireTitle => 'Trip profile';
-
-  @override
-  String get tripQuestionnaireIntro => 'This information helps the group organise the trip more easily and safely.';
-
-  @override
-  String get tripQuestionnaireYes => 'Yes';
-
-  @override
-  String get tripQuestionnaireNo => 'No';
-
-  @override
-  String get tripQuestionnaireEsim => 'Will you have an eSIM or internet connection during the trip?';
-
-  @override
-  String get tripQuestionnaireCheckedBaggage => 'Will you have checked baggage?';
-
-  @override
-  String get tripQuestionnaireCabinBaggage => 'Will you have cabin baggage up to 10 kg?';
-
-  @override
-  String get tripTravellersProfileEditIntro => 'Update your trip profile. All answers are optional, and you can change or withdraw them whenever you like.';
-
-  @override
-  String get tripQuestionnairePreferNotToAnswer => 'I prefer not to answer';
-
-  @override
-  String get tripQuestionnaireOptionalExplanation => 'You may leave any question unanswered. Only the final confirmation of your participation is required.';
-
-  @override
-  String get tripQuestionnaireEmergencyName => 'Full name';
-
-  @override
-  String get tripQuestionnaireEmergencyPhone => 'Phone number';
-
-  @override
-  String get tripQuestionnaireRequiredHint => 'Complete all required questions and, when you answer Yes, provide the requested details.';
-
-  @override
-  String get tripQuestionnairePresenceConfirm => 'I confirm that I will take part in this trip.';
-
-  @override
-  String get tripQuestionnaireSubmit => 'Confirm participation';
-
-  @override
-  String get tripQuestionnaireSubmitError => 'Your participation could not be confirmed. Please try again.';
-
-  @override
-  String get tripQuestionnaireRequiredLegend => 'Only the participation confirmation is required';
-
-  @override
-  String get tripQuestionnaireOrganisationSection => 'Organisation';
-
-  @override
-  String get tripQuestionnaireCountrySearch => 'Search country';
-
-  @override
-  String get tripQuestionnaireCountrySearchHint => 'Country name or calling code';
-
-  @override
-  String get tripQuestionnairePhoneHint => 'Number';
-
-  @override
-  String get tripQuestionnaireDetailsHint => 'Provide details';
-
-  @override
-  String get tripQuestionnaireSafetyNoticeTitle => 'Important information';
 
   @override
   String tripCreatedInviteShareSubject(String tripName) {
@@ -1763,12 +1481,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripTravellersYou => 'You';
-
-  @override
-  String get tripTravellersProfileComplete => 'Trip profile complete';
-
-  @override
-  String get tripTravellersProfileIncomplete => 'Trip profile incomplete';
 
   @override
   String get tripTravellersSensitiveDataNotice => 'The trip profile contains organisational information, such as Internet connectivity and baggage preferences. Answers are visible to trip participants and can be updated by the person they belong to.';
@@ -1831,12 +1543,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripTravellersCabinBaggage => '10 kg cabin baggage';
 
   @override
-  String get tripTravellersEmergencyName => 'Contact name';
-
-  @override
-  String get tripTravellersEmergencyPhone => 'Contact phone';
-
-  @override
   String get tripTravellersYes => 'Yes';
 
   @override
@@ -1852,19 +1558,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripTravellersEditMyProfile => 'Edit my trip profile';
 
   @override
-  String get tripTravellersEditProfileTitle => 'Edit trip profile';
-
-  @override
   String get tripTravellersEditProfileNote => 'This information belongs to this trip. Only you can edit your personal trip-profile information.';
 
   @override
-  String get tripTravellersSave => 'Save changes';
-
-  @override
   String get tripTravellersProfileUpdated => 'Trip profile updated.';
-
-  @override
-  String get tripTravellersProfileUpdateError => 'Unable to update the trip profile.';
 
   @override
   String get tripTravellersRemove => 'Remove from trip';
@@ -1900,186 +1597,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tripTravellersOwnerProtected => 'The OWNER cannot be removed from the trip. Any ownership change must use a dedicated transfer procedure.';
-
-  @override
-  String get tripNotificationsIntro => 'Choose which updates you want to receive for this trip. Preferences are personal and do not change notification settings for other travellers.';
-
-  @override
-  String get tripNotificationsMaster => 'Notifications for this trip';
-
-  @override
-  String get tripNotificationsMasterSubtitle => 'Turn all notifications for this trip on or off';
-
-  @override
-  String get tripNotificationsAccessDenied => 'You do not have access to this trip\'s notification settings.';
-
-  @override
-  String get tripNotificationsSaveError => 'Unable to save notification preferences.';
-
-  @override
-  String get tripNotificationsPermissionDenied => 'Notification permission is not enabled on this device.';
-
-  @override
-  String get tripNotificationsSystemPermission => 'Android notification permission';
-
-  @override
-  String get tripNotificationsSystemPermissionBlocked => 'Android is blocking app notifications. Your preferences will remain saved, but notifications cannot be shown until permission is enabled again.';
-
-  @override
-  String get tripNotificationsOpenAndroidSettings => 'Open Android settings';
-
-  @override
-  String get tripNotificationsTimingSection => 'Dates, itinerary and bookings';
-
-  @override
-  String get tripNotificationsPlanningSection => 'Planning and expenses';
-
-  @override
-  String get tripNotificationsGroupSection => 'Group and collaboration';
-
-  @override
-  String get tripNotificationsContentSection => 'Content and memories';
-
-  @override
-  String get tripNotificationsSystemSection => 'Trip and services';
-
-  @override
-  String get tripNotificationsDepartureDates => 'Departure and trip dates';
-
-  @override
-  String get tripNotificationsDepartureDatesSubtitle => 'Reminders for departure, return and important changes to trip dates';
-
-  @override
-  String get tripNotificationsItineraryReminders => 'Itinerary reminders';
-
-  @override
-  String get tripNotificationsItineraryRemindersSubtitle => 'Alerts for upcoming itinerary activities and appointments';
-
-  @override
-  String get tripNotificationsItineraryUpdates => 'Itinerary changes';
-
-  @override
-  String get tripNotificationsItineraryUpdatesSubtitle => 'Additions, changes and removals in the shared itinerary';
-
-  @override
-  String get tripNotificationsBookingReminders => 'Bookings to make';
-
-  @override
-  String get tripNotificationsBookingRemindersSubtitle => 'Deadlines and booking windows for reservations that need to be completed in advance';
-
-  @override
-  String get tripNotificationsBookingUpdates => 'Bookings and tickets';
-
-  @override
-  String get tripNotificationsBookingUpdatesSubtitle => 'Updates about bookings, tickets and travel documents';
-
-  @override
-  String get tripNotificationsBucketList => 'Bucket List';
-
-  @override
-  String get tripNotificationsBucketListSubtitle => 'New items and changes to the Bucket List';
-
-  @override
-  String get tripNotificationsBucketListVotes => 'Bucket List voting';
-
-  @override
-  String get tripNotificationsBucketListVotesSubtitle => 'New votes and changes to group priorities';
-
-  @override
-  String get tripNotificationsBudget => 'Budget';
-
-  @override
-  String get tripNotificationsBudgetSubtitle => 'Important updates to the trip budget';
-
-  @override
-  String get tripNotificationsNewExpenses => 'New expenses';
-
-  @override
-  String get tripNotificationsNewExpensesSubtitle => 'Alerts when a new group expense is recorded';
-
-  @override
-  String get tripNotificationsExpenseChanges => 'Expense changes';
-
-  @override
-  String get tripNotificationsExpenseChangesSubtitle => 'Changes or removals of expenses that affect the group';
-
-  @override
-  String get tripNotificationsReimbursements => 'Reimbursements and balances';
-
-  @override
-  String get tripNotificationsReimbursementsSubtitle => 'Recorded reimbursements and changes to balances between travellers';
-
-  @override
-  String get tripNotificationsTravellers => 'Travellers';
-
-  @override
-  String get tripNotificationsTravellersSubtitle => 'Participants joining, leaving or being removed from the trip';
-
-  @override
-  String get tripNotificationsInvitations => 'Invitations';
-
-  @override
-  String get tripNotificationsInvitationsSubtitle => 'Relevant updates to invitation links and invitation status';
-
-  @override
-  String get tripNotificationsRolesPermissions => 'Roles and permissions';
-
-  @override
-  String get tripNotificationsRolesPermissionsSubtitle => 'Changes to your role or permissions within the trip';
-
-  @override
-  String get tripNotificationsGroupActivity => 'Group activity';
-
-  @override
-  String get tripNotificationsGroupActivitySubtitle => 'General updates generated by other participants';
-
-  @override
-  String get tripNotificationsSharedNotes => 'Shared notes';
-
-  @override
-  String get tripNotificationsSharedNotesSubtitle => 'Creation and changes to shared trip notes';
-
-  @override
-  String get tripNotificationsMedia => 'Photos and videos';
-
-  @override
-  String get tripNotificationsMediaSubtitle => 'New media shared within the trip';
-
-  @override
-  String get tripNotificationsMemories => 'Memories';
-
-  @override
-  String get tripNotificationsMemoriesSubtitle => 'New memories and updates to saved content';
-
-  @override
-  String get tripNotificationsCloudArchive => 'Trip archive';
-
-  @override
-  String get tripNotificationsCloudArchiveSubtitle => 'Problems accessing, connecting to or using the cloud archive';
-
-  @override
-  String get tripNotificationsSync => 'Synchronisation';
-
-  @override
-  String get tripNotificationsSyncSubtitle => 'Errors or important data synchronisation operations';
-
-  @override
-  String get tripNotificationsTripInformationChanges => 'Important trip changes';
-
-  @override
-  String get tripNotificationsTripInformationChangesSubtitle => 'Changes to the name, destination, dates, currency or other key trip information';
-
-  @override
-  String get tripNotificationsTripStatus => 'Trip status';
-
-  @override
-  String get tripNotificationsTripStatusSubtitle => 'Closing, reopening or other changes to the trip status';
-
-  @override
-  String get tripNotificationsImportantCommunications => 'Important communications';
-
-  @override
-  String get tripNotificationsImportantCommunicationsSubtitle => 'Critical alerts needed for organisation, safety or the correct use of the trip';
 
   @override
   String get tripPrivacyAccessSection => 'Access and invitations';
@@ -2273,11 +1790,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budgetAddExpense => 'Add expense';
 
   @override
-  String budgetTripCurrency(String currency) {
-    return 'Trip currency: $currency';
-  }
-
-  @override
   String get budgetSplitExpense => 'How the expense is split';
 
   @override
@@ -2347,12 +1859,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budgetRevisionLocked => 'This expense has recorded reimbursements. Financial revisions are locked to preserve history.';
 
   @override
-  String get budgetRevisionMyAdvance => 'Amount you paid to the supplier';
-
-  @override
-  String get budgetRevisionNoOtherPayers => 'Advances attributed to other travelers require a separate confirmation flow.';
-
-  @override
   String get budgetRevisionOutstanding => 'Outstanding';
 
   @override
@@ -2386,9 +1892,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budgetRevisionTotal => 'Total amount';
 
   @override
-  String get budgetRevisionTraveler => 'Traveler';
-
-  @override
   String get budgetRevisionWaiting => 'Waiting';
 
   @override
@@ -2410,18 +1913,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get b6PersonalByCategory => 'My expenses by category';
 
   @override
-  String get b6SummaryCurrency => 'Summary currency';
-
-  @override
-  String get b6Historical => 'Historical rates';
-
-  @override
-  String get b6Latest => 'Latest available rates';
-
-  @override
-  String get b6AllCategories => 'All categories';
-
-  @override
   String get b6Category => 'Category';
 
   @override
@@ -2432,33 +1923,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get b6CategoryName => 'Category name';
-
-  @override
-  String get b6AllStatuses => 'All statuses';
-
-  @override
-  String get b6Planned => 'Planned';
-
-  @override
-  String get b6Outstanding => 'Outstanding';
-
-  @override
-  String get b6Paid => 'Paid';
-
-  @override
-  String get b6AllPeriods => 'All dates';
-
-  @override
-  String get b6Last30Days => 'Last 30 days';
-
-  @override
-  String get b6Last90Days => 'Last 90 days';
-
-  @override
-  String get b6Newest => 'Newest';
-
-  @override
-  String get b6Oldest => 'Oldest';
 
   @override
   String get b6LoadingError => 'Unable to load summary.';
@@ -2477,9 +1941,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get b6MyShare => 'Your share of group expenses';
-
-  @override
-  String get b6AveragePerTraveler => 'Average per involved traveler';
 
   @override
   String get b6LatestExpense => 'Latest expense';
@@ -2556,9 +2017,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String b86Reason(String reason) {
     return 'Reason: $reason';
   }
-
-  @override
-  String get b86History => 'History';
 
   @override
   String get b86TripHistory => 'Trip history';
@@ -2703,30 +2161,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btHistRevision => 'Revision';
-
-  @override
-  String get btOverviewOverviewError => 'Overview error';
-
-  @override
-  String get btOverviewFinancialOverview => 'Financial overview';
-
-  @override
-  String get btOverviewRecordedExpenses => 'Recorded expenses';
-
-  @override
-  String get btOverviewNoExpenses => 'No expenses.';
-
-  @override
-  String get btOverviewTotal => 'Total';
-
-  @override
-  String get btOverviewAdvanced => 'Advanced';
-
-  @override
-  String get btOverviewOutstanding => 'Outstanding';
-
-  @override
-  String get btOverviewAmountsSeparatedByCurrency => 'Amounts separated by currency, without automatic conversion.';
 
   @override
   String get btMethodsCash => 'Cash';

@@ -1,0 +1,12 @@
+# Generazione dei testi tradotti (flutter gen-l10n).
+# Sono i valori predefiniti di Flutter, scritti qui in chiaro perché
+# la generazione resti uguale anche se un giorno cambiano.
+# Nota: il modello per la generazione è l'inglese, mentre
+# tool/check_l10n.dart usa l'italiano come riferimento per i controlli.
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-dir: lib/l10n
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+nullable-getter: true
+format: false
