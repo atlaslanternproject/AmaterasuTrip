@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -69,7 +70,7 @@ class _CreateUsernamePageState extends ConsumerState<CreateUsernamePage> {
                         return;
                       }
                       final user = FirebaseAuth.instance.currentUser;
-                      debugPrint("CREATE USERNAME CURRENT USER: ${user?.uid}");
+                      if (kDebugMode) debugPrint("CREATE USERNAME CURRENT USER: ${user?.uid}");
                       if (user == null) {
                         setState(() {
                           error = l10n.createUsernameGoogleUserNotFound;
@@ -77,8 +78,8 @@ class _CreateUsernamePageState extends ConsumerState<CreateUsernamePage> {
                         });
                         return;
                       }
-                      debugPrint('USERNAME CREATO: $username');
-                      debugPrint('USER FIREBASE: ${user.uid}');
+                      if (kDebugMode) debugPrint('USERNAME CREATO: $username');
+                      if (kDebugMode) debugPrint('USER FIREBASE: ${user.uid}');
                       if (!context.mounted) {
                         return;
                       }

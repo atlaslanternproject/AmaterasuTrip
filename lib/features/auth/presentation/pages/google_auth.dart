@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -42,8 +42,8 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
         return;
       }
       debugPrint("GOOGLE LOGIN OK");
-      debugPrint("UID: ${user.uid}");
-      debugPrint("EMAIL: ${user.email}");
+      if (kDebugMode) debugPrint("UID: ${user.uid}");
+      if (kDebugMode) debugPrint("EMAIL: ${user.email}");
       final playerDoc = await FirebaseFirestore.instance
           .collection('viaggiatori')
           .doc(user.uid)

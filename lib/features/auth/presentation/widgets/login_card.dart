@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -57,7 +58,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
       final user = credential.user;
       await user?.reload();
       final refreshedUser = FirebaseAuth.instance.currentUser;
-      debugPrint("LOGIN OK: ${refreshedUser?.email}");
+      if (kDebugMode) debugPrint("LOGIN OK: ${refreshedUser?.email}");
       if (!mounted) return;
       if (refreshedUser == null) {
         return;
