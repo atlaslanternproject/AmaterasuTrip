@@ -15,6 +15,7 @@ import 'widgets/profile_edit_card.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_view_card.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -508,7 +509,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           ),
           error: (_, _) => Center(
             child: Padding(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(AmaterasuSpacing.lg),
               child: Text(
                 l10n.profileSaveError,
                 textAlign: TextAlign.center,
@@ -580,7 +581,7 @@ class _ProfileContent extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 20, 16, 32),
       children: [
         ProfileHeader(profile: profile, onChangePhoto: onChangePhoto),
-        const SizedBox(height: 24),
+        const SizedBox(height: AmaterasuSpacing.lg),
         if (isEditing)
           ProfileEditCard(
             profile: profile,

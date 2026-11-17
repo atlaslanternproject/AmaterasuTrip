@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class TripWorkspaceCard extends StatelessWidget {
   const TripWorkspaceCard({
@@ -31,7 +33,7 @@ class TripWorkspaceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AmaterasuSpacing.md),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(color: _borderColor.withValues(alpha: 0.6)),
@@ -43,7 +45,7 @@ class TripWorkspaceCard extends StatelessWidget {
                 height: 46,
                 decoration: BoxDecoration(
                   color: _accentColor.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                 ),
                 child: Icon(icon, color: _accentColor, size: 24),
               ),

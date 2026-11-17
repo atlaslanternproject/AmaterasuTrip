@@ -4,6 +4,7 @@ import 'package:amaterasutrip/features/settings/providers/language_provider.dart
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class LanguagePage extends ConsumerStatefulWidget {
   const LanguagePage({super.key});
@@ -113,11 +114,11 @@ class _LanguageCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         child: Ink(
           decoration: BoxDecoration(
             color: LanguagePage._cardColor,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             border: Border.all(
               color: isSelected
                   ? LanguagePage._accentColor.withValues(alpha: 0.75)

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class GoogleAuth extends ConsumerStatefulWidget {
   const GoogleAuth({super.key, this.returnTo});
@@ -81,7 +82,7 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const CircularProgressIndicator(),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AmaterasuSpacing.lg),
                   Text(
                     l10n.authGoogleSigningIn,
                     style: const TextStyle(fontSize: 18),
@@ -92,9 +93,9 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.error_outline, size: 48, color: Colors.red),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: AmaterasuSpacing.md),
                   Text(error!),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AmaterasuSpacing.lg),
                   ElevatedButton(
                     onPressed: kIsWeb ? _login : null,
                     child: Text(l10n.authRetry),

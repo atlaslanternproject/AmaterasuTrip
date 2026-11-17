@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class DestinationWorldMap extends StatefulWidget {
   const DestinationWorldMap({
@@ -276,7 +277,7 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
                               color: _accentColor,
                             ),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: AmaterasuSpacing.sm),
                         ] else if (_navigationEnabled) ...[
                           const Icon(
                             Icons.pan_tool_alt_rounded,
@@ -397,7 +398,7 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
                         _controller?.animateCamera(CameraUpdate.zoomIn());
                       },
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AmaterasuSpacing.sm),
                     _MapButton(
                       icon: Icons.remove_rounded,
                       onTap: () {
@@ -406,7 +407,7 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
                       },
                     ),
                     if (_hasDestination) ...[
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
                       _MapButton(
                         icon: Icons.location_searching_rounded,
                         onTap: () {

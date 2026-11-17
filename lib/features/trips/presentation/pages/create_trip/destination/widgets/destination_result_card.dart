@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class DestinationResultCard extends StatelessWidget {
   const DestinationResultCard({
@@ -61,7 +63,7 @@ class DestinationResultCard extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: const Color(0xFF120E0C),
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                   border: Border.all(
                     color: isSelected ? const Color(0xFF653322) : _borderColor,
                   ),
@@ -83,7 +85,7 @@ class DestinationResultCard extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       subtitle,
                       maxLines: 1,

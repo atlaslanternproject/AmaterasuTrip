@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripPlaceholderPage extends StatelessWidget {
   const TripPlaceholderPage({
@@ -43,7 +44,7 @@ class TripPlaceholderPage extends StatelessWidget {
                       color: _titleColor,
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: AmaterasuSpacing.xs),
                   Expanded(
                     child: Text(
                       title,
@@ -60,7 +61,7 @@ class TripPlaceholderPage extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(AmaterasuSpacing.lg),
                   child: Container(
                     width: double.infinity,
                     constraints: const BoxConstraints(maxWidth: 520),
@@ -100,7 +101,7 @@ class TripPlaceholderPage extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         Text(
                           tripId,
                           textAlign: TextAlign.center,

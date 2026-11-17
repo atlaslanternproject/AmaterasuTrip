@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 /// Visual conventions shared by Budget dialogs.
 ///
@@ -82,7 +83,7 @@ abstract final class BudgetDialogChrome {
       margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         color: surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         border: Border.all(color: border),
       ),
       clipBehavior: Clip.antiAlias,

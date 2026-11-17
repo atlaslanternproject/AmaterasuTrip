@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripDeleteConfirmationDialog extends StatefulWidget {
   const TripDeleteConfirmationDialog({super.key, required this.tripName});
@@ -95,7 +96,7 @@ class _TripDeleteConfirmationDialogState
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AmaterasuSpacing.md),
             Text(
               l10n.tripManagementFinalDeleteConfirmInstruction(widget.tripName),
               style: const TextStyle(color: _secondaryTextColor, height: 1.4),

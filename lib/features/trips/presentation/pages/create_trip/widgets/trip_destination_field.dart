@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripDestinationField extends StatelessWidget {
   const TripDestinationField({
@@ -57,7 +58,7 @@ class TripDestinationField extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       hasDestination ? destination! : hint,
                       maxLines: 1,

@@ -5,6 +5,7 @@ import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart
 import 'package:amaterasutrip/core/widgets/inputs/amaterasu_password_field.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class AccountPasswordPage extends StatefulWidget {
   const AccountPasswordPage({super.key});
@@ -171,7 +172,7 @@ class _AccountPasswordPageState extends State<AccountPasswordPage> {
           subtitle: l10n.accountPasswordChangeDescription,
           onTap: _loading ? null : _showChangePasswordDialog,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _PasswordSubItem(
           icon: Icons.mark_email_read_outlined,
           title: l10n.accountPasswordRecover,
@@ -342,7 +343,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                   : l10n.accountPasswordConfirmChange,
               onPressed: _loading ? null : _submit,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AmaterasuSpacing.sm),
             TextButton(
               onPressed: _loading
                   ? null
@@ -444,7 +445,7 @@ class _PasswordSubItem extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       subtitle,
                       maxLines: 2,

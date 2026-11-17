@@ -18,6 +18,7 @@ import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/features/trips/presentation/widgets/trip_cover_source_sheet.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripInformationSettingsPage extends ConsumerStatefulWidget {
   const TripInformationSettingsPage({super.key, required this.tripId});
@@ -111,7 +112,7 @@ class _TripInformationSettingsPageState
             onPressed: () => context.go('/trips/${widget.tripId}/settings'),
             icon: const Icon(Icons.arrow_back_rounded, color: _titleColor),
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: AmaterasuSpacing.xs),
           Expanded(
             child: Text(
               l10n.tripSettingsInformation,
@@ -711,7 +712,7 @@ class _TripInformationSettingsPageState
                     height: 1.4,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AmaterasuSpacing.md),
                 SizedBox(
                   width: double.infinity,
                   child: FilledButton.icon(
@@ -999,7 +1000,7 @@ class _InformationRow extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: AmaterasuSpacing.xs),
                       Text(
                         value,
                         maxLines:
@@ -1020,7 +1021,7 @@ class _InformationRow extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: AmaterasuSpacing.sm),
                 const Icon(
                   Icons.chevron_right_rounded,
                   color: _TripInformationSettingsPageState._secondaryTextColor,

@@ -12,6 +12,7 @@ import '../../../../core/widgets/common/amaterasu_divider.dart';
 import '../../../../core/widgets/inputs/amaterasu_password_field.dart';
 import '../../../../core/widgets/inputs/amaterasu_text_field.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class RegisterCard extends ConsumerStatefulWidget {
   const RegisterCard({super.key, this.returnTo});
@@ -51,7 +52,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: AmaterasuSpacing.lg),
           AmaterasuTextField(
             hintText: l10n.authUsernameHint,
             controller: usernameController,
@@ -62,7 +63,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
               });
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuTextField(
             hintText: l10n.authEmailHint,
             controller: emailController,
@@ -74,17 +75,17 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
               });
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuPasswordField(
             hintText: l10n.authPasswordHint,
             controller: passwordController,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuPasswordField(
             hintText: l10n.authConfirmPasswordHint,
             controller: confirmPasswordController,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AmaterasuSpacing.sm),
           if (registerError != null) ...[
             Container(
               padding: const EdgeInsets.all(12),
@@ -112,7 +113,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AmaterasuSpacing.md),
           ],
           AmaterasuPrimaryButton(
             text: l10n.authRegister,
@@ -175,7 +176,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
           ),
           const SizedBox(height: 12),
           AmaterasuDiscordButton(onPressed: () {}),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           TextButton(
             onPressed: () {
               context.go(InviteAuthReturn.route('/', widget.returnTo));

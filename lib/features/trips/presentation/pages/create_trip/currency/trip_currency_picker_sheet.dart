@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripCurrencyPickerSheet extends StatefulWidget {
   const TripCurrencyPickerSheet({
@@ -84,7 +85,7 @@ class _TripCurrencyPickerSheetState extends State<TripCurrencyPickerSheet> {
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextField(
@@ -144,7 +145,7 @@ class _TripCurrencyPickerSheetState extends State<TripCurrencyPickerSheet> {
             child: currencies.isEmpty
                 ? Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(24),
+                      padding: const EdgeInsets.all(AmaterasuSpacing.lg),
                       child: Text(
                         widget.noResultsText,
                         textAlign: TextAlign.center,

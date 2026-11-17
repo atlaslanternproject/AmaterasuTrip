@@ -10,6 +10,7 @@ import 'budget_category_picker.dart';
 import 'budget_charts.dart';
 import 'budget_expense_filters.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 /// B6: participant-scoped category totals. Shared and personal never mix.
 /// All FX operations are presentation-only; original financial data is intact.
@@ -281,7 +282,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         Text(
                           target,
                           style: const TextStyle(color: _gold, fontSize: 12),
@@ -498,7 +499,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
                     style: const TextStyle(color: _gold, fontSize: 12),
                   ),
                 ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AmaterasuSpacing.sm),
               Text(
                 '${l10n.b6ExpenseCount}: ${docs.length}',
                 style: const TextStyle(color: _muted, fontSize: 12),
@@ -544,7 +545,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
             l10n.b85CategoryChart,
             style: const TextStyle(color: _cream, fontWeight: FontWeight.w700),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AmaterasuSpacing.sm),
           BudgetCategoryChart(
             key: const Key('b85-category-chart'),
             values: [for (final entry in ordered) entry.value],
@@ -618,7 +619,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
             ),
           ),
         if (observations.isNotEmpty) ...[
-          const SizedBox(height: 8),
+          const SizedBox(height: AmaterasuSpacing.sm),
           ExpansionTile(
             tilePadding: EdgeInsets.zero,
             childrenPadding: EdgeInsets.zero,

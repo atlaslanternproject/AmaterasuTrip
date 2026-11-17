@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class DataSyncSettingsPage extends StatefulWidget {
   const DataSyncSettingsPage({super.key});
@@ -72,21 +73,21 @@ class _DataSyncSettingsPageState extends State<DataSyncSettingsPage> {
           value: _syncEnabled,
           onChanged: _setSyncEnabled,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _InfoItem(
           icon: Icons.sync_outlined,
           title: l10n.dataSyncNow,
           subtitle: l10n.dataSyncNowSubtitle,
           enabled: false,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _InfoItem(
           icon: Icons.history,
           title: l10n.dataSyncLast,
           subtitle: l10n.dataSyncNever,
           enabled: false,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _InfoItem(
           icon: Icons.cloud_outlined,
           title: l10n.dataSyncStatus,
@@ -138,7 +139,7 @@ class _SwitchItem extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   subtitle,
                   style: const TextStyle(
@@ -209,7 +210,7 @@ class _InfoItem extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   subtitle,
                   style: TextStyle(

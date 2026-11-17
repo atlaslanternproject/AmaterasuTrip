@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripCloudSelector extends StatelessWidget {
   const TripCloudSelector({
@@ -51,7 +52,7 @@ class TripCloudSelector extends StatelessWidget {
             onTap: onTap,
             borderRadius: BorderRadius.circular(17),
             child: Ink(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(AmaterasuSpacing.md),
               decoration: BoxDecoration(
                 color: _surfaceColor,
                 borderRadius: BorderRadius.circular(17),
@@ -130,7 +131,7 @@ class TripCloudSelector extends StatelessWidget {
                                 : FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: AmaterasuSpacing.xs),
                         Text(
                           subtitle,
                           style: const TextStyle(

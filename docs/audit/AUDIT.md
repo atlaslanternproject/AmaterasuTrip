@@ -26,6 +26,8 @@ Base di partenza (Fase 0): analisi 0 avvisi · 384 test Flutter · controllo tra
 | S2/B5 configurazioni bucket-list vecchie | risolta (nessuno script o test le usava) | 4f90d19 |
 | S5 log con email/UID solo in debug | risolta (40 righe) | 316fe08 |
 | B8 APK, backup e log spostati in `../AmaterasuTrip-archivio` | risolta (file ignorati da git, nessun commit). `desktop.ini` lasciato: è il file di Windows per l'icona della cartella | — |
+| ST1, ST2 colori come token (41 token, 495 sostituzioni; i colori usati 1-2 volte restano nei file) | risolta | 23d19cc |
+| ST3 spaziature e raggi con i token esistenti (220 + 23, solo valori identici: 4/8/16/24/32/48 e 8/14/24) | risolta in parte: i valori senza token (10, 12, 17, 18…) restano numeri | b2 |
 
 ---
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/features/trips/presentation/utils/trip_date_formatter.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripDateSelector extends StatelessWidget {
   const TripDateSelector({
@@ -110,7 +111,7 @@ class _DateBox extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       formattedDate,
                       maxLines: 1,

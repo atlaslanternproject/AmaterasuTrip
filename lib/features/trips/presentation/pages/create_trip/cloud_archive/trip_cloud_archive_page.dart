@@ -7,6 +7,7 @@ import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive_sele
 import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripCloudArchivePage extends ConsumerStatefulWidget {
   const TripCloudArchivePage({super.key, this.currentArchive});
@@ -53,7 +54,7 @@ class _TripCloudArchivePageState extends ConsumerState<TripCloudArchivePage> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AmaterasuSpacing.sm),
                 Text(
                   l10n.tripCloudGoogleDriveLocationDescription,
                   style: const TextStyle(
@@ -222,7 +223,7 @@ class _TripCloudArchivePageState extends ConsumerState<TripCloudArchivePage> {
                 height: 1.15,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AmaterasuSpacing.sm),
             Text(
               l10n.tripCloudDescription,
               style: const TextStyle(
@@ -262,9 +263,9 @@ class _TripCloudArchivePageState extends ConsumerState<TripCloudArchivePage> {
               enabled: false,
               onTap: () {},
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: AmaterasuSpacing.lg),
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(AmaterasuSpacing.md),
               decoration: BoxDecoration(
                 color: _accentColor.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(16),
@@ -406,7 +407,7 @@ class _ProviderCard extends StatelessWidget {
           onTap: interactive ? onTap : null,
           borderRadius: BorderRadius.circular(17),
           child: Ink(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AmaterasuSpacing.md),
             decoration: BoxDecoration(
               color: _surfaceColor,
               borderRadius: BorderRadius.circular(17),
@@ -456,7 +457,7 @@ class _ProviderCard extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: AmaterasuSpacing.xs),
                       Text(
                         subtitle,
                         style: const TextStyle(

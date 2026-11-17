@@ -61,7 +61,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
               borderRadius: BorderRadius.circular(18),
               onTap: () => _openDeletionReview(groups),
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AmaterasuSpacing.md),
                 child: Row(
                   children: [
                     const Icon(
@@ -80,7 +80,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                               color: AmaterasuColors.textPrimary,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          const SizedBox(height: AmaterasuSpacing.xs),
                           Text(
                             _t(
                               '${groups.length} attività con eliminazione proposta',
@@ -135,14 +135,14 @@ extension _BucketDeletionReview on _TripBucketListPageState {
             ),
             Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AmaterasuSpacing.md),
                 itemCount: groups.length,
                 separatorBuilder: (_, _) => const SizedBox(height: 18),
                 itemBuilder: (context, index) {
                   final group = groups[index];
 
                   return Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(AmaterasuSpacing.md),
                     decoration: BoxDecoration(
                       color: const Color(0xFF30231C),
                       borderRadius: BorderRadius.circular(16),
@@ -157,7 +157,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                             color: AmaterasuColors.textPrimary,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: AmaterasuSpacing.xs),
                         Text(
                           group.activity.city,
                           style: const TextStyle(color: AmaterasuColors.textSecondary),

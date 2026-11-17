@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetCreateSection extends StatelessWidget {
   const BudgetCreateSection({
@@ -26,7 +27,7 @@ class BudgetCreateSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: accent ? const Color(0xFF34241D) : const Color(0xFF2B201B),
         borderRadius: BorderRadius.circular(17),
@@ -73,7 +74,7 @@ class BudgetCreateSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           ...children,
         ],
       ),

@@ -13,6 +13,7 @@ import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_user_settlement_summary.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/personal_trip_budget_card.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripExpensesPage extends StatefulWidget {
   const TripExpensesPage({super.key, required this.tripId, this.api});
@@ -173,7 +174,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(icon, size: 18, color: selected ? _background : _muted),
-                const SizedBox(width: 8),
+                const SizedBox(width: AmaterasuSpacing.sm),
                 Flexible(
                   child: Text(
                     label,
@@ -246,7 +247,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
               );
             },
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: AmaterasuSpacing.sm),
         ],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_rounded),

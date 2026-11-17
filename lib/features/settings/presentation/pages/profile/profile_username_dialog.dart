@@ -6,6 +6,8 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class ProfileUsernameDialog extends ConsumerStatefulWidget {
   const ProfileUsernameDialog({super.key, required this.currentUsername});
@@ -135,19 +137,19 @@ class _ProfileUsernameDialogState extends ConsumerState<ProfileUsernameDialog> {
           filled: true,
           fillColor: _fieldColor,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             borderSide: const BorderSide(color: _borderColor),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             borderSide: const BorderSide(color: _accentColor, width: 1.4),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             borderSide: const BorderSide(color: AmaterasuColors.accentRose),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             borderSide: const BorderSide(color: AmaterasuColors.accentRose, width: 1.4),
           ),
         ),
@@ -182,7 +184,7 @@ class _ProfileUsernameDialogState extends ConsumerState<ProfileUsernameDialog> {
                         color: AmaterasuColors.surfaceDeep,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: AmaterasuSpacing.sm),
                     Text(l10n.profileUsernameChanging),
                   ],
                 )

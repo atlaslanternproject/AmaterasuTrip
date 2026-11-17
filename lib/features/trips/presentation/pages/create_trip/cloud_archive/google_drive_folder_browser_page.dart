@@ -5,6 +5,7 @@ import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart
 import 'package:amaterasutrip/features/trips/data/services/google_drive_archive_service.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class GoogleDriveFolderBrowserPage extends ConsumerStatefulWidget {
   const GoogleDriveFolderBrowserPage({super.key, required this.tripFolderName});
@@ -305,7 +306,7 @@ class _GoogleDriveFolderBrowserPageState
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.fromLTRB(18, 10, 18, 8),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: _surfaceColor,
         borderRadius: BorderRadius.circular(17),
@@ -404,7 +405,7 @@ class _GoogleDriveFolderBrowserPageState
     if (_folders.isEmpty) {
       return const Center(
         child: Padding(
-          padding: EdgeInsets.all(32),
+          padding: EdgeInsets.all(AmaterasuSpacing.xl),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -442,7 +443,7 @@ class _GoogleDriveFolderBrowserPageState
     return ListView.separated(
       padding: const EdgeInsets.fromLTRB(18, 8, 18, 18),
       itemCount: _folders.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 8),
+      separatorBuilder: (context, index) => const SizedBox(height: AmaterasuSpacing.sm),
       itemBuilder: (context, index) {
         final folder = _folders[index];
 
@@ -537,7 +538,7 @@ class _GoogleDriveFolderBrowserPageState
                   'Cartella del viaggio',
                   style: TextStyle(color: _secondaryTextColor, fontSize: 11.5),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   widget.tripFolderName,
                   maxLines: 2,

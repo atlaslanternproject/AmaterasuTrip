@@ -6,6 +6,8 @@ import 'package:amaterasutrip/features/settings/presentation/pages/account/accou
 import 'package:amaterasutrip/features/settings/data/services/account_deletion_service.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class AccountDeleteDialog extends ConsumerStatefulWidget {
   const AccountDeleteDialog({super.key});
@@ -167,7 +169,7 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
                   height: 1.4,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AmaterasuSpacing.sm),
               Text(
                 l10n.accountDeleteDialogIrreversible,
                 style: const TextStyle(
@@ -185,7 +187,7 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
                           _confirmed = !_confirmed;
                         });
                       },
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(AmaterasuRadius.sm),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Row(
@@ -202,7 +204,7 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
                               },
                         activeColor: _dangerColor,
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: AmaterasuSpacing.xs),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 12),

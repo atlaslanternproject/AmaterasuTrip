@@ -16,6 +16,7 @@ import 'package:amaterasutrip/features/trips/providers/trip_management_provider.
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripManagementSettingsPage extends ConsumerStatefulWidget {
   const TripManagementSettingsPage({super.key, required this.tripId});
@@ -646,7 +647,7 @@ class _TripManagementSettingsPageState
                     padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
                     children: [
                       _SectionTitle(l10n.tripManagementArchiveSection),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       _InfoCard(
                         icon: hasArchive
@@ -738,7 +739,7 @@ class _TripManagementSettingsPageState
 
                       _SectionTitle(l10n.tripManagementFinalStatusSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       _InfoCard(
                         icon: trip.status == TripStatus.active
@@ -772,7 +773,7 @@ class _TripManagementSettingsPageState
 
                       _SectionTitle(l10n.tripManagementFinalOperationsSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       AmaterasuSettingsCard(
                         icon: Icons.copy_all_outlined,
@@ -786,7 +787,7 @@ class _TripManagementSettingsPageState
 
                       _SectionTitle(l10n.tripManagementFinalDangerSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       AmaterasuSettingsCard(
                         icon: Icons.delete_forever_outlined,
@@ -831,7 +832,7 @@ class _Header extends StatelessWidget {
               color: TripManagementSettingsPage._titleColor,
             ),
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: AmaterasuSpacing.xs),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -894,7 +895,7 @@ class _InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: TripManagementSettingsPage._surfaceColor,
         borderRadius: BorderRadius.circular(18),
@@ -959,7 +960,7 @@ class _CenteredMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AmaterasuSpacing.lg),
         child: Text(
           text,
           textAlign: TextAlign.center,

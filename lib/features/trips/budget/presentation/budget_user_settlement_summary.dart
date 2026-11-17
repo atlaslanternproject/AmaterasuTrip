@@ -10,6 +10,7 @@ import 'budget_display_amount.dart';
 import 'budget_people.dart';
 import '../calculations/budget_snapshot_debts.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetUserSettlementSummary extends StatefulWidget {
   const BudgetUserSettlementSummary({
@@ -353,7 +354,7 @@ class _BudgetUserSettlementSummaryState
               : AmaterasuColors.accentOrange;
 
           return Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AmaterasuSpacing.md),
             decoration: BoxDecoration(
               color: AmaterasuColors.surfaceTooltip,
               borderRadius: BorderRadius.circular(16),
@@ -392,7 +393,7 @@ class _BudgetUserSettlementSummaryState
                           color: _muted,
                           size: 18,
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: AmaterasuSpacing.sm),
                         Expanded(
                           child: Text(
                             emptyText,
@@ -420,7 +421,7 @@ class _BudgetUserSettlementSummaryState
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: AmaterasuSpacing.sm),
                             Flexible(
                               child: BudgetDisplayAmount(
                                 minorUnits: row.value,
@@ -444,7 +445,7 @@ class _BudgetUserSettlementSummaryState
                                     fontSize: 12,
                                   ),
                                 ),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: AmaterasuSpacing.xs),
                                 BudgetDisplayAmount(
                                   minorUnits:
                                       pending[row.currency]![row.person]!,
@@ -587,12 +588,12 @@ class _BudgetUserSettlementSummaryState
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       movement.expenseTitle,
                       style: const TextStyle(color: _muted),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Row(
                       children: [
                         Expanded(

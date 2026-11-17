@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class PrivacyPermissionsPage extends StatelessWidget {
   const PrivacyPermissionsPage({super.key});
@@ -21,7 +22,7 @@ class PrivacyPermissionsPage extends StatelessWidget {
           l10n.privacyPermissionsIntro,
           style: const TextStyle(color: _textColor, fontSize: 14, height: 1.5),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: AmaterasuSpacing.lg),
         _PermissionSection(
           icon: Icons.notifications_none_outlined,
           title: l10n.privacyPermissionsNotificationsTitle,

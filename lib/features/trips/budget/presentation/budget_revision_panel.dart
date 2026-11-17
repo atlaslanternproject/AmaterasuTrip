@@ -8,6 +8,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'budget_api.dart';
 import 'budget_people.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetRevisionPanel extends StatefulWidget {
   const BudgetRevisionPanel({
@@ -163,7 +164,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(l10n.budgetRevisionInfo),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: AmaterasuSpacing.md),
                       TextField(
                         controller: amountController,
                         keyboardType: const TextInputType.numberWithOptions(
@@ -224,7 +225,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                         l10n.budgetMultiPayerHeading,
                         style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
                       for (final payer in payerControllers.entries) ...[
                         TextField(
                           controller: payer.value,
@@ -236,7 +237,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                                 '${names[payer.key] ?? BudgetPeople.recorded(widget.expense)[payer.key] ?? l10n.b86FormerTraveler} ($currency)',
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                       ],
                       Text(
                         l10n.budgetMultiPayerApproval,
@@ -250,7 +251,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                         l10n.budgetRevisionShares,
                         style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
                       for (final share in shareControllers.entries) ...[
                         TextField(
                           controller: share.value,
@@ -262,7 +263,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                                 '${names[share.key] ?? BudgetPeople.recorded(widget.expense)[share.key] ?? l10n.b86FormerTraveler} ($currency)',
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                       ],
                     ],
                   ),
@@ -446,7 +447,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                         fontSize: 16,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AmaterasuSpacing.sm),
 
                     if (canPropose)
                       OutlinedButton.icon(
@@ -494,7 +495,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: AmaterasuSpacing.xs),
                               Text('${approved.length}/${required.length}'),
                               const SizedBox(height: 6),
                               for (final person in required)

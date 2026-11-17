@@ -15,6 +15,7 @@ import 'budget_currency.dart';
 import 'budget_money_input.dart';
 import 'budget_display_amount.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class PersonalTripBudgetCard extends StatefulWidget {
   const PersonalTripBudgetCard({
@@ -487,7 +488,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AmaterasuSpacing.sm),
                 Text(
                   _l10n(it).btPersonalSetAnOptionalPersonal,
                   style: const TextStyle(color: _muted),
@@ -597,7 +598,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             _l10n(it).btPersonalPlannedBudget,
                             style: const TextStyle(color: _muted),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: AmaterasuSpacing.md),
                           if (spending == null)
                             Text(
                               '— ${widget.displayCurrency}',

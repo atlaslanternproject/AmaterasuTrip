@@ -6,6 +6,8 @@ import 'package:amaterasutrip/features/trips/models/trip.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class TripOverviewPage extends ConsumerWidget {
   const TripOverviewPage({super.key, required this.tripId});
@@ -463,7 +465,7 @@ class _OverviewActionCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(18),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AmaterasuSpacing.md),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(color: _borderColor),
@@ -475,7 +477,7 @@ class _OverviewActionCard extends StatelessWidget {
                 height: 48,
                 decoration: BoxDecoration(
                   color: const Color(0xFF281711),
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                   border: Border.all(color: const Color(0xFF5A2B1D)),
                 ),
                 child: Icon(icon, color: _accentColor, size: 25),
@@ -493,7 +495,7 @@ class _OverviewActionCard extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       description,
                       maxLines: 2,
@@ -507,7 +509,7 @@ class _OverviewActionCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: AmaterasuSpacing.sm),
               const Icon(Icons.chevron_right_rounded, color: Color(0xFFB96A42)),
             ],
           ),
@@ -527,7 +529,7 @@ class _TripOverviewMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(AmaterasuSpacing.xl),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

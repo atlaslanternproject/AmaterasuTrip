@@ -4,6 +4,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../models/budget_payment_allocation.dart';
 import 'budget_money_input.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetPaymentMethodsEditor extends StatefulWidget {
   const BudgetPaymentMethodsEditor({
@@ -122,7 +123,7 @@ class _BudgetPaymentMethodsEditorState
             fontWeight: FontWeight.w700,
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         Text(
           _l10n(it).btMethodsRecordHowYouPaid,
           style: const TextStyle(color: AmaterasuColors.textSecondary),

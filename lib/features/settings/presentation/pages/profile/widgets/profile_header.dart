@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -107,7 +108,7 @@ class ProfileHeader extends StatelessWidget {
           ),
         ),
         if (_fullName.isNotEmpty) ...[
-          const SizedBox(height: 4),
+          const SizedBox(height: AmaterasuSpacing.xs),
           Text(
             _fullName,
             textAlign: TextAlign.center,

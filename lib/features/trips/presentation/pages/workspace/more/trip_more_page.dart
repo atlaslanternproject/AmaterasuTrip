@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class TripMorePage extends StatelessWidget {
   const TripMorePage({super.key, required this.tripId});
@@ -111,7 +113,7 @@ class TripMorePage extends StatelessWidget {
                       color: _titleColor,
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: AmaterasuSpacing.xs),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,7 +178,7 @@ class _MoreCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(18),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AmaterasuSpacing.md),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
@@ -190,7 +192,7 @@ class _MoreCard extends StatelessWidget {
                 height: 46,
                 decoration: BoxDecoration(
                   color: TripMorePage._accentColor.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                 ),
                 child: Icon(
                   item.icon,

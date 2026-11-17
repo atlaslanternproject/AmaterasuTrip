@@ -15,6 +15,7 @@ import '../models/budget_payment_plan.dart';
 import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
 import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetCreateDialog extends StatefulWidget {
   const BudgetCreateDialog({
@@ -209,12 +210,12 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
             _l10n(it).btCreateSplitPreview,
             style: TextStyle(color: color, fontWeight: FontWeight.w700),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AmaterasuSpacing.sm),
           Text(
             '${_l10n(it).btCreateRecordedBy}: ${_travelerName(widget.api.currentUid, it)}',
             style: TextStyle(color: muted),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AmaterasuSpacing.sm),
           for (final entry in shares.entries)
             Padding(
               padding: const EdgeInsets.only(bottom: 4),
@@ -280,7 +281,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                     fontSize: 18,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AmaterasuSpacing.sm),
                 Text(
                   '${_l10n(it).btCreateCategory}: $_category',
                   style: const TextStyle(color: AmaterasuColors.textSecondary),
@@ -293,7 +294,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                   '${_l10n(it).btCreateStatus}: $_status',
                   style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AmaterasuSpacing.md),
                 _expensePreview(it),
                 const SizedBox(height: 14),
                 Text(
@@ -496,7 +497,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                     selected: _step == 0,
                     onTap: () => setState(() => _step = 0),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: AmaterasuSpacing.sm),
                   modeButton(
                     label: _l10n(it).btCreate2Amounts,
                     icon: Icons.payments_outlined,
@@ -532,7 +533,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                           selected: _shared,
                           onTap: () => setState(() => _shared = true),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: AmaterasuSpacing.sm),
                         modeButton(
                           label: _l10n(it).btCreatePersonal,
                           icon: Icons.lock_outline_rounded,
@@ -559,7 +560,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                         border: const OutlineInputBorder(),
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AmaterasuSpacing.sm),
                     ListTile(
                       leading: const Icon(Icons.calendar_today_outlined),
                       title: Text(_l10n(it).btCreateExpenseDate),
@@ -679,7 +680,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                             selected: !_customSplit,
                             onTap: () => setState(() => _customSplit = false),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: AmaterasuSpacing.sm),
                           modeButton(
                             label: _l10n(it).btCreateCustomShares,
                             icon: Icons.tune_rounded,
@@ -766,7 +767,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
               ],
 
               if (_error != null) ...[
-                const SizedBox(height: 8),
+                const SizedBox(height: AmaterasuSpacing.sm),
                 Text(
                   _error!,
                   style: const TextStyle(
@@ -780,7 +781,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 const SizedBox(height: 12),
                 const LinearProgressIndicator(color: orange),
               ],
-              const SizedBox(height: 4),
+              const SizedBox(height: AmaterasuSpacing.xs),
             ],
           ),
         ),

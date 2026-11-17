@@ -11,6 +11,7 @@ import 'widgets/destination_result_card.dart';
 import 'widgets/destination_search_field.dart';
 import 'widgets/destination_world_map.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripDestinationPage extends StatefulWidget {
   const TripDestinationPage({super.key, this.initialDestination});
@@ -351,7 +352,7 @@ class _TripDestinationPageState extends State<TripDestinationPage> {
 
                   if (destination != null) ...[
                     Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(AmaterasuSpacing.md),
                       decoration: BoxDecoration(
                         color: _surfaceColor,
                         borderRadius: BorderRadius.circular(18),
@@ -406,7 +407,7 @@ class _TripDestinationPageState extends State<TripDestinationPage> {
                                 if (destination
                                     .formattedAddress
                                     .isNotEmpty) ...[
-                                  const SizedBox(height: 4),
+                                  const SizedBox(height: AmaterasuSpacing.xs),
                                   Text(
                                     destination.formattedAddress,
                                     style: const TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripCurrencySelector extends StatelessWidget {
   const TripCurrencySelector({
@@ -84,7 +85,7 @@ class TripCurrencySelector extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       hasCurrency ? currency! : hint,
                       maxLines: 1,

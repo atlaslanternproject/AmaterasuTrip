@@ -10,6 +10,7 @@ import 'budget_api.dart';
 import 'budget_expense_controls.dart';
 import 'budget_people.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetExpenseDetailsDialog extends StatelessWidget {
   const BudgetExpenseDetailsDialog({
@@ -274,12 +275,12 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                             fontWeight: FontWeight.w800,
                           ),
                         ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
                       Text(
                         _statusLabel(status, it),
                         style: const TextStyle(color: AmaterasuColors.textSecondary),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: AmaterasuSpacing.md),
                       BudgetDialogChrome.section(
                         title: l10n.budgetSplitExpense,
                         icon: Icons.groups_outlined,

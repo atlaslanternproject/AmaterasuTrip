@@ -317,7 +317,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
               _t('Direzione ordinamento', 'Sort direction'),
               style: const TextStyle(color: cream, fontSize: 13),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AmaterasuSpacing.sm),
             SegmentedButton<bool>(
               showSelectedIcon: false,
               segments: [
@@ -380,7 +380,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                           color: cream,
                         ),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: AmaterasuSpacing.xs),
                       Expanded(
                         child: Text(
                           'Bucket List',
@@ -421,7 +421,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                                           0.90,
                                     ),
                                     child: SingleChildScrollView(
-                                      padding: const EdgeInsets.all(16),
+                                      padding: const EdgeInsets.all(AmaterasuSpacing.md),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -503,7 +503,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                     }),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AmaterasuSpacing.sm),
 
                 Expanded(
                   child: RefreshIndicator(

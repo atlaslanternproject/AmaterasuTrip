@@ -32,7 +32,8 @@ Controlli: `bash tool/check_all.sh` (Git Bash, dalla cartella principale).
 | a2 - codice morto, test obsoleti, configurazioni vecchie | fatto | 4f90d19 | C1 (parte sicura), C2, C5, S2/B5. Test Flutter 384 → 381 (tolti 3 test del codice permessi eliminato) |
 | a3 - log con email/UID solo in debug | fatto | 316fe08 | S5 |
 | B8 - archivio fuori dal progetto | fatto | (nessun commit: file ignorati da git) | APK, backup B8.4-B8.7, build web vecchia e log spostati in `../AmaterasuTrip-archivio` |
-| b - colori e stile | da fare | | |
+| b1 - token colore | fatto | 23d19cc | ST1, ST2: 41 token, 495 colori in 94 file |
+| b2 - token spaziatura e raggio | fatto | (questo) | ST3 parziale: 220 spaziature e 23 raggi con i token esistenti, solo valori identici |
 | c - localizzazioni | da fare | | |
 | d - struttura | da fare | | |
 | e - intestazioni e TODO(audit) | da fare | | |
@@ -40,5 +41,4 @@ Controlli: `bash tool/check_all.sh` (Git Bash, dalla cartella principale).
 | g - README, CLAUDE.md, B10 | da fare | | |
 
 ## Prossimo passo
-Passo b: nuovi token colore con gli stessi valori e sostituzione dei
-colori scritti a mano.
+Passo c: l10n.yaml (se rigenera file identici), chiavi non usate, doppioni nella stessa area.

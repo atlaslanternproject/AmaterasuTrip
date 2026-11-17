@@ -258,7 +258,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                           ),
                           style: const TextStyle(color: Color(0xFFC4B2A3)),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: AmaterasuSpacing.md),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 12),
                           child: Row(
@@ -292,7 +292,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: AmaterasuSpacing.sm),
                             IconButton.filled(
                               tooltip: _t('Cerca', 'Search'),
                               onPressed: searching || selecting || saving
@@ -311,7 +311,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                           ],
                         ),
                         if (searchError != null) ...[
-                          const SizedBox(height: 8),
+                          const SizedBox(height: AmaterasuSpacing.sm),
                           Text(
                             searchError!,
                             style: const TextStyle(color: AmaterasuColors.accentSalmon),
@@ -351,7 +351,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                 Icons.check_circle_outline,
                                 color: AmaterasuColors.accentAmber,
                               ),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: AmaterasuSpacing.sm),
                               Expanded(
                                 child: Text(
                                   _t(
@@ -437,7 +437,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             Icons.edit_outlined,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         TextField(
                           controller: city,
                           maxLength: 150,
@@ -446,7 +446,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             Icons.location_city_outlined,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         TextField(
                           controller: country,
                           maxLength: 150,
@@ -455,7 +455,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             Icons.public_outlined,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         DropdownButtonFormField<BucketItemType>(
                           initialValue: type,
                           isExpanded: true,
@@ -521,7 +521,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                           _t('Link utili', 'Useful links'),
                           style: const TextStyle(color: AmaterasuColors.textCream),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         for (var i = 0; i < linkControllers.length; i++) ...[
                           Row(
                             key: ObjectKey(linkControllers[i]),
@@ -563,7 +563,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: AmaterasuSpacing.sm),
                         ],
                         OutlinedButton.icon(
                           onPressed: saving || linkControllers.length >= 20

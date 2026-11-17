@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class PrivacyConsentPage extends StatelessWidget {
   const PrivacyConsentPage({super.key});
@@ -20,7 +21,7 @@ class PrivacyConsentPage extends StatelessWidget {
           l10n.privacyConsentIntro,
           style: const TextStyle(color: _textColor, fontSize: 14, height: 1.55),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: AmaterasuSpacing.lg),
         _ConsentSection(
           title: l10n.privacyConsentRequiredTitle,
           body: l10n.privacyConsentRequiredBody,
@@ -59,7 +60,7 @@ class _ConsentSection extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AmaterasuSpacing.sm),
           Text(
             body,
             style: const TextStyle(

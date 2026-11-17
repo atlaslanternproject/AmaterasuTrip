@@ -7,6 +7,7 @@ import 'budget_expense_filters.dart';
 import 'budget_expense_details_dialog.dart';
 import 'budget_display_amount.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetExpenseList extends StatelessWidget {
   const BudgetExpenseList({
@@ -86,7 +87,7 @@ class BudgetExpenseList extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AmaterasuSpacing.md),
             child: Text(
               _l10n(it).btListUnableToLoadExpenses,
               style: const TextStyle(color: _muted),
@@ -96,7 +97,7 @@ class BudgetExpenseList extends StatelessWidget {
 
         if (!snapshot.hasData) {
           return const Padding(
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.all(AmaterasuSpacing.lg),
             child: Center(child: CircularProgressIndicator()),
           );
         }
@@ -187,7 +188,7 @@ class BudgetExpenseList extends StatelessWidget {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(AmaterasuSpacing.md),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

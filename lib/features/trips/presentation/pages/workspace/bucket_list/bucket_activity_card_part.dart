@@ -136,7 +136,7 @@ extension _BucketActivityCard on _TripBucketListPageState {
           Row(
             children: [
               const Icon(Icons.location_on_outlined, size: 16, color: muted),
-              const SizedBox(width: 4),
+              const SizedBox(width: AmaterasuSpacing.xs),
               Expanded(
                 child: Text(
                   '${item.city} · ${item.country}',

@@ -11,6 +11,7 @@ import 'budget_display_amount.dart';
 import 'budget_people.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetReimbursementsPanel extends StatefulWidget {
   const BudgetReimbursementsPanel({
@@ -432,7 +433,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                     _l10n(_it).btRefundsRequestsWaitingForYour,
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AmaterasuSpacing.sm),
                   for (final doc in pendingForCurrentUser) ...[
                     Builder(
                       builder: (context) {
@@ -473,7 +474,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                   '${_l10n(_it).btRefundsDecidedBy} ${_name(data['decidedByUid'] as String, names)}',
                                 ),
                               _paymentDetails(data, currency),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: AmaterasuSpacing.sm),
                               Wrap(
                                 spacing: 8,
                                 children: [
@@ -565,7 +566,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                               fontSize: 17,
                             ),
                             if (confirmed > 0) ...[
-                              const SizedBox(height: 8),
+                              const SizedBox(height: AmaterasuSpacing.sm),
                               Text(_l10n(_it).btRefundsConfirmed),
                               BudgetDisplayAmount(
                                 expense: widget.expense,
@@ -576,7 +577,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                               ),
                             ],
                             if (closed > 0) ...[
-                              const SizedBox(height: 8),
+                              const SizedBox(height: AmaterasuSpacing.sm),
                               Text(l10n.b86Closed),
                               BudgetDisplayAmount(
                                 expense: widget.expense,
@@ -587,7 +588,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                               ),
                             ],
                             if (pending > 0) ...[
-                              const SizedBox(height: 8),
+                              const SizedBox(height: AmaterasuSpacing.sm),
                               Text(_l10n(_it).btRefundsPendingConfirmation),
                               BudgetDisplayAmount(
                                 expense: widget.expense,
@@ -653,7 +654,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                     _l10n(_it).btRefundsReimbursementHistory,
                     style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AmaterasuSpacing.sm),
                   for (final doc in docs) ...[
                     Builder(
                       builder: (context) {
@@ -692,7 +693,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                   color: AmaterasuColors.textSecondary,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: AmaterasuSpacing.xs),
                               BudgetDisplayAmount(
                                 expense: widget.expense,
                                 minorUnits: minorUnits,
@@ -786,7 +787,7 @@ class _CloseDebtDialogState extends State<_CloseDebtDialog> {
               widget.debtorName,
               style: const TextStyle(fontWeight: FontWeight.w700),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AmaterasuSpacing.sm),
             Text(
               l10n.b86CloseDebtExplain,
               style: const TextStyle(color: AmaterasuColors.textSecondary),

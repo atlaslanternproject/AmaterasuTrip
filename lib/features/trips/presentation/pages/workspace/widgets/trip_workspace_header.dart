@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripWorkspaceHeader extends StatelessWidget {
   const TripWorkspaceHeader({
@@ -47,7 +48,7 @@ class TripWorkspaceHeader extends StatelessWidget {
               size: 29,
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: AmaterasuSpacing.md),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +65,7 @@ class TripWorkspaceHeader extends StatelessWidget {
                     height: 1.1,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AmaterasuSpacing.sm),
                 Row(
                   children: [
                     const Icon(
@@ -111,7 +112,7 @@ class TripWorkspaceHeader extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: AmaterasuSpacing.sm),
           IconButton(
             onPressed: onSettingsTap,
             tooltip: MaterialLocalizations.of(context).moreButtonTooltip,

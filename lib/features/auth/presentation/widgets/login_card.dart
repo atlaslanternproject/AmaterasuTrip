@@ -15,6 +15,7 @@ import '../../../../core/widgets/common/amaterasu_divider.dart';
 import '../../../../core/widgets/inputs/amaterasu_password_field.dart';
 import '../../../../core/widgets/inputs/amaterasu_text_field.dart';
 import '../../../../core/storage/remember_me_storage.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class LoginCard extends ConsumerStatefulWidget {
   const LoginCard({super.key, this.returnTo});
@@ -107,7 +108,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: AmaterasuSpacing.lg),
           AmaterasuTextField(
             hintText: l10n.authEmailHint,
             controller: emailController,
@@ -118,7 +119,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
               });
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuPasswordField(
             hintText: l10n.authPasswordHint,
             controller: passwordController,
@@ -205,7 +206,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 style: const TextStyle(color: Colors.white),
               ),
             ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuPrimaryButton(
             text: loading ? l10n.authSigningIn : l10n.authSignIn,
             onPressed: loading ? null : login,

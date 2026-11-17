@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class AccountDeleteReauthentication {
   const AccountDeleteReauthentication._();
@@ -99,7 +100,7 @@ class AccountDeleteReauthentication {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(l10n.accountDeleteReauthenticationPasswordDescription),
-              const SizedBox(height: 16),
+              const SizedBox(height: AmaterasuSpacing.md),
               TextField(
                 obscureText: true,
                 autofocus: true,

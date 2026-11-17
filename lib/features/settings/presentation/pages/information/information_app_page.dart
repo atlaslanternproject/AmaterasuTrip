@@ -3,6 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'information_licenses_page.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class InformationAppPage extends StatefulWidget {
   const InformationAppPage({super.key});
@@ -133,7 +134,7 @@ class _InformationSubItem extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       subtitle,
                       maxLines: 2,

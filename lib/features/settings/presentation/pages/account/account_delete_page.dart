@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_dialog.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class AccountDeletePage extends StatelessWidget {
   const AccountDeletePage({super.key});
@@ -27,7 +28,7 @@ class AccountDeletePage extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: _backgroundColor,
         borderRadius: BorderRadius.circular(12),
@@ -53,7 +54,7 @@ class AccountDeletePage extends StatelessWidget {
               height: 1.4,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class AccountSecurityRecoveryPage extends StatelessWidget {
   const AccountSecurityRecoveryPage({super.key});
@@ -72,7 +73,7 @@ class AccountSecurityRecoveryContent extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AmaterasuSpacing.sm),
               Text(
                 l10n.accountRecoveryStatusDescription,
                 style: const TextStyle(
@@ -99,13 +100,13 @@ class AccountSecurityRecoveryContent extends StatelessWidget {
           title: l10n.accountRecoveryCodeTitle,
           description: l10n.accountRecoveryCodeDescription,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _RecoveryInfoItem(
           icon: Icons.lock_outline,
           title: l10n.accountRecoveryStorageTitle,
           description: l10n.accountRecoveryStorageDescription,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _RecoveryInfoItem(
           icon: Icons.devices_outlined,
           title: l10n.accountRecoveryDeviceTitle,

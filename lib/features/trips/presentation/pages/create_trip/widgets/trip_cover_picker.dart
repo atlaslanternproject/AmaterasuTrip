@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class TripCoverPicker extends StatelessWidget {
   const TripCoverPicker({
@@ -65,10 +66,10 @@ class TripCoverPicker extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 18),
               child: Material(
                 color: const Color(0xCC100C0A),
-                borderRadius: BorderRadius.circular(14),
+                borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                 child: InkWell(
                   onTap: onTap,
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 18,

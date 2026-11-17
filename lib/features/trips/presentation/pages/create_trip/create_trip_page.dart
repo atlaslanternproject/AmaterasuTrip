@@ -26,6 +26,7 @@ import 'widgets/trip_date_selector.dart';
 import 'widgets/trip_destination_field.dart';
 import 'widgets/trip_name_field.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class CreateTripPage extends ConsumerStatefulWidget {
   const CreateTripPage({super.key});
@@ -586,7 +587,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
                 destination: _selectedDestination?.label,
                 onTap: _selectDestination,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: AmaterasuSpacing.lg),
               Padding(
                 padding: const EdgeInsets.only(left: 4, bottom: 9),
                 child: Text(
@@ -615,7 +616,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
                 symbol: _currencySymbol,
                 onTap: _selectCurrency,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: AmaterasuSpacing.lg),
               TripCloudSelector(
                 sectionLabel: l10n.createTripStorageSection,
                 title: l10n.createTripStorage,

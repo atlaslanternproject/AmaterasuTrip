@@ -7,6 +7,7 @@ import '../../presentation/pages/create_trip/destination/services/destination_pl
 import 'budget_category_picker.dart';
 import 'budget_expense_filters.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class BudgetDisplayChoice {
   const BudgetDisplayChoice({required this.filters, required this.currency});
@@ -143,7 +144,7 @@ abstract final class BudgetExpensesToolbar {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AmaterasuSpacing.sm),
                     OutlinedButton.icon(
                       icon: const Icon(Icons.currency_exchange_rounded),
                       onPressed: () async {

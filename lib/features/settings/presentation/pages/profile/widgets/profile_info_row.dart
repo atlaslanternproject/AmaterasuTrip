@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class ProfileInfoRow extends StatelessWidget {
   const ProfileInfoRow({
@@ -41,7 +42,7 @@ class ProfileInfoRow extends StatelessWidget {
                   label,
                   style: const TextStyle(color: _subtitleColor, fontSize: 12),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   value,
                   style: const TextStyle(color: _titleColor, fontSize: 15),

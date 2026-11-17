@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class DataStoragePage extends StatelessWidget {
   const DataStoragePage({super.key});
@@ -23,21 +24,21 @@ class DataStoragePage extends StatelessWidget {
           subtitle: l10n.dataOfflineAvailableSubtitle,
           enabled: false,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _StorageItem(
           icon: Icons.sd_storage_outlined,
           title: l10n.dataStorageUsed,
           subtitle: l10n.dataStorageUsedUnavailable,
           enabled: false,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _StorageItem(
           icon: Icons.folder_open_outlined,
           title: l10n.dataManageOffline,
           subtitle: l10n.dataManageOfflineSubtitle,
           enabled: false,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _StorageItem(
           icon: Icons.delete_outline,
           title: l10n.dataClearOffline,
@@ -100,7 +101,7 @@ class _StorageItem extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   subtitle,
                   style: TextStyle(color: color, fontSize: 12, height: 1.25),

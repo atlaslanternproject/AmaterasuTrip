@@ -20,6 +20,7 @@ import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_list_item
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_priority.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/presentation/widgets/bucket_place_photo.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 part 'bucket_activity_editor_part.dart';
 part 'bucket_activity_delete_request_part.dart';

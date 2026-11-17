@@ -58,7 +58,7 @@ extension _BucketActivityDeletionRequest on _TripBucketListPageState {
                         'Type DELETE to confirm.',
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AmaterasuSpacing.md),
                     TextField(
                       controller: confirmation,
                       autofocus: true,

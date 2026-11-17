@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class AmaterasuSettingsCard extends StatelessWidget {
   const AmaterasuSettingsCard({
@@ -59,11 +61,11 @@ class AmaterasuSettingsCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: enabled ? onTap : null,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         child: Ink(
           decoration: BoxDecoration(
             color: effectiveCardColor,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             border: Border.all(color: effectiveBorderColor, width: 1),
           ),
           child: AnimatedSize(
@@ -105,7 +107,7 @@ class AmaterasuSettingsCard extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: AmaterasuSpacing.xs),
                             Text(
                               subtitle,
                               maxLines: 2,
@@ -150,7 +152,7 @@ class AmaterasuSettingsCard extends StatelessWidget {
       result.add(widgets[i]);
 
       if (i < widgets.length - 1) {
-        result.add(const SizedBox(height: 8));
+        result.add(const SizedBox(height: AmaterasuSpacing.sm));
       }
     }
 

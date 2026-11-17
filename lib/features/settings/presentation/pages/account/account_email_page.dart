@@ -7,6 +7,7 @@ import 'package:amaterasutrip/core/widgets/auth/amaterasu_email_verification_car
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 part 'account_email_actions.dart';
 part 'account_email_dialogs.dart';
