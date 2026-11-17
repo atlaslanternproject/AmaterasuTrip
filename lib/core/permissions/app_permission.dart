@@ -1,1 +1,0 @@
-enum AppPermission { camera, photos }

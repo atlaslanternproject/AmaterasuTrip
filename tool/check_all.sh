@@ -51,9 +51,6 @@ node_tests() {
     "$lib/account-deletion-trip-inventory.js" || return 1
   node functions/test/firestore-account-deletion-cleanup-port.test.cjs \
     "$lib/firestore-account-deletion-cleanup-port.js" || return 1
-  # NOTA: functions/test/macro3b-client-wiring.test.cjs e' escluso:
-  # verifica la vecchia cifratura E2EE, rimossa dal progetto, e fallisce
-  # gia' su main (vedi docs/audit/AUDIT.md).
 }
 
 emu_budget_rules() {
