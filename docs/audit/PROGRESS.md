@@ -26,9 +26,16 @@ Escluso dallo script: `functions/test/macro3b-client-wiring.test.cjs`
 
 | Passo | Stato | Commit |
 |---|---|---|
-| Fase 0 - base e script dei controlli | fatto | (questo) |
-| Fase 1 - report docs/audit/AUDIT.md | in corso | |
-| Fase 2 - correzioni | in attesa del "procedi" | |
+| Fase 0 - base e script dei controlli | fatto | 890c305 |
+| Fase 1 - report docs/audit/AUDIT.md | fatto | (commit del report) |
+| Fase 2 a) fine riga, .gitignore, import, file temporanei | in attesa del "procedi" | |
+| Fase 2 b) colori e stile | da fare | |
+| Fase 2 c) localizzazioni | da fare | |
+| Fase 2 d) struttura | da fare | |
+| Fase 2 e) intestazioni e TODO(audit) | da fare | |
+| Fase 2 f) dipendenze minor/patch | da fare | |
+| Fase 2 g) README e CLAUDE.md | da fare | |
 
 ## Prossimo passo
-Scrivere docs/audit/AUDIT.md (sola lettura), poi fermarsi.
+Aspettare il "procedi" (e la risposta alla domanda sulle funzioni
+approvate in fondo ad AUDIT.md), poi iniziare dal passo a).
