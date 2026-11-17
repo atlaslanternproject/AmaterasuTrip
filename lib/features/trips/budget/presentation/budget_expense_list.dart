@@ -9,6 +9,8 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
+part 'budget_expense_list_labels.dart';
+
 class BudgetExpenseList extends StatelessWidget {
   const BudgetExpenseList({
     super.key,
@@ -28,55 +30,6 @@ class BudgetExpenseList extends StatelessWidget {
   static const _cream = AmaterasuColors.textPrimary;
   static const _muted = AmaterasuColors.textSecondary;
   static const _gold = AmaterasuColors.accentGold;
-
-  String _categoryLabel(String value, bool it) {
-    switch (value) {
-      case 'accommodation':
-        return budgetL10n(it).btCatAccommodation;
-      case 'food':
-        return budgetL10n(it).btCatFoodDrinks;
-      case 'transport':
-        return budgetL10n(it).btCatTransport;
-      case 'activities':
-        return budgetL10n(it).btCatActivities;
-      case 'shopping':
-        return 'Shopping';
-      case 'other':
-        return budgetL10n(it).btCatOther;
-      default:
-        return value.trim().isEmpty ? (budgetL10n(it).btCatOther) : value;
-    }
-  }
-
-  IconData _categoryIcon(String category) {
-    switch (category) {
-      case 'accommodation':
-        return Icons.hotel_outlined;
-      case 'food':
-        return Icons.restaurant_outlined;
-      case 'transport':
-        return Icons.train_outlined;
-      case 'activities':
-        return Icons.local_activity_outlined;
-      case 'shopping':
-        return Icons.shopping_bag_outlined;
-      default:
-        return Icons.receipt_long_outlined;
-    }
-  }
-
-  String _statusLabel(String status, bool it) {
-    switch (status) {
-      case 'paid':
-        return budgetL10n(it).btListPaid;
-      case 'planned':
-        return budgetL10n(it).btStatusPlanned;
-      case 'outstanding':
-        return budgetL10n(it).btStatusOutstanding;
-      default:
-        return budgetL10n(it).btListStatusUnavailable;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
