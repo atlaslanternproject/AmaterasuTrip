@@ -1,5 +1,5 @@
 name: amaterasutrip
-description: "Amaterasu Trip - Japan Travel Planner"
+description: "Amaterasu Trip - organizzazione e gestione dei viaggi"
 publish_to: 'none'
 version: 1.10.0+12
 environment:

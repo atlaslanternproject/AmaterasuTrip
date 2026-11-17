@@ -34,6 +34,10 @@ summary() {
   for r in "${RESULTS[@]}"; do echo "$r"; done
 }
 
+# pub get prima di tutto: rigenera i testi tradotti (generate: true) prima
+# dell'analisi, altrimenti dopo una modifica a pubspec.yaml l'analisi
+# può partire mentre i file di lib/l10n sono in rigenerazione.
+flutter_pub_get() { flutter pub get && flutter gen-l10n; }
 flutter_analyze() { flutter analyze; }
 flutter_tests() { flutter test; }
 l10n_check() { dart run tool/check_l10n.dart; }
@@ -72,6 +76,7 @@ emu_budget_rc() {
     "node functions/test/budget-rc-integration.cjs"
 }
 
+step "flutter pub get e gen-l10n" flutter_pub_get
 step "flutter analyze" flutter_analyze
 step "flutter test" flutter_tests
 step "controllo traduzioni (l10n)" l10n_check
