@@ -1,3 +1,6 @@
+// Test automatici di bucket_deletion (trips/bucket_list).
+// Casi, ad esempio: "Request path belongs to the activity and trip", "Traveler can request deletion".
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:amaterasutrip/features/trips/bucket_list/data/bucket_deletion_paths.dart';

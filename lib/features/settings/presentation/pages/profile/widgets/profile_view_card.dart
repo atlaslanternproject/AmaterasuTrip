@@ -1,3 +1,5 @@
+// Card del profilo in sola lettura.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';
@@ -5,12 +7,13 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'profile_divider.dart';
 import 'profile_info_row.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class ProfileViewCard extends StatelessWidget {
   const ProfileViewCard({super.key, required this.profile});
 
-  static const Color _cardColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
+  static const Color _cardColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
 
   final UserProfile profile;
 

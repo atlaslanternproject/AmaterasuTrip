@@ -1,3 +1,5 @@
+// Pagina di un invito ricevuto: controlla il link e permette di unirsi.
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_functions/cloud_functions.dart';
@@ -8,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repository.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripInvitePage extends ConsumerStatefulWidget {
   const TripInvitePage({super.key, required this.tripId, required this.token});
@@ -155,7 +158,7 @@ class _InviteContent extends StatelessWidget {
 
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AmaterasuSpacing.lg),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 520),
           child: Column(
@@ -166,7 +169,7 @@ class _InviteContent extends StatelessWidget {
                 size: 72,
                 color: theme.colorScheme.primary,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: AmaterasuSpacing.lg),
               Text(
                 l10n.tripInviteHeading,
                 textAlign: TextAlign.center,
@@ -174,7 +177,7 @@ class _InviteContent extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: AmaterasuSpacing.xl),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -191,7 +194,7 @@ class _InviteContent extends StatelessWidget {
                       Row(
                         children: [
                           const Icon(Icons.location_on_outlined),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: AmaterasuSpacing.sm),
                           Expanded(child: Text(invite.destination)),
                         ],
                       ),
@@ -200,7 +203,7 @@ class _InviteContent extends StatelessWidget {
                         Row(
                           children: [
                             const Icon(Icons.calendar_month_outlined),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: AmaterasuSpacing.sm),
                             Expanded(child: Text(dateLabel)),
                           ],
                         ),
@@ -209,7 +212,7 @@ class _InviteContent extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: AmaterasuSpacing.lg),
               FilledButton(
                 onPressed: onContinue,
                 child: Text(
@@ -238,7 +241,7 @@ class _InviteError extends StatelessWidget {
 
     return Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AmaterasuSpacing.lg),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 520),
           child: Column(
@@ -248,7 +251,7 @@ class _InviteError extends StatelessWidget {
                 size: 72,
                 color: theme.colorScheme.error,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: AmaterasuSpacing.lg),
               Text(
                 l10n.tripInviteUnavailableTitle,
                 textAlign: TextAlign.center,
@@ -259,7 +262,7 @@ class _InviteError extends StatelessWidget {
               const SizedBox(height: 12),
               Text(l10n.tripInviteUnavailableBody, textAlign: TextAlign.center),
               if (onRetry != null) ...[
-                const SizedBox(height: 24),
+                const SizedBox(height: AmaterasuSpacing.lg),
                 OutlinedButton(
                   onPressed: onRetry,
                   child: Text(l10n.tripInviteRetry),

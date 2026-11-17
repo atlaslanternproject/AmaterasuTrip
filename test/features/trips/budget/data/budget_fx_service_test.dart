@@ -1,3 +1,6 @@
+// Test automatici di budget_fx_service (trips/budget/data).
+// Casi, ad esempio: "reads a verified published quote, date and pair", "EUR".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/data/budget_fx_service.dart';
 

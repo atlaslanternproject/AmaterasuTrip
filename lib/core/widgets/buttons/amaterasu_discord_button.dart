@@ -1,6 +1,8 @@
+// Bottone "Accedi con Discord" nello stile dell'app.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import 'Amaterasu_primary_button.dart';
+import 'amaterasu_primary_button.dart';
 
 class AmaterasuDiscordButton extends StatelessWidget {
   final VoidCallback? onPressed;

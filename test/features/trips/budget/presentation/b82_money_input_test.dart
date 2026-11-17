@@ -1,3 +1,6 @@
+// Test automatici di b82_money_input (trips/budget/presentation).
+// Casi, ad esempio: "B8.2 - expense total", "positive EUR amount".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_money_input.dart';
 

@@ -1,9 +1,14 @@
+// Comandi di gestione di una spesa: richiesta di annullamento,
+// decisione e annullamento delle spese personali.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'budget_api.dart';
 import 'budget_category_edit_dialog.dart';
 import 'budget_reimbursements_panel.dart';
 import 'budget_revision_panel.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 class BudgetExpenseControls extends StatefulWidget {
   const BudgetExpenseControls({
@@ -38,7 +43,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
     try {
       await action();
       if (mounted) {
-        setState(() => _message = _l10n(_it).btControlsRequestRecorded);
+        setState(() => _message = budgetL10n(_it).btControlsRequestRecorded);
       }
     } catch (e) {
       if (mounted) {
@@ -55,16 +60,16 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
       await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text(_l10n(_it).btControlsConfirmAction),
-          content: Text(_l10n(_it).btControlsTheExpenseWillBe),
+          title: Text(budgetL10n(_it).btControlsConfirmAction),
+          content: Text(budgetL10n(_it).btControlsTheExpenseWillBe),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: Text(_l10n(_it).btControlsCancel),
+              child: Text(budgetL10n(_it).btActionCancel),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
-              child: Text(_l10n(_it).btControlsConfirm),
+              child: Text(budgetL10n(_it).btActionConfirm),
             ),
           ],
         ),
@@ -76,7 +81,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
     final data = widget.expense;
     final cancelled = data['lifecycle'] == 'cancelled';
     if (cancelled) {
-      return Text(_l10n(_it).btControlsCancelledExpenseHistoryRetained);
+      return Text(budgetL10n(_it).btControlsCancelledExpenseHistoryRetained);
     }
 
     return Column(
@@ -85,7 +90,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
         const SizedBox(height: 14),
         const Divider(),
         Text(
-          _l10n(_it).btControlsExpenseManagement,
+          budgetL10n(_it).btControlsExpenseManagement,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
@@ -125,8 +130,8 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
           icon: const Icon(Icons.delete_outline),
           label: Text(
             widget.isPrivate
-                ? (_l10n(_it).btControlsCancelPersonalExpense)
-                : (_l10n(_it).btControlsProposeCancellation),
+                ? (budgetL10n(_it).btControlsCancelPersonalExpense)
+                : (budgetL10n(_it).btControlsProposeCancellation),
           ),
         ),
         if (!widget.isPrivate)
@@ -150,7 +155,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _l10n(_it).btControlsPendingCancellation(
+                    budgetL10n(_it).btControlsPendingCancellation(
                       approved.length,
                       required.length,
                     ),
@@ -168,7 +173,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                                     false,
                                   ),
                                 ),
-                          child: Text(_l10n(_it).btControlsReject),
+                          child: Text(budgetL10n(_it).btActionReject),
                         ),
                         FilledButton(
                           onPressed: _busy
@@ -179,7 +184,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                                     true,
                                   ),
                                 ),
-                          child: Text(_l10n(_it).btControlsApprove),
+                          child: Text(budgetL10n(_it).btControlsApprove),
                         ),
                       ],
                     ),
@@ -206,14 +211,10 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
             padding: const EdgeInsets.only(top: 8),
             child: Text(
               _message!,
-              style: const TextStyle(color: Color(0xFFE3A66C)),
+              style: const TextStyle(color: AmaterasuColors.accentGold),
             ),
           ),
       ],
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

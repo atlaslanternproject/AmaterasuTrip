@@ -1,3 +1,6 @@
+// Impostazioni del viaggio - Viaggiatori: elenco, inviti, profili
+// e rimozione.
+
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -13,6 +16,9 @@ import 'package:amaterasutrip/features/trips/models/trip_member.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_member_provider.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class TripTravellersSettingsPage extends ConsumerStatefulWidget {
   const TripTravellersSettingsPage({super.key, required this.tripId});
@@ -28,13 +34,13 @@ enum _InviteAction { copy, share, regenerate, revoke }
 
 class _TripTravellersSettingsPageState
     extends ConsumerState<TripTravellersSettingsPage> {
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _surfaceColor = Color(0xFF1A1310);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _surfaceColor = AmaterasuColors.surfaceWarm;
   static const Color _surfaceRaisedColor = Color(0xFF221915);
-  static const Color _borderColor = Color(0xFF5A3023);
-  static const Color _accentColor = Color(0xFFD96C32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _borderColor = AmaterasuColors.borderAccent;
+  static const Color _accentColor = AmaterasuColors.accentBudget;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
   static const Color _dangerColor = Color(0xFFE05A54);
 
   TripInviteCredentials? _activeInvite;
@@ -396,6 +402,7 @@ class _TripTravellersSettingsPageState
     }
   }
 
+  // TODO(audit): C9 _showMessage (SnackBar) ripetuto in 6 file: valutare una funzione condivisa.
   void _showMessage(String message) {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
@@ -462,7 +469,7 @@ class _TripTravellersSettingsPageState
                           ? 'Le risposte organizzative sono visibili ai membri del viaggio. Non inserire informazioni sanitarie.'
                           : 'Organizational answers are visible to trip members. Do not enter medical information.',
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: AmaterasuSpacing.lg),
                     Text(
                       l10n.tripTravellersParticipants,
                       style: const TextStyle(
@@ -524,6 +531,7 @@ class _TripTravellersSettingsPageState
   }
 }
 
+// TODO(audit): C10 _Header simile nelle pagine impostazioni viaggio: valutare un widget condiviso.
 class _Header extends StatelessWidget {
   const _Header({
     required this.title,
@@ -548,7 +556,7 @@ class _Header extends StatelessWidget {
               color: _TripTravellersSettingsPageState._titleColor,
             ),
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: AmaterasuSpacing.xs),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -619,7 +627,7 @@ class _InviteCard extends StatelessWidget {
                 onTap: enabled && !busy ? onTap : null,
                 borderRadius: BorderRadius.circular(18),
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(AmaterasuSpacing.md),
                   child: Row(
                     children: [
                       Container(
@@ -628,7 +636,7 @@ class _InviteCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: _TripTravellersSettingsPageState._accentColor
                               .withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                         ),
                         child: busy
                             ? const Padding(
@@ -790,7 +798,7 @@ class _MemberCard extends StatelessWidget {
         onTap: busy ? null : onTap,
         borderRadius: BorderRadius.circular(18),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AmaterasuSpacing.md),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
@@ -856,7 +864,7 @@ class _MemberCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: AmaterasuSpacing.sm),
               busy
                   ? const SizedBox(
                       width: 22,
@@ -1104,7 +1112,7 @@ class _InfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: _TripTravellersSettingsPageState._surfaceRaisedColor,
         borderRadius: BorderRadius.circular(18),

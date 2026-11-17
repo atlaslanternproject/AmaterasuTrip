@@ -1,3 +1,6 @@
+// Tutte le rotte dell'app (GoRouter): accesso, home, viaggi, workspace
+// del viaggio, impostazioni e inviti, con i controlli di accesso.
+
 import 'package:amaterasutrip/features/auth/presentation/pages/auth_gate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -50,6 +53,7 @@ import '../features/settings/presentation/pages/privacy/privacy_page.dart';
 import '../features/settings/presentation/pages/data/data_sync_page.dart';
 import '../features/settings/presentation/pages/information/information_page.dart';
 
+// TODO(audit): file di ~546 righe in un'unica espressione: valutare liste di rotte separate per area (accesso, viaggi, impostazioni).
 final amaterasuRouter = GoRouter(
   initialLocation: '/',
 

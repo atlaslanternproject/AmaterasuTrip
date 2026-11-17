@@ -1,4 +1,6 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
+// Schermata che esegue l'accesso con Google e gestisce gli errori.
+
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class GoogleAuth extends ConsumerStatefulWidget {
   const GoogleAuth({super.key, this.returnTo});
@@ -42,8 +45,8 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
         return;
       }
       debugPrint("GOOGLE LOGIN OK");
-      debugPrint("UID: ${user.uid}");
-      debugPrint("EMAIL: ${user.email}");
+      if (kDebugMode) debugPrint("UID: ${user.uid}");
+      if (kDebugMode) debugPrint("EMAIL: ${user.email}");
       final playerDoc = await FirebaseFirestore.instance
           .collection('viaggiatori')
           .doc(user.uid)
@@ -81,7 +84,7 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const CircularProgressIndicator(),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AmaterasuSpacing.lg),
                   Text(
                     l10n.authGoogleSigningIn,
                     style: const TextStyle(fontSize: 18),
@@ -92,9 +95,9 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.error_outline, size: 48, color: Colors.red),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: AmaterasuSpacing.md),
                   Text(error!),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AmaterasuSpacing.lg),
                   ElevatedButton(
                     onPressed: kIsWeb ? _login : null,
                     child: Text(l10n.authRetry),

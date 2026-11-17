@@ -1,3 +1,6 @@
+// Test automatici di auth_route_guard (core/navigation).
+// Casi, ad esempio: "AuthRouteGuard - anonymous user", "can access authentication root".
+
 import 'package:amaterasutrip/core/navigation/auth_route_guard.dart';
 import 'package:flutter_test/flutter_test.dart';
 

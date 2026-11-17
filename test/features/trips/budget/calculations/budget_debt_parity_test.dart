@@ -1,3 +1,6 @@
+// Test automatici di budget_debt_parity (trips/budget/calculations).
+// Casi, ad esempio: "debt allocation matches the Cloud Functions fixture", "raw data: ${item[".
+
 import 'dart:convert';
 import 'dart:io';
 

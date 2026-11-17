@@ -1,3 +1,6 @@
+// Pagina Bucket List del viaggio: attività condivise, voti, filtri,
+// ricerca e richieste di cancellazione. Il codice è diviso in file "part".
+
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/data/bucket_deletion_repository.dart';
@@ -19,6 +22,8 @@ import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_item_type
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_list_item.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_priority.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/presentation/widgets/bucket_place_photo.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 part 'bucket_activity_editor_part.dart';
 part 'bucket_activity_delete_request_part.dart';

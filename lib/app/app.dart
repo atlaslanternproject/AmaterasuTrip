@@ -1,3 +1,6 @@
+// Widget radice dell'app: MaterialApp con tema, lingua scelta e router.
+// Gestisce anche il ritorno all'invito dopo l'accesso.
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

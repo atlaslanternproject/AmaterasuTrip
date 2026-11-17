@@ -1,3 +1,5 @@
+// Valori finanziari di una spesa in un dato momento. Usato dai test.
+
 import 'money_amount.dart';
 import 'expense_payment_status.dart';
 

@@ -1,3 +1,5 @@
+// Modello del profilo utente letto da Firestore.
+
 class UserProfile {
   const UserProfile({
     required this.uid,

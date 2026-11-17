@@ -1,7 +1,12 @@
+// Opzioni di sincronizzazione: attivazione, stato, ultima
+// sincronizzazione e comando "sincronizza ora".
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class DataSyncSettingsPage extends StatefulWidget {
   const DataSyncSettingsPage({super.key});
@@ -13,11 +18,11 @@ class DataSyncSettingsPage extends StatefulWidget {
 class _DataSyncSettingsPageState extends State<DataSyncSettingsPage> {
   static const String _syncEnabledKey = 'data_sync_enabled';
 
-  static const Color _sectionColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _sectionColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
   static const Color _disabledColor = Color(0xFF6F665F);
 
   bool _syncEnabled = true;
@@ -71,21 +76,21 @@ class _DataSyncSettingsPageState extends State<DataSyncSettingsPage> {
           value: _syncEnabled,
           onChanged: _setSyncEnabled,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _InfoItem(
           icon: Icons.sync_outlined,
           title: l10n.dataSyncNow,
           subtitle: l10n.dataSyncNowSubtitle,
           enabled: false,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _InfoItem(
           icon: Icons.history,
           title: l10n.dataSyncLast,
           subtitle: l10n.dataSyncNever,
           enabled: false,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _InfoItem(
           icon: Icons.cloud_outlined,
           title: l10n.dataSyncStatus,
@@ -137,7 +142,7 @@ class _SwitchItem extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   subtitle,
                   style: const TextStyle(
@@ -208,7 +213,7 @@ class _InfoItem extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   subtitle,
                   style: TextStyle(

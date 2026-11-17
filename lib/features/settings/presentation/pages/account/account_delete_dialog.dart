@@ -1,3 +1,6 @@
+// Dialogo di conferma della cancellazione dell'account
+// (con nuovo accesso se serve).
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -5,6 +8,9 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_reauthentication.dart';
 import 'package:amaterasutrip/features/settings/data/services/account_deletion_service.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class AccountDeleteDialog extends ConsumerStatefulWidget {
   const AccountDeleteDialog({super.key});
@@ -18,10 +24,10 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
   bool _confirmed = false;
   bool _isDeleting = false;
 
-  static const Color _backgroundColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFFB8AAA0);
+  static const Color _backgroundColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textSecondaryAlt;
   static const Color _dangerColor = Color(0xFFD35C4A);
 
   Future<void> _deleteAccount() async {
@@ -166,7 +172,7 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
                   height: 1.4,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AmaterasuSpacing.sm),
               Text(
                 l10n.accountDeleteDialogIrreversible,
                 style: const TextStyle(
@@ -184,7 +190,7 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
                           _confirmed = !_confirmed;
                         });
                       },
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(AmaterasuRadius.sm),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Row(
@@ -201,7 +207,7 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
                               },
                         activeColor: _dangerColor,
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: AmaterasuSpacing.xs),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(top: 12),

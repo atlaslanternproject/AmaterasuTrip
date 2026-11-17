@@ -1,3 +1,6 @@
+// Test automatici di b82_display_amount (trips/budget/presentation).
+// Casi, ad esempio: "same currency shows original in Italian", "same currency shows original in English".
+
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

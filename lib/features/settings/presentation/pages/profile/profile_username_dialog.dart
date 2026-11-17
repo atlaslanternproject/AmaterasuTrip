@@ -1,3 +1,5 @@
+// Dialogo per cambiare lo username, con controllo di disponibilità.
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,6 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class ProfileUsernameDialog extends ConsumerStatefulWidget {
   const ProfileUsernameDialog({super.key, required this.currentUsername});
@@ -17,12 +22,12 @@ class ProfileUsernameDialog extends ConsumerStatefulWidget {
 }
 
 class _ProfileUsernameDialogState extends ConsumerState<ProfileUsernameDialog> {
-  static const Color _backgroundColor = Color(0xFF1A1512);
+  static const Color _backgroundColor = AmaterasuColors.surface;
   static const Color _fieldColor = Color(0xFF14100E);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
 
   late final TextEditingController _usernameController;
 
@@ -134,20 +139,20 @@ class _ProfileUsernameDialogState extends ConsumerState<ProfileUsernameDialog> {
           filled: true,
           fillColor: _fieldColor,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             borderSide: const BorderSide(color: _borderColor),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             borderSide: const BorderSide(color: _accentColor, width: 1.4),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Color(0xFFD66A5E)),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
+            borderSide: const BorderSide(color: AmaterasuColors.accentRose),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: Color(0xFFD66A5E), width: 1.4),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
+            borderSide: const BorderSide(color: AmaterasuColors.accentRose, width: 1.4),
           ),
         ),
       ),
@@ -167,7 +172,7 @@ class _ProfileUsernameDialogState extends ConsumerState<ProfileUsernameDialog> {
           onPressed: _isSaving ? null : _changeUsername,
           style: FilledButton.styleFrom(
             backgroundColor: _accentColor,
-            foregroundColor: const Color(0xFF100C0A),
+            foregroundColor: AmaterasuColors.surfaceDeep,
           ),
           child: _isSaving
               ? Row(
@@ -178,10 +183,10 @@ class _ProfileUsernameDialogState extends ConsumerState<ProfileUsernameDialog> {
                       height: 16,
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
-                        color: Color(0xFF100C0A),
+                        color: AmaterasuColors.surfaceDeep,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: AmaterasuSpacing.sm),
                     Text(l10n.profileUsernameChanging),
                   ],
                 )

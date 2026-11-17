@@ -1,3 +1,6 @@
+// Impostazioni del viaggio - Gestione: stato, archivio, duplicazione
+// e cancellazione.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -15,23 +18,25 @@ import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provid
 import 'package:amaterasutrip/features/trips/providers/trip_management_provider.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripManagementSettingsPage extends ConsumerStatefulWidget {
   const TripManagementSettingsPage({super.key, required this.tripId});
 
   final String tripId;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
 
-  static const Color _surfaceColor = Color(0xFF1A1512);
+  static const Color _surfaceColor = AmaterasuColors.surface;
 
-  static const Color _borderColor = Color(0xFF3A2A20);
+  static const Color _borderColor = AmaterasuColors.borderWarm;
 
-  static const Color _accentColor = Color(0xFFE28A32);
+  static const Color _accentColor = AmaterasuColors.accentSettings;
 
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
   @override
   ConsumerState<TripManagementSettingsPage> createState() =>
@@ -48,6 +53,7 @@ class _TripManagementSettingsPageState
 
   bool _working = false;
 
+  // TODO(audit): C9 _showMessage (SnackBar) ripetuto in 6 file: valutare una funzione condivisa.
   void _showMessage(String text) {
     if (!mounted) {
       return;
@@ -645,7 +651,7 @@ class _TripManagementSettingsPageState
                     padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
                     children: [
                       _SectionTitle(l10n.tripManagementArchiveSection),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       _InfoCard(
                         icon: hasArchive
@@ -737,7 +743,7 @@ class _TripManagementSettingsPageState
 
                       _SectionTitle(l10n.tripManagementFinalStatusSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       _InfoCard(
                         icon: trip.status == TripStatus.active
@@ -771,7 +777,7 @@ class _TripManagementSettingsPageState
 
                       _SectionTitle(l10n.tripManagementFinalOperationsSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       AmaterasuSettingsCard(
                         icon: Icons.copy_all_outlined,
@@ -785,7 +791,7 @@ class _TripManagementSettingsPageState
 
                       _SectionTitle(l10n.tripManagementFinalDangerSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       AmaterasuSettingsCard(
                         icon: Icons.delete_forever_outlined,
@@ -806,6 +812,7 @@ class _TripManagementSettingsPageState
   }
 }
 
+// TODO(audit): C10 _Header/_SectionTitle simili nelle pagine impostazioni viaggio: valutare un widget condiviso.
 class _Header extends StatelessWidget {
   const _Header({
     required this.title,
@@ -830,7 +837,7 @@ class _Header extends StatelessWidget {
               color: TripManagementSettingsPage._titleColor,
             ),
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: AmaterasuSpacing.xs),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -893,7 +900,7 @@ class _InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: TripManagementSettingsPage._surfaceColor,
         borderRadius: BorderRadius.circular(18),
@@ -958,7 +965,7 @@ class _CenteredMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AmaterasuSpacing.lg),
         child: Text(
           text,
           textAlign: TextAlign.center,

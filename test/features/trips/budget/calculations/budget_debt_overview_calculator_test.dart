@@ -1,3 +1,6 @@
+// Test automatici di budget_debt_overview_calculator (trips/budget/calculations).
+// Casi, ad esempio: "original debt belongs to one expense", "only confirmed reimbursements reduce outstanding debt".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/budget_debt_overview_calculator.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_financial_snapshot.dart';

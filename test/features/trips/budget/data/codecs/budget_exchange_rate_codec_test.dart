@@ -1,3 +1,6 @@
+// Test automatici di budget_exchange_rate_codec (trips/budget/data/codecs).
+// Casi, ad esempio: "rational rate round-trip remains exact", "invalid denominator is rejected".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/currency_exchange_rate.dart';
 import 'package:amaterasutrip/features/trips/budget/data/codecs/budget_exchange_rate_codec.dart';

@@ -1,3 +1,6 @@
+// Test automatici di budget_money_formatter (trips/budget/calculations).
+// Casi, ad esempio: "EUR uses two decimal places", "JPY uses no decimal places".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/budget_money_formatter.dart';
 

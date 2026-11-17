@@ -1,3 +1,5 @@
+// Lettura e salvataggio del budget personale privato del viaggiatore.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

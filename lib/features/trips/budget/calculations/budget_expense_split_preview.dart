@@ -1,3 +1,6 @@
+// Anteprima delle quote di una spesa nella valuta originale
+// (parti uguali o personalizzate).
+
 /// Calculates expense shares in the original currency.
 ///
 /// This class does not perform FX conversion or persist data.

@@ -1,4 +1,8 @@
-import 'package:flutter/foundation.dart' show kIsWeb, defaultTargetPlatform;
+// Avvio dell'app: inizializza Firebase (o gli emulatori nella variante
+// di test locale), App Check, Google Maps e lancia l'app.
+
+import 'package:flutter/foundation.dart'
+    show kDebugMode, kIsWeb, defaultTargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show appFlavor;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -84,6 +88,6 @@ void main() async {
       await initializeGoogleMaps();
     }
   }
-  debugPrint("START USER: ${FirebaseAuth.instance.currentUser?.email}");
+  if (kDebugMode) debugPrint("START USER: ${FirebaseAuth.instance.currentUser?.email}");
   runApp(const ProviderScope(child: AmaterasuTripApp()));
 }

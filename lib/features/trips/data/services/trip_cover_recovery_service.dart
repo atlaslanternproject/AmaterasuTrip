@@ -1,3 +1,5 @@
+// Recupera la copertina scelta se Android ha chiuso l'app durante la scelta.
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RecoveredTripCover {

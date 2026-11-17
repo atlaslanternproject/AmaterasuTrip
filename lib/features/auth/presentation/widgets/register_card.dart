@@ -1,17 +1,21 @@
+// Card di registrazione: username, email, password e conferma,
+// con i controlli dei campi e i messaggi di errore.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
-import '../../../../core/widgets/buttons/Amaterasu_discord_button.dart';
-import '../../../../core/widgets/buttons/Amaterasu_google_button.dart';
-import '../../../../core/widgets/buttons/Amaterasu_primary_button.dart';
-import '../../../../core/widgets/cards/Amaterasu_card.dart';
-import '../../../../core/widgets/common/Amaterasu_divider.dart';
-import '../../../../core/widgets/inputs/Amaterasu_password_field.dart';
-import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
+import '../../../../core/widgets/buttons/amaterasu_discord_button.dart';
+import '../../../../core/widgets/buttons/amaterasu_google_button.dart';
+import '../../../../core/widgets/buttons/amaterasu_primary_button.dart';
+import '../../../../core/widgets/cards/amaterasu_card.dart';
+import '../../../../core/widgets/common/amaterasu_divider.dart';
+import '../../../../core/widgets/inputs/amaterasu_password_field.dart';
+import '../../../../core/widgets/inputs/amaterasu_text_field.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class RegisterCard extends ConsumerStatefulWidget {
   const RegisterCard({super.key, this.returnTo});
@@ -51,7 +55,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: AmaterasuSpacing.lg),
           AmaterasuTextField(
             hintText: l10n.authUsernameHint,
             controller: usernameController,
@@ -62,7 +66,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
               });
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuTextField(
             hintText: l10n.authEmailHint,
             controller: emailController,
@@ -74,17 +78,17 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
               });
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuPasswordField(
             hintText: l10n.authPasswordHint,
             controller: passwordController,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuPasswordField(
             hintText: l10n.authConfirmPasswordHint,
             controller: confirmPasswordController,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AmaterasuSpacing.sm),
           if (registerError != null) ...[
             Container(
               padding: const EdgeInsets.all(12),
@@ -112,7 +116,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AmaterasuSpacing.md),
           ],
           AmaterasuPrimaryButton(
             text: l10n.authRegister,
@@ -175,7 +179,7 @@ class _RegisterCardState extends ConsumerState<RegisterCard> {
           ),
           const SizedBox(height: 12),
           AmaterasuDiscordButton(onPressed: () {}),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           TextButton(
             onPressed: () {
               context.go(InviteAuthReturn.route('/', widget.returnTo));

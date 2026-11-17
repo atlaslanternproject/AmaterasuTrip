@@ -1,7 +1,11 @@
+// Informazioni sull'app: versione e build.
+
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'information_licenses_page.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class InformationAppPage extends StatefulWidget {
   const InformationAppPage({super.key});
@@ -85,12 +89,12 @@ class _InformationSubItem extends StatelessWidget {
   final String subtitle;
   final VoidCallback onTap;
 
-  static const Color _sectionColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
-  static const Color _chevronColor = Color(0xFFB89B7A);
+  static const Color _sectionColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
+  static const Color _chevronColor = AmaterasuColors.textWarm;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +136,7 @@ class _InformationSubItem extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       subtitle,
                       maxLines: 2,

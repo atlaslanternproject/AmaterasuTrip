@@ -1,4 +1,7 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
+// Primo controllo all'avvio: in base allo stato dell'utente mostra
+// il login, la verifica email, la scelta dello username o la home.
+
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -35,7 +38,7 @@ class _AuthGateState extends ConsumerState<AuthGate> {
         return Scaffold(body: Center(child: Text(error.toString())));
       },
       data: (user) {
-        debugPrint('USER FIREBASE: ${user?.email}');
+        if (kDebugMode) debugPrint('USER FIREBASE: ${user?.email}');
 
         if (user != null && user.email != null) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -44,7 +47,7 @@ class _AuthGateState extends ConsumerState<AuthGate> {
                   .read(userRepositoryProvider)
                   .updateEmail(email: user.email!);
 
-              debugPrint('FIRESTORE EMAIL SYNC: ${user.email}');
+              if (kDebugMode) debugPrint('FIRESTORE EMAIL SYNC: ${user.email}');
             } catch (error) {
               debugPrint('FIRESTORE EMAIL SYNC ERROR: $error');
             }

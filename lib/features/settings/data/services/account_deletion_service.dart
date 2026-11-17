@@ -1,9 +1,13 @@
+// Cancellazione dell'account dal dispositivo: controlli, eliminazione
+// del profilo e dello username, poi dell'utente Firebase Auth.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:amaterasutrip/core/storage/remember_me_storage.dart';
 import 'package:amaterasutrip/features/settings/domain/account_deletion_trip_guard.dart';
 
+// TODO(audit): S5 molti debugPrint passo-passo: quelli con email/UID sono già solo in debug; valutare di toglierli. C4: la pulizia lato server esiste ma non è collegata.
 class AccountDeletionService {
   const AccountDeletionService._();
 
@@ -52,8 +56,8 @@ class AccountDeletionService {
         .map((provider) => provider.providerId)
         .toList();
 
-    debugPrint('[ACCOUNT DELETE] UID: $uid');
-    debugPrint('[ACCOUNT DELETE] Email: ${user.email ?? 'null'}');
+    if (kDebugMode) debugPrint('[ACCOUNT DELETE] UID: $uid');
+    if (kDebugMode) debugPrint('[ACCOUNT DELETE] Email: ${user.email ?? 'null'}');
     debugPrint('[ACCOUNT DELETE] Providers: ${providerIds.join(', ')}');
 
     debugPrint('');
@@ -70,7 +74,7 @@ class AccountDeletionService {
     debugPrint(
       '[1] Reauthentication is handled before this service is called.',
     );
-    debugPrint('[1] Continuing with authenticated user: $uid');
+    if (kDebugMode) debugPrint('[1] Continuing with authenticated user: $uid');
 
     debugPrint('');
     debugPrint('[2] GROUPS / TRIPS REFERENCES');
@@ -97,12 +101,12 @@ class AccountDeletionService {
     DocumentReference<Map<String, dynamic>>? usernameRef;
 
     try {
-      debugPrint('[4] Reading profile: viaggiatori/$uid');
+      if (kDebugMode) debugPrint('[4] Reading profile: viaggiatori/$uid');
 
       final profileSnapshot = await profileRef.get();
 
       if (!profileSnapshot.exists) {
-        debugPrint('[4] ERROR: profile not found: viaggiatori/$uid');
+        if (kDebugMode) debugPrint('[4] ERROR: profile not found: viaggiatori/$uid');
         debugPrint('[4] Username index cannot be safely resolved.');
         debugPrint('[4] PROCESS STOPPED before any deletion.');
 
@@ -111,7 +115,7 @@ class AccountDeletionService {
         );
       }
 
-      debugPrint('[4] Profile found: viaggiatori/$uid');
+      if (kDebugMode) debugPrint('[4] Profile found: viaggiatori/$uid');
 
       final profileData = profileSnapshot.data();
 
@@ -125,32 +129,32 @@ class AccountDeletionService {
         throw StateError('usernameLower missing from user profile.');
       }
 
-      debugPrint('[4] usernameLower: $usernameLower');
+      if (kDebugMode) debugPrint('[4] usernameLower: $usernameLower');
 
       usernameRef = firestore.collection('usernames').doc(usernameLower);
 
-      debugPrint('[4] Reading username index: usernames/$usernameLower');
+      if (kDebugMode) debugPrint('[4] Reading username index: usernames/$usernameLower');
 
       final usernameSnapshot = await usernameRef.get();
 
       if (!usernameSnapshot.exists) {
-        debugPrint('[4] Username index not found: usernames/$usernameLower');
+        if (kDebugMode) debugPrint('[4] Username index not found: usernames/$usernameLower');
         debugPrint('[4] No username index deletion will be required.');
       } else {
-        debugPrint('[4] Username index found: usernames/$usernameLower');
+        if (kDebugMode) debugPrint('[4] Username index found: usernames/$usernameLower');
 
         final usernameData = usernameSnapshot.data();
 
         final indexedUid = usernameData?['uid'] as String?;
 
-        debugPrint('[4] Username index UID: ${indexedUid ?? 'null'}');
+        if (kDebugMode) debugPrint('[4] Username index UID: ${indexedUid ?? 'null'}');
 
         if (indexedUid != uid) {
           debugPrint(
             '[4] ERROR: username index UID does not match current user.',
           );
-          debugPrint('[4] Current UID: $uid');
-          debugPrint('[4] Indexed UID: ${indexedUid ?? 'null'}');
+          if (kDebugMode) debugPrint('[4] Current UID: $uid');
+          if (kDebugMode) debugPrint('[4] Indexed UID: ${indexedUid ?? 'null'}');
           debugPrint('[4] PROCESS STOPPED before any deletion.');
 
           throw StateError('Username index UID does not match current user.');
@@ -166,12 +170,12 @@ class AccountDeletionService {
       final batch = firestore.batch();
 
       if (usernameSnapshot.exists) {
-        debugPrint('[4] Queue DELETE: usernames/$usernameLower');
+        if (kDebugMode) debugPrint('[4] Queue DELETE: usernames/$usernameLower');
 
         batch.delete(usernameRef);
       }
 
-      debugPrint('[4] Queue DELETE: viaggiatori/$uid');
+      if (kDebugMode) debugPrint('[4] Queue DELETE: viaggiatori/$uid');
 
       batch.delete(profileRef);
 
@@ -193,7 +197,7 @@ class AccountDeletionService {
         throw StateError('User profile still exists after Firestore deletion.');
       }
 
-      debugPrint('[4] Verified: viaggiatori/$uid no longer exists.');
+      if (kDebugMode) debugPrint('[4] Verified: viaggiatori/$uid no longer exists.');
 
       if (usernameSnapshot.exists) {
         debugPrint('[4] Verifying username index deletion...');
@@ -209,7 +213,7 @@ class AccountDeletionService {
           );
         }
 
-        debugPrint('[4] Verified: usernames/$usernameLower no longer exists.');
+        if (kDebugMode) debugPrint('[4] Verified: usernames/$usernameLower no longer exists.');
       } else {
         debugPrint('[4] Username index did not exist before deletion.');
       }
@@ -231,7 +235,7 @@ class AccountDeletionService {
     debugPrint('');
     debugPrint('[5] FIREBASE AUTH');
     debugPrint('[5] All confirmed Firestore account data has been deleted.');
-    debugPrint('[5] Deleting Firebase Auth user: $uid');
+    if (kDebugMode) debugPrint('[5] Deleting Firebase Auth user: $uid');
 
     try {
       await user.delete();
@@ -343,8 +347,8 @@ class AccountDeletionService {
         .map((provider) => provider.providerId)
         .toList();
 
-    debugPrint('[ACCOUNT DELETE] UID: ${user.uid}');
-    debugPrint('[ACCOUNT DELETE] Email: ${user.email ?? 'null'}');
+    if (kDebugMode) debugPrint('[ACCOUNT DELETE] UID: ${user.uid}');
+    if (kDebugMode) debugPrint('[ACCOUNT DELETE] Email: ${user.email ?? 'null'}');
     debugPrint('[ACCOUNT DELETE] Providers: ${providerIds.join(', ')}');
 
     debugPrint('');
@@ -367,7 +371,7 @@ class AccountDeletionService {
 
     debugPrint('');
     debugPrint('[2] GROUPS / TRIPS REFERENCES');
-    debugPrint('[2] Would search for references to UID ${user.uid}.');
+    if (kDebugMode) debugPrint('[2] Would search for references to UID ${user.uid}.');
     debugPrint('[2] Would remove user from shared groups and trips.');
     debugPrint('[2] DRY RUN: no Firestore document modified.');
 
@@ -375,7 +379,7 @@ class AccountDeletionService {
 
     debugPrint('');
     debugPrint('[3] USER-OWNED DATA');
-    debugPrint('[3] Would search for data owned by UID ${user.uid}.');
+    if (kDebugMode) debugPrint('[3] Would search for data owned by UID ${user.uid}.');
     debugPrint('[3] Would delete user-owned Firestore data.');
     debugPrint('[3] DRY RUN: no Firestore document deleted.');
 
@@ -391,10 +395,10 @@ class AccountDeletionService {
           .get();
 
       if (!profileSnapshot.exists) {
-        debugPrint('[4] Profile not found: viaggiatori/${user.uid}.');
+        if (kDebugMode) debugPrint('[4] Profile not found: viaggiatori/${user.uid}.');
         debugPrint('[4] No username index can be resolved from the profile.');
       } else {
-        debugPrint('[4] Profile found: viaggiatori/${user.uid}.');
+        if (kDebugMode) debugPrint('[4] Profile found: viaggiatori/${user.uid}.');
 
         final profileData = profileSnapshot.data();
         final usernameLower = profileData?['usernameLower'] as String?;
@@ -403,7 +407,7 @@ class AccountDeletionService {
           debugPrint('[4] WARNING: usernameLower missing from user profile.');
           debugPrint('[4] Username index cannot be verified.');
         } else {
-          debugPrint('[4] usernameLower: $usernameLower');
+          if (kDebugMode) debugPrint('[4] usernameLower: $usernameLower');
 
           final usernameSnapshot = await FirebaseFirestore.instance
               .collection('usernames')
@@ -415,7 +419,7 @@ class AccountDeletionService {
               '[4] Username index not found: usernames/$usernameLower.',
             );
           } else {
-            debugPrint('[4] Username index found: usernames/$usernameLower.');
+            if (kDebugMode) debugPrint('[4] Username index found: usernames/$usernameLower.');
 
             final usernameData = usernameSnapshot.data();
             final indexedUid = usernameData?['uid'] as String?;
@@ -427,8 +431,8 @@ class AccountDeletionService {
                 '[4] WARNING: username index UID does not match '
                 'current user.',
               );
-              debugPrint('[4] Current UID: ${user.uid}');
-              debugPrint('[4] Indexed UID: ${indexedUid ?? 'null'}');
+              if (kDebugMode) debugPrint('[4] Current UID: ${user.uid}');
+              if (kDebugMode) debugPrint('[4] Indexed UID: ${indexedUid ?? 'null'}');
             }
           }
         }
@@ -454,7 +458,7 @@ class AccountDeletionService {
 
     debugPrint('');
     debugPrint('[5] FIREBASE AUTH');
-    debugPrint('[5] Would delete Firebase Auth user ${user.uid}.');
+    if (kDebugMode) debugPrint('[5] Would delete Firebase Auth user ${user.uid}.');
     debugPrint('[5] DRY RUN: Firebase Auth user not deleted.');
 
     await Future<void>.delayed(const Duration(milliseconds: 200));

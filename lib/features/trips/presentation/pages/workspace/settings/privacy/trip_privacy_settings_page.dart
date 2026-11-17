@@ -1,3 +1,5 @@
+// Impostazioni del viaggio - Privacy: link di invito, ruoli e permessi.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +10,8 @@ import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repos
 import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 final _tripInviteStatusProvider = FutureProvider.autoDispose
     .family<TripInviteStatus, String>((ref, tripId) {
@@ -21,17 +25,17 @@ class TripPrivacySettingsPage extends ConsumerWidget {
 
   final String tripId;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
 
-  static const Color _accentColor = Color(0xFFE28A32);
+  static const Color _accentColor = AmaterasuColors.accentSettings;
 
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
-  static const Color _surfaceColor = Color(0xFF1A1512);
+  static const Color _surfaceColor = AmaterasuColors.surface;
 
-  static const Color _borderColor = Color(0xFF3A2A20);
+  static const Color _borderColor = AmaterasuColors.borderWarm;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -106,7 +110,7 @@ class TripPrivacySettingsPage extends ConsumerWidget {
                     children: [
                       _SectionTitle(l10n.tripPrivacyAccessSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       _PrivacyNoticeCard(
                         icon: Icons.lock_outline_rounded,
@@ -140,11 +144,11 @@ class TripPrivacySettingsPage extends ConsumerWidget {
                         enabled: canViewTravellers,
                       ),
 
-                      const SizedBox(height: 24),
+                      const SizedBox(height: AmaterasuSpacing.lg),
 
                       _SectionTitle(l10n.tripPrivacyProfileSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       AmaterasuSettingsCard(
                         icon: Icons.badge_outlined,
@@ -166,11 +170,11 @@ class TripPrivacySettingsPage extends ConsumerWidget {
                             '${l10n.tripTravellersEditProfileNote}',
                       ),
 
-                      const SizedBox(height: 24),
+                      const SizedBox(height: AmaterasuSpacing.lg),
 
                       _SectionTitle(l10n.tripPrivacyRolesSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       _PrivacyNoticeCard(
                         icon: Icons.admin_panel_settings_outlined,
@@ -178,11 +182,11 @@ class TripPrivacySettingsPage extends ConsumerWidget {
                         body: rolesText,
                       ),
 
-                      const SizedBox(height: 24),
+                      const SizedBox(height: AmaterasuSpacing.lg),
 
                       _SectionTitle(l10n.tripPrivacyExternalSection),
 
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
 
                       _PrivacyNoticeCard(
                         icon: Icons.cloud_outlined,
@@ -235,6 +239,7 @@ class TripPrivacySettingsPage extends ConsumerWidget {
   }
 }
 
+// TODO(audit): C10 _Header/_SectionTitle simili nelle pagine impostazioni viaggio: valutare un widget condiviso.
 class _Header extends StatelessWidget {
   const _Header({
     required this.title,
@@ -259,7 +264,7 @@ class _Header extends StatelessWidget {
               color: TripPrivacySettingsPage._titleColor,
             ),
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: AmaterasuSpacing.xs),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,7 +327,7 @@ class _PrivacyNoticeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: TripPrivacySettingsPage._surfaceColor,
         borderRadius: BorderRadius.circular(18),
@@ -387,7 +392,7 @@ class _CenteredMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AmaterasuSpacing.lg),
         child: Text(
           text,
           textAlign: TextAlign.center,

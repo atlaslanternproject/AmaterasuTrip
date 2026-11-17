@@ -1,3 +1,6 @@
+// Ripartisce i debiti netti dentro una spesa pagata da più persone.
+// Usato dai test di parità.
+
 import '../models/expense_debt.dart';
 import '../models/expense_financial_snapshot.dart';
 import '../models/expense_payment_status.dart';

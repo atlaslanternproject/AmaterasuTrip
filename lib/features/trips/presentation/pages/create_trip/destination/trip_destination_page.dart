@@ -1,3 +1,5 @@
+// Pagina di scelta della destinazione: ricerca e mappa del mondo.
+
 import 'dart:async';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -10,6 +12,8 @@ import 'services/destination_places_service.dart';
 import 'widgets/destination_result_card.dart';
 import 'widgets/destination_search_field.dart';
 import 'widgets/destination_world_map.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripDestinationPage extends StatefulWidget {
   const TripDestinationPage({super.key, this.initialDestination});
@@ -21,12 +25,12 @@ class TripDestinationPage extends StatefulWidget {
 }
 
 class _TripDestinationPageState extends State<TripDestinationPage> {
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _creamColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _accentColor = Color(0xFFE86A3A);
-  static const Color _surfaceColor = Color(0xFF1A1715);
-  static const Color _borderColor = Color(0xFF3A2A24);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
+  static const Color _accentColor = AmaterasuColors.accentFlame;
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
+  static const Color _borderColor = AmaterasuColors.borderWarmAlt;
   static const Color _disabledColor = Color(0xFF3A302B);
 
   final TextEditingController _searchController = TextEditingController();
@@ -350,7 +354,7 @@ class _TripDestinationPageState extends State<TripDestinationPage> {
 
                   if (destination != null) ...[
                     Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(AmaterasuSpacing.md),
                       decoration: BoxDecoration(
                         color: _surfaceColor,
                         borderRadius: BorderRadius.circular(18),
@@ -405,7 +409,7 @@ class _TripDestinationPageState extends State<TripDestinationPage> {
                                 if (destination
                                     .formattedAddress
                                     .isNotEmpty) ...[
-                                  const SizedBox(height: 4),
+                                  const SizedBox(height: AmaterasuSpacing.xs),
                                   Text(
                                     destination.formattedAddress,
                                     style: const TextStyle(

@@ -1,4 +1,7 @@
+// Titolo di sezione con icona e colore di accento.
+
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripSectionTitle extends StatelessWidget {
   const TripSectionTitle({
@@ -12,7 +15,7 @@ class TripSectionTitle extends StatelessWidget {
   final IconData icon;
   final Color accentColor;
 
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
   @override
   Widget build(BuildContext context) {

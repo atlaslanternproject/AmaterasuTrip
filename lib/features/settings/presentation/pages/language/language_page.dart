@@ -1,17 +1,21 @@
+// Pagina per scegliere la lingua dell'app (italiano, inglese, sistema).
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/features/settings/providers/language_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class LanguagePage extends ConsumerStatefulWidget {
   const LanguagePage({super.key});
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _cardColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _cardColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
   @override
   ConsumerState<LanguagePage> createState() => _LanguagePageState();
 }
@@ -112,11 +116,11 @@ class _LanguageCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         child: Ink(
           decoration: BoxDecoration(
             color: LanguagePage._cardColor,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             border: Border.all(
               color: isSelected
                   ? LanguagePage._accentColor.withValues(alpha: 0.75)

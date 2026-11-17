@@ -1,3 +1,5 @@
+// Livelli di priorità (voti) delle attività e loro valori.
+
 enum BucketPriority {
   ss(10),
   s(7),

@@ -1,3 +1,6 @@
+// Formatta gli importi (in centesimi o unità minime) senza usare
+// numeri decimali, per evitare errori di arrotondamento.
+
 import 'currency_minor_units.dart';
 
 /// Formats accounting minor units without floating-point arithmetic.

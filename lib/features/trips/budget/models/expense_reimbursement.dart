@@ -1,3 +1,5 @@
+// Rimborso dichiarato tra due viaggiatori. Usato dai test.
+
 import 'money_amount.dart';
 import 'reimbursement_status.dart';
 

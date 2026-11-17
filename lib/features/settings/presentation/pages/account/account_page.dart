@@ -1,3 +1,6 @@
+// Pagina Account delle impostazioni: email, password, sicurezza,
+// logout e cancellazione.
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -7,6 +10,7 @@ import 'package:amaterasutrip/features/settings/presentation/pages/account/accou
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_email_page.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_password_page.dart';
 import 'package:amaterasutrip/features/settings/providers/account_provider_access.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -20,8 +24,8 @@ class _AccountPageState extends State<AccountPage> {
   bool _passwordExpanded = false;
   bool _deleteExpanded = false;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
   @override
   Widget build(BuildContext context) {

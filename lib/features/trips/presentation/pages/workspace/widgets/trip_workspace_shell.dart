@@ -1,6 +1,10 @@
+// Contenitore fisso di tutte le pagine di un viaggio:
+// contenuto più barra di navigazione del workspace.
+
 import 'package:flutter/material.dart';
 
 import 'trip_workspace_bottom_bar.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 /// Shell persistente di tutte le pagine appartenenti a un singolo viaggio.
 ///
@@ -19,7 +23,7 @@ class TripWorkspaceShell extends StatelessWidget {
   final String location;
   final Widget child;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
 
   @override
   Widget build(BuildContext context) {

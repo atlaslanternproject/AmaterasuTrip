@@ -1,3 +1,5 @@
+// Parte di account_email_page.dart: piccoli widget della sezione email.
+
 part of 'account_email_page.dart';
 
 class _AccountSubItem extends StatelessWidget {
@@ -11,12 +13,12 @@ class _AccountSubItem extends StatelessWidget {
   final String title;
   final String subtitle;
   final VoidCallback onTap;
-  static const Color _sectionColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
-  static const Color _chevronColor = Color(0xFFB89B7A);
+  static const Color _sectionColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
+  static const Color _chevronColor = AmaterasuColors.textWarm;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -57,7 +59,7 @@ class _AccountSubItem extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       subtitle,
                       maxLines: 2,

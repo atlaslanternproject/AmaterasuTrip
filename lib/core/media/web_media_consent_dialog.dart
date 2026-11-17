@@ -1,3 +1,6 @@
+// Dialogo mostrato sul Web prima di usare fotocamera o galleria,
+// per spiegare all'utente cosa sta per succedere.
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 

@@ -1,3 +1,6 @@
+// Test automatici di bucket_list_item_codec (trips/bucket_list).
+// Casi, ad esempio: "Round trip preserves activity data", "No photo URL or photo resource is persisted".
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_item_type.dart';

@@ -1,3 +1,6 @@
+// Test automatici di budget_currency (trips/budget/presentation).
+// Casi, ad esempio: "JPT legacy becomes JPY", "canonical currencies are valid".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_currency.dart';
 

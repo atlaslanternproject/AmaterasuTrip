@@ -1,3 +1,5 @@
+// Parte di trip_bucket_list_page.dart: conteggio totale delle attività.
+
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketTotalCount on _TripBucketListPageState {

@@ -1,6 +1,10 @@
+// Foglio in basso per cercare e scegliere la valuta.
+
 import 'package:flutter/material.dart';
 
 import '../destination/services/destination_places_service.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripCurrencyPickerSheet extends StatefulWidget {
   const TripCurrencyPickerSheet({
@@ -24,11 +28,11 @@ class TripCurrencyPickerSheet extends StatefulWidget {
 }
 
 class _TripCurrencyPickerSheetState extends State<TripCurrencyPickerSheet> {
-  static const Color _fieldColor = Color(0xFF241B17);
-  static const Color _borderColor = Color(0xFF3A2A24);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _accentColor = Color(0xFFE86A3A);
+  static const Color _fieldColor = AmaterasuColors.surfaceRaisedAlt;
+  static const Color _borderColor = AmaterasuColors.borderWarmAlt;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
+  static const Color _accentColor = AmaterasuColors.accentFlame;
 
   final TextEditingController _searchController = TextEditingController();
 
@@ -83,7 +87,7 @@ class _TripCurrencyPickerSheetState extends State<TripCurrencyPickerSheet> {
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextField(
@@ -143,7 +147,7 @@ class _TripCurrencyPickerSheetState extends State<TripCurrencyPickerSheet> {
             child: currencies.isEmpty
                 ? Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(24),
+                      padding: const EdgeInsets.all(AmaterasuSpacing.lg),
                       child: Text(
                         widget.noResultsText,
                         textAlign: TextAlign.center,

@@ -1,3 +1,5 @@
+// Ricerca delle destinazioni per Android/iOS.
+
 import 'package:flutter/services.dart';
 
 const MethodChannel _channel = MethodChannel('com.amaterasutrip/places');

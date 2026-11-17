@@ -1,3 +1,5 @@
+// Formatta le date del viaggio, sempre con l'anno.
+
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 

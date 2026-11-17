@@ -101,12 +101,6 @@ abstract class AppLocalizations {
   /// **'Security and recovery'**
   String get accountRecoveryTitle;
 
-  /// No description provided for @accountRecoverySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Protect and recover your data'**
-  String get accountRecoverySubtitle;
-
   /// No description provided for @accountRecoveryStatus.
   ///
   /// In en, this message translates to:
@@ -173,12 +167,6 @@ abstract class AppLocalizations {
   /// **'Password recovery and encrypted data recovery are two different processes.'**
   String get accountRecoveryNotice;
 
-  /// No description provided for @tripNotificationsWebUnavailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip push notifications are not yet available on the Web. Your saved Android preferences remain unchanged.'**
-  String get tripNotificationsWebUnavailable;
-
   /// No description provided for @webMediaCameraTitle.
   ///
   /// In en, this message translates to:
@@ -220,12 +208,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome back'**
   String get authWelcomeBack;
-
-  /// No description provided for @authEmailOrUsernameHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter Email or Username'**
-  String get authEmailOrUsernameHint;
 
   /// No description provided for @authPasswordHint.
   ///
@@ -497,24 +479,6 @@ abstract class AppLocalizations {
   /// **'Sign in with Google'**
   String get commonGoogleSignIn;
 
-  /// No description provided for @commonPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get commonPassword;
-
-  /// No description provided for @homeGoogleUser.
-  ///
-  /// In en, this message translates to:
-  /// **'Google user'**
-  String get homeGoogleUser;
-
-  /// No description provided for @homeNoUid.
-  ///
-  /// In en, this message translates to:
-  /// **'No UID'**
-  String get homeNoUid;
-
   /// No description provided for @settingsProfile.
   ///
   /// In en, this message translates to:
@@ -544,12 +508,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Information'**
   String get settingsInformation;
-
-  /// No description provided for @settingsPlaceholder.
-  ///
-  /// In en, this message translates to:
-  /// **'This section will be available soon.'**
-  String get settingsPlaceholder;
 
   /// Name of a language displayed using the current app language.
   ///
@@ -707,12 +665,6 @@ abstract class AppLocalizations {
   /// **'Verify email'**
   String get accountEmailVerify;
 
-  /// No description provided for @accountEmailResendVerification.
-  ///
-  /// In en, this message translates to:
-  /// **'Resend verification email'**
-  String get accountEmailResendVerification;
-
   /// No description provided for @accountEmailChange.
   ///
   /// In en, this message translates to:
@@ -767,30 +719,6 @@ abstract class AppLocalizations {
   /// **'Manage your linked accounts'**
   String get accountLinkedAccountsSubtitle;
 
-  /// No description provided for @accountLinkedGoogle.
-  ///
-  /// In en, this message translates to:
-  /// **'Google'**
-  String get accountLinkedGoogle;
-
-  /// No description provided for @accountLinkedOtherProviders.
-  ///
-  /// In en, this message translates to:
-  /// **'Other providers'**
-  String get accountLinkedOtherProviders;
-
-  /// No description provided for @accountLinkedConnected.
-  ///
-  /// In en, this message translates to:
-  /// **'Connected'**
-  String get accountLinkedConnected;
-
-  /// No description provided for @accountLinkedNotConnected.
-  ///
-  /// In en, this message translates to:
-  /// **'Not connected'**
-  String get accountLinkedNotConnected;
-
   /// No description provided for @accountSession.
   ///
   /// In en, this message translates to:
@@ -803,18 +731,6 @@ abstract class AppLocalizations {
   /// **'Manage access to your account'**
   String get accountSessionSubtitle;
 
-  /// No description provided for @accountSessionActive.
-  ///
-  /// In en, this message translates to:
-  /// **'Active sessions'**
-  String get accountSessionActive;
-
-  /// No description provided for @accountSessionSignOutAll.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign out of all devices'**
-  String get accountSessionSignOutAll;
-
   /// No description provided for @accountDelete.
   ///
   /// In en, this message translates to:
@@ -826,12 +742,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Deleting your account is permanent and will remove the associated data.'**
   String get accountDeleteDescription;
-
-  /// No description provided for @accountDeleteConfirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm account deletion'**
-  String get accountDeleteConfirm;
 
   /// No description provided for @accountLogout.
   ///
@@ -850,12 +760,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Verification email sent. Also check your Spam or Junk folder.'**
   String get accountEmailVerificationSent;
-
-  /// No description provided for @accountEmailChangeVerificationSent.
-  ///
-  /// In en, this message translates to:
-  /// **'We\'ve sent a verification email to the new address. Also check your Spam or Junk folder.'**
-  String get accountEmailChangeVerificationSent;
 
   /// No description provided for @accountEmailVerifiedDescription.
   ///
@@ -1277,126 +1181,6 @@ abstract class AppLocalizations {
   /// **'Information about obtaining a copy of your data.'**
   String get privacyExportSubtitle;
 
-  /// No description provided for @privacyPolicyOverviewTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'General information'**
-  String get privacyPolicyOverviewTitle;
-
-  /// No description provided for @privacyPolicyOverviewBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Amaterasu Trip is an application designed to help organise and manage travel. This policy explains which data may be processed while using the app and for what purposes.'**
-  String get privacyPolicyOverviewBody;
-
-  /// No description provided for @privacyPolicyCollectedDataTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Data processed'**
-  String get privacyPolicyCollectedDataTitle;
-
-  /// No description provided for @privacyPolicyCollectedDataBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Amaterasu may process data required to create and manage an account, such as your email address, user identifier, username and authentication method. Some app preferences, such as language and remembered sign-in settings, may be stored locally on your device.'**
-  String get privacyPolicyCollectedDataBody;
-
-  /// No description provided for @privacyPolicyPurposeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Purpose of processing'**
-  String get privacyPolicyPurposeTitle;
-
-  /// No description provided for @privacyPolicyPurposeBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Data is used solely to provide the app\'s features, authenticate users, maintain the Amaterasu profile, allow account management and ensure the correct operation of associated services.'**
-  String get privacyPolicyPurposeBody;
-
-  /// No description provided for @privacyPolicyFirebaseTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Firebase'**
-  String get privacyPolicyFirebaseTitle;
-
-  /// No description provided for @privacyPolicyFirebaseBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Amaterasu uses Google\'s Firebase services for features such as authentication and account data storage. Data required for these services may be processed through Firebase infrastructure in accordance with Google\'s applicable terms and policies.'**
-  String get privacyPolicyFirebaseBody;
-
-  /// No description provided for @privacyPolicyGoogleTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in with Google'**
-  String get privacyPolicyGoogleTitle;
-
-  /// No description provided for @privacyPolicyGoogleBody.
-  ///
-  /// In en, this message translates to:
-  /// **'If you choose to sign in to Amaterasu using Google, Google provides the information required to authenticate your account. Amaterasu does not receive or store your Google account password.'**
-  String get privacyPolicyGoogleBody;
-
-  /// No description provided for @privacyPolicyStorageTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Data retention'**
-  String get privacyPolicyStorageTitle;
-
-  /// No description provided for @privacyPolicyStorageBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Data associated with your account is retained while your Amaterasu account remains active or for as long as required to provide the requested services. Some preferences may be stored locally on your device.'**
-  String get privacyPolicyStorageBody;
-
-  /// No description provided for @privacyPolicyDeletionTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Account deletion'**
-  String get privacyPolicyDeletionTitle;
-
-  /// No description provided for @privacyPolicyDeletionBody.
-  ///
-  /// In en, this message translates to:
-  /// **'You can permanently delete your account from Amaterasu settings. Deletion removes the Firebase Authentication account and the account data currently associated with your Amaterasu profile. When new features and additional categories of data are introduced, this policy will be updated accordingly.'**
-  String get privacyPolicyDeletionBody;
-
-  /// No description provided for @privacyPolicySecurityTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Security'**
-  String get privacyPolicySecurityTitle;
-
-  /// No description provided for @privacyPolicySecurityBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Amaterasu uses appropriate technical measures to limit unauthorised access to data and relies on the authentication and security systems provided by the Firebase services used by the app.'**
-  String get privacyPolicySecurityBody;
-
-  /// No description provided for @privacyPolicyChangesTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Changes to this Privacy Policy'**
-  String get privacyPolicyChangesTitle;
-
-  /// No description provided for @privacyPolicyChangesBody.
-  ///
-  /// In en, this message translates to:
-  /// **'This policy may be updated when Amaterasu introduces new features, services or categories of data. The updated version will be made available within the app and through the public Privacy Policy page.'**
-  String get privacyPolicyChangesBody;
-
-  /// No description provided for @privacyPolicyContactTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact'**
-  String get privacyPolicyContactTitle;
-
-  /// No description provided for @privacyPolicyContactBody.
-  ///
-  /// In en, this message translates to:
-  /// **'For requests relating to privacy or personal data processing, you can contact the Amaterasu team through the official support channels listed in the app.'**
-  String get privacyPolicyContactBody;
-
   /// No description provided for @privacyPermissionsIntro.
   ///
   /// In en, this message translates to:
@@ -1547,12 +1331,6 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get profileSave;
 
-  /// No description provided for @profileSaving.
-  ///
-  /// In en, this message translates to:
-  /// **'Saving...'**
-  String get profileSaving;
-
   /// No description provided for @profileSaveSuccess.
   ///
   /// In en, this message translates to:
@@ -1655,12 +1433,6 @@ abstract class AppLocalizations {
   /// **'Your email address can be changed from the Account section.'**
   String get profileEmailReadOnly;
 
-  /// No description provided for @profilePhotoChange.
-  ///
-  /// In en, this message translates to:
-  /// **'Change profile photo'**
-  String get profilePhotoChange;
-
   /// No description provided for @profilePhotoCamera.
   ///
   /// In en, this message translates to:
@@ -1684,36 +1456,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The photo could not be selected.'**
   String get profilePhotoPickerError;
-
-  /// No description provided for @profilePhotoCameraPermissionDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera permission was denied.'**
-  String get profilePhotoCameraPermissionDenied;
-
-  /// No description provided for @profilePhotoCameraPermissionPermanentlyDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera permission is disabled. You can enable it from the app settings.'**
-  String get profilePhotoCameraPermissionPermanentlyDenied;
-
-  /// No description provided for @profilePhotoOpenSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Open settings'**
-  String get profilePhotoOpenSettings;
-
-  /// No description provided for @profilePhotoGalleryPermissionDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Permission to access photos was denied.'**
-  String get profilePhotoGalleryPermissionDenied;
-
-  /// No description provided for @profilePhotoGalleryPermissionPermanentlyDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Permission to access photos is disabled. You can enable it from the app settings.'**
-  String get profilePhotoGalleryPermissionPermanentlyDenied;
 
   /// No description provided for @profilePhotoRemoveError.
   ///
@@ -2069,18 +1811,6 @@ abstract class AppLocalizations {
   /// **'Day {currentDay} of {totalDays}'**
   String tripsDayProgress(int currentDay, int totalDays);
 
-  /// No description provided for @tripsTodayActivities.
-  ///
-  /// In en, this message translates to:
-  /// **'Today: {count} activities'**
-  String tripsTodayActivities(int count);
-
-  /// No description provided for @tripsOrganisationProgress.
-  ///
-  /// In en, this message translates to:
-  /// **'{percentage}% organised'**
-  String tripsOrganisationProgress(int percentage);
-
   /// No description provided for @tripsCompletedStatus.
   ///
   /// In en, this message translates to:
@@ -2188,12 +1918,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Connect Google Drive, OneDrive or Dropbox.'**
   String get createTripStorageSubtitle;
-
-  /// No description provided for @createTripStorageLater.
-  ///
-  /// In en, this message translates to:
-  /// **'Set up later'**
-  String get createTripStorageLater;
 
   /// No description provided for @createTripCreate.
   ///
@@ -2513,23 +2237,11 @@ abstract class AppLocalizations {
   /// **'Trip access'**
   String get tripPrivacyAccess;
 
-  /// No description provided for @tripPrivacyAccessPrivate.
-  ///
-  /// In en, this message translates to:
-  /// **'Private · Only authorised travellers can access'**
-  String get tripPrivacyAccessPrivate;
-
   /// No description provided for @tripPrivacyInviteLink.
   ///
   /// In en, this message translates to:
   /// **'Invitation link'**
   String get tripPrivacyInviteLink;
-
-  /// No description provided for @tripPrivacyInviteLinkSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Create and manage the private link used to invite new travellers'**
-  String get tripPrivacyInviteLinkSubtitle;
 
   /// No description provided for @tripPrivacyTravellers.
   ///
@@ -2549,18 +2261,6 @@ abstract class AppLocalizations {
   /// **'Roles and permissions'**
   String get tripPrivacyRoles;
 
-  /// No description provided for @tripPrivacyRolesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage what OWNER and TRAVELER can do'**
-  String get tripPrivacyRolesSubtitle;
-
-  /// No description provided for @tripManagementIntro.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage trip storage and administrative operations.'**
-  String get tripManagementIntro;
-
   /// No description provided for @tripManagementLoadError.
   ///
   /// In en, this message translates to:
@@ -2578,12 +2278,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Storage status'**
   String get tripManagementArchiveStatus;
-
-  /// No description provided for @tripManagementArchiveConfigured.
-  ///
-  /// In en, this message translates to:
-  /// **'Configured · {provider}'**
-  String tripManagementArchiveConfigured(String provider);
 
   /// No description provided for @tripManagementArchiveNotConfigured.
   ///
@@ -2644,24 +2338,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Restore authorisation without moving trip files'**
   String get tripManagementArchiveReconnectSubtitle;
-
-  /// No description provided for @tripManagementOperationsSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip operations'**
-  String get tripManagementOperationsSection;
-
-  /// No description provided for @tripManagementExport.
-  ///
-  /// In en, this message translates to:
-  /// **'Export trip'**
-  String get tripManagementExport;
-
-  /// No description provided for @tripManagementExportSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Create an exportable copy of the trip data'**
-  String get tripManagementExportSubtitle;
 
   /// No description provided for @tripManagementDuplicate.
   ///
@@ -2741,12 +2417,6 @@ abstract class AppLocalizations {
   /// **'More'**
   String get tripOverviewMore;
 
-  /// No description provided for @tripOverviewExploreTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Plan your trip'**
-  String get tripOverviewExploreTitle;
-
   /// No description provided for @tripOverviewNotFound.
   ///
   /// In en, this message translates to:
@@ -2758,12 +2428,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Overview'**
   String get tripOverviewTitle;
-
-  /// No description provided for @tripOverviewNotFoundSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'This trip is not available.'**
-  String get tripOverviewNotFoundSubtitle;
 
   /// No description provided for @tripOverviewError.
   ///
@@ -2812,12 +2476,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Trip cover'**
   String get tripCoverTitle;
-
-  /// No description provided for @tripCoverUploading.
-  ///
-  /// In en, this message translates to:
-  /// **'Uploading cover...'**
-  String get tripCoverUploading;
 
   /// No description provided for @tripCoverAdd.
   ///
@@ -2873,48 +2531,6 @@ abstract class AppLocalizations {
   /// **'Remove cover'**
   String get tripCoverRemove;
 
-  /// No description provided for @tripCoverGalleryPermissionDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'To choose a cover, allow Amaterasu Trip to access your photos.'**
-  String get tripCoverGalleryPermissionDenied;
-
-  /// No description provided for @tripCoverOpenSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get tripCoverOpenSettings;
-
-  /// No description provided for @tripCoverGalleryPermissionPermanentlyDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Photo access is disabled. You can enable it in the app settings.'**
-  String get tripCoverGalleryPermissionPermanentlyDenied;
-
-  /// No description provided for @tripCoverCameraPermissionDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'To take a photo, allow Amaterasu Trip to use the camera.'**
-  String get tripCoverCameraPermissionDenied;
-
-  /// No description provided for @tripCoverCameraPermissionPermanentlyDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera access is disabled. You can enable it in the app settings.'**
-  String get tripCoverCameraPermissionPermanentlyDenied;
-
-  /// No description provided for @tripCreatedInviteComingSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Traveller invitations will be available soon.'**
-  String get tripCreatedInviteComingSoon;
-
-  /// No description provided for @tripCreatedShareComingSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip sharing will be available soon.'**
-  String get tripCreatedShareComingSoon;
-
   /// No description provided for @destinationPickerTitle.
   ///
   /// In en, this message translates to:
@@ -2957,12 +2573,6 @@ abstract class AppLocalizations {
   /// **'Identifying location...'**
   String get destinationMapResolving;
 
-  /// No description provided for @destinationCurrencySuggested.
-  ///
-  /// In en, this message translates to:
-  /// **'Suggested currency'**
-  String get destinationCurrencySuggested;
-
   /// No description provided for @destinationMapNoPlace.
   ///
   /// In en, this message translates to:
@@ -2980,12 +2590,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Use two fingers to explore'**
   String get destinationMapTwoFingers;
-
-  /// No description provided for @destinationCountryLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Country'**
-  String get destinationCountryLabel;
 
   /// No description provided for @createTripCurrencyNoResults.
   ///
@@ -3203,18 +2807,6 @@ abstract class AppLocalizations {
   /// **'Delete trip?'**
   String get tripManagementDeleteTitle;
 
-  /// No description provided for @tripManagementDeleteDriveWarning.
-  ///
-  /// In en, this message translates to:
-  /// **'Files on Google Drive will not be deleted.'**
-  String get tripManagementDeleteDriveWarning;
-
-  /// No description provided for @tripManagementDeleteBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Deleting the trip will remove its associated data from Amaterasu, while the Google Drive folder and its files will remain unchanged.'**
-  String get tripManagementDeleteBody;
-
   /// No description provided for @tripManagementDeleteConfirm.
   ///
   /// In en, this message translates to:
@@ -3317,12 +2909,6 @@ abstract class AppLocalizations {
   /// **'You\'ve been invited to a trip'**
   String get tripInviteHeading;
 
-  /// No description provided for @tripInviteContinue.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue'**
-  String get tripInviteContinue;
-
   /// No description provided for @tripInviteUnavailableTitle.
   ///
   /// In en, this message translates to:
@@ -3340,144 +2926,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get tripInviteRetry;
-
-  /// No description provided for @tripQuestionnaireTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip profile'**
-  String get tripQuestionnaireTitle;
-
-  /// No description provided for @tripQuestionnaireIntro.
-  ///
-  /// In en, this message translates to:
-  /// **'This information helps the group organise the trip more easily and safely.'**
-  String get tripQuestionnaireIntro;
-
-  /// No description provided for @tripQuestionnaireYes.
-  ///
-  /// In en, this message translates to:
-  /// **'Yes'**
-  String get tripQuestionnaireYes;
-
-  /// No description provided for @tripQuestionnaireNo.
-  ///
-  /// In en, this message translates to:
-  /// **'No'**
-  String get tripQuestionnaireNo;
-
-  /// No description provided for @tripQuestionnaireEsim.
-  ///
-  /// In en, this message translates to:
-  /// **'Will you have an eSIM or internet connection during the trip?'**
-  String get tripQuestionnaireEsim;
-
-  /// No description provided for @tripQuestionnaireCheckedBaggage.
-  ///
-  /// In en, this message translates to:
-  /// **'Will you have checked baggage?'**
-  String get tripQuestionnaireCheckedBaggage;
-
-  /// No description provided for @tripQuestionnaireCabinBaggage.
-  ///
-  /// In en, this message translates to:
-  /// **'Will you have cabin baggage up to 10 kg?'**
-  String get tripQuestionnaireCabinBaggage;
-
-  /// No description provided for @tripTravellersProfileEditIntro.
-  ///
-  /// In en, this message translates to:
-  /// **'Update your trip profile. All answers are optional, and you can change or withdraw them whenever you like.'**
-  String get tripTravellersProfileEditIntro;
-
-  /// No description provided for @tripQuestionnairePreferNotToAnswer.
-  ///
-  /// In en, this message translates to:
-  /// **'I prefer not to answer'**
-  String get tripQuestionnairePreferNotToAnswer;
-
-  /// No description provided for @tripQuestionnaireOptionalExplanation.
-  ///
-  /// In en, this message translates to:
-  /// **'You may leave any question unanswered. Only the final confirmation of your participation is required.'**
-  String get tripQuestionnaireOptionalExplanation;
-
-  /// No description provided for @tripQuestionnaireEmergencyName.
-  ///
-  /// In en, this message translates to:
-  /// **'Full name'**
-  String get tripQuestionnaireEmergencyName;
-
-  /// No description provided for @tripQuestionnaireEmergencyPhone.
-  ///
-  /// In en, this message translates to:
-  /// **'Phone number'**
-  String get tripQuestionnaireEmergencyPhone;
-
-  /// No description provided for @tripQuestionnaireRequiredHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Complete all required questions and, when you answer Yes, provide the requested details.'**
-  String get tripQuestionnaireRequiredHint;
-
-  /// No description provided for @tripQuestionnairePresenceConfirm.
-  ///
-  /// In en, this message translates to:
-  /// **'I confirm that I will take part in this trip.'**
-  String get tripQuestionnairePresenceConfirm;
-
-  /// No description provided for @tripQuestionnaireSubmit.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm participation'**
-  String get tripQuestionnaireSubmit;
-
-  /// No description provided for @tripQuestionnaireSubmitError.
-  ///
-  /// In en, this message translates to:
-  /// **'Your participation could not be confirmed. Please try again.'**
-  String get tripQuestionnaireSubmitError;
-
-  /// No description provided for @tripQuestionnaireRequiredLegend.
-  ///
-  /// In en, this message translates to:
-  /// **'Only the participation confirmation is required'**
-  String get tripQuestionnaireRequiredLegend;
-
-  /// No description provided for @tripQuestionnaireOrganisationSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Organisation'**
-  String get tripQuestionnaireOrganisationSection;
-
-  /// No description provided for @tripQuestionnaireCountrySearch.
-  ///
-  /// In en, this message translates to:
-  /// **'Search country'**
-  String get tripQuestionnaireCountrySearch;
-
-  /// No description provided for @tripQuestionnaireCountrySearchHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Country name or calling code'**
-  String get tripQuestionnaireCountrySearchHint;
-
-  /// No description provided for @tripQuestionnairePhoneHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Number'**
-  String get tripQuestionnairePhoneHint;
-
-  /// No description provided for @tripQuestionnaireDetailsHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Provide details'**
-  String get tripQuestionnaireDetailsHint;
-
-  /// No description provided for @tripQuestionnaireSafetyNoticeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Important information'**
-  String get tripQuestionnaireSafetyNoticeTitle;
 
   /// No description provided for @tripCreatedInviteShareSubject.
   ///
@@ -3550,18 +2998,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You'**
   String get tripTravellersYou;
-
-  /// No description provided for @tripTravellersProfileComplete.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip profile complete'**
-  String get tripTravellersProfileComplete;
-
-  /// No description provided for @tripTravellersProfileIncomplete.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip profile incomplete'**
-  String get tripTravellersProfileIncomplete;
 
   /// No description provided for @tripTravellersSensitiveDataNotice.
   ///
@@ -3683,18 +3119,6 @@ abstract class AppLocalizations {
   /// **'10 kg cabin baggage'**
   String get tripTravellersCabinBaggage;
 
-  /// No description provided for @tripTravellersEmergencyName.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact name'**
-  String get tripTravellersEmergencyName;
-
-  /// No description provided for @tripTravellersEmergencyPhone.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact phone'**
-  String get tripTravellersEmergencyPhone;
-
   /// No description provided for @tripTravellersYes.
   ///
   /// In en, this message translates to:
@@ -3725,35 +3149,17 @@ abstract class AppLocalizations {
   /// **'Edit my trip profile'**
   String get tripTravellersEditMyProfile;
 
-  /// No description provided for @tripTravellersEditProfileTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit trip profile'**
-  String get tripTravellersEditProfileTitle;
-
   /// No description provided for @tripTravellersEditProfileNote.
   ///
   /// In en, this message translates to:
   /// **'This information belongs to this trip. Only you can edit your personal trip-profile information.'**
   String get tripTravellersEditProfileNote;
 
-  /// No description provided for @tripTravellersSave.
-  ///
-  /// In en, this message translates to:
-  /// **'Save changes'**
-  String get tripTravellersSave;
-
   /// No description provided for @tripTravellersProfileUpdated.
   ///
   /// In en, this message translates to:
   /// **'Trip profile updated.'**
   String get tripTravellersProfileUpdated;
-
-  /// No description provided for @tripTravellersProfileUpdateError.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to update the trip profile.'**
-  String get tripTravellersProfileUpdateError;
 
   /// No description provided for @tripTravellersRemove.
   ///
@@ -3820,366 +3226,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The OWNER cannot be removed from the trip. Any ownership change must use a dedicated transfer procedure.'**
   String get tripTravellersOwnerProtected;
-
-  /// No description provided for @tripNotificationsIntro.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose which updates you want to receive for this trip. Preferences are personal and do not change notification settings for other travellers.'**
-  String get tripNotificationsIntro;
-
-  /// No description provided for @tripNotificationsMaster.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications for this trip'**
-  String get tripNotificationsMaster;
-
-  /// No description provided for @tripNotificationsMasterSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Turn all notifications for this trip on or off'**
-  String get tripNotificationsMasterSubtitle;
-
-  /// No description provided for @tripNotificationsAccessDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'You do not have access to this trip\'s notification settings.'**
-  String get tripNotificationsAccessDenied;
-
-  /// No description provided for @tripNotificationsSaveError.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to save notification preferences.'**
-  String get tripNotificationsSaveError;
-
-  /// No description provided for @tripNotificationsPermissionDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Notification permission is not enabled on this device.'**
-  String get tripNotificationsPermissionDenied;
-
-  /// No description provided for @tripNotificationsSystemPermission.
-  ///
-  /// In en, this message translates to:
-  /// **'Android notification permission'**
-  String get tripNotificationsSystemPermission;
-
-  /// No description provided for @tripNotificationsSystemPermissionBlocked.
-  ///
-  /// In en, this message translates to:
-  /// **'Android is blocking app notifications. Your preferences will remain saved, but notifications cannot be shown until permission is enabled again.'**
-  String get tripNotificationsSystemPermissionBlocked;
-
-  /// No description provided for @tripNotificationsOpenAndroidSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Open Android settings'**
-  String get tripNotificationsOpenAndroidSettings;
-
-  /// No description provided for @tripNotificationsTimingSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Dates, itinerary and bookings'**
-  String get tripNotificationsTimingSection;
-
-  /// No description provided for @tripNotificationsPlanningSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Planning and expenses'**
-  String get tripNotificationsPlanningSection;
-
-  /// No description provided for @tripNotificationsGroupSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Group and collaboration'**
-  String get tripNotificationsGroupSection;
-
-  /// No description provided for @tripNotificationsContentSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Content and memories'**
-  String get tripNotificationsContentSection;
-
-  /// No description provided for @tripNotificationsSystemSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip and services'**
-  String get tripNotificationsSystemSection;
-
-  /// No description provided for @tripNotificationsDepartureDates.
-  ///
-  /// In en, this message translates to:
-  /// **'Departure and trip dates'**
-  String get tripNotificationsDepartureDates;
-
-  /// No description provided for @tripNotificationsDepartureDatesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Reminders for departure, return and important changes to trip dates'**
-  String get tripNotificationsDepartureDatesSubtitle;
-
-  /// No description provided for @tripNotificationsItineraryReminders.
-  ///
-  /// In en, this message translates to:
-  /// **'Itinerary reminders'**
-  String get tripNotificationsItineraryReminders;
-
-  /// No description provided for @tripNotificationsItineraryRemindersSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Alerts for upcoming itinerary activities and appointments'**
-  String get tripNotificationsItineraryRemindersSubtitle;
-
-  /// No description provided for @tripNotificationsItineraryUpdates.
-  ///
-  /// In en, this message translates to:
-  /// **'Itinerary changes'**
-  String get tripNotificationsItineraryUpdates;
-
-  /// No description provided for @tripNotificationsItineraryUpdatesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Additions, changes and removals in the shared itinerary'**
-  String get tripNotificationsItineraryUpdatesSubtitle;
-
-  /// No description provided for @tripNotificationsBookingReminders.
-  ///
-  /// In en, this message translates to:
-  /// **'Bookings to make'**
-  String get tripNotificationsBookingReminders;
-
-  /// No description provided for @tripNotificationsBookingRemindersSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Deadlines and booking windows for reservations that need to be completed in advance'**
-  String get tripNotificationsBookingRemindersSubtitle;
-
-  /// No description provided for @tripNotificationsBookingUpdates.
-  ///
-  /// In en, this message translates to:
-  /// **'Bookings and tickets'**
-  String get tripNotificationsBookingUpdates;
-
-  /// No description provided for @tripNotificationsBookingUpdatesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Updates about bookings, tickets and travel documents'**
-  String get tripNotificationsBookingUpdatesSubtitle;
-
-  /// No description provided for @tripNotificationsBucketList.
-  ///
-  /// In en, this message translates to:
-  /// **'Bucket List'**
-  String get tripNotificationsBucketList;
-
-  /// No description provided for @tripNotificationsBucketListSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'New items and changes to the Bucket List'**
-  String get tripNotificationsBucketListSubtitle;
-
-  /// No description provided for @tripNotificationsBucketListVotes.
-  ///
-  /// In en, this message translates to:
-  /// **'Bucket List voting'**
-  String get tripNotificationsBucketListVotes;
-
-  /// No description provided for @tripNotificationsBucketListVotesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'New votes and changes to group priorities'**
-  String get tripNotificationsBucketListVotesSubtitle;
-
-  /// No description provided for @tripNotificationsBudget.
-  ///
-  /// In en, this message translates to:
-  /// **'Budget'**
-  String get tripNotificationsBudget;
-
-  /// No description provided for @tripNotificationsBudgetSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Important updates to the trip budget'**
-  String get tripNotificationsBudgetSubtitle;
-
-  /// No description provided for @tripNotificationsNewExpenses.
-  ///
-  /// In en, this message translates to:
-  /// **'New expenses'**
-  String get tripNotificationsNewExpenses;
-
-  /// No description provided for @tripNotificationsNewExpensesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Alerts when a new group expense is recorded'**
-  String get tripNotificationsNewExpensesSubtitle;
-
-  /// No description provided for @tripNotificationsExpenseChanges.
-  ///
-  /// In en, this message translates to:
-  /// **'Expense changes'**
-  String get tripNotificationsExpenseChanges;
-
-  /// No description provided for @tripNotificationsExpenseChangesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Changes or removals of expenses that affect the group'**
-  String get tripNotificationsExpenseChangesSubtitle;
-
-  /// No description provided for @tripNotificationsReimbursements.
-  ///
-  /// In en, this message translates to:
-  /// **'Reimbursements and balances'**
-  String get tripNotificationsReimbursements;
-
-  /// No description provided for @tripNotificationsReimbursementsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Recorded reimbursements and changes to balances between travellers'**
-  String get tripNotificationsReimbursementsSubtitle;
-
-  /// No description provided for @tripNotificationsTravellers.
-  ///
-  /// In en, this message translates to:
-  /// **'Travellers'**
-  String get tripNotificationsTravellers;
-
-  /// No description provided for @tripNotificationsTravellersSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Participants joining, leaving or being removed from the trip'**
-  String get tripNotificationsTravellersSubtitle;
-
-  /// No description provided for @tripNotificationsInvitations.
-  ///
-  /// In en, this message translates to:
-  /// **'Invitations'**
-  String get tripNotificationsInvitations;
-
-  /// No description provided for @tripNotificationsInvitationsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Relevant updates to invitation links and invitation status'**
-  String get tripNotificationsInvitationsSubtitle;
-
-  /// No description provided for @tripNotificationsRolesPermissions.
-  ///
-  /// In en, this message translates to:
-  /// **'Roles and permissions'**
-  String get tripNotificationsRolesPermissions;
-
-  /// No description provided for @tripNotificationsRolesPermissionsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Changes to your role or permissions within the trip'**
-  String get tripNotificationsRolesPermissionsSubtitle;
-
-  /// No description provided for @tripNotificationsGroupActivity.
-  ///
-  /// In en, this message translates to:
-  /// **'Group activity'**
-  String get tripNotificationsGroupActivity;
-
-  /// No description provided for @tripNotificationsGroupActivitySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'General updates generated by other participants'**
-  String get tripNotificationsGroupActivitySubtitle;
-
-  /// No description provided for @tripNotificationsSharedNotes.
-  ///
-  /// In en, this message translates to:
-  /// **'Shared notes'**
-  String get tripNotificationsSharedNotes;
-
-  /// No description provided for @tripNotificationsSharedNotesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Creation and changes to shared trip notes'**
-  String get tripNotificationsSharedNotesSubtitle;
-
-  /// No description provided for @tripNotificationsMedia.
-  ///
-  /// In en, this message translates to:
-  /// **'Photos and videos'**
-  String get tripNotificationsMedia;
-
-  /// No description provided for @tripNotificationsMediaSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'New media shared within the trip'**
-  String get tripNotificationsMediaSubtitle;
-
-  /// No description provided for @tripNotificationsMemories.
-  ///
-  /// In en, this message translates to:
-  /// **'Memories'**
-  String get tripNotificationsMemories;
-
-  /// No description provided for @tripNotificationsMemoriesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'New memories and updates to saved content'**
-  String get tripNotificationsMemoriesSubtitle;
-
-  /// No description provided for @tripNotificationsCloudArchive.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip archive'**
-  String get tripNotificationsCloudArchive;
-
-  /// No description provided for @tripNotificationsCloudArchiveSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Problems accessing, connecting to or using the cloud archive'**
-  String get tripNotificationsCloudArchiveSubtitle;
-
-  /// No description provided for @tripNotificationsSync.
-  ///
-  /// In en, this message translates to:
-  /// **'Synchronisation'**
-  String get tripNotificationsSync;
-
-  /// No description provided for @tripNotificationsSyncSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Errors or important data synchronisation operations'**
-  String get tripNotificationsSyncSubtitle;
-
-  /// No description provided for @tripNotificationsTripInformationChanges.
-  ///
-  /// In en, this message translates to:
-  /// **'Important trip changes'**
-  String get tripNotificationsTripInformationChanges;
-
-  /// No description provided for @tripNotificationsTripInformationChangesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Changes to the name, destination, dates, currency or other key trip information'**
-  String get tripNotificationsTripInformationChangesSubtitle;
-
-  /// No description provided for @tripNotificationsTripStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip status'**
-  String get tripNotificationsTripStatus;
-
-  /// No description provided for @tripNotificationsTripStatusSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Closing, reopening or other changes to the trip status'**
-  String get tripNotificationsTripStatusSubtitle;
-
-  /// No description provided for @tripNotificationsImportantCommunications.
-  ///
-  /// In en, this message translates to:
-  /// **'Important communications'**
-  String get tripNotificationsImportantCommunications;
-
-  /// No description provided for @tripNotificationsImportantCommunicationsSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Critical alerts needed for organisation, safety or the correct use of the trip'**
-  String get tripNotificationsImportantCommunicationsSubtitle;
 
   /// No description provided for @tripPrivacyAccessSection.
   ///
@@ -4535,12 +3581,6 @@ abstract class AppLocalizations {
   /// **'Add expense'**
   String get budgetAddExpense;
 
-  /// No description provided for @budgetTripCurrency.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip currency: {currency}'**
-  String budgetTripCurrency(String currency);
-
   /// No description provided for @budgetSplitExpense.
   ///
   /// In en, this message translates to:
@@ -4679,18 +3719,6 @@ abstract class AppLocalizations {
   /// **'This expense has recorded reimbursements. Financial revisions are locked to preserve history.'**
   String get budgetRevisionLocked;
 
-  /// No description provided for @budgetRevisionMyAdvance.
-  ///
-  /// In en, this message translates to:
-  /// **'Amount you paid to the supplier'**
-  String get budgetRevisionMyAdvance;
-
-  /// No description provided for @budgetRevisionNoOtherPayers.
-  ///
-  /// In en, this message translates to:
-  /// **'Advances attributed to other travelers require a separate confirmation flow.'**
-  String get budgetRevisionNoOtherPayers;
-
   /// No description provided for @budgetRevisionOutstanding.
   ///
   /// In en, this message translates to:
@@ -4757,12 +3785,6 @@ abstract class AppLocalizations {
   /// **'Total amount'**
   String get budgetRevisionTotal;
 
-  /// No description provided for @budgetRevisionTraveler.
-  ///
-  /// In en, this message translates to:
-  /// **'Traveler'**
-  String get budgetRevisionTraveler;
-
   /// No description provided for @budgetRevisionWaiting.
   ///
   /// In en, this message translates to:
@@ -4805,30 +3827,6 @@ abstract class AppLocalizations {
   /// **'My expenses by category'**
   String get b6PersonalByCategory;
 
-  /// No description provided for @b6SummaryCurrency.
-  ///
-  /// In en, this message translates to:
-  /// **'Summary currency'**
-  String get b6SummaryCurrency;
-
-  /// No description provided for @b6Historical.
-  ///
-  /// In en, this message translates to:
-  /// **'Historical rates'**
-  String get b6Historical;
-
-  /// No description provided for @b6Latest.
-  ///
-  /// In en, this message translates to:
-  /// **'Latest available rates'**
-  String get b6Latest;
-
-  /// No description provided for @b6AllCategories.
-  ///
-  /// In en, this message translates to:
-  /// **'All categories'**
-  String get b6AllCategories;
-
   /// No description provided for @b6Category.
   ///
   /// In en, this message translates to:
@@ -4852,60 +3850,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Category name'**
   String get b6CategoryName;
-
-  /// No description provided for @b6AllStatuses.
-  ///
-  /// In en, this message translates to:
-  /// **'All statuses'**
-  String get b6AllStatuses;
-
-  /// No description provided for @b6Planned.
-  ///
-  /// In en, this message translates to:
-  /// **'Planned'**
-  String get b6Planned;
-
-  /// No description provided for @b6Outstanding.
-  ///
-  /// In en, this message translates to:
-  /// **'Outstanding'**
-  String get b6Outstanding;
-
-  /// No description provided for @b6Paid.
-  ///
-  /// In en, this message translates to:
-  /// **'Paid'**
-  String get b6Paid;
-
-  /// No description provided for @b6AllPeriods.
-  ///
-  /// In en, this message translates to:
-  /// **'All dates'**
-  String get b6AllPeriods;
-
-  /// No description provided for @b6Last30Days.
-  ///
-  /// In en, this message translates to:
-  /// **'Last 30 days'**
-  String get b6Last30Days;
-
-  /// No description provided for @b6Last90Days.
-  ///
-  /// In en, this message translates to:
-  /// **'Last 90 days'**
-  String get b6Last90Days;
-
-  /// No description provided for @b6Newest.
-  ///
-  /// In en, this message translates to:
-  /// **'Newest'**
-  String get b6Newest;
-
-  /// No description provided for @b6Oldest.
-  ///
-  /// In en, this message translates to:
-  /// **'Oldest'**
-  String get b6Oldest;
 
   /// No description provided for @b6LoadingError.
   ///
@@ -4942,12 +3886,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your share of group expenses'**
   String get b6MyShare;
-
-  /// No description provided for @b6AveragePerTraveler.
-  ///
-  /// In en, this message translates to:
-  /// **'Average per involved traveler'**
-  String get b6AveragePerTraveler;
 
   /// No description provided for @b6LatestExpense.
   ///
@@ -5092,12 +4030,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reason: {reason}'**
   String b86Reason(String reason);
-
-  /// No description provided for @b86History.
-  ///
-  /// In en, this message translates to:
-  /// **'History'**
-  String get b86History;
 
   /// No description provided for @b86TripHistory.
   ///
@@ -5339,54 +4271,6 @@ abstract class AppLocalizations {
   /// **'Revision'**
   String get btHistRevision;
 
-  /// No description provided for @btOverviewOverviewError.
-  ///
-  /// In en, this message translates to:
-  /// **'Overview error'**
-  String get btOverviewOverviewError;
-
-  /// No description provided for @btOverviewFinancialOverview.
-  ///
-  /// In en, this message translates to:
-  /// **'Financial overview'**
-  String get btOverviewFinancialOverview;
-
-  /// No description provided for @btOverviewRecordedExpenses.
-  ///
-  /// In en, this message translates to:
-  /// **'Recorded expenses'**
-  String get btOverviewRecordedExpenses;
-
-  /// No description provided for @btOverviewNoExpenses.
-  ///
-  /// In en, this message translates to:
-  /// **'No expenses.'**
-  String get btOverviewNoExpenses;
-
-  /// No description provided for @btOverviewTotal.
-  ///
-  /// In en, this message translates to:
-  /// **'Total'**
-  String get btOverviewTotal;
-
-  /// No description provided for @btOverviewAdvanced.
-  ///
-  /// In en, this message translates to:
-  /// **'Advanced'**
-  String get btOverviewAdvanced;
-
-  /// No description provided for @btOverviewOutstanding.
-  ///
-  /// In en, this message translates to:
-  /// **'Outstanding'**
-  String get btOverviewOutstanding;
-
-  /// No description provided for @btOverviewAmountsSeparatedByCurrency.
-  ///
-  /// In en, this message translates to:
-  /// **'Amounts separated by currency, without automatic conversion.'**
-  String get btOverviewAmountsSeparatedByCurrency;
-
   /// No description provided for @btMethodsCash.
   ///
   /// In en, this message translates to:
@@ -5453,11 +4337,11 @@ abstract class AppLocalizations {
   /// **'Method description'**
   String get btMethodsMethodDescription;
 
-  /// No description provided for @btMethodsRemove.
+  /// No description provided for @btActionRemove.
   ///
   /// In en, this message translates to:
   /// **'Remove'**
-  String get btMethodsRemove;
+  String get btActionRemove;
 
   /// No description provided for @btMethodsAddMethod.
   ///
@@ -5483,17 +4367,17 @@ abstract class AppLocalizations {
   /// **'The expense will be cancelled only after required approvals. History is preserved.'**
   String get btControlsTheExpenseWillBe;
 
-  /// No description provided for @btControlsCancel.
+  /// No description provided for @btActionCancel.
   ///
   /// In en, this message translates to:
   /// **'Cancel'**
-  String get btControlsCancel;
+  String get btActionCancel;
 
-  /// No description provided for @btControlsConfirm.
+  /// No description provided for @btActionConfirm.
   ///
   /// In en, this message translates to:
   /// **'Confirm'**
-  String get btControlsConfirm;
+  String get btActionConfirm;
 
   /// No description provided for @btControlsCancelledExpenseHistoryRetained.
   ///
@@ -5525,11 +4409,11 @@ abstract class AppLocalizations {
   /// **'Pending cancellation: {value1}/{value2}'**
   String btControlsPendingCancellation(Object value1, Object value2);
 
-  /// No description provided for @btControlsReject.
+  /// No description provided for @btActionReject.
   ///
   /// In en, this message translates to:
   /// **'Reject'**
-  String get btControlsReject;
+  String get btActionReject;
 
   /// No description provided for @btControlsApprove.
   ///
@@ -5537,53 +4421,23 @@ abstract class AppLocalizations {
   /// **'Approve'**
   String get btControlsApprove;
 
-  /// No description provided for @btListAccommodation.
-  ///
-  /// In en, this message translates to:
-  /// **'Accommodation'**
-  String get btListAccommodation;
-
-  /// No description provided for @btListFoodDrinks.
-  ///
-  /// In en, this message translates to:
-  /// **'Food & drinks'**
-  String get btListFoodDrinks;
-
-  /// No description provided for @btListTransport.
-  ///
-  /// In en, this message translates to:
-  /// **'Transport'**
-  String get btListTransport;
-
-  /// No description provided for @btListActivities.
-  ///
-  /// In en, this message translates to:
-  /// **'Activities'**
-  String get btListActivities;
-
-  /// No description provided for @btListOther.
-  ///
-  /// In en, this message translates to:
-  /// **'Other'**
-  String get btListOther;
-
   /// No description provided for @btListPaid.
   ///
   /// In en, this message translates to:
   /// **'Paid'**
   String get btListPaid;
 
-  /// No description provided for @btListPlanned.
+  /// No description provided for @btStatusPlanned.
   ///
   /// In en, this message translates to:
   /// **'Planned'**
-  String get btListPlanned;
+  String get btStatusPlanned;
 
-  /// No description provided for @btListOutstanding.
+  /// No description provided for @btStatusOutstanding.
   ///
   /// In en, this message translates to:
   /// **'Outstanding'**
-  String get btListOutstanding;
+  String get btStatusOutstanding;
 
   /// No description provided for @btListStatusUnavailable.
   ///
@@ -5591,11 +4445,11 @@ abstract class AppLocalizations {
   /// **'Status unavailable'**
   String get btListStatusUnavailable;
 
-  /// No description provided for @btListUnableToLoadExpenses.
+  /// No description provided for @btUnableToLoadExpenses.
   ///
   /// In en, this message translates to:
   /// **'Unable to load expenses.'**
-  String get btListUnableToLoadExpenses;
+  String get btUnableToLoadExpenses;
 
   /// No description provided for @btListNoExpensesToDisplay.
   ///
@@ -5603,11 +4457,11 @@ abstract class AppLocalizations {
   /// **'No expenses to display.'**
   String get btListNoExpensesToDisplay;
 
-  /// No description provided for @btListUntitledExpense.
+  /// No description provided for @btUntitledExpense.
   ///
   /// In en, this message translates to:
   /// **'Untitled expense'**
-  String get btListUntitledExpense;
+  String get btUntitledExpense;
 
   /// No description provided for @btListTravelers.
   ///
@@ -5615,53 +4469,17 @@ abstract class AppLocalizations {
   /// **'{value1} travelers'**
   String btListTravelers(Object value1);
 
-  /// No description provided for @btDetailsAccommodation.
-  ///
-  /// In en, this message translates to:
-  /// **'Accommodation'**
-  String get btDetailsAccommodation;
-
   /// No description provided for @btDetailsFood.
   ///
   /// In en, this message translates to:
   /// **'Food'**
   String get btDetailsFood;
 
-  /// No description provided for @btDetailsTransport.
-  ///
-  /// In en, this message translates to:
-  /// **'Transport'**
-  String get btDetailsTransport;
-
-  /// No description provided for @btDetailsActivities.
-  ///
-  /// In en, this message translates to:
-  /// **'Activities'**
-  String get btDetailsActivities;
-
-  /// No description provided for @btDetailsOther.
-  ///
-  /// In en, this message translates to:
-  /// **'Other'**
-  String get btDetailsOther;
-
-  /// No description provided for @btDetailsPlanned.
-  ///
-  /// In en, this message translates to:
-  /// **'Planned'**
-  String get btDetailsPlanned;
-
-  /// No description provided for @btDetailsOutstanding.
-  ///
-  /// In en, this message translates to:
-  /// **'Outstanding'**
-  String get btDetailsOutstanding;
-
-  /// No description provided for @btDetailsPaid.
+  /// No description provided for @btStatusPaid.
   ///
   /// In en, this message translates to:
   /// **'Paid'**
-  String get btDetailsPaid;
+  String get btStatusPaid;
 
   /// No description provided for @btDetailsUnavailable.
   ///
@@ -5692,12 +4510,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expense details'**
   String get btDetailsExpenseDetails;
-
-  /// No description provided for @btDetailsUntitledExpense.
-  ///
-  /// In en, this message translates to:
-  /// **'Untitled expense'**
-  String get btDetailsUntitledExpense;
 
   /// No description provided for @btDetailsAdjustRate.
   ///
@@ -5765,41 +4577,11 @@ abstract class AppLocalizations {
   /// **'Add valid methods. The total must be positive and within the maximum.'**
   String get btRefundsAddValidMethodsThe;
 
-  /// No description provided for @btRefundsCancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get btRefundsCancel;
-
   /// No description provided for @btRefundsSubmitRequest.
   ///
   /// In en, this message translates to:
   /// **'Submit request'**
   String get btRefundsSubmitRequest;
-
-  /// No description provided for @btRefundsCash.
-  ///
-  /// In en, this message translates to:
-  /// **'Cash'**
-  String get btRefundsCash;
-
-  /// No description provided for @btRefundsCard.
-  ///
-  /// In en, this message translates to:
-  /// **'Card'**
-  String get btRefundsCard;
-
-  /// No description provided for @btRefundsBankTransfer.
-  ///
-  /// In en, this message translates to:
-  /// **'Bank transfer'**
-  String get btRefundsBankTransfer;
-
-  /// No description provided for @btRefundsOther.
-  ///
-  /// In en, this message translates to:
-  /// **'Other'**
-  String get btRefundsOther;
 
   /// No description provided for @btRefundsReimbursementMethodNotRecorded.
   ///
@@ -5873,18 +4655,6 @@ abstract class AppLocalizations {
   /// **'Decided by'**
   String get btRefundsDecidedBy;
 
-  /// No description provided for @btRefundsReject.
-  ///
-  /// In en, this message translates to:
-  /// **'Reject'**
-  String get btRefundsReject;
-
-  /// No description provided for @btRefundsConfirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm'**
-  String get btRefundsConfirm;
-
   /// No description provided for @btRefundsOutstanding.
   ///
   /// In en, this message translates to:
@@ -5939,17 +4709,17 @@ abstract class AppLocalizations {
   /// **'Budget currency'**
   String get btPersonalBudgetCurrency;
 
-  /// No description provided for @btPersonalSearchCurrencies.
+  /// No description provided for @btSearchCurrencies.
   ///
   /// In en, this message translates to:
   /// **'Search currencies'**
-  String get btPersonalSearchCurrencies;
+  String get btSearchCurrencies;
 
-  /// No description provided for @btPersonalNoCurrenciesFound.
+  /// No description provided for @btNoCurrenciesFound.
   ///
   /// In en, this message translates to:
   /// **'No currencies found'**
-  String get btPersonalNoCurrenciesFound;
+  String get btNoCurrenciesFound;
 
   /// No description provided for @btPersonalFirestoreDeniedTheWrite.
   ///
@@ -5987,23 +4757,11 @@ abstract class AppLocalizations {
   /// **'Planned amount'**
   String get btPersonalPlannedAmount;
 
-  /// No description provided for @btPersonalCurrency.
+  /// No description provided for @btCurrencyLabel.
   ///
   /// In en, this message translates to:
   /// **'Currency'**
-  String get btPersonalCurrency;
-
-  /// No description provided for @btPersonalRemove.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove'**
-  String get btPersonalRemove;
-
-  /// No description provided for @btPersonalCancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get btPersonalCancel;
+  String get btCurrencyLabel;
 
   /// No description provided for @btPersonalSave.
   ///
@@ -6028,12 +4786,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Set budget'**
   String get btPersonalSetBudget;
-
-  /// No description provided for @btPersonalUnableToLoadExpenses.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load expenses.'**
-  String get btPersonalUnableToLoadExpenses;
 
   /// No description provided for @btPersonalUnableToLoadPersonal.
   ///
@@ -6095,18 +4847,6 @@ abstract class AppLocalizations {
   /// **'Display currency'**
   String get btToolbarDisplayCurrency;
 
-  /// No description provided for @btToolbarSearchCurrencies.
-  ///
-  /// In en, this message translates to:
-  /// **'Search currencies'**
-  String get btToolbarSearchCurrencies;
-
-  /// No description provided for @btToolbarNoCurrenciesFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No currencies found'**
-  String get btToolbarNoCurrenciesFound;
-
   /// No description provided for @btToolbarAllCategories.
   ///
   /// In en, this message translates to:
@@ -6161,41 +4901,23 @@ abstract class AppLocalizations {
   /// **'Amount descending'**
   String get btToolbarAmountDescending;
 
-  /// No description provided for @btToolbarCategory.
+  /// No description provided for @btCategoryLabel.
   ///
   /// In en, this message translates to:
   /// **'Category'**
-  String get btToolbarCategory;
+  String get btCategoryLabel;
 
-  /// No description provided for @btToolbarStatus.
+  /// No description provided for @btStatusLabel.
   ///
   /// In en, this message translates to:
   /// **'Status'**
-  String get btToolbarStatus;
+  String get btStatusLabel;
 
   /// No description provided for @btToolbarAllStatuses.
   ///
   /// In en, this message translates to:
   /// **'All statuses'**
   String get btToolbarAllStatuses;
-
-  /// No description provided for @btToolbarPlanned.
-  ///
-  /// In en, this message translates to:
-  /// **'Planned'**
-  String get btToolbarPlanned;
-
-  /// No description provided for @btToolbarOutstanding.
-  ///
-  /// In en, this message translates to:
-  /// **'Outstanding'**
-  String get btToolbarOutstanding;
-
-  /// No description provided for @btToolbarPaid.
-  ///
-  /// In en, this message translates to:
-  /// **'Paid'**
-  String get btToolbarPaid;
 
   /// No description provided for @btToolbarPeriod.
   ///
@@ -6250,18 +4972,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expense currency'**
   String get btCreateExpenseCurrency;
-
-  /// No description provided for @btCreateSearchCurrencies.
-  ///
-  /// In en, this message translates to:
-  /// **'Search currencies'**
-  String get btCreateSearchCurrencies;
-
-  /// No description provided for @btCreateNoCurrenciesFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No currencies found'**
-  String get btCreateNoCurrenciesFound;
 
   /// No description provided for @btCreateYou.
   ///
@@ -6323,12 +5033,6 @@ abstract class AppLocalizations {
   /// **'Confirm new expense'**
   String get btCreateConfirmNewExpense;
 
-  /// No description provided for @btCreateCategory.
-  ///
-  /// In en, this message translates to:
-  /// **'Category'**
-  String get btCreateCategory;
-
   /// No description provided for @btCreateType.
   ///
   /// In en, this message translates to:
@@ -6346,12 +5050,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Personal'**
   String get btCreatePersonal;
-
-  /// No description provided for @btCreateStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'Status'**
-  String get btCreateStatus;
 
   /// No description provided for @btCreatePaymentsRecordedInThis.
   ///
@@ -6455,12 +5153,6 @@ abstract class AppLocalizations {
   /// **'Expense amount'**
   String get btCreateExpenseAmount;
 
-  /// No description provided for @btCreateCurrency.
-  ///
-  /// In en, this message translates to:
-  /// **'Currency'**
-  String get btCreateCurrency;
-
   /// No description provided for @btCreateTotalAmount.
   ///
   /// In en, this message translates to:
@@ -6472,24 +5164,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expense status'**
   String get btCreateExpenseStatus;
-
-  /// No description provided for @btCreatePlanned.
-  ///
-  /// In en, this message translates to:
-  /// **'Planned'**
-  String get btCreatePlanned;
-
-  /// No description provided for @btCreateOutstanding.
-  ///
-  /// In en, this message translates to:
-  /// **'Outstanding'**
-  String get btCreateOutstanding;
-
-  /// No description provided for @btCreatePaid.
-  ///
-  /// In en, this message translates to:
-  /// **'Paid'**
-  String get btCreatePaid;
 
   /// No description provided for @btCreateSplitBetweenTravelers.
   ///
@@ -6532,12 +5206,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Summary'**
   String get btCreateSummary;
-
-  /// No description provided for @btCreateCancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get btCreateCancel;
 
   /// No description provided for @btCreateBack.
   ///

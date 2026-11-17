@@ -1,3 +1,5 @@
+// Calcola chi deve quanto a chi dentro una singola spesa pagata.
+
 /// One debtor-creditor obligation inside a single paid expense.
 class BudgetPairDebt {
   const BudgetPairDebt(this.debtorUid, this.creditorUid, this.minorUnits);

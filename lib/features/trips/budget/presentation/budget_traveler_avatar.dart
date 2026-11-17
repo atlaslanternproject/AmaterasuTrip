@@ -1,4 +1,7 @@
+// Avatar del viaggiatore nel budget (foto o iniziale come nel resto dell'app).
+
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 /// Traveler avatar using Amaterasu's existing profile fallback.
 ///
@@ -43,7 +46,7 @@ class BudgetTravelerAvatar extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: const Color(0xFFD96C32), width: 1.5),
+        border: Border.all(color: AmaterasuColors.accentBudget, width: 1.5),
       ),
       child: ClipOval(
         child: !validUrl

@@ -1,7 +1,12 @@
+// Card del profilo in modalità modifica (campi di testo).
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class ProfileEditCard extends StatelessWidget {
   const ProfileEditCard({
@@ -14,12 +19,12 @@ class ProfileEditCard extends StatelessWidget {
     required this.onChangeUsername,
   });
 
-  static const Color _cardColor = Color(0xFF1A1512);
+  static const Color _cardColor = AmaterasuColors.surface;
   static const Color _fieldColor = Color(0xFF14100E);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
 
   final UserProfile profile;
   final bool isSaving;
@@ -38,15 +43,15 @@ class ProfileEditCard extends StatelessWidget {
       fillColor: _fieldColor,
       suffixIcon: suffixIcon,
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         borderSide: const BorderSide(color: _borderColor),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         borderSide: const BorderSide(color: _accentColor, width: 1.4),
       ),
       disabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         borderSide: const BorderSide(color: _borderColor),
       ),
     );
@@ -57,7 +62,7 @@ class ProfileEditCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: _cardColor,
         borderRadius: BorderRadius.circular(18),
@@ -91,7 +96,7 @@ class ProfileEditCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           TextField(
             controller: firstNameController,
             enabled: !isSaving,

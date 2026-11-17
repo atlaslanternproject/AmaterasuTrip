@@ -1,3 +1,6 @@
+// Test automatici di b86_history_view (trips/budget/presentation).
+// Casi, ad esempio: "every event type has a sentence in Italian and English", "malformed responses are read safely".
+
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_history_view.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

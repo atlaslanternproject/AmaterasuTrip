@@ -1,3 +1,6 @@
+// Informazioni solo organizzative del viaggiatore (es. eSIM, bagagli,
+// contatto di emergenza).
+
 /// Informazioni esclusivamente organizzative del viaggiatore.
 ///
 /// Non contiene dati sanitari, contatti di emergenza,

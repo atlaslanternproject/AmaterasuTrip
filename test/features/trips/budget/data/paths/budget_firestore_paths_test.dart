@@ -1,3 +1,6 @@
+// Test automatici di budget_firestore_paths (trips/budget/data/paths).
+// Casi, ad esempio: "shared expense belongs to trip namespace", "private expense includes owner identity".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/data/paths/budget_firestore_paths.dart';
 

@@ -1,3 +1,5 @@
+// Riepilogo dei voti di un'attività (totale e media).
+
 import 'bucket_priority.dart';
 
 class BucketVoteSummary {

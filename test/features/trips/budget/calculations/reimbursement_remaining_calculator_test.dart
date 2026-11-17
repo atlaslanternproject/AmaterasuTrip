@@ -1,3 +1,6 @@
+// Test automatici di reimbursement_remaining_calculator (trips/budget/calculations).
+// Casi, ad esempio: "pending reimbursement does not reduce debt", "confirmed partial reimbursement reduces debt".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_debt.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_reimbursement.dart';

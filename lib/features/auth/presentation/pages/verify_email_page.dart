@@ -1,11 +1,14 @@
+// Pagina che chiede di verificare l'email e controlla quando è verificata.
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
-import '../../../../core/widgets/layout/Amaterasu_background.dart';
-import '../../../../core/widgets/layout/Amaterasu_hero.dart';
+import '../../../../core/widgets/layout/amaterasu_background.dart';
+import '../../../../core/widgets/layout/amaterasu_hero.dart';
 import '../../../../core/widgets/auth/amaterasu_email_verification_card.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key, this.returnTo});
@@ -60,7 +63,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
             child: Column(
               children: [
                 const AmaterasuHero(),
-                const SizedBox(height: 24),
+                const SizedBox(height: AmaterasuSpacing.lg),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: AmaterasuEmailVerificationCard(

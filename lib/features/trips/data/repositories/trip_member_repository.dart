@@ -1,3 +1,6 @@
+// Viaggiatori del viaggio: elenco, profilo organizzativo e rimozione
+// tramite Cloud Functions.
+
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

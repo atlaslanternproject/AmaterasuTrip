@@ -1,3 +1,5 @@
+// Importo esatto salvato nell'unità minima della valuta (es. centesimi).
+
 import '../calculations/currency_minor_units.dart';
 
 /// Immutable amount stored in the smallest currency unit.

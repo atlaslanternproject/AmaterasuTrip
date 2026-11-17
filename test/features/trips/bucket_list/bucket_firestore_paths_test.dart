@@ -1,3 +1,6 @@
+// Test automatici di bucket_firestore_paths (trips/bucket_list).
+// Casi, ad esempio: "Activity path is scoped to its trip", "Votes are stored under their activity".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/data/bucket_firestore_paths.dart';
 

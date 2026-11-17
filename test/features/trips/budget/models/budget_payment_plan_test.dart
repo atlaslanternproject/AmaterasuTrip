@@ -1,3 +1,6 @@
+// Test automatici di budget_payment_plan (trips/budget/models).
+// Casi, ad esempio: "account debit is independent of expense allocation", "single payer and cash".
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:amaterasutrip/features/trips/budget/models/budget_payment_allocation.dart';

@@ -1,3 +1,6 @@
+// Controllo locale preventivo dei permessi sulla bucket list
+// (le regole Firestore restano quelle che decidono).
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

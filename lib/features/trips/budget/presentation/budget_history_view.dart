@@ -1,3 +1,6 @@
+// Lista delle operazioni di una spesa o dell'intero viaggio,
+// letta dalla Cloud Function listBudgetHistory.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
@@ -6,163 +9,9 @@ import 'budget_api.dart';
 import 'budget_dialog_chrome.dart';
 import 'budget_people.dart';
 
-/// One operation returned by the `listBudgetHistory` Cloud Function.
-class BudgetHistoryEvent {
-  const BudgetHistoryEvent({
-    required this.expenseId,
-    required this.type,
-    this.actorUid,
-    this.counterpartUid,
-    this.minorUnits,
-    this.currency,
-    this.reason,
-    this.version,
-    this.rate,
-    this.at,
-  });
-
-  factory BudgetHistoryEvent.fromMap(Map<String, dynamic> map) {
-    final at = map['at'];
-    return BudgetHistoryEvent(
-      expenseId: map['expenseId']?.toString() ?? '',
-      type: map['type']?.toString() ?? '',
-      actorUid: map['actorUid'] is String ? map['actorUid'] as String : null,
-      counterpartUid: map['counterpartUid'] is String
-          ? map['counterpartUid'] as String
-          : null,
-      minorUnits: map['minorUnits'] is int ? map['minorUnits'] as int : null,
-      currency: map['currency'] is String ? map['currency'] as String : null,
-      reason: map['reason'] is String ? map['reason'] as String : null,
-      version: map['version'] is int ? map['version'] as int : null,
-      rate: map['rate'] is num ? (map['rate'] as num).toDouble() : null,
-      at: at is num ? DateTime.fromMillisecondsSinceEpoch(at.toInt()) : null,
-    );
-  }
-
-  final String expenseId;
-  final String type;
-  final String? actorUid;
-  final String? counterpartUid;
-  final int? minorUnits;
-  final String? currency;
-  final String? reason;
-  final int? version;
-  final double? rate;
-  final DateTime? at;
-}
-
-/// The data returned by `listBudgetHistory`, ready to display.
-class BudgetHistoryData {
-  const BudgetHistoryData({
-    required this.events,
-    required this.titles,
-    required this.privateIds,
-    required this.recordedNames,
-  });
-
-  factory BudgetHistoryData.fromResponse(Map<String, dynamic> response) {
-    final events = response['events'] is List
-        ? (response['events'] as List)
-              .whereType<Map>()
-              .map(
-                (raw) =>
-                    BudgetHistoryEvent.fromMap(Map<String, dynamic>.from(raw)),
-              )
-              .toList()
-        : <BudgetHistoryEvent>[];
-    final titles = <String, String>{};
-    final privateIds = <String>{};
-    final expenses = response['expenses'];
-    if (expenses is Map) {
-      for (final entry in expenses.entries) {
-        final value = entry.value;
-        if (value is! Map) continue;
-        titles['${entry.key}'] = value['title']?.toString() ?? '';
-        if (value['visibility'] == 'private') privateIds.add('${entry.key}');
-      }
-    }
-    final names = <String, String>{};
-    final rawNames = response['names'];
-    if (rawNames is Map) {
-      for (final entry in rawNames.entries) {
-        if (entry.value is String) names['${entry.key}'] = entry.value;
-      }
-    }
-    return BudgetHistoryData(
-      events: events,
-      titles: titles,
-      privateIds: privateIds,
-      recordedNames: names,
-    );
-  }
-
-  final List<BudgetHistoryEvent> events;
-  final Map<String, String> titles;
-  final Set<String> privateIds;
-  final Map<String, String> recordedNames;
-}
-
-/// Sentence describing one operation, with names instead of internal IDs.
-String budgetHistoryText(
-  BudgetHistoryEvent event,
-  AppLocalizations l10n,
-  String Function(String? uid) nameOf,
-) {
-  final actor = nameOf(event.actorUid);
-  final other = nameOf(event.counterpartUid);
-  switch (event.type) {
-    case 'created':
-      return l10n.b86EvCreated(actor);
-    case 'revised':
-      return l10n.b86EvRevised(actor, '${event.version ?? '—'}');
-    case 'reimbursementRequested':
-      return l10n.b86EvRefundRequested(actor, other);
-    case 'reimbursementConfirmed':
-      return l10n.b86EvRefundConfirmed(actor, other);
-    case 'reimbursementRejected':
-      return l10n.b86EvRefundRejected(actor, other);
-    case 'debtClosed':
-      return l10n.b86EvDebtClosed(actor, other);
-    case 'cancellationRequested':
-      return l10n.b86EvCancelRequested(actor);
-    case 'cancellationApproved':
-      return l10n.b86EvCancelApproved(actor);
-    case 'cancellationRejected':
-      return l10n.b86EvCancelRejected(actor);
-    case 'cancelled':
-      return l10n.b86EvCancelled(actor);
-    case 'rateChanged':
-      return l10n.b86EvRateChanged(actor, '${event.rate ?? '—'}');
-    default:
-      return l10n.b86EvUnknown;
-  }
-}
-
-IconData budgetHistoryIcon(String type) {
-  switch (type) {
-    case 'created':
-      return Icons.add_circle_outline;
-    case 'revised':
-      return Icons.edit_outlined;
-    case 'reimbursementRequested':
-      return Icons.payments_outlined;
-    case 'reimbursementConfirmed':
-      return Icons.check_circle_outline;
-    case 'reimbursementRejected':
-    case 'cancellationRejected':
-      return Icons.cancel_outlined;
-    case 'debtClosed':
-      return Icons.task_alt_outlined;
-    case 'cancellationRequested':
-    case 'cancellationApproved':
-    case 'cancelled':
-      return Icons.block_outlined;
-    case 'rateChanged':
-      return Icons.currency_exchange;
-    default:
-      return Icons.history;
-  }
-}
+part 'budget_history_view_models.dart';
+part 'budget_history_view_texts.dart';
+part 'budget_history_view_trip_dialog.dart';
 
 /// List of operations of one expense, or of the whole trip when
 /// [expenseId] is null (B8.6). Data comes only from the Cloud Function,
@@ -206,6 +55,7 @@ class _BudgetHistoryListState extends State<BudgetHistoryList> {
     return (BudgetHistoryData.fromResponse(response), live);
   }();
 
+  // TODO(audit): C8 _money ripetuto in 3 file con gestione errori diversa: decidere una sola regola.
   String _money(BudgetHistoryEvent event) {
     final minor = event.minorUnits;
     final currency = event.currency;
@@ -295,37 +145,3 @@ class _BudgetHistoryListState extends State<BudgetHistoryList> {
   }
 }
 
-/// Trip-wide history (B8.6), opened from the expenses page.
-class BudgetTripHistoryDialog extends StatelessWidget {
-  const BudgetTripHistoryDialog({super.key, required this.api});
-
-  final BudgetApi api;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    return AlertDialog(
-      backgroundColor: BudgetDialogChrome.background,
-      shape: BudgetDialogChrome.shape,
-      insetPadding: BudgetDialogChrome.insetPadding,
-      titlePadding: BudgetDialogChrome.titlePadding,
-      contentPadding: BudgetDialogChrome.contentPadding,
-      actionsPadding: BudgetDialogChrome.actionsPadding,
-      title: BudgetDialogChrome.header(
-        title: l10n.b86TripHistory,
-        subtitle: l10n.b86HistoryVisibility,
-        icon: Icons.history,
-      ),
-      content: SizedBox(
-        width: 560,
-        child: SingleChildScrollView(child: BudgetHistoryList(api: api)),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(MaterialLocalizations.of(context).closeButtonLabel),
-        ),
-      ],
-    );
-  }
-}

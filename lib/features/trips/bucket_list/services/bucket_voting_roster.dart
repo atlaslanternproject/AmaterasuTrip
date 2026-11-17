@@ -1,3 +1,5 @@
+// Elenco dei viaggiatori che hanno diritto di voto in un viaggio.
+
 import '../models/bucket_priority.dart';
 import '../models/bucket_vote_summary.dart';
 import 'bucket_itinerary_eligibility.dart';

@@ -1,3 +1,6 @@
+// Test automatici di budget_snapshot_codec (trips/budget/data/codecs).
+// Casi, ad esempio: "snapshot round-trip preserves all monetary fields", "unknown status fails closed".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_payment_status.dart';

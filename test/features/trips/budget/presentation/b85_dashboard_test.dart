@@ -1,3 +1,6 @@
+// Test automatici di b85_dashboard (trips/budget/presentation).
+// Casi, ad esempio: "trend data", "one bar per day, empty days kept, same day summed".
+
 import 'package:amaterasutrip/features/trips/budget/models/personal_trip_budget.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_dashboard.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_charts.dart';

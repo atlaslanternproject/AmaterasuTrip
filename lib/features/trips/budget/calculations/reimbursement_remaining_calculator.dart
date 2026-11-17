@@ -1,3 +1,6 @@
+// Calcola quanto resta da rimborsare per un singolo debito.
+// Usato dai test di parità.
+
 import '../models/expense_debt.dart';
 import '../models/expense_reimbursement.dart';
 import '../models/reimbursement_status.dart';

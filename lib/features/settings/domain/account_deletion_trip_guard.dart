@@ -1,3 +1,6 @@
+// Blocca la cancellazione dell'account se l'utente ha ancora viaggi,
+// per non lasciare viaggi senza proprietario.
+
 /// Temporary protection against orphaned trip membership.
 ///
 /// This does not implement account cleanup or E2EE key revocation.

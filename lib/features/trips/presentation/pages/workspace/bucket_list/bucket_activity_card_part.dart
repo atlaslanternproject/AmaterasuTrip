@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: card di un'attività
+// con voti, dettagli e azioni.
+
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketActivityCard on _TripBucketListPageState {
@@ -30,11 +33,11 @@ extension _BucketActivityCard on _TripBucketListPageState {
 
     final allVoted = _members.isNotEmpty && count == _members.length;
 
-    const background = Color(0xFF211914);
+    const background = AmaterasuColors.surfaceSheet;
     const border = Color(0xFF503629);
-    const cream = Color(0xFFF5E9DA);
+    const cream = AmaterasuColors.textCream;
     const muted = Color(0xFFC4B2A3);
-    const amber = Color(0xFFF2B45C);
+    const amber = AmaterasuColors.accentAmber;
     const vermilion = Color(0xFFD66A42);
 
     Widget infoPill(IconData icon, String label, {Color? foreground}) {
@@ -136,7 +139,7 @@ extension _BucketActivityCard on _TripBucketListPageState {
           Row(
             children: [
               const Icon(Icons.location_on_outlined, size: 16, color: muted),
-              const SizedBox(width: 4),
+              const SizedBox(width: AmaterasuSpacing.xs),
               Expanded(
                 child: Text(
                   '${item.city} · ${item.country}',

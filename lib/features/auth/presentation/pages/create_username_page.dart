@@ -1,3 +1,7 @@
+// Pagina per scegliere lo username dopo la prima registrazione
+// (controlla che non sia già usato).
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -5,6 +9,7 @@ import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/features/profile/providers/user_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class CreateUsernamePage extends ConsumerStatefulWidget {
   const CreateUsernamePage({super.key, this.returnTo});
@@ -30,7 +35,7 @@ class _CreateUsernamePageState extends ConsumerState<CreateUsernamePage> {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.createUsernameTitle)),
       body: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AmaterasuSpacing.lg),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -38,7 +43,7 @@ class _CreateUsernamePageState extends ConsumerState<CreateUsernamePage> {
               l10n.createUsernameSubtitle,
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: AmaterasuSpacing.lg),
             TextField(
               controller: usernameController,
               onChanged: (_) {
@@ -51,7 +56,7 @@ class _CreateUsernamePageState extends ConsumerState<CreateUsernamePage> {
                 errorText: error,
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: AmaterasuSpacing.lg),
             ElevatedButton(
               onPressed: loading
                   ? null
@@ -69,7 +74,7 @@ class _CreateUsernamePageState extends ConsumerState<CreateUsernamePage> {
                         return;
                       }
                       final user = FirebaseAuth.instance.currentUser;
-                      debugPrint("CREATE USERNAME CURRENT USER: ${user?.uid}");
+                      if (kDebugMode) debugPrint("CREATE USERNAME CURRENT USER: ${user?.uid}");
                       if (user == null) {
                         setState(() {
                           error = l10n.createUsernameGoogleUserNotFound;
@@ -77,8 +82,8 @@ class _CreateUsernamePageState extends ConsumerState<CreateUsernamePage> {
                         });
                         return;
                       }
-                      debugPrint('USERNAME CREATO: $username');
-                      debugPrint('USER FIREBASE: ${user.uid}');
+                      if (kDebugMode) debugPrint('USERNAME CREATO: $username');
+                      if (kDebugMode) debugPrint('USER FIREBASE: ${user.uid}');
                       if (!context.mounted) {
                         return;
                       }

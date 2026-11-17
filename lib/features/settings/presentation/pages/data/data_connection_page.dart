@@ -1,7 +1,12 @@
+// Opzioni di connessione: download automatici, uso dei dati mobili
+// e scaricamento solo con Wi-Fi.
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class DataConnectionPage extends StatefulWidget {
   const DataConnectionPage({super.key});
@@ -14,11 +19,11 @@ class _DataConnectionPageState extends State<DataConnectionPage> {
   static const String _wifiOnlyKey = 'data_sync_wifi_only';
   static const String _automaticDownloadsKey = 'data_automatic_downloads';
 
-  static const Color _sectionColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _sectionColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
 
   bool _wifiOnly = true;
   bool _automaticDownloads = false;
@@ -89,7 +94,7 @@ class _DataConnectionPageState extends State<DataConnectionPage> {
           value: _wifiOnly,
           onChanged: _setWifiOnly,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _ConnectionSwitchItem(
           icon: Icons.signal_cellular_alt,
           title: l10n.dataMobileData,
@@ -97,7 +102,7 @@ class _DataConnectionPageState extends State<DataConnectionPage> {
           value: _mobileData,
           onChanged: _setMobileData,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _ConnectionSwitchItem(
           icon: Icons.download_outlined,
           title: l10n.dataAutomaticDownloads,
@@ -166,7 +171,7 @@ class _ConnectionSwitchItem extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   subtitle,
                   style: const TextStyle(

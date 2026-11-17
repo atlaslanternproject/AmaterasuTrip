@@ -1,3 +1,5 @@
+// Modello della richiesta di cancellazione di un'attività e del suo stato.
+
 enum BucketDeletionStatus { pending, approved, rejected }
 
 class BucketDeletionRequest {

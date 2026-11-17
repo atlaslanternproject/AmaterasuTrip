@@ -1,3 +1,6 @@
+// Test automatici di b86_former_traveler (trips/budget/presentation).
+// Casi, ad esempio: "BudgetPeople", "current name, then recorded name, then fallback".
+
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_people.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_reimbursements_panel.dart';
 import 'package:flutter/material.dart';

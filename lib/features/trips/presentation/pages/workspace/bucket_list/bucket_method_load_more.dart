@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: caricamento della pagina
+// successiva di attività.
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'trip_bucket_list_page.dart';
 

@@ -1,3 +1,5 @@
+// Impostazioni del viaggio: elenco delle sezioni.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -5,18 +7,21 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class TripSettingsPage extends ConsumerWidget {
   const TripSettingsPage({super.key, required this.tripId});
 
   final String tripId;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _surfaceColor = Color(0xFF1A1310);
-  static const Color _borderColor = Color(0xFF5A3023);
-  static const Color _accentColor = Color(0xFFD96C32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _surfaceColor = AmaterasuColors.surfaceWarm;
+  static const Color _borderColor = AmaterasuColors.borderAccent;
+  static const Color _accentColor = AmaterasuColors.accentBudget;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -70,7 +75,7 @@ class TripSettingsPage extends ConsumerWidget {
                       color: _titleColor,
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: AmaterasuSpacing.xs),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +149,7 @@ class _SettingsCard extends StatelessWidget {
           onTap: enabled ? onTap : null,
           borderRadius: BorderRadius.circular(18),
           child: Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AmaterasuSpacing.md),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
@@ -160,7 +165,7 @@ class _SettingsCard extends StatelessWidget {
                     color: TripSettingsPage._accentColor.withValues(
                       alpha: 0.12,
                     ),
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                   ),
                   child: Icon(
                     item.icon,

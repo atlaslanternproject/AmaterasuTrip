@@ -1,8 +1,12 @@
+// Pagina Home: per ora mostra i dati dell'utente collegato
+// (nome, email) e un logout di prova.
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,12 +20,12 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: Text(l10n.appName), centerTitle: true),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(AmaterasuSpacing.lg),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.auto_awesome, size: 80),
-              const SizedBox(height: 32),
+              const SizedBox(height: AmaterasuSpacing.xl),
               Text(
                 l10n.loginCompleted,
                 style: const TextStyle(
@@ -29,20 +33,20 @@ class HomePage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: AmaterasuSpacing.lg),
               if (user != null) ...[
                 Text(l10n.name, style: Theme.of(context).textTheme.labelLarge),
                 Text(
                   user.displayName ?? l10n.noName,
                   style: const TextStyle(fontSize: 18),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AmaterasuSpacing.md),
                 Text(l10n.email, style: Theme.of(context).textTheme.labelLarge),
                 Text(
                   user.email ?? l10n.noEmail,
                   style: const TextStyle(fontSize: 18),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AmaterasuSpacing.md),
                 Text(l10n.uid, style: Theme.of(context).textTheme.labelLarge),
                 SelectableText(user.uid, textAlign: TextAlign.center),
               ],

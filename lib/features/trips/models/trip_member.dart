@@ -1,3 +1,5 @@
+// Modello di un viaggiatore del viaggio, con il suo ruolo.
+
 import 'package:amaterasutrip/features/trips/models/trip_organizational_profile.dart';
 
 class TripMember {

@@ -1,5 +1,10 @@
-import 'package:flutter/material.dart';
+// Intestazione del workspace del viaggio (oggi non usata da nessuna pagina).
 
+import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+
+// TODO(audit): C1 widget non usato da nessuna pagina: decidere se eliminarlo o usarlo.
 class TripWorkspaceHeader extends StatelessWidget {
   const TripWorkspaceHeader({
     super.key,
@@ -14,11 +19,11 @@ class TripWorkspaceHeader extends StatelessWidget {
   final String dateRange;
   final VoidCallback onSettingsTap;
 
-  static const Color _surfaceColor = Color(0xFF1A1310);
-  static const Color _borderColor = Color(0xFF5A3023);
-  static const Color _accentColor = Color(0xFFD96C32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _surfaceColor = AmaterasuColors.surfaceWarm;
+  static const Color _borderColor = AmaterasuColors.borderAccent;
+  static const Color _accentColor = AmaterasuColors.accentBudget;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +51,7 @@ class TripWorkspaceHeader extends StatelessWidget {
               size: 29,
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: AmaterasuSpacing.md),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +68,7 @@ class TripWorkspaceHeader extends StatelessWidget {
                     height: 1.1,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AmaterasuSpacing.sm),
                 Row(
                   children: [
                     const Icon(
@@ -110,7 +115,7 @@ class TripWorkspaceHeader extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: AmaterasuSpacing.sm),
           IconButton(
             onPressed: onSettingsTap,
             tooltip: MaterialLocalizations.of(context).moreButtonTooltip,

@@ -1,3 +1,6 @@
+// Lettura e controllo degli importi scritti dall'utente,
+// nel numero di decimali giusto per la valuta.
+
 import 'package:amaterasutrip/features/trips/budget/calculations/currency_minor_units.dart';
 
 abstract final class BudgetMoneyInput {

@@ -1,5 +1,9 @@
+// Selettore delle date di inizio e fine del viaggio.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/features/trips/presentation/utils/trip_date_formatter.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripDateSelector extends StatelessWidget {
   const TripDateSelector({
@@ -19,11 +23,11 @@ class TripDateSelector extends StatelessWidget {
   final VoidCallback onDepartureTap;
   final VoidCallback onReturnTap;
 
-  static const Color _surfaceColor = Color(0xFF1A1715);
-  static const Color _borderColor = Color(0xFF332824);
-  static const Color _creamColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _accentColor = Color(0xFFD96C32);
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
+  static const Color _borderColor = AmaterasuColors.surfaceHigh;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
+  static const Color _accentColor = AmaterasuColors.accentBudget;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +113,7 @@ class _DateBox extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       formattedDate,
                       maxLines: 1,

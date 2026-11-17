@@ -1,3 +1,5 @@
+// Modifica del proprio profilo organizzativo nel viaggio.
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/trips/models/trip_member.dart';
 import 'package:amaterasutrip/features/trips/models/trip_organizational_profile.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_member_provider.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class TripTravellerProfileEditPage extends ConsumerStatefulWidget {
   const TripTravellerProfileEditPage({super.key, required this.tripId});
@@ -36,6 +40,7 @@ class _TripTravellerProfileEditPageState
 
   bool get _complete => _internet != null && _checked != null && _cabin != null;
 
+  // TODO(audit): L5 19 testi italiano/inglese scritti nel codice: spostarli in lib/l10n.
   String _t(String italian, String english) {
     final language = Localizations.localeOf(context).languageCode;
     return language == 'it' ? italian : english;
@@ -187,7 +192,7 @@ class _TripTravellerProfileEditPageState
               height: 1.4,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           SegmentedButton<bool>(
             showSelectedIcon: false,
             emptySelectionAllowed: true,
@@ -253,7 +258,7 @@ class _TripTravellerProfileEditPageState
               const Center(child: CircularProgressIndicator(color: _gold)),
           error: (error, stack) => Center(
             child: Padding(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(AmaterasuSpacing.lg),
               child: Text(
                 _t(
                   'Impossibile caricare i dati del viaggio.',
@@ -298,9 +303,9 @@ class _TripTravellerProfileEditPageState
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(24),
+                          padding: const EdgeInsets.all(AmaterasuSpacing.lg),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
+                            borderRadius: BorderRadius.circular(AmaterasuRadius.lg),
                             gradient: const LinearGradient(
                               colors: [Color(0xFF70261D), Color(0xFF302018)],
                             ),
@@ -316,7 +321,7 @@ class _TripTravellerProfileEditPageState
                                 color: _gold,
                                 size: 34,
                               ),
-                              const SizedBox(height: 16),
+                              const SizedBox(height: AmaterasuSpacing.md),
                               Text(
                                 _t(
                                   'Organizza il tuo viaggio',
@@ -345,7 +350,7 @@ class _TripTravellerProfileEditPageState
                             ],
                           ),
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: AmaterasuSpacing.lg),
                         _question(
                           title: _t(
                             'Avrai una connessione Internet o una eSIM?',
@@ -372,7 +377,7 @@ class _TripTravellerProfileEditPageState
                           value: _cabin,
                           onChanged: _changeCabin,
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: AmaterasuSpacing.lg),
                         FilledButton.icon(
                           onPressed: _complete && !_saving
                               ? _saveAndExit
@@ -400,7 +405,7 @@ class _TripTravellerProfileEditPageState
                             padding: const EdgeInsets.symmetric(vertical: 17),
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         TextButton(
                           onPressed: _saving ? null : _back,
                           child: Text(

@@ -1,3 +1,6 @@
+// Arrotondamento all'unità più vicina di una frazione esatta.
+// Usato dai calcoli del budget e dai test.
+
 /// Rounds an exact rational number to the nearest integer.
 ///
 /// Halfway values are rounded away from zero.

@@ -1,3 +1,5 @@
+// Controlla che i metodi di pagamento dichiarati tornino con gli importi della spesa.
+
 import 'budget_payment_allocation.dart';
 
 /// Validates a complete declaration against the financial snapshot.

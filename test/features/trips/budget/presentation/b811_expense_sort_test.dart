@@ -1,3 +1,6 @@
+// Test automatici di b811_expense_sort (trips/budget/presentation).
+// Casi, ad esempio: "newest sorts descending by recording date", "oldest sorts ascending by recording date".
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_filters.dart';

@@ -1,3 +1,5 @@
+// Verifica e gestione dell'archivio cloud di un viaggio esistente.
+
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:url_launcher/url_launcher.dart';

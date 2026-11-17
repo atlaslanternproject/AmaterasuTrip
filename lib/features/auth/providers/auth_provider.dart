@@ -1,3 +1,6 @@
+// Provider Riverpod di Firebase Auth, del repository di autenticazione
+// e dello stato dell'utente collegato.
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../data/repositories/auth_repository.dart';

@@ -1,3 +1,6 @@
+// Parte di account_email_page.dart: azioni sull'email
+// (verifica, cambio email, controllo della conferma).
+
 part of 'account_email_page.dart';
 
 mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
@@ -202,9 +205,9 @@ mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {
 
         debugPrint('CHECK EMAIL: RELOAD OK');
 
-        debugPrint('CURRENT FIREBASE EMAIL: $currentEmail');
+        if (kDebugMode) debugPrint('CURRENT FIREBASE EMAIL: $currentEmail');
 
-        debugPrint('PENDING NEW EMAIL: $pendingEmail');
+        if (kDebugMode) debugPrint('PENDING NEW EMAIL: $pendingEmail');
 
         if (currentEmail != pendingEmail) {
           if (!mounted) return;

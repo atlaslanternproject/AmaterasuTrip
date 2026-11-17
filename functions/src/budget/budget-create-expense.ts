@@ -4,16 +4,14 @@ import {checkBudgetMembership} from "./budget-access";
 import {loadDisplayNames} from "./budget-names";
 import {validId, validateSnapshot} from "./budget-validation";
 import {validatePaymentMethods} from "./budget-payment-methods";
+import {requireVerifiedUid} from "../shared/require-verified-uid";
 
 const db = getFirestore();
 
 export const createBudgetExpense = onCall(
   {region: "europe-west1"},
   async (request) => {
-    const uid = request.auth?.uid;
-    if (!uid || request.auth?.token.email_verified !== true) {
-      throw new HttpsError("unauthenticated", "Verified user required.");
-    }
+    const uid = requireVerifiedUid(request);
 
     const tripId = validId(request.data?.tripId);
     const expenseId = validId(request.data?.expenseId);

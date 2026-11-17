@@ -1,3 +1,5 @@
+// Decisione di un viaggiatore su una revisione proposta. Usato dai test.
+
 /// Explicit decision concerning one proposed revision.
 ///
 /// This is a domain value, not proof of user authentication.

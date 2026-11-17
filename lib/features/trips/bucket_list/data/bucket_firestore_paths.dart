@@ -1,3 +1,5 @@
+// Percorsi Firestore della bucket list (attività, voti, categorie).
+
 abstract final class BucketFirestorePaths {
   static String activities(String tripId) {
     _check(tripId);

@@ -1,7 +1,11 @@
+// Scelta della categoria di una spesa, con creazione di una nuova categoria.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 class BudgetCategoryPicker extends StatelessWidget {
   const BudgetCategoryPicker({
@@ -29,17 +33,17 @@ class BudgetCategoryPicker extends StatelessWidget {
   static String label(String id, bool it) {
     switch (id) {
       case 'accommodation':
-        return _l10n(it).btCatAccommodation;
+        return budgetL10n(it).btCatAccommodation;
       case 'food':
-        return _l10n(it).btCatFoodDrinks;
+        return budgetL10n(it).btCatFoodDrinks;
       case 'transport':
-        return _l10n(it).btCatTransport;
+        return budgetL10n(it).btCatTransport;
       case 'activities':
-        return _l10n(it).btCatActivities;
+        return budgetL10n(it).btCatActivities;
       case 'shopping':
         return 'Shopping';
       case 'other':
-        return _l10n(it).btCatOther;
+        return budgetL10n(it).btCatOther;
       default:
         return id;
     }
@@ -162,7 +166,7 @@ class _NewBudgetCategoryDialogState extends State<_NewBudgetCategoryDialog> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
-      backgroundColor: const Color(0xFF241A16),
+      backgroundColor: AmaterasuColors.surfaceRaised,
       title: Text(l10n.b6CreateCategory),
       content: SizedBox(
         width: 400,
@@ -179,7 +183,7 @@ class _NewBudgetCategoryDialogState extends State<_NewBudgetCategoryDialog> {
               onSubmitted: (_) => _save(),
             ),
             if (_error != null)
-              Text(_error!, style: const TextStyle(color: Color(0xFFFFB4A2))),
+              Text(_error!, style: const TextStyle(color: AmaterasuColors.accentPeach)),
           ],
         ),
       ),
@@ -193,7 +197,3 @@ class _NewBudgetCategoryDialogState extends State<_NewBudgetCategoryDialog> {
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

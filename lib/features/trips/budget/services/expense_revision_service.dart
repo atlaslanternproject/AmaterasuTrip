@@ -1,3 +1,6 @@
+// Applica una revisione approvata (solo calcolo, non salva nulla).
+// Usato dai test.
+
 import '../calculations/expense_financial_validator.dart';
 import '../models/expense_revision.dart';
 import '../models/expense_revision_proposal.dart';

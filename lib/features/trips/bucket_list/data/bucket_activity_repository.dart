@@ -1,3 +1,6 @@
+// Lettura a pagine e scrittura delle attività della bucket list
+// su Firestore (niente ascolto permanente dell'intera collezione).
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

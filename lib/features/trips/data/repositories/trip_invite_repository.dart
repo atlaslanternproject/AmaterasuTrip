@@ -1,3 +1,6 @@
+// Inviti al viaggio: creazione, revoca, stato, validazione
+// e accettazione tramite Cloud Functions.
+
 import 'package:cloud_functions/cloud_functions.dart';
 
 enum TripInviteStatus { missing, active, revoked }

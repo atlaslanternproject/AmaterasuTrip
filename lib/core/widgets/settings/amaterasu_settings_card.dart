@@ -1,4 +1,9 @@
+// Card espandibile usata nelle pagine delle impostazioni.
+
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class AmaterasuSettingsCard extends StatelessWidget {
   const AmaterasuSettingsCard({
@@ -20,12 +25,12 @@ class AmaterasuSettingsCard extends StatelessWidget {
   final List<Widget> children;
   final bool enabled;
 
-  static const Color _cardColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
-  static const Color _chevronColor = Color(0xFFB89B7A);
+  static const Color _cardColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
+  static const Color _chevronColor = AmaterasuColors.textWarm;
 
   static const Color _disabledCardColor = Color(0xFF171412);
   static const Color _disabledBorderColor = Color(0xFF2B2724);
@@ -58,11 +63,11 @@ class AmaterasuSettingsCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: enabled ? onTap : null,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         child: Ink(
           decoration: BoxDecoration(
             color: effectiveCardColor,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AmaterasuRadius.md),
             border: Border.all(color: effectiveBorderColor, width: 1),
           ),
           child: AnimatedSize(
@@ -104,7 +109,7 @@ class AmaterasuSettingsCard extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: AmaterasuSpacing.xs),
                             Text(
                               subtitle,
                               maxLines: 2,
@@ -149,7 +154,7 @@ class AmaterasuSettingsCard extends StatelessWidget {
       result.add(widgets[i]);
 
       if (i < widgets.length - 1) {
-        result.add(const SizedBox(height: 8));
+        result.add(const SizedBox(height: AmaterasuSpacing.sm));
       }
     }
 

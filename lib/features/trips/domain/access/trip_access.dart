@@ -1,3 +1,5 @@
+// Ruoli e permessi nel viaggio (proprietario, viaggiatore) e cosa può fare ciascuno.
+
 enum TripRole { owner, traveler }
 
 enum TripPermission {

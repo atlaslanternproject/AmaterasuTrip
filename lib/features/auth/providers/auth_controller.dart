@@ -1,3 +1,6 @@
+// Controller Riverpod delle azioni di autenticazione
+// (login, registrazione, logout) usato dalle schermate.
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

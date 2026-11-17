@@ -1,16 +1,20 @@
+// Stile comune dei dialoghi del budget (sfondo, bordi, titoli).
+
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 /// Visual conventions shared by Budget dialogs.
 ///
 /// Presentation only: no financial state or Firebase calls.
 abstract final class BudgetDialogChrome {
-  static const background = Color(0xFF231915);
+  static const background = AmaterasuColors.surfaceCard;
   static const surface = Color(0xFF2C211C);
-  static const border = Color(0xFF49352A);
-  static const cream = Color(0xFFF2E7D5);
-  static const muted = Color(0xFFB7A99B);
-  static const gold = Color(0xFFE3A66C);
-  static const orange = Color(0xFFE17A43);
+  static const border = AmaterasuColors.borderStrong;
+  static const cream = AmaterasuColors.textPrimary;
+  static const muted = AmaterasuColors.textSecondary;
+  static const gold = AmaterasuColors.accentGold;
+  static const orange = AmaterasuColors.accentOrange;
 
   static const shape = RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -81,7 +85,7 @@ abstract final class BudgetDialogChrome {
       margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         color: surface,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AmaterasuRadius.md),
         border: Border.all(color: border),
       ),
       clipBehavior: Clip.antiAlias,

@@ -1,3 +1,5 @@
+// Decide quali attività possono passare all'itinerario in base ai voti.
+
 import '../models/bucket_priority.dart';
 import 'bucket_priority_calculator.dart';
 

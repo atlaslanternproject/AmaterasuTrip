@@ -1,6 +1,10 @@
+// Intestazione del profilo: foto e nome.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -9,9 +13,9 @@ class ProfileHeader extends StatelessWidget {
     required this.onChangePhoto,
   });
 
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
 
   final UserProfile profile;
   final VoidCallback onChangePhoto;
@@ -88,7 +92,7 @@ class ProfileHeader extends StatelessWidget {
                   child: const Icon(
                     Icons.camera_alt_outlined,
                     size: 17,
-                    color: Color(0xFF100C0A),
+                    color: AmaterasuColors.surfaceDeep,
                   ),
                 ),
               ),
@@ -106,7 +110,7 @@ class ProfileHeader extends StatelessWidget {
           ),
         ),
         if (_fullName.isNotEmpty) ...[
-          const SizedBox(height: 4),
+          const SizedBox(height: AmaterasuSpacing.xs),
           Text(
             _fullName,
             textAlign: TextAlign.center,

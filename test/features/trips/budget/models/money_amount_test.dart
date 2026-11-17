@@ -1,3 +1,6 @@
+// Test automatici di money_amount (trips/budget/models).
+// Casi, ad esempio: "amount stores minor units without floating point", "same currency amounts can be added".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 

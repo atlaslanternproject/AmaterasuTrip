@@ -1,3 +1,6 @@
+// Parte di account_email_page.dart: dialoghi del cambio email
+// (avviso, nuova email, verifica).
+
 part of 'account_email_page.dart';
 
 class _ChangeEmailWarningDialog extends StatelessWidget {

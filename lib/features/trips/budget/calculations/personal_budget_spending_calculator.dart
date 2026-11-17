@@ -1,3 +1,5 @@
+// Calcola quanto il viaggiatore ha speso rispetto al suo budget personale.
+
 /// The personal travel budget measures what the traveler owes,
 /// regardless of who advanced the payment.
 abstract final class PersonalBudgetSpendingCalculator {

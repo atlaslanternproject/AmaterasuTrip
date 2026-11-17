@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: editor per creare
+// o modificare un'attività (con ricerca luoghi e controllo doppioni).
+
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketActivityEditor on _TripBucketListPageState {
@@ -199,14 +202,14 @@ extension _BucketActivityEditor on _TripBucketListPageState {
             }
 
             return AlertDialog(
-              backgroundColor: const Color(0xFF211914),
+              backgroundColor: AmaterasuColors.surfaceSheet,
               elevation: 16,
               insetPadding: const EdgeInsets.symmetric(
                 horizontal: 12,
                 vertical: 20,
               ),
               shape: RoundedRectangleBorder(
-                side: const BorderSide(color: Color(0xFF68402B), width: 1.4),
+                side: const BorderSide(color: AmaterasuColors.borderOrange, width: 1.4),
                 borderRadius: BorderRadius.circular(22),
               ),
               titlePadding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
@@ -217,7 +220,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                 children: [
                   const Icon(
                     Icons.auto_awesome_outlined,
-                    color: Color(0xFFF2B45C),
+                    color: AmaterasuColors.accentAmber,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -226,7 +229,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                           ? _t('Nuova attività', 'New activity')
                           : _t('Modifica attività', 'Edit activity'),
                       style: const TextStyle(
-                        color: Color(0xFFF5E9DA),
+                        color: AmaterasuColors.textCream,
                         fontSize: 21,
                         fontWeight: FontWeight.w700,
                       ),
@@ -258,21 +261,21 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                           ),
                           style: const TextStyle(color: Color(0xFFC4B2A3)),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: AmaterasuSpacing.md),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 12),
                           child: Row(
                             children: [
                               Icon(
                                 Icons.travel_explore_outlined,
-                                color: const Color(0xFFF2B45C),
+                                color: AmaterasuColors.accentAmber,
                                 size: 19,
                               ),
                               const SizedBox(width: 9),
                               Text(
                                 _t('Cerca un luogo', 'Find a place'),
                                 style: const TextStyle(
-                                  color: Color(0xFFF5E9DA),
+                                  color: AmaterasuColors.textCream,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -292,7 +295,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: AmaterasuSpacing.sm),
                             IconButton.filled(
                               tooltip: _t('Cerca', 'Search'),
                               onPressed: searching || selecting || saving
@@ -311,10 +314,10 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                           ],
                         ),
                         if (searchError != null) ...[
-                          const SizedBox(height: 8),
+                          const SizedBox(height: AmaterasuSpacing.sm),
                           Text(
                             searchError!,
-                            style: const TextStyle(color: Color(0xFFFF9B80)),
+                            style: const TextStyle(color: AmaterasuColors.accentSalmon),
                           ),
                         ],
                         if (predictions.isNotEmpty)
@@ -349,9 +352,9 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             children: [
                               const Icon(
                                 Icons.check_circle_outline,
-                                color: Color(0xFFF2B45C),
+                                color: AmaterasuColors.accentAmber,
                               ),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: AmaterasuSpacing.sm),
                               Expanded(
                                 child: Text(
                                   _t(
@@ -359,7 +362,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                     'Google Maps place linked',
                                   ),
                                   style: const TextStyle(
-                                    color: Color(0xFFF2B45C),
+                                    color: AmaterasuColors.accentAmber,
                                   ),
                                 ),
                               ),
@@ -411,7 +414,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             children: [
                               Icon(
                                 Icons.edit_note_outlined,
-                                color: const Color(0xFFF2B45C),
+                                color: AmaterasuColors.accentAmber,
                                 size: 19,
                               ),
                               const SizedBox(width: 9),
@@ -421,7 +424,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                   'Activity details',
                                 ),
                                 style: const TextStyle(
-                                  color: Color(0xFFF5E9DA),
+                                  color: AmaterasuColors.textCream,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -437,7 +440,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             Icons.edit_outlined,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         TextField(
                           controller: city,
                           maxLength: 150,
@@ -446,7 +449,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             Icons.location_city_outlined,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         TextField(
                           controller: country,
                           maxLength: 150,
@@ -455,7 +458,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             Icons.public_outlined,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         DropdownButtonFormField<BucketItemType>(
                           initialValue: type,
                           isExpanded: true,
@@ -519,9 +522,9 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                         const SizedBox(height: 14),
                         Text(
                           _t('Link utili', 'Useful links'),
-                          style: const TextStyle(color: Color(0xFFF5E9DA)),
+                          style: const TextStyle(color: AmaterasuColors.textCream),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AmaterasuSpacing.sm),
                         for (var i = 0; i < linkControllers.length; i++) ...[
                           Row(
                             key: ObjectKey(linkControllers[i]),
@@ -563,7 +566,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: AmaterasuSpacing.sm),
                         ],
                         OutlinedButton.icon(
                           onPressed: saving || linkControllers.length >= 20
@@ -583,7 +586,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             children: [
                               Icon(
                                 Icons.notes_outlined,
-                                color: const Color(0xFFF2B45C),
+                                color: AmaterasuColors.accentAmber,
                                 size: 19,
                               ),
                               const SizedBox(width: 9),
@@ -593,7 +596,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                   'Notes and information',
                                 ),
                                 style: const TextStyle(
-                                  color: Color(0xFFF5E9DA),
+                                  color: AmaterasuColors.textCream,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -637,11 +640,11 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                   },
                             icon: const Icon(
                               Icons.delete_outline,
-                              color: Color(0xFFFF9B80),
+                              color: AmaterasuColors.accentSalmon,
                             ),
                             label: Text(
                               _t('Elimina', 'Delete'),
-                              style: const TextStyle(color: Color(0xFFFF9B80)),
+                              style: const TextStyle(color: AmaterasuColors.accentSalmon),
                             ),
                           ),
                         ),

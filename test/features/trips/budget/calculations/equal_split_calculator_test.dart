@@ -1,3 +1,6 @@
+// Test automatici di equal_split_calculator (trips/budget/calculations).
+// Casi, ad esempio: "120 EUR divided among four travelers", "remaining cents are assigned deterministically".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/equal_split_calculator.dart';

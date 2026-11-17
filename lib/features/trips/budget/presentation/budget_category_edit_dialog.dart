@@ -1,9 +1,12 @@
+// Dialogo per cambiare la categoria di una spesa.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
 import 'budget_category_picker.dart';
 import 'budget_dialog_chrome.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetCategoryEditDialog extends StatefulWidget {
   const BudgetCategoryEditDialog({
@@ -80,7 +83,7 @@ class _BudgetCategoryEditDialogState extends State<BudgetCategoryEditDialog> {
               onChanged: (value) => setState(() => _selected = value),
             ),
             if (_error != null)
-              Text(_error!, style: const TextStyle(color: Color(0xFFFFB4A2))),
+              Text(_error!, style: const TextStyle(color: AmaterasuColors.accentPeach)),
           ],
         ),
       ),

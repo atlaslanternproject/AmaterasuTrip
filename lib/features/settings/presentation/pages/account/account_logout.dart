@@ -1,3 +1,5 @@
+// Sezione dell'account per uscire (logout) con conferma.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -18,6 +20,7 @@ class AccountLogoutPage extends ConsumerWidget {
       if (!context.mounted) return;
 
       ScaffoldMessenger.of(context).showSnackBar(
+        // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
         const SnackBar(content: Text('Logout non riuscito. Riprova.')),
       );
     }

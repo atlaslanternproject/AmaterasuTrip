@@ -6,6 +6,7 @@ import {
 } from "./budget-validation";
 
 import {validateReimbursementMethods} from "./budget-reimbursement-methods";
+import {requireVerifiedUid} from "../shared/require-verified-uid";
 
 const db = getFirestore();
 
@@ -29,10 +30,7 @@ function refs(tripId: string, expenseId: string, refundId: string) {
 export const requestBudgetReimbursement = onCall(
   {region: "europe-west1"},
   async (request) => {
-    const uid = request.auth?.uid;
-    if (!uid || request.auth?.token.email_verified !== true) {
-      throw new HttpsError("unauthenticated", "Verified user required.");
-    }
+    const uid = requireVerifiedUid(request);
 
     const tripId = validId(request.data?.tripId);
     const expenseId = validId(request.data?.expenseId);
@@ -121,10 +119,7 @@ export const requestBudgetReimbursement = onCall(
 export const confirmBudgetReimbursement = onCall(
   {region: "europe-west1"},
   async (request) => {
-    const uid = request.auth?.uid;
-    if (!uid || request.auth?.token.email_verified !== true) {
-      throw new HttpsError("unauthenticated", "Verified user required.");
-    }
+    const uid = requireVerifiedUid(request);
 
     const tripId = validId(request.data?.tripId);
     const expenseId = validId(request.data?.expenseId);

@@ -1,9 +1,13 @@
+// Mostra un importo nella valuta scelta per la visualizzazione,
+// senza mai modificare la spesa originale.
+
 import 'budget_expense_day.dart';
-import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../calculations/budget_money_formatter.dart';
 import '../data/budget_fx_service.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 typedef BudgetQuoteLoader =
     Future<BudgetFxQuote> Function(String from, String to);
@@ -87,6 +91,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
     }
   }
 
+  // TODO(audit): C8 _money ripetuto in 3 file con gestione errori diversa: decidere una sola regola.
   String _money(int minor, String currency) {
     try {
       return BudgetMoneyFormatter.format(minor, currency);
@@ -113,27 +118,27 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
           Text(
             prominent,
             style: TextStyle(
-              color: const Color(0xFFE3A66C),
+              color: AmaterasuColors.accentGold,
               fontSize: widget.fontSize,
               fontWeight: FontWeight.w800,
             ),
           ),
           const SizedBox(height: 3),
           Text(
-            '${_l10n(it).btAmountOriginal}: $original',
-            style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 11),
+            '${budgetL10n(it).btAmountOriginal}: $original',
+            style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 11),
           ),
           if (warning != null)
             Text(
               warning,
-              style: const TextStyle(color: Color(0xFFE3A66C), fontSize: 11),
+              style: const TextStyle(color: AmaterasuColors.accentGold, fontSize: 11),
             ),
           if (source != null)
             Tooltip(
               message: source,
               child: Text(
-                _l10n(it).btAmountAutomaticExchangeRate,
-                style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 10),
+                budgetL10n(it).btAmountAutomaticExchangeRate,
+                style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 10),
               ),
             ),
         ],
@@ -150,7 +155,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
         if (result.connectionState != ConnectionState.done) {
           return content(
             prominent: '— ${widget.displayCurrency}',
-            warning: _l10n(it).btAmountConverting,
+            warning: budgetL10n(it).btAmountConverting,
           );
         }
 
@@ -171,7 +176,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
         if (converted == null) {
           return content(
             prominent: '— ${widget.displayCurrency}',
-            warning: _l10n(it).btAmountExchangeRateUnavailable,
+            warning: budgetL10n(it).btAmountExchangeRateUnavailable,
           );
         }
 
@@ -185,7 +190,3 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

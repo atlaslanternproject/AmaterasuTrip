@@ -1,3 +1,6 @@
+// Riepilogo personale dei conti: quanto devi, quanto ti devono
+// e i movimenti tra viaggiatori.
+
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -9,6 +12,11 @@ import 'budget_api.dart';
 import 'budget_display_amount.dart';
 import 'budget_people.dart';
 import '../calculations/budget_snapshot_debts.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+
+part 'budget_user_settlement_summary_models.dart';
+part 'budget_user_settlement_summary_data.dart';
 
 class BudgetUserSettlementSummary extends StatefulWidget {
   const BudgetUserSettlementSummary({
@@ -23,35 +31,6 @@ class BudgetUserSettlementSummary extends StatefulWidget {
   @override
   State<BudgetUserSettlementSummary> createState() =>
       _BudgetUserSettlementSummaryState();
-}
-
-class _DebtLine {
-  const _DebtLine(this.debtor, this.creditor, this.amount);
-  final String debtor;
-  final String creditor;
-  final int amount;
-}
-
-class _Movement {
-  const _Movement({
-    required this.debtor,
-    required this.creditor,
-    required this.amount,
-    required this.currency,
-    required this.status,
-    required this.date,
-    required this.expenseTitle,
-    required this.expense,
-  });
-
-  final String debtor;
-  final String creditor;
-  final int amount;
-  final String currency;
-  final String status;
-  final DateTime? date;
-  final String expenseTitle;
-  final Map<String, dynamic> expense;
 }
 
 class _BudgetUserSettlementSummaryState
@@ -71,9 +50,9 @@ class _BudgetUserSettlementSummaryState
   bool _showMovements = false;
   String? _error;
 
-  static const _cream = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFFB7A99B);
-  static const _gold = Color(0xFFE3A66C);
+  static const _cream = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textSecondary;
+  static const _gold = AmaterasuColors.accentGold;
 
   @override
   void initState() {
@@ -102,64 +81,6 @@ class _BudgetUserSettlementSummaryState
     }
   }
 
-  void _listen() {
-    _expensesSub = widget.api.sharedExpenses().listen(
-      (result) {
-        if (!mounted) return;
-
-        final current = <String>{};
-
-        for (final doc in result.docs) {
-          final data = doc.data();
-          if (data['lifecycle'] == 'cancelled') continue;
-
-          current.add(doc.id);
-          _expenses[doc.id] = data;
-
-          if (!_refundSubs.containsKey(doc.id)) {
-            final id = doc.id;
-
-            _refundSubs[id] = widget.api
-                .reimbursements(id)
-                .listen(
-                  (refunds) {
-                    if (!mounted) return;
-                    setState(() {
-                      _refunds[id] = refunds.docs
-                          .map((item) => item.data())
-                          .toList();
-                      _loadedRefundIds.add(id);
-                    });
-                  },
-                  onError: (Object error) {
-                    if (!mounted) return;
-                    setState(() => _error = error.toString());
-                  },
-                );
-          }
-        }
-
-        for (final id in _expenses.keys.toList()) {
-          if (!current.contains(id)) {
-            _expenses.remove(id);
-            _refunds.remove(id);
-            _loadedRefundIds.remove(id);
-            _refundSubs.remove(id)?.cancel();
-          }
-        }
-
-        setState(() => _loading = false);
-      },
-      onError: (Object error) {
-        if (!mounted) return;
-        setState(() {
-          _loading = false;
-          _error = error.toString();
-        });
-      },
-    );
-  }
-
   @override
   void dispose() {
     _expensesSub?.cancel();
@@ -169,37 +90,7 @@ class _BudgetUserSettlementSummaryState
     super.dispose();
   }
 
-  Map<String, dynamic> _asMap(dynamic value) {
-    return value is Map
-        ? Map<String, dynamic>.from(value)
-        : <String, dynamic>{};
-  }
-
-  List<_DebtLine> _debts(Map<String, dynamic> snapshot) => [
-    for (final debt in BudgetSnapshotDebts.allocate(snapshot))
-      _DebtLine(debt.debtorUid, debt.creditorUid, debt.minorUnits),
-  ];
-
-  /// B8.6: current name, then the name recorded in the expenses,
-  /// never an internal ID.
-  String _person(String uid, Map<String, String> names) => BudgetPeople.name(
-    uid,
-    live: names,
-    recordedNames: BudgetPeople.recordedAll(_expenses.values),
-    fallback: AppLocalizations.of(context)!.b86FormerTraveler,
-  );
-
-  Widget _heading(String text) {
-    return Text(
-      text,
-      style: const TextStyle(
-        color: _cream,
-        fontSize: 15,
-        fontWeight: FontWeight.w700,
-      ),
-    );
-  }
-
+  // TODO(audit): build di ~421 righe: estrarre sezioni in widget dedicati (stesso aspetto).
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -348,13 +239,13 @@ class _BudgetUserSettlementSummaryState
           });
 
           final accent = incomingBalance
-              ? const Color(0xFFE3A66C)
-              : const Color(0xFFE17A43);
+              ? AmaterasuColors.accentGold
+              : AmaterasuColors.accentOrange;
 
           return Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AmaterasuSpacing.md),
             decoration: BoxDecoration(
-              color: const Color(0xFF30231E),
+              color: AmaterasuColors.surfaceTooltip,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: const Color(0xFF543A2E)),
             ),
@@ -391,7 +282,7 @@ class _BudgetUserSettlementSummaryState
                           color: _muted,
                           size: 18,
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: AmaterasuSpacing.sm),
                         Expanded(
                           child: Text(
                             emptyText,
@@ -419,7 +310,7 @@ class _BudgetUserSettlementSummaryState
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: AmaterasuSpacing.sm),
                             Flexible(
                               child: BudgetDisplayAmount(
                                 minorUnits: row.value,
@@ -443,7 +334,7 @@ class _BudgetUserSettlementSummaryState
                                     fontSize: 12,
                                   ),
                                 ),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: AmaterasuSpacing.xs),
                                 BudgetDisplayAmount(
                                   minorUnits:
                                       pending[row.currency]![row.person]!,
@@ -457,7 +348,7 @@ class _BudgetUserSettlementSummaryState
                       ],
                     ),
                   ),
-                  const Divider(color: Color(0xFF49342B), height: 1),
+                  const Divider(color: AmaterasuColors.borderStrongAlt, height: 1),
                 ],
               ],
             ),
@@ -478,12 +369,12 @@ class _BudgetUserSettlementSummaryState
         }
 
         return Card(
-          color: const Color(0xFF241A16),
+          color: AmaterasuColors.surfaceRaised,
           elevation: 0,
           margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
-            side: const BorderSide(color: Color(0xFF49352A)),
+            side: const BorderSide(color: AmaterasuColors.borderStrong),
           ),
           child: Padding(
             padding: const EdgeInsets.all(18),
@@ -536,7 +427,7 @@ class _BudgetUserSettlementSummaryState
                     );
                   },
                 ),
-                const Divider(color: Color(0xFF49342B), height: 30),
+                const Divider(color: AmaterasuColors.borderStrongAlt, height: 30),
                 InkWell(
                   onTap: () {
                     setState(() => _showMovements = !_showMovements);
@@ -586,12 +477,12 @@ class _BudgetUserSettlementSummaryState
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Text(
                       movement.expenseTitle,
                       style: const TextStyle(color: _muted),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AmaterasuSpacing.xs),
                     Row(
                       children: [
                         Expanded(
@@ -611,7 +502,7 @@ class _BudgetUserSettlementSummaryState
                         ),
                       ],
                     ),
-                    const Divider(color: Color(0xFF49342B), height: 22),
+                    const Divider(color: AmaterasuColors.borderStrongAlt, height: 22),
                   ],
                 ],
               ],

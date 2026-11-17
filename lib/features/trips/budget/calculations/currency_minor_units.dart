@@ -1,3 +1,5 @@
+// Numero di decimali di ogni valuta (es. EUR 2, JPY 0).
+
 /// Number of decimal places supported for accounting amounts.
 ///
 /// Unknown currencies are rejected rather than silently assuming

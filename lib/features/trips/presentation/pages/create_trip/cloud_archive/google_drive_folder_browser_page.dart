@@ -1,10 +1,15 @@
+// Navigazione tra le cartelle di Google Drive per scegliere l'archivio.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';
 import 'package:amaterasutrip/features/trips/data/services/google_drive_archive_service.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
+// TODO(audit): C1 pagina non raggiungibile (nessuna rotta la apre): decidere se eliminarla o collegarla. Contiene anche testi solo in italiano (L6).
 class GoogleDriveFolderBrowserPage extends ConsumerStatefulWidget {
   const GoogleDriveFolderBrowserPage({super.key, required this.tripFolderName});
 
@@ -17,13 +22,13 @@ class GoogleDriveFolderBrowserPage extends ConsumerStatefulWidget {
 
 class _GoogleDriveFolderBrowserPageState
     extends ConsumerState<GoogleDriveFolderBrowserPage> {
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _surfaceColor = Color(0xFF1A1715);
-  static const Color _surfaceStrongColor = Color(0xFF241B17);
-  static const Color _borderColor = Color(0xFF332824);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _accentColor = Color(0xFFE86A3A);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
+  static const Color _surfaceStrongColor = AmaterasuColors.surfaceRaisedAlt;
+  static const Color _borderColor = AmaterasuColors.surfaceHigh;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
+  static const Color _accentColor = AmaterasuColors.accentFlame;
 
   final List<_DrivePathEntry> _path = <_DrivePathEntry>[
     const _DrivePathEntry(id: 'root', name: 'Il mio Drive'),
@@ -304,7 +309,7 @@ class _GoogleDriveFolderBrowserPageState
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.fromLTRB(18, 10, 18, 8),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: _surfaceColor,
         borderRadius: BorderRadius.circular(17),
@@ -403,7 +408,7 @@ class _GoogleDriveFolderBrowserPageState
     if (_folders.isEmpty) {
       return const Center(
         child: Padding(
-          padding: EdgeInsets.all(32),
+          padding: EdgeInsets.all(AmaterasuSpacing.xl),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -441,7 +446,7 @@ class _GoogleDriveFolderBrowserPageState
     return ListView.separated(
       padding: const EdgeInsets.fromLTRB(18, 8, 18, 18),
       itemCount: _folders.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 8),
+      separatorBuilder: (context, index) => const SizedBox(height: AmaterasuSpacing.sm),
       itemBuilder: (context, index) {
         final folder = _folders[index];
 
@@ -536,7 +541,7 @@ class _GoogleDriveFolderBrowserPageState
                   'Cartella del viaggio',
                   style: TextStyle(color: _secondaryTextColor, fontSize: 11.5),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   widget.tripFolderName,
                   maxLines: 2,

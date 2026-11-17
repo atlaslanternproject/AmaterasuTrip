@@ -1,3 +1,6 @@
+// Attiva Firebase App Check dopo l'avvio di Firebase
+// (reCAPTCHA sul Web, provider nativi su mobile).
+
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/foundation.dart';
 

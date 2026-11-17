@@ -1,3 +1,5 @@
+// Conversione delle attività della bucket list da e verso i dati Firestore.
+
 import 'bucket_item_type.dart';
 import 'bucket_list_item.dart';
 

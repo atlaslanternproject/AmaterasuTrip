@@ -1,3 +1,7 @@
+// Sezione Email delle impostazioni account: email attuale,
+// stato di verifica e cambio email.
+
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,6 +9,8 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/widgets/auth/amaterasu_email_verification_card.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 part 'account_email_actions.dart';
 part 'account_email_dialogs.dart';

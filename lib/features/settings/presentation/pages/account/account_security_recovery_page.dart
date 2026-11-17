@@ -1,6 +1,11 @@
+// Informazioni sul recupero dell'account (funzione in sviluppo),
+// mostrate dentro la card Account.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class AccountSecurityRecoveryPage extends StatelessWidget {
   const AccountSecurityRecoveryPage({super.key});
@@ -10,9 +15,9 @@ class AccountSecurityRecoveryPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF100C0A),
+      backgroundColor: AmaterasuColors.surfaceDeep,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF100C0A),
+        backgroundColor: AmaterasuColors.surfaceDeep,
         elevation: 0,
         title: Text(l10n.accountRecoveryTitle),
       ),
@@ -30,10 +35,10 @@ class AccountSecurityRecoveryContent extends StatelessWidget {
   const AccountSecurityRecoveryContent({super.key});
 
   static const _surface = Color(0xFF211A16);
-  static const _border = Color(0xFF3A2A20);
-  static const _accent = Color(0xFFE28A32);
-  static const _title = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFF9E9287);
+  static const _border = AmaterasuColors.borderWarm;
+  static const _accent = AmaterasuColors.accentSettings;
+  static const _title = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textMuted;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +76,7 @@ class AccountSecurityRecoveryContent extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AmaterasuSpacing.sm),
               Text(
                 l10n.accountRecoveryStatusDescription,
                 style: const TextStyle(
@@ -98,13 +103,13 @@ class AccountSecurityRecoveryContent extends StatelessWidget {
           title: l10n.accountRecoveryCodeTitle,
           description: l10n.accountRecoveryCodeDescription,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _RecoveryInfoItem(
           icon: Icons.lock_outline,
           title: l10n.accountRecoveryStorageTitle,
           description: l10n.accountRecoveryStorageDescription,
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AmaterasuSpacing.sm),
         _RecoveryInfoItem(
           icon: Icons.devices_outlined,
           title: l10n.accountRecoveryDeviceTitle,

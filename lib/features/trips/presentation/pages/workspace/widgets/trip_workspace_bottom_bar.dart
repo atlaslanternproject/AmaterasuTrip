@@ -1,7 +1,10 @@
+// Barra di navigazione in basso del workspace del viaggio.
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 enum TripWorkspaceSection { overview, itinerary, bucketList, more }
 
@@ -21,7 +24,7 @@ class TripWorkspaceBottomBar extends StatelessWidget {
 
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFF080605),
+        color: AmaterasuColors.surfaceBlack,
         border: Border(top: BorderSide(color: Color(0xFF3A211B), width: 1)),
       ),
       child: NavigationBarTheme(
@@ -143,7 +146,7 @@ class _TripNavIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconColor = selected
-        ? const Color(0xFFFF8A4C)
+        ? AmaterasuColors.accentOrangeLight
         : const Color(0xFFD9784A);
 
     if (!selected) {
@@ -153,7 +156,7 @@ class _TripNavIcon extends StatelessWidget {
     return Icon(
       icon,
       size: 28,
-      color: const Color(0xFFFF8A4C),
+      color: AmaterasuColors.accentOrangeLight,
       shadows: const [Shadow(color: Color(0xFFFF6B32), blurRadius: 4)],
     );
   }

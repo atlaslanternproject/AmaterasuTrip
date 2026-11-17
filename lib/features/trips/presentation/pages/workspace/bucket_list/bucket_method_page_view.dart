@@ -1,14 +1,17 @@
+// Parte di trip_bucket_list_page.dart: contenuto della pagina
+// (filtri, ricerca, elenco delle attività).
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketMethodPageView on _TripBucketListPageState {
   Widget _renderBucketPage(BuildContext context) {
-    const bg = Color(0xFF100C0A);
-    const surface = Color(0xFF1A1512);
-    const cream = Color(0xFFF2E7D5);
-    const muted = Color(0xFFB7A99B);
-    const orange = Color(0xFFFF7A3D);
-    const gold = Color(0xFFE8A552);
+    const bg = AmaterasuColors.surfaceDeep;
+    const surface = AmaterasuColors.surface;
+    const cream = AmaterasuColors.textPrimary;
+    const muted = AmaterasuColors.textSecondary;
+    const orange = AmaterasuColors.accentOrangeBright;
+    const gold = AmaterasuColors.accentGoldLight;
     final cities = {
       ..._items.map((e) => e.city),
       if (_filterCity.isNotEmpty) _filterCity,
@@ -47,7 +50,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
             fillColor: surface,
             isDense: true,
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xFF68402B)),
+              borderSide: const BorderSide(color: AmaterasuColors.borderOrange),
               borderRadius: BorderRadius.circular(12),
             ),
           ),
@@ -74,7 +77,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
         decoration: BoxDecoration(
           color: surface,
           borderRadius: BorderRadius.circular(17),
-          border: Border.all(color: const Color(0xFF68402B), width: 1.6),
+          border: Border.all(color: AmaterasuColors.borderOrange, width: 1.6),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -317,7 +320,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
               _t('Direzione ordinamento', 'Sort direction'),
               style: const TextStyle(color: cream, fontSize: 13),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AmaterasuSpacing.sm),
             SegmentedButton<bool>(
               showSelectedIcon: false,
               segments: [
@@ -380,7 +383,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                           color: cream,
                         ),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: AmaterasuSpacing.xs),
                       Expanded(
                         child: Text(
                           'Bucket List',
@@ -421,7 +424,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                                           0.90,
                                     ),
                                     child: SingleChildScrollView(
-                                      padding: const EdgeInsets.all(16),
+                                      padding: const EdgeInsets.all(AmaterasuSpacing.md),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -503,7 +506,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                     }),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AmaterasuSpacing.sm),
 
                 Expanded(
                   child: RefreshIndicator(
@@ -555,6 +558,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                           if (_error != null)
                             Text(
                               _t(
+                                // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
                                 'Errore nel caricamento. Riprova.',
                                 'Load failed. Please retry.',
                               ),

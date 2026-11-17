@@ -1,3 +1,6 @@
+// Conversione esatta tra valute con un tasso razionale.
+// Copia Dart dei calcoli del server, usata dai test.
+
 import '../models/money_amount.dart';
 import '../models/currency_exchange_rate.dart';
 import 'currency_minor_units.dart';

@@ -1,4 +1,7 @@
+// Separatore usato nelle card del profilo.
+
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class ProfileDivider extends StatelessWidget {
   const ProfileDivider({super.key});
@@ -10,7 +13,7 @@ class ProfileDivider extends StatelessWidget {
       thickness: 1,
       indent: 16,
       endIndent: 16,
-      color: Color(0xFF3A2A20),
+      color: AmaterasuColors.borderWarm,
     );
   }
 }

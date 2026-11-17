@@ -1,16 +1,20 @@
+// Sezione dell'account per avviare la cancellazione dell'account.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_dialog.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class AccountDeletePage extends StatelessWidget {
   const AccountDeletePage({super.key});
 
   static const Color _dangerColor = Color(0xFFD35C4A);
-  static const Color _textColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
-  static const Color _backgroundColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
+  static const Color _textColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
+  static const Color _backgroundColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
 
   Future<void> _showDeleteDialog(BuildContext context) async {
     await showDialog<void>(
@@ -26,7 +30,7 @@ class AccountDeletePage extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AmaterasuSpacing.md),
       decoration: BoxDecoration(
         color: _backgroundColor,
         borderRadius: BorderRadius.circular(12),
@@ -52,7 +56,7 @@ class AccountDeletePage extends StatelessWidget {
               height: 1.4,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(

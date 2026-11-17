@@ -1,3 +1,6 @@
+// Dialogo con i dettagli di una spesa: importi, quote, pagatori,
+// stato, cambio, revisioni, rimborsi e storico.
+
 import '../calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +12,11 @@ import 'budget_display_amount.dart';
 import 'budget_api.dart';
 import 'budget_expense_controls.dart';
 import 'budget_people.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
+
+part 'budget_expense_details_dialog_labels.dart';
 
 class BudgetExpenseDetailsDialog extends StatelessWidget {
   const BudgetExpenseDetailsDialog({
@@ -25,120 +33,6 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
   final BudgetApi api;
   final bool isPrivate;
   final String? displayCurrency;
-
-  Map<String, dynamic> _asMap(dynamic value) {
-    if (value is Map) {
-      return Map<String, dynamic>.from(value);
-    }
-    return <String, dynamic>{};
-  }
-
-  String _formatMoney(dynamic raw) {
-    final money = _asMap(raw);
-    final currency = money['currency']?.toString() ?? '';
-    final minor = money['minorUnits'];
-
-    if (minor is! int || currency.isEmpty) return '—';
-
-    try {
-      return BudgetMoneyFormatter.format(
-        minor,
-        currency,
-        decimalSeparator: '.',
-      );
-    } catch (_) {
-      return '$minor · $currency';
-    }
-  }
-
-  String _categoryLabel(String value, bool it) {
-    switch (value) {
-      case 'accommodation':
-        return _l10n(it).btDetailsAccommodation;
-      case 'food':
-        return _l10n(it).btDetailsFood;
-      case 'transport':
-        return _l10n(it).btDetailsTransport;
-      case 'activities':
-        return _l10n(it).btDetailsActivities;
-      case 'shopping':
-        return 'Shopping';
-      case 'other':
-        return _l10n(it).btDetailsOther;
-      default:
-        return value.trim().isEmpty ? (_l10n(it).btDetailsOther) : value;
-    }
-  }
-
-  String _statusLabel(String value, bool it) {
-    switch (value) {
-      case 'planned':
-        return _l10n(it).btDetailsPlanned;
-      case 'outstanding':
-        return _l10n(it).btDetailsOutstanding;
-      case 'paid':
-        return _l10n(it).btDetailsPaid;
-      default:
-        return _l10n(it).btDetailsUnavailable;
-    }
-  }
-
-  Widget _amountRows(Map<String, dynamic> amounts, bool it) {
-    if (amounts.isEmpty) {
-      return Text(
-        _l10n(it).btDetailsNoAmountsRecorded,
-        style: const TextStyle(color: Color(0xFFB7A99B)),
-      );
-    }
-
-    final entries = amounts.entries.toList()
-      ..sort((a, b) => a.key.compareTo(b.key));
-
-    return Column(
-      children: [
-        for (final entry in entries)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              children: [
-                Expanded(
-                  child: FutureBuilder<Map<String, String>>(
-                    future: api.travelerNameMap,
-                    builder: (context, result) {
-                      final name =
-                          result.data?[entry.key] ??
-                          BudgetPeople.recorded(expense)[entry.key];
-
-                      final label = name != null && name.isNotEmpty
-                          ? name
-                          : result.hasError
-                          ? (_l10n(it).btDetailsNameUnavailable)
-                          : result.hasData
-                          ? AppLocalizations.of(context)!.b86FormerTraveler
-                          : (_l10n(it).btDetailsLoading);
-
-                      return Text(
-                        label,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(color: Color(0xFFF2E7D5)),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  _formatMoney(entry.value),
-                  style: const TextStyle(
-                    color: Color(0xFFF2E7D5),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,9 +68,9 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      _l10n(it).btDetailsExpenseDetails,
+                      budgetL10n(it).btDetailsExpenseDetails,
                       style: const TextStyle(
-                        color: Color(0xFFF2E7D5),
+                        color: AmaterasuColors.textPrimary,
                         fontSize: 19,
                         fontWeight: FontWeight.w700,
                       ),
@@ -185,7 +79,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
                     icon: const Icon(Icons.close_rounded),
-                    color: const Color(0xFFF2E7D5),
+                    color: AmaterasuColors.textPrimary,
                   ),
                 ],
               ),
@@ -197,10 +91,10 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       const SizedBox(height: 12),
                       Text(
                         title.isEmpty
-                            ? (_l10n(it).btDetailsUntitledExpense)
+                            ? (budgetL10n(it).btUntitledExpense)
                             : title,
                         style: const TextStyle(
-                          color: Color(0xFFF2E7D5),
+                          color: AmaterasuColors.textPrimary,
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
                         ),
@@ -208,7 +102,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       const SizedBox(height: 6),
                       Text(
                         _categoryLabel(category, it),
-                        style: const TextStyle(color: Color(0xFFB7A99B)),
+                        style: const TextStyle(color: AmaterasuColors.textSecondary),
                       ),
                       const SizedBox(height: 18),
                       if (day != null)
@@ -228,7 +122,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                             return TextButton.icon(
                               icon: const Icon(Icons.currency_exchange),
                               label: Text(
-                                _l10n(
+                                budgetL10n(
                                   it,
                                 ).btDetailsAdjustRate(originalCurrency, target),
                               ),
@@ -254,7 +148,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                         for (final method in methods.whereType<Map>())
                           if (method['accountCurrency'] is String)
                             Text(
-                              '${_l10n(it).btDetailsAccount} · ${method['accountDebitMinor'] == null ? method['accountCurrency'] : _formatMoney({'currency': method['accountCurrency'], 'minorUnits': method['accountDebitMinor']})}',
+                              '${budgetL10n(it).btDetailsAccount} · ${method['accountDebitMinor'] == null ? method['accountCurrency'] : _formatMoney({'currency': method['accountCurrency'], 'minorUnits': method['accountDebitMinor']})}',
                             ),
                       if (originalMinor is int && originalCurrency.isNotEmpty)
                         BudgetDisplayAmount(
@@ -268,17 +162,17 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                         Text(
                           _formatMoney(snapshot['total']),
                           style: const TextStyle(
-                            color: Color(0xFFE3A66C),
+                            color: AmaterasuColors.accentGold,
                             fontSize: 30,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AmaterasuSpacing.sm),
                       Text(
                         _statusLabel(status, it),
-                        style: const TextStyle(color: Color(0xFFB7A99B)),
+                        style: const TextStyle(color: AmaterasuColors.textSecondary),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: AmaterasuSpacing.md),
                       BudgetDialogChrome.section(
                         title: l10n.budgetSplitExpense,
                         icon: Icons.groups_outlined,
@@ -297,7 +191,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       ),
                       if (notes.isNotEmpty)
                         BudgetDialogChrome.section(
-                          title: _l10n(it).btDetailsNotes,
+                          title: budgetL10n(it).btDetailsNotes,
                           icon: Icons.notes_rounded,
                           children: [
                             Text(
@@ -309,7 +203,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                           ],
                         ),
                       BudgetDialogChrome.section(
-                        title: _l10n(it).btDetailsManageExpense,
+                        title: budgetL10n(it).btDetailsManageExpense,
                         icon: Icons.settings_outlined,
                         children: [
                           BudgetExpenseControls(
@@ -333,7 +227,3 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

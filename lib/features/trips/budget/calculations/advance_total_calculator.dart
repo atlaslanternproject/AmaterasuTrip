@@ -1,3 +1,6 @@
+// Controlla e somma gli anticipi pagati dai viaggiatori per una spesa.
+// Copia Dart dei calcoli del server, usata dai test di parità.
+
 import '../models/money_amount.dart';
 
 /// Validates and sums amounts actually paid by travelers.

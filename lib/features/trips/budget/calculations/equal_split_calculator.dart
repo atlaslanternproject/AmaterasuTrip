@@ -1,3 +1,6 @@
+// Divide un importo in parti uguali tra i partecipanti,
+// distribuendo i centesimi rimasti in modo stabile.
+
 import '../models/money_amount.dart';
 
 /// Divides a nonnegative amount among unique participants.

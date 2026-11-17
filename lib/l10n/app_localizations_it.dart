@@ -12,9 +12,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountRecoveryTitle => 'Sicurezza e recupero';
 
   @override
-  String get accountRecoverySubtitle => 'Protezione e recupero dei tuoi dati';
-
-  @override
   String get accountRecoveryStatus => 'In preparazione';
 
   @override
@@ -48,9 +45,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountRecoveryNotice => 'Il recupero della password e il recupero dei dati cifrati sono due procedure differenti.';
 
   @override
-  String get tripNotificationsWebUnavailable => 'Le notifiche push dei viaggi non sono ancora disponibili sul Web. Le preferenze salvate per Android rimangono invariate.';
-
-  @override
   String get webMediaCameraTitle => 'Aprire la fotocamera?';
 
   @override
@@ -70,9 +64,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get authWelcomeBack => 'Bentornato';
-
-  @override
-  String get authEmailOrUsernameHint => 'Immettere Email o Username';
 
   @override
   String get authPasswordHint => 'Password';
@@ -210,15 +201,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonGoogleSignIn => 'Accedi con Google';
 
   @override
-  String get commonPassword => 'Password';
-
-  @override
-  String get homeGoogleUser => 'Utente Google';
-
-  @override
-  String get homeNoUid => 'No UID';
-
-  @override
   String get settingsProfile => 'Profilo';
 
   @override
@@ -232,9 +214,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get settingsInformation => 'Informazioni';
-
-  @override
-  String get settingsPlaceholder => 'Questa sezione sarà disponibile prossimamente.';
 
   @override
   String settingsLanguageName(String languageCode) {
@@ -325,9 +304,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountEmailVerify => 'Verifica email';
 
   @override
-  String get accountEmailResendVerification => 'Reinvia email di verifica';
-
-  @override
   String get accountEmailChange => 'Modifica email';
 
   @override
@@ -355,37 +331,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accountLinkedAccountsSubtitle => 'Gestisci gli account collegati';
 
   @override
-  String get accountLinkedGoogle => 'Google';
-
-  @override
-  String get accountLinkedOtherProviders => 'Altri provider';
-
-  @override
-  String get accountLinkedConnected => 'Collegato';
-
-  @override
-  String get accountLinkedNotConnected => 'Non collegato';
-
-  @override
   String get accountSession => 'Sessione';
 
   @override
   String get accountSessionSubtitle => 'Gestisci gli accessi al tuo account';
 
   @override
-  String get accountSessionActive => 'Sessioni attive';
-
-  @override
-  String get accountSessionSignOutAll => 'Disconnetti da tutti i dispositivi';
-
-  @override
   String get accountDelete => 'Elimina account';
 
   @override
   String get accountDeleteDescription => 'L\'eliminazione dell\'account è definitiva e comporta la cancellazione dei dati associati.';
-
-  @override
-  String get accountDeleteConfirm => 'Conferma eliminazione account';
 
   @override
   String get accountLogout => 'Esci';
@@ -395,9 +350,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get accountEmailVerificationSent => 'Email di verifica inviata. Controlla anche la cartella Spam o Posta indesiderata.';
-
-  @override
-  String get accountEmailChangeVerificationSent => 'Abbiamo inviato un\'email di verifica al nuovo indirizzo. Controlla anche la cartella Spam o Posta indesiderata.';
 
   @override
   String get accountEmailVerifiedDescription => 'Il tuo indirizzo email è verificato.';
@@ -612,66 +564,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get privacyExportSubtitle => 'Informazioni sulla possibilità di ottenere una copia dei tuoi dati.';
 
   @override
-  String get privacyPolicyOverviewTitle => 'Informazioni generali';
-
-  @override
-  String get privacyPolicyOverviewBody => 'Amaterasu Trip è un\'applicazione dedicata all\'organizzazione e alla gestione dei viaggi. La presente informativa descrive quali dati possono essere trattati durante l\'utilizzo dell\'app e per quali finalità.';
-
-  @override
-  String get privacyPolicyCollectedDataTitle => 'Dati trattati';
-
-  @override
-  String get privacyPolicyCollectedDataBody => 'Amaterasu può trattare dati necessari alla creazione e gestione dell\'account, come indirizzo email, identificativo utente, username e metodo di autenticazione. Alcune preferenze dell\'app, come la lingua e l\'opzione di accesso memorizzato, possono essere salvate localmente sul dispositivo.';
-
-  @override
-  String get privacyPolicyPurposeTitle => 'Finalità del trattamento';
-
-  @override
-  String get privacyPolicyPurposeBody => 'I dati vengono utilizzati esclusivamente per fornire le funzionalità dell\'app, autenticare l\'utente, mantenere il profilo Amaterasu, permettere la gestione dell\'account e garantire il corretto funzionamento dei servizi associati.';
-
-  @override
-  String get privacyPolicyFirebaseTitle => 'Firebase';
-
-  @override
-  String get privacyPolicyFirebaseBody => 'Amaterasu utilizza servizi Firebase di Google per funzioni come autenticazione e archiviazione dei dati dell\'account. I dati necessari al funzionamento di tali servizi possono essere trattati attraverso l\'infrastruttura Firebase secondo le condizioni e le politiche applicabili di Google.';
-
-  @override
-  String get privacyPolicyGoogleTitle => 'Accesso con Google';
-
-  @override
-  String get privacyPolicyGoogleBody => 'Se scegli di utilizzare Google per accedere ad Amaterasu, Google fornisce all\'app le informazioni necessarie per autenticare il tuo account. Amaterasu non riceve né conserva la password del tuo account Google.';
-
-  @override
-  String get privacyPolicyStorageTitle => 'Conservazione dei dati';
-
-  @override
-  String get privacyPolicyStorageBody => 'I dati associati all\'account vengono conservati finché l\'account Amaterasu rimane attivo o finché sono necessari per fornire i servizi richiesti. Alcune preferenze possono essere conservate localmente sul dispositivo.';
-
-  @override
-  String get privacyPolicyDeletionTitle => 'Eliminazione dell\'account';
-
-  @override
-  String get privacyPolicyDeletionBody => 'Puoi eliminare definitivamente il tuo account dalle impostazioni di Amaterasu. L\'eliminazione rimuove l\'account Firebase Authentication e i dati dell\'account attualmente associati al profilo Amaterasu. Quando verranno introdotte nuove funzionalità e nuove categorie di dati, questa informativa verrà aggiornata di conseguenza.';
-
-  @override
-  String get privacyPolicySecurityTitle => 'Sicurezza';
-
-  @override
-  String get privacyPolicySecurityBody => 'Amaterasu adotta misure tecniche appropriate per limitare l\'accesso non autorizzato ai dati e utilizza i sistemi di autenticazione e sicurezza messi a disposizione dai servizi Firebase utilizzati dall\'app.';
-
-  @override
-  String get privacyPolicyChangesTitle => 'Modifiche alla Privacy Policy';
-
-  @override
-  String get privacyPolicyChangesBody => 'La presente informativa potrà essere aggiornata quando Amaterasu introdurrà nuove funzionalità, servizi o categorie di dati. La versione aggiornata sarà resa disponibile all\'interno dell\'app e attraverso la pagina pubblica della Privacy Policy.';
-
-  @override
-  String get privacyPolicyContactTitle => 'Contatti';
-
-  @override
-  String get privacyPolicyContactBody => 'Per richieste relative alla privacy o al trattamento dei dati puoi contattare il team Amaterasu attraverso i canali di supporto ufficiali indicati nell\'app.';
-
-  @override
   String get privacyPermissionsIntro => 'Amaterasu richiede solamente i permessi necessari alle funzionalità che utilizzi. Alcuni permessi potranno essere introdotti quando saranno disponibili nuove funzioni.';
 
   @override
@@ -747,9 +639,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get profileSave => 'Salva';
 
   @override
-  String get profileSaving => 'Salvataggio...';
-
-  @override
   String get profileSaveSuccess => 'Profilo aggiornato.';
 
   @override
@@ -801,9 +690,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get profileEmailReadOnly => 'L\'indirizzo email si modifica dalla sezione Account.';
 
   @override
-  String get profilePhotoChange => 'Cambia foto profilo';
-
-  @override
   String get profilePhotoCamera => 'Scatta una foto';
 
   @override
@@ -814,21 +700,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get profilePhotoPickerError => 'Non è stato possibile selezionare la foto.';
-
-  @override
-  String get profilePhotoCameraPermissionDenied => 'Il permesso per usare la fotocamera è stato negato.';
-
-  @override
-  String get profilePhotoCameraPermissionPermanentlyDenied => 'Il permesso per la fotocamera è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
-
-  @override
-  String get profilePhotoOpenSettings => 'Apri impostazioni';
-
-  @override
-  String get profilePhotoGalleryPermissionDenied => 'Il permesso per accedere alle foto è stato negato.';
-
-  @override
-  String get profilePhotoGalleryPermissionPermanentlyDenied => 'Il permesso per accedere alle foto è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
 
   @override
   String get profilePhotoRemoveError => 'Impossibile rimuovere la foto profilo.';
@@ -1012,16 +883,6 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String tripsTodayActivities(int count) {
-    return 'Oggi: $count attività';
-  }
-
-  @override
-  String tripsOrganisationProgress(int percentage) {
-    return '$percentage% organizzato';
-  }
-
-  @override
   String get tripsCompletedStatus => 'Viaggio concluso';
 
   @override
@@ -1074,9 +935,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get createTripStorageSubtitle => 'Potrai collegare Google Drive, OneDrive o Dropbox.';
-
-  @override
-  String get createTripStorageLater => 'Configura dopo';
 
   @override
   String get createTripCreate => 'CREA VIAGGIO';
@@ -1240,13 +1098,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripPrivacyAccess => 'Accesso al viaggio';
 
   @override
-  String get tripPrivacyAccessPrivate => 'Privato · Solo i viaggiatori autorizzati possono accedere';
-
-  @override
   String get tripPrivacyInviteLink => 'Link di invito';
-
-  @override
-  String get tripPrivacyInviteLinkSubtitle => 'Crea e gestisci il link privato per invitare nuovi viaggiatori';
 
   @override
   String get tripPrivacyTravellers => 'Viaggiatori';
@@ -1258,12 +1110,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripPrivacyRoles => 'Ruoli e permessi';
 
   @override
-  String get tripPrivacyRolesSubtitle => 'Gestisci cosa possono fare OWNER e TRAVELER';
-
-  @override
-  String get tripManagementIntro => 'Gestisci archivio e operazioni amministrative del viaggio.';
-
-  @override
   String get tripManagementLoadError => 'Impossibile caricare le informazioni di gestione del viaggio.';
 
   @override
@@ -1271,11 +1117,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripManagementArchiveStatus => 'Stato archivio';
-
-  @override
-  String tripManagementArchiveConfigured(String provider) {
-    return 'Configurato · $provider';
-  }
 
   @override
   String get tripManagementArchiveNotConfigured => 'Nessun archivio configurato';
@@ -1306,15 +1147,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripManagementArchiveReconnectSubtitle => 'Ripristina l\'autorizzazione senza spostare i file del viaggio';
-
-  @override
-  String get tripManagementOperationsSection => 'Operazioni viaggio';
-
-  @override
-  String get tripManagementExport => 'Esporta viaggio';
-
-  @override
-  String get tripManagementExportSubtitle => 'Crea una copia esportabile dei dati del viaggio';
 
   @override
   String get tripManagementDuplicate => 'Duplica viaggio';
@@ -1356,16 +1188,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripOverviewMore => 'Altro';
 
   @override
-  String get tripOverviewExploreTitle => 'Organizza il viaggio';
-
-  @override
   String get tripOverviewNotFound => 'Viaggio non trovato';
 
   @override
   String get tripOverviewTitle => 'Panoramica';
-
-  @override
-  String get tripOverviewNotFoundSubtitle => 'Questo viaggio non è disponibile.';
 
   @override
   String get tripOverviewError => 'Impossibile caricare il viaggio';
@@ -1390,9 +1216,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripCoverTitle => 'Copertina del viaggio';
-
-  @override
-  String get tripCoverUploading => 'Caricamento copertina...';
 
   @override
   String get tripCoverAdd => 'Aggiungi copertina';
@@ -1422,27 +1245,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripCoverRemove => 'Rimuovi copertina';
 
   @override
-  String get tripCoverGalleryPermissionDenied => 'Per scegliere una copertina devi consentire ad Amaterasu Trip di accedere alle foto.';
-
-  @override
-  String get tripCoverOpenSettings => 'Impostazioni';
-
-  @override
-  String get tripCoverGalleryPermissionPermanentlyDenied => 'L\'accesso alle foto è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
-
-  @override
-  String get tripCoverCameraPermissionDenied => 'Per scattare una foto devi consentire ad Amaterasu Trip di usare la fotocamera.';
-
-  @override
-  String get tripCoverCameraPermissionPermanentlyDenied => 'L\'accesso alla fotocamera è disattivato. Puoi abilitarlo dalle impostazioni dell\'app.';
-
-  @override
-  String get tripCreatedInviteComingSoon => 'Gli inviti ai viaggiatori saranno disponibili a breve.';
-
-  @override
-  String get tripCreatedShareComingSoon => 'La condivisione del viaggio sarà disponibile a breve.';
-
-  @override
   String get destinationPickerTitle => 'Scegli destinazione';
 
   @override
@@ -1464,9 +1266,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get destinationMapResolving => 'Identificazione del luogo...';
 
   @override
-  String get destinationCurrencySuggested => 'Valuta suggerita';
-
-  @override
   String get destinationMapNoPlace => 'Nessun luogo geografico trovato in questo punto.';
 
   @override
@@ -1474,9 +1273,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get destinationMapTwoFingers => 'Usa due dita per esplorare';
-
-  @override
-  String get destinationCountryLabel => 'Paese';
 
   @override
   String get createTripCurrencyNoResults => 'Nessuna valuta trovata';
@@ -1587,12 +1383,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripManagementDeleteTitle => 'Eliminare il viaggio?';
 
   @override
-  String get tripManagementDeleteDriveWarning => 'I file su Google Drive non verranno eliminati.';
-
-  @override
-  String get tripManagementDeleteBody => 'Eliminando il viaggio verranno rimossi i dati associati da Amaterasu, mentre la cartella e i file presenti su Google Drive resteranno invariati.';
-
-  @override
   String get tripManagementDeleteConfirm => 'Elimina viaggio';
 
   @override
@@ -1644,9 +1434,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripInviteHeading => 'Sei stato invitato a un viaggio';
 
   @override
-  String get tripInviteContinue => 'Continua';
-
-  @override
   String get tripInviteUnavailableTitle => 'Invito non disponibile';
 
   @override
@@ -1654,75 +1441,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripInviteRetry => 'Riprova';
-
-  @override
-  String get tripQuestionnaireTitle => 'Profilo del viaggio';
-
-  @override
-  String get tripQuestionnaireIntro => 'Queste informazioni aiutano il gruppo a organizzare il viaggio in modo più semplice e sicuro.';
-
-  @override
-  String get tripQuestionnaireYes => 'Sì';
-
-  @override
-  String get tripQuestionnaireNo => 'No';
-
-  @override
-  String get tripQuestionnaireEsim => 'Avrai una eSIM o una connessione internet durante il viaggio?';
-
-  @override
-  String get tripQuestionnaireCheckedBaggage => 'Avrai un bagaglio da stiva?';
-
-  @override
-  String get tripQuestionnaireCabinBaggage => 'Avrai un bagaglio a mano fino a 10 kg?';
-
-  @override
-  String get tripTravellersProfileEditIntro => 'Aggiorna il tuo profilo viaggio. Tutte le risposte sono facoltative e puoi cambiarle o ritirarle quando vuoi.';
-
-  @override
-  String get tripQuestionnairePreferNotToAnswer => 'Preferisco non rispondere';
-
-  @override
-  String get tripQuestionnaireOptionalExplanation => 'Puoi lasciare qualsiasi domanda senza risposta. Solo la conferma finale della partecipazione è obbligatoria.';
-
-  @override
-  String get tripQuestionnaireEmergencyName => 'Nome e cognome';
-
-  @override
-  String get tripQuestionnaireEmergencyPhone => 'Numero di telefono';
-
-  @override
-  String get tripQuestionnaireRequiredHint => 'Completa tutte le domande obbligatorie e, quando rispondi Sì, specifica i dettagli richiesti.';
-
-  @override
-  String get tripQuestionnairePresenceConfirm => 'Confermo la mia partecipazione a questo viaggio.';
-
-  @override
-  String get tripQuestionnaireSubmit => 'Conferma partecipazione';
-
-  @override
-  String get tripQuestionnaireSubmitError => 'Non è stato possibile confermare la partecipazione. Riprova.';
-
-  @override
-  String get tripQuestionnaireRequiredLegend => 'Solo la conferma della partecipazione è obbligatoria';
-
-  @override
-  String get tripQuestionnaireOrganisationSection => 'Organizzazione';
-
-  @override
-  String get tripQuestionnaireCountrySearch => 'Cerca paese';
-
-  @override
-  String get tripQuestionnaireCountrySearchHint => 'Nome del paese o prefisso';
-
-  @override
-  String get tripQuestionnairePhoneHint => 'Numero';
-
-  @override
-  String get tripQuestionnaireDetailsHint => 'Specifica i dettagli';
-
-  @override
-  String get tripQuestionnaireSafetyNoticeTitle => 'Informazioni importanti';
 
   @override
   String tripCreatedInviteShareSubject(String tripName) {
@@ -1763,12 +1481,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripTravellersYou => 'Tu';
-
-  @override
-  String get tripTravellersProfileComplete => 'Profilo viaggio completo';
-
-  @override
-  String get tripTravellersProfileIncomplete => 'Profilo viaggio non completato';
 
   @override
   String get tripTravellersSensitiveDataNotice => 'Il profilo viaggio contiene informazioni organizzative, come la disponibilità di una connessione Internet e le preferenze sui bagagli. Le risposte sono visibili ai partecipanti del viaggio e possono essere aggiornate dal rispettivo proprietario.';
@@ -1831,12 +1543,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripTravellersCabinBaggage => 'Bagaglio a mano 10 kg';
 
   @override
-  String get tripTravellersEmergencyName => 'Nome contatto';
-
-  @override
-  String get tripTravellersEmergencyPhone => 'Telefono contatto';
-
-  @override
   String get tripTravellersYes => 'Sì';
 
   @override
@@ -1852,19 +1558,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripTravellersEditMyProfile => 'Modifica il mio profilo viaggio';
 
   @override
-  String get tripTravellersEditProfileTitle => 'Modifica profilo viaggio';
-
-  @override
   String get tripTravellersEditProfileNote => 'Queste informazioni appartengono a questo viaggio. Solo tu puoi modificare i tuoi dati personali del profilo viaggio.';
 
   @override
-  String get tripTravellersSave => 'Salva modifiche';
-
-  @override
   String get tripTravellersProfileUpdated => 'Profilo viaggio aggiornato.';
-
-  @override
-  String get tripTravellersProfileUpdateError => 'Impossibile aggiornare il profilo viaggio.';
 
   @override
   String get tripTravellersRemove => 'Rimuovi dal viaggio';
@@ -1900,186 +1597,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tripTravellersOwnerProtected => 'L\'OWNER non può essere rimosso dal viaggio. Un eventuale cambio di proprietà deve avvenire tramite una procedura dedicata.';
-
-  @override
-  String get tripNotificationsIntro => 'Scegli quali aggiornamenti vuoi ricevere per questo viaggio. Le preferenze sono personali e non modificano quelle degli altri viaggiatori.';
-
-  @override
-  String get tripNotificationsMaster => 'Notifiche di questo viaggio';
-
-  @override
-  String get tripNotificationsMasterSubtitle => 'Attiva o disattiva tutte le notifiche relative a questo viaggio';
-
-  @override
-  String get tripNotificationsAccessDenied => 'Non hai accesso alle impostazioni di notifica di questo viaggio.';
-
-  @override
-  String get tripNotificationsSaveError => 'Impossibile salvare le preferenze di notifica.';
-
-  @override
-  String get tripNotificationsPermissionDenied => 'Il permesso notifiche non è attivo sul dispositivo.';
-
-  @override
-  String get tripNotificationsSystemPermission => 'Permesso notifiche Android';
-
-  @override
-  String get tripNotificationsSystemPermissionBlocked => 'Android sta bloccando le notifiche dell\'app. Le preferenze resteranno salvate, ma le notifiche non potranno essere mostrate finché il permesso non verrà riattivato.';
-
-  @override
-  String get tripNotificationsOpenAndroidSettings => 'Apri impostazioni Android';
-
-  @override
-  String get tripNotificationsTimingSection => 'Date, itinerario e prenotazioni';
-
-  @override
-  String get tripNotificationsPlanningSection => 'Pianificazione e spese';
-
-  @override
-  String get tripNotificationsGroupSection => 'Gruppo e collaborazione';
-
-  @override
-  String get tripNotificationsContentSection => 'Contenuti e ricordi';
-
-  @override
-  String get tripNotificationsSystemSection => 'Viaggio e servizi';
-
-  @override
-  String get tripNotificationsDepartureDates => 'Partenza e date del viaggio';
-
-  @override
-  String get tripNotificationsDepartureDatesSubtitle => 'Promemoria per partenza, ritorno e variazioni importanti delle date';
-
-  @override
-  String get tripNotificationsItineraryReminders => 'Promemoria itinerario';
-
-  @override
-  String get tripNotificationsItineraryRemindersSubtitle => 'Avvisi per attività e appuntamenti imminenti dell\'itinerario';
-
-  @override
-  String get tripNotificationsItineraryUpdates => 'Modifiche all\'itinerario';
-
-  @override
-  String get tripNotificationsItineraryUpdatesSubtitle => 'Aggiunte, modifiche e rimozioni nell\'itinerario condiviso';
-
-  @override
-  String get tripNotificationsBookingReminders => 'Prenotazioni da effettuare';
-
-  @override
-  String get tripNotificationsBookingRemindersSubtitle => 'Scadenze e aperture di prenotazioni da completare in anticipo';
-
-  @override
-  String get tripNotificationsBookingUpdates => 'Prenotazioni e biglietti';
-
-  @override
-  String get tripNotificationsBookingUpdatesSubtitle => 'Aggiornamenti relativi a prenotazioni, biglietti e documenti di viaggio';
-
-  @override
-  String get tripNotificationsBucketList => 'Bucket List';
-
-  @override
-  String get tripNotificationsBucketListSubtitle => 'Nuovi elementi e modifiche alla Bucket List';
-
-  @override
-  String get tripNotificationsBucketListVotes => 'Votazioni Bucket List';
-
-  @override
-  String get tripNotificationsBucketListVotesSubtitle => 'Nuove votazioni e cambiamenti nelle priorità del gruppo';
-
-  @override
-  String get tripNotificationsBudget => 'Budget';
-
-  @override
-  String get tripNotificationsBudgetSubtitle => 'Aggiornamenti importanti sul budget del viaggio';
-
-  @override
-  String get tripNotificationsNewExpenses => 'Nuove spese';
-
-  @override
-  String get tripNotificationsNewExpensesSubtitle => 'Avvisi quando viene registrata una nuova spesa di gruppo';
-
-  @override
-  String get tripNotificationsExpenseChanges => 'Modifiche alle spese';
-
-  @override
-  String get tripNotificationsExpenseChangesSubtitle => 'Modifiche o rimozioni di spese che riguardano il gruppo';
-
-  @override
-  String get tripNotificationsReimbursements => 'Rimborsi e saldi';
-
-  @override
-  String get tripNotificationsReimbursementsSubtitle => 'Rimborsi registrati e cambiamenti dei saldi tra viaggiatori';
-
-  @override
-  String get tripNotificationsTravellers => 'Viaggiatori';
-
-  @override
-  String get tripNotificationsTravellersSubtitle => 'Ingresso, uscita o rimozione di partecipanti dal viaggio';
-
-  @override
-  String get tripNotificationsInvitations => 'Inviti';
-
-  @override
-  String get tripNotificationsInvitationsSubtitle => 'Aggiornamenti rilevanti sui link e sullo stato degli inviti';
-
-  @override
-  String get tripNotificationsRolesPermissions => 'Ruoli e permessi';
-
-  @override
-  String get tripNotificationsRolesPermissionsSubtitle => 'Cambiamenti relativi a ruolo e autorizzazioni nel viaggio';
-
-  @override
-  String get tripNotificationsGroupActivity => 'Attività del gruppo';
-
-  @override
-  String get tripNotificationsGroupActivitySubtitle => 'Aggiornamenti generali prodotti dagli altri partecipanti';
-
-  @override
-  String get tripNotificationsSharedNotes => 'Note condivise';
-
-  @override
-  String get tripNotificationsSharedNotesSubtitle => 'Creazione e modifica di note condivise del viaggio';
-
-  @override
-  String get tripNotificationsMedia => 'Foto e video';
-
-  @override
-  String get tripNotificationsMediaSubtitle => 'Nuovi contenuti multimediali condivisi nel viaggio';
-
-  @override
-  String get tripNotificationsMemories => 'Ricordi';
-
-  @override
-  String get tripNotificationsMemoriesSubtitle => 'Nuovi ricordi e aggiornamenti dei contenuti salvati';
-
-  @override
-  String get tripNotificationsCloudArchive => 'Archivio del viaggio';
-
-  @override
-  String get tripNotificationsCloudArchiveSubtitle => 'Problemi di accesso, collegamento o disponibilità dell\'archivio cloud';
-
-  @override
-  String get tripNotificationsSync => 'Sincronizzazione';
-
-  @override
-  String get tripNotificationsSyncSubtitle => 'Errori o operazioni importanti di sincronizzazione dei dati';
-
-  @override
-  String get tripNotificationsTripInformationChanges => 'Modifiche importanti al viaggio';
-
-  @override
-  String get tripNotificationsTripInformationChangesSubtitle => 'Cambiamenti a nome, destinazione, date, valuta o informazioni principali';
-
-  @override
-  String get tripNotificationsTripStatus => 'Stato del viaggio';
-
-  @override
-  String get tripNotificationsTripStatusSubtitle => 'Chiusura, riapertura o altri cambiamenti di stato del viaggio';
-
-  @override
-  String get tripNotificationsImportantCommunications => 'Comunicazioni importanti';
-
-  @override
-  String get tripNotificationsImportantCommunicationsSubtitle => 'Avvisi critici necessari per organizzazione, sicurezza o corretto utilizzo del viaggio';
 
   @override
   String get tripPrivacyAccessSection => 'Accesso e inviti';
@@ -2273,11 +1790,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get budgetAddExpense => 'Aggiungi spesa';
 
   @override
-  String budgetTripCurrency(String currency) {
-    return 'Valuta del viaggio: $currency';
-  }
-
-  @override
   String get budgetSplitExpense => 'Come si divide la spesa';
 
   @override
@@ -2347,12 +1859,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get budgetRevisionLocked => 'Questa spesa contiene rimborsi registrati: la revisione economica e bloccata per preservare lo storico.';
 
   @override
-  String get budgetRevisionMyAdvance => 'Quanto hai pagato tu al fornitore';
-
-  @override
-  String get budgetRevisionNoOtherPayers => 'Gli anticipi attribuiti ad altri viaggiatori richiederanno un flusso di conferma dedicato.';
-
-  @override
   String get budgetRevisionOutstanding => 'Da saldare';
 
   @override
@@ -2386,9 +1892,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get budgetRevisionTotal => 'Importo totale';
 
   @override
-  String get budgetRevisionTraveler => 'Viaggiatore';
-
-  @override
   String get budgetRevisionWaiting => 'In attesa';
 
   @override
@@ -2410,18 +1913,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get b6PersonalByCategory => 'Le mie spese per categoria';
 
   @override
-  String get b6SummaryCurrency => 'Valuta di riepilogo';
-
-  @override
-  String get b6Historical => 'Tassi storici';
-
-  @override
-  String get b6Latest => 'Ultimi tassi disponibili';
-
-  @override
-  String get b6AllCategories => 'Tutte le categorie';
-
-  @override
   String get b6Category => 'Categoria';
 
   @override
@@ -2432,33 +1923,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get b6CategoryName => 'Nome categoria';
-
-  @override
-  String get b6AllStatuses => 'Tutti gli stati';
-
-  @override
-  String get b6Planned => 'Previste';
-
-  @override
-  String get b6Outstanding => 'Da saldare';
-
-  @override
-  String get b6Paid => 'Saldate';
-
-  @override
-  String get b6AllPeriods => 'Tutto il periodo';
-
-  @override
-  String get b6Last30Days => 'Ultimi 30 giorni';
-
-  @override
-  String get b6Last90Days => 'Ultimi 90 giorni';
-
-  @override
-  String get b6Newest => 'Più recenti';
-
-  @override
-  String get b6Oldest => 'Meno recenti';
 
   @override
   String get b6LoadingError => 'Impossibile caricare il riepilogo.';
@@ -2477,9 +1941,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get b6MyShare => 'La tua quota delle spese condivise';
-
-  @override
-  String get b6AveragePerTraveler => 'Media per viaggiatore coinvolto';
 
   @override
   String get b6LatestExpense => 'Ultima spesa';
@@ -2556,9 +2017,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String b86Reason(String reason) {
     return 'Motivo: $reason';
   }
-
-  @override
-  String get b86History => 'Storico';
 
   @override
   String get b86TripHistory => 'Storico del viaggio';
@@ -2705,30 +2163,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btHistRevision => 'Revisione';
 
   @override
-  String get btOverviewOverviewError => 'Errore riepilogo';
-
-  @override
-  String get btOverviewFinancialOverview => 'Riepilogo contabile';
-
-  @override
-  String get btOverviewRecordedExpenses => 'Spese registrate';
-
-  @override
-  String get btOverviewNoExpenses => 'Nessuna spesa.';
-
-  @override
-  String get btOverviewTotal => 'Totale';
-
-  @override
-  String get btOverviewAdvanced => 'Anticipato';
-
-  @override
-  String get btOverviewOutstanding => 'Da saldare';
-
-  @override
-  String get btOverviewAmountsSeparatedByCurrency => 'Importi separati per valuta, senza conversioni automatiche.';
-
-  @override
   String get btMethodsCash => 'Contanti';
 
   @override
@@ -2762,7 +2196,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btMethodsMethodDescription => 'Descrizione metodo';
 
   @override
-  String get btMethodsRemove => 'Rimuovi';
+  String get btActionRemove => 'Rimuovi';
 
   @override
   String get btMethodsAddMethod => 'Aggiungi metodo';
@@ -2777,10 +2211,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btControlsTheExpenseWillBe => 'La spesa sarà annullata solo dopo tutte le approvazioni necessarie. Lo storico sarà conservato.';
 
   @override
-  String get btControlsCancel => 'Annulla';
+  String get btActionCancel => 'Annulla';
 
   @override
-  String get btControlsConfirm => 'Conferma';
+  String get btActionConfirm => 'Conferma';
 
   @override
   String get btControlsCancelledExpenseHistoryRetained => 'Spesa annullata · storico conservato';
@@ -2800,46 +2234,31 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get btControlsReject => 'Rifiuta';
+  String get btActionReject => 'Rifiuta';
 
   @override
   String get btControlsApprove => 'Approva';
 
   @override
-  String get btListAccommodation => 'Alloggio';
-
-  @override
-  String get btListFoodDrinks => 'Cibo e bevande';
-
-  @override
-  String get btListTransport => 'Trasporti';
-
-  @override
-  String get btListActivities => 'Attività';
-
-  @override
-  String get btListOther => 'Altro';
-
-  @override
   String get btListPaid => 'Saldata';
 
   @override
-  String get btListPlanned => 'Prevista';
+  String get btStatusPlanned => 'Prevista';
 
   @override
-  String get btListOutstanding => 'Da saldare';
+  String get btStatusOutstanding => 'Da saldare';
 
   @override
   String get btListStatusUnavailable => 'Stato non disponibile';
 
   @override
-  String get btListUnableToLoadExpenses => 'Impossibile caricare le spese.';
+  String get btUnableToLoadExpenses => 'Impossibile caricare le spese.';
 
   @override
   String get btListNoExpensesToDisplay => 'Nessuna spesa da mostrare.';
 
   @override
-  String get btListUntitledExpense => 'Spesa senza titolo';
+  String get btUntitledExpense => 'Spesa senza titolo';
 
   @override
   String btListTravelers(Object value1) {
@@ -2847,28 +2266,10 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get btDetailsAccommodation => 'Alloggio';
-
-  @override
   String get btDetailsFood => 'Cibo e ristoranti';
 
   @override
-  String get btDetailsTransport => 'Trasporti';
-
-  @override
-  String get btDetailsActivities => 'Attività';
-
-  @override
-  String get btDetailsOther => 'Altro';
-
-  @override
-  String get btDetailsPlanned => 'Prevista';
-
-  @override
-  String get btDetailsOutstanding => 'Da saldare';
-
-  @override
-  String get btDetailsPaid => 'Pagata';
+  String get btStatusPaid => 'Pagata';
 
   @override
   String get btDetailsUnavailable => 'Non disponibile';
@@ -2884,9 +2285,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btDetailsExpenseDetails => 'Dettaglio spesa';
-
-  @override
-  String get btDetailsUntitledExpense => 'Spesa senza titolo';
 
   @override
   String btDetailsAdjustRate(Object originalCurrency, Object target) {
@@ -2928,22 +2326,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btRefundsAddValidMethodsThe => 'Aggiungi metodi validi. Il totale deve essere positivo e non superare il massimo.';
 
   @override
-  String get btRefundsCancel => 'Annulla';
-
-  @override
   String get btRefundsSubmitRequest => 'Invia richiesta';
-
-  @override
-  String get btRefundsCash => 'Contanti';
-
-  @override
-  String get btRefundsCard => 'Carta';
-
-  @override
-  String get btRefundsBankTransfer => 'Bonifico';
-
-  @override
-  String get btRefundsOther => 'Altro';
 
   @override
   String get btRefundsReimbursementMethodNotRecorded => 'Metodo di rimborso non registrato';
@@ -2982,12 +2365,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btRefundsDecidedBy => 'Deciso da';
 
   @override
-  String get btRefundsReject => 'Rifiuta';
-
-  @override
-  String get btRefundsConfirm => 'Conferma';
-
-  @override
   String get btRefundsOutstanding => 'Da restituire';
 
   @override
@@ -3015,10 +2392,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btPersonalBudgetCurrency => 'Valuta del budget';
 
   @override
-  String get btPersonalSearchCurrencies => 'Cerca una valuta';
+  String get btSearchCurrencies => 'Cerca una valuta';
 
   @override
-  String get btPersonalNoCurrenciesFound => 'Nessuna valuta trovata';
+  String get btNoCurrenciesFound => 'Nessuna valuta trovata';
 
   @override
   String get btPersonalFirestoreDeniedTheWrite => 'Firestore ha negato il salvataggio. Le regole B7 devono essere presenti nel progetto Firebase utilizzato.';
@@ -3041,13 +2418,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btPersonalPlannedAmount => 'Importo previsto';
 
   @override
-  String get btPersonalCurrency => 'Valuta';
-
-  @override
-  String get btPersonalRemove => 'Rimuovi';
-
-  @override
-  String get btPersonalCancel => 'Annulla';
+  String get btCurrencyLabel => 'Valuta';
 
   @override
   String get btPersonalSave => 'Salva';
@@ -3060,9 +2431,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btPersonalSetBudget => 'Imposta budget';
-
-  @override
-  String get btPersonalUnableToLoadExpenses => 'Impossibile caricare le spese.';
 
   @override
   String get btPersonalUnableToLoadPersonal => 'Impossibile caricare le spese personali.';
@@ -3095,12 +2463,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btToolbarDisplayCurrency => 'Valuta di visualizzazione';
 
   @override
-  String get btToolbarSearchCurrencies => 'Cerca una valuta';
-
-  @override
-  String get btToolbarNoCurrenciesFound => 'Nessuna valuta trovata';
-
-  @override
   String get btToolbarAllCategories => 'Tutte le categorie';
 
   @override
@@ -3128,22 +2490,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btToolbarAmountDescending => 'Importo decrescente';
 
   @override
-  String get btToolbarCategory => 'Categoria';
+  String get btCategoryLabel => 'Categoria';
 
   @override
-  String get btToolbarStatus => 'Stato';
+  String get btStatusLabel => 'Stato';
 
   @override
   String get btToolbarAllStatuses => 'Tutti gli stati';
-
-  @override
-  String get btToolbarPlanned => 'Prevista';
-
-  @override
-  String get btToolbarOutstanding => 'Da saldare';
-
-  @override
-  String get btToolbarPaid => 'Pagata';
 
   @override
   String get btToolbarPeriod => 'Periodo';
@@ -3171,12 +2524,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btCreateExpenseCurrency => 'Valuta della spesa';
-
-  @override
-  String get btCreateSearchCurrencies => 'Cerca una valuta';
-
-  @override
-  String get btCreateNoCurrenciesFound => 'Nessuna valuta trovata';
 
   @override
   String get btCreateYou => 'Tu';
@@ -3209,9 +2556,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btCreateConfirmNewExpense => 'Conferma nuova spesa';
 
   @override
-  String get btCreateCategory => 'Categoria';
-
-  @override
   String get btCreateType => 'Tipo';
 
   @override
@@ -3219,9 +2563,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btCreatePersonal => 'Personale';
-
-  @override
-  String get btCreateStatus => 'Stato';
 
   @override
   String get btCreatePaymentsRecordedInThis => 'I pagamenti registrati in questa versione devono essere stati effettuati da te.';
@@ -3275,22 +2616,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btCreateExpenseAmount => 'Importo della spesa';
 
   @override
-  String get btCreateCurrency => 'Valuta';
-
-  @override
   String get btCreateTotalAmount => 'Importo totale';
 
   @override
   String get btCreateExpenseStatus => 'Stato della spesa';
-
-  @override
-  String get btCreatePlanned => 'Prevista';
-
-  @override
-  String get btCreateOutstanding => 'Da saldare';
-
-  @override
-  String get btCreatePaid => 'Pagata';
 
   @override
   String get btCreateSplitBetweenTravelers => 'Dividi tra i viaggiatori';
@@ -3314,9 +2643,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btCreateSummary => 'Riepilogo';
-
-  @override
-  String get btCreateCancel => 'Annulla';
 
   @override
   String get btCreateBack => 'Indietro';

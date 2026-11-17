@@ -1,3 +1,6 @@
+// Controlla la coerenza dei numeri di una spesa (totale, quote, anticipi).
+// Usato dai test di parità.
+
 import '../models/expense_financial_snapshot.dart';
 import '../models/expense_payment_status.dart';
 import 'custom_split_validator.dart';

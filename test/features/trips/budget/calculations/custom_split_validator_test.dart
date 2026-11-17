@@ -1,3 +1,6 @@
+// Test automatici di custom_split_validator (trips/budget/calculations).
+// Casi, ad esempio: "valid custom shares are accepted", "incorrect shares are rejected".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/custom_split_validator.dart';

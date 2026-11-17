@@ -1,3 +1,6 @@
+// Test automatici di expense_reimbursement_revision_guard (trips/budget/policies).
+// Casi, ad esempio: "confirmed reimbursement freezes original debt", "unchanged debt can retain confirmed reimbursement".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_financial_snapshot.dart';

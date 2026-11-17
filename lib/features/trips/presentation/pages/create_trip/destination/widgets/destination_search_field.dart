@@ -1,4 +1,7 @@
+// Campo di ricerca della destinazione.
+
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class DestinationSearchField extends StatelessWidget {
   const DestinationSearchField({
@@ -12,10 +15,10 @@ class DestinationSearchField extends StatelessWidget {
   final String hint;
   final ValueChanged<String> onChanged;
 
-  static const Color _surfaceColor = Color(0xFF1A1715);
-  static const Color _borderColor = Color(0xFF3A2A24);
-  static const Color _creamColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
+  static const Color _borderColor = AmaterasuColors.borderWarmAlt;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
   static const Color _accentColor = Color(0xFFD95C32);
 
   @override

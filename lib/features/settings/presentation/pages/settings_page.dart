@@ -1,3 +1,5 @@
+// Pagina principale delle impostazioni: elenco delle sezioni.
+
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -7,13 +9,14 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
 
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_logout.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
 
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
   @override
   Widget build(BuildContext context) {

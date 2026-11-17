@@ -1,4 +1,8 @@
+// Riga etichetta-valore usata nella card del profilo.
+
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class ProfileInfoRow extends StatelessWidget {
   const ProfileInfoRow({
@@ -9,9 +13,9 @@ class ProfileInfoRow extends StatelessWidget {
     this.alignTop = false,
   });
 
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
 
   final IconData icon;
   final String label;
@@ -40,7 +44,7 @@ class ProfileInfoRow extends StatelessWidget {
                   label,
                   style: const TextStyle(color: _subtitleColor, fontSize: 12),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AmaterasuSpacing.xs),
                 Text(
                   value,
                   style: const TextStyle(color: _titleColor, fontSize: 15),

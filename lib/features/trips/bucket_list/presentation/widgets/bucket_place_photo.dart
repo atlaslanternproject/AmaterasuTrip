@@ -1,7 +1,12 @@
+// Foto del luogo di un'attività, caricata da Google Places
+// quando il widget appare, con l'autore della foto.
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'bucket_place_photo_loader.dart' as loader;
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
 class BucketPhotoAuthor {
   const BucketPhotoAuthor({required this.name, this.uri});
@@ -118,7 +123,7 @@ class _BucketPlacePhotoState extends State<BucketPlacePhoto> {
                         ),
                         decoration: BoxDecoration(
                           color: const Color(0xE81F1714),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(AmaterasuRadius.sm),
                         ),
                         child: Wrap(
                           spacing: 8,
@@ -137,7 +142,7 @@ class _BucketPlacePhotoState extends State<BucketPlacePhoto> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
-                                    color: Color(0xFFF5E9DA),
+                                    color: AmaterasuColors.textCream,
                                     fontSize: 10,
                                     decoration: TextDecoration.underline,
                                   ),

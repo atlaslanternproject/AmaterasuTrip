@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: richiesta di cancellazione
+// di un'attività.
+
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketActivityDeletionRequest on _TripBucketListPageState {
@@ -8,7 +11,7 @@ extension _BucketActivityDeletionRequest on _TripBucketListPageState {
     final first = await showDialog<bool>(
       context: dialogContext,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF211914),
+        backgroundColor: AmaterasuColors.surfaceSheet,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text(_t('Richiedere l’eliminazione?', 'Request deletion?')),
         content: Text(
@@ -43,7 +46,7 @@ extension _BucketActivityDeletionRequest on _TripBucketListPageState {
             context: dialogContext,
             builder: (context) => StatefulBuilder(
               builder: (context, refresh) => AlertDialog(
-                backgroundColor: const Color(0xFF211914),
+                backgroundColor: AmaterasuColors.surfaceSheet,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -58,7 +61,7 @@ extension _BucketActivityDeletionRequest on _TripBucketListPageState {
                         'Type DELETE to confirm.',
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AmaterasuSpacing.md),
                     TextField(
                       controller: confirmation,
                       autofocus: true,

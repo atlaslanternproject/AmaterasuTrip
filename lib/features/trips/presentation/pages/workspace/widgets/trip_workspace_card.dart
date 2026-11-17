@@ -1,5 +1,11 @@
-import 'package:flutter/material.dart';
+// Card del workspace del viaggio (oggi non usata da nessuna pagina).
 
+import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
+
+// TODO(audit): C1 widget non usato da nessuna pagina: decidere se eliminarlo o usarlo.
 class TripWorkspaceCard extends StatelessWidget {
   const TripWorkspaceCard({
     super.key,
@@ -14,11 +20,11 @@ class TripWorkspaceCard extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
 
-  static const Color _surfaceColor = Color(0xFF1A1310);
-  static const Color _borderColor = Color(0xFF5A3023);
-  static const Color _accentColor = Color(0xFFD96C32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _surfaceColor = AmaterasuColors.surfaceWarm;
+  static const Color _borderColor = AmaterasuColors.borderAccent;
+  static const Color _accentColor = AmaterasuColors.accentBudget;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,7 @@ class TripWorkspaceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AmaterasuSpacing.md),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(color: _borderColor.withValues(alpha: 0.6)),
@@ -42,7 +48,7 @@ class TripWorkspaceCard extends StatelessWidget {
                 height: 46,
                 decoration: BoxDecoration(
                   color: _accentColor.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(AmaterasuRadius.md),
                 ),
                 child: Icon(icon, color: _accentColor, size: 24),
               ),

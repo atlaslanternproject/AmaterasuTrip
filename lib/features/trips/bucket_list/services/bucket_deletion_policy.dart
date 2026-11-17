@@ -1,3 +1,6 @@
+// Regole su chi può chiedere, approvare o rifiutare la cancellazione
+// di un'attività.
+
 import '../models/bucket_deletion_request.dart';
 
 abstract final class BucketDeletionPolicy {

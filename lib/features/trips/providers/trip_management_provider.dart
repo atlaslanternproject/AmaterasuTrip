@@ -1,3 +1,5 @@
+// Provider Riverpod del repository di gestione del viaggio.
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories/trip_management_repository.dart';

@@ -1,6 +1,10 @@
+// Card riutilizzabile che invita a verificare l'email
+// e permette di reinviare il messaggio di verifica.
+
 import 'package:flutter/material.dart';
 
-import 'package:amaterasutrip/core/widgets/buttons/Amaterasu_primary_button.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class AmaterasuEmailVerificationCard extends StatelessWidget {
   final String title;
@@ -77,7 +81,7 @@ class AmaterasuEmailVerificationCard extends StatelessWidget {
                 style: const TextStyle(color: Colors.white),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AmaterasuSpacing.md),
           ],
           AmaterasuPrimaryButton(text: confirmedText, onPressed: onConfirmed),
           SizedBox(height: compact ? 8 : 12),

@@ -1,3 +1,5 @@
+// Caricatore delle foto dei luoghi per il Web (tramite JavaScript).
+
 import 'dart:convert';
 import 'dart:js_interop';
 

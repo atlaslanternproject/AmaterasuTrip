@@ -1,3 +1,6 @@
+// Test automatici di expense_outstanding_calculator (trips/budget/calculations).
+// Casi, ad esempio: "no payment means full amount outstanding", "partial hotel deposit leaves correct remainder".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/expense_outstanding_calculator.dart';

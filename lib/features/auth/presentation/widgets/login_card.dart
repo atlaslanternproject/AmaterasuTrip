@@ -1,3 +1,7 @@
+// Card del login: email o username, password, "ricordami",
+// recupero password e accesso con Google/Discord.
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,14 +10,17 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/core/navigation/invite_auth_return.dart';
 import 'package:amaterasutrip/features/auth/providers/auth_controller.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import '../../../../core/widgets/buttons/Amaterasu_discord_button.dart';
-import '../../../../core/widgets/buttons/Amaterasu_google_button.dart';
-import '../../../../core/widgets/buttons/Amaterasu_primary_button.dart';
-import '../../../../core/widgets/cards/Amaterasu_card.dart';
-import '../../../../core/widgets/common/Amaterasu_divider.dart';
-import '../../../../core/widgets/inputs/Amaterasu_password_field.dart';
-import '../../../../core/widgets/inputs/Amaterasu_text_field.dart';
+import '../../../../core/widgets/buttons/amaterasu_discord_button.dart';
+import '../../../../core/widgets/buttons/amaterasu_google_button.dart';
+import '../../../../core/widgets/buttons/amaterasu_primary_button.dart';
+import '../../../../core/widgets/cards/amaterasu_card.dart';
+import '../../../../core/widgets/common/amaterasu_divider.dart';
+import '../../../../core/widgets/inputs/amaterasu_password_field.dart';
+import '../../../../core/widgets/inputs/amaterasu_text_field.dart';
 import '../../../../core/storage/remember_me_storage.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+
+part 'login_card_login.dart';
 
 class LoginCard extends ConsumerStatefulWidget {
   const LoginCard({super.key, this.returnTo});
@@ -38,59 +45,6 @@ class _LoginCardState extends ConsumerState<LoginCard> {
     super.dispose();
   }
 
-  Future<void> login() async {
-    if (loading) return;
-    setState(() {
-      loading = true;
-      loginError = null;
-    });
-    try {
-      debugPrint("LOGIN: inizio");
-      await RememberMeStorage.save(rememberMe);
-      debugPrint("REMEMBER SALVATO: $rememberMe");
-      final credential = await ref
-          .read(authControllerProvider)
-          .login(
-            email: emailController.text.trim(),
-            password: passwordController.text,
-          );
-      final user = credential.user;
-      await user?.reload();
-      final refreshedUser = FirebaseAuth.instance.currentUser;
-      debugPrint("LOGIN OK: ${refreshedUser?.email}");
-      if (!mounted) return;
-      if (refreshedUser == null) {
-        return;
-      }
-      if (!refreshedUser.emailVerified) {
-        context.go(InviteAuthReturn.route('/verify-email', widget.returnTo));
-      } else {
-        context.go(InviteAuthReturn.destinationOrHome(widget.returnTo));
-      }
-    } on FirebaseAuthException catch (e) {
-      debugPrint("ERRORE LOGIN: ${e.code}");
-      if (!mounted) return;
-      setState(() {
-        loginError = e.code;
-      });
-    } finally {
-      if (mounted) {
-        setState(() {
-          loading = false;
-        });
-      }
-    }
-  }
-
-  String getLoginErrorMessage(AppLocalizations l10n, String errorCode) {
-    return switch (errorCode) {
-      'user-not-found' => l10n.authLoginErrorUserNotFound,
-      'wrong-password' => l10n.authLoginErrorWrongPassword,
-      'invalid-email' => l10n.authLoginErrorInvalidEmail,
-      _ => l10n.authLoginErrorGeneric,
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -106,7 +60,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: AmaterasuSpacing.lg),
           AmaterasuTextField(
             hintText: l10n.authEmailHint,
             controller: emailController,
@@ -117,7 +71,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
               });
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuPasswordField(
             hintText: l10n.authPasswordHint,
             controller: passwordController,
@@ -204,7 +158,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 style: const TextStyle(color: Colors.white),
               ),
             ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AmaterasuSpacing.md),
           AmaterasuPrimaryButton(
             text: loading ? l10n.authSigningIn : l10n.authSignIn,
             onPressed: loading ? null : login,
@@ -246,6 +200,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 if (!mounted) return;
 
                 ScaffoldMessenger.of(this.context).showSnackBar(
+                  // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
                   SnackBar(content: Text('Errore Google: ${e.code}')),
                 );
               } catch (e) {
@@ -255,6 +210,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
 
                 ScaffoldMessenger.of(this.context).showSnackBar(
                   const SnackBar(
+                    // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
                     content: Text('Impossibile accedere con Google.'),
                   ),
                 );

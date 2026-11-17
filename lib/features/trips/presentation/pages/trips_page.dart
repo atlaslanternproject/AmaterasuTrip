@@ -1,3 +1,5 @@
+// Pagina Viaggi: elenco dei viaggi dell'utente e creazione di un nuovo viaggio.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,12 +10,14 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../widgets/trip_card.dart';
 import '../widgets/trip_section_title.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class TripsPage extends ConsumerWidget {
   const TripsPage({super.key});
 
-  static const Color _backgroundColor = Color(0xFF080605);
-  static const Color _accentColor = Color(0xFFE9783D);
+  static const Color _backgroundColor = AmaterasuColors.surfaceBlack;
+  static const Color _accentColor = AmaterasuColors.accentOrangeSoft;
   static const Color _titleColor = Color(0xFFF4E9D8);
   static const Color _secondaryTextColor = Color(0xFFB9AA9C);
 
@@ -64,7 +68,7 @@ class TripsPage extends ConsumerWidget {
         backgroundColor: _backgroundColor,
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(AmaterasuSpacing.lg),
             child: Text(
               error.toString(),
               textAlign: TextAlign.center,
@@ -172,7 +176,7 @@ class TripsPage extends ConsumerWidget {
                 ),
               ],
               if (!hasTrips)
-                const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                const SliverToBoxAdapter(child: SizedBox(height: AmaterasuSpacing.xl)),
               const SliverToBoxAdapter(child: SizedBox(height: 34)),
             ],
           ),
@@ -192,7 +196,7 @@ class TripsPage extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       sliver: SliverList.separated(
         itemCount: trips.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 16),
+        separatorBuilder: (context, index) => const SizedBox(height: AmaterasuSpacing.md),
         itemBuilder: (context, index) {
           final trip = trips[index];
 
@@ -228,8 +232,8 @@ class TripsPage extends ConsumerWidget {
             ),
           ),
         ),
-        const SizedBox(width: 8),
-        const SizedBox(width: 8),
+        const SizedBox(width: AmaterasuSpacing.sm),
+        const SizedBox(width: AmaterasuSpacing.sm),
         Material(
           color: _accentColor,
           borderRadius: BorderRadius.circular(16),

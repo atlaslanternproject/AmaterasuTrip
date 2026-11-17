@@ -1,3 +1,6 @@
+// Test automatici di b87_create_dialog (trips/budget/presentation).
+// Casi, ad esempio: "create dialog renders in "$locale"".
+
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

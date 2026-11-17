@@ -1,11 +1,16 @@
+// Barra degli strumenti delle spese: valuta di visualizzazione,
+// ordinamento e filtri.
+
 import 'package:flutter/material.dart';
-import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../calculations/currency_minor_units.dart';
 import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
 import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'budget_category_picker.dart';
 import 'budget_expense_filters.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 class BudgetDisplayChoice {
   const BudgetDisplayChoice({required this.filters, required this.currency});
@@ -14,14 +19,16 @@ class BudgetDisplayChoice {
   final String currency;
 }
 
+// TODO(audit): file di ~294 righe con soli metodi static di interfaccia: valutare widget separati per valuta, ordinamento e filtri.
 abstract final class BudgetExpensesToolbar {
-  static const _surface = Color(0xFF241A16);
-  static const _border = Color(0xFF49352A);
-  static const _cream = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFFB7A99B);
-  static const _orange = Color(0xFFE17A43);
-  static const _gold = Color(0xFFE3A66C);
+  static const _surface = AmaterasuColors.surfaceRaised;
+  static const _border = AmaterasuColors.borderStrong;
+  static const _cream = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textSecondary;
+  static const _orange = AmaterasuColors.accentOrange;
+  static const _gold = AmaterasuColors.accentGold;
 
+  // TODO(audit): C7 scelta valuta simile in 3 file: valutare un dialogo condiviso.
   static Future<String?> _pickCurrency(
     BuildContext context,
     String selected,
@@ -32,7 +39,7 @@ abstract final class BudgetExpensesToolbar {
 
     try {
       final fetched = await const DestinationPlacesService().getCurrencies(
-        languageCode: _l10n(it).btToolbarEn,
+        languageCode: budgetL10n(it).btToolbarEn,
       );
       currencies = fetched
           .where((item) => supported.contains(item.code.toUpperCase()))
@@ -57,15 +64,15 @@ abstract final class BudgetExpensesToolbar {
       context: context,
       useRootNavigator: true,
       isScrollControlled: true,
-      backgroundColor: const Color(0xFF231915),
+      backgroundColor: AmaterasuColors.surfaceCard,
       builder: (pickerContext) => SafeArea(
         top: false,
         child: TripCurrencyPickerSheet(
           currencies: currencies,
           selectedCurrency: selected,
-          title: _l10n(it).btToolbarDisplayCurrency,
-          searchHint: _l10n(it).btToolbarSearchCurrencies,
-          noResultsText: _l10n(it).btToolbarNoCurrenciesFound,
+          title: budgetL10n(it).btToolbarDisplayCurrency,
+          searchHint: budgetL10n(it).btSearchCurrencies,
+          noResultsText: budgetL10n(it).btNoCurrenciesFound,
         ),
       ),
     );
@@ -86,7 +93,7 @@ abstract final class BudgetExpensesToolbar {
     var currency = displayCurrency;
 
     final categories = <String, String>{
-      '': _l10n(it).btToolbarAllCategories,
+      '': budgetL10n(it).btToolbarAllCategories,
       for (final code in const [
         'accommodation',
         'food',
@@ -122,7 +129,7 @@ abstract final class BudgetExpensesToolbar {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _l10n(it).btToolbarFiltersAndDisplay,
+                      budgetL10n(it).btToolbarFiltersAndDisplay,
                       style: const TextStyle(
                         color: _cream,
                         fontSize: 21,
@@ -131,18 +138,18 @@ abstract final class BudgetExpensesToolbar {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      _l10n(it).btToolbarCustomizeHowYouView,
+                      budgetL10n(it).btToolbarCustomizeHowYouView,
                       style: const TextStyle(color: _muted),
                     ),
                     const SizedBox(height: 22),
                     Text(
-                      _l10n(it).btToolbarDisplayCurrency,
+                      budgetL10n(it).btToolbarDisplayCurrency,
                       style: const TextStyle(
                         color: _cream,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AmaterasuSpacing.sm),
                     OutlinedButton.icon(
                       icon: const Icon(Icons.currency_exchange_rounded),
                       onPressed: () async {
@@ -159,25 +166,25 @@ abstract final class BudgetExpensesToolbar {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      _l10n(it).btToolbarOriginalAmountsRemainUnchanged,
+                      budgetL10n(it).btToolbarOriginalAmountsRemainUnchanged,
                       style: const TextStyle(color: _muted, fontSize: 12),
                     ),
                     const SizedBox(height: 20),
                     _field(
-                      label: _l10n(it).btToolbarSortExpenses,
+                      label: budgetL10n(it).btToolbarSortExpenses,
                       value: draft.sort,
                       options: {
-                        'newest': _l10n(it).btToolbarNewest,
-                        'oldest': _l10n(it).btToolbarOldest,
-                        'amount-asc': _l10n(it).btToolbarAmountAscending,
-                        'amount-desc': _l10n(it).btToolbarAmountDescending,
+                        'newest': budgetL10n(it).btToolbarNewest,
+                        'oldest': budgetL10n(it).btToolbarOldest,
+                        'amount-asc': budgetL10n(it).btToolbarAmountAscending,
+                        'amount-desc': budgetL10n(it).btToolbarAmountDescending,
                       },
                       onChanged: (value) =>
                           update(() => draft = draft.copyWith(sort: value)),
                     ),
                     const SizedBox(height: 14),
                     _field(
-                      label: _l10n(it).btToolbarCategory,
+                      label: budgetL10n(it).btCategoryLabel,
                       value: draft.category,
                       options: categories,
                       onChanged: (value) =>
@@ -185,25 +192,25 @@ abstract final class BudgetExpensesToolbar {
                     ),
                     const SizedBox(height: 14),
                     _field(
-                      label: _l10n(it).btToolbarStatus,
+                      label: budgetL10n(it).btStatusLabel,
                       value: draft.status,
                       options: {
-                        '': _l10n(it).btToolbarAllStatuses,
-                        'planned': _l10n(it).btToolbarPlanned,
-                        'outstanding': _l10n(it).btToolbarOutstanding,
-                        'paid': _l10n(it).btToolbarPaid,
+                        '': budgetL10n(it).btToolbarAllStatuses,
+                        'planned': budgetL10n(it).btStatusPlanned,
+                        'outstanding': budgetL10n(it).btStatusOutstanding,
+                        'paid': budgetL10n(it).btStatusPaid,
                       },
                       onChanged: (value) =>
                           update(() => draft = draft.copyWith(status: value)),
                     ),
                     const SizedBox(height: 14),
                     _field(
-                      label: _l10n(it).btToolbarPeriod,
+                      label: budgetL10n(it).btToolbarPeriod,
                       value: draft.days.toString(),
                       options: {
-                        '0': _l10n(it).btToolbarAnyTime,
-                        '30': _l10n(it).btToolbarLast30Days,
-                        '90': _l10n(it).btToolbarLast90Days,
+                        '0': budgetL10n(it).btToolbarAnyTime,
+                        '30': budgetL10n(it).btToolbarLast30Days,
+                        '90': budgetL10n(it).btToolbarLast90Days,
                       },
                       onChanged: (value) => update(
                         () => draft = draft.copyWith(days: int.parse(value)),
@@ -218,7 +225,7 @@ abstract final class BudgetExpensesToolbar {
                             currency = tripCurrency;
                           }),
                           child: Text(
-                            _l10n(it).btToolbarReset,
+                            budgetL10n(it).btToolbarReset,
                             style: const TextStyle(color: _gold),
                           ),
                         ),
@@ -226,7 +233,7 @@ abstract final class BudgetExpensesToolbar {
                         FilledButton(
                           style: FilledButton.styleFrom(
                             backgroundColor: _orange,
-                            foregroundColor: const Color(0xFF100C0A),
+                            foregroundColor: AmaterasuColors.surfaceDeep,
                           ),
                           onPressed: () => Navigator.pop(
                             sheetContext,
@@ -235,7 +242,7 @@ abstract final class BudgetExpensesToolbar {
                               currency: currency,
                             ),
                           ),
-                          child: Text(_l10n(it).btToolbarApply),
+                          child: Text(budgetL10n(it).btToolbarApply),
                         ),
                       ],
                     ),
@@ -243,7 +250,7 @@ abstract final class BudgetExpensesToolbar {
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                          _l10n(it).btToolbarAmountsSortedWithinEach,
+                          budgetL10n(it).btToolbarAmountsSortedWithinEach,
                           style: const TextStyle(color: _muted, fontSize: 12),
                         ),
                       ),
@@ -290,7 +297,3 @@ abstract final class BudgetExpensesToolbar {
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

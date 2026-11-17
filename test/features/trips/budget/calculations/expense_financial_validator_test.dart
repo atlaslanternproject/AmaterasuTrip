@@ -1,3 +1,6 @@
+// Test automatici di expense_financial_validator (trips/budget/calculations).
+// Casi, ad esempio: "planned expense without advances is valid", "outstanding expense with partial advance is valid".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_payment_status.dart';

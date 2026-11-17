@@ -1,3 +1,5 @@
+// Scelta dell'archivio cloud fatta durante la creazione del viaggio.
+
 import 'trip_cloud_archive.dart';
 
 class TripCloudArchiveSelection {

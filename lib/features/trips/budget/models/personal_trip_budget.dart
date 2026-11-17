@@ -1,3 +1,5 @@
+// Modello del budget personale privato del viaggiatore.
+
 class PersonalTripBudget {
   const PersonalTripBudget({required this.amountMinor, required this.currency});
 
