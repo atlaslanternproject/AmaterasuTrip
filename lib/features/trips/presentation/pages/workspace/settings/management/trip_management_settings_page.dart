@@ -1,3 +1,6 @@
+// Impostazioni del viaggio - Gestione: stato, archivio, duplicazione
+// e cancellazione.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -50,6 +53,7 @@ class _TripManagementSettingsPageState
 
   bool _working = false;
 
+  // TODO(audit): C9 _showMessage (SnackBar) ripetuto in 6 file: valutare una funzione condivisa.
   void _showMessage(String text) {
     if (!mounted) {
       return;
@@ -808,6 +812,7 @@ class _TripManagementSettingsPageState
   }
 }
 
+// TODO(audit): C10 _Header/_SectionTitle simili nelle pagine impostazioni viaggio: valutare un widget condiviso.
 class _Header extends StatelessWidget {
   const _Header({
     required this.title,

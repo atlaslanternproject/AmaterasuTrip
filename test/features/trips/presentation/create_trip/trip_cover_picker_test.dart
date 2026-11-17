@@ -1,3 +1,6 @@
+// Test automatici di trip_cover_picker (trips/presentation/create_trip).
+// Casi, ad esempio: "shows fallback when no local cover is selected", "renders an XFile preview without using a filesystem path".
+
 import 'dart:convert';
 import 'dart:typed_data';
 

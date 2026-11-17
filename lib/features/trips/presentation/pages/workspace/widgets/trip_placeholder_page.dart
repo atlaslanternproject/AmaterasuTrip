@@ -1,3 +1,5 @@
+// Pagina segnaposto comune per le sezioni del workspace non ancora sviluppate.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';

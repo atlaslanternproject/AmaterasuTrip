@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: richiesta di cancellazione
+// di un'attività.
+
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketActivityDeletionRequest on _TripBucketListPageState {

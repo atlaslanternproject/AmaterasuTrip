@@ -1,3 +1,5 @@
+// Selettore delle date di inizio e fine del viaggio.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/features/trips/presentation/utils/trip_date_formatter.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';

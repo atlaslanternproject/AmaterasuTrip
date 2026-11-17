@@ -1,3 +1,5 @@
+// Sezione dei consensi privacy: necessari, facoltativi e futuri.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

@@ -1,3 +1,6 @@
+// Supporto ai test del budget: versione finta di BudgetApi con documenti
+// e query in memoria, senza Firebase.
+
 // Test doubles of Firestore results: implementing them is intended here.
 // ignore_for_file: subtype_of_sealed_class
 

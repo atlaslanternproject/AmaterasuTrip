@@ -1,3 +1,6 @@
+// Impedisce modifiche che cambierebbero il senso di rimborsi già confermati.
+// Usato dai test.
+
 import '../calculations/expense_debt_calculator.dart';
 import '../calculations/reimbursement_remaining_calculator.dart';
 import '../models/expense_revision.dart';

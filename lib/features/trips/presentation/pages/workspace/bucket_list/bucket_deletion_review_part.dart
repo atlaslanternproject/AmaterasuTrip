@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: revisione delle richieste
+// di cancellazione in attesa.
+
 part of 'trip_bucket_list_page.dart';
 
 class _BucketPendingGroup {

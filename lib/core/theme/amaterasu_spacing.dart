@@ -1,3 +1,5 @@
+// Spaziature standard dell'app (token del tema): 4, 8, 16, 24, 32, 48.
+
 class AmaterasuSpacing {
   AmaterasuSpacing._();
   static const xs = 4.0;

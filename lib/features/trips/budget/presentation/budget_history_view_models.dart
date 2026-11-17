@@ -1,3 +1,6 @@
+// Parte di budget_history_view.dart: modelli delle operazioni
+// e dei dati dello storico.
+
 part of 'budget_history_view.dart';
 
 /// One operation returned by the `listBudgetHistory` Cloud Function.

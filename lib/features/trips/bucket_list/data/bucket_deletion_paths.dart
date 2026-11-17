@@ -1,3 +1,5 @@
+// Percorsi Firestore delle richieste di cancellazione delle attività.
+
 import 'bucket_firestore_paths.dart';
 
 abstract final class BucketDeletionPaths {

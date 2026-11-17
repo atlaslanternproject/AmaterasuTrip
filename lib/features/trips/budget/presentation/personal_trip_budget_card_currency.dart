@@ -1,3 +1,6 @@
+// Parte di personal_trip_budget_card.dart: scelta della valuta
+// e messaggi di errore.
+
 part of 'personal_trip_budget_card.dart';
 
 extension _PersonalTripBudgetCardStateCurrency on _PersonalTripBudgetCardState {
@@ -9,6 +12,7 @@ extension _PersonalTripBudgetCardStateCurrency on _PersonalTripBudgetCardState {
     );
   }
 
+  // TODO(audit): C7 scelta valuta simile in 3 file: valutare un dialogo condiviso.
   Future<String?> _pickCurrency(
     BuildContext dialogContext,
     String selected,

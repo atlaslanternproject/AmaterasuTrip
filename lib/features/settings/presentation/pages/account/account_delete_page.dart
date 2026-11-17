@@ -1,3 +1,5 @@
+// Sezione dell'account per avviare la cancellazione dell'account.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

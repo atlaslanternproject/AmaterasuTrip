@@ -1,3 +1,6 @@
+// Giorno effettivo di una spesa (data della spesa o, per i dati vecchi,
+// data di creazione).
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _isoDay = RegExp(r'^(\d{4})-(\d{2})-(\d{2})$');

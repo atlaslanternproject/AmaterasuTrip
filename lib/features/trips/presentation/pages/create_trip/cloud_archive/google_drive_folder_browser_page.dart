@@ -1,3 +1,5 @@
+// Navigazione tra le cartelle di Google Drive per scegliere l'archivio.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,6 +9,7 @@ import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provid
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
+// TODO(audit): C1 pagina non raggiungibile (nessuna rotta la apre): decidere se eliminarla o collegarla. Contiene anche testi solo in italiano (L6).
 class GoogleDriveFolderBrowserPage extends ConsumerStatefulWidget {
   const GoogleDriveFolderBrowserPage({super.key, required this.tripFolderName});
 

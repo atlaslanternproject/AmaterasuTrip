@@ -1,3 +1,6 @@
+// Test automatici di budget_money_input (trips/budget/presentation).
+// Casi, ad esempio: "EUR cents are exact", "JPY rejects decimal amounts".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_money_input.dart';
 

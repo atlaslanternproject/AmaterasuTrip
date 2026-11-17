@@ -1,5 +1,9 @@
+// Parte di trip_overview_page.dart: copertina di riserva,
+// sole decorativo e bottoni dell'intestazione.
+
 part of 'trip_overview_page.dart';
 
+// TODO(audit): C10 copertina di riserva simile in 3 file: unificare solo se l'aspetto resta identico.
 class _TripCoverFallback extends StatelessWidget {
   const _TripCoverFallback();
 

@@ -1,9 +1,13 @@
+// Cancellazione dell'account dal dispositivo: controlli, eliminazione
+// del profilo e dello username, poi dell'utente Firebase Auth.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:amaterasutrip/core/storage/remember_me_storage.dart';
 import 'package:amaterasutrip/features/settings/domain/account_deletion_trip_guard.dart';
 
+// TODO(audit): S5 molti debugPrint passo-passo: quelli con email/UID sono già solo in debug; valutare di toglierli. C4: la pulizia lato server esiste ma non è collegata.
 class AccountDeletionService {
   const AccountDeletionService._();
 

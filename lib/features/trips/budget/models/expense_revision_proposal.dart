@@ -1,3 +1,5 @@
+// Proposta di modifica di una spesa a partire da una revisione. Usato dai test.
+
 import 'expense_financial_snapshot.dart';
 
 /// A proposed replacement for one exact base revision.

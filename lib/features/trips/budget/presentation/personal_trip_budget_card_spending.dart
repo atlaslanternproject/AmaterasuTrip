@@ -1,3 +1,6 @@
+// Parte di personal_trip_budget_card.dart: calcolo di quanto
+// è stato speso rispetto al budget.
+
 part of 'personal_trip_budget_card.dart';
 
 class _SpendingResult {

@@ -1,3 +1,5 @@
+// Debito tra due viaggiatori per una specifica spesa. Usato dai test.
+
 import 'money_amount.dart';
 
 /// An obligation between two travelers for one specific expense.

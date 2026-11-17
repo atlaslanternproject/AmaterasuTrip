@@ -1,3 +1,5 @@
+// Separatore con testo centrale (es. "oppure") usato nelle schermate di accesso.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../../theme/amaterasu_colors.dart';

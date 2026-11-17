@@ -1,3 +1,5 @@
+// Card del profilo in sola lettura.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';

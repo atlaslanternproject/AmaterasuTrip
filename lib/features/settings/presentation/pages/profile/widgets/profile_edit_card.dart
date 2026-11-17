@@ -1,3 +1,5 @@
+// Card del profilo in modalità modifica (campi di testo).
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/features/profile/models/user_profile.dart';

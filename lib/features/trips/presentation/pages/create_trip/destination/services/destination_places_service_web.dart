@@ -1,3 +1,5 @@
+// Ricerca delle destinazioni per il Web (tramite JavaScript).
+
 import 'dart:convert';
 import 'dart:js_interop';
 

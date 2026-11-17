@@ -1,3 +1,5 @@
+// Nomi delle cartelle d'archivio del viaggio.
+
 class TripArchiveNamingService {
   const TripArchiveNamingService();
 

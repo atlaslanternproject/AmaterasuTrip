@@ -1,3 +1,6 @@
+// Test automatici di b74_personal_budget_integration (trips/budget/calculations).
+// Casi, ad esempio: "B7.4 - calcoli del budget personale", "A: 500 EUR, utilizzato 200 EUR, disponibile 300 EUR".
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:amaterasutrip/features/trips/budget/calculations/personal_budget_spending_calculator.dart';

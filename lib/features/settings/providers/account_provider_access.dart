@@ -1,3 +1,6 @@
+// Dice con quali metodi l'utente può accedere (password, Google)
+// per mostrare le opzioni giuste nell'account.
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AccountProviderAccess {

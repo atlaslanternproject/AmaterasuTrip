@@ -1,3 +1,6 @@
+// Test automatici di currency_minor_units (trips/budget/calculations).
+// Casi, ad esempio: "EUR has two decimal places", "JPY has zero decimal places".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/currency_minor_units.dart';
 

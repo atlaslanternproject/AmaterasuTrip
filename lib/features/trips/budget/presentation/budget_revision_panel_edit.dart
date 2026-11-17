@@ -1,6 +1,10 @@
+// Parte di budget_revision_panel.dart: dialogo per proporre
+// una modifica della spesa.
+
 part of 'budget_revision_panel.dart';
 
 extension _BudgetRevisionPanelStateEdit on _BudgetRevisionPanelState {
+  // TODO(audit): metodo unico di ~252 righe: estrarre il dialogo di modifica in un widget.
   Future<void> _edit(Map<String, String> names) async {
     final l10n = AppLocalizations.of(context)!;
     final snapshot = _map(widget.expense['snapshot']);

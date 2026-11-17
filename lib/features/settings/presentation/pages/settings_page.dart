@@ -1,3 +1,5 @@
+// Pagina principale delle impostazioni: elenco delle sezioni.
+
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';

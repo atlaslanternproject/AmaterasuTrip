@@ -1,3 +1,5 @@
+// Riconoscimenti: team e tecnologie usate.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

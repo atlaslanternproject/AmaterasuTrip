@@ -1,3 +1,5 @@
+// Raggi degli angoli arrotondati usati dall'app (token del tema).
+
 class AmaterasuRadius {
   AmaterasuRadius._();
   static const sm = 8.0;

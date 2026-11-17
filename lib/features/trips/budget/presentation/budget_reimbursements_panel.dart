@@ -1,3 +1,6 @@
+// Pannello dei rimborsi: debiti tra viaggiatori, richieste,
+// conferme, rifiuti e chiusura dei debiti.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +58,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
 
   bool get _it => Localizations.localeOf(context).languageCode == 'it';
 
+  // TODO(audit): build di ~394 righe: estrarre sezioni in widget dedicati (stesso aspetto).
   @override
   Widget build(BuildContext context) {
     if (widget.expense['lifecycle'] == 'cancelled') {

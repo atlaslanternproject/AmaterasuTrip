@@ -1,3 +1,6 @@
+// Test automatici di image_upload_utils (core/storage).
+// Casi, ad esempio: "normalizedImageExtension", "normalizes supported extensions".
+
 import 'package:amaterasutrip/core/storage/image_upload_utils.dart';
 import 'package:flutter_test/flutter_test.dart';
 

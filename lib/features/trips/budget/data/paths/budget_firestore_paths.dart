@@ -1,3 +1,6 @@
+// Percorsi Firestore del budget (spese condivise e private, categorie).
+// Usato dai test.
+
 /// Firestore path construction for the Budget feature.
 ///
 /// This class does not grant permissions or execute queries.

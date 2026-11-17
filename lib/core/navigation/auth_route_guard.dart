@@ -1,3 +1,6 @@
+// Regole di accesso alle rotte: decide dove mandare l'utente
+// in base a login, email verificata e username.
+
 import 'invite_auth_return.dart';
 
 abstract final class AuthRouteGuard {

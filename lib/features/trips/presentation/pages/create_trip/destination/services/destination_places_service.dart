@@ -1,3 +1,6 @@
+// Ricerca delle destinazioni (Google Places) e valuta del paese;
+// sceglie la versione Web o nativa.
+
 import '../models/trip_destination.dart';
 import 'destination_places_service_native.dart'
     if (dart.library.js_interop) 'destination_places_service_web.dart'

@@ -1,3 +1,6 @@
+// Dashboard delle categorie: totali per categoria e andamento nel tempo,
+// solo per le spese a cui l'utente partecipa.
+
 import 'budget_expense_day.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

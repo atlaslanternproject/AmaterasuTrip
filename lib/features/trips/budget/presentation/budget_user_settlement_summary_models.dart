@@ -1,3 +1,6 @@
+// Parte di budget_user_settlement_summary.dart: righe di debito
+// e movimenti mostrati nel riepilogo.
+
 part of 'budget_user_settlement_summary.dart';
 
 class _DebtLine {

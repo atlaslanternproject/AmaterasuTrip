@@ -1,3 +1,5 @@
+// Titolo di sezione con icona e colore di accento.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 

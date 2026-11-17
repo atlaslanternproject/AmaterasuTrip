@@ -1,3 +1,5 @@
+// Pagina di registrazione: sfondo, intestazione e card di registrazione.
+
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/layout/amaterasu_background.dart';
 import '../../../../core/widgets/layout/amaterasu_hero.dart';

@@ -1,6 +1,10 @@
+// Parte di budget_category_dashboard.dart: sezione di riepilogo
+// con totali, grafici e filtri.
+
 part of 'budget_category_dashboard.dart';
 
 extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState {
+  // TODO(audit): metodo unico di ~321 righe: dividerlo in widget (totali, grafici, filtri).
   Widget _summary(
     BuildContext context,
     List<QueryDocumentSnapshot<Map<String, dynamic>>> docs,

@@ -1,3 +1,6 @@
+// Card riutilizzabile che invita a verificare l'email
+// e permette di reinviare il messaggio di verifica.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart';

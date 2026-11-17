@@ -1,3 +1,5 @@
+// Lettura dei tassi di cambio salvati sulle spese (quotazioni verificate).
+
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;

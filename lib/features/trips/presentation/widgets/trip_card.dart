@@ -1,3 +1,5 @@
+// Card di un viaggio nell'elenco: copertina, nome, date e stato.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
@@ -343,6 +345,7 @@ class _StatusChip extends StatelessWidget {
   }
 }
 
+// TODO(audit): C10 copertina di riserva simile in 3 file (trip_card, cover picker, panoramica): unificare solo se l'aspetto resta identico.
 class _TripCoverFallback extends StatelessWidget {
   const _TripCoverFallback();
 

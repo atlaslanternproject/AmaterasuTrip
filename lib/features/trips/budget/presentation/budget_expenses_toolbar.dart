@@ -1,3 +1,6 @@
+// Barra degli strumenti delle spese: valuta di visualizzazione,
+// ordinamento e filtri.
+
 import 'package:flutter/material.dart';
 
 import '../calculations/currency_minor_units.dart';
@@ -16,6 +19,7 @@ class BudgetDisplayChoice {
   final String currency;
 }
 
+// TODO(audit): file di ~294 righe con soli metodi static di interfaccia: valutare widget separati per valuta, ordinamento e filtri.
 abstract final class BudgetExpensesToolbar {
   static const _surface = AmaterasuColors.surfaceRaised;
   static const _border = AmaterasuColors.borderStrong;
@@ -24,6 +28,7 @@ abstract final class BudgetExpensesToolbar {
   static const _orange = AmaterasuColors.accentOrange;
   static const _gold = AmaterasuColors.accentGold;
 
+  // TODO(audit): C7 scelta valuta simile in 3 file: valutare un dialogo condiviso.
   static Future<String?> _pickCurrency(
     BuildContext context,
     String selected,

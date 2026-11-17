@@ -1,3 +1,6 @@
+// Test automatici di advance_total_calculator (trips/budget/calculations).
+// Casi, ad esempio: "multiple advances are summed", "partial advances are allowed".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/advance_total_calculator.dart';

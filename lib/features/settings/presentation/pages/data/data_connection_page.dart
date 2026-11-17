@@ -1,3 +1,6 @@
+// Opzioni di connessione: download automatici, uso dei dati mobili
+// e scaricamento solo con Wi-Fi.
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

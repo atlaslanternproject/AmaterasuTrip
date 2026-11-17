@@ -1,3 +1,6 @@
+// Parte di budget_reimbursements_panel.dart: azioni sui rimborsi
+// (chiusura debito, conferma, metodi di pagamento).
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'budget_reimbursements_panel.dart';
 

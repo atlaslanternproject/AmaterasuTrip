@@ -1,3 +1,5 @@
+// Calcola totale e media dei voti di un'attività.
+
 import '../models/bucket_priority.dart';
 import '../models/bucket_vote_summary.dart';
 

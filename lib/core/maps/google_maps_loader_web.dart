@@ -1,3 +1,6 @@
+// Caricatore di Google Maps per il Web: legge la chiave da
+// --dart-define GOOGLE_MAPS_WEB_API_KEY e avvia lo script JavaScript.
+
 import 'dart:js_interop';
 
 @JS('amaterasuLoadGoogleMaps')

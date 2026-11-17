@@ -1,3 +1,6 @@
+// Dialogo per correggere a mano il tasso di cambio di una spesa
+// (registrato e verificato dal server).
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 

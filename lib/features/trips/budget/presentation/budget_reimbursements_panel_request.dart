@@ -1,3 +1,6 @@
+// Parte di budget_reimbursements_panel.dart: dialogo
+// per richiedere un rimborso.
+
 part of 'budget_reimbursements_panel.dart';
 
 extension _BudgetReimbursementsPanelStateRequest on _BudgetReimbursementsPanelState {

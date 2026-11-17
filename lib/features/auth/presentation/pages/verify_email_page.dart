@@ -1,3 +1,5 @@
+// Pagina che chiede di verificare l'email e controlla quando è verificata.
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';

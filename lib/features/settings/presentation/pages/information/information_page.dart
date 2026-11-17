@@ -1,3 +1,6 @@
+// Pagina Informazioni delle impostazioni: app, supporto, legale,
+// licenze e riconoscimenti.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

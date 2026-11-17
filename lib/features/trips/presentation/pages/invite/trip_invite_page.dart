@@ -1,3 +1,5 @@
+// Pagina di un invito ricevuto: controlla il link e permette di unirsi.
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_functions/cloud_functions.dart';

@@ -1,3 +1,6 @@
+// Pagina Account delle impostazioni: email, password, sicurezza,
+// logout e cancellazione.
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

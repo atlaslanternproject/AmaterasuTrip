@@ -1,3 +1,5 @@
+// Tasso di cambio esatto tra due valute. Usato dai calcoli e dai test.
+
 import '../calculations/currency_minor_units.dart';
 
 /// Exact exchange rate: target major units per source major unit.

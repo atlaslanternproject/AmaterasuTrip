@@ -1,3 +1,5 @@
+// Filtri delle spese condivisi da lista e dashboard (categoria, stato, periodo).
+
 import 'budget_expense_day.dart';
 
 /// Shared filter contract: dashboard and expense list always agree.

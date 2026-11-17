@@ -1,4 +1,6 @@
-﻿class TripDestination {
+// Suggerimento di destinazione restituito dalla ricerca luoghi.
+
+class TripDestination {
   const TripDestination({
     required this.placeId,
     required this.displayName,

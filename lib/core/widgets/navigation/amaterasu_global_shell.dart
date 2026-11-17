@@ -1,3 +1,5 @@
+// Contenitore globale delle pagine principali: contenuto più barra in basso.
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

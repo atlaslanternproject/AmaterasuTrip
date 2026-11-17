@@ -1,3 +1,5 @@
+// Foglio in basso per cercare e scegliere la valuta.
+
 import 'package:flutter/material.dart';
 
 import '../destination/services/destination_places_service.dart';

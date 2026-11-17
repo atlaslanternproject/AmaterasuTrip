@@ -1,3 +1,6 @@
+// Parte di budget_category_dashboard.dart: caricamento dei dati
+// e dei tassi di cambio per i totali.
+
 part of 'budget_category_dashboard.dart';
 
 extension _BudgetCategoryDashboardStateRates on _BudgetCategoryDashboardState {
@@ -10,6 +13,7 @@ extension _BudgetCategoryDashboardStateRates on _BudgetCategoryDashboardState {
   Map<String, dynamic> _map(dynamic raw) =>
       raw is Map ? Map<String, dynamic>.from(raw) : <String, dynamic>{};
 
+  // TODO(audit): C8 _money ripetuto in 3 file con gestione errori diversa: decidere una sola regola.
   String _money(int value, String currency) {
     return BudgetMoneyFormatter.format(value, currency);
   }

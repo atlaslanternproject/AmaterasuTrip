@@ -1,3 +1,6 @@
+// Parte di trip_overview_page.dart: stato del viaggio, card delle azioni
+// e messaggi.
+
 part of 'trip_overview_page.dart';
 
 class _NoOverscrollBehavior extends ScrollBehavior {

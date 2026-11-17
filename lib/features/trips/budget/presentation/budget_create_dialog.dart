@@ -1,3 +1,6 @@
+// Dialogo per creare una spesa: titolo, importo, valuta, data,
+// partecipanti, pagatori, categoria e metodi di pagamento.
+
 import 'package:flutter/material.dart';
 import 'budget_dialog_chrome.dart';
 import 'budget_create_section.dart';
@@ -71,6 +74,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
     super.dispose();
   }
 
+  // TODO(audit): build di ~415 righe: estrarre sezioni in widget dedicati per scendere sotto le 200 righe (stesso aspetto).
   @override
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';

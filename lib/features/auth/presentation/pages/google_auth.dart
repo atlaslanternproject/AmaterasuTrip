@@ -1,3 +1,5 @@
+// Schermata che esegue l'accesso con Google e gestisce gli errori.
+
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

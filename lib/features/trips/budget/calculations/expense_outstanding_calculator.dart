@@ -1,3 +1,6 @@
+// Calcola quanto resta da pagare al fornitore per una spesa.
+// Usato dai test di parità.
+
 import '../models/money_amount.dart';
 import 'advance_total_calculator.dart';
 

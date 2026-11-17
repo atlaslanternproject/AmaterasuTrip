@@ -1,3 +1,5 @@
+// Intestazione con logo e titolo delle schermate di accesso e registrazione.
+
 import 'package:flutter/material.dart';
 
 class AmaterasuHero extends StatelessWidget {

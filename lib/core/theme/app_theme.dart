@@ -1,3 +1,5 @@
+// Tema Material 3 scuro dell'app, costruito dal colore primario.
+
 import 'package:flutter/material.dart';
 import 'amaterasu_colors.dart';
 

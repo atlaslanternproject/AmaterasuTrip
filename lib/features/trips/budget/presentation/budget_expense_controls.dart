@@ -1,3 +1,6 @@
+// Comandi di gestione di una spesa: richiesta di annullamento,
+// decisione e annullamento delle spese personali.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'budget_api.dart';

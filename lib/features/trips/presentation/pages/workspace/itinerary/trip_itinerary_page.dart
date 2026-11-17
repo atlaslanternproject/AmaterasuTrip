@@ -1,3 +1,5 @@
+// Pagina Itinerario del viaggio (segnaposto, da sviluppare).
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/widgets/trip_placeholder_page.dart';

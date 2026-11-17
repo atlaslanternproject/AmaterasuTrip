@@ -1,3 +1,6 @@
+// Card di registrazione: username, email, password e conferma,
+// con i controlli dei campi e i messaggi di errore.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';

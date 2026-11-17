@@ -1,3 +1,6 @@
+// Test automatici di expense_revision_service (trips/budget/services).
+// Casi, ad esempio: "approved revision increments version", "missing approval leaves revision unapplied".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_financial_snapshot.dart';

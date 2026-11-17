@@ -1,3 +1,6 @@
+// Metodi di pagamento dichiarati per una spesa o un rimborso
+// (non avviano pagamenti reali).
+
 /// A declared payment method; it does not trigger a real payment.
 enum BudgetPaymentMethod {
   cash('cash'),

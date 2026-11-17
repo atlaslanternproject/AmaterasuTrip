@@ -1,3 +1,5 @@
+// Pagina per scegliere la lingua dell'app (italiano, inglese, sistema).
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/features/settings/providers/language_provider.dart';

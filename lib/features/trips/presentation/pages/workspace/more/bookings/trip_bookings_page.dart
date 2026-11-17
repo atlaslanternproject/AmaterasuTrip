@@ -1,3 +1,5 @@
+// Pagina Prenotazioni (segnaposto, da sviluppare).
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

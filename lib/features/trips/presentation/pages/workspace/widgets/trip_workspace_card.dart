@@ -1,8 +1,11 @@
+// Card del workspace del viaggio (oggi non usata da nessuna pagina).
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 
+// TODO(audit): C1 widget non usato da nessuna pagina: decidere se eliminarlo o usarlo.
 class TripWorkspaceCard extends StatelessWidget {
   const TripWorkspaceCard({
     super.key,

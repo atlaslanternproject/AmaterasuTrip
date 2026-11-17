@@ -1,3 +1,5 @@
+// Campo di testo nello stile dell'app.
+
 import 'package:flutter/material.dart';
 import '../../theme/amaterasu_colors.dart';
 import '../../theme/amaterasu_radius.dart';

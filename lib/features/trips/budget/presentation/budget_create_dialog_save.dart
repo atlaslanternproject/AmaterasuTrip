@@ -1,3 +1,6 @@
+// Parte di budget_create_dialog.dart: caricamento dei viaggiatori
+// e salvataggio della spesa.
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'budget_create_dialog.dart';
 

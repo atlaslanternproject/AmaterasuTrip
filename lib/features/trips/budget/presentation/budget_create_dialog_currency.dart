@@ -1,7 +1,11 @@
+// Parte di budget_create_dialog.dart: scelta della valuta
+// e nomi dei viaggiatori.
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'budget_create_dialog.dart';
 
 extension _BudgetCreateDialogStateCurrency on _BudgetCreateDialogState {
+  // TODO(audit): C7 scelta valuta simile in 3 file (create, toolbar, budget personale): valutare un dialogo condiviso.
   Future<void> _pickCurrency() async {
     if (_saving) return;
 

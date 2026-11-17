@@ -1,3 +1,6 @@
+// Riepilogo personale dei conti: quanto devi, quanto ti devono
+// e i movimenti tra viaggiatori.
+
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -87,6 +90,7 @@ class _BudgetUserSettlementSummaryState
     super.dispose();
   }
 
+  // TODO(audit): build di ~421 righe: estrarre sezioni in widget dedicati (stesso aspetto).
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;

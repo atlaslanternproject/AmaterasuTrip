@@ -1,3 +1,6 @@
+// Test automatici di bucket_list_item (trips/bucket_list).
+// Casi, ad esempio: "Valid attraction can be created", "Duration can be unspecified".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_item_type.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_list_item.dart';

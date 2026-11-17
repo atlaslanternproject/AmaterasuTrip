@@ -1,3 +1,6 @@
+// Richieste di cancellazione delle attività: creazione, voto e ritiro.
+// Le regole Firestore restano l'ultima parola sui permessi.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

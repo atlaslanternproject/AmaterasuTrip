@@ -1,3 +1,6 @@
+// Dialogo con i dettagli di una spesa: importi, quote, pagatori,
+// stato, cambio, revisioni, rimborsi e storico.
+
 import '../calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

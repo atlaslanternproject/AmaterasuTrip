@@ -1,3 +1,6 @@
+// Parte di budget_reimbursements_panel.dart: nomi dei viaggiatori
+// e calcolo dei debiti da mostrare.
+
 part of 'budget_reimbursements_panel.dart';
 
 extension _BudgetReimbursementsPanelStateData on _BudgetReimbursementsPanelState {

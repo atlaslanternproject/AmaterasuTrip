@@ -1,3 +1,6 @@
+// Test automatici di account_deletion_trip_guard (settings/domain).
+// Casi, ad esempio: "account without trips can continue", "participant with a trip is blocked".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/settings/domain/account_deletion_trip_guard.dart';
 

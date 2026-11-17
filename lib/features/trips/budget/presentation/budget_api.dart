@@ -1,3 +1,6 @@
+// Unico punto in cui le schermate del budget leggono Firestore e chiamano
+// le Cloud Functions; i test lo sostituiscono con una versione finta.
+
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +10,7 @@ import 'budget_currency.dart';
 import '../data/personal_trip_budget_repository.dart';
 import '../models/budget_payment_plan.dart';
 
+// TODO(audit): file di ~455 righe non diviso: i test ne fanno una versione finta che sovrascrive i metodi, quindi niente extension; valutare classi separate per letture e chiamate.
 class BudgetApi {
   BudgetApi(this.tripId);
 

@@ -1,3 +1,5 @@
+// Modello di un'attività della bucket list, con i controlli sui limiti dei campi.
+
 import 'bucket_item_type.dart';
 
 class BucketListItem {

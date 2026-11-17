@@ -1,3 +1,5 @@
+// Pagina Profilo: mostra e modifica nome, cognome, bio, username e foto.
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/media/web_media_consent_dialog.dart';

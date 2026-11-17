@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: contenuto della pagina
+// (filtri, ricerca, elenco delle attività).
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'trip_bucket_list_page.dart';
 
@@ -555,6 +558,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                           if (_error != null)
                             Text(
                               _t(
+                                // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
                                 'Errore nel caricamento. Riprova.',
                                 'Load failed. Please retry.',
                               ),

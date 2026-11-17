@@ -1,3 +1,6 @@
+// Parte di budget_reimbursements_panel.dart: dialogo che chiede
+// il motivo della chiusura di un debito.
+
 part of 'budget_reimbursements_panel.dart';
 
 /// B8.6: asks the creditor for the reason of a debt closure.

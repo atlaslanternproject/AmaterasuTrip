@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: card di un'attività
+// con voti, dettagli e azioni.
+
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketActivityCard on _TripBucketListPageState {

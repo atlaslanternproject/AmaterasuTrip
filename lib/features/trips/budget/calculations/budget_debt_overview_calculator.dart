@@ -1,3 +1,6 @@
+// Riepilogo dei debiti tra viaggiatori, spesa per spesa,
+// tenendo conto dei rimborsi confermati.
+
 import '../models/expense_debt.dart';
 import '../models/expense_financial_snapshot.dart';
 import '../models/expense_reimbursement.dart';

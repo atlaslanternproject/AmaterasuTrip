@@ -1,3 +1,6 @@
+// Parte di budget_revision_panel.dart: lettura degli importi
+// e chiamate al server per proporre e decidere.
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'budget_revision_panel.dart';
 

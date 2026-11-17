@@ -1,3 +1,6 @@
+// Pagina Privacy delle impostazioni: consensi, permessi, esportazione
+// e informativa.
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -41,6 +41,9 @@ export {
   deleteTrip,
 } from "./trip-management/delete-trip";
 
+// TODO(audit): C4 funzione esportata ma mai chiamata dall'app.
+// La pulizia lato server della cancellazione account
+// (src/account-deletion) non è collegata: completarla o toglierla.
 export {inspectAccountDeletionTrips} from
   "./account-deletion/inspect-account-deletion-trips";
 

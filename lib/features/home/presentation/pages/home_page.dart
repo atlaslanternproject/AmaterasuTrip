@@ -1,3 +1,6 @@
+// Pagina Home: per ora mostra i dati dell'utente collegato
+// (nome, email) e un logout di prova.
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

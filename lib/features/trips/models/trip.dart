@@ -1,3 +1,5 @@
+// Modello del viaggio: nome, destinazione, date, valuta, stato e membri.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart';

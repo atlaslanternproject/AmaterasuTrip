@@ -1,3 +1,6 @@
+// Foto del luogo di un'attività, caricata da Google Places
+// quando il widget appare, con l'autore della foto.
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

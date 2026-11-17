@@ -1,3 +1,6 @@
+// Lista delle operazioni di una spesa o dell'intero viaggio,
+// letta dalla Cloud Function listBudgetHistory.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
@@ -52,6 +55,7 @@ class _BudgetHistoryListState extends State<BudgetHistoryList> {
     return (BudgetHistoryData.fromResponse(response), live);
   }();
 
+  // TODO(audit): C8 _money ripetuto in 3 file con gestione errori diversa: decidere una sola regola.
   String _money(BudgetHistoryEvent event) {
     final minor = event.minorUnits;
     final currency = event.currency;

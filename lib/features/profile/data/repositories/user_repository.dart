@@ -1,3 +1,6 @@
+// Lettura e scrittura del profilo utente (collezione viaggiatori)
+// e dell'indice degli username su Firestore.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

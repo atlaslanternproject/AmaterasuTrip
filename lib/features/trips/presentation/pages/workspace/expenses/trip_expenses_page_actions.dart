@@ -1,3 +1,6 @@
+// Parte di trip_expenses_page.dart: azioni della pagina
+// (aggiornamento, valuta, filtri, nuova spesa).
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'trip_expenses_page.dart';
 

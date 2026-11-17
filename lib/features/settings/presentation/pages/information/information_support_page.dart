@@ -1,3 +1,5 @@
+// Supporto: segnalazione di problemi via email con i dati dell'app.
+
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';

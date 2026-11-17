@@ -1,3 +1,5 @@
+// Sezione per l'esportazione dei propri dati.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

@@ -1,3 +1,5 @@
+// Pagina di scelta della destinazione: ricerca e mappa del mondo.
+
 import 'dart:async';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

@@ -1,3 +1,5 @@
+// Riga di un viaggiatore con avatar e selezione, usata nei dialoghi del budget.
+
 import 'package:flutter/material.dart';
 
 import 'budget_traveler_avatar.dart';

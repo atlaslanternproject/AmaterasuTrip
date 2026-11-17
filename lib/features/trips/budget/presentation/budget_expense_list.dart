@@ -1,3 +1,5 @@
+// Lista delle spese raggruppate per giorno, con stato, categoria e importi.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +33,7 @@ class BudgetExpenseList extends StatelessWidget {
   static const _muted = AmaterasuColors.textSecondary;
   static const _gold = AmaterasuColors.accentGold;
 
+  // TODO(audit): build di ~222 righe: valutare l'estrazione della riga spesa in un widget.
   @override
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';

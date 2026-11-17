@@ -1,3 +1,6 @@
+// Test automatici di bucket_voting_roster (trips/bucket_list).
+// Casi, ad esempio: "Owner is included even when not in member list", "Repeated members are counted only once".
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_priority.dart';

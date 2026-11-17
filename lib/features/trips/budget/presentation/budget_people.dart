@@ -1,3 +1,6 @@
+// Nomi dei viaggiatori nei dati finanziari, anche per chi ha lasciato
+// il viaggio (nome attuale, poi nome registrato, poi segnaposto).
+
 /// B8.6: traveler names in financial records.
 ///
 /// Order: current trip member name, then the name recorded inside the

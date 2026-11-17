@@ -1,3 +1,5 @@
+// Modifica del proprio profilo organizzativo nel viaggio.
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,6 +40,7 @@ class _TripTravellerProfileEditPageState
 
   bool get _complete => _internet != null && _checked != null && _cabin != null;
 
+  // TODO(audit): L5 19 testi italiano/inglese scritti nel codice: spostarli in lib/l10n.
   String _t(String italian, String english) {
     final language = Localizations.localeOf(context).languageCode;
     return language == 'it' ? italian : english;

@@ -1,3 +1,6 @@
+// Sezione Password dell'account: cambio password e recupero,
+// o avviso se l'account usa solo Google.
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -121,6 +124,7 @@ class _AccountPasswordPageState extends State<AccountPasswordPage> {
     }
   }
 
+  // TODO(audit): C9 _showMessage (SnackBar) ripetuto in 6 file: valutare una funzione condivisa.
   void _showMessage(String message) {
     if (!mounted) {
       return;

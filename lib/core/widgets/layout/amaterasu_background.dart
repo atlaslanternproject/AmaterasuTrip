@@ -1,3 +1,5 @@
+// Sfondo sfumato scuro usato dalle schermate principali.
+
 import 'package:flutter/material.dart';
 import '../../theme/amaterasu_colors.dart';
 

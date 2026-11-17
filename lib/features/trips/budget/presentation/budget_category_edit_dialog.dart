@@ -1,3 +1,5 @@
+// Dialogo per cambiare la categoria di una spesa.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 

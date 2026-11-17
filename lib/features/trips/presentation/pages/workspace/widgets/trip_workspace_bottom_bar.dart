@@ -1,3 +1,5 @@
+// Barra di navigazione in basso del workspace del viaggio.
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

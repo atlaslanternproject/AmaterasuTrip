@@ -1,3 +1,5 @@
+// Scelta e anteprima della copertina del viaggio.
+
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -160,6 +162,7 @@ class _TripCoverLocalImageState extends State<_TripCoverLocalImage> {
   }
 }
 
+// TODO(audit): C10 copertina di riserva simile in 3 file: unificare solo se l'aspetto resta identico.
 class _TripCoverFallback extends StatelessWidget {
   const _TripCoverFallback();
 

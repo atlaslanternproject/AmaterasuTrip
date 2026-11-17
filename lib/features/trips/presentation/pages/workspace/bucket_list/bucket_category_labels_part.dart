@@ -1,3 +1,5 @@
+// Parte di trip_bucket_list_page.dart: nomi delle categorie di attività.
+
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketCategoryLabels on _TripBucketListPageState {

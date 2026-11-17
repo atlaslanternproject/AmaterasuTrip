@@ -1,3 +1,6 @@
+// Foglio in basso per scegliere la foto del profilo
+// (galleria, fotocamera o rimozione).
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

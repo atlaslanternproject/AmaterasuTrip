@@ -1,3 +1,6 @@
+// Funzioni comuni per il caricamento di immagini:
+// estensione normalizzata e tipo di contenuto (content type).
+
 String normalizedImageExtension(String fileNameOrPath) {
   final value = fileNameOrPath.trim();
 

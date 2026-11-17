@@ -1,3 +1,6 @@
+// Conversione degli importi (MoneyAmount) da e verso i dati Firestore.
+// Usato dai test.
+
 import '../../models/money_amount.dart';
 
 /// Explicit Firestore-compatible representation of MoneyAmount.

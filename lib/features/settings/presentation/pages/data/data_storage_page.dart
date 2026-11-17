@@ -1,3 +1,5 @@
+// Spazio occupato e dati disponibili offline (gestione e pulizia).
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

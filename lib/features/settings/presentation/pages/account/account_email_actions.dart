@@ -1,3 +1,6 @@
+// Parte di account_email_page.dart: azioni sull'email
+// (verifica, cambio email, controllo della conferma).
+
 part of 'account_email_page.dart';
 
 mixin _AccountEmailActions on ConsumerState<AccountEmailPage> {

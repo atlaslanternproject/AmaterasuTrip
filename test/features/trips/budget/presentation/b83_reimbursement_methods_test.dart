@@ -1,3 +1,6 @@
+// Test automatici di b83_reimbursement_methods (trips/budget/presentation).
+// Casi, ad esempio: "B8.3 multiple reimbursement methods", "B8.3 invalid payment allocation".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/budget_payment_allocation.dart';
 

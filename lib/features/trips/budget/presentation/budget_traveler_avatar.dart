@@ -1,3 +1,5 @@
+// Avatar del viaggiatore nel budget (foto o iniziale come nel resto dell'app).
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 

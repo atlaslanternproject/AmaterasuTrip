@@ -1,3 +1,6 @@
+// Test automatici di currency_converter (trips/budget/calculations).
+// Casi, ad esempio: "EUR converts to JPY", "JPY converts to EUR with rounding".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/models/currency_exchange_rate.dart';

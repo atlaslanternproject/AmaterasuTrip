@@ -1,3 +1,6 @@
+// Contenitore fisso di tutte le pagine di un viaggio:
+// contenuto più barra di navigazione del workspace.
+
 import 'package:flutter/material.dart';
 
 import 'trip_workspace_bottom_bar.dart';

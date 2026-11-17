@@ -1,3 +1,6 @@
+// Parte di budget_expense_details_dialog.dart: etichette
+// di categoria e stato e righe degli importi.
+
 part of 'budget_expense_details_dialog.dart';
 
 extension _BudgetExpenseDetailsDialogLabels on BudgetExpenseDetailsDialog {

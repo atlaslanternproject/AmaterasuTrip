@@ -1,3 +1,6 @@
+// Spiega i permessi del dispositivo (posizione, foto, notifiche)
+// e a cosa servono.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

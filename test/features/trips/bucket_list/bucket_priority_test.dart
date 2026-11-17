@@ -1,3 +1,6 @@
+// Test automatici di bucket_priority (trips/bucket_list).
+// Casi, ad esempio: "Priority values match the Excel system", "Four SS votes produce total 40 and average 10".
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_priority.dart';

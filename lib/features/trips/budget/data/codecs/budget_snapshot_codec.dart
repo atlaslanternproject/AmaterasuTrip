@@ -1,3 +1,6 @@
+// Conversione della fotografia finanziaria di una spesa da e verso Firestore.
+// Usato dai test.
+
 import '../../models/expense_financial_snapshot.dart';
 import '../../models/expense_payment_status.dart';
 import '../../models/money_amount.dart';

@@ -1,3 +1,6 @@
+// Test automatici di budget_expense_day (trips/budget/presentation).
+// Casi, ad esempio: "uses expenseDate as a local calendar day", "expenseDate wins over createdAt".
+
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_day.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';

@@ -1,3 +1,6 @@
+// Test automatici di budget_money_codec (trips/budget/data/codecs).
+// Casi, ad esempio: "money round-trip preserves exact cents", "JPY round-trip preserves integer amount".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/data/codecs/budget_money_codec.dart';

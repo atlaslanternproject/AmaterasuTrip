@@ -1,3 +1,6 @@
+// Test automatici di trip_date_formatter (trips/presentation).
+// Casi, ad esempio: "Trip date formatter", "Italian date always includes its year".
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';

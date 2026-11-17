@@ -1,3 +1,5 @@
+// Card di un risultato della ricerca destinazioni.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';

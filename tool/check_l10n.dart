@@ -1,3 +1,6 @@
+// Controlla che i file di traduzione (lib/l10n/app_*.arb) abbiano
+// tutti le stesse chiavi dell'italiano. Uso: dart run tool/check_l10n.dart
+
 // ignore_for_file: avoid_print
 import 'dart:convert';
 import 'dart:io';

@@ -1,3 +1,6 @@
+// Conversione dei tassi di cambio esatti da e verso testo decimale.
+// Usato dai test.
+
 import '../../models/currency_exchange_rate.dart';
 
 /// Serializes exact rational rates using decimal strings.

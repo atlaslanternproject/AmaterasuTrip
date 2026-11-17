@@ -1,3 +1,6 @@
+// Parte di personal_trip_budget_card.dart: dialogo per impostare
+// o rimuovere il budget personale.
+
 part of 'personal_trip_budget_card.dart';
 
 extension _PersonalTripBudgetCardStateEdit on _PersonalTripBudgetCardState {

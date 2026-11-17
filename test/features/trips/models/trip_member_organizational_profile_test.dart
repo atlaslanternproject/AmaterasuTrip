@@ -1,3 +1,6 @@
+// Test automatici di trip_member_organizational_profile (trips/models).
+// Casi, ad esempio: "un membro riceve le tre risposte organizzative", "un membro senza risposte mantiene il proprio ruolo".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/models/trip_member.dart';
 

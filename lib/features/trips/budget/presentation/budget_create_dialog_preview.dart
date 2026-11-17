@@ -1,3 +1,6 @@
+// Parte di budget_create_dialog.dart: anteprima delle quote
+// e conferma della spesa prima del salvataggio.
+
 part of 'budget_create_dialog.dart';
 
 extension _BudgetCreateDialogStatePreview on _BudgetCreateDialogState {

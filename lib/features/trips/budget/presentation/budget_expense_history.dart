@@ -1,3 +1,5 @@
+// Storico delle operazioni di una spesa nel dialogo dei dettagli.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';

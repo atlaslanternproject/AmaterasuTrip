@@ -1,3 +1,6 @@
+// Test automatici di budget_l10n_keys (trips/budget/presentation).
+// Casi, ad esempio: "budget texts exist in both languages and are not empty", "placeholders are the same in both languages".
+
 import 'dart:convert';
 import 'dart:io';
 

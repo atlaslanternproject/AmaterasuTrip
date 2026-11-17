@@ -1,3 +1,5 @@
+// Mappa del mondo per la destinazione, con gesti a due dita e bottoni.
+
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';

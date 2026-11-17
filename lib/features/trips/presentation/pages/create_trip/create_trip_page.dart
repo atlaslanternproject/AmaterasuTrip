@@ -1,3 +1,6 @@
+// Pagina di creazione del viaggio: nome, destinazione, date, valuta,
+// copertina e archivio.
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/media/web_media_consent_dialog.dart';
@@ -392,6 +395,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
     }
   }
 
+  // TODO(audit): C9 _showMessage (SnackBar) ripetuto in 6 file: valutare una funzione condivisa.
   void _showMessage(String message) {
     if (!mounted) {
       return;

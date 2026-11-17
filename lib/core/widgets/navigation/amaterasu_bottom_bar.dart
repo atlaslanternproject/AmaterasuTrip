@@ -1,3 +1,5 @@
+// Barra di navigazione in basso dell'app (Home, Viaggi, Impostazioni).
+
 import 'package:flutter/material.dart';
 import '../../../l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';

@@ -1,3 +1,6 @@
+// Card del budget personale privato: importo, valuta, speso
+// e disponibile.
+
 import 'budget_expense_day.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -76,6 +79,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
     }
   }
 
+  // TODO(audit): build di ~213 righe: valutare l'estrazione delle sezioni in widget.
   @override
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';

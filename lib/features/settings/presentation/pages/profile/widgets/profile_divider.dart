@@ -1,3 +1,5 @@
+// Separatore usato nelle card del profilo.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 

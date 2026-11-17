@@ -1,3 +1,6 @@
+// Parte di budget_expense_list.dart: etichette e icone
+// di categoria e stato.
+
 part of 'budget_expense_list.dart';
 
 extension _BudgetExpenseListLabels on BudgetExpenseList {

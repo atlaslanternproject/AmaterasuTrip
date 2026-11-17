@@ -1,3 +1,6 @@
+// Controlla che le quote personalizzate di una spesa tornino col totale.
+// Usato dai test di parità.
+
 import '../models/money_amount.dart';
 
 abstract final class CustomSplitValidator {

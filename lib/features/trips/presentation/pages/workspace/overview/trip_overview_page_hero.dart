@@ -1,3 +1,6 @@
+// Parte di trip_overview_page.dart: grande intestazione con copertina,
+// titolo e date.
+
 part of 'trip_overview_page.dart';
 
 class _TripHero extends StatelessWidget {

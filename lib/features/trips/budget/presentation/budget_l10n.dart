@@ -1,3 +1,6 @@
+// Testi del budget nella lingua scelta dal flag `it` delle schermate.
+// Modulo condiviso: prima la stessa funzione era copiata in 13 file.
+
 import 'package:flutter/widgets.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

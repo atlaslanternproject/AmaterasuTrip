@@ -1,3 +1,5 @@
+// Pagina "Altro" del workspace: accesso alle sezioni secondarie del viaggio.
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

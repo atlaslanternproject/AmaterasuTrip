@@ -1,3 +1,6 @@
+// Informazioni sul recupero dell'account (funzione in sviluppo),
+// mostrate dentro la card Account.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

@@ -1,3 +1,5 @@
+// Revisione numerata e immutabile di una spesa. Usato dai test.
+
 import 'expense_financial_snapshot.dart';
 
 /// An immutable snapshot of a numbered financial revision.

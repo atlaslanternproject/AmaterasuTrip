@@ -1,3 +1,5 @@
+// Parte di account_email_page.dart: piccoli widget della sezione email.
+
 part of 'account_email_page.dart';
 
 class _AccountSubItem extends StatelessWidget {

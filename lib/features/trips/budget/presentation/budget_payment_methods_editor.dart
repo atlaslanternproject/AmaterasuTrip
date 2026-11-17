@@ -1,3 +1,6 @@
+// Editor dei metodi di pagamento di una spesa o di un rimborso
+// (contanti, carta, bonifico, altro).
+
 import 'package:flutter/material.dart';
 
 import '../models/budget_payment_allocation.dart';

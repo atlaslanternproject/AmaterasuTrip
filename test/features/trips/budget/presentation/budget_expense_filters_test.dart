@@ -1,3 +1,6 @@
+// Test automatici di budget_expense_filters (trips/budget/presentation).
+// Casi, ad esempio: "category and status filters work together", "cancelled expenses never enter list or charts".
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_filters.dart';

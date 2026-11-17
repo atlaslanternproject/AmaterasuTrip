@@ -1,3 +1,6 @@
+// Parte di budget_history_view.dart: dialogo con lo storico
+// di tutto il viaggio.
+
 part of 'budget_history_view.dart';
 
 /// Trip-wide history (B8.6), opened from the expenses page.

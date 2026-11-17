@@ -1,3 +1,6 @@
+// Avvio dell'app: inizializza Firebase (o gli emulatori nella variante
+// di test locale), App Check, Google Maps e lancia l'app.
+
 import 'package:flutter/foundation.dart'
     show kDebugMode, kIsWeb, defaultTargetPlatform;
 import 'package:flutter/material.dart';

@@ -1,3 +1,5 @@
+// Salva sul dispositivo la scelta "ricordami" del login.
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RememberMeStorage {

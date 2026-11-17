@@ -1,3 +1,6 @@
+// Impostazioni del viaggio - Informazioni: nome, destinazione, date,
+// valuta e copertina.
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/features/trips/presentation/utils/trip_date_formatter.dart';
@@ -949,6 +952,7 @@ class _TripInformationSettingsPageState
     }
   }
 
+  // TODO(audit): C9 _showMessage (SnackBar) ripetuto in 6 file: valutare una funzione condivisa.
   void _showMessage(String message) {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()

@@ -1,3 +1,6 @@
+// Mostra un importo nella valuta scelta per la visualizzazione,
+// senza mai modificare la spesa originale.
+
 import 'budget_expense_day.dart';
 import 'package:flutter/material.dart';
 
@@ -88,6 +91,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
     }
   }
 
+  // TODO(audit): C8 _money ripetuto in 3 file con gestione errori diversa: decidere una sola regola.
   String _money(int minor, String currency) {
     try {
       return BudgetMoneyFormatter.format(minor, currency);

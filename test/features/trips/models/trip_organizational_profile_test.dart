@@ -1,3 +1,6 @@
+// Test automatici di trip_organizational_profile (trips/models).
+// Casi, ad esempio: "TripOrganizationalProfile", "completo con tre risposte organizzative".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/models/trip_organizational_profile.dart';
 

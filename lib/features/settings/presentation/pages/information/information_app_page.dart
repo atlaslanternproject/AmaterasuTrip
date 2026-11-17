@@ -1,3 +1,5 @@
+// Informazioni sull'app: versione e build.
+
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'information_licenses_page.dart';

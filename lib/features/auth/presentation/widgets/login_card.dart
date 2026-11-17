@@ -1,3 +1,6 @@
+// Card del login: email o username, password, "ricordami",
+// recupero password e accesso con Google/Discord.
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -197,6 +200,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 if (!mounted) return;
 
                 ScaffoldMessenger.of(this.context).showSnackBar(
+                  // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
                   SnackBar(content: Text('Errore Google: ${e.code}')),
                 );
               } catch (e) {
@@ -206,6 +210,7 @@ class _LoginCardState extends ConsumerState<LoginCard> {
 
                 ScaffoldMessenger.of(this.context).showSnackBar(
                   const SnackBar(
+                    // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
                     content: Text('Impossibile accedere con Google.'),
                   ),
                 );

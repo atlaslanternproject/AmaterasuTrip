@@ -1,3 +1,6 @@
+// Ricorda la pagina dell'invito da cui l'utente è partito,
+// per riportarcelo dopo login o registrazione.
+
 class InviteAuthReturn {
   const InviteAuthReturn._();
 

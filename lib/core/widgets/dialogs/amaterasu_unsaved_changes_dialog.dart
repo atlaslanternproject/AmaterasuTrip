@@ -1,3 +1,6 @@
+// Dialogo comune "modifiche non salvate": chiede se salvare,
+// scartare o restare sulla pagina.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

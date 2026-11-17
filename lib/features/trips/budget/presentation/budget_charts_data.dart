@@ -1,3 +1,5 @@
+// Parte di budget_charts.dart: dati dell'andamento delle spese nel tempo.
+
 part of 'budget_charts.dart';
 
 /// One bar of the trend chart.

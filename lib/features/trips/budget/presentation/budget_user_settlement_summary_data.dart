@@ -1,3 +1,6 @@
+// Parte di budget_user_settlement_summary.dart: ascolto dei dati
+// e calcolo dei debiti da mostrare.
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'budget_user_settlement_summary.dart';
 

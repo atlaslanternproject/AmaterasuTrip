@@ -1,3 +1,6 @@
+// Test automatici di trip_access_policy (trips/domain/access).
+// Casi, ad esempio: "OWNER can delete a trip", "TRAVELER cannot delete a trip".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
 

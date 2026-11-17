@@ -1,3 +1,6 @@
+// Test automatici di expense_debt_isolation (trips/budget/calculations).
+// Casi, ad esempio: "opposite debts from different expenses stay separate".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_financial_snapshot.dart';

@@ -1,3 +1,5 @@
+// Archivio cloud collegato al viaggio (fornitore e cartella).
+
 enum TripCloudProvider { googleDrive, oneDrive, dropbox }
 
 class TripCloudArchive {

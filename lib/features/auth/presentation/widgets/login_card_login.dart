@@ -1,3 +1,6 @@
+// Parte di login_card.dart: azione di login e traduzione
+// dei codici di errore in messaggi per l'utente.
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'login_card.dart';
 

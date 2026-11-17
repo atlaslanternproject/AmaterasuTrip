@@ -1,3 +1,6 @@
+// Pannello delle revisioni di una spesa: proposte di modifica
+// e approvazione da parte dei viaggiatori.
+
 import 'budget_money_input.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

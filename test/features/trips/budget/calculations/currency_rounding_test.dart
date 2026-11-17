@@ -1,3 +1,6 @@
+// Test automatici di currency_rounding (trips/budget/calculations).
+// Casi, ad esempio: "half rounds away from zero", "exact division remains exact".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/currency_rounding.dart';
 

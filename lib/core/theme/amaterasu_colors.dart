@@ -1,3 +1,7 @@
+// Colori dell'app: colori del tema e tavolozza delle schermate
+// (testi crema, superfici brune, bordi e accenti arancio).
+// Usare questi token invece di scrivere i colori a mano.
+
 import 'package:flutter/material.dart';
 
 class AmaterasuColors {

@@ -1,7 +1,10 @@
+// Intestazione del workspace del viaggio (oggi non usata da nessuna pagina).
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
+// TODO(audit): C1 widget non usato da nessuna pagina: decidere se eliminarlo o usarlo.
 class TripWorkspaceHeader extends StatelessWidget {
   const TripWorkspaceHeader({
     super.key,

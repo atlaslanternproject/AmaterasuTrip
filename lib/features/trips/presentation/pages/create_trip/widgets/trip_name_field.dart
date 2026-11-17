@@ -1,3 +1,5 @@
+// Campo del nome del viaggio.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 

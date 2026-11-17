@@ -1,3 +1,6 @@
+// Test automatici di bucket_activity_limits (trips/bucket_list).
+// Casi, ad esempio: "Valid activity passes all limits", "Name accepts exactly 200 characters".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_item_type.dart';
 import 'package:amaterasutrip/features/trips/bucket_list/models/bucket_list_item.dart';

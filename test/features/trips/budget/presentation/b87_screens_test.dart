@@ -1,3 +1,6 @@
+// Test automatici di b87_screens (trips/budget/presentation).
+// Casi, ad esempio: "old expense format: calculations", "day falls back to createdAt".
+
 import 'package:amaterasutrip/features/trips/budget/calculations/budget_snapshot_debts.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/personal_budget_spending_calculator.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_dashboard.dart';

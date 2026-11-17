@@ -1,3 +1,5 @@
+// Sceglie la foto del profilo da galleria o fotocamera.
+
 import 'package:image_picker/image_picker.dart';
 
 class ProfilePhotoPickerService {

@@ -1,3 +1,5 @@
+// Card di base dell'app: sfondo semitrasparente, bordo e angoli arrotondati.
+
 import 'package:flutter/material.dart';
 import '../../theme/amaterasu_colors.dart';
 import '../../theme/amaterasu_radius.dart';

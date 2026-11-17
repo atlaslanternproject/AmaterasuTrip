@@ -1,3 +1,6 @@
+// Test automatici di expense_revision_approval_policy (trips/budget/policies).
+// Casi, ad esempio: "all affected travelers must approve", "missing approval blocks revision".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_financial_snapshot.dart';

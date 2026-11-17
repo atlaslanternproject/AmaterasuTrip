@@ -1,3 +1,6 @@
+// Regola di approvazione delle revisioni: servono i sì di tutti gli interessati.
+// Usato dai test.
+
 import '../models/expense_revision.dart';
 import '../models/expense_revision_proposal.dart';
 import '../models/expense_revision_approval.dart';

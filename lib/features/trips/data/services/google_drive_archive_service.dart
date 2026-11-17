@@ -1,3 +1,6 @@
+// Archivio del viaggio su Google Drive: cartelle, creazione
+// e controllo dell'accesso.
+
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'drive_web_authorization.dart' as web_auth;

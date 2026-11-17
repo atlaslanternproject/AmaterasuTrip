@@ -1,3 +1,5 @@
+// Stile comune dei dialoghi del budget (sfondo, bordi, titoli).
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';

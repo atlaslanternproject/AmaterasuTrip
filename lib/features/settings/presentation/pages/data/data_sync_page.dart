@@ -1,3 +1,6 @@
+// Pagina Dati e sincronizzazione: sezioni connessione, spazio
+// e sincronizzazione.
+
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';

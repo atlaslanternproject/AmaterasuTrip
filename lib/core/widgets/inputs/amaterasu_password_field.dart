@@ -1,3 +1,5 @@
+// Campo password nello stile dell'app, con il bottone per mostrare/nascondere.
+
 import 'package:flutter/material.dart';
 import '../../theme/amaterasu_colors.dart';
 import '../../theme/amaterasu_radius.dart';

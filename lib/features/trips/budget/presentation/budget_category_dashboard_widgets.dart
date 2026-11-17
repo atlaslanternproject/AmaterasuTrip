@@ -1,3 +1,6 @@
+// Parte di budget_category_dashboard.dart: piccoli widget
+// (schede e indicatori) della dashboard.
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'budget_category_dashboard.dart';
 

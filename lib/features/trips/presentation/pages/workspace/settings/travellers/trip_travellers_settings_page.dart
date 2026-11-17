@@ -1,3 +1,6 @@
+// Impostazioni del viaggio - Viaggiatori: elenco, inviti, profili
+// e rimozione.
+
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -399,6 +402,7 @@ class _TripTravellersSettingsPageState
     }
   }
 
+  // TODO(audit): C9 _showMessage (SnackBar) ripetuto in 6 file: valutare una funzione condivisa.
   void _showMessage(String message) {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
@@ -527,6 +531,7 @@ class _TripTravellersSettingsPageState
   }
 }
 
+// TODO(audit): C10 _Header simile nelle pagine impostazioni viaggio: valutare un widget condiviso.
 class _Header extends StatelessWidget {
   const _Header({
     required this.title,

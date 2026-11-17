@@ -1,3 +1,5 @@
+// Parte di budget_charts.dart: grafico a barre dell'andamento delle spese.
+
 part of 'budget_charts.dart';
 
 /// Bar chart of the spending over time.

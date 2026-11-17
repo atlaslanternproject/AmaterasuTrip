@@ -1,3 +1,6 @@
+// Parte di trip_bucket_list_page.dart: editor per creare
+// o modificare un'attività (con ricerca luoghi e controllo doppioni).
+
 part of 'trip_bucket_list_page.dart';
 
 extension _BucketActivityEditor on _TripBucketListPageState {

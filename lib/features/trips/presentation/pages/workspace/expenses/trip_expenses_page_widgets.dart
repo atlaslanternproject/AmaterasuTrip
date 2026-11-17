@@ -1,3 +1,5 @@
+// Parte di trip_expenses_page.dart: intestazioni di sezione e schede.
+
 part of 'trip_expenses_page.dart';
 
 extension _TripExpensesPageStateWidgets on _TripExpensesPageState {

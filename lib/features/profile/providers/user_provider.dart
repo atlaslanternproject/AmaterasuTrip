@@ -1,3 +1,5 @@
+// Provider Riverpod del profilo utente e dei servizi per la foto del profilo.
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/services/profile_photo_storage_service.dart';

@@ -1,3 +1,5 @@
+// Scelta della categoria di una spesa, con creazione di una nuova categoria.
+
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 

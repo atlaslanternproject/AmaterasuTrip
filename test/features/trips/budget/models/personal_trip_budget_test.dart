@@ -1,3 +1,6 @@
+// Test automatici di personal_trip_budget (trips/budget/models).
+// Casi, ad esempio: "valid personal budget", "exceeding budget never blocks calculations".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/personal_trip_budget.dart';
 

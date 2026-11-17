@@ -1,3 +1,6 @@
+// Test automatici di expense_debt_calculator (trips/budget/calculations).
+// Casi, ad esempio: "one payer, three beneficiaries", "multiple payers allocate only net creditor balances".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/models/money_amount.dart';
 import 'package:amaterasutrip/features/trips/budget/models/expense_financial_snapshot.dart';

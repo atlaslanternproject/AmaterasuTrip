@@ -1,3 +1,6 @@
+// Autorizzazione Google Drive sul Web: legge il client ID
+// da --dart-define GOOGLE_DRIVE_WEB_CLIENT_ID.
+
 import 'dart:js_interop';
 
 @JS('amaterasuDriveAuthorize')

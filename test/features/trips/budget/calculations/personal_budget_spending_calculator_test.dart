@@ -1,3 +1,6 @@
+// Test automatici di personal_budget_spending_calculator (trips/budget/calculations).
+// Casi, ad esempio: "shared paid counts only own share", "shared outstanding counts own share".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/personal_budget_spending_calculator.dart';
 

@@ -1,3 +1,6 @@
+// Sezione Email delle impostazioni account: email attuale,
+// stato di verifica e cambio email.
+
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

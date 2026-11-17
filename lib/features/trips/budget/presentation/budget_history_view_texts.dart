@@ -1,3 +1,6 @@
+// Parte di budget_history_view.dart: frase e icona di ogni operazione,
+// con i nomi al posto degli identificativi.
+
 part of 'budget_history_view.dart';
 
 /// Sentence describing one operation, with names instead of internal IDs.

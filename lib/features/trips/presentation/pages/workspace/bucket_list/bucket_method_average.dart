@@ -1,3 +1,5 @@
+// Parte di trip_bucket_list_page.dart: media dei voti di un'attività.
+
 // ignore_for_file: invalid_use_of_protected_member
 part of 'trip_bucket_list_page.dart';
 

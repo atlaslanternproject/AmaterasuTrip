@@ -1,3 +1,6 @@
+// Test automatici di budget_expense_split_preview (trips/budget/calculations).
+// Casi, ad esempio: "equal shares preserve every minor unit", "zero custom share is allowed".
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/budget_expense_split_preview.dart';
 

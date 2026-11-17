@@ -1,3 +1,5 @@
+// Sceglie la copertina del viaggio da galleria o fotocamera.
+
 import 'package:image_picker/image_picker.dart';
 
 class TripCoverPickerService {

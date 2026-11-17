@@ -1,3 +1,5 @@
+// Pagina di conferma dopo la creazione del viaggio, con invito e apertura.
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
