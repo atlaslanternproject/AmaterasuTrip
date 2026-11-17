@@ -10,6 +10,23 @@ Report in sola lettura: nessun file del progetto è stato modificato per scriver
 
 Base di partenza (Fase 0): analisi 0 avvisi · 384 test Flutter · controllo traduzioni OK · lint e build functions OK · 38 test node · 3 test emulatore budget OK. Dettagli in [PROGRESS.md](PROGRESS.md).
 
+## Avanzamento delle correzioni
+
+| Voce | Stato | Commit |
+|---|---|---|
+| B1 import minuscoli | risolta | dbaeed3 |
+| B2 fine riga (.gitattributes) | risolta | dbaeed3 |
+| B3 rules-tests/node_modules fuori da git | risolta | dbaeed3 |
+| B4 .gitignore | risolta | dbaeed3 |
+| B11 cartella vuota notifications | risolta | dbaeed3 (cartella non tracciata, cancellata) |
+| C1 file morti sicuri (probe E2EE, external_locale, budget_overview, bucket_vote, roster provider) | risolta | 4f90d19 |
+| C1 TripWorkspaceHeader/Card, browser cartelle Drive | non toccata (non autorizzata) | — |
+| C2 resti notifiche e permessi (+ test relativo) | risolta | 4f90d19 |
+| C5 test macro3b | risolta | 4f90d19 |
+| S2/B5 configurazioni bucket-list vecchie | risolta (nessuno script o test le usava) | 4f90d19 |
+| S5 log con email/UID solo in debug | risolta (40 righe) | 316fe08 |
+| B8 APK, backup e log spostati in `../AmaterasuTrip-archivio` | risolta (file ignorati da git, nessun commit). `desktop.ini` lasciato: è il file di Windows per l'icona della cartella | — |
+
 ---
 
 ## 1. Sicurezza

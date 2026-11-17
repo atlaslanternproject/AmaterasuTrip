@@ -19,23 +19,26 @@ Controlli: `bash tool/check_all.sh` (Git Bash, dalla cartella principale).
 | emulatore: privacy budget | PASSED (24 verifiche) |
 | emulatore: integrazione budget | PASSED (55 verifiche) |
 
-Escluso dallo script: `functions/test/macro3b-client-wiring.test.cjs`
-(5 test su 5 falliscono già su main: controlla la cifratura E2EE rimossa).
+`functions/test/macro3b-client-wiring.test.cjs` falliva già su main
+(controllava la cifratura E2EE rimossa): eliminato nel passo a2.
 
 ## Passi
 
-| Passo | Stato | Commit |
-|---|---|---|
-| Fase 0 - base e script dei controlli | fatto | 890c305 |
-| Fase 1 - report docs/audit/AUDIT.md | fatto | (commit del report) |
-| Fase 2 a) fine riga, .gitignore, import, file temporanei | in attesa del "procedi" | |
-| Fase 2 b) colori e stile | da fare | |
-| Fase 2 c) localizzazioni | da fare | |
-| Fase 2 d) struttura | da fare | |
-| Fase 2 e) intestazioni e TODO(audit) | da fare | |
-| Fase 2 f) dipendenze minor/patch | da fare | |
-| Fase 2 g) README e CLAUDE.md | da fare | |
+| Passo | Stato | Commit | Note |
+|---|---|---|---|
+| Fase 0 - base e script dei controlli | fatto | 890c305 | |
+| Fase 1 - report AUDIT.md | fatto | 81d5f7e | |
+| a1 - fine riga, .gitignore, node_modules, import minuscoli | fatto | dbaeed3 | B1, B2, B3, B4, B11 |
+| a2 - codice morto, test obsoleti, configurazioni vecchie | fatto | 4f90d19 | C1 (parte sicura), C2, C5, S2/B5. Test Flutter 384 → 381 (tolti 3 test del codice permessi eliminato) |
+| a3 - log con email/UID solo in debug | fatto | 316fe08 | S5 |
+| B8 - archivio fuori dal progetto | fatto | (nessun commit: file ignorati da git) | APK, backup B8.4-B8.7, build web vecchia e log spostati in `../AmaterasuTrip-archivio` |
+| b - colori e stile | da fare | | |
+| c - localizzazioni | da fare | | |
+| d - struttura | da fare | | |
+| e - intestazioni e TODO(audit) | da fare | | |
+| f - dipendenze (con C11) | da fare | | |
+| g - README, CLAUDE.md, B10 | da fare | | |
 
 ## Prossimo passo
-Aspettare il "procedi" (e la risposta alla domanda sulle funzioni
-approvate in fondo ad AUDIT.md), poi iniziare dal passo a).
+Passo b: nuovi token colore con gli stessi valori e sostituzione dei
+colori scritti a mano.
