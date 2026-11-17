@@ -36,7 +36,9 @@ Base di partenza (Fase 0): analisi 0 avvisi · 384 test Flutter · controllo tra
 | C8 _money | non fatta: le tre versioni gestiscono gli errori in modo diverso (nessuna gestione / qualsiasi errore / solo ArgumentError); unirle cambierebbe la logica | — |
 | C13 requireVerifiedUid | risolta | 6ed7ce8 |
 | C14 validId | non era un doppione: quello del budget lancia un errore con un formato UID, quello della bucket list restituisce vero/falso con regole diverse | — |
-| 3.1 file grandi non approvati | risolti 17 su 20 (dettaglio sotto) | bc8c4e1 … dc3d9d4 |
+| 3.1 file grandi non approvati | risolta in parte: 17 su 20 divisi, 8 ora a 200 righe o meno; gli altri hanno un `build` lungo (dettaglio sotto) | bc8c4e1 … dc3d9d4 |
+| Passo e: intestazioni (360 file Dart) e 39 `TODO(audit)` | fatto | 1cd858b |
+| Nuova voce C1b: `lib/features/trips/presentation/pages/workspace/trip_overview_page.dart` è una pagina vuota mai importata (la panoramica vera è in `overview/`) | trovata durante il passo e; non eliminata (non autorizzata), segnata con TODO(audit) | — |
 
 Dettaglio divisione (righe prima → dopo, file principale). Metodo: i metodi della classe State sono stati spostati identici in file `part` come `extension` (stesso schema della bucket list); le classi di primo livello spostate in `part`; nelle functions moduli separati riesportati con gli stessi nomi. Verificato per ogni file che le righe di codice siano le stesse.
 
