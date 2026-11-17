@@ -42,9 +42,12 @@ Controlli: `bash tool/check_all.sh` (Git Bash, dalla cartella principale).
 | d16 - functions/src/index.ts in moduli | fatto | 2631bb2 | 849 → 73 righe; stesse 30 funzioni esportate; test emulatore removeTripMember 5/5 |
 | d17 - budget-validation, budget-fx, duplicate-trip | fatto | dc3d9d4 | 172, 135, 200 righe |
 | e - intestazioni e TODO(audit) | fatto | 1cd858b | 360 file Dart (lib, test, tool) con intestazione; 39 TODO(audit) (38 Dart, 1 TypeScript) |
-| f - dipendenze (con C11) | da fare | | |
+| f1 - pacchetti non usati | fatto | 3011765 | C11: 9 pacchetti tolti; cupertino_icons tenuto (la build web segnala icone del framework che lo usano). flutter build web e build apk --debug OK |
+| f2 - Flutter minor/patch | fatto | 36fb040 | 36 pacchetti aggiornati nei limiti di pubspec.yaml; build web e apk OK. Un primo giro dei controlli è fallito solo perché i file l10n erano in rigenerazione: ripetuto, tutto OK |
+| f3 - functions npm | fatto | 8963487 | S3: produzione critica 1 → 0, alte 2 → 0, moderate 9 → 8 (restano solo con firebase-admin 14) |
+| f4 - rules-tests npm | fatto | 51da218 | S4: alte 6 → 5 (le altre richiedono versioni maggiori); test regole 21/21 + B7.1 + B7.5.2 OK prima e dopo |
 | g - README, CLAUDE.md, B10 | da fare | | |
 
 ## Prossimo passo
-Passo f: togliere i pacchetti non usati (C11), poi aggiornamenti minor/patch
-(Flutter e npm) con i controlli, flutter build web e flutter build apk --debug.
+Passo g: README vero, CLAUDE.md aggiornato (convenzioni, niente QR),
+titolo e descrizione in web/index.html (B10), descrizione in pubspec.yaml (D3).

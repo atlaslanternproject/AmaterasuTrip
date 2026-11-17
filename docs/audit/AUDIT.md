@@ -38,6 +38,10 @@ Base di partenza (Fase 0): analisi 0 avvisi · 384 test Flutter · controllo tra
 | C14 validId | non era un doppione: quello del budget lancia un errore con un formato UID, quello della bucket list restituisce vero/falso con regole diverse | — |
 | 3.1 file grandi non approvati | risolta in parte: 17 su 20 divisi, 8 ora a 200 righe o meno; gli altri hanno un `build` lungo (dettaglio sotto) | bc8c4e1 … dc3d9d4 |
 | Passo e: intestazioni (360 file Dart) e 39 `TODO(audit)` | fatto | 1cd858b |
+| C11 pacchetti non usati | risolta: 9 tolti. `cupertino_icons` tenuto: senza, la build web avvisa che mancano icone usate dal framework (rischio di icone vuote) | 3011765 |
+| C12 aggiornamenti minor/patch Flutter | risolta (36 pacchetti) | 36fb040 |
+| S3 vulnerabilità functions | risolta la parte minor/patch: produzione 13 → 8 (0 critiche, 0 alte); le 8 moderate richiedono firebase-admin 14 | 8963487 |
+| S4 vulnerabilità rules-tests | risolta in parte: 6 → 5 alte; le altre richiedono firebase 13 | 51da218 |
 | Nuova voce C1b: `lib/features/trips/presentation/pages/workspace/trip_overview_page.dart` è una pagina vuota mai importata (la panoramica vera è in `overview/`) | trovata durante il passo e; non eliminata (non autorizzata), segnata con TODO(audit) | — |
 
 Dettaglio divisione (righe prima → dopo, file principale). Metodo: i metodi della classe State sono stati spostati identici in file `part` come `extension` (stesso schema della bucket list); le classi di primo livello spostate in `part`; nelle functions moduli separati riesportati con gli stessi nomi. Verificato per ogni file che le righe di codice siano le stesse.
