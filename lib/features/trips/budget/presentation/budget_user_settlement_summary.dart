@@ -12,6 +12,9 @@ import '../calculations/budget_snapshot_debts.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
+part 'budget_user_settlement_summary_models.dart';
+part 'budget_user_settlement_summary_data.dart';
+
 class BudgetUserSettlementSummary extends StatefulWidget {
   const BudgetUserSettlementSummary({
     super.key,
@@ -25,35 +28,6 @@ class BudgetUserSettlementSummary extends StatefulWidget {
   @override
   State<BudgetUserSettlementSummary> createState() =>
       _BudgetUserSettlementSummaryState();
-}
-
-class _DebtLine {
-  const _DebtLine(this.debtor, this.creditor, this.amount);
-  final String debtor;
-  final String creditor;
-  final int amount;
-}
-
-class _Movement {
-  const _Movement({
-    required this.debtor,
-    required this.creditor,
-    required this.amount,
-    required this.currency,
-    required this.status,
-    required this.date,
-    required this.expenseTitle,
-    required this.expense,
-  });
-
-  final String debtor;
-  final String creditor;
-  final int amount;
-  final String currency;
-  final String status;
-  final DateTime? date;
-  final String expenseTitle;
-  final Map<String, dynamic> expense;
 }
 
 class _BudgetUserSettlementSummaryState
@@ -104,64 +78,6 @@ class _BudgetUserSettlementSummaryState
     }
   }
 
-  void _listen() {
-    _expensesSub = widget.api.sharedExpenses().listen(
-      (result) {
-        if (!mounted) return;
-
-        final current = <String>{};
-
-        for (final doc in result.docs) {
-          final data = doc.data();
-          if (data['lifecycle'] == 'cancelled') continue;
-
-          current.add(doc.id);
-          _expenses[doc.id] = data;
-
-          if (!_refundSubs.containsKey(doc.id)) {
-            final id = doc.id;
-
-            _refundSubs[id] = widget.api
-                .reimbursements(id)
-                .listen(
-                  (refunds) {
-                    if (!mounted) return;
-                    setState(() {
-                      _refunds[id] = refunds.docs
-                          .map((item) => item.data())
-                          .toList();
-                      _loadedRefundIds.add(id);
-                    });
-                  },
-                  onError: (Object error) {
-                    if (!mounted) return;
-                    setState(() => _error = error.toString());
-                  },
-                );
-          }
-        }
-
-        for (final id in _expenses.keys.toList()) {
-          if (!current.contains(id)) {
-            _expenses.remove(id);
-            _refunds.remove(id);
-            _loadedRefundIds.remove(id);
-            _refundSubs.remove(id)?.cancel();
-          }
-        }
-
-        setState(() => _loading = false);
-      },
-      onError: (Object error) {
-        if (!mounted) return;
-        setState(() {
-          _loading = false;
-          _error = error.toString();
-        });
-      },
-    );
-  }
-
   @override
   void dispose() {
     _expensesSub?.cancel();
@@ -169,37 +85,6 @@ class _BudgetUserSettlementSummaryState
       sub.cancel();
     }
     super.dispose();
-  }
-
-  Map<String, dynamic> _asMap(dynamic value) {
-    return value is Map
-        ? Map<String, dynamic>.from(value)
-        : <String, dynamic>{};
-  }
-
-  List<_DebtLine> _debts(Map<String, dynamic> snapshot) => [
-    for (final debt in BudgetSnapshotDebts.allocate(snapshot))
-      _DebtLine(debt.debtorUid, debt.creditorUid, debt.minorUnits),
-  ];
-
-  /// B8.6: current name, then the name recorded in the expenses,
-  /// never an internal ID.
-  String _person(String uid, Map<String, String> names) => BudgetPeople.name(
-    uid,
-    live: names,
-    recordedNames: BudgetPeople.recordedAll(_expenses.values),
-    fallback: AppLocalizations.of(context)!.b86FormerTraveler,
-  );
-
-  Widget _heading(String text) {
-    return Text(
-      text,
-      style: const TextStyle(
-        color: _cream,
-        fontSize: 15,
-        fontWeight: FontWeight.w700,
-      ),
-    );
   }
 
   @override
