@@ -2,15 +2,13 @@ import {getFirestore, FieldValue} from "firebase-admin/firestore";
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
 import {validId} from "./budget-validation";
+import {requireVerifiedUid} from "../shared/require-verified-uid";
 
 const db = getFirestore();
 export const cancelPrivateBudgetExpense = onCall(
   {region: "europe-west1"},
   async (request) => {
-    const uid = request.auth?.uid;
-    if (!uid || request.auth?.token.email_verified !== true) {
-      throw new HttpsError("unauthenticated", "Verified user required.");
-    }
+    const uid = requireVerifiedUid(request);
     const tripId = validId(request.data?.tripId);
     const expenseId = validId(request.data?.expenseId);
     const ref = db.collection("trips").doc(tripId)

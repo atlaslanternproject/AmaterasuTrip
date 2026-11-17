@@ -5,6 +5,7 @@ import {validId} from "./budget-validation";
 import {
   buildExpenseHistory, sortHistory, HistoryEvent, HistorySources,
 } from "./budget-history-events";
+import {requireVerifiedUid} from "../shared/require-verified-uid";
 
 const db = getFirestore();
 const maxEvents = 500;
@@ -44,10 +45,7 @@ async function loadSources(
 export const listBudgetHistory = onCall(
   {region: "europe-west1"},
   async (request) => {
-    const uid = request.auth?.uid;
-    if (!uid || request.auth?.token.email_verified !== true) {
-      throw new HttpsError("unauthenticated", "Verified user required.");
-    }
+    const uid = requireVerifiedUid(request);
     const tripId = validId(request.data?.tripId);
     await db.runTransaction((tx) => checkBudgetMembership(tx, tripId, uid));
 

@@ -4,6 +4,7 @@ import {
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
 import {validId} from "./budget-validation";
+import {requireVerifiedUid} from "../shared/require-verified-uid";
 
 /**
  * B8.6: appends one event to the cancellation log of an expense.
@@ -28,10 +29,7 @@ const db = getFirestore();
 export const requestBudgetCancellation = onCall(
   {region: "europe-west1"},
   async (request) => {
-    const uid = request.auth?.uid;
-    if (!uid || request.auth?.token.email_verified !== true) {
-      throw new HttpsError("unauthenticated", "Verified user required.");
-    }
+    const uid = requireVerifiedUid(request);
     const tripId = validId(request.data?.tripId);
     const expenseId = validId(request.data?.expenseId);
     const expenseRef = db.collection("trips").doc(tripId)
@@ -100,10 +98,7 @@ export const requestBudgetCancellation = onCall(
 export const decideBudgetCancellation = onCall(
   {region: "europe-west1"},
   async (request) => {
-    const uid = request.auth?.uid;
-    if (!uid || request.auth?.token.email_verified !== true) {
-      throw new HttpsError("unauthenticated", "Verified user required.");
-    }
+    const uid = requireVerifiedUid(request);
     const tripId = validId(request.data?.tripId);
     const expenseId = validId(request.data?.expenseId);
     const approved = request.data?.approved;
