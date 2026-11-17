@@ -33,12 +33,13 @@ Controlli: `bash tool/check_all.sh` (Git Bash, dalla cartella principale).
 | a3 - log con email/UID solo in debug | fatto | 316fe08 | S5 |
 | B8 - archivio fuori dal progetto | fatto | (nessun commit: file ignorati da git) | APK, backup B8.4-B8.7, build web vecchia e log spostati in `../AmaterasuTrip-archivio` |
 | b1 - token colore | fatto | 23d19cc | ST1, ST2: 41 token, 495 colori in 94 file |
-| b2 - token spaziatura e raggio | fatto | (questo) | ST3 parziale: 220 spaziature e 23 raggi con i token esistenti, solo valori identici |
-| c - localizzazioni | da fare | | |
+| b2 - token spaziatura e raggio | fatto | 0d26c24 | ST3 parziale: 220 spaziature e 23 raggi con i token esistenti, solo valori identici |
+| c1 - l10n.yaml e chiavi non usate | fatto | 8e90506 | B9, L2: 186 chiavi tolte (1083 → 897 per lingua) |
+| c2 - doppioni del budget | fatto | (questo) | L3 solo area budget: 46 chiavi unite in 23 (897 → 861). Aree account/trip non toccate (funzioni approvate) |
 | d - struttura | da fare | | |
 | e - intestazioni e TODO(audit) | da fare | | |
 | f - dipendenze (con C11) | da fare | | |
 | g - README, CLAUDE.md, B10 | da fare | | |
 
 ## Prossimo passo
-Passo c: l10n.yaml (se rigenera file identici), chiavi non usate, doppioni nella stessa area.
+Passo d: moduli condivisi (C6, C8, C13, C14) e divisione dei file grandi non approvati.

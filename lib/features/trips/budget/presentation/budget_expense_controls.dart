@@ -61,11 +61,11 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: Text(_l10n(_it).btControlsCancel),
+              child: Text(_l10n(_it).btActionCancel),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
-              child: Text(_l10n(_it).btControlsConfirm),
+              child: Text(_l10n(_it).btActionConfirm),
             ),
           ],
         ),
@@ -169,7 +169,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
                                     false,
                                   ),
                                 ),
-                          child: Text(_l10n(_it).btControlsReject),
+                          child: Text(_l10n(_it).btActionReject),
                         ),
                         FilledButton(
                           onPressed: _busy

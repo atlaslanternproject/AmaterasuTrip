@@ -66,8 +66,8 @@ abstract final class BudgetExpensesToolbar {
           currencies: currencies,
           selectedCurrency: selected,
           title: _l10n(it).btToolbarDisplayCurrency,
-          searchHint: _l10n(it).btToolbarSearchCurrencies,
-          noResultsText: _l10n(it).btToolbarNoCurrenciesFound,
+          searchHint: _l10n(it).btSearchCurrencies,
+          noResultsText: _l10n(it).btNoCurrenciesFound,
         ),
       ),
     );
@@ -179,7 +179,7 @@ abstract final class BudgetExpensesToolbar {
                     ),
                     const SizedBox(height: 14),
                     _field(
-                      label: _l10n(it).btToolbarCategory,
+                      label: _l10n(it).btCategoryLabel,
                       value: draft.category,
                       options: categories,
                       onChanged: (value) =>
@@ -187,13 +187,13 @@ abstract final class BudgetExpensesToolbar {
                     ),
                     const SizedBox(height: 14),
                     _field(
-                      label: _l10n(it).btToolbarStatus,
+                      label: _l10n(it).btStatusLabel,
                       value: draft.status,
                       options: {
                         '': _l10n(it).btToolbarAllStatuses,
-                        'planned': _l10n(it).btToolbarPlanned,
-                        'outstanding': _l10n(it).btToolbarOutstanding,
-                        'paid': _l10n(it).btToolbarPaid,
+                        'planned': _l10n(it).btStatusPlanned,
+                        'outstanding': _l10n(it).btStatusOutstanding,
+                        'paid': _l10n(it).btStatusPaid,
                       },
                       onChanged: (value) =>
                           update(() => draft = draft.copyWith(status: value)),

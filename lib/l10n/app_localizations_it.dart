@@ -2196,7 +2196,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btMethodsMethodDescription => 'Descrizione metodo';
 
   @override
-  String get btMethodsRemove => 'Rimuovi';
+  String get btActionRemove => 'Rimuovi';
 
   @override
   String get btMethodsAddMethod => 'Aggiungi metodo';
@@ -2211,10 +2211,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btControlsTheExpenseWillBe => 'La spesa sarà annullata solo dopo tutte le approvazioni necessarie. Lo storico sarà conservato.';
 
   @override
-  String get btControlsCancel => 'Annulla';
+  String get btActionCancel => 'Annulla';
 
   @override
-  String get btControlsConfirm => 'Conferma';
+  String get btActionConfirm => 'Conferma';
 
   @override
   String get btControlsCancelledExpenseHistoryRetained => 'Spesa annullata · storico conservato';
@@ -2234,46 +2234,31 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get btControlsReject => 'Rifiuta';
+  String get btActionReject => 'Rifiuta';
 
   @override
   String get btControlsApprove => 'Approva';
 
   @override
-  String get btListAccommodation => 'Alloggio';
-
-  @override
-  String get btListFoodDrinks => 'Cibo e bevande';
-
-  @override
-  String get btListTransport => 'Trasporti';
-
-  @override
-  String get btListActivities => 'Attività';
-
-  @override
-  String get btListOther => 'Altro';
-
-  @override
   String get btListPaid => 'Saldata';
 
   @override
-  String get btListPlanned => 'Prevista';
+  String get btStatusPlanned => 'Prevista';
 
   @override
-  String get btListOutstanding => 'Da saldare';
+  String get btStatusOutstanding => 'Da saldare';
 
   @override
   String get btListStatusUnavailable => 'Stato non disponibile';
 
   @override
-  String get btListUnableToLoadExpenses => 'Impossibile caricare le spese.';
+  String get btUnableToLoadExpenses => 'Impossibile caricare le spese.';
 
   @override
   String get btListNoExpensesToDisplay => 'Nessuna spesa da mostrare.';
 
   @override
-  String get btListUntitledExpense => 'Spesa senza titolo';
+  String get btUntitledExpense => 'Spesa senza titolo';
 
   @override
   String btListTravelers(Object value1) {
@@ -2281,28 +2266,10 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get btDetailsAccommodation => 'Alloggio';
-
-  @override
   String get btDetailsFood => 'Cibo e ristoranti';
 
   @override
-  String get btDetailsTransport => 'Trasporti';
-
-  @override
-  String get btDetailsActivities => 'Attività';
-
-  @override
-  String get btDetailsOther => 'Altro';
-
-  @override
-  String get btDetailsPlanned => 'Prevista';
-
-  @override
-  String get btDetailsOutstanding => 'Da saldare';
-
-  @override
-  String get btDetailsPaid => 'Pagata';
+  String get btStatusPaid => 'Pagata';
 
   @override
   String get btDetailsUnavailable => 'Non disponibile';
@@ -2318,9 +2285,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btDetailsExpenseDetails => 'Dettaglio spesa';
-
-  @override
-  String get btDetailsUntitledExpense => 'Spesa senza titolo';
 
   @override
   String btDetailsAdjustRate(Object originalCurrency, Object target) {
@@ -2362,22 +2326,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btRefundsAddValidMethodsThe => 'Aggiungi metodi validi. Il totale deve essere positivo e non superare il massimo.';
 
   @override
-  String get btRefundsCancel => 'Annulla';
-
-  @override
   String get btRefundsSubmitRequest => 'Invia richiesta';
-
-  @override
-  String get btRefundsCash => 'Contanti';
-
-  @override
-  String get btRefundsCard => 'Carta';
-
-  @override
-  String get btRefundsBankTransfer => 'Bonifico';
-
-  @override
-  String get btRefundsOther => 'Altro';
 
   @override
   String get btRefundsReimbursementMethodNotRecorded => 'Metodo di rimborso non registrato';
@@ -2416,12 +2365,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btRefundsDecidedBy => 'Deciso da';
 
   @override
-  String get btRefundsReject => 'Rifiuta';
-
-  @override
-  String get btRefundsConfirm => 'Conferma';
-
-  @override
   String get btRefundsOutstanding => 'Da restituire';
 
   @override
@@ -2449,10 +2392,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btPersonalBudgetCurrency => 'Valuta del budget';
 
   @override
-  String get btPersonalSearchCurrencies => 'Cerca una valuta';
+  String get btSearchCurrencies => 'Cerca una valuta';
 
   @override
-  String get btPersonalNoCurrenciesFound => 'Nessuna valuta trovata';
+  String get btNoCurrenciesFound => 'Nessuna valuta trovata';
 
   @override
   String get btPersonalFirestoreDeniedTheWrite => 'Firestore ha negato il salvataggio. Le regole B7 devono essere presenti nel progetto Firebase utilizzato.';
@@ -2475,13 +2418,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btPersonalPlannedAmount => 'Importo previsto';
 
   @override
-  String get btPersonalCurrency => 'Valuta';
-
-  @override
-  String get btPersonalRemove => 'Rimuovi';
-
-  @override
-  String get btPersonalCancel => 'Annulla';
+  String get btCurrencyLabel => 'Valuta';
 
   @override
   String get btPersonalSave => 'Salva';
@@ -2494,9 +2431,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btPersonalSetBudget => 'Imposta budget';
-
-  @override
-  String get btPersonalUnableToLoadExpenses => 'Impossibile caricare le spese.';
 
   @override
   String get btPersonalUnableToLoadPersonal => 'Impossibile caricare le spese personali.';
@@ -2529,12 +2463,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btToolbarDisplayCurrency => 'Valuta di visualizzazione';
 
   @override
-  String get btToolbarSearchCurrencies => 'Cerca una valuta';
-
-  @override
-  String get btToolbarNoCurrenciesFound => 'Nessuna valuta trovata';
-
-  @override
   String get btToolbarAllCategories => 'Tutte le categorie';
 
   @override
@@ -2562,22 +2490,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btToolbarAmountDescending => 'Importo decrescente';
 
   @override
-  String get btToolbarCategory => 'Categoria';
+  String get btCategoryLabel => 'Categoria';
 
   @override
-  String get btToolbarStatus => 'Stato';
+  String get btStatusLabel => 'Stato';
 
   @override
   String get btToolbarAllStatuses => 'Tutti gli stati';
-
-  @override
-  String get btToolbarPlanned => 'Prevista';
-
-  @override
-  String get btToolbarOutstanding => 'Da saldare';
-
-  @override
-  String get btToolbarPaid => 'Pagata';
 
   @override
   String get btToolbarPeriod => 'Periodo';
@@ -2605,12 +2524,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btCreateExpenseCurrency => 'Valuta della spesa';
-
-  @override
-  String get btCreateSearchCurrencies => 'Cerca una valuta';
-
-  @override
-  String get btCreateNoCurrenciesFound => 'Nessuna valuta trovata';
 
   @override
   String get btCreateYou => 'Tu';
@@ -2643,9 +2556,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btCreateConfirmNewExpense => 'Conferma nuova spesa';
 
   @override
-  String get btCreateCategory => 'Categoria';
-
-  @override
   String get btCreateType => 'Tipo';
 
   @override
@@ -2653,9 +2563,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btCreatePersonal => 'Personale';
-
-  @override
-  String get btCreateStatus => 'Stato';
 
   @override
   String get btCreatePaymentsRecordedInThis => 'I pagamenti registrati in questa versione devono essere stati effettuati da te.';
@@ -2709,22 +2616,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get btCreateExpenseAmount => 'Importo della spesa';
 
   @override
-  String get btCreateCurrency => 'Valuta';
-
-  @override
   String get btCreateTotalAmount => 'Importo totale';
 
   @override
   String get btCreateExpenseStatus => 'Stato della spesa';
-
-  @override
-  String get btCreatePlanned => 'Prevista';
-
-  @override
-  String get btCreateOutstanding => 'Da saldare';
-
-  @override
-  String get btCreatePaid => 'Pagata';
 
   @override
   String get btCreateSplitBetweenTravelers => 'Dividi tra i viaggiatori';
@@ -2748,9 +2643,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btCreateSummary => 'Riepilogo';
-
-  @override
-  String get btCreateCancel => 'Annulla';
 
   @override
   String get btCreateBack => 'Indietro';

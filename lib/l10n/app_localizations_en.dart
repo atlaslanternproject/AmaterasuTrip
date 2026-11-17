@@ -2196,7 +2196,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btMethodsMethodDescription => 'Method description';
 
   @override
-  String get btMethodsRemove => 'Remove';
+  String get btActionRemove => 'Remove';
 
   @override
   String get btMethodsAddMethod => 'Add method';
@@ -2211,10 +2211,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btControlsTheExpenseWillBe => 'The expense will be cancelled only after required approvals. History is preserved.';
 
   @override
-  String get btControlsCancel => 'Cancel';
+  String get btActionCancel => 'Cancel';
 
   @override
-  String get btControlsConfirm => 'Confirm';
+  String get btActionConfirm => 'Confirm';
 
   @override
   String get btControlsCancelledExpenseHistoryRetained => 'Cancelled expense · history retained';
@@ -2234,46 +2234,31 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get btControlsReject => 'Reject';
+  String get btActionReject => 'Reject';
 
   @override
   String get btControlsApprove => 'Approve';
 
   @override
-  String get btListAccommodation => 'Accommodation';
-
-  @override
-  String get btListFoodDrinks => 'Food & drinks';
-
-  @override
-  String get btListTransport => 'Transport';
-
-  @override
-  String get btListActivities => 'Activities';
-
-  @override
-  String get btListOther => 'Other';
-
-  @override
   String get btListPaid => 'Paid';
 
   @override
-  String get btListPlanned => 'Planned';
+  String get btStatusPlanned => 'Planned';
 
   @override
-  String get btListOutstanding => 'Outstanding';
+  String get btStatusOutstanding => 'Outstanding';
 
   @override
   String get btListStatusUnavailable => 'Status unavailable';
 
   @override
-  String get btListUnableToLoadExpenses => 'Unable to load expenses.';
+  String get btUnableToLoadExpenses => 'Unable to load expenses.';
 
   @override
   String get btListNoExpensesToDisplay => 'No expenses to display.';
 
   @override
-  String get btListUntitledExpense => 'Untitled expense';
+  String get btUntitledExpense => 'Untitled expense';
 
   @override
   String btListTravelers(Object value1) {
@@ -2281,28 +2266,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get btDetailsAccommodation => 'Accommodation';
-
-  @override
   String get btDetailsFood => 'Food';
 
   @override
-  String get btDetailsTransport => 'Transport';
-
-  @override
-  String get btDetailsActivities => 'Activities';
-
-  @override
-  String get btDetailsOther => 'Other';
-
-  @override
-  String get btDetailsPlanned => 'Planned';
-
-  @override
-  String get btDetailsOutstanding => 'Outstanding';
-
-  @override
-  String get btDetailsPaid => 'Paid';
+  String get btStatusPaid => 'Paid';
 
   @override
   String get btDetailsUnavailable => 'Unavailable';
@@ -2318,9 +2285,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btDetailsExpenseDetails => 'Expense details';
-
-  @override
-  String get btDetailsUntitledExpense => 'Untitled expense';
 
   @override
   String btDetailsAdjustRate(Object originalCurrency, Object target) {
@@ -2362,22 +2326,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btRefundsAddValidMethodsThe => 'Add valid methods. The total must be positive and within the maximum.';
 
   @override
-  String get btRefundsCancel => 'Cancel';
-
-  @override
   String get btRefundsSubmitRequest => 'Submit request';
-
-  @override
-  String get btRefundsCash => 'Cash';
-
-  @override
-  String get btRefundsCard => 'Card';
-
-  @override
-  String get btRefundsBankTransfer => 'Bank transfer';
-
-  @override
-  String get btRefundsOther => 'Other';
 
   @override
   String get btRefundsReimbursementMethodNotRecorded => 'Reimbursement method not recorded';
@@ -2416,12 +2365,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btRefundsDecidedBy => 'Decided by';
 
   @override
-  String get btRefundsReject => 'Reject';
-
-  @override
-  String get btRefundsConfirm => 'Confirm';
-
-  @override
   String get btRefundsOutstanding => 'Outstanding';
 
   @override
@@ -2449,10 +2392,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btPersonalBudgetCurrency => 'Budget currency';
 
   @override
-  String get btPersonalSearchCurrencies => 'Search currencies';
+  String get btSearchCurrencies => 'Search currencies';
 
   @override
-  String get btPersonalNoCurrenciesFound => 'No currencies found';
+  String get btNoCurrenciesFound => 'No currencies found';
 
   @override
   String get btPersonalFirestoreDeniedTheWrite => 'Firestore denied the write. B7 rules must be deployed to the Firebase project in use.';
@@ -2475,13 +2418,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btPersonalPlannedAmount => 'Planned amount';
 
   @override
-  String get btPersonalCurrency => 'Currency';
-
-  @override
-  String get btPersonalRemove => 'Remove';
-
-  @override
-  String get btPersonalCancel => 'Cancel';
+  String get btCurrencyLabel => 'Currency';
 
   @override
   String get btPersonalSave => 'Save';
@@ -2494,9 +2431,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btPersonalSetBudget => 'Set budget';
-
-  @override
-  String get btPersonalUnableToLoadExpenses => 'Unable to load expenses.';
 
   @override
   String get btPersonalUnableToLoadPersonal => 'Unable to load personal expenses.';
@@ -2529,12 +2463,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btToolbarDisplayCurrency => 'Display currency';
 
   @override
-  String get btToolbarSearchCurrencies => 'Search currencies';
-
-  @override
-  String get btToolbarNoCurrenciesFound => 'No currencies found';
-
-  @override
   String get btToolbarAllCategories => 'All categories';
 
   @override
@@ -2562,22 +2490,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btToolbarAmountDescending => 'Amount descending';
 
   @override
-  String get btToolbarCategory => 'Category';
+  String get btCategoryLabel => 'Category';
 
   @override
-  String get btToolbarStatus => 'Status';
+  String get btStatusLabel => 'Status';
 
   @override
   String get btToolbarAllStatuses => 'All statuses';
-
-  @override
-  String get btToolbarPlanned => 'Planned';
-
-  @override
-  String get btToolbarOutstanding => 'Outstanding';
-
-  @override
-  String get btToolbarPaid => 'Paid';
 
   @override
   String get btToolbarPeriod => 'Period';
@@ -2605,12 +2524,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btCreateExpenseCurrency => 'Expense currency';
-
-  @override
-  String get btCreateSearchCurrencies => 'Search currencies';
-
-  @override
-  String get btCreateNoCurrenciesFound => 'No currencies found';
 
   @override
   String get btCreateYou => 'You';
@@ -2643,9 +2556,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btCreateConfirmNewExpense => 'Confirm new expense';
 
   @override
-  String get btCreateCategory => 'Category';
-
-  @override
   String get btCreateType => 'Type';
 
   @override
@@ -2653,9 +2563,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btCreatePersonal => 'Personal';
-
-  @override
-  String get btCreateStatus => 'Status';
 
   @override
   String get btCreatePaymentsRecordedInThis => 'Payments recorded in this version must have been made by you.';
@@ -2709,22 +2616,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btCreateExpenseAmount => 'Expense amount';
 
   @override
-  String get btCreateCurrency => 'Currency';
-
-  @override
   String get btCreateTotalAmount => 'Total amount';
 
   @override
   String get btCreateExpenseStatus => 'Expense status';
-
-  @override
-  String get btCreatePlanned => 'Planned';
-
-  @override
-  String get btCreateOutstanding => 'Outstanding';
-
-  @override
-  String get btCreatePaid => 'Paid';
 
   @override
   String get btCreateSplitBetweenTravelers => 'Split between travelers';
@@ -2748,9 +2643,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btCreateSummary => 'Summary';
-
-  @override
-  String get btCreateCancel => 'Cancel';
 
   @override
   String get btCreateBack => 'Back';

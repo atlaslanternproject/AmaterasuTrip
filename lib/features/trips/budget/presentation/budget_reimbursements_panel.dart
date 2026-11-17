@@ -238,7 +238,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(dialogContext),
-                  child: Text(_l10n(_it).btRefundsCancel),
+                  child: Text(_l10n(_it).btActionCancel),
                 ),
                 FilledButton(
                   onPressed: valid
@@ -280,17 +280,17 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
   String _methodLabel(BudgetPaymentMethod method) {
     switch (method) {
       case BudgetPaymentMethod.cash:
-        return _l10n(_it).btRefundsCash;
+        return _l10n(_it).btMethodsCash;
       case BudgetPaymentMethod.card:
-        return _l10n(_it).btRefundsCard;
+        return _l10n(_it).btMethodsCard;
       case BudgetPaymentMethod.bankTransfer:
-        return _l10n(_it).btRefundsBankTransfer;
+        return _l10n(_it).btMethodsBankTransfer;
       case BudgetPaymentMethod.paypal:
         return 'PayPal';
       case BudgetPaymentMethod.satispay:
         return 'Satispay';
       case BudgetPaymentMethod.other:
-        return _l10n(_it).btRefundsOther;
+        return _l10n(_it).btMethodsOther;
     }
   }
 
@@ -485,7 +485,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                             doc.id,
                                             false,
                                           ),
-                                    child: Text(_l10n(_it).btRefundsReject),
+                                    child: Text(_l10n(_it).btActionReject),
                                   ),
                                   FilledButton(
                                     onPressed: _busy
@@ -494,7 +494,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                             doc.id,
                                             true,
                                           ),
-                                    child: Text(_l10n(_it).btRefundsConfirm),
+                                    child: Text(_l10n(_it).btActionConfirm),
                                   ),
                                 ],
                               ),

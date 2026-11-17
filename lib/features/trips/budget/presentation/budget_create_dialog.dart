@@ -122,8 +122,8 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
           currencies: currencies,
           selectedCurrency: _selectedCurrency,
           title: _l10n(it).btCreateExpenseCurrency,
-          searchHint: _l10n(it).btCreateSearchCurrencies,
-          noResultsText: _l10n(it).btCreateNoCurrenciesFound,
+          searchHint: _l10n(it).btSearchCurrencies,
+          noResultsText: _l10n(it).btNoCurrenciesFound,
         ),
       ),
     );
@@ -283,7 +283,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 ),
                 const SizedBox(height: AmaterasuSpacing.sm),
                 Text(
-                  '${_l10n(it).btCreateCategory}: $_category',
+                  '${_l10n(it).btCategoryLabel}: $_category',
                   style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 Text(
@@ -291,7 +291,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                   style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 Text(
-                  '${_l10n(it).btCreateStatus}: $_status',
+                  '${_l10n(it).btStatusLabel}: $_status',
                   style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 const SizedBox(height: AmaterasuSpacing.md),
@@ -613,7 +613,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                       onPressed: _saving ? null : _pickCurrency,
                       icon: const Icon(Icons.currency_exchange_rounded),
                       label: Text(
-                        '${_l10n(it).btCreateCurrency}: $_selectedCurrency',
+                        '${_l10n(it).btCurrencyLabel}: $_selectedCurrency',
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -647,15 +647,15 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                       items: [
                         DropdownMenuItem(
                           value: 'planned',
-                          child: Text(_l10n(it).btCreatePlanned),
+                          child: Text(_l10n(it).btStatusPlanned),
                         ),
                         DropdownMenuItem(
                           value: 'outstanding',
-                          child: Text(_l10n(it).btCreateOutstanding),
+                          child: Text(_l10n(it).btStatusOutstanding),
                         ),
                         DropdownMenuItem(
                           value: 'paid',
-                          child: Text(_l10n(it).btCreatePaid),
+                          child: Text(_l10n(it).btStatusPaid),
                         ),
                       ],
                       onChanged: _saving
@@ -789,7 +789,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
       actions: [
         TextButton(
           onPressed: _saving ? null : () => Navigator.pop(context),
-          child: Text(_l10n(it).btCreateCancel),
+          child: Text(_l10n(it).btActionCancel),
         ),
         if (_step == 1)
           TextButton(

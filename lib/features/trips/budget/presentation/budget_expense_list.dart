@@ -32,19 +32,19 @@ class BudgetExpenseList extends StatelessWidget {
   String _categoryLabel(String value, bool it) {
     switch (value) {
       case 'accommodation':
-        return _l10n(it).btListAccommodation;
+        return _l10n(it).btCatAccommodation;
       case 'food':
-        return _l10n(it).btListFoodDrinks;
+        return _l10n(it).btCatFoodDrinks;
       case 'transport':
-        return _l10n(it).btListTransport;
+        return _l10n(it).btCatTransport;
       case 'activities':
-        return _l10n(it).btListActivities;
+        return _l10n(it).btCatActivities;
       case 'shopping':
         return 'Shopping';
       case 'other':
-        return _l10n(it).btListOther;
+        return _l10n(it).btCatOther;
       default:
-        return value.trim().isEmpty ? (_l10n(it).btListOther) : value;
+        return value.trim().isEmpty ? (_l10n(it).btCatOther) : value;
     }
   }
 
@@ -70,9 +70,9 @@ class BudgetExpenseList extends StatelessWidget {
       case 'paid':
         return _l10n(it).btListPaid;
       case 'planned':
-        return _l10n(it).btListPlanned;
+        return _l10n(it).btStatusPlanned;
       case 'outstanding':
-        return _l10n(it).btListOutstanding;
+        return _l10n(it).btStatusOutstanding;
       default:
         return _l10n(it).btListStatusUnavailable;
     }
@@ -89,7 +89,7 @@ class BudgetExpenseList extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(AmaterasuSpacing.md),
             child: Text(
-              _l10n(it).btListUnableToLoadExpenses,
+              _l10n(it).btUnableToLoadExpenses,
               style: const TextStyle(color: _muted),
             ),
           );
@@ -159,7 +159,7 @@ class BudgetExpenseList extends StatelessWidget {
 
                   final title = rawTitle.isNotEmpty
                       ? rawTitle
-                      : (_l10n(it).btListUntitledExpense);
+                      : (_l10n(it).btUntitledExpense);
 
                   final notes = (data['notes']?.toString() ?? '').trim();
 

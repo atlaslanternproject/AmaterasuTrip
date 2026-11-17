@@ -56,30 +56,30 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
   String _categoryLabel(String value, bool it) {
     switch (value) {
       case 'accommodation':
-        return _l10n(it).btDetailsAccommodation;
+        return _l10n(it).btCatAccommodation;
       case 'food':
         return _l10n(it).btDetailsFood;
       case 'transport':
-        return _l10n(it).btDetailsTransport;
+        return _l10n(it).btCatTransport;
       case 'activities':
-        return _l10n(it).btDetailsActivities;
+        return _l10n(it).btCatActivities;
       case 'shopping':
         return 'Shopping';
       case 'other':
-        return _l10n(it).btDetailsOther;
+        return _l10n(it).btCatOther;
       default:
-        return value.trim().isEmpty ? (_l10n(it).btDetailsOther) : value;
+        return value.trim().isEmpty ? (_l10n(it).btCatOther) : value;
     }
   }
 
   String _statusLabel(String value, bool it) {
     switch (value) {
       case 'planned':
-        return _l10n(it).btDetailsPlanned;
+        return _l10n(it).btStatusPlanned;
       case 'outstanding':
-        return _l10n(it).btDetailsOutstanding;
+        return _l10n(it).btStatusOutstanding;
       case 'paid':
-        return _l10n(it).btDetailsPaid;
+        return _l10n(it).btStatusPaid;
       default:
         return _l10n(it).btDetailsUnavailable;
     }
@@ -199,7 +199,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       const SizedBox(height: 12),
                       Text(
                         title.isEmpty
-                            ? (_l10n(it).btDetailsUntitledExpense)
+                            ? (_l10n(it).btUntitledExpense)
                             : title,
                         style: const TextStyle(
                           color: AmaterasuColors.textPrimary,

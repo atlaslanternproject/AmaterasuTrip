@@ -142,8 +142,8 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
           currencies: currencies,
           selectedCurrency: selected,
           title: _l10n(it).btPersonalBudgetCurrency,
-          searchHint: _l10n(it).btPersonalSearchCurrencies,
-          noResultsText: _l10n(it).btPersonalNoCurrenciesFound,
+          searchHint: _l10n(it).btSearchCurrencies,
+          noResultsText: _l10n(it).btNoCurrenciesFound,
         ),
       ),
     );
@@ -236,7 +236,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                               },
                         icon: const Icon(Icons.currency_exchange_rounded),
                         label: Text(
-                          '${_l10n(it).btPersonalCurrency}: $currency',
+                          '${_l10n(it).btCurrencyLabel}: $currency',
                         ),
                       ),
                     ),
@@ -274,13 +274,13 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             }
                           }
                         },
-                  child: Text(_l10n(it).btPersonalRemove),
+                  child: Text(_l10n(it).btActionRemove),
                 ),
               TextButton(
                 onPressed: saving
                     ? null
                     : () => Navigator.of(dialogContext).pop(),
-                child: Text(_l10n(it).btPersonalCancel),
+                child: Text(_l10n(it).btActionCancel),
               ),
               FilledButton(
                 style: FilledButton.styleFrom(
@@ -510,7 +510,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
             if (shared.hasError) {
               return _panel(
                 Text(
-                  _l10n(it).btPersonalUnableToLoadExpenses,
+                  _l10n(it).btUnableToLoadExpenses,
                   style: const TextStyle(color: _red),
                 ),
               );

@@ -27,7 +27,11 @@ Base di partenza (Fase 0): analisi 0 avvisi · 384 test Flutter · controllo tra
 | S5 log con email/UID solo in debug | risolta (40 righe) | 316fe08 |
 | B8 APK, backup e log spostati in `../AmaterasuTrip-archivio` | risolta (file ignorati da git, nessun commit). `desktop.ini` lasciato: è il file di Windows per l'icona della cartella | — |
 | ST1, ST2 colori come token (41 token, 495 sostituzioni; i colori usati 1-2 volte restano nei file) | risolta | 23d19cc |
-| ST3 spaziature e raggi con i token esistenti (220 + 23, solo valori identici: 4/8/16/24/32/48 e 8/14/24) | risolta in parte: i valori senza token (10, 12, 17, 18…) restano numeri | b2 |
+| ST3 spaziature e raggi con i token esistenti (220 + 23, solo valori identici: 4/8/16/24/32/48 e 8/14/24) | risolta in parte: i valori senza token (10, 12, 17, 18…) restano numeri | 0d26c24 |
+| B9 l10n.yaml (file generati identici, verificato) | risolta | 8e90506 |
+| L2 chiavi non usate (186: il conteggio sale da 178 dopo le eliminazioni del passo a) | risolta | 8e90506 |
+| L3 doppioni nella stessa area | risolta solo per il budget (46 chiavi → 23). Doppioni di account e trip lasciati: sono funzioni approvate | c2 |
+| Nota L-conteggi | Le chiavi erano 1.083 per lingua (il numero 1.143 del report contava anche i nomi dei segnaposto) | — |
 
 ---
 

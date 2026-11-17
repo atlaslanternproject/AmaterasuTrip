@@ -4337,11 +4337,11 @@ abstract class AppLocalizations {
   /// **'Method description'**
   String get btMethodsMethodDescription;
 
-  /// No description provided for @btMethodsRemove.
+  /// No description provided for @btActionRemove.
   ///
   /// In en, this message translates to:
   /// **'Remove'**
-  String get btMethodsRemove;
+  String get btActionRemove;
 
   /// No description provided for @btMethodsAddMethod.
   ///
@@ -4367,17 +4367,17 @@ abstract class AppLocalizations {
   /// **'The expense will be cancelled only after required approvals. History is preserved.'**
   String get btControlsTheExpenseWillBe;
 
-  /// No description provided for @btControlsCancel.
+  /// No description provided for @btActionCancel.
   ///
   /// In en, this message translates to:
   /// **'Cancel'**
-  String get btControlsCancel;
+  String get btActionCancel;
 
-  /// No description provided for @btControlsConfirm.
+  /// No description provided for @btActionConfirm.
   ///
   /// In en, this message translates to:
   /// **'Confirm'**
-  String get btControlsConfirm;
+  String get btActionConfirm;
 
   /// No description provided for @btControlsCancelledExpenseHistoryRetained.
   ///
@@ -4409,11 +4409,11 @@ abstract class AppLocalizations {
   /// **'Pending cancellation: {value1}/{value2}'**
   String btControlsPendingCancellation(Object value1, Object value2);
 
-  /// No description provided for @btControlsReject.
+  /// No description provided for @btActionReject.
   ///
   /// In en, this message translates to:
   /// **'Reject'**
-  String get btControlsReject;
+  String get btActionReject;
 
   /// No description provided for @btControlsApprove.
   ///
@@ -4421,53 +4421,23 @@ abstract class AppLocalizations {
   /// **'Approve'**
   String get btControlsApprove;
 
-  /// No description provided for @btListAccommodation.
-  ///
-  /// In en, this message translates to:
-  /// **'Accommodation'**
-  String get btListAccommodation;
-
-  /// No description provided for @btListFoodDrinks.
-  ///
-  /// In en, this message translates to:
-  /// **'Food & drinks'**
-  String get btListFoodDrinks;
-
-  /// No description provided for @btListTransport.
-  ///
-  /// In en, this message translates to:
-  /// **'Transport'**
-  String get btListTransport;
-
-  /// No description provided for @btListActivities.
-  ///
-  /// In en, this message translates to:
-  /// **'Activities'**
-  String get btListActivities;
-
-  /// No description provided for @btListOther.
-  ///
-  /// In en, this message translates to:
-  /// **'Other'**
-  String get btListOther;
-
   /// No description provided for @btListPaid.
   ///
   /// In en, this message translates to:
   /// **'Paid'**
   String get btListPaid;
 
-  /// No description provided for @btListPlanned.
+  /// No description provided for @btStatusPlanned.
   ///
   /// In en, this message translates to:
   /// **'Planned'**
-  String get btListPlanned;
+  String get btStatusPlanned;
 
-  /// No description provided for @btListOutstanding.
+  /// No description provided for @btStatusOutstanding.
   ///
   /// In en, this message translates to:
   /// **'Outstanding'**
-  String get btListOutstanding;
+  String get btStatusOutstanding;
 
   /// No description provided for @btListStatusUnavailable.
   ///
@@ -4475,11 +4445,11 @@ abstract class AppLocalizations {
   /// **'Status unavailable'**
   String get btListStatusUnavailable;
 
-  /// No description provided for @btListUnableToLoadExpenses.
+  /// No description provided for @btUnableToLoadExpenses.
   ///
   /// In en, this message translates to:
   /// **'Unable to load expenses.'**
-  String get btListUnableToLoadExpenses;
+  String get btUnableToLoadExpenses;
 
   /// No description provided for @btListNoExpensesToDisplay.
   ///
@@ -4487,11 +4457,11 @@ abstract class AppLocalizations {
   /// **'No expenses to display.'**
   String get btListNoExpensesToDisplay;
 
-  /// No description provided for @btListUntitledExpense.
+  /// No description provided for @btUntitledExpense.
   ///
   /// In en, this message translates to:
   /// **'Untitled expense'**
-  String get btListUntitledExpense;
+  String get btUntitledExpense;
 
   /// No description provided for @btListTravelers.
   ///
@@ -4499,53 +4469,17 @@ abstract class AppLocalizations {
   /// **'{value1} travelers'**
   String btListTravelers(Object value1);
 
-  /// No description provided for @btDetailsAccommodation.
-  ///
-  /// In en, this message translates to:
-  /// **'Accommodation'**
-  String get btDetailsAccommodation;
-
   /// No description provided for @btDetailsFood.
   ///
   /// In en, this message translates to:
   /// **'Food'**
   String get btDetailsFood;
 
-  /// No description provided for @btDetailsTransport.
-  ///
-  /// In en, this message translates to:
-  /// **'Transport'**
-  String get btDetailsTransport;
-
-  /// No description provided for @btDetailsActivities.
-  ///
-  /// In en, this message translates to:
-  /// **'Activities'**
-  String get btDetailsActivities;
-
-  /// No description provided for @btDetailsOther.
-  ///
-  /// In en, this message translates to:
-  /// **'Other'**
-  String get btDetailsOther;
-
-  /// No description provided for @btDetailsPlanned.
-  ///
-  /// In en, this message translates to:
-  /// **'Planned'**
-  String get btDetailsPlanned;
-
-  /// No description provided for @btDetailsOutstanding.
-  ///
-  /// In en, this message translates to:
-  /// **'Outstanding'**
-  String get btDetailsOutstanding;
-
-  /// No description provided for @btDetailsPaid.
+  /// No description provided for @btStatusPaid.
   ///
   /// In en, this message translates to:
   /// **'Paid'**
-  String get btDetailsPaid;
+  String get btStatusPaid;
 
   /// No description provided for @btDetailsUnavailable.
   ///
@@ -4576,12 +4510,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expense details'**
   String get btDetailsExpenseDetails;
-
-  /// No description provided for @btDetailsUntitledExpense.
-  ///
-  /// In en, this message translates to:
-  /// **'Untitled expense'**
-  String get btDetailsUntitledExpense;
 
   /// No description provided for @btDetailsAdjustRate.
   ///
@@ -4649,41 +4577,11 @@ abstract class AppLocalizations {
   /// **'Add valid methods. The total must be positive and within the maximum.'**
   String get btRefundsAddValidMethodsThe;
 
-  /// No description provided for @btRefundsCancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get btRefundsCancel;
-
   /// No description provided for @btRefundsSubmitRequest.
   ///
   /// In en, this message translates to:
   /// **'Submit request'**
   String get btRefundsSubmitRequest;
-
-  /// No description provided for @btRefundsCash.
-  ///
-  /// In en, this message translates to:
-  /// **'Cash'**
-  String get btRefundsCash;
-
-  /// No description provided for @btRefundsCard.
-  ///
-  /// In en, this message translates to:
-  /// **'Card'**
-  String get btRefundsCard;
-
-  /// No description provided for @btRefundsBankTransfer.
-  ///
-  /// In en, this message translates to:
-  /// **'Bank transfer'**
-  String get btRefundsBankTransfer;
-
-  /// No description provided for @btRefundsOther.
-  ///
-  /// In en, this message translates to:
-  /// **'Other'**
-  String get btRefundsOther;
 
   /// No description provided for @btRefundsReimbursementMethodNotRecorded.
   ///
@@ -4757,18 +4655,6 @@ abstract class AppLocalizations {
   /// **'Decided by'**
   String get btRefundsDecidedBy;
 
-  /// No description provided for @btRefundsReject.
-  ///
-  /// In en, this message translates to:
-  /// **'Reject'**
-  String get btRefundsReject;
-
-  /// No description provided for @btRefundsConfirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm'**
-  String get btRefundsConfirm;
-
   /// No description provided for @btRefundsOutstanding.
   ///
   /// In en, this message translates to:
@@ -4823,17 +4709,17 @@ abstract class AppLocalizations {
   /// **'Budget currency'**
   String get btPersonalBudgetCurrency;
 
-  /// No description provided for @btPersonalSearchCurrencies.
+  /// No description provided for @btSearchCurrencies.
   ///
   /// In en, this message translates to:
   /// **'Search currencies'**
-  String get btPersonalSearchCurrencies;
+  String get btSearchCurrencies;
 
-  /// No description provided for @btPersonalNoCurrenciesFound.
+  /// No description provided for @btNoCurrenciesFound.
   ///
   /// In en, this message translates to:
   /// **'No currencies found'**
-  String get btPersonalNoCurrenciesFound;
+  String get btNoCurrenciesFound;
 
   /// No description provided for @btPersonalFirestoreDeniedTheWrite.
   ///
@@ -4871,23 +4757,11 @@ abstract class AppLocalizations {
   /// **'Planned amount'**
   String get btPersonalPlannedAmount;
 
-  /// No description provided for @btPersonalCurrency.
+  /// No description provided for @btCurrencyLabel.
   ///
   /// In en, this message translates to:
   /// **'Currency'**
-  String get btPersonalCurrency;
-
-  /// No description provided for @btPersonalRemove.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove'**
-  String get btPersonalRemove;
-
-  /// No description provided for @btPersonalCancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get btPersonalCancel;
+  String get btCurrencyLabel;
 
   /// No description provided for @btPersonalSave.
   ///
@@ -4912,12 +4786,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Set budget'**
   String get btPersonalSetBudget;
-
-  /// No description provided for @btPersonalUnableToLoadExpenses.
-  ///
-  /// In en, this message translates to:
-  /// **'Unable to load expenses.'**
-  String get btPersonalUnableToLoadExpenses;
 
   /// No description provided for @btPersonalUnableToLoadPersonal.
   ///
@@ -4979,18 +4847,6 @@ abstract class AppLocalizations {
   /// **'Display currency'**
   String get btToolbarDisplayCurrency;
 
-  /// No description provided for @btToolbarSearchCurrencies.
-  ///
-  /// In en, this message translates to:
-  /// **'Search currencies'**
-  String get btToolbarSearchCurrencies;
-
-  /// No description provided for @btToolbarNoCurrenciesFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No currencies found'**
-  String get btToolbarNoCurrenciesFound;
-
   /// No description provided for @btToolbarAllCategories.
   ///
   /// In en, this message translates to:
@@ -5045,41 +4901,23 @@ abstract class AppLocalizations {
   /// **'Amount descending'**
   String get btToolbarAmountDescending;
 
-  /// No description provided for @btToolbarCategory.
+  /// No description provided for @btCategoryLabel.
   ///
   /// In en, this message translates to:
   /// **'Category'**
-  String get btToolbarCategory;
+  String get btCategoryLabel;
 
-  /// No description provided for @btToolbarStatus.
+  /// No description provided for @btStatusLabel.
   ///
   /// In en, this message translates to:
   /// **'Status'**
-  String get btToolbarStatus;
+  String get btStatusLabel;
 
   /// No description provided for @btToolbarAllStatuses.
   ///
   /// In en, this message translates to:
   /// **'All statuses'**
   String get btToolbarAllStatuses;
-
-  /// No description provided for @btToolbarPlanned.
-  ///
-  /// In en, this message translates to:
-  /// **'Planned'**
-  String get btToolbarPlanned;
-
-  /// No description provided for @btToolbarOutstanding.
-  ///
-  /// In en, this message translates to:
-  /// **'Outstanding'**
-  String get btToolbarOutstanding;
-
-  /// No description provided for @btToolbarPaid.
-  ///
-  /// In en, this message translates to:
-  /// **'Paid'**
-  String get btToolbarPaid;
 
   /// No description provided for @btToolbarPeriod.
   ///
@@ -5134,18 +4972,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expense currency'**
   String get btCreateExpenseCurrency;
-
-  /// No description provided for @btCreateSearchCurrencies.
-  ///
-  /// In en, this message translates to:
-  /// **'Search currencies'**
-  String get btCreateSearchCurrencies;
-
-  /// No description provided for @btCreateNoCurrenciesFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No currencies found'**
-  String get btCreateNoCurrenciesFound;
 
   /// No description provided for @btCreateYou.
   ///
@@ -5207,12 +5033,6 @@ abstract class AppLocalizations {
   /// **'Confirm new expense'**
   String get btCreateConfirmNewExpense;
 
-  /// No description provided for @btCreateCategory.
-  ///
-  /// In en, this message translates to:
-  /// **'Category'**
-  String get btCreateCategory;
-
   /// No description provided for @btCreateType.
   ///
   /// In en, this message translates to:
@@ -5230,12 +5050,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Personal'**
   String get btCreatePersonal;
-
-  /// No description provided for @btCreateStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'Status'**
-  String get btCreateStatus;
 
   /// No description provided for @btCreatePaymentsRecordedInThis.
   ///
@@ -5339,12 +5153,6 @@ abstract class AppLocalizations {
   /// **'Expense amount'**
   String get btCreateExpenseAmount;
 
-  /// No description provided for @btCreateCurrency.
-  ///
-  /// In en, this message translates to:
-  /// **'Currency'**
-  String get btCreateCurrency;
-
   /// No description provided for @btCreateTotalAmount.
   ///
   /// In en, this message translates to:
@@ -5356,24 +5164,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expense status'**
   String get btCreateExpenseStatus;
-
-  /// No description provided for @btCreatePlanned.
-  ///
-  /// In en, this message translates to:
-  /// **'Planned'**
-  String get btCreatePlanned;
-
-  /// No description provided for @btCreateOutstanding.
-  ///
-  /// In en, this message translates to:
-  /// **'Outstanding'**
-  String get btCreateOutstanding;
-
-  /// No description provided for @btCreatePaid.
-  ///
-  /// In en, this message translates to:
-  /// **'Paid'**
-  String get btCreatePaid;
 
   /// No description provided for @btCreateSplitBetweenTravelers.
   ///
@@ -5416,12 +5206,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Summary'**
   String get btCreateSummary;
-
-  /// No description provided for @btCreateCancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get btCreateCancel;
 
   /// No description provided for @btCreateBack.
   ///

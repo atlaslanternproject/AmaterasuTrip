@@ -218,7 +218,7 @@ class _BudgetPaymentMethodsEditorState
                     child: TextButton.icon(
                       onPressed: widget.enabled ? () => _remove(row) : null,
                       icon: const Icon(Icons.delete_outline_rounded),
-                      label: Text(_l10n(it).btMethodsRemove),
+                      label: Text(_l10n(it).btActionRemove),
                     ),
                   ),
                 ],
