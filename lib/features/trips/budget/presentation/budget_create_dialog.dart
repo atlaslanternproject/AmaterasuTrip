@@ -14,6 +14,7 @@ import '../models/budget_payment_allocation.dart';
 import '../models/budget_payment_plan.dart';
 import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
 import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetCreateDialog extends StatefulWidget {
   const BudgetCreateDialog({
@@ -113,7 +114,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
     final chosen = await showModalBottomSheet<TripCurrency>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: const Color(0xFF231915),
+      backgroundColor: AmaterasuColors.surfaceCard,
       builder: (sheetContext) => SafeArea(
         top: false,
         child: TripCurrencyPickerSheet(
@@ -158,8 +159,8 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
   }
 
   Widget _expensePreview(bool it) {
-    final color = const Color(0xFFF2E7D5);
-    final muted = const Color(0xFFB7A99B);
+    final color = AmaterasuColors.textPrimary;
+    final muted = AmaterasuColors.textSecondary;
 
     try {
       final total = BudgetMoneyInput.parse(_amount.text, _selectedCurrency);
@@ -197,7 +198,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
       if (paid > total) {
         return Text(
           _l10n(it).btCreatePaymentsExceedTotal,
-          style: const TextStyle(color: Color(0xFFFFB4A2)),
+          style: const TextStyle(color: AmaterasuColors.accentPeach),
         );
       }
 
@@ -259,10 +260,10 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: const Color(0xFF231915),
+        backgroundColor: AmaterasuColors.surfaceCard,
         title: Text(
           _l10n(it).btCreateConfirmNewExpense,
-          style: const TextStyle(color: Color(0xFFF2E7D5)),
+          style: const TextStyle(color: AmaterasuColors.textPrimary),
         ),
         content: SizedBox(
           width: 420,
@@ -274,7 +275,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 Text(
                   _title.text.trim(),
                   style: const TextStyle(
-                    color: Color(0xFFF2E7D5),
+                    color: AmaterasuColors.textPrimary,
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
                   ),
@@ -282,15 +283,15 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 const SizedBox(height: 8),
                 Text(
                   '${_l10n(it).btCreateCategory}: $_category',
-                  style: const TextStyle(color: Color(0xFFB7A99B)),
+                  style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 Text(
                   '${_l10n(it).btCreateType}: ${_shared ? (_l10n(it).btCreateShared) : (_l10n(it).btCreatePersonal)}',
-                  style: const TextStyle(color: Color(0xFFB7A99B)),
+                  style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 Text(
                   '${_l10n(it).btCreateStatus}: $_status',
-                  style: const TextStyle(color: Color(0xFFB7A99B)),
+                  style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 const SizedBox(height: 16),
                 _expensePreview(it),
@@ -298,7 +299,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 Text(
                   _l10n(it).btCreatePaymentsRecordedInThis,
                   style: const TextStyle(
-                    color: Color(0xFFB7A99B),
+                    color: AmaterasuColors.textSecondary,
                     fontSize: 12,
                   ),
                 ),
@@ -421,8 +422,8 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
   @override
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';
-    const cream = Color(0xFFF2E7D5);
-    const orange = Color(0xFFE17A43);
+    const cream = AmaterasuColors.textPrimary;
+    const orange = AmaterasuColors.accentOrange;
 
     Widget modeButton({
       required String label,
@@ -769,7 +770,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 Text(
                   _error!,
                   style: const TextStyle(
-                    color: Color(0xFFFFB4A2),
+                    color: AmaterasuColors.accentPeach,
                     fontSize: 13,
                   ),
                 ),

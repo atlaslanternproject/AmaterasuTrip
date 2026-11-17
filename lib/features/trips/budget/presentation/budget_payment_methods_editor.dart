@@ -3,6 +3,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../models/budget_payment_allocation.dart';
 import 'budget_money_input.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetPaymentMethodsEditor extends StatefulWidget {
   const BudgetPaymentMethodsEditor({
@@ -117,14 +118,14 @@ class _BudgetPaymentMethodsEditorState
         Text(
           _l10n(it).btMethodsPaymentMethods,
           style: const TextStyle(
-            color: Color(0xFFF2E7D5),
+            color: AmaterasuColors.textPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),
         const SizedBox(height: 8),
         Text(
           _l10n(it).btMethodsRecordHowYouPaid,
-          style: const TextStyle(color: Color(0xFFB7A99B)),
+          style: const TextStyle(color: AmaterasuColors.textSecondary),
         ),
         const SizedBox(height: 12),
         for (final row in _rows)
@@ -135,7 +136,7 @@ class _BudgetPaymentMethodsEditorState
               decoration: BoxDecoration(
                 color: const Color(0xFF2C211C),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFF49352A)),
+                border: Border.all(color: AmaterasuColors.borderStrong),
               ),
               child: Column(
                 children: [

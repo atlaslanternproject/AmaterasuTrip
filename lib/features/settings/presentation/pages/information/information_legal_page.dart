@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class InformationLegalPage extends StatelessWidget {
   const InformationLegalPage({super.key});
 
-  static const Color _sectionColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
-  static const Color _chevronColor = Color(0xFFB89B7A);
+  static const Color _sectionColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
+  static const Color _chevronColor = AmaterasuColors.textWarm;
 
   static final Uri _privacyPolicyUrl = Uri.parse(
     'https://atlaslanternproject.github.io/AmaterasuTrip/privacy.html',

@@ -4,6 +4,7 @@ import 'budget_api.dart';
 import 'budget_category_edit_dialog.dart';
 import 'budget_reimbursements_panel.dart';
 import 'budget_revision_panel.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetExpenseControls extends StatefulWidget {
   const BudgetExpenseControls({
@@ -206,7 +207,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
             padding: const EdgeInsets.only(top: 8),
             child: Text(
               _message!,
-              style: const TextStyle(color: Color(0xFFE3A66C)),
+              style: const TextStyle(color: AmaterasuColors.accentGold),
             ),
           ),
       ],

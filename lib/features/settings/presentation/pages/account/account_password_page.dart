@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/widgets/buttons/amaterasu_primary_button.dart';
 import 'package:amaterasutrip/core/widgets/inputs/amaterasu_password_field.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class AccountPasswordPage extends StatefulWidget {
   const AccountPasswordPage({super.key});
@@ -140,12 +141,12 @@ class _AccountPasswordPageState extends State<AccountPasswordPage> {
         decoration: BoxDecoration(
           color: const Color(0xFF211A16),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xFF3A2A20)),
+          border: Border.all(color: AmaterasuColors.borderWarm),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.account_circle_outlined, color: Color(0xFFE28A32)),
+            const Icon(Icons.account_circle_outlined, color: AmaterasuColors.accentSettings),
             const SizedBox(width: 12),
             Expanded(
               child: Text(
@@ -396,12 +397,12 @@ class _PasswordSubItem extends StatelessWidget {
   final String subtitle;
   final VoidCallback? onTap;
 
-  static const Color _sectionColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
-  static const Color _chevronColor = Color(0xFFB89B7A);
+  static const Color _sectionColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
+  static const Color _chevronColor = AmaterasuColors.textWarm;
 
   @override
   Widget build(BuildContext context) {

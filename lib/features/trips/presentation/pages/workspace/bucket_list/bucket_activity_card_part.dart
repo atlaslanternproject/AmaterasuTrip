@@ -30,11 +30,11 @@ extension _BucketActivityCard on _TripBucketListPageState {
 
     final allVoted = _members.isNotEmpty && count == _members.length;
 
-    const background = Color(0xFF211914);
+    const background = AmaterasuColors.surfaceSheet;
     const border = Color(0xFF503629);
-    const cream = Color(0xFFF5E9DA);
+    const cream = AmaterasuColors.textCream;
     const muted = Color(0xFFC4B2A3);
-    const amber = Color(0xFFF2B45C);
+    const amber = AmaterasuColors.accentAmber;
     const vermilion = Color(0xFFD66A42);
 
     Widget infoPill(IconData icon, String label, {Color? foreground}) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetCreateSection extends StatelessWidget {
   const BudgetCreateSection({
@@ -18,9 +19,9 @@ class BudgetCreateSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cream = Color(0xFFF2E7D5);
-    const muted = Color(0xFFB7A99B);
-    const gold = Color(0xFFE3A66C);
+    const cream = AmaterasuColors.textPrimary;
+    const muted = AmaterasuColors.textSecondary;
+    const gold = AmaterasuColors.accentGold;
 
     return Container(
       width: double.infinity,
@@ -30,7 +31,7 @@ class BudgetCreateSection extends StatelessWidget {
         color: accent ? const Color(0xFF34241D) : const Color(0xFF2B201B),
         borderRadius: BorderRadius.circular(17),
         border: Border.all(
-          color: accent ? const Color(0xFF9A5936) : const Color(0xFF49352A),
+          color: accent ? const Color(0xFF9A5936) : AmaterasuColors.borderStrong,
         ),
       ),
       child: Column(

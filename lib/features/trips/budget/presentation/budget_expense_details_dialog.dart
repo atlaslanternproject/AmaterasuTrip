@@ -9,6 +9,7 @@ import 'budget_display_amount.dart';
 import 'budget_api.dart';
 import 'budget_expense_controls.dart';
 import 'budget_people.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetExpenseDetailsDialog extends StatelessWidget {
   const BudgetExpenseDetailsDialog({
@@ -87,7 +88,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
     if (amounts.isEmpty) {
       return Text(
         _l10n(it).btDetailsNoAmountsRecorded,
-        style: const TextStyle(color: Color(0xFFB7A99B)),
+        style: const TextStyle(color: AmaterasuColors.textSecondary),
       );
     }
 
@@ -120,7 +121,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       return Text(
                         label,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(color: Color(0xFFF2E7D5)),
+                        style: const TextStyle(color: AmaterasuColors.textPrimary),
                       );
                     },
                   ),
@@ -129,7 +130,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                 Text(
                   _formatMoney(entry.value),
                   style: const TextStyle(
-                    color: Color(0xFFF2E7D5),
+                    color: AmaterasuColors.textPrimary,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -176,7 +177,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                     child: Text(
                       _l10n(it).btDetailsExpenseDetails,
                       style: const TextStyle(
-                        color: Color(0xFFF2E7D5),
+                        color: AmaterasuColors.textPrimary,
                         fontSize: 19,
                         fontWeight: FontWeight.w700,
                       ),
@@ -185,7 +186,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
                     icon: const Icon(Icons.close_rounded),
-                    color: const Color(0xFFF2E7D5),
+                    color: AmaterasuColors.textPrimary,
                   ),
                 ],
               ),
@@ -200,7 +201,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                             ? (_l10n(it).btDetailsUntitledExpense)
                             : title,
                         style: const TextStyle(
-                          color: Color(0xFFF2E7D5),
+                          color: AmaterasuColors.textPrimary,
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
                         ),
@@ -208,7 +209,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       const SizedBox(height: 6),
                       Text(
                         _categoryLabel(category, it),
-                        style: const TextStyle(color: Color(0xFFB7A99B)),
+                        style: const TextStyle(color: AmaterasuColors.textSecondary),
                       ),
                       const SizedBox(height: 18),
                       if (day != null)
@@ -268,7 +269,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                         Text(
                           _formatMoney(snapshot['total']),
                           style: const TextStyle(
-                            color: Color(0xFFE3A66C),
+                            color: AmaterasuColors.accentGold,
                             fontSize: 30,
                             fontWeight: FontWeight.w800,
                           ),
@@ -276,7 +277,7 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         _statusLabel(status, it),
-                        style: const TextStyle(color: Color(0xFFB7A99B)),
+                        style: const TextStyle(color: AmaterasuColors.textSecondary),
                       ),
                       const SizedBox(height: 16),
                       BudgetDialogChrome.section(

@@ -17,6 +17,7 @@ import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/dest
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/features/trips/presentation/widgets/trip_cover_source_sheet.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripInformationSettingsPage extends ConsumerStatefulWidget {
   const TripInformationSettingsPage({super.key, required this.tripId});
@@ -30,12 +31,12 @@ class TripInformationSettingsPage extends ConsumerStatefulWidget {
 
 class _TripInformationSettingsPageState
     extends ConsumerState<TripInformationSettingsPage> {
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _surfaceColor = Color(0xFF1A1310);
-  static const Color _borderColor = Color(0xFF5A3023);
-  static const Color _accentColor = Color(0xFFFF7A3D);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _surfaceColor = AmaterasuColors.surfaceWarm;
+  static const Color _borderColor = AmaterasuColors.borderAccent;
+  static const Color _accentColor = AmaterasuColors.accentOrangeBright;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
   final DestinationPlacesService _placesService =
       const DestinationPlacesService();
@@ -1032,7 +1033,7 @@ class _InformationRow extends StatelessWidget {
         if (showDivider)
           const Padding(
             padding: EdgeInsets.only(left: 54),
-            child: Divider(height: 1, color: Color(0xFF3A2A24)),
+            child: Divider(height: 1, color: AmaterasuColors.borderWarmAlt),
           ),
       ],
     );

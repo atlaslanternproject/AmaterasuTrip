@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class DestinationWorldMap extends StatefulWidget {
   const DestinationWorldMap({
@@ -25,8 +26,8 @@ class DestinationWorldMap extends StatefulWidget {
 }
 
 class _DestinationWorldMapState extends State<DestinationWorldMap> {
-  static const Color _accentColor = Color(0xFFE86A3A);
-  static const Color _creamColor = Color(0xFFF2E7D5);
+  static const Color _accentColor = AmaterasuColors.accentFlame;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
 
   static const CameraPosition _worldCamera = CameraPosition(
     target: LatLng(20, 0),
@@ -314,7 +315,7 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
                           vertical: 8,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xE6100C0A),
+                          color: AmaterasuColors.surfaceDeepOverlay,
                           borderRadius: BorderRadius.circular(999),
                           border: Border.all(
                             color: _accentColor.withValues(alpha: 0.35),
@@ -355,7 +356,7 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
                         vertical: 8,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xE6100C0A),
+                        color: AmaterasuColors.surfaceDeepOverlay,
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(
                           color: _accentColor.withValues(alpha: 0.45),
@@ -479,7 +480,7 @@ class _MapButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color(0xE6100C0A),
+      color: AmaterasuColors.surfaceDeepOverlay,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -487,7 +488,7 @@ class _MapButton extends StatelessWidget {
         child: SizedBox(
           width: 42,
           height: 42,
-          child: Icon(icon, color: const Color(0xFFF2E7D5), size: 21),
+          child: Icon(icon, color: AmaterasuColors.textPrimary, size: 21),
         ),
       ),
     );

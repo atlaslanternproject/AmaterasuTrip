@@ -66,7 +66,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                   children: [
                     const Icon(
                       Icons.assignment_outlined,
-                      color: Color(0xFFE8A552),
+                      color: AmaterasuColors.accentGoldLight,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -77,7 +77,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                             _t('Richieste da gestire', 'Requests to review'),
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFFF2E7D5),
+                              color: AmaterasuColors.textPrimary,
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -86,12 +86,12 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                               '${groups.length} attività con eliminazione proposta',
                               '${groups.length} activities proposed for deletion',
                             ),
-                            style: const TextStyle(color: Color(0xFFB7A99B)),
+                            style: const TextStyle(color: AmaterasuColors.textSecondary),
                           ),
                         ],
                       ),
                     ),
-                    const Icon(Icons.chevron_right, color: Color(0xFFE8A552)),
+                    const Icon(Icons.chevron_right, color: AmaterasuColors.accentGoldLight),
                   ],
                 ),
               ),
@@ -107,7 +107,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
-      backgroundColor: const Color(0xFF211914),
+      backgroundColor: AmaterasuColors.surfaceSheet,
       builder: (sheetContext) => FractionallySizedBox(
         heightFactor: 0.82,
         child: Column(
@@ -122,7 +122,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFFF2E7D5),
+                        color: AmaterasuColors.textPrimary,
                       ),
                     ),
                   ),
@@ -154,13 +154,13 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                           group.activity.name,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFFF2E7D5),
+                            color: AmaterasuColors.textPrimary,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           group.activity.city,
-                          style: const TextStyle(color: Color(0xFFB7A99B)),
+                          style: const TextStyle(color: AmaterasuColors.textSecondary),
                         ),
                         const SizedBox(height: 12),
                         for (final request in group.requests)
@@ -169,7 +169,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                             child: Text(
                               '${request.requestedByUid}: '
                               '${request.reason.isEmpty ? _t('Nessuna motivazione', 'No reason provided') : request.reason}',
-                              style: const TextStyle(color: Color(0xFFF2E7D5)),
+                              style: const TextStyle(color: AmaterasuColors.textPrimary),
                             ),
                           ),
                         Row(
@@ -214,7 +214,7 @@ extension _BucketDeletionReview on _TripBucketListPageState {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: const Color(0xFF211914),
+        backgroundColor: AmaterasuColors.surfaceSheet,
         title: Text(
           approve
               ? _t('Eliminare definitivamente?', 'Delete permanently?')

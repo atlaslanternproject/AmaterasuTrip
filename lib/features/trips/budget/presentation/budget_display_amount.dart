@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../calculations/budget_money_formatter.dart';
 import '../data/budget_fx_service.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 typedef BudgetQuoteLoader =
     Future<BudgetFxQuote> Function(String from, String to);
@@ -113,7 +114,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
           Text(
             prominent,
             style: TextStyle(
-              color: const Color(0xFFE3A66C),
+              color: AmaterasuColors.accentGold,
               fontSize: widget.fontSize,
               fontWeight: FontWeight.w800,
             ),
@@ -121,19 +122,19 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
           const SizedBox(height: 3),
           Text(
             '${_l10n(it).btAmountOriginal}: $original',
-            style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 11),
+            style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 11),
           ),
           if (warning != null)
             Text(
               warning,
-              style: const TextStyle(color: Color(0xFFE3A66C), fontSize: 11),
+              style: const TextStyle(color: AmaterasuColors.accentGold, fontSize: 11),
             ),
           if (source != null)
             Tooltip(
               message: source,
               child: Text(
                 _l10n(it).btAmountAutomaticExchangeRate,
-                style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 10),
+                style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 10),
               ),
             ),
         ],

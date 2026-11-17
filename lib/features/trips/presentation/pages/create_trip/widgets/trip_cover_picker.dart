@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripCoverPicker extends StatelessWidget {
   const TripCoverPicker({
@@ -15,8 +16,8 @@ class TripCoverPicker extends StatelessWidget {
   final VoidCallback onTap;
   final XFile? localImage;
 
-  static const Color _borderColor = Color(0xFF5A3023);
-  static const Color _creamColor = Color(0xFFF2E7D5);
+  static const Color _borderColor = AmaterasuColors.borderAccent;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
 
   bool get _hasLocalImage => localImage != null;
 

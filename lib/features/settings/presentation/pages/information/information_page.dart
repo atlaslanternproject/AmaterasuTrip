@@ -7,6 +7,7 @@ import 'information_app_page.dart';
 import 'information_legal_page.dart';
 import 'information_support_page.dart';
 import 'information_credits_page.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class InformationPage extends StatefulWidget {
   const InformationPage({super.key});
@@ -21,8 +22,8 @@ class _InformationPageState extends State<InformationPage> {
   bool _supportExpanded = false;
   bool _creditsExpanded = false;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
   @override
   Widget build(BuildContext context) {

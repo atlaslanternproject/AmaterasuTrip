@@ -6,6 +6,7 @@ import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive.dart
 import 'package:amaterasutrip/features/trips/data/models/trip_cloud_archive_selection.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripCloudArchivePage extends ConsumerStatefulWidget {
   const TripCloudArchivePage({super.key, this.currentArchive});
@@ -18,10 +19,10 @@ class TripCloudArchivePage extends ConsumerStatefulWidget {
 }
 
 class _TripCloudArchivePageState extends ConsumerState<TripCloudArchivePage> {
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _accentColor = Color(0xFFE86A3A);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
+  static const Color _accentColor = AmaterasuColors.accentFlame;
 
   bool _authorizingGoogleDrive = false;
 
@@ -34,7 +35,7 @@ class _TripCloudArchivePageState extends ConsumerState<TripCloudArchivePage> {
 
     final option = await showModalBottomSheet<_GoogleDriveLocationOption>(
       context: context,
-      backgroundColor: const Color(0xFF1A1715),
+      backgroundColor: AmaterasuColors.surfaceNeutral,
       showDragHandle: true,
       builder: (context) {
         return SafeArea(
@@ -316,7 +317,7 @@ class _LocationOptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color(0xFF241B17),
+      color: AmaterasuColors.surfaceRaisedAlt,
       borderRadius: BorderRadius.circular(15),
       child: InkWell(
         onTap: onTap,
@@ -387,11 +388,11 @@ class _ProviderCard extends StatelessWidget {
   final bool enabled;
   final bool isLoading;
 
-  static const Color _surfaceColor = Color(0xFF1A1715);
-  static const Color _borderColor = Color(0xFF332824);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _accentColor = Color(0xFFE86A3A);
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
+  static const Color _borderColor = AmaterasuColors.surfaceHigh;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
+  static const Color _accentColor = AmaterasuColors.accentFlame;
 
   @override
   Widget build(BuildContext context) {
@@ -424,7 +425,7 @@ class _ProviderCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: isSelected
                         ? _accentColor.withValues(alpha: 0.12)
-                        : const Color(0xFF241B17),
+                        : AmaterasuColors.surfaceRaisedAlt,
                     borderRadius: BorderRadius.circular(13),
                   ),
                   child: isLoading

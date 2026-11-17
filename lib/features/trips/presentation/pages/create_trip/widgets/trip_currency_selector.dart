@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripCurrencySelector extends StatelessWidget {
   const TripCurrencySelector({
@@ -16,11 +17,11 @@ class TripCurrencySelector extends StatelessWidget {
   final String? symbol;
   final VoidCallback onTap;
 
-  static const Color _surfaceColor = Color(0xFF1A1715);
-  static const Color _borderColor = Color(0xFF332824);
-  static const Color _creamColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _accentColor = Color(0xFFE86A3A);
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
+  static const Color _borderColor = AmaterasuColors.surfaceHigh;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
+  static const Color _accentColor = AmaterasuColors.accentFlame;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class TripCurrencySelector extends StatelessWidget {
                 height: 38,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF241B17),
+                  color: AmaterasuColors.surfaceRaisedAlt,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: hasCurrency && hasSymbol

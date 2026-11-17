@@ -8,7 +8,7 @@ extension _BucketActivityDeletionRequest on _TripBucketListPageState {
     final first = await showDialog<bool>(
       context: dialogContext,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF211914),
+        backgroundColor: AmaterasuColors.surfaceSheet,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text(_t('Richiedere l’eliminazione?', 'Request deletion?')),
         content: Text(
@@ -43,7 +43,7 @@ extension _BucketActivityDeletionRequest on _TripBucketListPageState {
             context: dialogContext,
             builder: (context) => StatefulBuilder(
               builder: (context, refresh) => AlertDialog(
-                backgroundColor: const Color(0xFF211914),
+                backgroundColor: AmaterasuColors.surfaceSheet,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),

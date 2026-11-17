@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_reauthentication.dart';
 import 'package:amaterasutrip/features/settings/data/services/account_deletion_service.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class AccountDeleteDialog extends ConsumerStatefulWidget {
   const AccountDeleteDialog({super.key});
@@ -18,10 +19,10 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
   bool _confirmed = false;
   bool _isDeleting = false;
 
-  static const Color _backgroundColor = Color(0xFF1A1512);
-  static const Color _borderColor = Color(0xFF3A2A20);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFFB8AAA0);
+  static const Color _backgroundColor = AmaterasuColors.surface;
+  static const Color _borderColor = AmaterasuColors.borderWarm;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textSecondaryAlt;
   static const Color _dangerColor = Color(0xFFD35C4A);
 
   Future<void> _deleteAccount() async {

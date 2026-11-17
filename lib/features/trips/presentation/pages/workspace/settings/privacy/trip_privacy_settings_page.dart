@@ -8,6 +8,7 @@ import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repos
 import 'package:amaterasutrip/features/trips/domain/access/trip_access.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 final _tripInviteStatusProvider = FutureProvider.autoDispose
     .family<TripInviteStatus, String>((ref, tripId) {
@@ -21,17 +22,17 @@ class TripPrivacySettingsPage extends ConsumerWidget {
 
   final String tripId;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
 
-  static const Color _accentColor = Color(0xFFE28A32);
+  static const Color _accentColor = AmaterasuColors.accentSettings;
 
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
-  static const Color _surfaceColor = Color(0xFF1A1512);
+  static const Color _surfaceColor = AmaterasuColors.surface;
 
-  static const Color _borderColor = Color(0xFF3A2A20);
+  static const Color _borderColor = AmaterasuColors.borderWarm;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

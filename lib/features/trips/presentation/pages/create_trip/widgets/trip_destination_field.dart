@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripDestinationField extends StatelessWidget {
   const TripDestinationField({
@@ -14,10 +15,10 @@ class TripDestinationField extends StatelessWidget {
   final String? destination;
   final VoidCallback onTap;
 
-  static const Color _surfaceColor = Color(0xFF1A1715);
-  static const Color _borderColor = Color(0xFF332824);
-  static const Color _creamColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
+  static const Color _borderColor = AmaterasuColors.surfaceHigh;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
   @override
   Widget build(BuildContext context) {

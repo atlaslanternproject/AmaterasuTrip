@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'budget_traveler_avatar.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetTravelerTile extends StatelessWidget {
   const BudgetTravelerTile({
@@ -20,8 +21,8 @@ class BudgetTravelerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cream = Color(0xFFF2E7D5);
-    const muted = Color(0xFFB7A99B);
+    const cream = AmaterasuColors.textPrimary;
+    const muted = AmaterasuColors.textSecondary;
 
     final displayName = name.trim().isEmpty ? '—' : name.trim();
 
@@ -40,7 +41,7 @@ class BudgetTravelerTile extends StatelessWidget {
               border: Border.all(
                 color: selected
                     ? const Color(0xFFAA7049)
-                    : const Color(0xFF49352A),
+                    : AmaterasuColors.borderStrong,
               ),
             ),
             child: Row(
@@ -65,8 +66,8 @@ class BudgetTravelerTile extends StatelessWidget {
                   onChanged: enabled
                       ? (value) => onChanged(value ?? false)
                       : null,
-                  activeColor: const Color(0xFFE17A43),
-                  checkColor: const Color(0xFF100C0A),
+                  activeColor: AmaterasuColors.accentOrange,
+                  checkColor: AmaterasuColors.surfaceDeep,
                 ),
               ],
             ),

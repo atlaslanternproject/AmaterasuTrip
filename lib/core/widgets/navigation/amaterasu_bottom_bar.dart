@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class AmaterasuBottomBar extends StatelessWidget {
   final int selectedIndex;
@@ -15,7 +16,7 @@ class AmaterasuBottomBar extends StatelessWidget {
 
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFF080605),
+        color: AmaterasuColors.surfaceBlack,
         border: Border(top: BorderSide(color: Color(0xFF3A211B), width: 1)),
       ),
       child: NavigationBarTheme(
@@ -82,7 +83,7 @@ class _AmaterasuNavIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconColor = selected
-        ? const Color(0xFFFF8A4C)
+        ? AmaterasuColors.accentOrangeLight
         : const Color(0xFFD9784A);
     if (!selected) {
       return Icon(icon, size: 27, color: iconColor);
@@ -90,7 +91,7 @@ class _AmaterasuNavIcon extends StatelessWidget {
     return Icon(
       icon,
       size: 28,
-      color: const Color(0xFFFF8A4C),
+      color: AmaterasuColors.accentOrangeLight,
       shadows: const [Shadow(color: Color(0xFFFF6B32), blurRadius: 4)],
     );
   }

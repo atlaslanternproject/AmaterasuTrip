@@ -6,6 +6,7 @@ import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart
 import 'data_sync_settings_page.dart';
 import 'data_storage_page.dart';
 import 'data_connection_page.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class DataSyncPage extends StatefulWidget {
   const DataSyncPage({super.key});
@@ -19,8 +20,8 @@ class _DataSyncPageState extends State<DataSyncPage> {
   bool _storageExpanded = false;
   bool _connectionExpanded = false;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
   @override
   Widget build(BuildContext context) {

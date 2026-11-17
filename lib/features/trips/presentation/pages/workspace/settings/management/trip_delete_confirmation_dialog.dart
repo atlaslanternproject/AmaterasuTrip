@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripDeleteConfirmationDialog extends StatefulWidget {
   const TripDeleteConfirmationDialog({super.key, required this.tripName});
@@ -14,11 +15,11 @@ class TripDeleteConfirmationDialog extends StatefulWidget {
 
 class _TripDeleteConfirmationDialogState
     extends State<TripDeleteConfirmationDialog> {
-  static const Color _surfaceColor = Color(0xFF1A1512);
+  static const Color _surfaceColor = AmaterasuColors.surface;
 
-  static const Color _titleColor = Color(0xFFF2E7D5);
+  static const Color _titleColor = AmaterasuColors.textPrimary;
 
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
   late final TextEditingController _controller;
 

@@ -8,12 +8,13 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../widgets/trip_card.dart';
 import '../widgets/trip_section_title.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripsPage extends ConsumerWidget {
   const TripsPage({super.key});
 
-  static const Color _backgroundColor = Color(0xFF080605);
-  static const Color _accentColor = Color(0xFFE9783D);
+  static const Color _backgroundColor = AmaterasuColors.surfaceBlack;
+  static const Color _accentColor = AmaterasuColors.accentOrangeSoft;
   static const Color _titleColor = Color(0xFFF4E9D8);
   static const Color _secondaryTextColor = Color(0xFFB9AA9C);
 

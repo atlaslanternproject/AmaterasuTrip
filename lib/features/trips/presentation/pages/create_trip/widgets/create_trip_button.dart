@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class CreateTripButton extends StatelessWidget {
   const CreateTripButton({
@@ -34,14 +35,14 @@ class CreateTripButton extends StatelessWidget {
                 end: Alignment.centerRight,
                 colors: [
                   Color(0xFFB93622),
-                  Color(0xFFE35B28),
+                  AmaterasuColors.accentVermilion,
                   Color(0xFFF08A38),
                 ],
               ),
               boxShadow: isEnabled
                   ? [
                       BoxShadow(
-                        color: const Color(0xFFE35B28).withValues(alpha: 0.22),
+                        color: AmaterasuColors.accentVermilion.withValues(alpha: 0.22),
                         blurRadius: 18,
                         offset: const Offset(0, 7),
                       ),

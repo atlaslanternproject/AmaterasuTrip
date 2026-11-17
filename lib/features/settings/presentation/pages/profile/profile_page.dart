@@ -14,6 +14,7 @@ import 'profile_username_dialog.dart';
 import 'widgets/profile_edit_card.dart';
 import 'widgets/profile_header.dart';
 import 'widgets/profile_view_card.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -23,10 +24,10 @@ class ProfilePage extends ConsumerStatefulWidget {
 }
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
 
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();

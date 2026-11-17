@@ -7,6 +7,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
 import 'budget_people.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetRevisionPanel extends StatefulWidget {
   const BudgetRevisionPanel({
@@ -152,7 +153,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
           dialogRoute ??= ModalRoute.of(dialogContext);
           return StatefulBuilder(
             builder: (dialogContext, refresh) => AlertDialog(
-              backgroundColor: const Color(0xFF241A16),
+              backgroundColor: AmaterasuColors.surfaceRaised,
               title: Text(l10n.budgetRevisionEdit),
               content: SizedBox(
                 width: 460,
@@ -241,7 +242,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                         l10n.budgetMultiPayerApproval,
                         style: const TextStyle(
                           fontSize: 12,
-                          color: Color(0xFFB7A99B),
+                          color: AmaterasuColors.textSecondary,
                         ),
                       ),
                       const SizedBox(height: 18),
@@ -461,7 +462,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                         padding: const EdgeInsets.only(top: 6),
                         child: Text(
                           l10n.budgetRevisionLocked,
-                          style: const TextStyle(color: Color(0xFFB7A99B)),
+                          style: const TextStyle(color: AmaterasuColors.textSecondary),
                         ),
                       ),
 
@@ -533,7 +534,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
                           _feedback!,
-                          style: const TextStyle(color: Color(0xFFE3A66C)),
+                          style: const TextStyle(color: AmaterasuColors.accentGold),
                         ),
                       ),
                   ],

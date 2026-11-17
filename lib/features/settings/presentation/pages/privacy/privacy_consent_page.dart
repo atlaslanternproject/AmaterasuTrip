@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class PrivacyConsentPage extends StatelessWidget {
   const PrivacyConsentPage({super.key});
 
-  static const Color _textColor = Color(0xFFB8AAA0);
-  static const Color _accentColor = Color(0xFFD49A52);
+  static const Color _textColor = AmaterasuColors.textSecondaryAlt;
+  static const Color _accentColor = AmaterasuColors.accentGoldDark;
 
   @override
   Widget build(BuildContext context) {

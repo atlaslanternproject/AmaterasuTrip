@@ -6,6 +6,7 @@ import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet
 import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'budget_category_picker.dart';
 import 'budget_expense_filters.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetDisplayChoice {
   const BudgetDisplayChoice({required this.filters, required this.currency});
@@ -15,12 +16,12 @@ class BudgetDisplayChoice {
 }
 
 abstract final class BudgetExpensesToolbar {
-  static const _surface = Color(0xFF241A16);
-  static const _border = Color(0xFF49352A);
-  static const _cream = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFFB7A99B);
-  static const _orange = Color(0xFFE17A43);
-  static const _gold = Color(0xFFE3A66C);
+  static const _surface = AmaterasuColors.surfaceRaised;
+  static const _border = AmaterasuColors.borderStrong;
+  static const _cream = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textSecondary;
+  static const _orange = AmaterasuColors.accentOrange;
+  static const _gold = AmaterasuColors.accentGold;
 
   static Future<String?> _pickCurrency(
     BuildContext context,
@@ -57,7 +58,7 @@ abstract final class BudgetExpensesToolbar {
       context: context,
       useRootNavigator: true,
       isScrollControlled: true,
-      backgroundColor: const Color(0xFF231915),
+      backgroundColor: AmaterasuColors.surfaceCard,
       builder: (pickerContext) => SafeArea(
         top: false,
         child: TripCurrencyPickerSheet(
@@ -226,7 +227,7 @@ abstract final class BudgetExpensesToolbar {
                         FilledButton(
                           style: FilledButton.styleFrom(
                             backgroundColor: _orange,
-                            foregroundColor: const Color(0xFF100C0A),
+                            foregroundColor: AmaterasuColors.surfaceDeep,
                           ),
                           onPressed: () => Navigator.pop(
                             sheetContext,

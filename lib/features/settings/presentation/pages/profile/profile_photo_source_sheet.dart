@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 enum ProfilePhotoSourceAction { camera, gallery, remove }
 
@@ -12,7 +13,7 @@ Future<ProfilePhotoSourceAction?> showProfilePhotoSourceSheet({
 
   return showModalBottomSheet<ProfilePhotoSourceAction>(
     context: context,
-    backgroundColor: const Color(0xFF1A1512),
+    backgroundColor: AmaterasuColors.surface,
     showDragHandle: true,
     builder: (sheetContext) {
       return SafeArea(
@@ -24,11 +25,11 @@ Future<ProfilePhotoSourceAction?> showProfilePhotoSourceSheet({
               ListTile(
                 leading: const Icon(
                   Icons.camera_alt_outlined,
-                  color: Color(0xFFE28A32),
+                  color: AmaterasuColors.accentSettings,
                 ),
                 title: Text(
                   l10n.profilePhotoCamera,
-                  style: const TextStyle(color: Color(0xFFF2E7D5)),
+                  style: const TextStyle(color: AmaterasuColors.textPrimary),
                 ),
                 onTap: () {
                   Navigator.of(
@@ -39,11 +40,11 @@ Future<ProfilePhotoSourceAction?> showProfilePhotoSourceSheet({
               ListTile(
                 leading: const Icon(
                   Icons.photo_library_outlined,
-                  color: Color(0xFFE28A32),
+                  color: AmaterasuColors.accentSettings,
                 ),
                 title: Text(
                   l10n.profilePhotoGallery,
-                  style: const TextStyle(color: Color(0xFFF2E7D5)),
+                  style: const TextStyle(color: AmaterasuColors.textPrimary),
                 ),
                 onTap: () {
                   Navigator.of(
@@ -55,11 +56,11 @@ Future<ProfilePhotoSourceAction?> showProfilePhotoSourceSheet({
                 ListTile(
                   leading: const Icon(
                     Icons.delete_outline,
-                    color: Color(0xFFD66A5E),
+                    color: AmaterasuColors.accentRose,
                   ),
                   title: Text(
                     l10n.profilePhotoRemove,
-                    style: const TextStyle(color: Color(0xFFD66A5E)),
+                    style: const TextStyle(color: AmaterasuColors.accentRose),
                   ),
                   onTap: () {
                     Navigator.of(

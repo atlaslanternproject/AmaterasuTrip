@@ -14,6 +14,7 @@ import 'budget_api.dart';
 import 'budget_currency.dart';
 import 'budget_money_input.dart';
 import 'budget_display_amount.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class PersonalTripBudgetCard extends StatefulWidget {
   const PersonalTripBudgetCard({
@@ -43,11 +44,11 @@ class _SpendingResult {
 }
 
 class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
-  static const _background = Color(0xFF241A16);
-  static const _cream = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFFB7A99B);
-  static const _gold = Color(0xFFE3A66C);
-  static const _orange = Color(0xFFE17A43);
+  static const _background = AmaterasuColors.surfaceRaised;
+  static const _cream = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textSecondary;
+  static const _gold = AmaterasuColors.accentGold;
+  static const _orange = AmaterasuColors.accentOrange;
   static const _red = Color(0xFFFF8A80);
 
   late final PersonalTripBudgetRepository _repository =
@@ -133,7 +134,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
       context: dialogContext,
       useRootNavigator: true,
       isScrollControlled: true,
-      backgroundColor: const Color(0xFF231915),
+      backgroundColor: AmaterasuColors.surfaceCard,
       builder: (sheetContext) => SafeArea(
         top: false,
         child: TripCurrencyPickerSheet(
@@ -179,7 +180,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
         context: context,
         builder: (dialogContext) => StatefulBuilder(
           builder: (dialogContext, update) => AlertDialog(
-            backgroundColor: const Color(0xFF231915),
+            backgroundColor: AmaterasuColors.surfaceCard,
             title: Text(
               _l10n(it).btPersonalMyTravelBudget,
               style: const TextStyle(color: _cream),
@@ -283,7 +284,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
               FilledButton(
                 style: FilledButton.styleFrom(
                   backgroundColor: _orange,
-                  foregroundColor: const Color(0xFF100C0A),
+                  foregroundColor: AmaterasuColors.surfaceDeep,
                 ),
                 onPressed: saving
                     ? null
@@ -642,7 +643,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                                 value: (spending.spent / budget.amountMinor)
                                     .clamp(0.0, 1.0),
                                 minHeight: 8,
-                                backgroundColor: const Color(0xFF49312B),
+                                backgroundColor: AmaterasuColors.borderTrack,
                                 color: exceeded ? _red : _orange,
                               ),
                             ),

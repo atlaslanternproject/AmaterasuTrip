@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetCategoryPicker extends StatelessWidget {
   const BudgetCategoryPicker({
@@ -162,7 +163,7 @@ class _NewBudgetCategoryDialogState extends State<_NewBudgetCategoryDialog> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
-      backgroundColor: const Color(0xFF241A16),
+      backgroundColor: AmaterasuColors.surfaceRaised,
       title: Text(l10n.b6CreateCategory),
       content: SizedBox(
         width: 400,
@@ -179,7 +180,7 @@ class _NewBudgetCategoryDialogState extends State<_NewBudgetCategoryDialog> {
               onSubmitted: (_) => _save(),
             ),
             if (_error != null)
-              Text(_error!, style: const TextStyle(color: Color(0xFFFFB4A2))),
+              Text(_error!, style: const TextStyle(color: AmaterasuColors.accentPeach)),
           ],
         ),
       ),

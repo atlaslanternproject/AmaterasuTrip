@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'bucket_place_photo_loader.dart' as loader;
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BucketPhotoAuthor {
   const BucketPhotoAuthor({required this.name, this.uri});
@@ -137,7 +138,7 @@ class _BucketPlacePhotoState extends State<BucketPlacePhoto> {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
-                                    color: Color(0xFFF5E9DA),
+                                    color: AmaterasuColors.textCream,
                                     fontSize: 10,
                                     decoration: TextDecoration.underline,
                                   ),

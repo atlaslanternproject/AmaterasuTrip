@@ -6,6 +6,7 @@ import 'budget_api.dart';
 import 'budget_expense_filters.dart';
 import 'budget_expense_details_dialog.dart';
 import 'budget_display_amount.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetExpenseList extends StatelessWidget {
   const BudgetExpenseList({
@@ -23,9 +24,9 @@ class BudgetExpenseList extends StatelessWidget {
   final String displayCurrency;
   final Map<String, String> categoryNames;
 
-  static const _cream = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFFB7A99B);
-  static const _gold = Color(0xFFE3A66C);
+  static const _cream = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textSecondary;
+  static const _gold = AmaterasuColors.accentGold;
 
   String _categoryLabel(String value, bool it) {
     switch (value) {

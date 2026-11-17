@@ -7,6 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:amaterasutrip/features/trips/data/repositories/trip_invite_repository.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripCreatedPage extends ConsumerStatefulWidget {
   const TripCreatedPage({
@@ -20,19 +21,19 @@ class TripCreatedPage extends ConsumerStatefulWidget {
   final String tripName;
   final VoidCallback onEnterTrip;
 
-  static const Color _surfaceColor = Color(0xFF1A1715);
-  static const Color _borderColor = Color(0xFF332824);
-  static const Color _creamColor = Color(0xFFF2E7D5);
-  static const Color _accentColor = Color(0xFFE35B28);
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
+  static const Color _borderColor = AmaterasuColors.surfaceHigh;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
+  static const Color _accentColor = AmaterasuColors.accentVermilion;
 
   @override
   ConsumerState<TripCreatedPage> createState() => _TripCreatedPageState();
 }
 
 class _TripCreatedPageState extends ConsumerState<TripCreatedPage> {
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _creamColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _creamColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
 
   TripInviteCredentials? _activeInvite;
   Future<TripInviteCredentials>? _inviteRequest;
@@ -325,7 +326,7 @@ class _PrimaryButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(17),
             gradient: const LinearGradient(
-              colors: [Color(0xFFB93622), Color(0xFFE35B28), Color(0xFFF08A38)],
+              colors: [Color(0xFFB93622), AmaterasuColors.accentVermilion, Color(0xFFF08A38)],
             ),
             boxShadow: [
               BoxShadow(
@@ -421,7 +422,7 @@ class _BottomDecoration extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF2A1711), Color(0xFF18100D), Color(0xFF100C0A)],
+          colors: [Color(0xFF2A1711), Color(0xFF18100D), AmaterasuColors.surfaceDeep],
         ),
       ),
       child: const Stack(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class ProfileInfoRow extends StatelessWidget {
   const ProfileInfoRow({
@@ -9,9 +10,9 @@ class ProfileInfoRow extends StatelessWidget {
     this.alignTop = false,
   });
 
-  static const Color _accentColor = Color(0xFFE28A32);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _subtitleColor = Color(0xFF9E9287);
+  static const Color _accentColor = AmaterasuColors.accentSettings;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _subtitleColor = AmaterasuColors.textMuted;
 
   final IconData icon;
   final String label;

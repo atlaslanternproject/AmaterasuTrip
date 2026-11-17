@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 enum TripCardStatus { inProgress, upcoming, completed }
 
@@ -28,7 +29,7 @@ class TripCard extends StatelessWidget {
 
   static const Color _surfaceColor = Color(0xFF17100D);
   static const Color _borderColor = Color(0xFF5B3023);
-  static const Color _accentColor = Color(0xFFE9783D);
+  static const Color _accentColor = AmaterasuColors.accentOrangeSoft;
   static const Color _titleColor = Color(0xFFF5EBDD);
   static const Color _secondaryTextColor = Color(0xFFC2B2A4);
 
@@ -118,7 +119,7 @@ class TripCard extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         if (_isCompleted)
-          Container(color: const Color(0xFF100C0A).withValues(alpha: 0.26)),
+          Container(color: AmaterasuColors.surfaceDeep.withValues(alpha: 0.26)),
         DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -368,8 +369,8 @@ class _TripCoverFallback extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    const Color(0xFFE9783D).withValues(alpha: 0.25),
-                    const Color(0xFFE9783D).withValues(alpha: 0),
+                    AmaterasuColors.accentOrangeSoft.withValues(alpha: 0.25),
+                    AmaterasuColors.accentOrangeSoft.withValues(alpha: 0),
                   ],
                 ),
               ),

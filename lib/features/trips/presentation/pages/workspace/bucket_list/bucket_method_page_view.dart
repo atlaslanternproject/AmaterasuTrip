@@ -3,12 +3,12 @@ part of 'trip_bucket_list_page.dart';
 
 extension _BucketMethodPageView on _TripBucketListPageState {
   Widget _renderBucketPage(BuildContext context) {
-    const bg = Color(0xFF100C0A);
-    const surface = Color(0xFF1A1512);
-    const cream = Color(0xFFF2E7D5);
-    const muted = Color(0xFFB7A99B);
-    const orange = Color(0xFFFF7A3D);
-    const gold = Color(0xFFE8A552);
+    const bg = AmaterasuColors.surfaceDeep;
+    const surface = AmaterasuColors.surface;
+    const cream = AmaterasuColors.textPrimary;
+    const muted = AmaterasuColors.textSecondary;
+    const orange = AmaterasuColors.accentOrangeBright;
+    const gold = AmaterasuColors.accentGoldLight;
     final cities = {
       ..._items.map((e) => e.city),
       if (_filterCity.isNotEmpty) _filterCity,
@@ -47,7 +47,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
             fillColor: surface,
             isDense: true,
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xFF68402B)),
+              borderSide: const BorderSide(color: AmaterasuColors.borderOrange),
               borderRadius: BorderRadius.circular(12),
             ),
           ),
@@ -74,7 +74,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
         decoration: BoxDecoration(
           color: surface,
           borderRadius: BorderRadius.circular(17),
-          border: Border.all(color: const Color(0xFF68402B), width: 1.6),
+          border: Border.all(color: AmaterasuColors.borderOrange, width: 1.6),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

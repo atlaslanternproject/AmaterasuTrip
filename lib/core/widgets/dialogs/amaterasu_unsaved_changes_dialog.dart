@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 enum AmaterasuUnsavedChangesAction { discard, saveAndExit, cancel }
 
@@ -16,18 +17,18 @@ Future<AmaterasuUnsavedChangesAction> showAmaterasuUnsavedChangesDialog(
       return PopScope(
         canPop: false,
         child: AlertDialog(
-          backgroundColor: const Color(0xFF1A1512),
+          backgroundColor: AmaterasuColors.surface,
           surfaceTintColor: Colors.transparent,
           title: Text(
             l10n.unsavedChangesTitle,
             style: const TextStyle(
-              color: Color(0xFFF2E7D5),
+              color: AmaterasuColors.textPrimary,
               fontWeight: FontWeight.w600,
             ),
           ),
           content: Text(
             l10n.unsavedChangesMessage,
-            style: const TextStyle(color: Color(0xFF9E9287)),
+            style: const TextStyle(color: AmaterasuColors.textMuted),
           ),
           actions: [
             TextButton(
@@ -38,7 +39,7 @@ Future<AmaterasuUnsavedChangesAction> showAmaterasuUnsavedChangesDialog(
               },
               child: Text(
                 l10n.unsavedChangesDiscard,
-                style: const TextStyle(color: Color(0xFFD66A5E)),
+                style: const TextStyle(color: AmaterasuColors.accentRose),
               ),
             ),
             TextButton(
@@ -49,7 +50,7 @@ Future<AmaterasuUnsavedChangesAction> showAmaterasuUnsavedChangesDialog(
               },
               child: Text(
                 l10n.unsavedChangesSaveAndExit,
-                style: const TextStyle(color: Color(0xFFE28A32)),
+                style: const TextStyle(color: AmaterasuColors.accentSettings),
               ),
             ),
             TextButton(
@@ -60,7 +61,7 @@ Future<AmaterasuUnsavedChangesAction> showAmaterasuUnsavedChangesDialog(
               },
               child: Text(
                 l10n.unsavedChangesCancel,
-                style: const TextStyle(color: Color(0xFFF2E7D5)),
+                style: const TextStyle(color: AmaterasuColors.textPrimary),
               ),
             ),
           ],

@@ -12,6 +12,7 @@ import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_d
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_list.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_user_settlement_summary.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/personal_trip_budget_card.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripExpensesPage extends StatefulWidget {
   const TripExpensesPage({super.key, required this.tripId, this.api});
@@ -74,11 +75,11 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
     }
   }
 
-  static const _background = Color(0xFF100C0A);
-  static const _cream = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFFB7A99B);
-  static const _orange = Color(0xFFD96C32);
-  static const _gold = Color(0xFFE3A66C);
+  static const _background = AmaterasuColors.surfaceDeep;
+  static const _cream = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textSecondary;
+  static const _orange = AmaterasuColors.accentBudget;
+  static const _gold = AmaterasuColors.accentGold;
 
   Future<void> _openExpenseFilters() async {
     Map<String, String> categories;
@@ -161,7 +162,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
   }) {
     return Expanded(
       child: Material(
-        color: selected ? const Color(0xFFE17A43) : Colors.transparent,
+        color: selected ? AmaterasuColors.accentOrange : Colors.transparent,
         borderRadius: BorderRadius.circular(12),
         child: InkWell(
           onTap: onTap,
@@ -330,7 +331,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
                   Container(
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF241A16),
+                      color: AmaterasuColors.surfaceRaised,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(

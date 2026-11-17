@@ -10,6 +10,7 @@ import 'budget_api.dart';
 import 'budget_display_amount.dart';
 import 'budget_people.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetReimbursementsPanel extends StatefulWidget {
   const BudgetReimbursementsPanel({
@@ -172,10 +173,10 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                 total <= maximumMinorUnits;
 
             return AlertDialog(
-              backgroundColor: const Color(0xFF231915),
+              backgroundColor: AmaterasuColors.surfaceCard,
               title: Text(
                 _l10n(_it).btRefundsReportReimbursement,
-                style: const TextStyle(color: Color(0xFFF2E7D5)),
+                style: const TextStyle(color: AmaterasuColors.textPrimary),
               ),
               content: SizedBox(
                 width: 440,
@@ -197,7 +198,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                       const SizedBox(height: 12),
                       Text(
                         _l10n(_it).btRefundsRecordHowYouReimbursed(currency),
-                        style: const TextStyle(color: Color(0xFFB7A99B)),
+                        style: const TextStyle(color: AmaterasuColors.textSecondary),
                       ),
                       const SizedBox(height: 12),
                       BudgetPaymentMethodsEditor(
@@ -217,7 +218,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                         '${_l10n(_it).btRefundsDeclaredTotal}: '
                         '${BudgetMoneyFormatter.format(total, currency)}',
                         style: const TextStyle(
-                          color: Color(0xFFE3A66C),
+                          color: AmaterasuColors.accentGold,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -298,7 +299,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     if (raw is! List || raw.isEmpty) {
       return Text(
         _l10n(_it).btRefundsReimbursementMethodNotRecorded,
-        style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 12),
+        style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 12),
       );
     }
 
@@ -323,7 +324,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
       children: [
         Text(
           _l10n(_it).btRefundsDeclaredMethods,
-          style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 12),
+          style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 12),
         ),
         for (final entry in entries)
           Padding(
@@ -332,7 +333,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
               '${_methodLabel(entry.method)}'
               '${entry.otherLabel == null ? "" : " (${entry.otherLabel})"}'
               ' · ${BudgetMoneyFormatter.format(entry.minorUnits, currency)}',
-              style: const TextStyle(color: Color(0xFFF2E7D5), fontSize: 12),
+              style: const TextStyle(color: AmaterasuColors.textPrimary, fontSize: 12),
             ),
           ),
       ],
@@ -363,7 +364,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
         padding: const EdgeInsets.only(top: 12),
         child: Text(
           _l10n(_it).btRefundsDebtsBetweenTravelersBecome,
-          style: const TextStyle(color: Color(0xFFB7A99B)),
+          style: const TextStyle(color: AmaterasuColors.textSecondary),
         ),
       );
     }
@@ -420,7 +421,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                 Text(
                   _l10n(_it).btRefundsWhoOwesMoneyCan,
                   style: const TextStyle(
-                    color: Color(0xFFB7A99B),
+                    color: AmaterasuColors.textSecondary,
                     fontSize: 12,
                   ),
                 ),
@@ -602,7 +603,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 child: Text(
                                   l10n.b86ReadOnlyFormer,
                                   style: const TextStyle(
-                                    color: Color(0xFFB7A99B),
+                                    color: AmaterasuColors.textSecondary,
                                     fontSize: 12,
                                   ),
                                 ),
@@ -688,7 +689,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                               Text(
                                 '${_name(debtorUid, names)} → ${_name(creditorUid, names)} · $label',
                                 style: const TextStyle(
-                                  color: Color(0xFFB7A99B),
+                                  color: AmaterasuColors.textSecondary,
                                 ),
                               ),
                               const SizedBox(height: 4),
@@ -734,7 +735,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
                       _message!,
-                      style: const TextStyle(color: Color(0xFFE3A66C)),
+                      style: const TextStyle(color: AmaterasuColors.accentGold),
                     ),
                   ),
               ],
@@ -770,10 +771,10 @@ class _CloseDebtDialogState extends State<_CloseDebtDialog> {
     final l10n = AppLocalizations.of(context)!;
     final valid = _controller.text.trim().length >= 3;
     return AlertDialog(
-      backgroundColor: const Color(0xFF231915),
+      backgroundColor: AmaterasuColors.surfaceCard,
       title: Text(
         l10n.b86CloseDebtTitle,
-        style: const TextStyle(color: Color(0xFFF2E7D5)),
+        style: const TextStyle(color: AmaterasuColors.textPrimary),
       ),
       content: SizedBox(
         width: 440,
@@ -788,7 +789,7 @@ class _CloseDebtDialogState extends State<_CloseDebtDialog> {
             const SizedBox(height: 8),
             Text(
               l10n.b86CloseDebtExplain,
-              style: const TextStyle(color: Color(0xFFB7A99B)),
+              style: const TextStyle(color: AmaterasuColors.textSecondary),
             ),
             const SizedBox(height: 12),
             TextField(

@@ -5,14 +5,15 @@ import 'package:go_router/go_router.dart';
 import 'package:amaterasutrip/features/trips/models/trip.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class TripOverviewPage extends ConsumerWidget {
   const TripOverviewPage({super.key, required this.tripId});
 
   final String tripId;
 
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _accentColor = Color(0xFFFF7A3D);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _accentColor = AmaterasuColors.accentOrangeBright;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,7 +49,7 @@ class _TripOverviewContent extends StatelessWidget {
 
   final Trip trip;
 
-  static const Color _titleColor = Color(0xFFF4E9DA);
+  static const Color _titleColor = AmaterasuColors.textCreamSoft;
   static const Color _secondaryTextColor = Color(0xFFB9AA9B);
 
   @override
@@ -147,7 +148,7 @@ class _TripHero extends StatelessWidget {
   final Trip trip;
   final VoidCallback onSettingsPressed;
 
-  static const Color _accentColor = Color(0xFFFF7A3D);
+  static const Color _accentColor = AmaterasuColors.accentOrangeBright;
   static const Color _titleColor = Color(0xFFFFF4E7);
   static const Color _secondaryTextColor = Color(0xFFE0CDBA);
 
@@ -183,7 +184,7 @@ class _TripHero extends StatelessWidget {
                   Color(0x66000000),
                   Color(0x22000000),
                   Color(0x99100C0A),
-                  Color(0xFF100C0A),
+                  AmaterasuColors.surfaceDeep,
                 ],
               ),
             ),
@@ -366,7 +367,7 @@ class _HeroButton extends StatelessWidget {
         child: SizedBox(
           width: 44,
           height: 44,
-          child: Icon(icon, color: const Color(0xFFF4E9DA), size: 23),
+          child: Icon(icon, color: AmaterasuColors.textCreamSoft, size: 23),
         ),
       ),
     );
@@ -449,8 +450,8 @@ class _OverviewActionCard extends StatelessWidget {
 
   static const Color _surfaceColor = Color(0xFF1A1411);
   static const Color _borderColor = Color(0xFF4B2A20);
-  static const Color _accentColor = Color(0xFFFF7A3D);
-  static const Color _titleColor = Color(0xFFF4E9DA);
+  static const Color _accentColor = AmaterasuColors.accentOrangeBright;
+  static const Color _titleColor = AmaterasuColors.textCreamSoft;
   static const Color _secondaryTextColor = Color(0xFFB9AA9B);
 
   @override
@@ -530,12 +531,12 @@ class _TripOverviewMessage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 42, color: const Color(0xFFD96C32)),
+            Icon(icon, size: 42, color: AmaterasuColors.accentBudget),
             const SizedBox(height: 14),
             Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 14),
+              style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 14),
             ),
           ],
         ),

@@ -4,27 +4,28 @@ import 'package:intl/intl.dart' as intl;
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../calculations/budget_money_formatter.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 /// Colors of the charts, taken from the warm palette already used by the
 /// budget screens, in an order that keeps neighbours distinguishable.
 abstract final class BudgetChartPalette {
   static const colors = <Color>[
-    Color(0xFFE17A43),
-    Color(0xFFE3A66C),
-    Color(0xFFD96C32),
-    Color(0xFFF2E7D5),
-    Color(0xFFE28A32),
-    Color(0xFF9E9287),
-    Color(0xFFE86A3A),
-    Color(0xFFB7A99B),
+    AmaterasuColors.accentOrange,
+    AmaterasuColors.accentGold,
+    AmaterasuColors.accentBudget,
+    AmaterasuColors.textPrimary,
+    AmaterasuColors.accentSettings,
+    AmaterasuColors.textMuted,
+    AmaterasuColors.accentFlame,
+    AmaterasuColors.textSecondary,
   ];
 
   static Color at(int index) => colors[index % colors.length];
 
-  static const track = Color(0xFF49312B);
-  static const muted = Color(0xFFB7A99B);
-  static const cream = Color(0xFFF2E7D5);
-  static const tooltip = Color(0xFF30231E);
+  static const track = AmaterasuColors.borderTrack;
+  static const muted = AmaterasuColors.textSecondary;
+  static const cream = AmaterasuColors.textPrimary;
+  static const tooltip = AmaterasuColors.surfaceTooltip;
 }
 
 /// One bar of the trend chart.

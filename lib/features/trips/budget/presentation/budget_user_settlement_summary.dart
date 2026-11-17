@@ -9,6 +9,7 @@ import 'budget_api.dart';
 import 'budget_display_amount.dart';
 import 'budget_people.dart';
 import '../calculations/budget_snapshot_debts.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class BudgetUserSettlementSummary extends StatefulWidget {
   const BudgetUserSettlementSummary({
@@ -71,9 +72,9 @@ class _BudgetUserSettlementSummaryState
   bool _showMovements = false;
   String? _error;
 
-  static const _cream = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFFB7A99B);
-  static const _gold = Color(0xFFE3A66C);
+  static const _cream = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textSecondary;
+  static const _gold = AmaterasuColors.accentGold;
 
   @override
   void initState() {
@@ -348,13 +349,13 @@ class _BudgetUserSettlementSummaryState
           });
 
           final accent = incomingBalance
-              ? const Color(0xFFE3A66C)
-              : const Color(0xFFE17A43);
+              ? AmaterasuColors.accentGold
+              : AmaterasuColors.accentOrange;
 
           return Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF30231E),
+              color: AmaterasuColors.surfaceTooltip,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: const Color(0xFF543A2E)),
             ),
@@ -457,7 +458,7 @@ class _BudgetUserSettlementSummaryState
                       ],
                     ),
                   ),
-                  const Divider(color: Color(0xFF49342B), height: 1),
+                  const Divider(color: AmaterasuColors.borderStrongAlt, height: 1),
                 ],
               ],
             ),
@@ -478,12 +479,12 @@ class _BudgetUserSettlementSummaryState
         }
 
         return Card(
-          color: const Color(0xFF241A16),
+          color: AmaterasuColors.surfaceRaised,
           elevation: 0,
           margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18),
-            side: const BorderSide(color: Color(0xFF49352A)),
+            side: const BorderSide(color: AmaterasuColors.borderStrong),
           ),
           child: Padding(
             padding: const EdgeInsets.all(18),
@@ -536,7 +537,7 @@ class _BudgetUserSettlementSummaryState
                     );
                   },
                 ),
-                const Divider(color: Color(0xFF49342B), height: 30),
+                const Divider(color: AmaterasuColors.borderStrongAlt, height: 30),
                 InkWell(
                   onTap: () {
                     setState(() => _showMovements = !_showMovements);
@@ -611,7 +612,7 @@ class _BudgetUserSettlementSummaryState
                         ),
                       ],
                     ),
-                    const Divider(color: Color(0xFF49342B), height: 22),
+                    const Divider(color: AmaterasuColors.borderStrongAlt, height: 22),
                   ],
                 ],
               ],

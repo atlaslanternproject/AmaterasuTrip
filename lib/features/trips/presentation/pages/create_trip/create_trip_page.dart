@@ -25,6 +25,7 @@ import 'widgets/trip_currency_selector.dart';
 import 'widgets/trip_date_selector.dart';
 import 'widgets/trip_destination_field.dart';
 import 'widgets/trip_name_field.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 class CreateTripPage extends ConsumerStatefulWidget {
   const CreateTripPage({super.key});
@@ -34,10 +35,10 @@ class CreateTripPage extends ConsumerStatefulWidget {
 }
 
 class _CreateTripPageState extends ConsumerState<CreateTripPage> {
-  static const Color _backgroundColor = Color(0xFF100C0A);
-  static const Color _titleColor = Color(0xFFF2E7D5);
-  static const Color _secondaryTextColor = Color(0xFFB7A99B);
-  static const Color _surfaceColor = Color(0xFF1A1715);
+  static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
+  static const Color _titleColor = AmaterasuColors.textPrimary;
+  static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
+  static const Color _surfaceColor = AmaterasuColors.surfaceNeutral;
 
   final TextEditingController _nameController = TextEditingController();
   final DestinationPlacesService _placesService =
@@ -230,14 +231,14 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
               side: BorderSide(
-                color: Color(0xFFD96C32).withValues(alpha: 0.45),
+                color: AmaterasuColors.accentBudget.withValues(alpha: 0.45),
               ),
             ),
             title: Row(
               children: [
                 const Icon(
                   Icons.info_outline_rounded,
-                  color: Color(0xFFD96C32),
+                  color: AmaterasuColors.accentBudget,
                   size: 24,
                 ),
                 const SizedBox(width: 10),
@@ -276,7 +277,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
                           padding: EdgeInsets.only(top: 6),
                           child: Icon(
                             Icons.circle,
-                            color: Color(0xFFD96C32),
+                            color: AmaterasuColors.accentBudget,
                             size: 7,
                           ),
                         ),
@@ -303,7 +304,7 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
                 child: const Text(
                   'OK',
                   style: TextStyle(
-                    color: Color(0xFFD96C32),
+                    color: AmaterasuColors.accentBudget,
                     fontWeight: FontWeight.w700,
                   ),
                 ),

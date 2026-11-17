@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 /// Manual provider correction. Audited by a callable; never edits any debt.
 class BudgetFxManualDialog extends StatefulWidget {
@@ -75,7 +76,7 @@ class _BudgetFxManualDialogState extends State<BudgetFxManualDialog> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
-      backgroundColor: const Color(0xFF241A16),
+      backgroundColor: AmaterasuColors.surfaceRaised,
       title: Text(l10n.b6ManualRate),
       content: SizedBox(
         width: 380,
@@ -105,10 +106,10 @@ class _BudgetFxManualDialogState extends State<BudgetFxManualDialog> {
               ),
             ),
             if (_error != null)
-              Text(_error!, style: const TextStyle(color: Color(0xFFFFB4A2))),
+              Text(_error!, style: const TextStyle(color: AmaterasuColors.accentPeach)),
             Text(
               l10n.b6RateDoesNotChangeDebts,
-              style: const TextStyle(fontSize: 12, color: Color(0xFFB7A99B)),
+              style: const TextStyle(fontSize: 12, color: AmaterasuColors.textSecondary),
             ),
           ],
         ),

@@ -9,6 +9,7 @@ import 'budget_api.dart';
 import 'budget_category_picker.dart';
 import 'budget_charts.dart';
 import 'budget_expense_filters.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 
 /// B6: participant-scoped category totals. Shared and personal never mix.
 /// All FX operations are presentation-only; original financial data is intact.
@@ -34,11 +35,11 @@ class BudgetCategoryDashboard extends StatefulWidget {
 }
 
 class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
-  static const _cream = Color(0xFFF2E7D5);
-  static const _muted = Color(0xFFB7A99B);
-  static const _gold = Color(0xFFE3A66C);
-  static const _orange = Color(0xFFE17A43);
-  static const _dark = Color(0xFF241A16);
+  static const _cream = AmaterasuColors.textPrimary;
+  static const _muted = AmaterasuColors.textSecondary;
+  static const _gold = AmaterasuColors.accentGold;
+  static const _orange = AmaterasuColors.accentOrange;
+  static const _dark = AmaterasuColors.surfaceRaised;
 
   final BudgetFxService _fx = BudgetFxService();
   final Set<String> _pinsRequested = {};
@@ -254,9 +255,9 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
                         Container(
                           padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF241A16),
+                            color: AmaterasuColors.surfaceRaised,
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: const Color(0xFF49312B)),
+                            border: Border.all(color: AmaterasuColors.borderTrack),
                           ),
                           child: Row(
                             children: [
@@ -320,9 +321,9 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
       width: 220,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFF30231E),
+        color: AmaterasuColors.surfaceTooltip,
         borderRadius: BorderRadius.circular(13),
-        border: Border.all(color: const Color(0xFF49352A)),
+        border: Border.all(color: AmaterasuColors.borderStrong),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -469,9 +470,9 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
           width: double.infinity,
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
-            color: const Color(0xFF30231E),
+            color: AmaterasuColors.surfaceTooltip,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFF49352A)),
+            border: Border.all(color: AmaterasuColors.borderStrong),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -585,7 +586,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
             child: LinearProgressIndicator(
               value: total > 0 ? (entry.value / total).clamp(0.0, 1.0) : 0,
               minHeight: 8,
-              backgroundColor: const Color(0xFF49312B),
+              backgroundColor: AmaterasuColors.borderTrack,
               color: BudgetChartPalette.at(index),
             ),
           ),
