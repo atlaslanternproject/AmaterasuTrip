@@ -1,5 +1,4 @@
 import 'budget_expense_day.dart';
-import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,7 @@ import 'budget_money_input.dart';
 import 'budget_display_amount.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 class PersonalTripBudgetCard extends StatefulWidget {
   const PersonalTripBudgetCard({
@@ -107,7 +107,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
 
     try {
       final fetched = await const DestinationPlacesService().getCurrencies(
-        languageCode: _l10n(it).btPersonalEn,
+        languageCode: budgetL10n(it).btPersonalEn,
       );
 
       currencies = fetched
@@ -141,9 +141,9 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
         child: TripCurrencyPickerSheet(
           currencies: currencies,
           selectedCurrency: selected,
-          title: _l10n(it).btPersonalBudgetCurrency,
-          searchHint: _l10n(it).btSearchCurrencies,
-          noResultsText: _l10n(it).btNoCurrenciesFound,
+          title: budgetL10n(it).btPersonalBudgetCurrency,
+          searchHint: budgetL10n(it).btSearchCurrencies,
+          noResultsText: budgetL10n(it).btNoCurrenciesFound,
         ),
       ),
     );
@@ -155,14 +155,14 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
 
   String _friendlyError(Object error, bool it) {
     if (error is FirebaseException && error.code == 'permission-denied') {
-      return _l10n(it).btPersonalFirestoreDeniedTheWrite;
+      return budgetL10n(it).btPersonalFirestoreDeniedTheWrite;
     }
 
     if (error is ArgumentError || error is FormatException) {
-      return _l10n(it).btPersonalInvalidAmountOrCurrency;
+      return budgetL10n(it).btPersonalInvalidAmountOrCurrency;
     }
 
-    return _l10n(it).btPersonalOperationFailed(error);
+    return budgetL10n(it).btPersonalOperationFailed(error);
   }
 
   Future<void> _edit(PersonalTripBudget? existing) async {
@@ -183,7 +183,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
           builder: (dialogContext, update) => AlertDialog(
             backgroundColor: AmaterasuColors.surfaceCard,
             title: Text(
-              _l10n(it).btPersonalMyTravelBudget,
+              budgetL10n(it).btPersonalMyTravelBudget,
               style: const TextStyle(color: _cream),
             ),
             content: SizedBox(
@@ -194,7 +194,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _l10n(it).btPersonalOnlyYouCanSee,
+                      budgetL10n(it).btPersonalOnlyYouCanSee,
                       style: const TextStyle(color: _muted),
                     ),
                     const SizedBox(height: 18),
@@ -205,7 +205,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                         decimal: true,
                       ),
                       decoration: InputDecoration(
-                        labelText: _l10n(it).btPersonalPlannedAmount,
+                        labelText: budgetL10n(it).btPersonalPlannedAmount,
                         suffixText: currency,
                         border: const OutlineInputBorder(),
                       ),
@@ -236,7 +236,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                               },
                         icon: const Icon(Icons.currency_exchange_rounded),
                         label: Text(
-                          '${_l10n(it).btCurrencyLabel}: $currency',
+                          '${budgetL10n(it).btCurrencyLabel}: $currency',
                         ),
                       ),
                     ),
@@ -274,13 +274,13 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             }
                           }
                         },
-                  child: Text(_l10n(it).btActionRemove),
+                  child: Text(budgetL10n(it).btActionRemove),
                 ),
               TextButton(
                 onPressed: saving
                     ? null
                     : () => Navigator.of(dialogContext).pop(),
-                child: Text(_l10n(it).btActionCancel),
+                child: Text(budgetL10n(it).btActionCancel),
               ),
               FilledButton(
                 style: FilledButton.styleFrom(
@@ -324,7 +324,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                           }
                         }
                       },
-                child: Text(_l10n(it).btPersonalSave),
+                child: Text(budgetL10n(it).btPersonalSave),
               ),
             ],
           ),
@@ -463,7 +463,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
         if (state.hasError) {
           return _panel(
             Text(
-              _l10n(it).btPersonalBudgetLoadError,
+              budgetL10n(it).btPersonalBudgetLoadError,
               style: const TextStyle(color: _red),
             ),
           );
@@ -481,7 +481,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  _l10n(it).btPersonalMyTravelBudget,
+                  budgetL10n(it).btPersonalMyTravelBudget,
                   style: const TextStyle(
                     color: _cream,
                     fontSize: 19,
@@ -490,14 +490,14 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                 ),
                 const SizedBox(height: AmaterasuSpacing.sm),
                 Text(
-                  _l10n(it).btPersonalSetAnOptionalPersonal,
+                  budgetL10n(it).btPersonalSetAnOptionalPersonal,
                   style: const TextStyle(color: _muted),
                 ),
                 const SizedBox(height: 12),
                 OutlinedButton.icon(
                   onPressed: () => _edit(null),
                   icon: const Icon(Icons.add_rounded),
-                  label: Text(_l10n(it).btPersonalSetBudget),
+                  label: Text(budgetL10n(it).btPersonalSetBudget),
                 ),
               ],
             ),
@@ -510,7 +510,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
             if (shared.hasError) {
               return _panel(
                 Text(
-                  _l10n(it).btUnableToLoadExpenses,
+                  budgetL10n(it).btUnableToLoadExpenses,
                   style: const TextStyle(color: _red),
                 ),
               );
@@ -526,7 +526,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                 if (personal.hasError) {
                   return _panel(
                     Text(
-                      _l10n(it).btPersonalUnableToLoadPersonal,
+                      budgetL10n(it).btPersonalUnableToLoadPersonal,
                       style: const TextStyle(color: _red),
                     ),
                   );
@@ -569,7 +569,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                               const SizedBox(width: 9),
                               Expanded(
                                 child: Text(
-                                  _l10n(it).btPersonalMyTravelBudget,
+                                  budgetL10n(it).btPersonalMyTravelBudget,
                                   style: const TextStyle(
                                     color: _cream,
                                     fontSize: 19,
@@ -578,7 +578,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                                 ),
                               ),
                               IconButton(
-                                tooltip: _l10n(it).btPersonalEditBudget,
+                                tooltip: budgetL10n(it).btPersonalEditBudget,
                                 onPressed: () => _edit(budget),
                                 icon: const Icon(
                                   Icons.edit_outlined,
@@ -595,7 +595,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                             fontSize: 26,
                           ),
                           Text(
-                            _l10n(it).btPersonalPlannedBudget,
+                            budgetL10n(it).btPersonalPlannedBudget,
                             style: const TextStyle(color: _muted),
                           ),
                           const SizedBox(height: AmaterasuSpacing.md),
@@ -615,20 +615,20 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                               fontSize: 18,
                             ),
                           Text(
-                            _l10n(it).btPersonalYourSharePaidAnd,
+                            budgetL10n(it).btPersonalYourSharePaidAnd,
                             style: const TextStyle(color: _muted),
                           ),
                           const SizedBox(height: 14),
                           if (incomplete)
                             Text(
-                              _l10n(it).btPersonalRemainingUnavailableAnAmount,
+                              budgetL10n(it).btPersonalRemainingUnavailableAnAmount,
                               style: const TextStyle(color: _gold),
                             )
                           else ...[
                             Text(
                               exceeded
-                                  ? (_l10n(it).btPersonalOverBudget)
-                                  : (_l10n(it).btPersonalRemaining),
+                                  ? (budgetL10n(it).btPersonalOverBudget)
+                                  : (budgetL10n(it).btPersonalRemaining),
                               style: const TextStyle(color: _muted),
                             ),
                             BudgetDisplayAmount(
@@ -651,7 +651,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                           ],
                           const SizedBox(height: 12),
                           Text(
-                            _l10n(it).btPersonalPlannedExpensesAreExcluded,
+                            budgetL10n(it).btPersonalPlannedExpensesAreExcluded,
                             style: const TextStyle(color: _muted, fontSize: 12),
                           ),
                         ],
@@ -667,7 +667,3 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

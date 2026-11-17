@@ -11,6 +11,7 @@ import 'budget_charts.dart';
 import 'budget_expense_filters.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 /// B6: participant-scoped category totals. Shared and personal never mix.
 /// All FX operations are presentation-only; original financial data is intact.
@@ -515,7 +516,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
             if (!_chartPersonal && people.isNotEmpty)
               _overviewMetric(l10n.b6GroupTotal, _money(total, target)),
             _overviewMetric(
-              _l10n(it).btDashMyAdvances,
+              budgetL10n(it).btDashMyAdvances,
               converted == 0 && hasExpenses
                   ? '— $target'
                   : _money(myAdvances, target),
@@ -666,7 +667,3 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

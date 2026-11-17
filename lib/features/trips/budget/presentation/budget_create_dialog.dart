@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'budget_dialog_chrome.dart';
 import 'budget_create_section.dart';
 import 'budget_traveler_tile.dart';
@@ -16,6 +15,7 @@ import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet
 import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 class BudgetCreateDialog extends StatefulWidget {
   const BudgetCreateDialog({
@@ -89,7 +89,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
 
     try {
       final fetched = await const DestinationPlacesService().getCurrencies(
-        languageCode: _l10n(it).btCreateEn,
+        languageCode: budgetL10n(it).btCreateEn,
       );
 
       currencies = fetched.where((item) {
@@ -121,9 +121,9 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
         child: TripCurrencyPickerSheet(
           currencies: currencies,
           selectedCurrency: _selectedCurrency,
-          title: _l10n(it).btCreateExpenseCurrency,
-          searchHint: _l10n(it).btSearchCurrencies,
-          noResultsText: _l10n(it).btNoCurrenciesFound,
+          title: budgetL10n(it).btCreateExpenseCurrency,
+          searchHint: budgetL10n(it).btSearchCurrencies,
+          noResultsText: budgetL10n(it).btNoCurrenciesFound,
         ),
       ),
     );
@@ -147,12 +147,12 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
 
   String _travelerName(String uid, bool it) {
     if (uid == widget.api.currentUid) {
-      return _l10n(it).btCreateYou;
+      return budgetL10n(it).btCreateYou;
     }
 
     for (final traveler in _travelers) {
       if (traveler['uid'] == uid) {
-        return traveler['name'] ?? (_l10n(it).btCreateTraveler);
+        return traveler['name'] ?? (budgetL10n(it).btCreateTraveler);
       }
     }
 
@@ -198,7 +198,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
 
       if (paid > total) {
         return Text(
-          _l10n(it).btCreatePaymentsExceedTotal,
+          budgetL10n(it).btCreatePaymentsExceedTotal,
           style: const TextStyle(color: AmaterasuColors.accentPeach),
         );
       }
@@ -207,12 +207,12 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            _l10n(it).btCreateSplitPreview,
+            budgetL10n(it).btCreateSplitPreview,
             style: TextStyle(color: color, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: AmaterasuSpacing.sm),
           Text(
-            '${_l10n(it).btCreateRecordedBy}: ${_travelerName(widget.api.currentUid, it)}',
+            '${budgetL10n(it).btCreateRecordedBy}: ${_travelerName(widget.api.currentUid, it)}',
             style: TextStyle(color: muted),
           ),
           const SizedBox(height: AmaterasuSpacing.sm),
@@ -236,22 +236,22 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
             ),
           const Divider(),
           Text(
-            '${_l10n(it).btCreateTotal}: ${BudgetMoneyFormatter.format(total, _selectedCurrency)}',
+            '${budgetL10n(it).btCreateTotal}: ${BudgetMoneyFormatter.format(total, _selectedCurrency)}',
             style: TextStyle(color: color),
           ),
           Text(
-            '${_l10n(it).btCreateDeclaredPayments}: ${BudgetMoneyFormatter.format(paid, _selectedCurrency)}',
+            '${budgetL10n(it).btCreateDeclaredPayments}: ${BudgetMoneyFormatter.format(paid, _selectedCurrency)}',
             style: TextStyle(color: muted),
           ),
           Text(
-            '${_l10n(it).btCreateRemaining}: ${BudgetMoneyFormatter.format(total - paid, _selectedCurrency)}',
+            '${budgetL10n(it).btCreateRemaining}: ${BudgetMoneyFormatter.format(total - paid, _selectedCurrency)}',
             style: TextStyle(color: muted),
           ),
         ],
       );
     } catch (_) {
       return Text(
-        _l10n(it).btCreateCompleteTheAmountParticipants,
+        budgetL10n(it).btCreateCompleteTheAmountParticipants,
         style: TextStyle(color: muted),
       );
     }
@@ -263,7 +263,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
       builder: (dialogContext) => AlertDialog(
         backgroundColor: AmaterasuColors.surfaceCard,
         title: Text(
-          _l10n(it).btCreateConfirmNewExpense,
+          budgetL10n(it).btCreateConfirmNewExpense,
           style: const TextStyle(color: AmaterasuColors.textPrimary),
         ),
         content: SizedBox(
@@ -283,22 +283,22 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 ),
                 const SizedBox(height: AmaterasuSpacing.sm),
                 Text(
-                  '${_l10n(it).btCategoryLabel}: $_category',
+                  '${budgetL10n(it).btCategoryLabel}: $_category',
                   style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 Text(
-                  '${_l10n(it).btCreateType}: ${_shared ? (_l10n(it).btCreateShared) : (_l10n(it).btCreatePersonal)}',
+                  '${budgetL10n(it).btCreateType}: ${_shared ? (budgetL10n(it).btCreateShared) : (budgetL10n(it).btCreatePersonal)}',
                   style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 Text(
-                  '${_l10n(it).btStatusLabel}: $_status',
+                  '${budgetL10n(it).btStatusLabel}: $_status',
                   style: const TextStyle(color: AmaterasuColors.textSecondary),
                 ),
                 const SizedBox(height: AmaterasuSpacing.md),
                 _expensePreview(it),
                 const SizedBox(height: 14),
                 Text(
-                  _l10n(it).btCreatePaymentsRecordedInThis,
+                  budgetL10n(it).btCreatePaymentsRecordedInThis,
                   style: const TextStyle(
                     color: AmaterasuColors.textSecondary,
                     fontSize: 12,
@@ -311,11 +311,11 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(_l10n(it).btCreateBackToEditing),
+            child: Text(budgetL10n(it).btCreateBackToEditing),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(_l10n(it).btCreateConfirmAndSave),
+            child: Text(budgetL10n(it).btCreateConfirmAndSave),
           ),
         ],
       ),
@@ -476,10 +476,10 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
       contentPadding: BudgetDialogChrome.contentPadding,
       actionsPadding: BudgetDialogChrome.actionsPadding,
       title: BudgetDialogChrome.header(
-        title: _l10n(it).btCreateNewExpense,
+        title: budgetL10n(it).btCreateNewExpense,
         subtitle: _step == 0
-            ? (_l10n(it).btCreateEssentialDetails)
-            : (_l10n(it).btCreateAmountsAndTravelers),
+            ? (budgetL10n(it).btCreateEssentialDetails)
+            : (budgetL10n(it).btCreateAmountsAndTravelers),
         icon: Icons.receipt_long_outlined,
       ),
       content: SizedBox(
@@ -492,20 +492,20 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
               Row(
                 children: [
                   modeButton(
-                    label: _l10n(it).btCreate1Details,
+                    label: budgetL10n(it).btCreate1Details,
                     icon: Icons.edit_note_rounded,
                     selected: _step == 0,
                     onTap: () => setState(() => _step = 0),
                   ),
                   const SizedBox(width: AmaterasuSpacing.sm),
                   modeButton(
-                    label: _l10n(it).btCreate2Amounts,
+                    label: budgetL10n(it).btCreate2Amounts,
                     icon: Icons.payments_outlined,
                     selected: _step == 1,
                     onTap: () {
                       if (_title.text.trim().isEmpty) {
                         setState(() {
-                          _error = _l10n(it).btCreateEnterAnExpenseName;
+                          _error = budgetL10n(it).btCreateEnterAnExpenseName;
                         });
                         return;
                       }
@@ -521,21 +521,21 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
 
               if (_step == 0) ...[
                 BudgetCreateSection(
-                  title: _l10n(it).btCreateExpenseType,
+                  title: budgetL10n(it).btCreateExpenseType,
                   icon: Icons.account_balance_wallet_outlined,
-                  subtitle: _l10n(it).btCreateChooseWhoCanSee,
+                  subtitle: budgetL10n(it).btCreateChooseWhoCanSee,
                   children: [
                     Row(
                       children: [
                         modeButton(
-                          label: _l10n(it).btCreateShared,
+                          label: budgetL10n(it).btCreateShared,
                           icon: Icons.groups_outlined,
                           selected: _shared,
                           onTap: () => setState(() => _shared = true),
                         ),
                         const SizedBox(width: AmaterasuSpacing.sm),
                         modeButton(
-                          label: _l10n(it).btCreatePersonal,
+                          label: budgetL10n(it).btCreatePersonal,
                           icon: Icons.lock_outline_rounded,
                           selected: !_shared,
                           onTap: () => setState(() => _shared = false),
@@ -545,7 +545,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                   ],
                 ),
                 BudgetCreateSection(
-                  title: _l10n(it).btCreateExpenseDetails,
+                  title: budgetL10n(it).btCreateExpenseDetails,
                   icon: Icons.receipt_long_outlined,
                   children: [
                     TextField(
@@ -554,8 +554,8 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                       maxLength: 100,
                       textCapitalization: TextCapitalization.sentences,
                       decoration: InputDecoration(
-                        labelText: _l10n(it).btCreateExpenseName,
-                        hintText: _l10n(it).btCreateEGKyotoHotel,
+                        labelText: budgetL10n(it).btCreateExpenseName,
+                        hintText: budgetL10n(it).btCreateEGKyotoHotel,
                         prefixIcon: const Icon(Icons.edit_outlined),
                         border: const OutlineInputBorder(),
                       ),
@@ -563,7 +563,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                     const SizedBox(height: AmaterasuSpacing.sm),
                     ListTile(
                       leading: const Icon(Icons.calendar_today_outlined),
-                      title: Text(_l10n(it).btCreateExpenseDate),
+                      title: Text(budgetL10n(it).btCreateExpenseDate),
                       subtitle: Text(
                         MaterialLocalizations.of(
                           context,
@@ -596,7 +596,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                       maxLines: 2,
                       maxLength: 2000,
                       decoration: InputDecoration(
-                        labelText: _l10n(it).btCreateNotesOptional,
+                        labelText: budgetL10n(it).btCreateNotesOptional,
                         alignLabelWithHint: true,
                         border: const OutlineInputBorder(),
                       ),
@@ -605,7 +605,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 ),
               ] else ...[
                 BudgetCreateSection(
-                  title: _l10n(it).btCreateExpenseAmount,
+                  title: budgetL10n(it).btCreateExpenseAmount,
                   icon: Icons.currency_exchange_rounded,
                   accent: true,
                   children: [
@@ -613,7 +613,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                       onPressed: _saving ? null : _pickCurrency,
                       icon: const Icon(Icons.currency_exchange_rounded),
                       label: Text(
-                        '${_l10n(it).btCurrencyLabel}: $_selectedCurrency',
+                        '${budgetL10n(it).btCurrencyLabel}: $_selectedCurrency',
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -630,7 +630,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                         fontWeight: FontWeight.w700,
                       ),
                       decoration: InputDecoration(
-                        labelText: _l10n(it).btCreateTotalAmount,
+                        labelText: budgetL10n(it).btCreateTotalAmount,
                         suffixText: _selectedCurrency,
                         prefixIcon: const Icon(Icons.payments_outlined),
                         border: const OutlineInputBorder(),
@@ -641,21 +641,21 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                       key: ValueKey('status-$_status'),
                       initialValue: _status,
                       decoration: InputDecoration(
-                        labelText: _l10n(it).btCreateExpenseStatus,
+                        labelText: budgetL10n(it).btCreateExpenseStatus,
                         border: const OutlineInputBorder(),
                       ),
                       items: [
                         DropdownMenuItem(
                           value: 'planned',
-                          child: Text(_l10n(it).btStatusPlanned),
+                          child: Text(budgetL10n(it).btStatusPlanned),
                         ),
                         DropdownMenuItem(
                           value: 'outstanding',
-                          child: Text(_l10n(it).btStatusOutstanding),
+                          child: Text(budgetL10n(it).btStatusOutstanding),
                         ),
                         DropdownMenuItem(
                           value: 'paid',
-                          child: Text(_l10n(it).btStatusPaid),
+                          child: Text(budgetL10n(it).btStatusPaid),
                         ),
                       ],
                       onChanged: _saving
@@ -669,20 +669,20 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                 ),
                 if (_shared)
                   BudgetCreateSection(
-                    title: _l10n(it).btCreateSplitBetweenTravelers,
+                    title: budgetL10n(it).btCreateSplitBetweenTravelers,
                     icon: Icons.groups_outlined,
                     children: [
                       Row(
                         children: [
                           modeButton(
-                            label: _l10n(it).btCreateEqualShares,
+                            label: budgetL10n(it).btCreateEqualShares,
                             icon: Icons.balance_outlined,
                             selected: !_customSplit,
                             onTap: () => setState(() => _customSplit = false),
                           ),
                           const SizedBox(width: AmaterasuSpacing.sm),
                           modeButton(
-                            label: _l10n(it).btCreateCustomShares,
+                            label: budgetL10n(it).btCreateCustomShares,
                             icon: Icons.tune_rounded,
                             selected: _customSplit,
                             onTap: () => setState(() => _customSplit = true),
@@ -730,7 +730,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                                     decimal: true,
                                   ),
                               decoration: InputDecoration(
-                                labelText: _l10n(
+                                labelText: budgetL10n(
                                   it,
                                 ).btCreateShare('${person["name"]}'),
                                 suffixText: _selectedCurrency,
@@ -744,9 +744,9 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                   ),
                 if (_status != 'planned')
                   BudgetCreateSection(
-                    title: _l10n(it).btCreateHowWasItPaid,
+                    title: budgetL10n(it).btCreateHowWasItPaid,
                     icon: Icons.credit_card_outlined,
-                    subtitle: _l10n(it).btCreateRecordOnlyPaymentsYou,
+                    subtitle: budgetL10n(it).btCreateRecordOnlyPaymentsYou,
                     children: [
                       BudgetPaymentMethodsEditor(
                         key: ValueKey('$_status-$_selectedCurrency'),
@@ -760,7 +760,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                     ],
                   ),
                 BudgetCreateSection(
-                  title: _l10n(it).btCreateSummary,
+                  title: budgetL10n(it).btCreateSummary,
                   icon: Icons.fact_check_outlined,
                   children: [_expensePreview(it)],
                 ),
@@ -789,7 +789,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
       actions: [
         TextButton(
           onPressed: _saving ? null : () => Navigator.pop(context),
-          child: Text(_l10n(it).btActionCancel),
+          child: Text(budgetL10n(it).btActionCancel),
         ),
         if (_step == 1)
           TextButton(
@@ -799,7 +799,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                     _step = 0;
                     _error = null;
                   }),
-            child: Text(_l10n(it).btCreateBack),
+            child: Text(budgetL10n(it).btCreateBack),
           ),
         FilledButton.icon(
           style: FilledButton.styleFrom(
@@ -812,7 +812,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
               ? () {
                   if (_title.text.trim().isEmpty) {
                     setState(() {
-                      _error = _l10n(it).btCreateEnterAnExpenseName;
+                      _error = budgetL10n(it).btCreateEnterAnExpenseName;
                     });
                     return;
                   }
@@ -828,15 +828,11 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
           ),
           label: Text(
             _step == 0
-                ? (_l10n(it).btCreateContinue)
-                : (_l10n(it).btCreateSaveExpense),
+                ? (budgetL10n(it).btCreateContinue)
+                : (budgetL10n(it).btCreateSaveExpense),
           ),
         ),
       ],
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

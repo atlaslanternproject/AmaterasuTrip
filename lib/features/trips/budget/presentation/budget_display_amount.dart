@@ -1,10 +1,10 @@
 import 'budget_expense_day.dart';
-import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../calculations/budget_money_formatter.dart';
 import '../data/budget_fx_service.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 typedef BudgetQuoteLoader =
     Future<BudgetFxQuote> Function(String from, String to);
@@ -121,7 +121,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
           ),
           const SizedBox(height: 3),
           Text(
-            '${_l10n(it).btAmountOriginal}: $original',
+            '${budgetL10n(it).btAmountOriginal}: $original',
             style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 11),
           ),
           if (warning != null)
@@ -133,7 +133,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
             Tooltip(
               message: source,
               child: Text(
-                _l10n(it).btAmountAutomaticExchangeRate,
+                budgetL10n(it).btAmountAutomaticExchangeRate,
                 style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 10),
               ),
             ),
@@ -151,7 +151,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
         if (result.connectionState != ConnectionState.done) {
           return content(
             prominent: '— ${widget.displayCurrency}',
-            warning: _l10n(it).btAmountConverting,
+            warning: budgetL10n(it).btAmountConverting,
           );
         }
 
@@ -172,7 +172,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
         if (converted == null) {
           return content(
             prominent: '— ${widget.displayCurrency}',
-            warning: _l10n(it).btAmountExchangeRateUnavailable,
+            warning: budgetL10n(it).btAmountExchangeRateUnavailable,
           );
         }
 
@@ -186,7 +186,3 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

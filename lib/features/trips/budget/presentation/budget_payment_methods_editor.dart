@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import '../models/budget_payment_allocation.dart';
 import 'budget_money_input.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 class BudgetPaymentMethodsEditor extends StatefulWidget {
   const BudgetPaymentMethodsEditor({
@@ -105,19 +105,19 @@ class _BudgetPaymentMethodsEditorState
   Widget build(BuildContext context) {
     final it = Localizations.localeOf(context).languageCode == 'it';
     final labels = <BudgetPaymentMethod, String>{
-      BudgetPaymentMethod.cash: _l10n(it).btMethodsCash,
-      BudgetPaymentMethod.card: _l10n(it).btMethodsCard,
-      BudgetPaymentMethod.bankTransfer: _l10n(it).btMethodsBankTransfer,
+      BudgetPaymentMethod.cash: budgetL10n(it).btMethodsCash,
+      BudgetPaymentMethod.card: budgetL10n(it).btMethodsCard,
+      BudgetPaymentMethod.bankTransfer: budgetL10n(it).btMethodsBankTransfer,
       BudgetPaymentMethod.paypal: 'PayPal',
       BudgetPaymentMethod.satispay: 'Satispay',
-      BudgetPaymentMethod.other: _l10n(it).btMethodsOther,
+      BudgetPaymentMethod.other: budgetL10n(it).btMethodsOther,
     };
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          _l10n(it).btMethodsPaymentMethods,
+          budgetL10n(it).btMethodsPaymentMethods,
           style: const TextStyle(
             color: AmaterasuColors.textPrimary,
             fontWeight: FontWeight.w700,
@@ -125,7 +125,7 @@ class _BudgetPaymentMethodsEditorState
         ),
         const SizedBox(height: AmaterasuSpacing.sm),
         Text(
-          _l10n(it).btMethodsRecordHowYouPaid,
+          budgetL10n(it).btMethodsRecordHowYouPaid,
           style: const TextStyle(color: AmaterasuColors.textSecondary),
         ),
         const SizedBox(height: 12),
@@ -145,7 +145,7 @@ class _BudgetPaymentMethodsEditorState
                     initialValue: row.method,
                     isExpanded: true,
                     decoration: InputDecoration(
-                      labelText: _l10n(it).btMethodsMethod,
+                      labelText: budgetL10n(it).btMethodsMethod,
                       border: const OutlineInputBorder(),
                     ),
                     items: [
@@ -171,7 +171,7 @@ class _BudgetPaymentMethodsEditorState
                       decimal: true,
                     ),
                     decoration: InputDecoration(
-                      labelText: _l10n(it).btMethodsAmountPaid,
+                      labelText: budgetL10n(it).btMethodsAmountPaid,
                       suffixText: widget.currency,
                       border: const OutlineInputBorder(),
                     ),
@@ -184,7 +184,7 @@ class _BudgetPaymentMethodsEditorState
                       maxLength: 3,
                       textCapitalization: TextCapitalization.characters,
                       decoration: InputDecoration(
-                        labelText: _l10n(it).btMethodsAccountCurrencyEG,
+                        labelText: budgetL10n(it).btMethodsAccountCurrencyEG,
                       ),
                       onChanged: (_) => _notify(),
                     ),
@@ -195,7 +195,7 @@ class _BudgetPaymentMethodsEditorState
                         decimal: true,
                       ),
                       decoration: InputDecoration(
-                        labelText: _l10n(it).btMethodsActualAccountDebitIf,
+                        labelText: budgetL10n(it).btMethodsActualAccountDebitIf,
                       ),
                       onChanged: (_) => _notify(),
                     ),
@@ -207,7 +207,7 @@ class _BudgetPaymentMethodsEditorState
                       enabled: widget.enabled,
                       maxLength: 40,
                       decoration: InputDecoration(
-                        labelText: _l10n(it).btMethodsMethodDescription,
+                        labelText: budgetL10n(it).btMethodsMethodDescription,
                         border: const OutlineInputBorder(),
                       ),
                       onChanged: (_) => _notify(),
@@ -218,7 +218,7 @@ class _BudgetPaymentMethodsEditorState
                     child: TextButton.icon(
                       onPressed: widget.enabled ? () => _remove(row) : null,
                       icon: const Icon(Icons.delete_outline_rounded),
-                      label: Text(_l10n(it).btActionRemove),
+                      label: Text(budgetL10n(it).btActionRemove),
                     ),
                   ),
                 ],
@@ -228,13 +228,9 @@ class _BudgetPaymentMethodsEditorState
         OutlinedButton.icon(
           onPressed: widget.enabled ? _add : null,
           icon: const Icon(Icons.add_rounded),
-          label: Text(_l10n(it).btMethodsAddMethod),
+          label: Text(budgetL10n(it).btMethodsAddMethod),
         ),
       ],
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

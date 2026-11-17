@@ -35,7 +35,7 @@ Controlli: `bash tool/check_all.sh` (Git Bash, dalla cartella principale).
 | b1 - token colore | fatto | 23d19cc | ST1, ST2: 41 token, 495 colori in 94 file |
 | b2 - token spaziatura e raggio | fatto | 0d26c24 | ST3 parziale: 220 spaziature e 23 raggi con i token esistenti, solo valori identici |
 | c1 - l10n.yaml e chiavi non usate | fatto | 8e90506 | B9, L2: 186 chiavi tolte (1083 → 897 per lingua) |
-| c2 - doppioni del budget | fatto | (questo) | L3 solo area budget: 46 chiavi unite in 23 (897 → 861). Aree account/trip non toccate (funzioni approvate) |
+| c2 - doppioni del budget | fatto | f2ced17 | L3 solo area budget: 59 chiavi unite in 23 (897 → 861). Aree account/trip non toccate (funzioni approvate) |
 | d - struttura | da fare | | |
 | e - intestazioni e TODO(audit) | da fare | | |
 | f - dipendenze (con C11) | da fare | | |

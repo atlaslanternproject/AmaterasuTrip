@@ -12,6 +12,7 @@ import 'budget_people.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 class BudgetReimbursementsPanel extends StatefulWidget {
   const BudgetReimbursementsPanel({
@@ -124,7 +125,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
       await action();
       if (mounted) {
         setState(() {
-          _message = _l10n(_it).btRefundsOperationRecorded;
+          _message = budgetL10n(_it).btRefundsOperationRecorded;
         });
       }
     } on FirebaseFunctionsException catch (error) {
@@ -176,7 +177,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
             return AlertDialog(
               backgroundColor: AmaterasuColors.surfaceCard,
               title: Text(
-                _l10n(_it).btRefundsReportReimbursement,
+                budgetL10n(_it).btRefundsReportReimbursement,
                 style: const TextStyle(color: AmaterasuColors.textPrimary),
               ),
               content: SizedBox(
@@ -186,9 +187,9 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(_l10n(_it).btRefundsReimbursementTo(creditorName)),
+                      Text(budgetL10n(_it).btRefundsReimbursementTo(creditorName)),
                       const SizedBox(height: 10),
-                      Text(_l10n(_it).btRefundsMaximumReimbursable),
+                      Text(budgetL10n(_it).btRefundsMaximumReimbursable),
                       BudgetDisplayAmount(
                         expense: widget.expense,
                         minorUnits: maximumMinorUnits,
@@ -198,7 +199,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        _l10n(_it).btRefundsRecordHowYouReimbursed(currency),
+                        budgetL10n(_it).btRefundsRecordHowYouReimbursed(currency),
                         style: const TextStyle(color: AmaterasuColors.textSecondary),
                       ),
                       const SizedBox(height: 12),
@@ -216,7 +217,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        '${_l10n(_it).btRefundsDeclaredTotal}: '
+                        '${budgetL10n(_it).btRefundsDeclaredTotal}: '
                         '${BudgetMoneyFormatter.format(total, currency)}',
                         style: const TextStyle(
                           color: AmaterasuColors.accentGold,
@@ -225,7 +226,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                       ),
                       if (!valid)
                         Text(
-                          _l10n(_it).btRefundsAddValidMethodsThe,
+                          budgetL10n(_it).btRefundsAddValidMethodsThe,
                           style: const TextStyle(
                             color: Color(0xFFFFA78A),
                             fontSize: 12,
@@ -238,7 +239,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(dialogContext),
-                  child: Text(_l10n(_it).btActionCancel),
+                  child: Text(budgetL10n(_it).btActionCancel),
                 ),
                 FilledButton(
                   onPressed: valid
@@ -247,7 +248,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                           List<BudgetPaymentAllocation>.of(allocations),
                         )
                       : null,
-                  child: Text(_l10n(_it).btRefundsSubmitRequest),
+                  child: Text(budgetL10n(_it).btRefundsSubmitRequest),
                 ),
               ],
             );
@@ -280,17 +281,17 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
   String _methodLabel(BudgetPaymentMethod method) {
     switch (method) {
       case BudgetPaymentMethod.cash:
-        return _l10n(_it).btMethodsCash;
+        return budgetL10n(_it).btMethodsCash;
       case BudgetPaymentMethod.card:
-        return _l10n(_it).btMethodsCard;
+        return budgetL10n(_it).btMethodsCard;
       case BudgetPaymentMethod.bankTransfer:
-        return _l10n(_it).btMethodsBankTransfer;
+        return budgetL10n(_it).btMethodsBankTransfer;
       case BudgetPaymentMethod.paypal:
         return 'PayPal';
       case BudgetPaymentMethod.satispay:
         return 'Satispay';
       case BudgetPaymentMethod.other:
-        return _l10n(_it).btMethodsOther;
+        return budgetL10n(_it).btMethodsOther;
     }
   }
 
@@ -299,7 +300,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
 
     if (raw is! List || raw.isEmpty) {
       return Text(
-        _l10n(_it).btRefundsReimbursementMethodNotRecorded,
+        budgetL10n(_it).btRefundsReimbursementMethodNotRecorded,
         style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 12),
       );
     }
@@ -317,14 +318,14 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     }
 
     if (entries.isEmpty) {
-      return Text(_l10n(_it).btRefundsDetailsUnavailable);
+      return Text(budgetL10n(_it).btRefundsDetailsUnavailable);
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          _l10n(_it).btRefundsDeclaredMethods,
+          budgetL10n(_it).btRefundsDeclaredMethods,
           style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 12),
         ),
         for (final entry in entries)
@@ -364,7 +365,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
       return Padding(
         padding: const EdgeInsets.only(top: 12),
         child: Text(
-          _l10n(_it).btRefundsDebtsBetweenTravelersBecome,
+          budgetL10n(_it).btRefundsDebtsBetweenTravelersBecome,
           style: const TextStyle(color: AmaterasuColors.textSecondary),
         ),
       );
@@ -378,7 +379,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
       future: _names,
       builder: (context, namesSnapshot) {
         if (namesSnapshot.hasError) {
-          return Text(_l10n(_it).btRefundsUnableToLoadTraveler);
+          return Text(budgetL10n(_it).btRefundsUnableToLoadTraveler);
         }
 
         if (!namesSnapshot.hasData) {
@@ -391,7 +392,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
           stream: _refunds,
           builder: (context, refundsSnapshot) {
             if (refundsSnapshot.hasError) {
-              return Text(_l10n(_it).btRefundsUnableToLoadReimbursements);
+              return Text(budgetL10n(_it).btRefundsUnableToLoadReimbursements);
             }
 
             if (!refundsSnapshot.hasData) {
@@ -412,7 +413,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                 const SizedBox(height: 18),
                 const Divider(),
                 Text(
-                  _l10n(_it).btRefundsDebtsAndReimbursements,
+                  budgetL10n(_it).btRefundsDebtsAndReimbursements,
                   style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 17,
@@ -420,7 +421,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  _l10n(_it).btRefundsWhoOwesMoneyCan,
+                  budgetL10n(_it).btRefundsWhoOwesMoneyCan,
                   style: const TextStyle(
                     color: AmaterasuColors.textSecondary,
                     fontSize: 12,
@@ -430,7 +431,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
 
                 if (pendingForCurrentUser.isNotEmpty) ...[
                   Text(
-                    _l10n(_it).btRefundsRequestsWaitingForYour,
+                    budgetL10n(_it).btRefundsRequestsWaitingForYour,
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: AmaterasuSpacing.sm),
@@ -467,11 +468,11 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                               for (final field in ['createdAt', 'decidedAt'])
                                 if (data[field] is Timestamp)
                                   Text(
-                                    '${field == "createdAt" ? (_l10n(_it).btRefundsRequested) : (_l10n(_it).btRefundsDecision)} · ${MaterialLocalizations.of(context).formatMediumDate((data[field] as Timestamp).toDate())} · ${MaterialLocalizations.of(context).formatTimeOfDay(TimeOfDay.fromDateTime((data[field] as Timestamp).toDate()))}',
+                                    '${field == "createdAt" ? (budgetL10n(_it).btRefundsRequested) : (budgetL10n(_it).btRefundsDecision)} · ${MaterialLocalizations.of(context).formatMediumDate((data[field] as Timestamp).toDate())} · ${MaterialLocalizations.of(context).formatTimeOfDay(TimeOfDay.fromDateTime((data[field] as Timestamp).toDate()))}',
                                   ),
                               if (data['decidedByUid'] is String)
                                 Text(
-                                  '${_l10n(_it).btRefundsDecidedBy} ${_name(data['decidedByUid'] as String, names)}',
+                                  '${budgetL10n(_it).btRefundsDecidedBy} ${_name(data['decidedByUid'] as String, names)}',
                                 ),
                               _paymentDetails(data, currency),
                               const SizedBox(height: AmaterasuSpacing.sm),
@@ -485,7 +486,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                             doc.id,
                                             false,
                                           ),
-                                    child: Text(_l10n(_it).btActionReject),
+                                    child: Text(budgetL10n(_it).btActionReject),
                                   ),
                                   FilledButton(
                                     onPressed: _busy
@@ -494,7 +495,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                             doc.id,
                                             true,
                                           ),
-                                    child: Text(_l10n(_it).btActionConfirm),
+                                    child: Text(budgetL10n(_it).btActionConfirm),
                                   ),
                                 ],
                               ),
@@ -556,7 +557,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            Text(_l10n(_it).btRefundsOutstanding),
+                            Text(budgetL10n(_it).btRefundsOutstanding),
                             const SizedBox(height: 3),
                             BudgetDisplayAmount(
                               expense: widget.expense,
@@ -567,7 +568,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                             ),
                             if (confirmed > 0) ...[
                               const SizedBox(height: AmaterasuSpacing.sm),
-                              Text(_l10n(_it).btRefundsConfirmed),
+                              Text(budgetL10n(_it).btRefundsConfirmed),
                               BudgetDisplayAmount(
                                 expense: widget.expense,
                                 minorUnits: confirmed,
@@ -589,7 +590,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                             ],
                             if (pending > 0) ...[
                               const SizedBox(height: AmaterasuSpacing.sm),
-                              Text(_l10n(_it).btRefundsPendingConfirmation),
+                              Text(budgetL10n(_it).btRefundsPendingConfirmation),
                               BudgetDisplayAmount(
                                 expense: widget.expense,
                                 minorUnits: pending,
@@ -638,7 +639,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                       ),
                                 icon: const Icon(Icons.payments_outlined),
                                 label: Text(
-                                  _l10n(_it).btRefundsReportAReimbursement,
+                                  budgetL10n(_it).btRefundsReportAReimbursement,
                                 ),
                               ),
                           ],
@@ -651,7 +652,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                 if (docs.isNotEmpty) ...[
                   const Divider(),
                   Text(
-                    _l10n(_it).btRefundsReimbursementHistory,
+                    budgetL10n(_it).btRefundsReimbursementHistory,
                     style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: AmaterasuSpacing.sm),
@@ -670,16 +671,16 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                         String label;
                         switch (status) {
                           case 'confirmed':
-                            label = _l10n(_it).btRefundsConfirmed;
+                            label = budgetL10n(_it).btRefundsConfirmed;
                             break;
                           case 'rejected':
-                            label = _l10n(_it).btRefundsRejected;
+                            label = budgetL10n(_it).btRefundsRejected;
                             break;
                           case BudgetSnapshotDebts.writtenOff:
                             label = AppLocalizations.of(context)!.b86Closed;
                             break;
                           default:
-                            label = _l10n(_it).btRefundsPending;
+                            label = budgetL10n(_it).btRefundsPending;
                         }
 
                         return Padding(
@@ -823,7 +824,3 @@ class _CloseDebtDialogState extends State<_CloseDebtDialog> {
     );
   }
 }
-
-/// Texts of this screen, in the language chosen by the existing `it` flag.
-AppLocalizations _l10n(bool it) =>
-    lookupAppLocalizations(Locale(it ? 'it' : 'en'));
