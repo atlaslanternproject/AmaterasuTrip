@@ -16,6 +16,9 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
+part 'trip_expenses_page_actions.dart';
+part 'trip_expenses_page_widgets.dart';
+
 class TripExpensesPage extends StatefulWidget {
   const TripExpensesPage({super.key, required this.tripId, this.api});
 
@@ -33,13 +36,6 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
   late Future<String> _currency = _api.tripCurrency();
   int _refreshTick = 0;
 
-  void _refresh() {
-    setState(() {
-      _currency = _api.tripCurrency();
-      _refreshTick++;
-    });
-  }
-
   bool _showPersonal = false;
   BudgetExpenseFilters _filters = const BudgetExpenseFilters();
   String? _displayCurrency;
@@ -55,144 +51,11 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
     _api.syncParticipantNames;
   }
 
-  Future<void> _restoreDisplayCurrency() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final stored = prefs.getString(_displayPreferenceKey);
-      if (stored != null && stored.length == 3 && mounted) {
-        setState(() => _displayCurrency = stored);
-      }
-    } catch (_) {
-      // Preference unavailable: trip currency remains the default.
-    }
-  }
-
-  Future<void> _setDisplayCurrency(String value) async {
-    setState(() => _displayCurrency = value);
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_displayPreferenceKey, value);
-    } catch (_) {
-      // Keep the selection active for this session.
-    }
-  }
-
   static const _background = AmaterasuColors.surfaceDeep;
   static const _cream = AmaterasuColors.textPrimary;
   static const _muted = AmaterasuColors.textSecondary;
   static const _orange = AmaterasuColors.accentBudget;
   static const _gold = AmaterasuColors.accentGold;
-
-  Future<void> _openExpenseFilters() async {
-    Map<String, String> categories;
-
-    try {
-      categories = await _api.budgetCategories().first;
-    } catch (_) {
-      categories = <String, String>{};
-    }
-
-    String tripCurrency;
-
-    try {
-      tripCurrency = await _currency;
-    } catch (_) {
-      return;
-    }
-
-    if (!mounted) return;
-
-    final selected = await BudgetExpensesToolbar.chooseFilters(
-      context,
-      filters: _filters,
-      categoryNames: categories,
-      displayCurrency: _displayCurrency ?? tripCurrency,
-      tripCurrency: tripCurrency,
-    );
-
-    if (!mounted || selected == null) return;
-
-    setState(() => _filters = selected.filters);
-
-    if (_displayCurrency != selected.currency) {
-      await _setDisplayCurrency(selected.currency);
-    }
-  }
-
-  Future<void> _addExpense(String currency) async {
-    await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => Theme(
-        data: Theme.of(dialogContext).copyWith(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: _orange,
-            brightness: Brightness.dark,
-          ),
-        ),
-        child: BudgetCreateDialog(api: _api, currency: currency),
-      ),
-    );
-  }
-
-  Widget _sectionHeading(String title, IconData icon) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Row(
-        children: [
-          Icon(icon, size: 21, color: _gold),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: _cream,
-                fontSize: 19,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _tab({
-    required String label,
-    required IconData icon,
-    required bool selected,
-    required VoidCallback onTap,
-  }) {
-    return Expanded(
-      child: Material(
-        color: selected ? AmaterasuColors.accentOrange : Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(12),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 13),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, size: 18, color: selected ? _background : _muted),
-                const SizedBox(width: AmaterasuSpacing.sm),
-                Flexible(
-                  child: Text(
-                    label,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: selected ? _background : _muted,
-                      fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
