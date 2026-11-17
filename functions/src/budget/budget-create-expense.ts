@@ -1,6 +1,7 @@
 import {getFirestore, FieldValue} from "firebase-admin/firestore";
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
+import {loadDisplayNames} from "./budget-names";
 import {validId, validateSnapshot} from "./budget-validation";
 import {validatePaymentMethods} from "./budget-payment-methods";
 
@@ -22,10 +23,37 @@ export const createBudgetExpense = onCall(
       throw new HttpsError("invalid-argument", "Invalid visibility.");
     }
 
+    const expenseDate = request.data?.expenseDate;
+    if (expenseDate !== undefined &&
+        (typeof expenseDate !== "string" ||
+        !/^\d{4}-\d{2}-\d{2}$/.test(expenseDate) ||
+        !Number.isFinite(Date.parse(expenseDate)) ||
+        new Date(expenseDate).toISOString().slice(0, 10) !== expenseDate)) {
+      throw new HttpsError("invalid-argument", "Invalid expense date.");
+    }
+
     const snapshot = validateSnapshot(request.data?.snapshot);
-    const paymentMethods = validatePaymentMethods(
+    const validatedMethods = validatePaymentMethods(
       request.data?.paymentMethods, snapshot,
     );
+
+    const accountPayments = validatedMethods?.flatMap((entry, index) => {
+      if (!entry.accountCurrency) return [];
+      return [{
+        index, payerUid: entry.payerUid, accountCurrency: entry.accountCurrency,
+        ...(entry.accountDebitMinor === undefined ? {} :
+          {accountDebitMinor: entry.accountDebitMinor}),
+      }];
+    }) ?? [];
+    const paymentMethods = validatedMethods?.map((entry) => ({
+      payerUid: entry.payerUid, method: entry.method,
+      minorUnits: entry.minorUnits,
+      ...(entry.otherLabel === undefined ? {} : {otherLabel: entry.otherLabel}),
+    }));
+    const paymentFields = {
+      ...(paymentMethods === undefined ? {} : {paymentMethods}),
+      ...(accountPayments.length ? {accountPayments} : {}),
+    };
 
     // Optional metadata remains backward-compatible with expenses
     // created by previous clients and integration tests.
@@ -77,6 +105,14 @@ export const createBudgetExpense = onCall(
         .collection("expenses");
 
     const expenseRef = collection.doc(expenseId);
+
+    // B8.6: names survive in the record if a traveler leaves the trip.
+    const participantNames = visibility === "shared" ?
+      await loadDisplayNames([
+        ...Object.keys(snapshot.shares),
+        ...Object.keys(snapshot.advances),
+      ]) :
+      {};
 
     await db.runTransaction(async (tx) => {
       const active = await checkBudgetMembership(tx, tripId, uid);
@@ -130,13 +166,15 @@ export const createBudgetExpense = onCall(
 
       tx.create(expenseRef, {
         participantUids: [...participants].sort(),
+        ...(visibility === "shared" ? {participantNames} : {}),
         title,
         category,
         notes,
         createdByUid: uid,
         visibility,
         snapshot,
-        ...(paymentMethods === null ? {} : {paymentMethods}),
+        ...(expenseDate === undefined ? {} : {expenseDate}),
+        ...paymentFields,
         version: 1,
         createdAt: FieldValue.serverTimestamp(),
         updatedAt: FieldValue.serverTimestamp(),
@@ -145,7 +183,8 @@ export const createBudgetExpense = onCall(
       tx.create(expenseRef.collection("revisions").doc("1"), {
         number: 1,
         snapshot,
-        ...(paymentMethods === null ? {} : {paymentMethods}),
+        ...(expenseDate === undefined ? {} : {expenseDate}),
+        ...paymentFields,
         actorUid: uid,
         createdAt: FieldValue.serverTimestamp(),
       });

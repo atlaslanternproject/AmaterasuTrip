@@ -7,6 +7,8 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
 import 'budget_display_amount.dart';
+import 'budget_people.dart';
+import '../calculations/budget_snapshot_debts.dart';
 
 class BudgetUserSettlementSummary extends StatefulWidget {
   const BudgetUserSettlementSummary({
@@ -39,6 +41,7 @@ class _Movement {
     required this.status,
     required this.date,
     required this.expenseTitle,
+    required this.expense,
   });
 
   final String debtor;
@@ -48,6 +51,7 @@ class _Movement {
   final String status;
   final DateTime? date;
   final String expenseTitle;
+  final Map<String, dynamic> expense;
 }
 
 class _BudgetUserSettlementSummaryState
@@ -115,13 +119,8 @@ class _BudgetUserSettlementSummaryState
           if (!_refundSubs.containsKey(doc.id)) {
             final id = doc.id;
 
-            _refundSubs[id] = FirebaseFirestore.instance
-                .collection('trips')
-                .doc(widget.api.tripId)
-                .collection('budgetSharedExpenses')
-                .doc(id)
-                .collection('reimbursements')
-                .snapshots()
+            _refundSubs[id] = widget.api
+                .reimbursements(id)
                 .listen(
                   (refunds) {
                     if (!mounted) return;
@@ -176,50 +175,19 @@ class _BudgetUserSettlementSummaryState
         : <String, dynamic>{};
   }
 
-  int _amount(dynamic value) {
-    final raw = _asMap(value)['minorUnits'];
-    return raw is int ? raw : 0;
-  }
+  List<_DebtLine> _debts(Map<String, dynamic> snapshot) => [
+    for (final debt in BudgetSnapshotDebts.allocate(snapshot))
+      _DebtLine(debt.debtorUid, debt.creditorUid, debt.minorUnits),
+  ];
 
-  List<_DebtLine> _debts(Map<String, dynamic> snapshot) {
-    if (snapshot['status'] != 'paid') return [];
-
-    final shares = _asMap(snapshot['shares']);
-    final advances = _asMap(snapshot['advances']);
-
-    final ids = {...shares.keys, ...advances.keys}.toList()..sort();
-    final debtors = <String, int>{};
-    final creditors = <String, int>{};
-
-    for (final uid in ids) {
-      final net = _amount(advances[uid]) - _amount(shares[uid]);
-      if (net < 0) debtors[uid] = -net;
-      if (net > 0) creditors[uid] = net;
-    }
-
-    final lines = <_DebtLine>[];
-
-    for (final debtor in debtors.keys) {
-      var remaining = debtors[debtor]!;
-
-      for (final creditor in creditors.keys) {
-        final available = creditors[creditor]!;
-        final allocated = math.min(remaining, available);
-
-        if (allocated <= 0) continue;
-
-        lines.add(_DebtLine(debtor, creditor, allocated));
-        remaining -= allocated;
-        creditors[creditor] = available - allocated;
-      }
-    }
-
-    return lines;
-  }
-
-  String _person(String uid, Map<String, String> names) {
-    return names[uid] ?? '—';
-  }
+  /// B8.6: current name, then the name recorded in the expenses,
+  /// never an internal ID.
+  String _person(String uid, Map<String, String> names) => BudgetPeople.name(
+    uid,
+    live: names,
+    recordedNames: BudgetPeople.recordedAll(_expenses.values),
+    fallback: AppLocalizations.of(context)!.b86FormerTraveler,
+  );
 
   Widget _heading(String text) {
     return Text(
@@ -308,30 +276,25 @@ class _BudgetUserSettlementSummaryState
                 currency: currency,
                 status: refund['status']?.toString() ?? 'pending',
                 date: timestamp is Timestamp ? timestamp.toDate() : null,
+                expense: data,
                 expenseTitle: data['title']?.toString() ?? '',
               ),
             );
           }
 
           for (final debt in _debts(snapshot)) {
-            var confirmed = 0;
-            var pending = 0;
-
-            for (final refund in refunds) {
-              if (refund['debtorUid'] != debt.debtor ||
-                  refund['creditorUid'] != debt.creditor) {
-                continue;
-              }
-
-              final amount = refund['minorUnits'];
-              if (amount is! int || amount <= 0) continue;
-
-              if (refund['status'] == 'confirmed') {
-                confirmed += amount;
-              } else if (refund['status'] == 'pending') {
-                pending += amount;
-              }
-            }
+            final confirmed = BudgetSnapshotDebts.sumFor(
+              refunds,
+              debt.debtor,
+              debt.creditor,
+              BudgetSnapshotDebts.settledStatuses,
+            );
+            final pending = BudgetSnapshotDebts.sumFor(
+              refunds,
+              debt.debtor,
+              debt.creditor,
+              const {'pending'},
+            );
 
             final remaining = math.max(0, debt.amount - confirmed);
             final waiting = math.min(remaining, pending);
@@ -507,6 +470,8 @@ class _BudgetUserSettlementSummaryState
               return l10n.budgetMovementConfirmed;
             case 'rejected':
               return l10n.budgetMovementRejected;
+            case BudgetSnapshotDebts.writtenOff:
+              return l10n.b86Closed;
             default:
               return l10n.budgetMovementPending;
           }
@@ -637,6 +602,7 @@ class _BudgetUserSettlementSummaryState
                         ),
                         Flexible(
                           child: BudgetDisplayAmount(
+                            expense: movement.expense,
                             minorUnits: movement.amount,
                             originalCurrency: movement.currency,
                             displayCurrency: widget.displayCurrency,

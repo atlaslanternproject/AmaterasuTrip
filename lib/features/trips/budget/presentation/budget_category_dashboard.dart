@@ -1,3 +1,4 @@
+import 'budget_expense_day.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../data/budget_fx_service.dart';
 import 'budget_api.dart';
 import 'budget_category_picker.dart';
+import 'budget_charts.dart';
 import 'budget_expense_filters.dart';
 
 /// B6: participant-scoped category totals. Shared and personal never mix.
@@ -45,7 +47,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   late Stream<Map<String, String>> _categories;
 
   bool _chartPersonal = false;
-  final String _fxMode = 'latest';
+
   String? _cachedFxKey;
   Future<Map<String, BudgetFxQuote?>>? _cachedFx;
 
@@ -79,8 +81,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   }
 
   DateTime? _createdAt(Map<String, dynamic> data) {
-    final value = data['createdAt'];
-    return value is Timestamp ? value.toDate() : null;
+    return budgetExpenseDay(data);
   }
 
   Future<BudgetFxQuote?> _quoteFor(
@@ -95,9 +96,6 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
       return null;
     }
     try {
-      if (_fxMode == 'latest') {
-        return await _fx.latest(source, target);
-      }
       final locked = BudgetFxQuote.fromLocked(data['fxHistorical']);
       if (locked != null && locked.base == source && locked.quote == target) {
         return locked;
@@ -130,7 +128,6 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   ) {
     final key = [
       target,
-      _fxMode,
       _chartPersonal.toString(),
       for (final doc in docs)
         '${doc.id}:${doc.data()['version']}:${doc.data()['fxHistorical']}',
@@ -143,9 +140,6 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
   }
 
   void _pinLegacyRates(List<QueryDocumentSnapshot<Map<String, dynamic>>> docs) {
-    if (_fxMode != 'historical') {
-      return;
-    }
     final relevant = docs
         .where((doc) {
           final data = doc.data();
@@ -365,7 +359,9 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
     var converted = 0;
     var excludedCount = 0;
     var myShare = 0;
+    var myAdvances = 0;
     final people = <String>{};
+    final daily = <DateTime, int>{};
     String? mostRecentTitle;
     DateTime? mostRecentDate;
     for (final doc in docs) {
@@ -408,6 +404,10 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
         mostRecentDate = expenseTime;
         mostRecentTitle = data['title']?.toString() ?? '';
       }
+      if (expenseTime != null) {
+        final day = DateUtils.dateOnly(expenseTime);
+        daily[day] = (daily[day] ?? 0) + value;
+      }
       final category = data['category']?.toString() ?? 'other';
       totals[category] = (totals[category] ?? 0) + value;
       total += value;
@@ -417,6 +417,19 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
         if (advance['currency'] == source && advance['minorUnits'] is int) {
           advanceTotal += advance['minorUnits'] as int;
         }
+      }
+      final ownAdvance = _map(
+        _map(financial['advances'])[widget.api.currentUid],
+      );
+      if (ownAdvance['currency'] == source && ownAdvance['minorUnits'] is int) {
+        myAdvances +=
+            BudgetFxService.convertMinor(
+              ownAdvance['minorUnits'] as int,
+              source,
+              target,
+              fx,
+            ) ??
+            0;
       }
       final convertedPaid = BudgetFxService.convertMinor(
         advanceTotal,
@@ -435,6 +448,9 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
     final ordered = totals.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     final partial = excludedCount > 0;
+    final trend = BudgetTrend.from(daily);
+    String categoryLabel(String key) =>
+        custom[key] ?? BudgetCategoryPicker.label(key, it);
     final hasExpenses = docs.isNotEmpty;
     final visiblePrimary = converted == 0 && hasExpenses
         ? '— $target'
@@ -496,6 +512,12 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
           children: [
             if (!_chartPersonal && people.isNotEmpty)
               _overviewMetric(l10n.b6GroupTotal, _money(total, target)),
+            _overviewMetric(
+              _l10n(it).btDashMyAdvances,
+              converted == 0 && hasExpenses
+                  ? '— $target'
+                  : _money(myAdvances, target),
+            ),
             _overviewMetric(l10n.b6PaidToSuppliers, visiblePaid),
             _overviewMetric(
               l10n.b6OutstandingSuppliers,
@@ -515,13 +537,36 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
         const Divider(height: 30),
         if (ordered.isEmpty)
           Text(l10n.b6NoExpenses, style: const TextStyle(color: _muted)),
-        for (final entry in ordered) ...[
+        // B8.5: real charts built from the same converted totals.
+        if (ordered.isNotEmpty && total > 0) ...[
+          Text(
+            l10n.b85CategoryChart,
+            style: const TextStyle(color: _cream, fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 8),
+          BudgetCategoryChart(
+            key: const Key('b85-category-chart'),
+            values: [for (final entry in ordered) entry.value],
+            labels: [for (final entry in ordered) categoryLabel(entry.key)],
+            currency: target,
+          ),
+          const SizedBox(height: 14),
+        ],
+        for (final (index, entry) in ordered.indexed) ...[
           Row(
             children: [
+              Container(
+                width: 10,
+                height: 10,
+                margin: const EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  color: BudgetChartPalette.at(index),
+                  shape: BoxShape.circle,
+                ),
+              ),
               Expanded(
                 child: Text(
-                  custom[entry.key] ??
-                      BudgetCategoryPicker.label(entry.key, it),
+                  categoryLabel(entry.key),
                   style: const TextStyle(
                     color: _cream,
                     fontWeight: FontWeight.w600,
@@ -541,11 +586,36 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
               value: total > 0 ? (entry.value / total).clamp(0.0, 1.0) : 0,
               minHeight: 8,
               backgroundColor: const Color(0xFF49312B),
-              color: _orange,
+              color: BudgetChartPalette.at(index),
             ),
           ),
           const SizedBox(height: 13),
         ],
+        if (trend.points.isNotEmpty && total > 0) ...[
+          const SizedBox(height: 10),
+          Text(
+            l10n.b85TrendChart,
+            style: const TextStyle(color: _cream, fontWeight: FontWeight.w700),
+          ),
+          Text(
+            trend.monthly ? l10n.b85TrendByMonth : l10n.b85TrendByDay,
+            style: const TextStyle(color: _muted, fontSize: 12),
+          ),
+          const SizedBox(height: 10),
+          BudgetTrendChart(
+            key: const Key('b85-trend-chart'),
+            trend: trend,
+            currency: target,
+          ),
+        ],
+        if (partial && ordered.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              l10n.b85ChartsExcludeMissingRates,
+              style: const TextStyle(color: _gold, fontSize: 12),
+            ),
+          ),
         if (observations.isNotEmpty) ...[
           const SizedBox(height: 8),
           ExpansionTile(
@@ -594,3 +664,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

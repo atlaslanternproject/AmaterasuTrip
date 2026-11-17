@@ -7,11 +7,16 @@ class PersonalTripBudgetRepository {
   PersonalTripBudgetRepository({
     FirebaseFirestore? firestore,
     FirebaseAuth? auth,
-  }) : _firestore = firestore ?? FirebaseFirestore.instance,
-       _auth = auth ?? FirebaseAuth.instance;
+  }) : _firestoreOverride = firestore,
+       _authOverride = auth;
 
-  final FirebaseFirestore _firestore;
-  final FirebaseAuth _auth;
+  final FirebaseFirestore? _firestoreOverride;
+  final FirebaseAuth? _authOverride;
+
+  // Created on first use, so a test double can extend this class.
+  late final FirebaseFirestore _firestore =
+      _firestoreOverride ?? FirebaseFirestore.instance;
+  late final FirebaseAuth _auth = _authOverride ?? FirebaseAuth.instance;
 
   DocumentReference<Map<String, dynamic>> _document(String tripId) {
     final uid = _auth.currentUser?.uid;

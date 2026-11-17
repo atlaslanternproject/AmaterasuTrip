@@ -64,3 +64,6 @@ hosting/invite/*.backup_*
 .bucket_list_release_web/
 
 .bucket_list_release_web/
+
+# Backup locale lavoro budget B8.4-B8.7
+.local-backup-B84-B87/

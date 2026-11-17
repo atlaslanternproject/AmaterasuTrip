@@ -1,7 +1,26 @@
-import {getFirestore, FieldValue} from "firebase-admin/firestore";
+import {
+  getFirestore, FieldValue, Transaction, DocumentReference,
+} from "firebase-admin/firestore";
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
 import {validId} from "./budget-validation";
+
+/**
+ * B8.6: appends one event to the cancellation log of an expense.
+ * @param {Transaction} tx Firestore transaction.
+ * @param {DocumentReference} expenseRef Expense reference.
+ * @param {string} event requested, approved, rejected or cancelled.
+ * @param {string} uid Acting traveler.
+ * @return {void}
+ */
+function logCancellation(
+  tx: Transaction, expenseRef: DocumentReference, event: string, uid: string,
+): void {
+  tx.create(expenseRef.collection("cancellationLog").doc(), {
+    event, actorUid: uid, createdAt: FieldValue.serverTimestamp(),
+  });
+}
+
 
 const db = getFirestore();
 
@@ -63,7 +82,10 @@ export const requestBudgetCancellation = onCall(
         requestedByUid: uid, createdAt: FieldValue.serverTimestamp(),
         updatedAt: FieldValue.serverTimestamp(),
       });
+      // B8.6: append-only log, "current" is replaced by a new request.
+      logCancellation(tx, expenseRef, "requested", uid);
       if (required.length === 1) {
+        logCancellation(tx, expenseRef, "cancelled", uid);
         tx.update(expenseRef, {
           lifecycle: "cancelled", cancelledAt: FieldValue.serverTimestamp(),
           cancelledByUid: uid, updatedAt: FieldValue.serverTimestamp(),
@@ -127,6 +149,7 @@ export const decideBudgetCancellation = onCall(
           state: "rejected", rejectedByUid: uid,
           updatedAt: FieldValue.serverTimestamp(),
         });
+        logCancellation(tx, expenseRef, "rejected", uid);
         return;
       }
       const next = [...previous, uid];
@@ -146,10 +169,13 @@ export const decideBudgetCancellation = onCall(
           state: "approved", approvedUids: next,
           updatedAt: FieldValue.serverTimestamp(),
         });
+        logCancellation(tx, expenseRef, "approved", uid);
+        logCancellation(tx, expenseRef, "cancelled", uid);
       } else {
         tx.update(cancelRef, {
           approvedUids: next, updatedAt: FieldValue.serverTimestamp(),
         });
+        logCancellation(tx, expenseRef, "approved", uid);
       }
     });
     return {decided: true};

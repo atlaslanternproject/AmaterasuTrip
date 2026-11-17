@@ -123,6 +123,7 @@ async function run() {
   for (const ref of [shared, privateA, privateB]) {
     await ref.set({
       createdByUid: ref === privateB ? member : owner,
+      ...(ref === shared ? {participantUids: [owner, member]} : {}),
       visibility: ref === shared ? "shared" : "private",
       status: "planned",
     });
@@ -156,7 +157,14 @@ async function run() {
   await denied("outsider cannot read private", c, privateBUrl);
 
   // Query permissions, not just document reads
-  await allowed("member lists shared", b, sharedListUrl);
+  await denied("unfiltered shared list is denied", b, sharedListUrl);
+  await allowed("member queries own expenses", b, path(":runQuery").replace("/:", ":"), "POST", {
+    structuredQuery: {
+      from: [{collectionId: "budgetSharedExpenses"}],
+      where: {fieldFilter: {field: {fieldPath: "participantUids"},
+        op: "ARRAY_CONTAINS", value: {stringValue: member}}},
+    },
+  });
   await allowed("owner lists own private", a, privateAListUrl);
   await denied("member cannot list owner's private", b, privateAListUrl);
   await denied("owner cannot list member's private", a, privateBListUrl);

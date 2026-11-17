@@ -91,8 +91,7 @@ class BudgetFxService {
     if (!validCurrency(base) || !validCurrency(quote) || base == quote) {
       return Future.error(ArgumentError('Invalid FX pair.'));
     }
-    if (date != null &&
-        date.isAfter(DateTime.now().add(const Duration(days: 1)))) {
+    if (date != null && isoDate(date).compareTo(isoDate(DateTime.now())) > 0) {
       return Future.error(ArgumentError('FX date is in the future.'));
     }
     final dateKey = date == null ? 'latest' : isoDate(date);
@@ -141,9 +140,9 @@ class BudgetFxService {
         observed == null ||
         !rate.isFinite ||
         rate <= 0 ||
-        observed.isAfter(DateTime.now().add(const Duration(days: 1))) ||
+        isoDate(observed).compareTo(isoDate(DateTime.now())) > 0 ||
         (requestedDate != null &&
-            observed.isAfter(requestedDate.add(const Duration(days: 1))))) {
+            isoDate(observed).compareTo(isoDate(requestedDate)) > 0)) {
       throw const FormatException('Unusable provider FX rate.');
     }
     return BudgetFxQuote(

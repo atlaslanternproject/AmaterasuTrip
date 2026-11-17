@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 import 'budget_api.dart';
+import 'budget_people.dart';
 
 class BudgetRevisionPanel extends StatefulWidget {
   const BudgetRevisionPanel({
@@ -24,7 +25,7 @@ class BudgetRevisionPanel extends StatefulWidget {
 }
 
 class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
-  final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
+  late final FirebaseFunctions _functions = FirebaseFunctions.instanceFor(
     region: 'europe-west1',
   );
 
@@ -32,23 +33,11 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
   String? _feedback;
   late Future<Map<String, String>> _names;
 
-  late final Stream<QuerySnapshot<Map<String, dynamic>>> _proposals =
-      FirebaseFirestore.instance
-          .collection('trips')
-          .doc(widget.api.tripId)
-          .collection('budgetSharedExpenses')
-          .doc(widget.expenseId)
-          .collection('proposals')
-          .snapshots();
+  late final Stream<QuerySnapshot<Map<String, dynamic>>> _proposals = widget.api
+      .proposals(widget.expenseId);
 
   late final Stream<QuerySnapshot<Map<String, dynamic>>> _reimbursements =
-      FirebaseFirestore.instance
-          .collection('trips')
-          .doc(widget.api.tripId)
-          .collection('budgetSharedExpenses')
-          .doc(widget.expenseId)
-          .collection('reimbursements')
-          .snapshots();
+      widget.api.reimbursements(widget.expenseId);
 
   @override
   void initState() {
@@ -243,7 +232,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                           ),
                           decoration: InputDecoration(
                             labelText:
-                                '${names[payer.key] ?? l10n.budgetRevisionTraveler} ($currency)',
+                                '${names[payer.key] ?? BudgetPeople.recorded(widget.expense)[payer.key] ?? l10n.b86FormerTraveler} ($currency)',
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -269,7 +258,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                           ),
                           decoration: InputDecoration(
                             labelText:
-                                '${names[share.key] ?? l10n.budgetRevisionTraveler} ($currency)',
+                                '${names[share.key] ?? BudgetPeople.recorded(widget.expense)[share.key] ?? l10n.b86FormerTraveler} ($currency)',
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -509,7 +498,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                               const SizedBox(height: 6),
                               for (final person in required)
                                 Text(
-                                  '${names[person] ?? l10n.budgetRevisionTraveler}: '
+                                  '${names[person] ?? BudgetPeople.recorded(widget.expense)[person] ?? l10n.b86FormerTraveler}: '
                                   '${approved.contains(person) ? l10n.budgetRevisionApproved : l10n.budgetRevisionWaiting}',
                                 ),
                               if (canVote)

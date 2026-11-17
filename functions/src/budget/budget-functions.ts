@@ -19,3 +19,6 @@ export {
   decideBudgetCancellation,
 } from "./budget-cancel-expense";
 export {cancelPrivateBudgetExpense} from "./budget-delete-private";
+export {syncBudgetParticipantNames} from "./budget-names";
+export {closeBudgetDebt} from "./budget-debt-closure";
+export {listBudgetHistory} from "./budget-history";

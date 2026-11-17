@@ -29,17 +29,17 @@ class BudgetCategoryPicker extends StatelessWidget {
   static String label(String id, bool it) {
     switch (id) {
       case 'accommodation':
-        return it ? 'Alloggio' : 'Accommodation';
+        return _l10n(it).btCatAccommodation;
       case 'food':
-        return it ? 'Cibo e bevande' : 'Food & drinks';
+        return _l10n(it).btCatFoodDrinks;
       case 'transport':
-        return it ? 'Trasporti' : 'Transport';
+        return _l10n(it).btCatTransport;
       case 'activities':
-        return it ? 'Attività' : 'Activities';
+        return _l10n(it).btCatActivities;
       case 'shopping':
         return 'Shopping';
       case 'other':
-        return it ? 'Altro' : 'Other';
+        return _l10n(it).btCatOther;
       default:
         return id;
     }
@@ -193,3 +193,7 @@ class _NewBudgetCategoryDialogState extends State<_NewBudgetCategoryDialog> {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

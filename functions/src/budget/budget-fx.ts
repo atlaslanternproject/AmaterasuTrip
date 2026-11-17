@@ -9,6 +9,15 @@ const db = getFirestore();
 const code = /^[A-Z]{3}$/;
 const maxDelayMs = 9000;
 
+/** Returns the expense day, including for records from earlier clients.
+ * @param {DocumentData} data Stored expense.
+ * @return {Timestamp} Date used for the historical quote.
+ */
+function expenseDay(data: DocumentData): Timestamp {
+  return typeof data.expenseDate === "string" ?
+    Timestamp.fromDate(new Date(data.expenseDate)) : data.createdAt;
+}
+
 type FxRecord = {
   base: string;
   quote: string;
@@ -38,6 +47,9 @@ function isoDate(date: Date): string {
 async function fetchFxRate(base: string, quote: string, date: Date):
     Promise<FxRecord> {
   const dateText = isoDate(date);
+  if (dateText > isoDate(new Date())) {
+    throw new HttpsError("failed-precondition", "Future FX unavailable.");
+  }
   const url = new URL(
     `https://api.frankfurter.dev/v2/rate/${base}/${quote}`,
   );
@@ -149,7 +161,7 @@ export const ensureBudgetExpenseFx = onCall(
     }
     const target = trip.data()?.currency;
     const source = data.snapshot?.total?.currency;
-    const createdAt = data.createdAt;
+    const createdAt = expenseDay(data);
     if (typeof source !== "string" || typeof target !== "string" ||
         !code.test(source) || !code.test(target) ||
         !(createdAt instanceof Timestamp)) {
@@ -170,7 +182,7 @@ export const ensureBudgetExpenseFx = onCall(
       if (fresh.fxHistorical) {
         return;
       }
-      if (fresh.createdAt?.toMillis() !== createdAt.toMillis() ||
+      if (expenseDay(fresh)?.toMillis() !== createdAt.toMillis() ||
           fresh.snapshot?.total?.currency !== source) {
         throw new HttpsError("aborted", "Expense changed during FX lock.");
       }
@@ -219,7 +231,7 @@ export const overrideBudgetExpenseFx = onCall(
       }
       const base = data.snapshot?.total?.currency;
       const quote = trip.data()?.currency;
-      const date = data.createdAt;
+      const date = expenseDay(data);
       if (typeof base !== "string" || typeof quote !== "string" ||
           !code.test(base) || !code.test(quote) ||
           !(date instanceof Timestamp) || base === quote) {

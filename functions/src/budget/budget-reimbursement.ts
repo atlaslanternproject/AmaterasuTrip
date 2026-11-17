@@ -2,7 +2,7 @@ import {getFirestore, FieldValue} from "firebase-admin/firestore";
 import {onCall, HttpsError} from "firebase-functions/v2/https";
 import {checkBudgetMembership} from "./budget-access";
 import {
-  validId, debtAmount, Snapshot,
+  validId, debtAmount, Snapshot, settledStatuses, sumReimbursements,
 } from "./budget-validation";
 
 import {validateReimbursementMethods} from "./budget-reimbursement-methods";
@@ -86,16 +86,10 @@ export const requestBudgetReimbursement = onCall(
         );
       }
 
-      let reserved = 0;
-      for (const item of previous.docs) {
-        const value = item.data();
-        if (value.debtorUid === uid &&
-            value.creditorUid === creditorUid &&
-            (value.status === "pending" ||
-             value.status === "confirmed")) {
-          reserved += value.minorUnits as number;
-        }
-      }
+      const reserved = sumReimbursements(
+        previous.docs.map((item) => item.data()), uid, creditorUid,
+        ["pending", ...settledStatuses],
+      );
 
       if (!Number.isSafeInteger(reserved) ||
           debt === 0 || reserved + minorUnits > debt) {
@@ -173,19 +167,12 @@ export const confirmBudgetReimbursement = onCall(
         snapshot, data.debtorUid, data.creditorUid,
       );
 
-      const previous = await tx.get(
-        expense.collection("reimbursements")
-          .where("status", "==", "confirmed"),
-      );
+      const previous = await tx.get(expense.collection("reimbursements"));
 
-      let alreadyConfirmed = 0;
-      for (const item of previous.docs) {
-        const value = item.data();
-        if (value.debtorUid === data.debtorUid &&
-            value.creditorUid === data.creditorUid) {
-          alreadyConfirmed += value.minorUnits as number;
-        }
-      }
+      const alreadyConfirmed = sumReimbursements(
+        previous.docs.map((item) => item.data()),
+        data.debtorUid, data.creditorUid, settledStatuses,
+      );
 
       if (approved && alreadyConfirmed + data.minorUnits > debt) {
         throw new HttpsError(

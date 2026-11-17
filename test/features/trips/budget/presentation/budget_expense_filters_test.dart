@@ -34,7 +34,14 @@ void main() {
     );
   });
 
-  test('period filter uses recording time', () {
+  test('effective day controls filters and sorting for backdated entries', () {
+    final backdated = {...expense, 'expenseDate': '2025-01-02'};
+    const filters = BudgetExpenseFilters(days: 30);
+    expect(filters.matches(backdated, now), isFalse);
+    expect(filters.compare(backdated, expense), greaterThan(0));
+  });
+
+  test('legacy period filter uses recording time', () {
     expect(const BudgetExpenseFilters(days: 30).matches(expense, now), isTrue);
     expect(const BudgetExpenseFilters(days: 1).matches(expense, now), isFalse);
   });

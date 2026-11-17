@@ -6,6 +6,8 @@ export type PaymentMethod = {
   method: string;
   minorUnits: number;
   otherLabel?: string;
+  accountCurrency?: string;
+  accountDebitMinor?: number;
 };
 
 const methods = new Set([
@@ -52,6 +54,7 @@ export function validatePaymentMethods(
     const keys = Object.keys(data);
     const allowed = [
       "payerUid", "method", "minorUnits", "otherLabel",
+      "accountCurrency", "accountDebitMinor",
     ];
 
     if (keys.some((key) => !allowed.includes(key)) ||
@@ -92,6 +95,14 @@ export function validatePaymentMethods(
       );
     }
 
+    const account = data.accountCurrency;
+    const debit = data.accountDebitMinor;
+    if ((account !== undefined && (typeof account !== "string" ||
+        !/^[A-Z]{3}$/.test(account))) || (debit !== undefined &&
+        (account === undefined || typeof debit !== "number" ||
+        !Number.isSafeInteger(debit) || debit <= 0))) {
+      throw new HttpsError("invalid-argument", "Invalid account debit.");
+    }
     const previous = totals.get(payerUid) ?? 0;
     const updated = previous + minorUnits;
 
@@ -105,6 +116,8 @@ export function validatePaymentMethods(
 
     result.push({
       payerUid,
+      ...(typeof account === "string" ? {accountCurrency: account} : {}),
+      ...(typeof debit === "number" ? {accountDebitMinor: debit} : {}),
       method,
       minorUnits,
       ...(method === "other" ?

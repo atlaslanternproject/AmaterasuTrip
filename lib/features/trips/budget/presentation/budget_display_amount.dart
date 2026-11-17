@@ -1,3 +1,5 @@
+import 'budget_expense_day.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../calculations/budget_money_formatter.dart';
@@ -15,12 +17,14 @@ class BudgetDisplayAmount extends StatefulWidget {
     required this.displayCurrency,
     this.fontSize = 17,
     this.quoteLoader,
+    this.expense,
   });
 
   final int minorUnits;
   final String originalCurrency;
   final String displayCurrency;
   final double fontSize;
+  final Map<String, dynamic>? expense;
   final BudgetQuoteLoader? quoteLoader;
 
   @override
@@ -44,6 +48,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
 
     if (oldWidget.originalCurrency != widget.originalCurrency ||
         oldWidget.displayCurrency != widget.displayCurrency ||
+        oldWidget.expense != widget.expense ||
         oldWidget.quoteLoader != widget.quoteLoader) {
       _prepareQuote();
     }
@@ -59,6 +64,21 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
 
   Future<BudgetFxQuote?> _loadQuote() async {
     try {
+      final expense = widget.expense;
+      if (expense != null) {
+        final locked = BudgetFxQuote.fromLocked(expense['fxHistorical']);
+        if (locked?.base == widget.originalCurrency &&
+            locked?.quote == widget.displayCurrency) {
+          return locked;
+        }
+        final day = budgetExpenseDay(expense);
+        if (day == null) return null;
+        return await _fx.historical(
+          widget.originalCurrency,
+          widget.displayCurrency,
+          day,
+        );
+      }
       final loader = widget.quoteLoader ?? _fx.latest;
 
       return await loader(widget.originalCurrency, widget.displayCurrency);
@@ -100,7 +120,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
           ),
           const SizedBox(height: 3),
           Text(
-            '${it ? "Originale" : "Original"}: $original',
+            '${_l10n(it).btAmountOriginal}: $original',
             style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 11),
           ),
           if (warning != null)
@@ -112,7 +132,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
             Tooltip(
               message: source,
               child: Text(
-                it ? 'Cambio automatico' : 'Automatic exchange rate',
+                _l10n(it).btAmountAutomaticExchangeRate,
                 style: const TextStyle(color: Color(0xFFB7A99B), fontSize: 10),
               ),
             ),
@@ -130,7 +150,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
         if (result.connectionState != ConnectionState.done) {
           return content(
             prominent: '— ${widget.displayCurrency}',
-            warning: it ? 'Conversione in corso' : 'Converting',
+            warning: _l10n(it).btAmountConverting,
           );
         }
 
@@ -151,9 +171,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
         if (converted == null) {
           return content(
             prominent: '— ${widget.displayCurrency}',
-            warning: it
-                ? 'Tasso di cambio non disponibile'
-                : 'Exchange rate unavailable',
+            warning: _l10n(it).btAmountExchangeRateUnavailable,
           );
         }
 
@@ -167,3 +185,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));

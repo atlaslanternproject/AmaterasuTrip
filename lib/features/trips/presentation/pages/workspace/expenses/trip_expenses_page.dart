@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_history_view.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_dashboard.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_filters.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expenses_toolbar.dart';
@@ -13,16 +14,19 @@ import 'package:amaterasutrip/features/trips/budget/presentation/budget_user_set
 import 'package:amaterasutrip/features/trips/budget/presentation/personal_trip_budget_card.dart';
 
 class TripExpensesPage extends StatefulWidget {
-  const TripExpensesPage({super.key, required this.tripId});
+  const TripExpensesPage({super.key, required this.tripId, this.api});
 
   final String tripId;
+
+  /// Defaults to the Firebase-backed API; replaceable in widget tests.
+  final BudgetApi? api;
 
   @override
   State<TripExpensesPage> createState() => _TripExpensesPageState();
 }
 
 class _TripExpensesPageState extends State<TripExpensesPage> {
-  late final BudgetApi _api = BudgetApi(widget.tripId);
+  late final BudgetApi _api = widget.api ?? BudgetApi(widget.tripId);
   late Future<String> _currency = _api.tripCurrency();
   int _refreshTick = 0;
 
@@ -44,6 +48,8 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
   void initState() {
     super.initState();
     _restoreDisplayCurrency();
+    // B8.6: keep traveler names inside shared expenses (best effort).
+    _api.syncParticipantNames;
   }
 
   Future<void> _restoreDisplayCurrency() async {
@@ -205,12 +211,20 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
         ),
         actions: [
           IconButton(
-            tooltip: it ? 'Aggiorna' : 'Refresh',
+            tooltip: _l10n(it).btPageRefresh,
             onPressed: _refresh,
             icon: const Icon(Icons.refresh_rounded, color: _cream),
           ),
           IconButton(
-            tooltip: it ? 'Filtri' : 'Filters',
+            tooltip: l10n.b86TripHistory,
+            onPressed: () => showDialog<void>(
+              context: context,
+              builder: (_) => BudgetTripHistoryDialog(api: _api),
+            ),
+            icon: const Icon(Icons.history_rounded, color: _cream),
+          ),
+          IconButton(
+            tooltip: _l10n(it).btPageFilters,
             onPressed: _openExpenseFilters,
             icon: const Icon(Icons.tune_rounded, color: _gold),
           ),
@@ -245,9 +259,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
           if (result.hasError) {
             return Center(
               child: Text(
-                it
-                    ? 'Impossibile caricare il viaggio.'
-                    : 'Unable to load trip.',
+                _l10n(it).btPageUnableToLoadTrip,
                 style: const TextStyle(color: _cream),
               ),
             );
@@ -266,17 +278,35 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 14, 16, 40),
                 children: [
-                  BudgetUserSettlementSummary(
-                    api: _api,
-                    displayCurrency: _displayCurrency ?? currency,
-                  ),
-
-                  const SizedBox(height: 22),
-
-                  PersonalTripBudgetCard(
-                    api: _api,
-                    defaultCurrency: currency,
-                    displayCurrency: _displayCurrency ?? currency,
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final personal = PersonalTripBudgetCard(
+                        api: _api,
+                        defaultCurrency: currency,
+                        displayCurrency: _displayCurrency ?? currency,
+                      );
+                      final balances = BudgetUserSettlementSummary(
+                        api: _api,
+                        displayCurrency: _displayCurrency ?? currency,
+                      );
+                      if (constraints.maxWidth < 900) {
+                        return Column(
+                          children: [
+                            personal,
+                            const SizedBox(height: 20),
+                            balances,
+                          ],
+                        );
+                      }
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(child: personal),
+                          const SizedBox(width: 20),
+                          Expanded(child: balances),
+                        ],
+                      );
+                    },
                   ),
 
                   const SizedBox(height: 26),
@@ -293,7 +323,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
                   const SizedBox(height: 28),
 
                   _sectionHeading(
-                    it ? 'Le spese del viaggio' : 'Trip expense list',
+                    _l10n(it).btPageTripExpenseList,
                     Icons.receipt_long_outlined,
                   ),
 
@@ -306,13 +336,13 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
                     child: Row(
                       children: [
                         _tab(
-                          label: it ? 'Condivise' : 'Shared',
+                          label: _l10n(it).btPageShared,
                           icon: Icons.groups_outlined,
                           selected: !_showPersonal,
                           onTap: () => setState(() => _showPersonal = false),
                         ),
                         _tab(
-                          label: it ? 'Personali' : 'Personal',
+                          label: _l10n(it).btPagePersonal,
                           icon: Icons.lock_outline_rounded,
                           selected: _showPersonal,
                           onTap: () => setState(() => _showPersonal = true),
@@ -342,3 +372,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
     );
   }
 }
+
+/// Texts of this screen, in the language chosen by the existing `it` flag.
+AppLocalizations _l10n(bool it) =>
+    lookupAppLocalizations(Locale(it ? 'it' : 'en'));
