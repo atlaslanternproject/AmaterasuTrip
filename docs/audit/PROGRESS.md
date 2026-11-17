@@ -36,10 +36,14 @@ Controlli: `bash tool/check_all.sh` (Git Bash, dalla cartella principale).
 | b2 - token spaziatura e raggio | fatto | 0d26c24 | ST3 parziale: 220 spaziature e 23 raggi con i token esistenti, solo valori identici |
 | c1 - l10n.yaml e chiavi non usate | fatto | 8e90506 | B9, L2: 186 chiavi tolte (1083 → 897 per lingua) |
 | c2 - doppioni del budget | fatto | f2ced17 | L3 solo area budget: 59 chiavi unite in 23 (897 → 861). Aree account/trip non toccate (funzioni approvate) |
-| d - struttura | da fare | | |
+| d1 - budgetL10n condiviso | fatto | 67caa4e | C6 (13 copie). C8 non fatta: le tre _money gestiscono gli errori in modo diverso |
+| d2 - requireVerifiedUid condiviso | fatto | 6ed7ce8 | C13 (15 copie). C14 non era un doppione: i due validId fanno controlli diversi |
+| d3-d15 - divisione file Dart grandi (part) | fatto | bc8c4e1 … c216fcd | 13 file, un commit ciascuno. Restano sopra 200 righe dove c'è un build lungo (vedi AUDIT) |
+| d16 - functions/src/index.ts in moduli | fatto | 2631bb2 | 849 → 73 righe; stesse 30 funzioni esportate; test emulatore removeTripMember 5/5 |
+| d17 - budget-validation, budget-fx, duplicate-trip | fatto | dc3d9d4 | 172, 135, 200 righe |
 | e - intestazioni e TODO(audit) | da fare | | |
 | f - dipendenze (con C11) | da fare | | |
 | g - README, CLAUDE.md, B10 | da fare | | |
 
 ## Prossimo passo
-Passo d: moduli condivisi (C6, C8, C13, C14) e divisione dei file grandi non approvati.
+Passo e: intestazione di 2-4 righe in ogni file Dart scritto da noi e commenti TODO(audit).
