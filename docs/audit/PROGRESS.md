@@ -46,8 +46,13 @@ Controlli: `bash tool/check_all.sh` (Git Bash, dalla cartella principale).
 | f2 - Flutter minor/patch | fatto | 36fb040 | 36 pacchetti aggiornati nei limiti di pubspec.yaml; build web e apk OK. Un primo giro dei controlli è fallito solo perché i file l10n erano in rigenerazione: ripetuto, tutto OK |
 | f3 - functions npm | fatto | 8963487 | S3: produzione critica 1 → 0, alte 2 → 0, moderate 9 → 8 (restano solo con firebase-admin 14) |
 | f4 - rules-tests npm | fatto | 51da218 | S4: alte 6 → 5 (le altre richiedono versioni maggiori); test regole 21/21 + B7.1 + B7.5.2 OK prima e dopo |
-| g - README, CLAUDE.md, B10 | da fare | | |
+| g - README, CLAUDE.md, B10 | fatto | 445b369 | D1-D5, B10; tolto lib/l10n.yaml (fuori posto, mai letto da Flutter); check_all.sh ora esegue pub get + gen-l10n prima dell'analisi |
+
+## Stato finale (2026-11-17)
+Fase 2 completata (passi a-g). Controlli finali: tutti OK
+(test Flutter 381: i 3 in meno erano del codice permessi eliminato).
+Nessun push, merge o deploy.
 
 ## Prossimo passo
-Passo g: README vero, CLAUDE.md aggiornato (convenzioni, niente QR),
-titolo e descrizione in web/index.html (B10), descrizione in pubspec.yaml (D3).
+Nessuno in questo audit. Le voci aperte sono in AUDIT.md
+("Voci non risolte").

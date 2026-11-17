@@ -42,6 +42,10 @@ Base di partenza (Fase 0): analisi 0 avvisi · 384 test Flutter · controllo tra
 | C12 aggiornamenti minor/patch Flutter | risolta (36 pacchetti) | 36fb040 |
 | S3 vulnerabilità functions | risolta la parte minor/patch: produzione 13 → 8 (0 critiche, 0 alte); le 8 moderate richiedono firebase-admin 14 | 8963487 |
 | S4 vulnerabilità rules-tests | risolta in parte: 6 → 5 alte; le altre richiedono firebase 13 | 51da218 |
+| D1-D5 README, CLAUDE.md, descrizione pubspec | risolte | 445b369 |
+| B10 titolo e descrizione in web/index.html | risolta. Nota: ad app avviata il titolo della scheda viene da `MaterialApp(title: 'AmaterasuTrip')` in lib/app/app.dart (senza spazio); anche web/manifest.json ha ancora nome "amaterasutrip", descrizione di Flutter e colori blu #0175C2. Non toccati: non autorizzati | 445b369 |
+| Correzione B9 | il report diceva che `l10n.yaml` mancava: ce n'era uno in `lib/l10n.yaml`, fuori posto e mai letto da Flutter (chiedeva l'italiano come modello). Tolto; le sue istruzioni sono nel README | 445b369 |
+| Nuovo: check_all.sh | dopo una modifica a pubspec.yaml il primo `flutter analyze` poteva partire mentre lib/l10n era in rigenerazione (successo in f2 e g). Ora lo script esegue prima `flutter pub get` e `flutter gen-l10n` | 445b369 |
 | Nuova voce C1b: `lib/features/trips/presentation/pages/workspace/trip_overview_page.dart` è una pagina vuota mai importata (la panoramica vera è in `overview/`) | trovata durante il passo e; non eliminata (non autorizzata), segnata con TODO(audit) | — |
 
 Dettaglio divisione (righe prima → dopo, file principale). Metodo: i metodi della classe State sono stati spostati identici in file `part` come `extension` (stesso schema della bucket list); le classi di primo livello spostate in `part`; nelle functions moduli separati riesportati con gli stessi nomi. Verificato per ogni file che le righe di codice siano le stesse.
@@ -252,3 +256,31 @@ Stato: 1.143 chiavi sia in italiano sia in inglese, nessuna mancante, nessun val
 ### Cose da decidere prima del "procedi"
 1. **Funzioni approvate.** I passi b (colori) ed e (intestazioni) toccano per forza anche file di gestione viaggio, impostazioni e bucket list, ma solo nella forma: stessi valori, nessun cambiamento visibile. Il tuo "procedi" vale anche per questo? Se no, li salto in quelle cartelle. Divisione dei 26 file grandi approvati e spostamento dei testi `_t(...)` (L5) restano esclusi finché non me lo chiedi.
 2. Le voci "da decidere io" (S1, S2/B5, S10, B8, B10, C2, C4, C5, C7, C9, C10, C11, L4, L6) restano nel report e non le tocco.
+
+Risposta ricevuta: "procedi" con b ed e anche nei file approvati (solo forma); autorizzate anche S2/B5, S5, B10, C2, C5, C11, B8; escluse S1, S10, S13, C4, C7, C9, C10, L4, L5, L6.
+
+---
+
+## Voci non risolte (dopo la Fase 2)
+
+| Voce | Perché resta aperta |
+|---|---|
+| S1 regole di Firebase Storage fuori dal progetto | esclusa: tocca regole e firebase.json |
+| S6, S7 limitazioni delle chiavi API | da verificare nella console Google Cloud, fuori dal codice |
+| S10 blocco `e2eeRoots` nelle regole, cancellazione profilo lato client | esclusa: firestore.rules non si tocca |
+| S13 intestazioni di sicurezza Web (CSP) | esclusa: hosting |
+| S3, S4 vulnerabilità rimaste | richiedono versioni maggiori (firebase-admin 14, firebase 13) |
+| B7 script di build Web che copia `hosting/` in `build/web` | da decidere; per ora documentato nel README |
+| C1 TripWorkspaceHeader/Card, browser cartelle Drive; C1b pagina vuota `workspace/trip_overview_page.dart` | non autorizzate; segnate con TODO(audit) |
+| C3 calcoli Dart del budget usati solo dai test di parità | da tenere: spiegato nelle intestazioni |
+| C4 cancellazione account lato server non collegata, `inspectAccountDeletionTrips` mai chiamata | esclusa: nome di funzione chiamabile; TODO(audit) in functions/src/index.ts |
+| C7, C9, C10 doppioni simili ma non identici | esclusi; TODO(audit) sulle righe |
+| C8 `_money` | le tre versioni gestiscono gli errori in modo diverso |
+| 3.1 file ancora sopra 200 righe: 9 non approvati con `build` lunghi, `budget_api.dart`, `router.dart`, `budget_expenses_toolbar.dart`; 26 file delle funzioni approvate | serve estrarre widget (riorganizzazione dell'interfaccia) o un permesso esplicito; TODO(audit) sui punti principali |
+| C12 versioni maggiori dei pacchetti (cloud_firestore 7, firebase_auth 7, firebase_core 5, go_router 18, google_sign_in 7, googleapis 19, firebase-admin 14, eslint 10, typescript 7…) | vietate in questo audit |
+| L3 doppioni di testo nelle aree account e trip | funzioni approvate (non incluse nell'autorizzazione per b ed e) |
+| L4 ruoli OWNER/TRAVELER in inglese | deciso: restano così |
+| L5 ~155 testi `_t(...)` (bucket list, profilo viaggiatore) | esclusa per ora |
+| L6 testi solo in italiano nel codice | esclusa; TODO(audit) sulle righe |
+| L7 nomi delle chiavi (b6/b85/b86/bt, Traveller/Traveler) | solo convenzione per le chiavi nuove (in CLAUDE.md) |
+| Titolo `MaterialApp` "AmaterasuTrip" e web/manifest.json | non autorizzati (cambiano testi/colori visibili) |
