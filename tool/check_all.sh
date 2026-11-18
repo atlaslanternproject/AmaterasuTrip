@@ -76,6 +76,14 @@ emu_budget_rc() {
     "node functions/test/budget-rc-integration.cjs"
 }
 
+# Regole di Firebase Storage (storage.rules). Richiede
+# "npm --prefix rules-tests install" (o "npm ci") una volta.
+emu_storage_rules() {
+  firebase emulators:exec --config "$EMU_CONFIG" \
+    --project demo-amaterasu-storage --only storage \
+    "node --test rules-tests/storage-rules.test.cjs"
+}
+
 step "flutter pub get e gen-l10n" flutter_pub_get
 step "flutter analyze" flutter_analyze
 step "flutter test" flutter_tests
@@ -86,6 +94,7 @@ step "test node" node_tests
 step "emulatore: regole budget" emu_budget_rules
 step "emulatore: privacy budget" emu_budget_privacy
 step "emulatore: integrazione budget" emu_budget_rc
+step "emulatore: regole Storage" emu_storage_rules
 
 summary
 echo ""

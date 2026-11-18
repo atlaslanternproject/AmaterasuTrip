@@ -151,8 +151,9 @@ Il deploy si fa solo a mano, dopo i controlli.
   copiare a mano le pagine di `hosting/` (invito e cancellazione) dentro
   `build/web`, poi `firebase deploy --only hosting`. Senza la copia la
   pagina di invito non viene pubblicata.
-- Le regole di Firebase Storage non sono nel progetto: si gestiscono dalla
-  console Firebase.
+- **Regole Storage**: `firebase deploy --only storage` (file
+  `storage.rules`, provate da `rules-tests/storage-rules.test.cjs`, che
+  fa parte di `tool/check_all.sh`).
 
 Script una tantum: `functions/scripts/budget-backfill-participants.cjs`
 aggiorna le spese vecchie; parte in prova e scrive solo con `--apply`.
