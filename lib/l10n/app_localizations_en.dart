@@ -534,6 +534,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountDeleteError => 'We could not complete the account deletion. No further data will be deleted. Please try again.';
 
   @override
+  String get accountDeleteBlockedByTrips => 'Before deleting your account, leave your trips or delete them.';
+
+  @override
   String get privacyTitle => 'Privacy';
 
   @override

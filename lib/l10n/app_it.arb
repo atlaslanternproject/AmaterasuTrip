@@ -186,6 +186,7 @@
     "accountDeleteReauthenticationFailed":  "Non è stato possibile verificare la tua identità. Riprova.",
     "accountDeleteReauthenticationUnsupported":  "Questo metodo di accesso non è ancora supportato per la verifica dell\u0027identità.",
     "accountDeleteError":  "Non è stato possibile completare l\u0027eliminazione dell\u0027account. Nessun ulteriore dato verrà eliminato. Riprova.",
+    "accountDeleteBlockedByTrips":  "Prima di eliminare l'account esci dai viaggi o eliminali.",
     "privacyTitle":  "Privacy",
     "privacyIntro":  "Consulta come Amaterasu gestisce i tuoi dati, i permessi dell\u0027app e le tue scelte relative alla privacy.",
     "privacyDataTitle":  "Privacy Policy",

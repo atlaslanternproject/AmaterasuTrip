@@ -1121,6 +1121,12 @@ abstract class AppLocalizations {
   /// **'We could not complete the account deletion. No further data will be deleted. Please try again.'**
   String get accountDeleteError;
 
+  /// No description provided for @accountDeleteBlockedByTrips.
+  ///
+  /// In en, this message translates to:
+  /// **'Before deleting your account, leave your trips or delete them.'**
+  String get accountDeleteBlockedByTrips;
+
   /// No description provided for @privacyTitle.
   ///
   /// In en, this message translates to:
