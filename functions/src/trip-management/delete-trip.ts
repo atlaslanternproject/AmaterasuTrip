@@ -2,10 +2,18 @@ import {
   getFirestore,
 } from "firebase-admin/firestore";
 
+import {getStorage} from "firebase-admin/storage";
+import {logger} from "firebase-functions";
 import {
   HttpsError,
   onCall,
 } from "firebase-functions/v2/https";
+
+import {
+  TripStoragePlanError,
+  deleteTripStorage,
+  planTripStorageDeletion,
+} from "./delete-trip-storage";
 
 
 const db = getFirestore();
@@ -85,6 +93,33 @@ export const deleteTrip = onCall(
       throw new HttpsError(
         "failed-precondition",
         "Trip name confirmation does not match.",
+      );
+    }
+
+    // Storage prima di Firestore: se la pulizia dei file fallisce,
+    // il viaggio resta com'è e si può riprovare.
+    let storagePlan;
+    try {
+      storagePlan = planTripStorageDeletion({
+        tripId,
+        ownerUid: tripData?.ownerUid,
+        memberUids: tripData?.memberUids,
+        coverPath: tripData?.coverPath,
+      });
+    } catch (error) {
+      if (error instanceof TripStoragePlanError) {
+        throw new HttpsError("failed-precondition", error.message);
+      }
+      throw error;
+    }
+
+    try {
+      await deleteTripStorage(getStorage().bucket(), storagePlan);
+    } catch (error) {
+      logger.error("deleteTrip: Storage cleanup failed", {tripId, error});
+      throw new HttpsError(
+        "internal",
+        "Trip files could not be deleted. The trip was not deleted.",
       );
     }
 

@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/settings/presentation/pages/account/account_delete_reauthentication.dart';
 import 'package:amaterasutrip/features/settings/data/services/account_deletion_service.dart';
+import 'package:amaterasutrip/features/settings/domain/account_deletion_trip_guard.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
@@ -105,9 +106,14 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
         return;
       }
 
+      // Se l'utente ha ancora viaggi il motivo è noto: lo diciamo.
+      final message = error is AccountDeletionBlockedByTripsError
+          ? l10n.accountDeleteBlockedByTrips
+          : l10n.accountDeleteError;
+
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(l10n.accountDeleteError)));
+      ).showSnackBar(SnackBar(content: Text(message)));
     } finally {
       if (mounted) {
         setState(() {
