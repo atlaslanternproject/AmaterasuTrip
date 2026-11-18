@@ -5,13 +5,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:amaterasutrip/core/storage/remember_me_storage.dart';
+import 'package:amaterasutrip/features/profile/data/services/profile_photo_storage_service.dart';
+import 'package:amaterasutrip/features/settings/domain/account_deletion_profile_photo.dart';
 import 'package:amaterasutrip/features/settings/domain/account_deletion_trip_guard.dart';
 
 // TODO(audit): S5 molti debugPrint passo-passo: quelli con email/UID sono già solo in debug; valutare di toglierli. C4: la pulizia lato server esiste ma non è collegata.
 class AccountDeletionService {
   const AccountDeletionService._();
 
-  static Future<void> deleteAccount() async {
+  static Future<void> deleteAccount({
+    ProfilePhotoStorageService? profilePhotoStorage,
+  }) async {
     final auth = FirebaseAuth.instance;
     final firestore = FirebaseFirestore.instance;
 
@@ -165,6 +169,33 @@ class AccountDeletionService {
 
       debugPrint('');
       debugPrint('[4] All Firestore safety checks passed.');
+
+      // La foto del profilo va cancellata prima del profilo e dell'utente
+      // Auth: dopo, l'utente non avrebbe più il permesso di farlo.
+      final photoPath = AccountDeletionProfilePhoto.pathToDelete(
+        uid: uid,
+        profileData: profileData,
+      );
+
+      if (photoPath != null) {
+        debugPrint('[4] Deleting profile photo from Storage.');
+
+        try {
+          await (profilePhotoStorage ?? ProfilePhotoStorageService())
+              .deleteProfilePhoto(photoPath);
+        } on FirebaseException catch (error) {
+          if (error.code != 'object-not-found') {
+            debugPrint('[4] Profile photo deletion failed: ${error.code}');
+            debugPrint('[4] PROCESS STOPPED before any deletion.');
+            rethrow;
+          }
+
+          debugPrint('[4] Profile photo already missing: continuing.');
+        }
+      } else {
+        debugPrint('[4] No profile photo to delete.');
+      }
+
       debugPrint('[4] Preparing atomic Firestore batch.');
 
       final batch = firestore.batch();
