@@ -93,7 +93,7 @@ class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp>
     final locale = ref.watch(languageProvider);
 
     return MaterialApp.router(
-      title: 'AmaterasuTrip',
+      title: 'Amaterasu Trip',
       theme: appTheme,
       routerConfig: amaterasuRouter,
       locale: locale,
