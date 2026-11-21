@@ -82,7 +82,7 @@ extension _BudgetCreateDialogStateSave on _BudgetCreateDialogState {
 
       if (!confirmed || !mounted) return;
 
-      await widget.api.create(
+      final expenseId = await widget.api.create(
         paymentPlan: BudgetPaymentPlan(
           _status == 'planned' ? [] : _paymentAllocations,
         ),
@@ -97,6 +97,7 @@ extension _BudgetCreateDialogStateSave on _BudgetCreateDialogState {
         status: _status,
         participants: _shared ? _selected.toList() : [widget.api.currentUid],
       );
+      widget.onCreated?.call(expenseId);
 
       if (mounted) Navigator.pop(context, true);
     } catch (e) {

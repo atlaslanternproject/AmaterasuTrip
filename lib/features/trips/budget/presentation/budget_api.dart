@@ -328,7 +328,8 @@ class BudgetApi {
     });
   }
 
-  Future<void> create({
+  /// Creates an expense and returns its ID.
+  Future<String> create({
     required String title,
     DateTime? expenseDate,
     required String category,
@@ -492,5 +493,6 @@ class BudgetApi {
     } catch (_) {
       // The record remains valid in its original currency.
     }
+    return docId;
   }
 }
