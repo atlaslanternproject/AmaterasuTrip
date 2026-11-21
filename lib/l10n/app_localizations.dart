@@ -5825,6 +5825,18 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get staysContactClose;
 
+  /// No description provided for @staysPhotoPrevious.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous photo'**
+  String get staysPhotoPrevious;
+
+  /// No description provided for @staysPhotoNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next photo'**
+  String get staysPhotoNext;
+
   /// No description provided for @staysSectionBooking.
   ///
   /// In en, this message translates to:

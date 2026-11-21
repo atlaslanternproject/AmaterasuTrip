@@ -2995,6 +2995,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysContactClose => 'Chiudi';
 
   @override
+  String get staysPhotoPrevious => 'Foto precedente';
+
+  @override
+  String get staysPhotoNext => 'Foto successiva';
+
+  @override
   String get staysSectionBooking => 'Prenotazione';
 
   @override

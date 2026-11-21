@@ -1070,6 +1070,8 @@
   "staysContactCopied": "Copiato negli appunti.",
   "staysContactOpenFailed": "Impossibile aprire l'app. Puoi copiare il dato.",
   "staysContactClose": "Chiudi",
+  "staysPhotoPrevious": "Foto precedente",
+  "staysPhotoNext": "Foto successiva",
   "staysSectionBooking": "Prenotazione",
   "staysSectionGuests": "Ospiti",
   "staysSectionNotes": "Note",

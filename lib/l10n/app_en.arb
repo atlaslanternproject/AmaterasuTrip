@@ -1108,6 +1108,8 @@
   "staysContactCopied": "Copied to the clipboard.",
   "staysContactOpenFailed": "Unable to open the app. You can copy the details.",
   "staysContactClose": "Close",
+  "staysPhotoPrevious": "Previous photo",
+  "staysPhotoNext": "Next photo",
   "staysSectionBooking": "Booking",
   "staysSectionGuests": "Guests",
   "staysSectionNotes": "Notes",

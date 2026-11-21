@@ -85,6 +85,9 @@ void main() {
 
   testWidgets('only the creator or the owner can delete, with confirmation',
       (tester) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     final repository = FakeTripStaysRepository(uid: 'bruno');
     await tester.pumpWidget(staysTestApp(
       const TripHotelsPage(tripId: 't1'),
