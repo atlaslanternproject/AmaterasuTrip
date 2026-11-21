@@ -5266,6 +5266,180 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Personal'**
   String get btPagePersonal;
+
+  /// No description provided for @btPaidMarkAsPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as paid'**
+  String get btPaidMarkAsPaid;
+
+  /// No description provided for @btPaidIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} paid you, even outside the app.'**
+  String btPaidIntro(String name);
+
+  /// No description provided for @btPaidRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining to settle: {amount}'**
+  String btPaidRemaining(String amount);
+
+  /// No description provided for @btPaidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount received ({currency})'**
+  String btPaidAmount(String currency);
+
+  /// No description provided for @btPaidAmountInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount above zero and not above the remaining debt.'**
+  String get btPaidAmountInvalid;
+
+  /// No description provided for @btPaidDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment date'**
+  String get btPaidDate;
+
+  /// No description provided for @btPaidMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Method (optional)'**
+  String get btPaidMethod;
+
+  /// No description provided for @btPaidMethodNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Not specified'**
+  String get btPaidMethodNone;
+
+  /// No description provided for @btPaidMethodOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Which method?'**
+  String get btPaidMethodOther;
+
+  /// No description provided for @btPaidNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get btPaidNote;
+
+  /// No description provided for @btPaidSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Record payment'**
+  String get btPaidSave;
+
+  /// No description provided for @btPaidPendingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'There is a pending request'**
+  String get btPaidPendingTitle;
+
+  /// No description provided for @btPaidPendingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} already reported a reimbursement of {amount}. Do you want to confirm that request?'**
+  String btPaidPendingBody(String name, String amount);
+
+  /// No description provided for @btPaidConfirmPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm the request'**
+  String get btPaidConfirmPending;
+
+  /// No description provided for @btPaidRecordAnother.
+  ///
+  /// In en, this message translates to:
+  /// **'Record another payment'**
+  String get btPaidRecordAnother;
+
+  /// No description provided for @btPaidRecordedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded by {name}'**
+  String btPaidRecordedBy(String name);
+
+  /// No description provided for @btPaidOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid on {date}'**
+  String btPaidOn(String date);
+
+  /// No description provided for @btPaidNoteText.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: {note}'**
+  String btPaidNoteText(String note);
+
+  /// No description provided for @btPaidVoided.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get btPaidVoided;
+
+  /// No description provided for @btPaidVoidedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled by {name}'**
+  String btPaidVoidedBy(String name);
+
+  /// No description provided for @btPaidVoidAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel payment'**
+  String get btPaidVoidAction;
+
+  /// No description provided for @btPaidVoidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel the recorded payment?'**
+  String get btPaidVoidTitle;
+
+  /// No description provided for @btPaidVoidBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The payment stays in the history as cancelled and no longer counts in the remaining debt.'**
+  String get btPaidVoidBody;
+
+  /// No description provided for @btPaidVoidReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason (at least 3 characters)'**
+  String get btPaidVoidReason;
+
+  /// No description provided for @btPaidAmountTooHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'The amount exceeds the remaining debt: someone has just recorded another payment.'**
+  String get btPaidAmountTooHigh;
+
+  /// No description provided for @btPaidRequestExceeds.
+  ///
+  /// In en, this message translates to:
+  /// **'This request exceeds the remaining debt after the recorded payments: reject it and ask the traveler for a new request.'**
+  String get btPaidRequestExceeds;
+
+  /// No description provided for @btPaidDebtClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'The debt has been closed: the payment can no longer be cancelled.'**
+  String get btPaidDebtClosed;
+
+  /// No description provided for @btHistPaymentDeclared.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} recorded a payment from {other}'**
+  String btHistPaymentDeclared(String actor, String other);
+
+  /// No description provided for @btHistPaymentVoided.
+  ///
+  /// In en, this message translates to:
+  /// **'{actor} cancelled the recorded payment from {other}'**
+  String btHistPaymentVoided(String actor, String other);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

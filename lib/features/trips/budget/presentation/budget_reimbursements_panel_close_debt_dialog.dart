@@ -58,7 +58,7 @@ class _CloseDebtDialogState extends State<_CloseDebtDialog> {
             if (!valid)
               Text(
                 l10n.b86CloseDebtInvalid,
-                style: const TextStyle(color: Color(0xFFFFA78A), fontSize: 12),
+                style: const TextStyle(color: AmaterasuColors.accentErrorSoft, fontSize: 12),
               ),
           ],
         ),

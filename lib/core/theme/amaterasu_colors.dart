@@ -71,4 +71,7 @@ class AmaterasuColors {
   static const accentRose = Color(0xFFD66A5E);
   static const accentSalmon = Color(0xFFFF9B80);
   static const accentPeach = Color(0xFFFFB4A2);
+
+  // Avvisi di errore nei dialoghi del budget (stesso valore di prima).
+  static const accentErrorSoft = Color(0xFFFFA78A);
 }

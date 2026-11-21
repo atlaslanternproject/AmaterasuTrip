@@ -242,6 +242,43 @@ class BudgetApi {
     });
   }
 
+  /// "Segna come pagato": the creditor records that [debtorUid] paid
+  /// [minorUnits] on [paidOn] (YYYY-MM-DD). Methods and note are optional.
+  Future<void> declarePayment({
+    required String expenseId,
+    required String debtorUid,
+    required int minorUnits,
+    required String paidOn,
+    String? note,
+    List<Map<String, dynamic>>? paymentMethods,
+  }) async {
+    final trimmedNote = note?.trim() ?? '';
+    await _functions.httpsCallable('declareBudgetPayment').call({
+      'tripId': tripId,
+      'expenseId': expenseId,
+      'refundId': _db.collection('trips').doc().id,
+      'debtorUid': debtorUid,
+      'minorUnits': minorUnits,
+      'paidOn': paidOn,
+      if (trimmedNote.isNotEmpty) 'note': trimmedNote,
+      'paymentMethods': ?paymentMethods,
+    });
+  }
+
+  /// The creditor cancels a payment they declared; it stays in the history.
+  Future<void> voidPayment({
+    required String expenseId,
+    required String refundId,
+    required String reason,
+  }) async {
+    await _functions.httpsCallable('voidBudgetPayment').call({
+      'tripId': tripId,
+      'expenseId': expenseId,
+      'refundId': refundId,
+      'reason': reason.trim(),
+    });
+  }
+
   /// B8.6: history of one expense, or of the whole trip when [expenseId]
   /// is null. Only what the current traveler may see is returned.
   Future<Map<String, dynamic>> history({

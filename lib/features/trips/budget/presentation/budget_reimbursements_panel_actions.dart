@@ -40,8 +40,12 @@ extension _BudgetReimbursementsPanelStateActions on _BudgetReimbursementsPanelSt
       }
     } on FirebaseFunctionsException catch (error) {
       if (mounted) {
+        final clear = budgetPaymentErrorText(
+          error.message,
+          AppLocalizations.of(context)!,
+        );
         setState(() {
-          _message = '${error.code}: ${error.message ?? ''}';
+          _message = clear ?? '${error.code}: ${error.message ?? ''}';
         });
       }
     } catch (error) {
