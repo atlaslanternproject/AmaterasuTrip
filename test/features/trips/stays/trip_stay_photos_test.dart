@@ -68,6 +68,22 @@ void main() {
     expect(find.byKey(const Key('stay-photo-placeholder')), findsOneWidget);
   });
 
+  for (final (width, height) in [(1000.0, 220.0), (360.0, 160.0)]) {
+    testWidgets('photo on top, $height high at width $width', (tester) async {
+      tester.view.physicalSize = Size(width, 2000);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      await tester.pumpWidget(staysTestApp(const TripHotelsPage(tripId: 't1'),
+          stays: [testStay('s1')], repository: FakeTripStaysRepository()));
+      await tester.pumpAndSettle();
+      final photo = find.byKey(const Key('stay-photo-placeholder'));
+      expect(tester.getSize(photo).height, height);
+      expect(tester.getTopLeft(photo).dy,
+          lessThan(tester.getTopLeft(find.text('Hotel Kyoto')).dy));
+      expect(tester.takeException(), isNull);
+    });
+  }
+
   testWidgets('only cards near the screen ask for photos', (tester) async {
     final info = FakePlaceInfo(photosResult: _photos);
     await tester.pumpWidget(staysTestApp(const TripHotelsPage(tripId: 't1'),

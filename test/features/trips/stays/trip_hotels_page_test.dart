@@ -67,6 +67,9 @@ void main() {
   });
 
   testWidgets('overlap warning only for active stays', (tester) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     await tester.pumpWidget(staysTestApp(
       const TripHotelsPage(tripId: 't1'),
       stays: [

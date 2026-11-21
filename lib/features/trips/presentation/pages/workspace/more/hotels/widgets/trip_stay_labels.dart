@@ -1,5 +1,6 @@
 // Testi e colori di Hotel/Alloggi: nome dello stato, del tipo di alloggio
-// (con la sua icona) e della piattaforma di prenotazione, colore dello stato (token del tema), date leggibili.
+// (con la sua icona) e della piattaforma di prenotazione, colore dello
+// stato (token del tema).
 
 import 'package:flutter/material.dart';
 
@@ -63,11 +64,5 @@ abstract final class TripStayLabels {
         ? (stay.bookedViaOther ?? platform(via, l10n))
         : platform(via, l10n);
     return l10n.staysBookedVia(name);
-  }
-
-  /// Day, plus the time when known (e.g. "12 apr 2027 · 15:00").
-  static String day(BuildContext context, DateTime day, String? time) {
-    final text = MaterialLocalizations.of(context).formatMediumDate(day);
-    return time == null ? text : '$text · $time';
   }
 }

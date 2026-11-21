@@ -1,5 +1,5 @@
-// Dettagli nella card di un soggiorno: check-in e check-out con orari,
-// numero di notti, città, "prenotato su", codice e ospiti.
+// Dettagli nella card di un soggiorno, sotto le date: "prenotato su" con
+// il codice di conferma e gli ospiti, come righe con icona.
 
 import 'package:flutter/material.dart';
 
@@ -22,39 +22,18 @@ class TripStayCardDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final place = [stay.city, stay.country]
-        .whereType<String>()
-        .where((part) => part.trim().isNotEmpty)
-        .join(', ');
     final bookedVia = TripStayLabels.bookedVia(stay, l10n);
     final code = stay.confirmationCode;
+    final booking = [
+      ?bookedVia,
+      if (code != null) l10n.staysConfirmationCode(code),
+    ].join(' · ');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Wrap(
-          spacing: AmaterasuSpacing.lg,
-          runSpacing: AmaterasuSpacing.sm,
-          children: [
-            _Day(
-              label: l10n.staysCheckIn,
-              value: TripStayLabels.day(
-                context, stay.checkInDate, stay.checkInTime),
-            ),
-            _Day(
-              label: l10n.staysCheckOut,
-              value: TripStayLabels.day(
-                context, stay.checkOutDate, stay.checkOutTime),
-            ),
-            _Day(label: '', value: l10n.staysNights(stay.nights)),
-          ],
-        ),
-        if (place.isNotEmpty) _line(Icons.place_outlined, place),
-        if (bookedVia != null) _line(Icons.confirmation_number_outlined,
-            code == null ? bookedVia : '$bookedVia · ${l10n.staysConfirmationCode(code)}'),
-        if (bookedVia == null && code != null)
-          _line(Icons.confirmation_number_outlined,
-              l10n.staysConfirmationCode(code)),
+        if (booking.isNotEmpty)
+          _line(Icons.confirmation_number_outlined, booking),
         if (guestNames.isNotEmpty)
           _line(Icons.people_outline, l10n.staysGuests(guestNames.join(', '))),
       ],
@@ -62,12 +41,12 @@ class TripStayCardDetails extends StatelessWidget {
   }
 
   Widget _line(IconData icon, String text) => Padding(
-    padding: const EdgeInsets.only(top: AmaterasuSpacing.sm),
+    padding: const EdgeInsets.only(top: 10),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(icon, size: 16, color: AmaterasuColors.textSecondary),
-        const SizedBox(width: 6),
+        const SizedBox(width: AmaterasuSpacing.sm),
         Expanded(
           child: Text(
             text,
@@ -79,32 +58,5 @@ class TripStayCardDetails extends StatelessWidget {
         ),
       ],
     ),
-  );
-}
-
-class _Day extends StatelessWidget {
-  const _Day({required this.label, required this.value});
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        label,
-        style: const TextStyle(color: AmaterasuColors.textMuted, fontSize: 12),
-      ),
-      const SizedBox(height: 2),
-      Text(
-        value,
-        style: const TextStyle(
-          color: AmaterasuColors.textPrimary,
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    ],
   );
 }
