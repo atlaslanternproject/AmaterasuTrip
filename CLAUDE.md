@@ -173,12 +173,20 @@ Finito:
   luoghi Google, controllo duplicati, richiesta di
   cancellazione con approvazione. Approvata.
 - Hotel e alloggi (lib/features/trips/stays e
-  pages/workspace/more/hotels): elenco per check-in, card
-  con stato, date, notti, luogo, prenotazione, link, mappa
-  e ospiti, avviso di date sovrapposte, editor a sezioni
-  (luogo Google, date e orari, stato, prenotazione, ospiti,
-  note), eliminazione per creatore o OWNER, spesa condivisa
-  creata o collegata dalla card. Dati in
+  pages/workspace/more/hotels): elenco con filtri (stato,
+  tipo, prossimi/passati) e ordine per check-in; card nello
+  stile della bucket list con carosello di foto Google (max
+  5, chieste solo quando la card appare, cache in memoria
+  per la sessione, mai salvate), tipo di alloggio, stato,
+  riquadro check-in/notti/check-out, prenotazione, link,
+  Mappa, "Contatta" (telefono, email, sito) e ospiti;
+  avviso di date sovrapposte; editor a sezioni (luogo
+  Google che compila anche telefono e sito, tipo, contatti,
+  date e orari, stato, prenotazione, ospiti, note);
+  eliminazione per creatore o OWNER, spesa condivisa
+  creata o collegata dalla card. I dati Google extra degli
+  alloggi passano da web/amaterasu_stay_places.js (separato
+  dal ponte della bucket list). Dati in
   trips/{tripId}/stays scritti dall'app con regole in
   firestore.rules; esclusi dalla duplicazione del viaggio.
   L'importo mostrato è quello della spesa collegata (nel

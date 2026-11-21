@@ -19,7 +19,8 @@ Storage, Cloud Functions, Hosting, App Check).
 | Panoramica e workspace del viaggio | completo |
 | Bucket list (attività condivise, voti, cancellazione approvata) | completo |
 | Budget e spese | rilasciato nella 1.10.0 |
-| Itinerario, mappa, prenotazioni, hotel, ristoranti, trasporti, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
+| Hotel e alloggi (tipo, contatti, foto Google, filtri) | rilasciato nella 1.11.0, card nuova nella 1.12.0 |
+| Itinerario, mappa, prenotazioni, ristoranti, trasporti, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
 
 ## Requisiti
 
