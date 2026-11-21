@@ -31,11 +31,20 @@ class BudgetPairDebt {
 /// against both implementations.
 abstract final class BudgetSnapshotDebts {
   /// Reimbursement statuses that reduce the original debt: confirmed
-  /// reimbursements and closures of a former member's debt (B8.6).
+  /// reimbursements (requested by the debtor or declared by the
+  /// creditor) and closures of a former member's debt (B8.6).
   static const settledStatuses = {'confirmed', writtenOff};
 
   /// Status of a closure record (see closeBudgetDebt in Cloud Functions).
   static const writtenOff = 'writtenOff';
+
+  /// Kind of a payment declared by the creditor ("X mi ha pagato"),
+  /// see declareBudgetPayment in Cloud Functions.
+  static const declaredKind = 'declared';
+
+  /// Status of a declared payment cancelled by its creditor: kept in
+  /// the history, never counted in the remaining debt.
+  static const voided = 'voided';
 
   static List<BudgetPairDebt> allocate(Object? rawSnapshot) {
     final snapshot = _map(rawSnapshot);
