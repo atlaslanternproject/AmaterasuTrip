@@ -125,6 +125,11 @@ Componenti riutilizzabili:
   AmaterasuSettingsCard (card espandibile per impostazioni),
   dialogo modifiche non salvate, AmaterasuBottomBar,
   AmaterasuGlobalShell, bottoni Google e Discord.
+- lib/core/links/: AmaterasuWebLink (validazione link come
+  la bucket list, indirizzo Google Maps), AmaterasuLinkOpener
+  (nuova scheda, "Copia link" se non si apre, Google Maps con
+  errore), AmaterasuLinkChip. Da usare per ogni nuovo link;
+  la bucket list ha ancora la sua copia (TODO(audit)).
 - Workspace del viaggio
   (lib/features/trips/presentation/pages/workspace/widgets/):
   TripWorkspaceShell, TripWorkspaceBottomBar e
@@ -167,6 +172,17 @@ Finito:
 - Bucket list: attività condivise, voti, filtri, ricerca
   luoghi Google, controllo duplicati, richiesta di
   cancellazione con approvazione. Approvata.
+- Hotel e alloggi (lib/features/trips/stays e
+  pages/workspace/more/hotels): elenco per check-in, card
+  con stato, date, notti, luogo, prenotazione, link, mappa
+  e ospiti, avviso di date sovrapposte, editor a sezioni
+  (luogo Google, date e orari, stato, prenotazione, ospiti,
+  note), eliminazione per creatore o OWNER, spesa condivisa
+  creata o collegata dalla card. Dati in
+  trips/{tripId}/stays scritti dall'app con regole in
+  firestore.rules; esclusi dalla duplicazione del viaggio.
+  L'importo mostrato è quello della spesa collegata (nel
+  soggiorno non c'è un campo importo).
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.
@@ -180,15 +196,15 @@ In corso:
   ordinamento e formato importi (B8.1), visualizzazione
   unica delle valute (B8.2), storico spese e
   raggruppamento per giorno (B8.4-B8.7). Rilasciato con la
-  versione 1.10.0+12. Resta da stabilire cosa manca per
-  considerarlo finito.
+  versione 1.10.0+12. Poi "segna come pagato" dichiarato
+  dal creditore, con annullamento (novembre 2026). Resta da
+  stabilire cosa manca per considerarlo finito.
 
 Da sviluppare (oggi sono solo pagine segnaposto):
 - Itinerario
 - Mappa
 - Viaggiatori (pagina del workspace)
 - Prenotazioni
-- Hotel
 - Ristoranti
 - Trasporti
 - Luoghi salvati
@@ -221,11 +237,12 @@ Decise (novembre 2026):
   debito per debito.
 
 Da fare nel modulo spese:
-1. "Segna come pagato" dichiarato dal creditore.
+1. "Segna come pagato" dichiarato dal creditore. Fatto.
 2. Ricevute allegate: pulsante facoltativo "Allega" con
    file, foto o link, salvati su Google Drive.
 
 A fine programmazione:
 - Audit finale di coerenza tra i moduli.
-- Spese collegate a hotel, ristoranti e prenotazioni.
+- Spese collegate a ristoranti e prenotazioni (per gli
+  alloggi è già fatto).
 - Esportazione del riepilogo spese in PDF o CSV.
