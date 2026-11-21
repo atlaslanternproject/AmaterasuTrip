@@ -168,6 +168,44 @@ class FakeBudgetApi extends BudgetApi {
       'reason': reason,
     });
   }
+
+  /// "Segna come pagato": declarations recorded by the widget tests.
+  final List<Map<String, dynamic>> declarations = [];
+
+  /// Cancellations of declared payments recorded by the widget tests.
+  final List<Map<String, dynamic>> voids = [];
+
+  @override
+  Future<void> declarePayment({
+    required String expenseId,
+    required String debtorUid,
+    required int minorUnits,
+    required String paidOn,
+    String? note,
+    List<Map<String, dynamic>>? paymentMethods,
+  }) async {
+    declarations.add({
+      'expenseId': expenseId,
+      'debtorUid': debtorUid,
+      'minorUnits': minorUnits,
+      'paidOn': paidOn,
+      'note': note,
+      'paymentMethods': paymentMethods,
+    });
+  }
+
+  @override
+  Future<void> voidPayment({
+    required String expenseId,
+    required String refundId,
+    required String reason,
+  }) async {
+    voids.add({
+      'expenseId': expenseId,
+      'refundId': refundId,
+      'reason': reason,
+    });
+  }
 }
 
 Map<String, dynamic> eur(int minorUnits) => {

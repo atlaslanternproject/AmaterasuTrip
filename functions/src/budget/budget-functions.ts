@@ -22,3 +22,5 @@ export {cancelPrivateBudgetExpense} from "./budget-delete-private";
 export {syncBudgetParticipantNames} from "./budget-names";
 export {closeBudgetDebt} from "./budget-debt-closure";
 export {listBudgetHistory} from "./budget-history";
+export {declareBudgetPayment} from "./budget-declare-payment";
+export {voidBudgetPayment} from "./budget-void-payment";

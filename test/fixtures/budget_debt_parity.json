@@ -155,6 +155,39 @@
       "settled": 5000,
       "pending": 0,
       "remaining": 0
+    },
+    {
+      "name": "payment declared by the creditor counts like a confirmed reimbursement",
+      "debt": {"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000},
+      "reimbursements": [
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 2000, "status": "confirmed", "kind": "declared"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 500, "status": "confirmed"}
+      ],
+      "settled": 2500,
+      "pending": 0,
+      "remaining": 2500
+    },
+    {
+      "name": "voided declared payment is ignored",
+      "debt": {"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000},
+      "reimbursements": [
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 3000, "status": "voided", "kind": "declared"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 1000, "status": "confirmed", "kind": "declared"}
+      ],
+      "settled": 1000,
+      "pending": 0,
+      "remaining": 4000
+    },
+    {
+      "name": "pending request and declared payment stay separate",
+      "debt": {"debtorUid": "B", "creditorUid": "A", "minorUnits": 5000},
+      "reimbursements": [
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 1500, "status": "pending"},
+        {"debtorUid": "B", "creditorUid": "A", "minorUnits": 4000, "status": "confirmed", "kind": "declared"}
+      ],
+      "settled": 4000,
+      "pending": 1500,
+      "remaining": 1000
     }
   ]
 }

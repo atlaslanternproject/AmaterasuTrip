@@ -54,9 +54,19 @@ export function debtAmount(
 
 /**
  * Reimbursement statuses that reduce an original debt: confirmed
- * reimbursements and B8.6 closures of a former member's debt.
+ * reimbursements (requested by the debtor or declared by the creditor)
+ * and B8.6 closures of a former member's debt.
  */
 export const settledStatuses: readonly string[] = ["confirmed", "writtenOff"];
+
+/** Kind of a payment declared by the creditor ("X paid me"). */
+export const declaredKind = "declared";
+
+/**
+ * Status of a declared payment cancelled by its creditor. Not in
+ * settledStatuses: the remaining debt ignores it, the record is kept.
+ */
+export const voidedStatus = "voided";
 
 /**
  * Sums reimbursement records of one debt pair with the given statuses.

@@ -1,5 +1,6 @@
 // Pannello dei rimborsi: debiti tra viaggiatori, richieste,
-// conferme, rifiuti e chiusura dei debiti.
+// conferme, rifiuti, pagamenti registrati dal creditore
+// ("segna come pagato") e chiusura dei debiti.
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
@@ -10,8 +11,12 @@ import '../calculations/budget_snapshot_debts.dart';
 import '../models/budget_payment_allocation.dart';
 import 'budget_payment_methods_editor.dart';
 import 'budget_api.dart';
+import 'budget_declare_payment_dialog.dart';
+import 'budget_declared_payment_result.dart';
 import 'budget_display_amount.dart';
+import 'budget_payment_errors.dart';
 import 'budget_people.dart';
+import 'budget_void_payment_dialog.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
@@ -21,6 +26,7 @@ part 'budget_reimbursements_panel_data.dart';
 part 'budget_reimbursements_panel_actions.dart';
 part 'budget_reimbursements_panel_request.dart';
 part 'budget_reimbursements_panel_close_debt_dialog.dart';
+part 'budget_reimbursements_panel_mark_paid.dart';
 
 class BudgetReimbursementsPanel extends StatefulWidget {
   const BudgetReimbursementsPanel({
@@ -331,6 +337,21 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                 icon: const Icon(Icons.task_alt_outlined),
                                 label: Text(l10n.b86CloseDebt),
                               ),
+                            if (isCreditor && !involvesFormer && remaining > 0)
+                              TextButton.icon(
+                                key: Key('paid-mark-${debt.debtorUid}'),
+                                onPressed: _busy
+                                    ? null
+                                    : () => _markAsPaid(
+                                        debt,
+                                        remaining,
+                                        currency,
+                                        _name(debt.debtorUid, names),
+                                        _pendingFor(docs, debt),
+                                      ),
+                                icon: const Icon(Icons.price_check_outlined),
+                                label: Text(l10n.btPaidMarkAsPaid),
+                              ),
                             if (isDebtor &&
                                 !involvesFormer &&
                                 availableToDeclare > 0)
@@ -385,6 +406,9 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                           case BudgetSnapshotDebts.writtenOff:
                             label = AppLocalizations.of(context)!.b86Closed;
                             break;
+                          case BudgetSnapshotDebts.voided:
+                            label = AppLocalizations.of(context)!.btPaidVoided;
+                            break;
                           default:
                             label = budgetL10n(_it).btRefundsPending;
                         }
@@ -427,7 +451,10 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                     )!.b86Reason(data['reason'] as String),
                                     style: const TextStyle(fontSize: 12),
                                   ),
-                              ] else
+                              ] else if (data['kind'] ==
+                                  BudgetSnapshotDebts.declaredKind)
+                                _declaredDetails(doc.id, data, names, currency)
+                              else
                                 _paymentDetails(data, currency),
                             ],
                           ),

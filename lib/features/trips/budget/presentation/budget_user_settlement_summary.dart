@@ -363,6 +363,8 @@ class _BudgetUserSettlementSummaryState
               return l10n.budgetMovementRejected;
             case BudgetSnapshotDebts.writtenOff:
               return l10n.b86Closed;
+            case BudgetSnapshotDebts.voided:
+              return l10n.btPaidVoided;
             default:
               return l10n.budgetMovementPending;
           }

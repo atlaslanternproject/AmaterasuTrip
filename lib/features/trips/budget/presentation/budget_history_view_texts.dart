@@ -24,6 +24,10 @@ String budgetHistoryText(
       return l10n.b86EvRefundRejected(actor, other);
     case 'debtClosed':
       return l10n.b86EvDebtClosed(actor, other);
+    case 'paymentDeclared':
+      return l10n.btHistPaymentDeclared(actor, other);
+    case 'paymentVoided':
+      return l10n.btHistPaymentVoided(actor, other);
     case 'cancellationRequested':
       return l10n.b86EvCancelRequested(actor);
     case 'cancellationApproved':
@@ -54,6 +58,10 @@ IconData budgetHistoryIcon(String type) {
       return Icons.cancel_outlined;
     case 'debtClosed':
       return Icons.task_alt_outlined;
+    case 'paymentDeclared':
+      return Icons.price_check_outlined;
+    case 'paymentVoided':
+      return Icons.undo_outlined;
     case 'cancellationRequested':
     case 'cancellationApproved':
     case 'cancelled':

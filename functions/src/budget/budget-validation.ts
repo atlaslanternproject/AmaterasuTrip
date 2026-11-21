@@ -167,6 +167,8 @@ export function validateSnapshot(value: unknown): Snapshot {
 
 export {
   debtAmount,
+  declaredKind,
   settledStatuses,
   sumReimbursements,
+  voidedStatus,
 } from "./budget-debt-math";

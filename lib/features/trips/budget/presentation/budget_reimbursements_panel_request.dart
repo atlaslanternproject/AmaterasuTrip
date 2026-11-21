@@ -85,7 +85,7 @@ extension _BudgetReimbursementsPanelStateRequest on _BudgetReimbursementsPanelSt
                         Text(
                           budgetL10n(_it).btRefundsAddValidMethodsThe,
                           style: const TextStyle(
-                            color: Color(0xFFFFA78A),
+                            color: AmaterasuColors.accentErrorSoft,
                             fontSize: 12,
                           ),
                         ),
