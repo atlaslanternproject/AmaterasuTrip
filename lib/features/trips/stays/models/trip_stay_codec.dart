@@ -6,6 +6,7 @@ import 'trip_stay.dart';
 import 'trip_stay_booking_platform.dart';
 import 'trip_stay_dates.dart';
 import 'trip_stay_status.dart';
+import 'trip_stay_type.dart';
 
 abstract final class TripStayCodec {
   /// Fields to save, without createdAt and updatedAt.
@@ -26,6 +27,7 @@ abstract final class TripStayCodec {
       'checkOutDate': TripStayDates.format(stay.checkOutDate),
       'status': stay.status.code,
       'createdByUid': stay.createdByUid,
+      'type': ?stay.type?.code,
       'checkInTime': ?text(stay.checkInTime),
       'checkOutTime': ?text(stay.checkOutTime),
       'address': ?text(stay.address),
@@ -88,6 +90,7 @@ abstract final class TripStayCodec {
       checkOutDate: checkOut,
       status: status,
       createdByUid: author,
+      type: TripStayType.fromCode(data['type']),
       createdAt: time('createdAt'),
       updatedAt: time('updatedAt'),
       checkInTime: text('checkInTime'),

@@ -1,5 +1,5 @@
 // Stato modificabile dell'editor di un soggiorno: campi di testo, date,
-// orari, stato, piattaforma, luogo Google e ospiti. Si crea da un soggiorno
+// orari, stato, tipo, piattaforma, luogo Google e ospiti. Si crea da un soggiorno
 // esistente (o vuoto) e si trasforma in TripStay per salvarlo.
 
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_booking_platform.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
 
 class TripStayDraft {
   TripStayDraft({TripStay? initial, required DateTime today})
@@ -31,6 +32,7 @@ class TripStayDraft {
       checkInTime = initial?.checkInTime,
       checkOutTime = initial?.checkOutTime,
       status = initial?.status ?? TripStayStatus.toConfirm,
+      type = initial?.type,
       bookedVia = initial?.bookedVia,
       googlePlaceId = initial?.googlePlaceId,
       latitude = initial?.latitude,
@@ -53,6 +55,7 @@ class TripStayDraft {
   String? checkInTime;
   String? checkOutTime;
   TripStayStatus status;
+  TripStayType? type;
   TripStayBookingPlatform? bookedVia;
   String? googlePlaceId;
   double? latitude;
@@ -76,6 +79,7 @@ class TripStayDraft {
       checkInDate: checkInDate,
       checkOutDate: checkOutDate,
       status: status,
+      type: type,
       createdByUid: initial?.createdByUid ?? authorUid,
       createdAt: initial?.createdAt,
       checkInTime: checkInTime,

@@ -1,5 +1,5 @@
 // Editor di un soggiorno (creazione e modifica) in un dialogo largo al
-// massimo 640 punti: sezioni luogo, date, stato, prenotazione, ospiti e
+// massimo 640 punti: sezioni luogo, tipo, date, stato, prenotazione, ospiti e
 // note; al salvataggio mostra i problemi trovati con messaggi chiari.
 
 import 'package:flutter/material.dart';
@@ -16,6 +16,7 @@ import 'trip_stay_guests_notes_sections.dart';
 import 'trip_stay_place_section.dart';
 import 'trip_stay_problem_text.dart';
 import 'trip_stay_status_section.dart';
+import 'trip_stay_type_section.dart';
 
 /// Opens the editor; returns true when the stay was saved.
 Future<bool> showTripStayEditor(
@@ -129,6 +130,7 @@ class _TripStayEditorState extends State<TripStayEditor> {
             child: Column(
               children: [
                 TripStayPlaceSection(draft: _draft, places: widget.places, onChanged: _changed),
+                TripStayTypeSection(draft: _draft, onChanged: _changed),
                 TripStayDatesSection(draft: _draft, onChanged: _changed),
                 TripStayStatusSection(draft: _draft, onChanged: _changed),
                 TripStayBookingSection(draft: _draft, onChanged: _changed),

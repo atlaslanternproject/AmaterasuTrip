@@ -2921,6 +2921,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysSectionStatus => 'Status';
 
   @override
+  String get staysSectionType => 'Type of stay';
+
+  @override
+  String get staysTypeHotel => 'Hotel';
+
+  @override
+  String get staysTypeBnb => 'B&B';
+
+  @override
+  String get staysTypeApartment => 'Apartment';
+
+  @override
+  String get staysTypeHostel => 'Hostel';
+
+  @override
+  String get staysTypeCamping => 'Campsite';
+
+  @override
+  String get staysTypeOther => 'Other';
+
+  @override
   String get staysSectionBooking => 'Booking';
 
   @override

@@ -1,4 +1,4 @@
-// Card di un soggiorno: nome, stato, date e orari, notti, luogo,
+// Card di un soggiorno: nome, stato, tipo di alloggio, date e orari, notti, luogo,
 // prenotazione, link, mappa, ospiti, spesa collegata (se data) e menu con
 // modifica ed eliminazione (solo creatore o proprietario del viaggio).
 
@@ -11,7 +11,9 @@ import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_card_details.dart';
 import 'trip_stay_card_links.dart';
+import 'trip_stay_labels.dart';
 import 'trip_stay_status_chip.dart';
+import 'trip_stay_type_chip.dart';
 
 enum _StayAction { edit, delete }
 
@@ -62,9 +64,9 @@ class TripStayCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 2),
-                child: Icon(Icons.hotel_rounded,
+              Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: Icon(TripStayLabels.typeIcon(stay.type),
                     color: AmaterasuColors.accentBudget, size: 22),
               ),
               const SizedBox(width: 10),
@@ -87,6 +89,7 @@ class TripStayCard extends StatelessWidget {
                       ),
                     ),
                     TripStayStatusChip(status: stay.status),
+                    if (stay.type case final type?) TripStayTypeChip(type: type),
                   ],
                 ),
               ),

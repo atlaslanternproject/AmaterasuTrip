@@ -1,10 +1,11 @@
 // Modello di un soggiorno del viaggio (Hotel/Alloggi): nome, date e orari,
-// stato, luogo Google, prenotazione (piattaforma, link, codice), note,
+// stato, tipo di alloggio, luogo Google, prenotazione (piattaforma, link, codice), note,
 // ospiti e spesa del budget collegata. Le regole sono in TripStayValidator.
 
 import 'trip_stay_booking_platform.dart';
 import 'trip_stay_dates.dart';
 import 'trip_stay_status.dart';
+import 'trip_stay_type.dart';
 
 class TripStay {
   const TripStay({
@@ -14,6 +15,7 @@ class TripStay {
     required this.checkInDate,
     required this.checkOutDate,
     this.status = TripStayStatus.toConfirm,
+    this.type,
     required this.createdByUid,
     this.createdAt,
     this.updatedAt,
@@ -44,6 +46,9 @@ class TripStay {
   final DateTime checkInDate;
   final DateTime checkOutDate;
   final TripStayStatus status;
+
+  /// Kind of place (hotel, B&B…), optional.
+  final TripStayType? type;
   final String createdByUid;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -101,6 +106,7 @@ class TripStay {
     checkInDate: checkInDate,
     checkOutDate: checkOutDate,
     status: status ?? this.status,
+    type: type,
     createdByUid: createdByUid,
     createdAt: createdAt,
     updatedAt: updatedAt,

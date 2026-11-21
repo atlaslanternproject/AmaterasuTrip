@@ -7,6 +7,7 @@ import 'package:amaterasutrip/features/trips/stays/models/trip_stay_booking_plat
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_codec.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_validator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -45,6 +46,7 @@ void main() {
       id: 's9', tripId: 't1', name: ' Ryokan ',
       checkInDate: DateTime(2027, 4, 12), checkOutDate: DateTime(2027, 4, 15),
       status: TripStayStatus.toConfirm, createdByUid: 'anna',
+      type: TripStayType.bnb,
       checkInTime: '15:00', checkOutTime: '10:30', address: 'Shijo 1',
       city: 'Kyoto', country: 'Japan', googlePlaceId: 'ChIJ1',
       latitude: 35.01, longitude: 135.76,
@@ -58,6 +60,7 @@ void main() {
     expect(map['checkInDate'], '2027-04-12');
     expect(map['status'], 'toConfirm');
     expect(map['bookedVia'], 'other');
+    expect(map['type'], 'bnb');
     expect(map.containsKey('createdAt'), isFalse);
     final back = TripStayCodec.fromMap('s9', map);
     expect(TripStayCodec.toMap(back), map);
@@ -150,5 +153,10 @@ void main() {
     expect(TripStayBookingPlatform.values.map((p) => p.code),
         ['booking', 'airbnb', 'propertySite', 'agency', 'other']);
     expect(TripStayStatus.cancelled.isActive, isFalse);
+    expect(TripStayType.values.map((t) => t.code),
+        ['hotel', 'bnb', 'apartment', 'hostel', 'camping', 'other']);
+    expect(TripStayType.fromCode('villa'), isNull);
+    expect(TripStayCodec.fromMap('x', {...TripStayCodec.toMap(stay()),
+        'type': 'villa'}).type, isNull);
   });
 }

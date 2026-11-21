@@ -4,6 +4,7 @@
 
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/hotels/trip_hotels_page.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,11 +43,12 @@ void main() {
       stays: [testStay('s1',
         bookingUrl: 'https://www.booking.com/h/1',
         propertyUrl: 'https://hotel.example.jp', placeId: 'ChIJ1',
-        guests: ['anna', 'carla'])],
+        guests: ['anna', 'carla'], type: TripStayType.apartment)],
       repository: FakeTripStaysRepository()));
     await tester.pumpAndSettle();
 
     expect(find.text('Prenotato'), findsOneWidget);
+    expect(find.text('Appartamento'), findsOneWidget);
     expect(find.text('3 notti'), findsOneWidget);
     expect(find.textContaining('15:00'), findsOneWidget);
     expect(find.text('Kyoto, Giappone'), findsOneWidget);

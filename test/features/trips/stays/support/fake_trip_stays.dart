@@ -4,6 +4,7 @@
 import 'package:amaterasutrip/features/trips/stays/data/trip_stays_repository.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -84,6 +85,7 @@ TripStay testStay(
   String? placeId,
   List<String> guests = const [],
   String? expenseId,
+  TripStayType? type,
 }) => TripStay(
   id: id,
   tripId: 't1',
@@ -100,6 +102,7 @@ TripStay testStay(
   googlePlaceId: placeId,
   guestUids: guests,
   expenseId: expenseId,
+  type: type,
 );
 
 /// The app with fake stays, owner and member names.

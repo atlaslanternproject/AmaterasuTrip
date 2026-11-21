@@ -5681,6 +5681,48 @@ abstract class AppLocalizations {
   /// **'Status'**
   String get staysSectionStatus;
 
+  /// No description provided for @staysSectionType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type of stay'**
+  String get staysSectionType;
+
+  /// No description provided for @staysTypeHotel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotel'**
+  String get staysTypeHotel;
+
+  /// No description provided for @staysTypeBnb.
+  ///
+  /// In en, this message translates to:
+  /// **'B&B'**
+  String get staysTypeBnb;
+
+  /// No description provided for @staysTypeApartment.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartment'**
+  String get staysTypeApartment;
+
+  /// No description provided for @staysTypeHostel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hostel'**
+  String get staysTypeHostel;
+
+  /// No description provided for @staysTypeCamping.
+  ///
+  /// In en, this message translates to:
+  /// **'Campsite'**
+  String get staysTypeCamping;
+
+  /// No description provided for @staysTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get staysTypeOther;
+
   /// No description provided for @staysSectionBooking.
   ///
   /// In en, this message translates to:
