@@ -209,3 +209,23 @@ non risolte (regole Storage, cancellazione account lato
 server, file con build lunghi, testi _t(...) della bucket
 list, aggiornamenti maggiori dei pacchetti) sono in
 docs/audit/AUDIT.md.
+
+## Roadmap e decisioni
+Decise (novembre 2026):
+- Piattaforma principale: il Web. Android è deprecato:
+  resta nel progetto, ma non lo proviamo né lo rilasciamo.
+- Niente inserimento offline.
+- Niente "sollecita" e nessuna notifica.
+- Niente gestione dei nuclei familiari.
+- Niente saldo semplificato dei debiti: i rimborsi restano
+  debito per debito.
+
+Da fare nel modulo spese:
+1. "Segna come pagato" dichiarato dal creditore.
+2. Ricevute allegate: pulsante facoltativo "Allega" con
+   file, foto o link, salvati su Google Drive.
+
+A fine programmazione:
+- Audit finale di coerenza tra i moduli.
+- Spese collegate a hotel, ristoranti e prenotazioni.
+- Esportazione del riepilogo spese in PDF o CSV.
