@@ -2795,4 +2795,113 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get commonMapsOpenFailed => 'Impossibile aprire Google Maps.';
+
+  @override
+  String get staysEmptyTitle => 'Nessun alloggio per ora';
+
+  @override
+  String get staysEmptyBody => 'Aggiungi hotel, appartamenti e altri alloggi del viaggio: date, prenotazione e link in un unico posto.';
+
+  @override
+  String get staysAdd => 'Aggiungi alloggio';
+
+  @override
+  String get staysLoadError => 'Impossibile caricare gli alloggi.';
+
+  @override
+  String get staysStatusBooked => 'Prenotato';
+
+  @override
+  String get staysStatusToConfirm => 'Da confermare';
+
+  @override
+  String get staysStatusCancelled => 'Annullato';
+
+  @override
+  String get staysCheckIn => 'Check-in';
+
+  @override
+  String get staysCheckOut => 'Check-out';
+
+  @override
+  String staysNights(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notti',
+      one: '1 notte',
+      zero: 'Stessa giornata',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String staysBookedVia(String platform) {
+    return 'Prenotato su $platform';
+  }
+
+  @override
+  String get staysPlatformBooking => 'Booking.com';
+
+  @override
+  String get staysPlatformAirbnb => 'Airbnb';
+
+  @override
+  String get staysPlatformPropertySite => 'Sito dell\'alloggio';
+
+  @override
+  String get staysPlatformAgency => 'Agenzia';
+
+  @override
+  String get staysPlatformOther => 'Altro';
+
+  @override
+  String staysConfirmationCode(String code) {
+    return 'Codice: $code';
+  }
+
+  @override
+  String get staysLinkBooking => 'Prenotazione';
+
+  @override
+  String get staysLinkProperty => 'Sito dell\'alloggio';
+
+  @override
+  String get staysOpenMap => 'Mappa';
+
+  @override
+  String staysGuests(String names) {
+    return 'Ospiti: $names';
+  }
+
+  @override
+  String get staysFormerGuest => 'Ex viaggiatore';
+
+  @override
+  String staysOverlapWarning(String first, String second) {
+    return '$first e $second si sovrappongono nelle date.';
+  }
+
+  @override
+  String get staysEdit => 'Modifica';
+
+  @override
+  String get staysDelete => 'Elimina';
+
+  @override
+  String get staysDeleteTitle => 'Eliminare questo alloggio?';
+
+  @override
+  String staysDeleteBody(String name) {
+    return '$name verrà eliminato per tutti i viaggiatori. Se la prenotazione è solo annullata, cambia lo stato in \"Annullato\".';
+  }
+
+  @override
+  String get staysDeleted => 'Alloggio eliminato.';
+
+  @override
+  String get staysDeleteError => 'Impossibile eliminare l\'alloggio.';
+
+  @override
+  String get staysCancel => 'Annulla';
 }

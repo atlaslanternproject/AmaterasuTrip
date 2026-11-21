@@ -5470,6 +5470,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not open Google Maps.'**
   String get commonMapsOpenFailed;
+
+  /// No description provided for @staysEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No accommodation yet'**
+  String get staysEmptyTitle;
+
+  /// No description provided for @staysEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add hotels, apartments and other places to stay: dates, booking and links in one place.'**
+  String get staysEmptyBody;
+
+  /// No description provided for @staysAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add accommodation'**
+  String get staysAdd;
+
+  /// No description provided for @staysLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the accommodation.'**
+  String get staysLoadError;
+
+  /// No description provided for @staysStatusBooked.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked'**
+  String get staysStatusBooked;
+
+  /// No description provided for @staysStatusToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'To be confirmed'**
+  String get staysStatusToConfirm;
+
+  /// No description provided for @staysStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get staysStatusCancelled;
+
+  /// No description provided for @staysCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in'**
+  String get staysCheckIn;
+
+  /// No description provided for @staysCheckOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-out'**
+  String get staysCheckOut;
+
+  /// No description provided for @staysNights.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Same day} =1{1 night} other{{count} nights}}'**
+  String staysNights(int count);
+
+  /// No description provided for @staysBookedVia.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked on {platform}'**
+  String staysBookedVia(String platform);
+
+  /// No description provided for @staysPlatformBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking.com'**
+  String get staysPlatformBooking;
+
+  /// No description provided for @staysPlatformAirbnb.
+  ///
+  /// In en, this message translates to:
+  /// **'Airbnb'**
+  String get staysPlatformAirbnb;
+
+  /// No description provided for @staysPlatformPropertySite.
+  ///
+  /// In en, this message translates to:
+  /// **'Property website'**
+  String get staysPlatformPropertySite;
+
+  /// No description provided for @staysPlatformAgency.
+  ///
+  /// In en, this message translates to:
+  /// **'Agency'**
+  String get staysPlatformAgency;
+
+  /// No description provided for @staysPlatformOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get staysPlatformOther;
+
+  /// No description provided for @staysConfirmationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Code: {code}'**
+  String staysConfirmationCode(String code);
+
+  /// No description provided for @staysLinkBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get staysLinkBooking;
+
+  /// No description provided for @staysLinkProperty.
+  ///
+  /// In en, this message translates to:
+  /// **'Property website'**
+  String get staysLinkProperty;
+
+  /// No description provided for @staysOpenMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get staysOpenMap;
+
+  /// No description provided for @staysGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests: {names}'**
+  String staysGuests(String names);
+
+  /// No description provided for @staysFormerGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Former traveler'**
+  String get staysFormerGuest;
+
+  /// No description provided for @staysOverlapWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'{first} and {second} overlap in their dates.'**
+  String staysOverlapWarning(String first, String second);
+
+  /// No description provided for @staysEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get staysEdit;
+
+  /// No description provided for @staysDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get staysDelete;
+
+  /// No description provided for @staysDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this accommodation?'**
+  String get staysDeleteTitle;
+
+  /// No description provided for @staysDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} will be deleted for all travelers. If the booking was only cancelled, set the status to \"Cancelled\" instead.'**
+  String staysDeleteBody(String name);
+
+  /// No description provided for @staysDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accommodation deleted.'**
+  String get staysDeleted;
+
+  /// No description provided for @staysDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to delete the accommodation.'**
+  String get staysDeleteError;
+
+  /// No description provided for @staysCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get staysCancel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
