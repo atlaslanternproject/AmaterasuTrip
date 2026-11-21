@@ -1,6 +1,7 @@
 // Test delle regole Firestore di Hotel/Alloggi (trips/{tripId}/stays).
 // Membri: leggono, creano e modificano; creatore o proprietario:
-// cancellano; dati validati campo per campo; link come la bucket list.
+// cancellano; dati validati campo per campo; link come la bucket list;
+// tipo di alloggio, telefono ed email facoltativi (v1.12.0).
 // Uso: firebase emulators:exec --config firebase.emulators.security-test.json
 //   --project demo-amaterasu-rules --only firestore
 //   "node --test rules-tests/stays-rules.test.mjs"
@@ -18,6 +19,7 @@ import {
 import {
   collection,
   deleteDoc,
+  deleteField,
   doc,
   getDoc,
   getDocs,
@@ -117,7 +119,50 @@ test('a member creates a minimal and a complete stay', async () => {
     notes: 'Colazione inclusa',
     guestUids: [OWNER, MEMBER],
     expenseId: 'expense_1-A',
+    type: 'bnb',
+    phone: '+39 06 1234 5678',
+    email: 'info@hotel.example.jp',
   })));
+});
+
+test('type, phone and email: optional, typed and limited', async () => {
+  const types = ['hotel', 'bnb', 'apartment', 'hostel', 'camping', 'other'];
+  for (const [i, type] of types.entries()) {
+    await assertSucceeds(setDoc(stayRef(MEMBER, `type-${i}`),
+      stay(MEMBER, {type})));
+  }
+  for (const [i, phone] of ['(075) 123.456', '0612/34-56', '1'.repeat(40)]
+    .entries()) {
+    await assertSucceeds(setDoc(stayRef(MEMBER, `phone-${i}`),
+      stay(MEMBER, {phone})));
+  }
+  await assertSucceeds(setDoc(stayRef(MEMBER, 'mail'),
+    stay(MEMBER, {email: 'a.b@hotel.co.jp'})));
+
+  const bad = [
+    {type: 'villa'}, {type: 1}, {type: ''},
+    {phone: '123'}, {phone: 'chiama'}, {phone: '+39 06 ext. 5'},
+    {phone: '1'.repeat(41)}, {phone: 3906123456},
+    {email: 'hotel.it'}, {email: 'a@b'}, {email: 'a b@c.it'},
+    {email: 'a'.repeat(250) + '@b.it'}, {email: ['a@b.it']},
+  ];
+  for (const extra of bad) {
+    await assertFails(setDoc(stayRef(MEMBER, 'bad'), stay(MEMBER, extra)));
+  }
+
+  // Editing adds and removes the new fields like the others.
+  await seedStay(MEMBER, 'edit');
+  await assertSucceeds(updateDoc(stayRef(OTHER_MEMBER, 'edit'), {
+    type: 'hostel', phone: '+81 75 1234', email: 'x@y.jp',
+    updatedAt: serverTimestamp(),
+  }));
+  await assertSucceeds(updateDoc(stayRef(OTHER_MEMBER, 'edit'), {
+    type: deleteField(), phone: deleteField(), email: deleteField(),
+    updatedAt: serverTimestamp(),
+  }));
+  await assertFails(updateDoc(stayRef(OTHER_MEMBER, 'edit'), {
+    email: 'nope', updatedAt: serverTimestamp(),
+  }));
 });
 
 test('outsiders cannot create, and nobody can create for someone else', async () => {
