@@ -539,6 +539,133 @@ service cloud.firestore {
           allow create, update, delete: if false;
         }
       }
+
+      // =========================================================
+      // HOTEL / ALLOGGI (stays)
+      // Members read, create and edit; the creator or the owner
+      // deletes. Links follow exactly the Bucket List rules.
+      // =========================================================
+      function stayTrip() {
+        return get(
+          /databases/$(database)/documents/trips/$(tripId)
+        ).data;
+      }
+
+      function stayMember() {
+        return isTripMember(stayTrip());
+      }
+
+      function validStayDay(value) {
+        return value is string
+          && value.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+      }
+
+      function validStayTime(data, key) {
+        return data.get(key, null) == null
+          || (data[key] is string
+            && data[key].matches('^([01][0-9]|2[0-3]):[0-5][0-9]$'));
+      }
+
+      function validStayText(data, key, maxSize) {
+        return data.get(key, null) == null
+          || (data[key] is string && data[key].size() <= maxSize);
+      }
+
+      function validStayLink(data, key) {
+        return data.get(key, null) == null || validBucketLink(data[key]);
+      }
+
+      function validStay(data) {
+        return data.keys().hasAll([
+          'tripId', 'name', 'checkInDate', 'checkOutDate', 'status',
+          'createdByUid', 'createdAt', 'updatedAt'
+        ])
+          && data.keys().hasOnly([
+            'tripId', 'name', 'checkInDate', 'checkOutDate', 'status',
+            'createdByUid', 'createdAt', 'updatedAt',
+            'checkInTime', 'checkOutTime',
+            'address', 'city', 'country', 'googlePlaceId',
+            'latitude', 'longitude',
+            'bookedVia', 'bookedViaOther', 'bookingUrl', 'propertyUrl',
+            'confirmationCode', 'notes', 'guestUids', 'expenseId'
+          ])
+          && data.tripId == tripId
+          && data.name is string
+          && data.name.size() > 0
+          && data.name.size() <= 200
+          && validStayDay(data.checkInDate)
+          && validStayDay(data.checkOutDate)
+          && data.checkOutDate >= data.checkInDate
+          && data.status in ['booked', 'toConfirm', 'cancelled']
+          && data.createdByUid is string
+          && data.createdByUid.size() > 0
+          && data.updatedAt == request.time
+          && validStayTime(data, 'checkInTime')
+          && validStayTime(data, 'checkOutTime')
+          && validStayText(data, 'address', 300)
+          && validStayText(data, 'city', 150)
+          && validStayText(data, 'country', 150)
+          && validStayText(data, 'googlePlaceId', 300)
+          && validStayText(data, 'confirmationCode', 100)
+          && validStayText(data, 'notes', 10000)
+          && (
+            data.get('latitude', null) == null
+            || (data.latitude is number
+              && data.latitude >= -90 && data.latitude <= 90)
+          )
+          && (
+            data.get('longitude', null) == null
+            || (data.longitude is number
+              && data.longitude >= -180 && data.longitude <= 180)
+          )
+          && (
+            data.get('bookedVia', null) == null
+            || data.bookedVia in [
+              'booking', 'airbnb', 'propertySite', 'agency', 'other'
+            ]
+          )
+          && (
+            data.get('bookedViaOther', null) == null
+            || (data.get('bookedVia', null) == 'other'
+              && data.bookedViaOther is string
+              && data.bookedViaOther.size() > 0
+              && data.bookedViaOther.size() <= 60)
+          )
+          && validStayLink(data, 'bookingUrl')
+          && validStayLink(data, 'propertyUrl')
+          && (
+            data.get('guestUids', null) == null
+            || (data.guestUids is list && data.guestUids.size() <= 50)
+          )
+          && (
+            data.get('expenseId', null) == null
+            || (data.expenseId is string
+              && data.expenseId.matches('^[A-Za-z0-9_-]{1,128}$'))
+          );
+      }
+
+      match /stays/{stayId} {
+        allow get, list: if stayMember();
+
+        allow create: if stayMember()
+          && validStay(request.resource.data)
+          && request.resource.data.createdByUid == request.auth.uid
+          && request.resource.data.createdAt == request.time;
+
+        allow update: if stayMember()
+          && validStay(request.resource.data)
+          && request.resource.data.tripId == resource.data.tripId
+          && request.resource.data.createdByUid
+            == resource.data.createdByUid
+          && request.resource.data.createdAt == resource.data.createdAt;
+
+        allow delete: if stayMember()
+          && (
+            resource.data.createdByUid == request.auth.uid
+            || stayTrip().get('ownerUid', '') == request.auth.uid
+          );
+      }
+
       match /members/{memberUid} {
         allow read: if false;
 
