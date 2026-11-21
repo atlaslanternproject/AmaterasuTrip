@@ -91,6 +91,27 @@ export function buildExpenseHistory(
       });
       continue;
     }
+    if (refund.kind === "declared") {
+      // Payment declared by the creditor ("X paid me").
+      add({
+        type: "paymentDeclared",
+        actorUid: text(refund.recordedByUid) ?? text(refund.creditorUid),
+        counterpartUid: text(refund.debtorUid) ?? undefined,
+        minorUnits: amount, currency: refundCurrency,
+        at: millis(refund.createdAt),
+      });
+      if (refund.status === "voided") {
+        add({
+          type: "paymentVoided",
+          actorUid: text(refund.voidedByUid),
+          counterpartUid: text(refund.debtorUid) ?? undefined,
+          minorUnits: amount, currency: refundCurrency,
+          reason: text(refund.voidReason) ?? undefined,
+          at: millis(refund.voidedAt),
+        });
+      }
+      continue;
+    }
     add({
       type: "reimbursementRequested",
       actorUid: text(refund.debtorUid),

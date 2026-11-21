@@ -73,4 +73,6 @@ export {
   syncBudgetParticipantNames,
   closeBudgetDebt,
   listBudgetHistory,
+  declareBudgetPayment,
+  voidBudgetPayment,
 } from "./budget/budget-functions";

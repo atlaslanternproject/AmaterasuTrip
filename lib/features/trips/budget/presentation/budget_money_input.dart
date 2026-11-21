@@ -4,6 +4,16 @@
 import 'package:amaterasutrip/features/trips/budget/calculations/currency_minor_units.dart';
 
 abstract final class BudgetMoneyInput {
+  /// Amount as plain text for an input field, the opposite of [parse]
+  /// (e.g. 5000 EUR -> "50.00", 1200 JPY -> "1200").
+  static String plainText(int minor, String currency) {
+    final decimals = CurrencyMinorUnits.decimals(currency);
+    if (decimals == 0) return '$minor';
+    final factor = CurrencyMinorUnits.factor(currency);
+    final fraction = (minor % factor).toString().padLeft(decimals, '0');
+    return '${minor ~/ factor}.$fraction';
+  }
+
   static int parse(String input, String currency, {bool allowZero = false}) {
     final decimals = CurrencyMinorUnits.decimals(currency);
     final normalized = input.trim().replaceAll(',', '.');

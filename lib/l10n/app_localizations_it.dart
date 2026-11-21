@@ -2673,4 +2673,111 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get btPagePersonal => 'Personali';
+
+  @override
+  String get btPaidMarkAsPaid => 'Segna come pagato';
+
+  @override
+  String btPaidIntro(String name) {
+    return '$name ti ha pagato, anche fuori dall\'app.';
+  }
+
+  @override
+  String btPaidRemaining(String amount) {
+    return 'Residuo da saldare: $amount';
+  }
+
+  @override
+  String btPaidAmount(String currency) {
+    return 'Importo ricevuto ($currency)';
+  }
+
+  @override
+  String get btPaidAmountInvalid => 'Inserisci un importo maggiore di zero e non superiore al residuo.';
+
+  @override
+  String get btPaidDate => 'Data del pagamento';
+
+  @override
+  String get btPaidMethod => 'Metodo (facoltativo)';
+
+  @override
+  String get btPaidMethodNone => 'Non indicato';
+
+  @override
+  String get btPaidMethodOther => 'Quale metodo?';
+
+  @override
+  String get btPaidNote => 'Nota (facoltativa)';
+
+  @override
+  String get btPaidSave => 'Registra pagamento';
+
+  @override
+  String get btPaidPendingTitle => 'C\'è una richiesta in attesa';
+
+  @override
+  String btPaidPendingBody(String name, String amount) {
+    return '$name ha già segnalato un rimborso di $amount. Vuoi confermare quella richiesta?';
+  }
+
+  @override
+  String get btPaidConfirmPending => 'Conferma la richiesta';
+
+  @override
+  String get btPaidRecordAnother => 'Registra un altro pagamento';
+
+  @override
+  String btPaidRecordedBy(String name) {
+    return 'Registrato da $name';
+  }
+
+  @override
+  String btPaidOn(String date) {
+    return 'Pagato il $date';
+  }
+
+  @override
+  String btPaidNoteText(String note) {
+    return 'Nota: $note';
+  }
+
+  @override
+  String get btPaidVoided => 'Annullato';
+
+  @override
+  String btPaidVoidedBy(String name) {
+    return 'Annullato da $name';
+  }
+
+  @override
+  String get btPaidVoidAction => 'Annulla pagamento';
+
+  @override
+  String get btPaidVoidTitle => 'Annullare il pagamento registrato?';
+
+  @override
+  String get btPaidVoidBody => 'Il pagamento resta nello storico come annullato e non conta più nel residuo.';
+
+  @override
+  String get btPaidVoidReason => 'Motivo (almeno 3 caratteri)';
+
+  @override
+  String get btPaidAmountTooHigh => 'L\'importo supera il residuo: qualcuno ha appena registrato un altro pagamento.';
+
+  @override
+  String get btPaidRequestExceeds => 'Questa richiesta supera il residuo dopo i pagamenti registrati: rifiutala e chiedi al viaggiatore una nuova richiesta.';
+
+  @override
+  String get btPaidDebtClosed => 'Il debito è stato chiuso: il pagamento non si può più annullare.';
+
+  @override
+  String btHistPaymentDeclared(String actor, String other) {
+    return '$actor ha registrato un pagamento di $other';
+  }
+
+  @override
+  String btHistPaymentVoided(String actor, String other) {
+    return '$actor ha annullato il pagamento registrato di $other';
+  }
 }

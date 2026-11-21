@@ -2673,4 +2673,111 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btPagePersonal => 'Personal';
+
+  @override
+  String get btPaidMarkAsPaid => 'Mark as paid';
+
+  @override
+  String btPaidIntro(String name) {
+    return '$name paid you, even outside the app.';
+  }
+
+  @override
+  String btPaidRemaining(String amount) {
+    return 'Remaining to settle: $amount';
+  }
+
+  @override
+  String btPaidAmount(String currency) {
+    return 'Amount received ($currency)';
+  }
+
+  @override
+  String get btPaidAmountInvalid => 'Enter an amount above zero and not above the remaining debt.';
+
+  @override
+  String get btPaidDate => 'Payment date';
+
+  @override
+  String get btPaidMethod => 'Method (optional)';
+
+  @override
+  String get btPaidMethodNone => 'Not specified';
+
+  @override
+  String get btPaidMethodOther => 'Which method?';
+
+  @override
+  String get btPaidNote => 'Note (optional)';
+
+  @override
+  String get btPaidSave => 'Record payment';
+
+  @override
+  String get btPaidPendingTitle => 'There is a pending request';
+
+  @override
+  String btPaidPendingBody(String name, String amount) {
+    return '$name already reported a reimbursement of $amount. Do you want to confirm that request?';
+  }
+
+  @override
+  String get btPaidConfirmPending => 'Confirm the request';
+
+  @override
+  String get btPaidRecordAnother => 'Record another payment';
+
+  @override
+  String btPaidRecordedBy(String name) {
+    return 'Recorded by $name';
+  }
+
+  @override
+  String btPaidOn(String date) {
+    return 'Paid on $date';
+  }
+
+  @override
+  String btPaidNoteText(String note) {
+    return 'Note: $note';
+  }
+
+  @override
+  String get btPaidVoided => 'Cancelled';
+
+  @override
+  String btPaidVoidedBy(String name) {
+    return 'Cancelled by $name';
+  }
+
+  @override
+  String get btPaidVoidAction => 'Cancel payment';
+
+  @override
+  String get btPaidVoidTitle => 'Cancel the recorded payment?';
+
+  @override
+  String get btPaidVoidBody => 'The payment stays in the history as cancelled and no longer counts in the remaining debt.';
+
+  @override
+  String get btPaidVoidReason => 'Reason (at least 3 characters)';
+
+  @override
+  String get btPaidAmountTooHigh => 'The amount exceeds the remaining debt: someone has just recorded another payment.';
+
+  @override
+  String get btPaidRequestExceeds => 'This request exceeds the remaining debt after the recorded payments: reject it and ask the traveler for a new request.';
+
+  @override
+  String get btPaidDebtClosed => 'The debt has been closed: the payment can no longer be cancelled.';
+
+  @override
+  String btHistPaymentDeclared(String actor, String other) {
+    return '$actor recorded a payment from $other';
+  }
+
+  @override
+  String btHistPaymentVoided(String actor, String other) {
+    return '$actor cancelled the recorded payment from $other';
+  }
 }
