@@ -4,9 +4,15 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_member_provider.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
+
+/// Budget access used to create, link and show the expense of a stay.
+final tripStaysBudgetApiProvider = Provider.family<BudgetApi, String>(
+  (ref, tripId) => BudgetApi(tripId),
+);
 
 /// Google place search, the same used by the Bucket List editor.
 final tripStaysPlacesProvider = Provider<DestinationPlacesService>(

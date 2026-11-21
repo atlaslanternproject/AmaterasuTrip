@@ -3041,4 +3041,36 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get staysErrExpense => 'Spesa collegata non valida.';
+
+  @override
+  String get staysExpenseCreate => 'Crea spesa';
+
+  @override
+  String get staysExpenseLinkExisting => 'Collega spesa esistente';
+
+  @override
+  String staysExpenseLinkedTitle(String title) {
+    return 'Spesa collegata: $title';
+  }
+
+  @override
+  String get staysExpenseView => 'Vedi spesa';
+
+  @override
+  String get staysExpenseNotVisible => 'Spesa collegata (non visibile per te o eliminata).';
+
+  @override
+  String get staysExpenseLinked => 'Spesa collegata all\'alloggio.';
+
+  @override
+  String get staysExpenseLinkError => 'La spesa è stata creata ma non è stata collegata all\'alloggio. Usa \"Collega spesa esistente\" per collegarla.';
+
+  @override
+  String get staysExpensePickTitle => 'Scegli una spesa condivisa';
+
+  @override
+  String get staysExpensePickEmpty => 'Nessuna spesa condivisa disponibile.';
+
+  @override
+  String get staysExpenseLoadError => 'Impossibile caricare le spese.';
 }

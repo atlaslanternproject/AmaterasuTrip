@@ -14,6 +14,7 @@ import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'editor/trip_stay_editor.dart';
 import 'widgets/trip_stay_delete.dart';
+import 'widgets/trip_stay_expense_footer.dart';
 import 'widgets/trip_stays_empty.dart';
 import 'widgets/trip_stays_list.dart';
 
@@ -109,6 +110,11 @@ class TripHotelsPage extends ConsumerWidget {
                         onEdit: openEditor,
                         onDelete: (stay) =>
                             confirmAndDeleteTripStay(context, repository, stay),
+                        footerOf: (stay) => TripStayExpenseFooter(
+                          stay: stay,
+                          api: ref.watch(tripStaysBudgetApiProvider(tripId)),
+                          repository: repository,
+                        ),
                         launch: launch,
                       ),
               ),

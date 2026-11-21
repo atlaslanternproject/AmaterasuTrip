@@ -13,6 +13,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../budget/support/fake_budget_api.dart';
+
+export '../../budget/support/fake_budget_api.dart' show FakeBudgetApi, FakeDoc, eur;
+
 class FakeTripStaysRepository implements TripStaysRepository {
   FakeTripStaysRepository({this.uid = 'anna'});
 
@@ -107,12 +111,16 @@ Widget staysTestApp(
   Map<String, String> names = const {'anna': 'Anna', 'bruno': 'Bruno'},
   List<Override> extra = const [],
   String locale = 'it',
+  FakeBudgetApi? budget,
 }) => ProviderScope(
   overrides: [
     tripStaysProvider('t1').overrideWith((ref) => Stream.value(stays)),
     tripStaysRepositoryProvider.overrideWithValue(repository),
     tripStaysOwnerUidProvider('t1').overrideWith((ref) => ownerUid),
     tripStaysMemberNamesProvider('t1').overrideWith((ref) => names),
+    tripStaysBudgetApiProvider('t1').overrideWith(
+      (ref) => budget ?? FakeBudgetApi(uid: repository.uid ?? 'anna'),
+    ),
     ...extra,
   ],
   child: MaterialApp(

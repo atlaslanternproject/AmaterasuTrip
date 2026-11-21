@@ -5920,6 +5920,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid linked expense.'**
   String get staysErrExpense;
+
+  /// No description provided for @staysExpenseCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create expense'**
+  String get staysExpenseCreate;
+
+  /// No description provided for @staysExpenseLinkExisting.
+  ///
+  /// In en, this message translates to:
+  /// **'Link an existing expense'**
+  String get staysExpenseLinkExisting;
+
+  /// No description provided for @staysExpenseLinkedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked expense: {title}'**
+  String staysExpenseLinkedTitle(String title);
+
+  /// No description provided for @staysExpenseView.
+  ///
+  /// In en, this message translates to:
+  /// **'View expense'**
+  String get staysExpenseView;
+
+  /// No description provided for @staysExpenseNotVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked expense (not visible to you or deleted).'**
+  String get staysExpenseNotVisible;
+
+  /// No description provided for @staysExpenseLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense linked to the accommodation.'**
+  String get staysExpenseLinked;
+
+  /// No description provided for @staysExpenseLinkError.
+  ///
+  /// In en, this message translates to:
+  /// **'The expense was created but not linked to the accommodation. Use \"Link an existing expense\" to link it.'**
+  String get staysExpenseLinkError;
+
+  /// No description provided for @staysExpensePickTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a shared expense'**
+  String get staysExpensePickTitle;
+
+  /// No description provided for @staysExpensePickEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No shared expense available.'**
+  String get staysExpensePickEmpty;
+
+  /// No description provided for @staysExpenseLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the expenses.'**
+  String get staysExpenseLoadError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

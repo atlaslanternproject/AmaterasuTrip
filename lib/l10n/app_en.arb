@@ -1123,5 +1123,16 @@
   "staysErrOther": "Enter where it was booked.",
   "staysErrLink": "The link must start with http:// or https:// and contain no spaces.",
   "staysErrGuests": "At most 50 guests.",
-  "staysErrExpense": "Invalid linked expense."
+  "staysErrExpense": "Invalid linked expense.",
+  "staysExpenseCreate": "Create expense",
+  "staysExpenseLinkExisting": "Link an existing expense",
+  "staysExpenseLinkedTitle": "Linked expense: {title}",
+  "@staysExpenseLinkedTitle": {"placeholders":{"title":{"type":"String"}}},
+  "staysExpenseView": "View expense",
+  "staysExpenseNotVisible": "Linked expense (not visible to you or deleted).",
+  "staysExpenseLinked": "Expense linked to the accommodation.",
+  "staysExpenseLinkError": "The expense was created but not linked to the accommodation. Use \"Link an existing expense\" to link it.",
+  "staysExpensePickTitle": "Choose a shared expense",
+  "staysExpensePickEmpty": "No shared expense available.",
+  "staysExpenseLoadError": "Unable to load the expenses."
 }

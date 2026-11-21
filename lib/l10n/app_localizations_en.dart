@@ -3041,4 +3041,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get staysErrExpense => 'Invalid linked expense.';
+
+  @override
+  String get staysExpenseCreate => 'Create expense';
+
+  @override
+  String get staysExpenseLinkExisting => 'Link an existing expense';
+
+  @override
+  String staysExpenseLinkedTitle(String title) {
+    return 'Linked expense: $title';
+  }
+
+  @override
+  String get staysExpenseView => 'View expense';
+
+  @override
+  String get staysExpenseNotVisible => 'Linked expense (not visible to you or deleted).';
+
+  @override
+  String get staysExpenseLinked => 'Expense linked to the accommodation.';
+
+  @override
+  String get staysExpenseLinkError => 'The expense was created but not linked to the accommodation. Use \"Link an existing expense\" to link it.';
+
+  @override
+  String get staysExpensePickTitle => 'Choose a shared expense';
+
+  @override
+  String get staysExpensePickEmpty => 'No shared expense available.';
+
+  @override
+  String get staysExpenseLoadError => 'Unable to load the expenses.';
 }
