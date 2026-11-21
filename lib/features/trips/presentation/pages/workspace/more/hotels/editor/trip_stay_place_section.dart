@@ -1,13 +1,16 @@
 // Sezione "Luogo" dell'editor: nome, ricerca su Google come nella bucket
 // list (scegliendo un risultato si compilano nome, indirizzo, città, paese
-// e coordinate) e campi modificabili a mano.
+// e coordinate; telefono e sito solo se ancora vuoti) e campi modificabili
+// a mano.
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_web_link.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/models/trip_destination.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_validator.dart';
+import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_draft.dart';
 import 'trip_stay_editor_section.dart';
@@ -17,11 +20,13 @@ class TripStayPlaceSection extends StatefulWidget {
     super.key,
     required this.draft,
     required this.places,
+    required this.placeInfo,
     required this.onChanged,
   });
 
   final TripStayDraft draft;
   final DestinationPlacesService places;
+  final TripStayPlaceInfoService placeInfo;
   final VoidCallback onChanged;
 
   @override
@@ -76,6 +81,7 @@ class _TripStayPlaceSectionState extends State<TripStayPlaceSection> {
       draft.address.text = place.formattedAddress;
       draft.city.text = place.locality ?? place.administrativeArea ?? '';
       draft.country.text = place.country ?? '';
+      await _fillContacts(place.placeId);
       _search.clear();
       _results = null;
       widget.onChanged();
@@ -84,6 +90,24 @@ class _TripStayPlaceSectionState extends State<TripStayPlaceSection> {
     } finally {
       if (mounted) setState(() => _busy = false);
     }
+  }
+
+  /// Phone and website from Google, only into empty fields. Errors are
+  /// ignored: contacts are a bonus, the place is already chosen.
+  Future<void> _fillContacts(String placeId) async {
+    void fill(TextEditingController field, String? value, bool ok) {
+      if (field.text.trim().isEmpty && value != null && ok) field.text = value;
+    }
+
+    try {
+      final found = await widget.placeInfo.contacts(placeId, languageCode: _language);
+      final phone = found?.phone;
+      final site = found?.website;
+      fill(widget.draft.phone, phone,
+          phone != null && TripStayValidator.isPhone(phone));
+      fill(widget.draft.propertyUrl, site,
+          site != null && AmaterasuWebLink.isValid(site));
+    } catch (_) {}
   }
 
   void _unlink() {

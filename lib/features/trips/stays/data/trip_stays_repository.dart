@@ -62,6 +62,7 @@ class TripStaysRepository {
       'googlePlaceId', 'latitude', 'longitude', 'bookedVia',
       'bookedViaOther', 'bookingUrl', 'propertyUrl', 'confirmationCode',
       'notes', 'guestUids', 'expenseId', 'type',
+      'phone', 'email',
     ];
     await _firestore.doc(TripStaysPaths.stay(stay.tripId, stay.id)).update({
       ...data,

@@ -47,6 +47,7 @@ class TripHotelsPage extends ConsumerWidget {
         authorUid: uid,
         memberNames: names,
         places: ref.read(tripStaysPlacesProvider),
+        placeInfo: ref.read(tripStayPlaceInfoProvider),
         initial: initial,
         onSave: (stay) =>
             initial == null ? repository.create(stay) : repository.update(stay),

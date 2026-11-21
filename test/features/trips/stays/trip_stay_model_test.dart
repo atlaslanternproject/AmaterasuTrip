@@ -53,7 +53,7 @@ void main() {
       bookedVia: TripStayBookingPlatform.other, bookedViaOther: 'Expedia',
       bookingUrl: 'https://example.com/b', propertyUrl: 'http://ryokan.jp',
       confirmationCode: 'ABC', notes: 'Colazione', guestUids: ['anna', 'bruno'],
-      expenseId: 'exp_1',
+      expenseId: 'exp_1', phone: '+39 06 1234 5678', email: 'info@ryokan.jp',
     );
     final map = TripStayCodec.toMap(full);
     expect(map['name'], 'Ryokan');
@@ -61,6 +61,8 @@ void main() {
     expect(map['status'], 'toConfirm');
     expect(map['bookedVia'], 'other');
     expect(map['type'], 'bnb');
+    expect(map['phone'], '+39 06 1234 5678');
+    expect(map['email'], 'info@ryokan.jp');
     expect(map.containsKey('createdAt'), isFalse);
     final back = TripStayCodec.fromMap('s9', map);
     expect(TripStayCodec.toMap(back), map);
@@ -113,6 +115,29 @@ void main() {
         [TripStayProblem.expenseIdInvalid]);
     expect(TripStayValidator.problems(stay(latitude: 91)),
         [TripStayProblem.coordinatesInvalid]);
+  });
+
+  test('phone and email: basic checks, same limits as the rules', () {
+    for (final ok in ['+39 06 1234 5678', '(075) 123.456', '0612/34-56']) {
+      expect(TripStayValidator.isPhone(ok), isTrue, reason: ok);
+    }
+    for (final bad in ['123', 'chiama', '+39 06 ext. 5', '1' * 41]) {
+      expect(TripStayValidator.isPhone(bad), isFalse, reason: bad);
+    }
+    expect(TripStayValidator.isEmail('a.b@hotel.co.jp'), isTrue);
+    for (final bad in ['hotel.it', 'a@b', 'a b@c.it', 'a@b.c d']) {
+      expect(TripStayValidator.isEmail(bad), isFalse, reason: bad);
+    }
+    expect(TripStayValidator.isEmail('${'a' * 250}@b.it'), isFalse);
+    final base = stay();
+    TripStay with2({String? phone, String? email}) => TripStay(
+      tripId: base.tripId, name: base.name, checkInDate: base.checkInDate,
+      checkOutDate: base.checkOutDate, createdByUid: 'anna',
+      phone: phone, email: email);
+    expect(TripStayValidator.problems(with2(phone: 'x1')),
+        [TripStayProblem.phoneInvalid]);
+    expect(TripStayValidator.problems(with2(email: 'nope')),
+        [TripStayProblem.emailInvalid]);
   });
 
   test('nights and same-day stays', () {

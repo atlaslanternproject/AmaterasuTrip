@@ -1,5 +1,6 @@
 // Sezione "Prenotazione" dell'editor: prenotato su (con "altro" a testo
-// libero), link della prenotazione, link del sito dell'alloggio e codice.
+// libero), link della prenotazione e codice. Il sito dell'alloggio è nella
+// sezione Contatti.
 
 import 'package:flutter/material.dart';
 
@@ -69,18 +70,6 @@ class TripStayBookingSection extends StatelessWidget {
           decoration: InputDecoration(
             labelText: l10n.staysBookingUrl,
             errorText: linkError(draft.bookingUrl),
-            counterText: '',
-          ),
-        ),
-        TextField(
-          key: const Key('stay-property-url'),
-          controller: draft.propertyUrl,
-          keyboardType: TextInputType.url,
-          maxLength: AmaterasuWebLink.maxLength,
-          onChanged: (_) => onChanged(),
-          decoration: InputDecoration(
-            labelText: l10n.staysPropertyUrl,
-            errorText: linkError(draft.propertyUrl),
             counterText: '',
           ),
         ),

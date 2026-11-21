@@ -2942,6 +2942,59 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysTypeOther => 'Other';
 
   @override
+  String get staysSectionContacts => 'Contacts';
+
+  @override
+  String get staysPhone => 'Phone (optional)';
+
+  @override
+  String get staysEmail => 'Email (optional)';
+
+  @override
+  String get staysErrPhone => 'The phone can contain only digits, spaces and + ( ) . / - (4 to 40 characters).';
+
+  @override
+  String get staysErrEmail => 'Enter a valid email, for example name@example.com.';
+
+  @override
+  String get staysContact => 'Contact';
+
+  @override
+  String staysContactTitle(String name) {
+    return 'Contact $name';
+  }
+
+  @override
+  String get staysContactPhone => 'Phone';
+
+  @override
+  String get staysContactEmail => 'Email';
+
+  @override
+  String get staysContactWebsite => 'Website';
+
+  @override
+  String get staysContactCall => 'Call';
+
+  @override
+  String get staysContactWrite => 'Write';
+
+  @override
+  String get staysContactOpen => 'Open';
+
+  @override
+  String get staysContactCopy => 'Copy';
+
+  @override
+  String get staysContactCopied => 'Copied to the clipboard.';
+
+  @override
+  String get staysContactOpenFailed => 'Unable to open the app. You can copy the details.';
+
+  @override
+  String get staysContactClose => 'Close';
+
+  @override
   String get staysSectionBooking => 'Booking';
 
   @override

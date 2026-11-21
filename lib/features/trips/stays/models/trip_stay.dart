@@ -1,5 +1,5 @@
 // Modello di un soggiorno del viaggio (Hotel/Alloggi): nome, date e orari,
-// stato, tipo di alloggio, luogo Google, prenotazione (piattaforma, link, codice), note,
+// stato, tipo di alloggio, contatti, luogo Google, prenotazione (piattaforma, link, codice), note,
 // ospiti e spesa del budget collegata. Le regole sono in TripStayValidator.
 
 import 'trip_stay_booking_platform.dart';
@@ -31,6 +31,8 @@ class TripStay {
     this.bookedViaOther,
     this.bookingUrl,
     this.propertyUrl,
+    this.phone,
+    this.email,
     this.confirmationCode,
     this.notes,
     this.guestUids = const [],
@@ -70,6 +72,10 @@ class TripStay {
   final String? bookedViaOther;
   final String? bookingUrl;
   final String? propertyUrl;
+
+  /// Contacts of the place, optional (the website is [propertyUrl]).
+  final String? phone;
+  final String? email;
   final String? confirmationCode;
   final String? notes;
 
@@ -122,6 +128,8 @@ class TripStay {
     bookedViaOther: bookedViaOther,
     bookingUrl: bookingUrl,
     propertyUrl: propertyUrl,
+    phone: phone,
+    email: email,
     confirmationCode: confirmationCode,
     notes: notes,
     guestUids: guestUids,

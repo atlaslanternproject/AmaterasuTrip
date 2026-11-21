@@ -1,5 +1,5 @@
 // Editor di un soggiorno (creazione e modifica) in un dialogo largo al
-// massimo 640 punti: sezioni luogo, tipo, date, stato, prenotazione, ospiti e
+// massimo 640 punti: sezioni luogo, tipo, contatti, date, stato, prenotazione, ospiti e
 // note; al salvataggio mostra i problemi trovati con messaggi chiari.
 
 import 'package:flutter/material.dart';
@@ -8,8 +8,10 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_validator.dart';
+import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_booking_section.dart';
+import 'trip_stay_contacts_section.dart';
 import 'trip_stay_dates_section.dart';
 import 'trip_stay_draft.dart';
 import 'trip_stay_guests_notes_sections.dart';
@@ -25,6 +27,7 @@ Future<bool> showTripStayEditor(
   required String authorUid,
   required Map<String, String> memberNames,
   required DestinationPlacesService places,
+  required TripStayPlaceInfoService placeInfo,
   required Future<void> Function(TripStay stay) onSave,
   TripStay? initial,
 }) async {
@@ -42,6 +45,7 @@ Future<bool> showTripStayEditor(
           authorUid: authorUid,
           memberNames: memberNames,
           places: places,
+          placeInfo: placeInfo,
           onSave: onSave,
           initial: initial,
         ),
@@ -58,6 +62,7 @@ class TripStayEditor extends StatefulWidget {
     required this.authorUid,
     required this.memberNames,
     required this.places,
+    required this.placeInfo,
     required this.onSave,
     this.initial,
   });
@@ -66,6 +71,7 @@ class TripStayEditor extends StatefulWidget {
   final String authorUid;
   final Map<String, String> memberNames;
   final DestinationPlacesService places;
+  final TripStayPlaceInfoService placeInfo;
   final Future<void> Function(TripStay stay) onSave;
   final TripStay? initial;
 
@@ -129,8 +135,10 @@ class _TripStayEditorState extends State<TripStayEditor> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                TripStayPlaceSection(draft: _draft, places: widget.places, onChanged: _changed),
+                TripStayPlaceSection(draft: _draft, places: widget.places,
+                    placeInfo: widget.placeInfo, onChanged: _changed),
                 TripStayTypeSection(draft: _draft, onChanged: _changed),
+                TripStayContactsSection(draft: _draft, onChanged: _changed),
                 TripStayDatesSection(draft: _draft, onChanged: _changed),
                 TripStayStatusSection(draft: _draft, onChanged: _changed),
                 TripStayBookingSection(draft: _draft, onChanged: _changed),

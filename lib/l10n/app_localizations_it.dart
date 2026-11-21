@@ -2942,6 +2942,59 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysTypeOther => 'Altro';
 
   @override
+  String get staysSectionContacts => 'Contatti';
+
+  @override
+  String get staysPhone => 'Telefono (facoltativo)';
+
+  @override
+  String get staysEmail => 'Email (facoltativa)';
+
+  @override
+  String get staysErrPhone => 'Il telefono può contenere solo numeri, spazi e + ( ) . / - (da 4 a 40 caratteri).';
+
+  @override
+  String get staysErrEmail => 'Scrivi un\'email valida, ad esempio nome@esempio.it.';
+
+  @override
+  String get staysContact => 'Contatta';
+
+  @override
+  String staysContactTitle(String name) {
+    return 'Contatta $name';
+  }
+
+  @override
+  String get staysContactPhone => 'Telefono';
+
+  @override
+  String get staysContactEmail => 'Email';
+
+  @override
+  String get staysContactWebsite => 'Sito';
+
+  @override
+  String get staysContactCall => 'Chiama';
+
+  @override
+  String get staysContactWrite => 'Scrivi';
+
+  @override
+  String get staysContactOpen => 'Apri';
+
+  @override
+  String get staysContactCopy => 'Copia';
+
+  @override
+  String get staysContactCopied => 'Copiato negli appunti.';
+
+  @override
+  String get staysContactOpenFailed => 'Impossibile aprire l\'app. Puoi copiare il dato.';
+
+  @override
+  String get staysContactClose => 'Chiudi';
+
+  @override
   String get staysSectionBooking => 'Prenotazione';
 
   @override

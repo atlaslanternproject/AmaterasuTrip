@@ -24,6 +24,8 @@ String tripStayProblemText(TripStayProblem problem, AppLocalizations l10n) =>
         l10n.staysErrTooLong(TripStayBookingPlatform.otherMaxLength),
       TripStayProblem.bookingUrlInvalid ||
       TripStayProblem.propertyUrlInvalid => l10n.staysErrLink,
+      TripStayProblem.phoneInvalid => l10n.staysErrPhone,
+      TripStayProblem.emailInvalid => l10n.staysErrEmail,
       TripStayProblem.confirmationCodeTooLong =>
         l10n.staysErrTooLong(TripStayValidator.codeMax),
       TripStayProblem.notesTooLong =>

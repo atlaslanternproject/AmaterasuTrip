@@ -5723,6 +5723,108 @@ abstract class AppLocalizations {
   /// **'Other'**
   String get staysTypeOther;
 
+  /// No description provided for @staysSectionContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get staysSectionContacts;
+
+  /// No description provided for @staysPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone (optional)'**
+  String get staysPhone;
+
+  /// No description provided for @staysEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email (optional)'**
+  String get staysEmail;
+
+  /// No description provided for @staysErrPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone can contain only digits, spaces and + ( ) . / - (4 to 40 characters).'**
+  String get staysErrPhone;
+
+  /// No description provided for @staysErrEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email, for example name@example.com.'**
+  String get staysErrEmail;
+
+  /// No description provided for @staysContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get staysContact;
+
+  /// No description provided for @staysContactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact {name}'**
+  String staysContactTitle(String name);
+
+  /// No description provided for @staysContactPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get staysContactPhone;
+
+  /// No description provided for @staysContactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get staysContactEmail;
+
+  /// No description provided for @staysContactWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get staysContactWebsite;
+
+  /// No description provided for @staysContactCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get staysContactCall;
+
+  /// No description provided for @staysContactWrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Write'**
+  String get staysContactWrite;
+
+  /// No description provided for @staysContactOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get staysContactOpen;
+
+  /// No description provided for @staysContactCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get staysContactCopy;
+
+  /// No description provided for @staysContactCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied to the clipboard.'**
+  String get staysContactCopied;
+
+  /// No description provided for @staysContactOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open the app. You can copy the details.'**
+  String get staysContactOpenFailed;
+
+  /// No description provided for @staysContactClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get staysContactClose;
+
   /// No description provided for @staysSectionBooking.
   ///
   /// In en, this message translates to:
