@@ -1005,5 +1005,10 @@
   "btPaidRequestExceeds": "Questa richiesta supera il residuo dopo i pagamenti registrati: rifiutala e chiedi al viaggiatore una nuova richiesta.",
   "btPaidDebtClosed": "Il debito è stato chiuso: il pagamento non si può più annullare.",
   "btHistPaymentDeclared": "{actor} ha registrato un pagamento di {other}",
-  "btHistPaymentVoided": "{actor} ha annullato il pagamento registrato di {other}"
+  "btHistPaymentVoided": "{actor} ha annullato il pagamento registrato di {other}",
+  "commonLinkInvalid": "Il link non è valido.",
+  "commonLinkOpenFailed": "Impossibile aprire il link. Puoi copiarlo e aprirlo nel browser.",
+  "commonLinkCopy": "Copia link",
+  "commonLinkOpen": "Apri link",
+  "commonMapsOpenFailed": "Impossibile aprire Google Maps."
 }

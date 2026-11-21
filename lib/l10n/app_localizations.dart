@@ -5440,6 +5440,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{actor} cancelled the recorded payment from {other}'**
   String btHistPaymentVoided(String actor, String other);
+
+  /// No description provided for @commonLinkInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The link is invalid.'**
+  String get commonLinkInvalid;
+
+  /// No description provided for @commonLinkOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the link. You can copy it and open it in your browser.'**
+  String get commonLinkOpenFailed;
+
+  /// No description provided for @commonLinkCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get commonLinkCopy;
+
+  /// No description provided for @commonLinkOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open link'**
+  String get commonLinkOpen;
+
+  /// No description provided for @commonMapsOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open Google Maps.'**
+  String get commonMapsOpenFailed;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

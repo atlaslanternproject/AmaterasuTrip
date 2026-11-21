@@ -2780,4 +2780,19 @@ class AppLocalizationsIt extends AppLocalizations {
   String btHistPaymentVoided(String actor, String other) {
     return '$actor ha annullato il pagamento registrato di $other';
   }
+
+  @override
+  String get commonLinkInvalid => 'Il link non è valido.';
+
+  @override
+  String get commonLinkOpenFailed => 'Impossibile aprire il link. Puoi copiarlo e aprirlo nel browser.';
+
+  @override
+  String get commonLinkCopy => 'Copia link';
+
+  @override
+  String get commonLinkOpen => 'Apri link';
+
+  @override
+  String get commonMapsOpenFailed => 'Impossibile aprire Google Maps.';
 }

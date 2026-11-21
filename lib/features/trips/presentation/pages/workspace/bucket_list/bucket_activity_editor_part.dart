@@ -387,6 +387,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                           if (placeId != null)
                             TextButton.icon(
                               onPressed: () async {
+                                // TODO(audit): stessa logica di lib/core/links (AmaterasuWebLink.googleMaps + AmaterasuLinkOpener.openMaps, che mostra anche l'errore).
                                 final url = Uri.https(
                                   'www.google.com',
                                   '/maps/search/',

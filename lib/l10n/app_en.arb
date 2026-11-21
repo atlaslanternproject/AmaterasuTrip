@@ -1036,5 +1036,10 @@
   "btHistPaymentDeclared": "{actor} recorded a payment from {other}",
   "@btHistPaymentDeclared": {"placeholders":{"actor":{"type":"String"},"other":{"type":"String"}}},
   "btHistPaymentVoided": "{actor} cancelled the recorded payment from {other}",
-  "@btHistPaymentVoided": {"placeholders":{"actor":{"type":"String"},"other":{"type":"String"}}}
+  "@btHistPaymentVoided": {"placeholders":{"actor":{"type":"String"},"other":{"type":"String"}}},
+  "commonLinkInvalid": "The link is invalid.",
+  "commonLinkOpenFailed": "Could not open the link. You can copy it and open it in your browser.",
+  "commonLinkCopy": "Copy link",
+  "commonLinkOpen": "Open link",
+  "commonMapsOpenFailed": "Could not open Google Maps."
 }
