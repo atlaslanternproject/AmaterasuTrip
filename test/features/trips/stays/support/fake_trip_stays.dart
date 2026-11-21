@@ -22,6 +22,7 @@ class FakeTripStaysRepository implements TripStaysRepository {
   final deleted = <String>[];
   final links = <(String, String)>[];
   bool failLink = false;
+  bool failSave = false;
 
   @override
   String? get currentUid => uid;
@@ -31,12 +32,16 @@ class FakeTripStaysRepository implements TripStaysRepository {
 
   @override
   Future<String> create(TripStay stay) async {
+    if (failSave) throw StateError('offline');
     created.add(stay);
     return 'new-${created.length}';
   }
 
   @override
-  Future<void> update(TripStay stay) async => updated.add(stay);
+  Future<void> update(TripStay stay) async {
+    if (failSave) throw StateError('offline');
+    updated.add(stay);
+  }
 
   @override
   Future<void> delete({required String tripId, required String stayId}) async =>

@@ -93,7 +93,14 @@ void main() {
       repository: repository, ownerUid: 'anna'));
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const Key('stay-menu-theirs')), findsNothing);
+    // Any member may edit, but only the creator or the owner may delete.
+    await tester.tap(find.byKey(const Key('stay-menu-theirs')));
+    await tester.pumpAndSettle();
+    expect(find.text('Modifica'), findsOneWidget);
+    expect(find.text('Elimina'), findsNothing);
+    await tester.tapAt(const Offset(5, 5));
+    await tester.pumpAndSettle();
+
     await tester.tap(find.byKey(const Key('stay-menu-mine')));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Elimina'));

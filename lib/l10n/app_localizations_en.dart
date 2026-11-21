@@ -2904,4 +2904,141 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get staysCancel => 'Cancel';
+
+  @override
+  String get staysEditorNewTitle => 'New accommodation';
+
+  @override
+  String get staysEditorEditTitle => 'Edit accommodation';
+
+  @override
+  String get staysSectionPlace => 'Place';
+
+  @override
+  String get staysSectionDates => 'Dates and times';
+
+  @override
+  String get staysSectionStatus => 'Status';
+
+  @override
+  String get staysSectionBooking => 'Booking';
+
+  @override
+  String get staysSectionGuests => 'Guests';
+
+  @override
+  String get staysSectionNotes => 'Notes';
+
+  @override
+  String get staysName => 'Accommodation name';
+
+  @override
+  String get staysSearchHint => 'Search on Google: name or address';
+
+  @override
+  String get staysSearchButton => 'Search';
+
+  @override
+  String get staysSearchError => 'Search unavailable. Please retry.';
+
+  @override
+  String get staysPlaceLoadError => 'Unable to load this place.';
+
+  @override
+  String get staysNoResults => 'No results.';
+
+  @override
+  String get staysPlaceLinked => 'Place linked to Google Maps';
+
+  @override
+  String get staysPlaceUnlink => 'Unlink';
+
+  @override
+  String get staysAddress => 'Address (optional)';
+
+  @override
+  String get staysCity => 'City (optional)';
+
+  @override
+  String get staysCountry => 'Country (optional)';
+
+  @override
+  String get staysCheckInDay => 'Check-in day';
+
+  @override
+  String get staysCheckOutDay => 'Check-out day';
+
+  @override
+  String get staysCheckInTime => 'Check-in time';
+
+  @override
+  String get staysCheckOutTime => 'Check-out time';
+
+  @override
+  String get staysTimeNone => 'No time set';
+
+  @override
+  String get staysTimeClear => 'Remove time';
+
+  @override
+  String get staysBookedViaLabel => 'Booked on (optional)';
+
+  @override
+  String get staysBookedViaNone => 'Not specified';
+
+  @override
+  String get staysBookedViaOther => 'Which platform?';
+
+  @override
+  String get staysBookingUrl => 'Booking link (optional)';
+
+  @override
+  String get staysPropertyUrl => 'Property website link (optional)';
+
+  @override
+  String get staysCode => 'Confirmation code (optional)';
+
+  @override
+  String get staysGuestsHint => 'Who sleeps here (optional)';
+
+  @override
+  String get staysNotes => 'Notes (optional)';
+
+  @override
+  String get staysSave => 'Save';
+
+  @override
+  String get staysSaved => 'Accommodation saved.';
+
+  @override
+  String get staysSaveError => 'Unable to save the accommodation. Check your connection and try again.';
+
+  @override
+  String get staysErrName => 'Enter the accommodation name.';
+
+  @override
+  String staysErrTooLong(int max) {
+    return 'Text too long (maximum $max characters).';
+  }
+
+  @override
+  String get staysErrDates => 'Check-out cannot be before check-in.';
+
+  @override
+  String get staysErrTime => 'Invalid time.';
+
+  @override
+  String get staysErrCoordinates => 'Invalid place coordinates.';
+
+  @override
+  String get staysErrOther => 'Enter where it was booked.';
+
+  @override
+  String get staysErrLink => 'The link must start with http:// or https:// and contain no spaces.';
+
+  @override
+  String get staysErrGuests => 'At most 50 guests.';
+
+  @override
+  String get staysErrExpense => 'Invalid linked expense.';
 }

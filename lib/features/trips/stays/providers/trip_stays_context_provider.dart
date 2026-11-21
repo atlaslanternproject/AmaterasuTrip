@@ -4,8 +4,14 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_member_provider.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
+
+/// Google place search, the same used by the Bucket List editor.
+final tripStaysPlacesProvider = Provider<DestinationPlacesService>(
+  (ref) => const DestinationPlacesService(),
+);
 
 final tripStaysOwnerUidProvider = Provider.autoDispose.family<String?, String>((
   ref,

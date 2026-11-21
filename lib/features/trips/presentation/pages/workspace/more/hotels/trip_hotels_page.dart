@@ -12,6 +12,7 @@ import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'editor/trip_stay_editor.dart';
 import 'widgets/trip_stay_delete.dart';
 import 'widgets/trip_stays_empty.dart';
 import 'widgets/trip_stays_list.dart';
@@ -35,6 +36,22 @@ class TripHotelsPage extends ConsumerWidget {
 
     bool canDelete(TripStay stay) =>
         uid != null && (uid == stay.createdByUid || uid == ownerUid);
+
+    Future<void> openEditor([TripStay? initial]) async {
+      if (uid == null) return;
+      final messenger = ScaffoldMessenger.of(context);
+      final saved = await showTripStayEditor(
+        context,
+        tripId: tripId,
+        authorUid: uid,
+        memberNames: names,
+        places: ref.read(tripStaysPlacesProvider),
+        initial: initial,
+        onSave: (stay) =>
+            initial == null ? repository.create(stay) : repository.update(stay),
+      );
+      if (saved) messenger.showSnackBar(SnackBar(content: Text(l10n.staysSaved)));
+    }
 
     return Scaffold(
       backgroundColor: AmaterasuColors.surfaceDeep,
@@ -61,6 +78,15 @@ class TripHotelsPage extends ConsumerWidget {
                       ),
                     ),
                   ),
+                  IconButton.filled(
+                    key: const Key('stays-add'),
+                    tooltip: l10n.staysAdd,
+                    style: IconButton.styleFrom(
+                      backgroundColor: AmaterasuColors.accentBudget,
+                    ),
+                    onPressed: () => openEditor(),
+                    icon: const Icon(Icons.add),
+                  ),
                 ],
               ),
             ),
@@ -74,12 +100,13 @@ class TripHotelsPage extends ConsumerWidget {
                   ),
                 ),
                 data: (items) => items.isEmpty
-                    ? const TripStaysEmpty()
+                    ? TripStaysEmpty(onAdd: () => openEditor())
                     : TripStaysList(
                         stays: items,
                         guestNameOf: (guestUid) =>
                             names[guestUid] ?? l10n.staysFormerGuest,
                         canDelete: canDelete,
+                        onEdit: openEditor,
                         onDelete: (stay) =>
                             confirmAndDeleteTripStay(context, repository, stay),
                         launch: launch,

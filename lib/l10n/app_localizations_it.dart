@@ -2904,4 +2904,141 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get staysCancel => 'Annulla';
+
+  @override
+  String get staysEditorNewTitle => 'Nuovo alloggio';
+
+  @override
+  String get staysEditorEditTitle => 'Modifica alloggio';
+
+  @override
+  String get staysSectionPlace => 'Luogo';
+
+  @override
+  String get staysSectionDates => 'Date e orari';
+
+  @override
+  String get staysSectionStatus => 'Stato';
+
+  @override
+  String get staysSectionBooking => 'Prenotazione';
+
+  @override
+  String get staysSectionGuests => 'Ospiti';
+
+  @override
+  String get staysSectionNotes => 'Note';
+
+  @override
+  String get staysName => 'Nome dell\'alloggio';
+
+  @override
+  String get staysSearchHint => 'Cerca su Google: nome o indirizzo';
+
+  @override
+  String get staysSearchButton => 'Cerca';
+
+  @override
+  String get staysSearchError => 'Ricerca non disponibile. Riprova.';
+
+  @override
+  String get staysPlaceLoadError => 'Impossibile caricare questo luogo.';
+
+  @override
+  String get staysNoResults => 'Nessun risultato.';
+
+  @override
+  String get staysPlaceLinked => 'Luogo collegato a Google Maps';
+
+  @override
+  String get staysPlaceUnlink => 'Scollega';
+
+  @override
+  String get staysAddress => 'Indirizzo (facoltativo)';
+
+  @override
+  String get staysCity => 'Città (facoltativa)';
+
+  @override
+  String get staysCountry => 'Paese (facoltativo)';
+
+  @override
+  String get staysCheckInDay => 'Giorno di check-in';
+
+  @override
+  String get staysCheckOutDay => 'Giorno di check-out';
+
+  @override
+  String get staysCheckInTime => 'Orario di check-in';
+
+  @override
+  String get staysCheckOutTime => 'Orario di check-out';
+
+  @override
+  String get staysTimeNone => 'Orario non indicato';
+
+  @override
+  String get staysTimeClear => 'Togli orario';
+
+  @override
+  String get staysBookedViaLabel => 'Prenotato su (facoltativo)';
+
+  @override
+  String get staysBookedViaNone => 'Non indicato';
+
+  @override
+  String get staysBookedViaOther => 'Quale piattaforma?';
+
+  @override
+  String get staysBookingUrl => 'Link della prenotazione (facoltativo)';
+
+  @override
+  String get staysPropertyUrl => 'Link del sito dell\'alloggio (facoltativo)';
+
+  @override
+  String get staysCode => 'Codice di conferma (facoltativo)';
+
+  @override
+  String get staysGuestsHint => 'Chi dorme qui (facoltativo)';
+
+  @override
+  String get staysNotes => 'Note (facoltative)';
+
+  @override
+  String get staysSave => 'Salva';
+
+  @override
+  String get staysSaved => 'Alloggio salvato.';
+
+  @override
+  String get staysSaveError => 'Impossibile salvare l\'alloggio. Controlla la connessione e riprova.';
+
+  @override
+  String get staysErrName => 'Scrivi il nome dell\'alloggio.';
+
+  @override
+  String staysErrTooLong(int max) {
+    return 'Testo troppo lungo (massimo $max caratteri).';
+  }
+
+  @override
+  String get staysErrDates => 'Il check-out non può essere prima del check-in.';
+
+  @override
+  String get staysErrTime => 'Orario non valido.';
+
+  @override
+  String get staysErrCoordinates => 'Coordinate del luogo non valide.';
+
+  @override
+  String get staysErrOther => 'Scrivi dove è stato prenotato.';
+
+  @override
+  String get staysErrLink => 'Il link deve iniziare con http:// o https:// e non contenere spazi.';
+
+  @override
+  String get staysErrGuests => 'Al massimo 50 ospiti.';
+
+  @override
+  String get staysErrExpense => 'Spesa collegata non valida.';
 }
