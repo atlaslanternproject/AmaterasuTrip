@@ -15,6 +15,9 @@ const excludedSubcollections = new Set<string>([
   "members",
   "budgetSharedExpenses",
   "budgetPrivateOwners",
+  // Hotel/Alloggi: bookings belong to the original trip (dates, links,
+  // linked expenses) and are not copied.
+  "stays",
 ]);
 
 const excludedExternalReferenceFields =

@@ -5440,6 +5440,546 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{actor} cancelled the recorded payment from {other}'**
   String btHistPaymentVoided(String actor, String other);
+
+  /// No description provided for @commonLinkInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The link is invalid.'**
+  String get commonLinkInvalid;
+
+  /// No description provided for @commonLinkOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the link. You can copy it and open it in your browser.'**
+  String get commonLinkOpenFailed;
+
+  /// No description provided for @commonLinkCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get commonLinkCopy;
+
+  /// No description provided for @commonLinkOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open link'**
+  String get commonLinkOpen;
+
+  /// No description provided for @commonMapsOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open Google Maps.'**
+  String get commonMapsOpenFailed;
+
+  /// No description provided for @staysEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No accommodation yet'**
+  String get staysEmptyTitle;
+
+  /// No description provided for @staysEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add hotels, apartments and other places to stay: dates, booking and links in one place.'**
+  String get staysEmptyBody;
+
+  /// No description provided for @staysAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add accommodation'**
+  String get staysAdd;
+
+  /// No description provided for @staysLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the accommodation.'**
+  String get staysLoadError;
+
+  /// No description provided for @staysStatusBooked.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked'**
+  String get staysStatusBooked;
+
+  /// No description provided for @staysStatusToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'To be confirmed'**
+  String get staysStatusToConfirm;
+
+  /// No description provided for @staysStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get staysStatusCancelled;
+
+  /// No description provided for @staysCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in'**
+  String get staysCheckIn;
+
+  /// No description provided for @staysCheckOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-out'**
+  String get staysCheckOut;
+
+  /// No description provided for @staysNights.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Same day} =1{1 night} other{{count} nights}}'**
+  String staysNights(int count);
+
+  /// No description provided for @staysBookedVia.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked on {platform}'**
+  String staysBookedVia(String platform);
+
+  /// No description provided for @staysPlatformBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking.com'**
+  String get staysPlatformBooking;
+
+  /// No description provided for @staysPlatformAirbnb.
+  ///
+  /// In en, this message translates to:
+  /// **'Airbnb'**
+  String get staysPlatformAirbnb;
+
+  /// No description provided for @staysPlatformPropertySite.
+  ///
+  /// In en, this message translates to:
+  /// **'Property website'**
+  String get staysPlatformPropertySite;
+
+  /// No description provided for @staysPlatformAgency.
+  ///
+  /// In en, this message translates to:
+  /// **'Agency'**
+  String get staysPlatformAgency;
+
+  /// No description provided for @staysPlatformOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get staysPlatformOther;
+
+  /// No description provided for @staysConfirmationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Code: {code}'**
+  String staysConfirmationCode(String code);
+
+  /// No description provided for @staysLinkBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get staysLinkBooking;
+
+  /// No description provided for @staysLinkProperty.
+  ///
+  /// In en, this message translates to:
+  /// **'Property website'**
+  String get staysLinkProperty;
+
+  /// No description provided for @staysOpenMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get staysOpenMap;
+
+  /// No description provided for @staysGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests: {names}'**
+  String staysGuests(String names);
+
+  /// No description provided for @staysFormerGuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Former traveler'**
+  String get staysFormerGuest;
+
+  /// No description provided for @staysOverlapWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'{first} and {second} overlap in their dates.'**
+  String staysOverlapWarning(String first, String second);
+
+  /// No description provided for @staysEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get staysEdit;
+
+  /// No description provided for @staysDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get staysDelete;
+
+  /// No description provided for @staysDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this accommodation?'**
+  String get staysDeleteTitle;
+
+  /// No description provided for @staysDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} will be deleted for all travelers. If the booking was only cancelled, set the status to \"Cancelled\" instead.'**
+  String staysDeleteBody(String name);
+
+  /// No description provided for @staysDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accommodation deleted.'**
+  String get staysDeleted;
+
+  /// No description provided for @staysDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to delete the accommodation.'**
+  String get staysDeleteError;
+
+  /// No description provided for @staysCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get staysCancel;
+
+  /// No description provided for @staysEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New accommodation'**
+  String get staysEditorNewTitle;
+
+  /// No description provided for @staysEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit accommodation'**
+  String get staysEditorEditTitle;
+
+  /// No description provided for @staysSectionPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Place'**
+  String get staysSectionPlace;
+
+  /// No description provided for @staysSectionDates.
+  ///
+  /// In en, this message translates to:
+  /// **'Dates and times'**
+  String get staysSectionDates;
+
+  /// No description provided for @staysSectionStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get staysSectionStatus;
+
+  /// No description provided for @staysSectionBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get staysSectionBooking;
+
+  /// No description provided for @staysSectionGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'Guests'**
+  String get staysSectionGuests;
+
+  /// No description provided for @staysSectionNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get staysSectionNotes;
+
+  /// No description provided for @staysName.
+  ///
+  /// In en, this message translates to:
+  /// **'Accommodation name'**
+  String get staysName;
+
+  /// No description provided for @staysSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search on Google: name or address'**
+  String get staysSearchHint;
+
+  /// No description provided for @staysSearchButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get staysSearchButton;
+
+  /// No description provided for @staysSearchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Search unavailable. Please retry.'**
+  String get staysSearchError;
+
+  /// No description provided for @staysPlaceLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load this place.'**
+  String get staysPlaceLoadError;
+
+  /// No description provided for @staysNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results.'**
+  String get staysNoResults;
+
+  /// No description provided for @staysPlaceLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Place linked to Google Maps'**
+  String get staysPlaceLinked;
+
+  /// No description provided for @staysPlaceUnlink.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlink'**
+  String get staysPlaceUnlink;
+
+  /// No description provided for @staysAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address (optional)'**
+  String get staysAddress;
+
+  /// No description provided for @staysCity.
+  ///
+  /// In en, this message translates to:
+  /// **'City (optional)'**
+  String get staysCity;
+
+  /// No description provided for @staysCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country (optional)'**
+  String get staysCountry;
+
+  /// No description provided for @staysCheckInDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in day'**
+  String get staysCheckInDay;
+
+  /// No description provided for @staysCheckOutDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-out day'**
+  String get staysCheckOutDay;
+
+  /// No description provided for @staysCheckInTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in time'**
+  String get staysCheckInTime;
+
+  /// No description provided for @staysCheckOutTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-out time'**
+  String get staysCheckOutTime;
+
+  /// No description provided for @staysTimeNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No time set'**
+  String get staysTimeNone;
+
+  /// No description provided for @staysTimeClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove time'**
+  String get staysTimeClear;
+
+  /// No description provided for @staysBookedViaLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked on (optional)'**
+  String get staysBookedViaLabel;
+
+  /// No description provided for @staysBookedViaNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Not specified'**
+  String get staysBookedViaNone;
+
+  /// No description provided for @staysBookedViaOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Which platform?'**
+  String get staysBookedViaOther;
+
+  /// No description provided for @staysBookingUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking link (optional)'**
+  String get staysBookingUrl;
+
+  /// No description provided for @staysPropertyUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Property website link (optional)'**
+  String get staysPropertyUrl;
+
+  /// No description provided for @staysCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmation code (optional)'**
+  String get staysCode;
+
+  /// No description provided for @staysGuestsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Who sleeps here (optional)'**
+  String get staysGuestsHint;
+
+  /// No description provided for @staysNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get staysNotes;
+
+  /// No description provided for @staysSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get staysSave;
+
+  /// No description provided for @staysSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Accommodation saved.'**
+  String get staysSaved;
+
+  /// No description provided for @staysSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to save the accommodation. Check your connection and try again.'**
+  String get staysSaveError;
+
+  /// No description provided for @staysErrName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the accommodation name.'**
+  String get staysErrName;
+
+  /// No description provided for @staysErrTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Text too long (maximum {max} characters).'**
+  String staysErrTooLong(int max);
+
+  /// No description provided for @staysErrDates.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-out cannot be before check-in.'**
+  String get staysErrDates;
+
+  /// No description provided for @staysErrTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid time.'**
+  String get staysErrTime;
+
+  /// No description provided for @staysErrCoordinates.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid place coordinates.'**
+  String get staysErrCoordinates;
+
+  /// No description provided for @staysErrOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter where it was booked.'**
+  String get staysErrOther;
+
+  /// No description provided for @staysErrLink.
+  ///
+  /// In en, this message translates to:
+  /// **'The link must start with http:// or https:// and contain no spaces.'**
+  String get staysErrLink;
+
+  /// No description provided for @staysErrGuests.
+  ///
+  /// In en, this message translates to:
+  /// **'At most 50 guests.'**
+  String get staysErrGuests;
+
+  /// No description provided for @staysErrExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid linked expense.'**
+  String get staysErrExpense;
+
+  /// No description provided for @staysExpenseCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create expense'**
+  String get staysExpenseCreate;
+
+  /// No description provided for @staysExpenseLinkExisting.
+  ///
+  /// In en, this message translates to:
+  /// **'Link an existing expense'**
+  String get staysExpenseLinkExisting;
+
+  /// No description provided for @staysExpenseLinkedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked expense: {title}'**
+  String staysExpenseLinkedTitle(String title);
+
+  /// No description provided for @staysExpenseView.
+  ///
+  /// In en, this message translates to:
+  /// **'View expense'**
+  String get staysExpenseView;
+
+  /// No description provided for @staysExpenseNotVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked expense (not visible to you or deleted).'**
+  String get staysExpenseNotVisible;
+
+  /// No description provided for @staysExpenseLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense linked to the accommodation.'**
+  String get staysExpenseLinked;
+
+  /// No description provided for @staysExpenseLinkError.
+  ///
+  /// In en, this message translates to:
+  /// **'The expense was created but not linked to the accommodation. Use \"Link an existing expense\" to link it.'**
+  String get staysExpenseLinkError;
+
+  /// No description provided for @staysExpensePickTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a shared expense'**
+  String get staysExpensePickTitle;
+
+  /// No description provided for @staysExpensePickEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No shared expense available.'**
+  String get staysExpensePickEmpty;
+
+  /// No description provided for @staysExpenseLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the expenses.'**
+  String get staysExpenseLoadError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

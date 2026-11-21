@@ -29,22 +29,46 @@ class BudgetCreateDialog extends StatefulWidget {
     super.key,
     required this.api,
     required this.currency,
+    this.initialTitle,
+    this.initialCategory,
+    this.initialDate,
+    this.initialMinorUnits,
+    this.sharedOnly = false,
+    this.onCreated,
   });
 
   final BudgetApi api;
   final String currency;
+
+  /// Optional values to start from (e.g. an expense created from a stay).
+  final String? initialTitle;
+  final String? initialCategory;
+  final DateTime? initialDate;
+  final int? initialMinorUnits;
+
+  /// When true only a shared expense can be created.
+  final bool sharedOnly;
+
+  /// Called with the ID of the created expense, before the dialog closes.
+  final void Function(String expenseId)? onCreated;
 
   @override
   State<BudgetCreateDialog> createState() => _BudgetCreateDialogState();
 }
 
 class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
-  DateTime _expenseDate = DateUtils.dateOnly(DateTime.now());
-  final _title = TextEditingController();
+  late DateTime _expenseDate = DateUtils.dateOnly(
+    widget.initialDate ?? DateTime.now(),
+  );
+  late final _title = TextEditingController(text: widget.initialTitle ?? '');
   final _notes = TextEditingController();
-  String _category = 'other';
+  late String _category = widget.initialCategory ?? 'other';
 
-  final _amount = TextEditingController();
+  late final _amount = TextEditingController(
+    text: widget.initialMinorUnits == null
+        ? ''
+        : BudgetMoneyInput.plainText(widget.initialMinorUnits!, widget.currency),
+  );
   late String _selectedCurrency = widget.currency;
   int _step = 0;
   bool _shared = true;
@@ -188,13 +212,15 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                           selected: _shared,
                           onTap: () => setState(() => _shared = true),
                         ),
-                        const SizedBox(width: AmaterasuSpacing.sm),
-                        modeButton(
-                          label: budgetL10n(it).btCreatePersonal,
-                          icon: Icons.lock_outline_rounded,
-                          selected: !_shared,
-                          onTap: () => setState(() => _shared = false),
-                        ),
+                        if (!widget.sharedOnly) ...[
+                          const SizedBox(width: AmaterasuSpacing.sm),
+                          modeButton(
+                            label: budgetL10n(it).btCreatePersonal,
+                            icon: Icons.lock_outline_rounded,
+                            selected: !_shared,
+                            onTap: () => setState(() => _shared = false),
+                          ),
+                        ],
                       ],
                     ),
                   ],

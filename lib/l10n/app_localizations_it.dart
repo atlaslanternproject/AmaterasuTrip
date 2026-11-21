@@ -2780,4 +2780,297 @@ class AppLocalizationsIt extends AppLocalizations {
   String btHistPaymentVoided(String actor, String other) {
     return '$actor ha annullato il pagamento registrato di $other';
   }
+
+  @override
+  String get commonLinkInvalid => 'Il link non è valido.';
+
+  @override
+  String get commonLinkOpenFailed => 'Impossibile aprire il link. Puoi copiarlo e aprirlo nel browser.';
+
+  @override
+  String get commonLinkCopy => 'Copia link';
+
+  @override
+  String get commonLinkOpen => 'Apri link';
+
+  @override
+  String get commonMapsOpenFailed => 'Impossibile aprire Google Maps.';
+
+  @override
+  String get staysEmptyTitle => 'Nessun alloggio per ora';
+
+  @override
+  String get staysEmptyBody => 'Aggiungi hotel, appartamenti e altri alloggi del viaggio: date, prenotazione e link in un unico posto.';
+
+  @override
+  String get staysAdd => 'Aggiungi alloggio';
+
+  @override
+  String get staysLoadError => 'Impossibile caricare gli alloggi.';
+
+  @override
+  String get staysStatusBooked => 'Prenotato';
+
+  @override
+  String get staysStatusToConfirm => 'Da confermare';
+
+  @override
+  String get staysStatusCancelled => 'Annullato';
+
+  @override
+  String get staysCheckIn => 'Check-in';
+
+  @override
+  String get staysCheckOut => 'Check-out';
+
+  @override
+  String staysNights(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notti',
+      one: '1 notte',
+      zero: 'Stessa giornata',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String staysBookedVia(String platform) {
+    return 'Prenotato su $platform';
+  }
+
+  @override
+  String get staysPlatformBooking => 'Booking.com';
+
+  @override
+  String get staysPlatformAirbnb => 'Airbnb';
+
+  @override
+  String get staysPlatformPropertySite => 'Sito dell\'alloggio';
+
+  @override
+  String get staysPlatformAgency => 'Agenzia';
+
+  @override
+  String get staysPlatformOther => 'Altro';
+
+  @override
+  String staysConfirmationCode(String code) {
+    return 'Codice: $code';
+  }
+
+  @override
+  String get staysLinkBooking => 'Prenotazione';
+
+  @override
+  String get staysLinkProperty => 'Sito dell\'alloggio';
+
+  @override
+  String get staysOpenMap => 'Mappa';
+
+  @override
+  String staysGuests(String names) {
+    return 'Ospiti: $names';
+  }
+
+  @override
+  String get staysFormerGuest => 'Ex viaggiatore';
+
+  @override
+  String staysOverlapWarning(String first, String second) {
+    return '$first e $second si sovrappongono nelle date.';
+  }
+
+  @override
+  String get staysEdit => 'Modifica';
+
+  @override
+  String get staysDelete => 'Elimina';
+
+  @override
+  String get staysDeleteTitle => 'Eliminare questo alloggio?';
+
+  @override
+  String staysDeleteBody(String name) {
+    return '$name verrà eliminato per tutti i viaggiatori. Se la prenotazione è solo annullata, cambia lo stato in \"Annullato\".';
+  }
+
+  @override
+  String get staysDeleted => 'Alloggio eliminato.';
+
+  @override
+  String get staysDeleteError => 'Impossibile eliminare l\'alloggio.';
+
+  @override
+  String get staysCancel => 'Annulla';
+
+  @override
+  String get staysEditorNewTitle => 'Nuovo alloggio';
+
+  @override
+  String get staysEditorEditTitle => 'Modifica alloggio';
+
+  @override
+  String get staysSectionPlace => 'Luogo';
+
+  @override
+  String get staysSectionDates => 'Date e orari';
+
+  @override
+  String get staysSectionStatus => 'Stato';
+
+  @override
+  String get staysSectionBooking => 'Prenotazione';
+
+  @override
+  String get staysSectionGuests => 'Ospiti';
+
+  @override
+  String get staysSectionNotes => 'Note';
+
+  @override
+  String get staysName => 'Nome dell\'alloggio';
+
+  @override
+  String get staysSearchHint => 'Cerca su Google: nome o indirizzo';
+
+  @override
+  String get staysSearchButton => 'Cerca';
+
+  @override
+  String get staysSearchError => 'Ricerca non disponibile. Riprova.';
+
+  @override
+  String get staysPlaceLoadError => 'Impossibile caricare questo luogo.';
+
+  @override
+  String get staysNoResults => 'Nessun risultato.';
+
+  @override
+  String get staysPlaceLinked => 'Luogo collegato a Google Maps';
+
+  @override
+  String get staysPlaceUnlink => 'Scollega';
+
+  @override
+  String get staysAddress => 'Indirizzo (facoltativo)';
+
+  @override
+  String get staysCity => 'Città (facoltativa)';
+
+  @override
+  String get staysCountry => 'Paese (facoltativo)';
+
+  @override
+  String get staysCheckInDay => 'Giorno di check-in';
+
+  @override
+  String get staysCheckOutDay => 'Giorno di check-out';
+
+  @override
+  String get staysCheckInTime => 'Orario di check-in';
+
+  @override
+  String get staysCheckOutTime => 'Orario di check-out';
+
+  @override
+  String get staysTimeNone => 'Orario non indicato';
+
+  @override
+  String get staysTimeClear => 'Togli orario';
+
+  @override
+  String get staysBookedViaLabel => 'Prenotato su (facoltativo)';
+
+  @override
+  String get staysBookedViaNone => 'Non indicato';
+
+  @override
+  String get staysBookedViaOther => 'Quale piattaforma?';
+
+  @override
+  String get staysBookingUrl => 'Link della prenotazione (facoltativo)';
+
+  @override
+  String get staysPropertyUrl => 'Link del sito dell\'alloggio (facoltativo)';
+
+  @override
+  String get staysCode => 'Codice di conferma (facoltativo)';
+
+  @override
+  String get staysGuestsHint => 'Chi dorme qui (facoltativo)';
+
+  @override
+  String get staysNotes => 'Note (facoltative)';
+
+  @override
+  String get staysSave => 'Salva';
+
+  @override
+  String get staysSaved => 'Alloggio salvato.';
+
+  @override
+  String get staysSaveError => 'Impossibile salvare l\'alloggio. Controlla la connessione e riprova.';
+
+  @override
+  String get staysErrName => 'Scrivi il nome dell\'alloggio.';
+
+  @override
+  String staysErrTooLong(int max) {
+    return 'Testo troppo lungo (massimo $max caratteri).';
+  }
+
+  @override
+  String get staysErrDates => 'Il check-out non può essere prima del check-in.';
+
+  @override
+  String get staysErrTime => 'Orario non valido.';
+
+  @override
+  String get staysErrCoordinates => 'Coordinate del luogo non valide.';
+
+  @override
+  String get staysErrOther => 'Scrivi dove è stato prenotato.';
+
+  @override
+  String get staysErrLink => 'Il link deve iniziare con http:// o https:// e non contenere spazi.';
+
+  @override
+  String get staysErrGuests => 'Al massimo 50 ospiti.';
+
+  @override
+  String get staysErrExpense => 'Spesa collegata non valida.';
+
+  @override
+  String get staysExpenseCreate => 'Crea spesa';
+
+  @override
+  String get staysExpenseLinkExisting => 'Collega spesa esistente';
+
+  @override
+  String staysExpenseLinkedTitle(String title) {
+    return 'Spesa collegata: $title';
+  }
+
+  @override
+  String get staysExpenseView => 'Vedi spesa';
+
+  @override
+  String get staysExpenseNotVisible => 'Spesa collegata (non visibile per te o eliminata).';
+
+  @override
+  String get staysExpenseLinked => 'Spesa collegata all\'alloggio.';
+
+  @override
+  String get staysExpenseLinkError => 'La spesa è stata creata ma non è stata collegata all\'alloggio. Usa \"Collega spesa esistente\" per collegarla.';
+
+  @override
+  String get staysExpensePickTitle => 'Scegli una spesa condivisa';
+
+  @override
+  String get staysExpensePickEmpty => 'Nessuna spesa condivisa disponibile.';
+
+  @override
+  String get staysExpenseLoadError => 'Impossibile caricare le spese.';
 }

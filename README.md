@@ -112,18 +112,15 @@ bash tool/check_all.sh
 Esegue: `flutter pub get` e `flutter gen-l10n` (così i testi generati
 esistono sempre prima dell'analisi), `flutter analyze`, `flutter test`,
 il controllo delle traduzioni,
-lint e build delle Cloud Functions, i test node e i 3 test del budget con
-gli emulatori (regole, privacy, integrazione con le Cloud Functions).
+lint e build delle Cloud Functions, i test node e i test con gli
+emulatori: budget (regole, privacy, integrazione, "segna come pagato"),
+regole Storage, regole Firestore (soggiorni, 21 test generali, B7.1,
+B7.5.2) e `deleteTrip` con le copertine.
 Gli emulatori usano solo progetti `demo-*`.
 
 Altri test da lanciare a parte:
 
 ```bash
-# regole Firestore (21 test + B7.1 + B7.5.2)
-firebase emulators:exec --config firebase.emulators.security-test.json \
-  --project demo-amaterasu-rules --only firestore \
-  "node --test rules-tests/firestore.rules.test.mjs && node rules-tests/b71-personal-budget-rules.cjs && node rules-tests/b752-payment-methods.cjs"
-
 # rimozione di un viaggiatore (Cloud Function con emulatori)
 firebase emulators:exec --config firebase.emulators.security-test.json \
   --project demo-amaterasu-security --only firestore,auth,functions \

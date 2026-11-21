@@ -8,6 +8,7 @@ import 'dart:async';
 
 import 'package:amaterasutrip/features/trips/budget/data/personal_trip_budget_repository.dart';
 import 'package:amaterasutrip/features/trips/budget/models/personal_trip_budget.dart';
+import 'package:amaterasutrip/features/trips/budget/models/budget_payment_plan.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -167,6 +168,35 @@ class FakeBudgetApi extends BudgetApi {
       'debtorUid': debtorUid,
       'reason': reason,
     });
+  }
+
+  /// Expenses created by the widget tests (title, category, date, amount).
+  final List<Map<String, dynamic>> createdExpenses = [];
+
+  @override
+  Future<String> create({
+    required String title,
+    DateTime? expenseDate,
+    required String category,
+    required String notes,
+    required bool shared,
+    required String currency,
+    required int minorUnits,
+    required String status,
+    required List<String> participants,
+    Map<String, int>? customShares,
+    BudgetPaymentPlan? paymentPlan,
+  }) async {
+    createdExpenses.add({
+      'title': title,
+      'expenseDate': expenseDate,
+      'category': category,
+      'shared': shared,
+      'currency': currency,
+      'minorUnits': minorUnits,
+      'participants': participants,
+    });
+    return 'exp-${createdExpenses.length}';
   }
 
   /// "Segna come pagato": declarations recorded by the widget tests.

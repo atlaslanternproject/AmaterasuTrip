@@ -72,6 +72,7 @@ extension _BucketActivityCard on _TripBucketListPageState {
         onTap: placeId == null || placeId.isEmpty
             ? null
             : () async {
+                // TODO(audit): stessa logica di lib/core/links (AmaterasuWebLink.googleMaps + AmaterasuLinkOpener.openMaps).
                 final uri = Uri.https('www.google.com', '/maps/search/', {
                   'api': '1',
                   'query': item.name,
@@ -186,6 +187,7 @@ extension _BucketActivityCard on _TripBucketListPageState {
                       Uri.tryParse(link)?.host ?? _t('Apri link', 'Open link'),
                       overflow: TextOverflow.ellipsis,
                     ),
+                    // TODO(audit): stessa logica di lib/core/links (AmaterasuLinkOpener.openWebLink, AmaterasuLinkChip): spostarla lì quando la pagina sarà provabile nei test.
                     // AMATERASU_USEFUL_LINK_DESKTOP_V1
                     onPressed: () async {
                       final uri = Uri.tryParse(link.trim());

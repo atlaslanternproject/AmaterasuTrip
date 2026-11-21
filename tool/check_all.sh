@@ -49,6 +49,7 @@ node_tests() {
   node --test functions/test/budget-calc-parity.test.cjs \
     functions/test/budget-history.test.cjs \
     functions/test/delete-trip-storage.test.cjs \
+    functions/test/trip-duplication-policy.test.cjs \
     functions/test/budget-declared-payment.test.cjs || return 1
   # Questi test ricevono il percorso del file compilato come argomento.
   node functions/test/account-deletion-cleanup-orchestrator.test.cjs \
@@ -84,6 +85,14 @@ emu_storage_rules() {
   firebase emulators:exec --config "$EMU_CONFIG" \
     --project demo-amaterasu-storage --only storage \
     "node --test rules-tests/storage-rules.test.cjs"
+}
+
+# Regole Firestore: soggiorni (Hotel/Alloggi), regole generali (21 test),
+# budget personale (B7.1) e metodi di pagamento (B7.5.2).
+emu_firestore_rules() {
+  firebase emulators:exec --config "$EMU_CONFIG" \
+    --project demo-amaterasu-rules --only firestore \
+    "node --test rules-tests/stays-rules.test.mjs && node --test rules-tests/firestore.rules.test.mjs && node rules-tests/b71-personal-budget-rules.cjs && node rules-tests/b752-payment-methods.cjs"
 }
 
 # "Segna come pagato": pagamenti dichiarati dal creditore e annullati.
@@ -122,6 +131,7 @@ step "emulatore: regole budget" emu_budget_rules
 step "emulatore: privacy budget" emu_budget_privacy
 step "emulatore: integrazione budget" emu_budget_rc
 step "emulatore: regole Storage" emu_storage_rules
+step "emulatore: regole Firestore e soggiorni" emu_firestore_rules
 step "emulatore: segna come pagato" emu_declared_payment
 step "emulatore: deleteTrip e copertine" emu_delete_trip_storage
 step "emulatore: deleteTrip con Storage in errore" emu_delete_trip_storage_down
