@@ -1,6 +1,7 @@
-// Elenco dei soggiorni ordinato per check-in, centrato e largo al massimo
-// 820 punti (comodo su schermo largo e stretto), con l'avviso delle
-// sovrapposizioni in cima.
+// Elenco dei soggiorni (già filtrati e ordinati), centrato e largo al
+// massimo 820 punti (comodo su schermo largo e stretto), con l'avviso
+// delle sovrapposizioni in cima. Le card si costruiscono solo quando
+// stanno per apparire (ListView), così le foto si chiedono al bisogno.
 
 import 'package:flutter/material.dart';
 
@@ -32,11 +33,7 @@ class TripStaysList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sorted = [...stays]..sort((a, b) {
-      final byDay = a.checkInDate.compareTo(b.checkInDate);
-      return byDay != 0 ? byDay : a.name.compareTo(b.name);
-    });
-    final overlaps = TripStayOverlaps.pairs(sorted);
+    final overlaps = TripStayOverlaps.pairs(stays);
 
     return Align(
       alignment: Alignment.topCenter,
@@ -45,12 +42,12 @@ class TripStaysList extends StatelessWidget {
         child: ListView.separated(
           key: const Key('stays-list'),
           padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
-          itemCount: sorted.length + 1,
+          itemCount: stays.length + 1,
           separatorBuilder: (_, index) =>
               SizedBox(height: index == 0 ? 0 : 12),
           itemBuilder: (context, index) {
             if (index == 0) return TripStaysOverlapBanner(pairs: overlaps);
-            final stay = sorted[index - 1];
+            final stay = stays[index - 1];
             return TripStayCard(
               stay: stay,
               guestNames: stay.guestUids.map(guestNameOf).toList(),

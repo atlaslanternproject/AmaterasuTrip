@@ -1,5 +1,5 @@
-// Pagina Hotel e alloggi del viaggio: elenco dei soggiorni ordinato per
-// check-in, stato vuoto, avviso delle sovrapposizioni ed eliminazione
+// Pagina Hotel e alloggi del viaggio: elenco dei soggiorni con filtri e
+// ordinamento, stato vuoto, avviso delle sovrapposizioni ed eliminazione
 // (solo creatore o proprietario del viaggio).
 
 import 'package:flutter/material.dart';
@@ -16,12 +16,21 @@ import 'editor/trip_stay_editor.dart';
 import 'widgets/trip_stay_delete.dart';
 import 'widgets/trip_stay_expense_footer.dart';
 import 'widgets/trip_stays_empty.dart';
+import 'widgets/trip_stays_filtered_view.dart';
 import 'widgets/trip_stays_list.dart';
 
 class TripHotelsPage extends ConsumerWidget {
-  const TripHotelsPage({super.key, required this.tripId, this.launch});
+  const TripHotelsPage({
+    super.key,
+    required this.tripId,
+    this.launch,
+    this.today,
+  });
 
   final String tripId;
+
+  /// "Today" for the upcoming / past filter; tests set it.
+  final DateTime? today;
 
   /// Replaces url_launcher in tests.
   final AmaterasuLaunch? launch;
@@ -52,7 +61,9 @@ class TripHotelsPage extends ConsumerWidget {
         onSave: (stay) =>
             initial == null ? repository.create(stay) : repository.update(stay),
       );
-      if (saved) messenger.showSnackBar(SnackBar(content: Text(l10n.staysSaved)));
+      if (saved) {
+        messenger.showSnackBar(SnackBar(content: Text(l10n.staysSaved)));
+      }
     }
 
     return Scaffold(
@@ -66,8 +77,10 @@ class TripHotelsPage extends ConsumerWidget {
                 children: [
                   IconButton(
                     onPressed: () => context.go('/trips/$tripId/more'),
-                    icon: const Icon(Icons.arrow_back_rounded,
-                        color: AmaterasuColors.textPrimary),
+                    icon: const Icon(
+                      Icons.arrow_back_rounded,
+                      color: AmaterasuColors.textPrimary,
+                    ),
                   ),
                   const SizedBox(width: 4),
                   Expanded(
@@ -98,25 +111,34 @@ class TripHotelsPage extends ConsumerWidget {
                 error: (_, _) => Center(
                   child: Text(
                     l10n.staysLoadError,
-                    style: const TextStyle(color: AmaterasuColors.textSecondary),
+                    style: const TextStyle(
+                      color: AmaterasuColors.textSecondary,
+                    ),
                   ),
                 ),
                 data: (items) => items.isEmpty
                     ? TripStaysEmpty(onAdd: () => openEditor())
-                    : TripStaysList(
+                    : TripStaysFilteredView(
                         stays: items,
-                        guestNameOf: (guestUid) =>
-                            names[guestUid] ?? l10n.staysFormerGuest,
-                        canDelete: canDelete,
-                        onEdit: openEditor,
-                        onDelete: (stay) =>
-                            confirmAndDeleteTripStay(context, repository, stay),
-                        footerOf: (stay) => TripStayExpenseFooter(
-                          stay: stay,
-                          api: ref.watch(tripStaysBudgetApiProvider(tripId)),
-                          repository: repository,
+                        today: today ?? DateTime.now(),
+                        listOf: (shown) => TripStaysList(
+                          stays: shown,
+                          guestNameOf: (guestUid) =>
+                              names[guestUid] ?? l10n.staysFormerGuest,
+                          canDelete: canDelete,
+                          onEdit: openEditor,
+                          onDelete: (stay) => confirmAndDeleteTripStay(
+                            context,
+                            repository,
+                            stay,
+                          ),
+                          footerOf: (stay) => TripStayExpenseFooter(
+                            stay: stay,
+                            api: ref.watch(tripStaysBudgetApiProvider(tripId)),
+                            repository: repository,
+                          ),
+                          launch: launch,
                         ),
-                        launch: launch,
                       ),
               ),
             ),

@@ -3001,6 +3001,52 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysPhotoNext => 'Foto successiva';
 
   @override
+  String get staysFilters => 'Filtri';
+
+  @override
+  String staysFiltersActive(int count) {
+    return 'Filtri ($count)';
+  }
+
+  @override
+  String staysFiltersShown(int shown, int total) {
+    return '$shown di $total';
+  }
+
+  @override
+  String get staysFiltersClear => 'Azzera filtri';
+
+  @override
+  String get staysFiltersDone => 'Fatto';
+
+  @override
+  String get staysFilterWhen => 'Quando';
+
+  @override
+  String get staysFilterAll => 'Tutti';
+
+  @override
+  String get staysFilterUpcoming => 'Prossimi';
+
+  @override
+  String get staysFilterPast => 'Passati';
+
+  @override
+  String get staysSortTitle => 'Ordine';
+
+  @override
+  String get staysSortAsc => 'Check-in: dal più vicino';
+
+  @override
+  String get staysSortDesc => 'Check-in: dal più lontano';
+
+  @override
+  String get staysNoMatchTitle => 'Nessun alloggio con questi filtri';
+
+  @override
+  String get staysNoMatchBody => 'Prova a cambiare o azzerare i filtri per vedere gli altri alloggi.';
+
+  @override
   String get staysSectionBooking => 'Prenotazione';
 
   @override

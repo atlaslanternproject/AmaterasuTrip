@@ -3001,6 +3001,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysPhotoNext => 'Next photo';
 
   @override
+  String get staysFilters => 'Filters';
+
+  @override
+  String staysFiltersActive(int count) {
+    return 'Filters ($count)';
+  }
+
+  @override
+  String staysFiltersShown(int shown, int total) {
+    return '$shown of $total';
+  }
+
+  @override
+  String get staysFiltersClear => 'Clear filters';
+
+  @override
+  String get staysFiltersDone => 'Done';
+
+  @override
+  String get staysFilterWhen => 'When';
+
+  @override
+  String get staysFilterAll => 'All';
+
+  @override
+  String get staysFilterUpcoming => 'Upcoming';
+
+  @override
+  String get staysFilterPast => 'Past';
+
+  @override
+  String get staysSortTitle => 'Order';
+
+  @override
+  String get staysSortAsc => 'Check-in: earliest first';
+
+  @override
+  String get staysSortDesc => 'Check-in: latest first';
+
+  @override
+  String get staysNoMatchTitle => 'No stays match these filters';
+
+  @override
+  String get staysNoMatchBody => 'Try changing or clearing the filters to see the other stays.';
+
+  @override
   String get staysSectionBooking => 'Booking';
 
   @override

@@ -22,6 +22,9 @@ void main() {
   });
 
   testWidgets('stays are ordered by check-in', (tester) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     await tester.pumpWidget(staysTestApp(
       const TripHotelsPage(tripId: 't1'),
       stays: [
@@ -37,6 +40,9 @@ void main() {
 
   testWidgets('card shows status, dates, nights, place, guests and links',
       (tester) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     final launch = FakeLaunch();
     await tester.pumpWidget(staysTestApp(
       TripHotelsPage(tripId: 't1', launch: launch.call),

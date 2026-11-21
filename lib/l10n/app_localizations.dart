@@ -5837,6 +5837,90 @@ abstract class AppLocalizations {
   /// **'Next photo'**
   String get staysPhotoNext;
 
+  /// No description provided for @staysFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get staysFilters;
+
+  /// No description provided for @staysFiltersActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters ({count})'**
+  String staysFiltersActive(int count);
+
+  /// No description provided for @staysFiltersShown.
+  ///
+  /// In en, this message translates to:
+  /// **'{shown} of {total}'**
+  String staysFiltersShown(int shown, int total);
+
+  /// No description provided for @staysFiltersClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get staysFiltersClear;
+
+  /// No description provided for @staysFiltersDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get staysFiltersDone;
+
+  /// No description provided for @staysFilterWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get staysFilterWhen;
+
+  /// No description provided for @staysFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get staysFilterAll;
+
+  /// No description provided for @staysFilterUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get staysFilterUpcoming;
+
+  /// No description provided for @staysFilterPast.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get staysFilterPast;
+
+  /// No description provided for @staysSortTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get staysSortTitle;
+
+  /// No description provided for @staysSortAsc.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in: earliest first'**
+  String get staysSortAsc;
+
+  /// No description provided for @staysSortDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in: latest first'**
+  String get staysSortDesc;
+
+  /// No description provided for @staysNoMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No stays match these filters'**
+  String get staysNoMatchTitle;
+
+  /// No description provided for @staysNoMatchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try changing or clearing the filters to see the other stays.'**
+  String get staysNoMatchBody;
+
   /// No description provided for @staysSectionBooking.
   ///
   /// In en, this message translates to:
