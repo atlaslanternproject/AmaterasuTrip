@@ -1,10 +1,11 @@
 // Modello di un soggiorno del viaggio (Hotel/Alloggi): nome, date e orari,
-// stato, luogo Google, prenotazione (piattaforma, link, codice), note,
+// stato, tipo di alloggio, contatti, luogo Google, prenotazione (piattaforma, link, codice), note,
 // ospiti e spesa del budget collegata. Le regole sono in TripStayValidator.
 
 import 'trip_stay_booking_platform.dart';
 import 'trip_stay_dates.dart';
 import 'trip_stay_status.dart';
+import 'trip_stay_type.dart';
 
 class TripStay {
   const TripStay({
@@ -14,6 +15,7 @@ class TripStay {
     required this.checkInDate,
     required this.checkOutDate,
     this.status = TripStayStatus.toConfirm,
+    this.type,
     required this.createdByUid,
     this.createdAt,
     this.updatedAt,
@@ -29,6 +31,8 @@ class TripStay {
     this.bookedViaOther,
     this.bookingUrl,
     this.propertyUrl,
+    this.phone,
+    this.email,
     this.confirmationCode,
     this.notes,
     this.guestUids = const [],
@@ -44,6 +48,9 @@ class TripStay {
   final DateTime checkInDate;
   final DateTime checkOutDate;
   final TripStayStatus status;
+
+  /// Kind of place (hotel, B&B…), optional.
+  final TripStayType? type;
   final String createdByUid;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -65,6 +72,10 @@ class TripStay {
   final String? bookedViaOther;
   final String? bookingUrl;
   final String? propertyUrl;
+
+  /// Contacts of the place, optional (the website is [propertyUrl]).
+  final String? phone;
+  final String? email;
   final String? confirmationCode;
   final String? notes;
 
@@ -101,6 +112,7 @@ class TripStay {
     checkInDate: checkInDate,
     checkOutDate: checkOutDate,
     status: status ?? this.status,
+    type: type,
     createdByUid: createdByUid,
     createdAt: createdAt,
     updatedAt: updatedAt,
@@ -116,6 +128,8 @@ class TripStay {
     bookedViaOther: bookedViaOther,
     bookingUrl: bookingUrl,
     propertyUrl: propertyUrl,
+    phone: phone,
+    email: email,
     confirmationCode: confirmationCode,
     notes: notes,
     guestUids: guestUids,

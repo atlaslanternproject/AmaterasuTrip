@@ -22,6 +22,8 @@ enum TripStayProblem {
   bookedViaOtherTooLong,
   bookingUrlInvalid,
   propertyUrlInvalid,
+  phoneInvalid,
+  emailInvalid,
   confirmationCodeTooLong,
   notesTooLong,
   tooManyGuests,
@@ -35,7 +37,21 @@ abstract final class TripStayValidator {
   static const codeMax = 100;
   static const notesMax = 10000;
   static const guestsMax = 50;
+  static const phoneMax = 40;
+  static const emailMax = 254;
   static final _expenseId = RegExp(r'^[A-Za-z0-9_-]{1,128}$');
+
+  // Same patterns as firestore.rules (validStay).
+  static final _phone = RegExp(r'^[+]?[0-9 ()./-]{4,40}$');
+  static final _email = RegExp(r'^[^\s@]+@[^\s@]+[.][^\s@]+$');
+
+  /// Digits, spaces, + ( ) . / - ; at most [phoneMax] characters.
+  static bool isPhone(String value) =>
+      value.length <= phoneMax && _phone.hasMatch(value);
+
+  /// Basic check: something@domain.tld, at most [emailMax] characters.
+  static bool isEmail(String value) =>
+      value.length <= emailMax && _email.hasMatch(value);
 
   static List<TripStayProblem> problems(TripStay stay) {
     final found = <TripStayProblem>[];
@@ -84,6 +100,10 @@ abstract final class TripStayValidator {
     );
     check(badLink(stay.bookingUrl), TripStayProblem.bookingUrlInvalid);
     check(badLink(stay.propertyUrl), TripStayProblem.propertyUrlInvalid);
+    final phone = stay.phone;
+    check(phone != null && !isPhone(phone), TripStayProblem.phoneInvalid);
+    final email = stay.email;
+    check(email != null && !isEmail(email), TripStayProblem.emailInvalid);
     check(longer(stay.confirmationCode, codeMax),
         TripStayProblem.confirmationCodeTooLong);
     check(longer(stay.notes, notesMax), TripStayProblem.notesTooLong);

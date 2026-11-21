@@ -2921,6 +2921,132 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysSectionStatus => 'Stato';
 
   @override
+  String get staysSectionType => 'Tipo di alloggio';
+
+  @override
+  String get staysTypeHotel => 'Hotel';
+
+  @override
+  String get staysTypeBnb => 'B&B';
+
+  @override
+  String get staysTypeApartment => 'Appartamento';
+
+  @override
+  String get staysTypeHostel => 'Ostello';
+
+  @override
+  String get staysTypeCamping => 'Campeggio';
+
+  @override
+  String get staysTypeOther => 'Altro';
+
+  @override
+  String get staysSectionContacts => 'Contatti';
+
+  @override
+  String get staysPhone => 'Telefono (facoltativo)';
+
+  @override
+  String get staysEmail => 'Email (facoltativa)';
+
+  @override
+  String get staysErrPhone => 'Il telefono può contenere solo numeri, spazi e + ( ) . / - (da 4 a 40 caratteri).';
+
+  @override
+  String get staysErrEmail => 'Scrivi un\'email valida, ad esempio nome@esempio.it.';
+
+  @override
+  String get staysContact => 'Contatta';
+
+  @override
+  String staysContactTitle(String name) {
+    return 'Contatta $name';
+  }
+
+  @override
+  String get staysContactPhone => 'Telefono';
+
+  @override
+  String get staysContactEmail => 'Email';
+
+  @override
+  String get staysContactWebsite => 'Sito';
+
+  @override
+  String get staysContactCall => 'Chiama';
+
+  @override
+  String get staysContactWrite => 'Scrivi';
+
+  @override
+  String get staysContactOpen => 'Apri';
+
+  @override
+  String get staysContactCopy => 'Copia';
+
+  @override
+  String get staysContactCopied => 'Copiato negli appunti.';
+
+  @override
+  String get staysContactOpenFailed => 'Impossibile aprire l\'app. Puoi copiare il dato.';
+
+  @override
+  String get staysContactClose => 'Chiudi';
+
+  @override
+  String get staysPhotoPrevious => 'Foto precedente';
+
+  @override
+  String get staysPhotoNext => 'Foto successiva';
+
+  @override
+  String get staysFilters => 'Filtri';
+
+  @override
+  String staysFiltersActive(int count) {
+    return 'Filtri ($count)';
+  }
+
+  @override
+  String staysFiltersShown(int shown, int total) {
+    return '$shown di $total';
+  }
+
+  @override
+  String get staysFiltersClear => 'Azzera filtri';
+
+  @override
+  String get staysFiltersDone => 'Fatto';
+
+  @override
+  String get staysFilterWhen => 'Quando';
+
+  @override
+  String get staysFilterAll => 'Tutti';
+
+  @override
+  String get staysFilterUpcoming => 'Prossimi';
+
+  @override
+  String get staysFilterPast => 'Passati';
+
+  @override
+  String get staysSortTitle => 'Ordine';
+
+  @override
+  String get staysSortAsc => 'Check-in: dal più vicino';
+
+  @override
+  String get staysSortDesc => 'Check-in: dal più lontano';
+
+  @override
+  String get staysNoMatchTitle => 'Nessun alloggio con questi filtri';
+
+  @override
+  String get staysNoMatchBody => 'Prova a cambiare o azzerare i filtri per vedere gli altri alloggi.';
+
+  @override
   String get staysSectionBooking => 'Prenotazione';
 
   @override

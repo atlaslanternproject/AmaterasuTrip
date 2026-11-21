@@ -587,7 +587,8 @@ service cloud.firestore {
             'address', 'city', 'country', 'googlePlaceId',
             'latitude', 'longitude',
             'bookedVia', 'bookedViaOther', 'bookingUrl', 'propertyUrl',
-            'confirmationCode', 'notes', 'guestUids', 'expenseId'
+            'confirmationCode', 'notes', 'guestUids', 'expenseId',
+            'type', 'phone', 'email'
           ])
           && data.tripId == tripId
           && data.name is string
@@ -641,6 +642,25 @@ service cloud.firestore {
             data.get('expenseId', null) == null
             || (data.expenseId is string
               && data.expenseId.matches('^[A-Za-z0-9_-]{1,128}$'))
+          )
+          // Optional type of stay and contacts (v1.12.0).
+          && (
+            data.get('type', null) == null
+            || data.type in [
+              'hotel', 'bnb', 'apartment', 'hostel', 'camping', 'other'
+            ]
+          )
+          && (
+            data.get('phone', null) == null
+            || (data.phone is string
+              && data.phone.size() <= 40
+              && data.phone.matches('^[+]?[0-9 ()./-]{4,40}$'))
+          )
+          && (
+            data.get('email', null) == null
+            || (data.email is string
+              && data.email.size() <= 254
+              && data.email.matches('^[^\\s@]+@[^\\s@]+[.][^\\s@]+$'))
           );
       }
 

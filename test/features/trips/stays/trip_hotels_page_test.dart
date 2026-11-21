@@ -4,6 +4,7 @@
 
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/hotels/trip_hotels_page.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,6 +22,9 @@ void main() {
   });
 
   testWidgets('stays are ordered by check-in', (tester) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     await tester.pumpWidget(staysTestApp(
       const TripHotelsPage(tripId: 't1'),
       stays: [
@@ -36,17 +40,21 @@ void main() {
 
   testWidgets('card shows status, dates, nights, place, guests and links',
       (tester) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     final launch = FakeLaunch();
     await tester.pumpWidget(staysTestApp(
       TripHotelsPage(tripId: 't1', launch: launch.call),
       stays: [testStay('s1',
         bookingUrl: 'https://www.booking.com/h/1',
         propertyUrl: 'https://hotel.example.jp', placeId: 'ChIJ1',
-        guests: ['anna', 'carla'])],
+        guests: ['anna', 'carla'], type: TripStayType.apartment)],
       repository: FakeTripStaysRepository()));
     await tester.pumpAndSettle();
 
     expect(find.text('Prenotato'), findsOneWidget);
+    expect(find.text('Appartamento'), findsOneWidget);
     expect(find.text('3 notti'), findsOneWidget);
     expect(find.textContaining('15:00'), findsOneWidget);
     expect(find.text('Kyoto, Giappone'), findsOneWidget);
@@ -65,6 +73,9 @@ void main() {
   });
 
   testWidgets('overlap warning only for active stays', (tester) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     await tester.pumpWidget(staysTestApp(
       const TripHotelsPage(tripId: 't1'),
       stays: [
@@ -83,6 +94,9 @@ void main() {
 
   testWidgets('only the creator or the owner can delete, with confirmation',
       (tester) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
     final repository = FakeTripStaysRepository(uid: 'bruno');
     await tester.pumpWidget(staysTestApp(
       const TripHotelsPage(tripId: 't1'),

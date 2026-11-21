@@ -1,38 +1,16 @@
 // Test automatici dell'editor degli alloggi (creazione e modifica).
 // Casi, ad esempio: "Google place fills name, address, city, country", "invalid link is explained".
 
-import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/models/trip_destination.dart';
-import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/hotels/trip_hotels_page.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_booking_platform.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'support/fake_places.dart';
 import 'support/fake_trip_stays.dart';
-
-class FakePlaces implements DestinationPlacesService {
-  @override
-  Future<List<DestinationPrediction>> search(String query,
-      {required String languageCode}) async => [
-    DestinationPrediction.fromMap({
-      'placeId': 'ChIJ-kyoto', 'primaryText': 'Hotel Granvia',
-      'secondaryText': 'Kyoto, Giappone', 'fullText': 'Hotel Granvia, Kyoto',
-    }),
-  ];
-
-  @override
-  Future<TripDestination> getDetails(String placeId,
-      {required String languageCode}) async => const TripDestination(
-    placeId: 'ChIJ-kyoto', displayName: 'Hotel Granvia Kyoto',
-    formattedAddress: 'Karasuma 901, Kyoto', latitude: 34.98,
-    longitude: 135.75, country: 'Giappone', locality: 'Kyoto',
-  );
-
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
 
 Future<void> openNew(WidgetTester tester, FakeTripStaysRepository repo) async {
   tester.view.physicalSize = const Size(1000, 2400);
@@ -65,8 +43,12 @@ void main() {
     expect(repo.created, isEmpty);
 
     await tester.enterText(find.byKey(const Key('stay-name')), 'Ryokan');
+    await tester.ensureVisible(find.byKey(const Key('stay-type-hostel')));
+    await tester.tap(find.byKey(const Key('stay-type-hostel')));
+    await tester.pumpAndSettle();
     await save(tester);
     final stay = repo.created.single;
+    expect(stay.type, TripStayType.hostel);
     expect(stay.name, 'Ryokan');
     expect(stay.createdByUid, 'anna');
     expect(stay.status, TripStayStatus.toConfirm);

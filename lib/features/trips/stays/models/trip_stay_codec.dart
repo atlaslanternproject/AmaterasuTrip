@@ -6,6 +6,7 @@ import 'trip_stay.dart';
 import 'trip_stay_booking_platform.dart';
 import 'trip_stay_dates.dart';
 import 'trip_stay_status.dart';
+import 'trip_stay_type.dart';
 
 abstract final class TripStayCodec {
   /// Fields to save, without createdAt and updatedAt.
@@ -26,6 +27,7 @@ abstract final class TripStayCodec {
       'checkOutDate': TripStayDates.format(stay.checkOutDate),
       'status': stay.status.code,
       'createdByUid': stay.createdByUid,
+      'type': ?stay.type?.code,
       'checkInTime': ?text(stay.checkInTime),
       'checkOutTime': ?text(stay.checkOutTime),
       'address': ?text(stay.address),
@@ -38,6 +40,8 @@ abstract final class TripStayCodec {
       'bookedViaOther': ?other,
       'bookingUrl': ?text(stay.bookingUrl),
       'propertyUrl': ?text(stay.propertyUrl),
+      'phone': ?text(stay.phone),
+      'email': ?text(stay.email),
       'confirmationCode': ?text(stay.confirmationCode),
       'notes': ?text(stay.notes),
       if (stay.guestUids.isNotEmpty) 'guestUids': List.of(stay.guestUids),
@@ -88,6 +92,7 @@ abstract final class TripStayCodec {
       checkOutDate: checkOut,
       status: status,
       createdByUid: author,
+      type: TripStayType.fromCode(data['type']),
       createdAt: time('createdAt'),
       updatedAt: time('updatedAt'),
       checkInTime: text('checkInTime'),
@@ -102,6 +107,8 @@ abstract final class TripStayCodec {
       bookedViaOther: text('bookedViaOther'),
       bookingUrl: text('bookingUrl'),
       propertyUrl: text('propertyUrl'),
+      phone: text('phone'),
+      email: text('email'),
       confirmationCode: text('confirmationCode'),
       notes: text('notes'),
       guestUids: guests is List ? guests.whereType<String>().toList() : const [],

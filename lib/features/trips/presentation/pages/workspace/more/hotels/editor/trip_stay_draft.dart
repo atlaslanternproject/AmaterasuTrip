@@ -1,5 +1,5 @@
 // Stato modificabile dell'editor di un soggiorno: campi di testo, date,
-// orari, stato, piattaforma, luogo Google e ospiti. Si crea da un soggiorno
+// orari, stato, tipo, contatti, piattaforma, luogo Google e ospiti. Si crea da un soggiorno
 // esistente (o vuoto) e si trasforma in TripStay per salvarlo.
 
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_booking_platform.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
 
 class TripStayDraft {
   TripStayDraft({TripStay? initial, required DateTime today})
@@ -20,6 +21,8 @@ class TripStayDraft {
       ),
       bookingUrl = TextEditingController(text: initial?.bookingUrl ?? ''),
       propertyUrl = TextEditingController(text: initial?.propertyUrl ?? ''),
+      phone = TextEditingController(text: initial?.phone ?? ''),
+      email = TextEditingController(text: initial?.email ?? ''),
       confirmationCode = TextEditingController(
         text: initial?.confirmationCode ?? '',
       ),
@@ -31,6 +34,7 @@ class TripStayDraft {
       checkInTime = initial?.checkInTime,
       checkOutTime = initial?.checkOutTime,
       status = initial?.status ?? TripStayStatus.toConfirm,
+      type = initial?.type,
       bookedVia = initial?.bookedVia,
       googlePlaceId = initial?.googlePlaceId,
       latitude = initial?.latitude,
@@ -45,6 +49,8 @@ class TripStayDraft {
   final TextEditingController bookedViaOther;
   final TextEditingController bookingUrl;
   final TextEditingController propertyUrl;
+  final TextEditingController phone;
+  final TextEditingController email;
   final TextEditingController confirmationCode;
   final TextEditingController notes;
 
@@ -53,6 +59,7 @@ class TripStayDraft {
   String? checkInTime;
   String? checkOutTime;
   TripStayStatus status;
+  TripStayType? type;
   TripStayBookingPlatform? bookedVia;
   String? googlePlaceId;
   double? latitude;
@@ -76,6 +83,7 @@ class TripStayDraft {
       checkInDate: checkInDate,
       checkOutDate: checkOutDate,
       status: status,
+      type: type,
       createdByUid: initial?.createdByUid ?? authorUid,
       createdAt: initial?.createdAt,
       checkInTime: checkInTime,
@@ -92,6 +100,8 @@ class TripStayDraft {
           : null,
       bookingUrl: text(bookingUrl),
       propertyUrl: text(propertyUrl),
+      phone: text(phone),
+      email: text(email),
       confirmationCode: text(confirmationCode),
       notes: text(notes),
       guestUids: guestUids.toList()..sort(),
@@ -102,7 +112,7 @@ class TripStayDraft {
   void dispose() {
     for (final controller in [
       name, address, city, country, bookedViaOther, bookingUrl,
-      propertyUrl, confirmationCode, notes,
+      propertyUrl, phone, email, confirmationCode, notes,
     ]) {
       controller.dispose();
     }

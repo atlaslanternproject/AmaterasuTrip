@@ -1,5 +1,6 @@
 // Link nella card di un soggiorno: prenotazione e sito dell'alloggio con
-// AmaterasuLinkChip, e pulsante mappa (Google Maps) con AmaterasuLinkOpener.
+// AmaterasuLinkChip, pulsante mappa (Google Maps) con AmaterasuLinkOpener e
+// pulsante "Contatta" (solo se ci sono telefono, email o sito).
 
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'trip_stay_contact_dialog.dart';
 
 class TripStayCardLinks extends StatelessWidget {
   const TripStayCardLinks({super.key, required this.stay, this.launch});
@@ -30,7 +32,8 @@ class TripStayCardLinks extends StatelessWidget {
       latitude: stay.latitude,
       longitude: stay.longitude,
     );
-    if (booking == null && property == null && maps == null) {
+    final contacts = tripStayHasContacts(stay);
+    if (booking == null && property == null && maps == null && !contacts) {
       return const SizedBox.shrink();
     }
 
@@ -69,6 +72,17 @@ class TripStayCardLinks extends StatelessWidget {
               ),
               icon: const Icon(Icons.map_outlined, size: 18),
               label: Text(l10n.staysOpenMap),
+            ),
+          if (contacts)
+            TextButton.icon(
+              key: const Key('stay-contact'),
+              style: TextButton.styleFrom(
+                foregroundColor: AmaterasuColors.accentBudget,
+              ),
+              onPressed: () =>
+                  showTripStayContactDialog(context, stay, launch: launch),
+              icon: const Icon(Icons.contact_phone_outlined, size: 18),
+              label: Text(l10n.staysContact),
             ),
         ],
       ),

@@ -1,5 +1,7 @@
 // Stato vuoto di Hotel/Alloggi: icona, titolo, spiegazione e pulsante per
 // aggiungere il primo alloggio, nello stile delle pagine del workspace.
+// Con testi e pulsante diversi serve anche per "nessun alloggio con
+// questi filtri".
 
 import 'package:flutter/material.dart';
 
@@ -8,18 +10,41 @@ import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 class TripStaysEmpty extends StatelessWidget {
-  const TripStaysEmpty({super.key, this.onAdd});
+  const TripStaysEmpty({
+    super.key,
+    this.onAdd,
+    this.boxKey = const Key('stays-empty'),
+    this.icon = Icons.hotel_rounded,
+    this.title,
+    this.body,
+    this.actionKey = const Key('stays-empty-add'),
+    this.actionIcon = Icons.add,
+    this.actionLabel,
+    this.onAction,
+  });
 
+  /// "Aggiungi alloggio" (the default action).
   final VoidCallback? onAdd;
+  final Key boxKey;
+  final IconData icon;
+  final String? title;
+  final String? body;
+  final Key actionKey;
+  final IconData actionIcon;
+  final String? actionLabel;
+
+  /// Replaces [onAdd] together with [actionLabel].
+  final VoidCallback? onAction;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final action = onAction ?? onAdd;
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(AmaterasuSpacing.lg),
         child: Container(
-          key: const Key('stays-empty'),
+          key: boxKey,
           width: double.infinity,
           constraints: const BoxConstraints(maxWidth: 520),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 36),
@@ -43,12 +68,12 @@ class TripStaysEmpty extends StatelessWidget {
                     color: AmaterasuColors.accentBudget.withValues(alpha: 0.5),
                   ),
                 ),
-                child: const Icon(Icons.hotel_rounded,
+                child: Icon(icon,
                     color: AmaterasuColors.accentBudget, size: 32),
               ),
               const SizedBox(height: 20),
               Text(
-                l10n.staysEmptyTitle,
+                title ?? l10n.staysEmptyTitle,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: AmaterasuColors.textPrimary,
@@ -58,23 +83,23 @@ class TripStaysEmpty extends StatelessWidget {
               ),
               const SizedBox(height: AmaterasuSpacing.sm),
               Text(
-                l10n.staysEmptyBody,
+                body ?? l10n.staysEmptyBody,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: AmaterasuColors.textSecondary,
                   fontSize: 14,
                 ),
               ),
-              if (onAdd != null) ...[
+              if (action != null) ...[
                 const SizedBox(height: 20),
                 FilledButton.icon(
-                  key: const Key('stays-empty-add'),
+                  key: actionKey,
                   style: FilledButton.styleFrom(
                     backgroundColor: AmaterasuColors.accentBudget,
                   ),
-                  onPressed: onAdd,
-                  icon: const Icon(Icons.add),
-                  label: Text(l10n.staysAdd),
+                  onPressed: action,
+                  icon: Icon(actionIcon),
+                  label: Text(actionLabel ?? l10n.staysAdd),
                 ),
               ],
             ],

@@ -2921,6 +2921,132 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysSectionStatus => 'Status';
 
   @override
+  String get staysSectionType => 'Type of stay';
+
+  @override
+  String get staysTypeHotel => 'Hotel';
+
+  @override
+  String get staysTypeBnb => 'B&B';
+
+  @override
+  String get staysTypeApartment => 'Apartment';
+
+  @override
+  String get staysTypeHostel => 'Hostel';
+
+  @override
+  String get staysTypeCamping => 'Campsite';
+
+  @override
+  String get staysTypeOther => 'Other';
+
+  @override
+  String get staysSectionContacts => 'Contacts';
+
+  @override
+  String get staysPhone => 'Phone (optional)';
+
+  @override
+  String get staysEmail => 'Email (optional)';
+
+  @override
+  String get staysErrPhone => 'The phone can contain only digits, spaces and + ( ) . / - (4 to 40 characters).';
+
+  @override
+  String get staysErrEmail => 'Enter a valid email, for example name@example.com.';
+
+  @override
+  String get staysContact => 'Contact';
+
+  @override
+  String staysContactTitle(String name) {
+    return 'Contact $name';
+  }
+
+  @override
+  String get staysContactPhone => 'Phone';
+
+  @override
+  String get staysContactEmail => 'Email';
+
+  @override
+  String get staysContactWebsite => 'Website';
+
+  @override
+  String get staysContactCall => 'Call';
+
+  @override
+  String get staysContactWrite => 'Write';
+
+  @override
+  String get staysContactOpen => 'Open';
+
+  @override
+  String get staysContactCopy => 'Copy';
+
+  @override
+  String get staysContactCopied => 'Copied to the clipboard.';
+
+  @override
+  String get staysContactOpenFailed => 'Unable to open the app. You can copy the details.';
+
+  @override
+  String get staysContactClose => 'Close';
+
+  @override
+  String get staysPhotoPrevious => 'Previous photo';
+
+  @override
+  String get staysPhotoNext => 'Next photo';
+
+  @override
+  String get staysFilters => 'Filters';
+
+  @override
+  String staysFiltersActive(int count) {
+    return 'Filters ($count)';
+  }
+
+  @override
+  String staysFiltersShown(int shown, int total) {
+    return '$shown of $total';
+  }
+
+  @override
+  String get staysFiltersClear => 'Clear filters';
+
+  @override
+  String get staysFiltersDone => 'Done';
+
+  @override
+  String get staysFilterWhen => 'When';
+
+  @override
+  String get staysFilterAll => 'All';
+
+  @override
+  String get staysFilterUpcoming => 'Upcoming';
+
+  @override
+  String get staysFilterPast => 'Past';
+
+  @override
+  String get staysSortTitle => 'Order';
+
+  @override
+  String get staysSortAsc => 'Check-in: earliest first';
+
+  @override
+  String get staysSortDesc => 'Check-in: latest first';
+
+  @override
+  String get staysNoMatchTitle => 'No stays match these filters';
+
+  @override
+  String get staysNoMatchBody => 'Try changing or clearing the filters to see the other stays.';
+
+  @override
   String get staysSectionBooking => 'Booking';
 
   @override

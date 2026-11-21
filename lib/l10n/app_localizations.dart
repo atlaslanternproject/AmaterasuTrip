@@ -5681,6 +5681,246 @@ abstract class AppLocalizations {
   /// **'Status'**
   String get staysSectionStatus;
 
+  /// No description provided for @staysSectionType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type of stay'**
+  String get staysSectionType;
+
+  /// No description provided for @staysTypeHotel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotel'**
+  String get staysTypeHotel;
+
+  /// No description provided for @staysTypeBnb.
+  ///
+  /// In en, this message translates to:
+  /// **'B&B'**
+  String get staysTypeBnb;
+
+  /// No description provided for @staysTypeApartment.
+  ///
+  /// In en, this message translates to:
+  /// **'Apartment'**
+  String get staysTypeApartment;
+
+  /// No description provided for @staysTypeHostel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hostel'**
+  String get staysTypeHostel;
+
+  /// No description provided for @staysTypeCamping.
+  ///
+  /// In en, this message translates to:
+  /// **'Campsite'**
+  String get staysTypeCamping;
+
+  /// No description provided for @staysTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get staysTypeOther;
+
+  /// No description provided for @staysSectionContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get staysSectionContacts;
+
+  /// No description provided for @staysPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone (optional)'**
+  String get staysPhone;
+
+  /// No description provided for @staysEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email (optional)'**
+  String get staysEmail;
+
+  /// No description provided for @staysErrPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone can contain only digits, spaces and + ( ) . / - (4 to 40 characters).'**
+  String get staysErrPhone;
+
+  /// No description provided for @staysErrEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email, for example name@example.com.'**
+  String get staysErrEmail;
+
+  /// No description provided for @staysContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get staysContact;
+
+  /// No description provided for @staysContactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact {name}'**
+  String staysContactTitle(String name);
+
+  /// No description provided for @staysContactPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get staysContactPhone;
+
+  /// No description provided for @staysContactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get staysContactEmail;
+
+  /// No description provided for @staysContactWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get staysContactWebsite;
+
+  /// No description provided for @staysContactCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get staysContactCall;
+
+  /// No description provided for @staysContactWrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Write'**
+  String get staysContactWrite;
+
+  /// No description provided for @staysContactOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get staysContactOpen;
+
+  /// No description provided for @staysContactCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get staysContactCopy;
+
+  /// No description provided for @staysContactCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied to the clipboard.'**
+  String get staysContactCopied;
+
+  /// No description provided for @staysContactOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open the app. You can copy the details.'**
+  String get staysContactOpenFailed;
+
+  /// No description provided for @staysContactClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get staysContactClose;
+
+  /// No description provided for @staysPhotoPrevious.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous photo'**
+  String get staysPhotoPrevious;
+
+  /// No description provided for @staysPhotoNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next photo'**
+  String get staysPhotoNext;
+
+  /// No description provided for @staysFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get staysFilters;
+
+  /// No description provided for @staysFiltersActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters ({count})'**
+  String staysFiltersActive(int count);
+
+  /// No description provided for @staysFiltersShown.
+  ///
+  /// In en, this message translates to:
+  /// **'{shown} of {total}'**
+  String staysFiltersShown(int shown, int total);
+
+  /// No description provided for @staysFiltersClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get staysFiltersClear;
+
+  /// No description provided for @staysFiltersDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get staysFiltersDone;
+
+  /// No description provided for @staysFilterWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get staysFilterWhen;
+
+  /// No description provided for @staysFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get staysFilterAll;
+
+  /// No description provided for @staysFilterUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get staysFilterUpcoming;
+
+  /// No description provided for @staysFilterPast.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get staysFilterPast;
+
+  /// No description provided for @staysSortTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get staysSortTitle;
+
+  /// No description provided for @staysSortAsc.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in: earliest first'**
+  String get staysSortAsc;
+
+  /// No description provided for @staysSortDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in: latest first'**
+  String get staysSortDesc;
+
+  /// No description provided for @staysNoMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No stays match these filters'**
+  String get staysNoMatchTitle;
+
+  /// No description provided for @staysNoMatchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try changing or clearing the filters to see the other stays.'**
+  String get staysNoMatchBody;
+
   /// No description provided for @staysSectionBooking.
   ///
   /// In en, this message translates to:

@@ -4,6 +4,8 @@
 import 'package:amaterasutrip/features/trips/stays/data/trip_stays_repository.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
+import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -62,6 +64,29 @@ class FakeTripStaysRepository implements TripStaysRepository {
   }
 }
 
+class FakePlaceInfo implements TripStayPlaceInfoService {
+  FakePlaceInfo({this.contactsResult, this.photosResult = const []});
+
+  TripStayPlaceContacts? contactsResult;
+  List<TripStayPlacePhoto> photosResult;
+  final contactCalls = <String>[];
+  final photoCalls = <String>[];
+
+  @override
+  Future<TripStayPlaceContacts?> contacts(String placeId,
+      {required String languageCode}) async {
+    contactCalls.add(placeId);
+    return contactsResult;
+  }
+
+  @override
+  Future<List<TripStayPlacePhoto>> photos(String placeId,
+      {required String languageCode}) async {
+    photoCalls.add(placeId);
+    return photosResult;
+  }
+}
+
 class FakeLaunch {
   final calls = <(Uri, LaunchMode)>[];
 
@@ -84,6 +109,9 @@ TripStay testStay(
   String? placeId,
   List<String> guests = const [],
   String? expenseId,
+  TripStayType? type,
+  String? phone,
+  String? email,
 }) => TripStay(
   id: id,
   tripId: 't1',
@@ -100,6 +128,9 @@ TripStay testStay(
   googlePlaceId: placeId,
   guestUids: guests,
   expenseId: expenseId,
+  type: type,
+  phone: phone,
+  email: email,
 );
 
 /// The app with fake stays, owner and member names.
@@ -112,6 +143,7 @@ Widget staysTestApp(
   List<Override> extra = const [],
   String locale = 'it',
   FakeBudgetApi? budget,
+  FakePlaceInfo? placeInfo,
 }) => ProviderScope(
   overrides: [
     tripStaysProvider('t1').overrideWith((ref) => Stream.value(stays)),
@@ -121,6 +153,7 @@ Widget staysTestApp(
     tripStaysBudgetApiProvider('t1').overrideWith(
       (ref) => budget ?? FakeBudgetApi(uid: repository.uid ?? 'anna'),
     ),
+    tripStayPlaceInfoProvider.overrideWithValue(placeInfo ?? FakePlaceInfo()),
     ...extra,
   ],
   child: MaterialApp(
