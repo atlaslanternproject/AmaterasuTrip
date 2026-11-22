@@ -121,8 +121,11 @@ class TripHotelsPage extends ConsumerWidget {
                     : TripStaysFilteredView(
                         stays: items,
                         today: today ?? DateTime.now(),
-                        listOf: (shown) => TripStaysList(
+                        tripId: tripId,
+                        uid: uid,
+                        listOf: (shown, view) => TripStaysList(
                           stays: shown,
+                          view: view,
                           guestNameOf: (guestUid) =>
                               names[guestUid] ?? l10n.staysFormerGuest,
                           canDelete: canDelete,

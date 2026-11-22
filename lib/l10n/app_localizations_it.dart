@@ -3047,6 +3047,15 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysNoMatchBody => 'Prova a cambiare o azzerare i filtri per vedere gli altri alloggi.';
 
   @override
+  String get staysViewCards => 'Card';
+
+  @override
+  String get staysViewList => 'Elenco';
+
+  @override
+  String get staysViewDetails => 'Dettagli';
+
+  @override
   String get staysSectionBooking => 'Prenotazione';
 
   @override

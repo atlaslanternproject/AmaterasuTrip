@@ -104,15 +104,22 @@ class TripStayPhotoDots extends StatelessWidget {
 }
 
 class TripStayPhotoAuthors extends StatelessWidget {
-  const TripStayPhotoAuthors({super.key, required this.authors});
+  const TripStayPhotoAuthors({
+    super.key,
+    required this.authors,
+    this.compact = false,
+  });
 
   final List<TripStayPhotoAuthor> authors;
 
+  /// Small photo: no room is kept for the page dots.
+  final bool compact;
+
   @override
   Widget build(BuildContext context) => Positioned(
-    left: 8,
-    bottom: 8,
-    right: 90,
+    left: compact ? 4 : 8,
+    bottom: compact ? 4 : 8,
+    right: compact ? 4 : 90,
     child: Align(
       alignment: Alignment.bottomLeft,
       child: Container(
