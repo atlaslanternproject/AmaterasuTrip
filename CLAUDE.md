@@ -174,7 +174,10 @@ Finito:
   cancellazione con approvazione. Approvata.
 - Hotel e alloggi (lib/features/trips/stays e
   pages/workspace/more/hotels): elenco con filtri (stato,
-  tipo, prossimi/passati) e ordine per check-in; card nello
+  tipo, prossimi/passati) e ordine per check-in; viste
+  Card, Elenco e Dettagli come la bucket list (scelta
+  ricordata nelle preferenze locali; Mappa, Spesa,
+  Contatta e Modifica in ogni vista); card nello
   stile della bucket list con carosello di foto Google (max
   5, chieste solo quando la card appare, cache in memoria
   per la sessione, mai salvate), tipo di alloggio, stato,
