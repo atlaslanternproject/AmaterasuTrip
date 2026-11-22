@@ -4,10 +4,10 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/places/widgets/amaterasu_place_photo_carousel.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'trip_stay_labels.dart';
-import 'trip_stay_photo_carousel.dart';
 import 'trip_stay_status_chip.dart';
 import 'trip_stay_type_chip.dart';
 
@@ -46,9 +46,10 @@ class TripStayCompactCard extends StatelessWidget {
                   width: 92,
                   child: Opacity(
                     opacity: cancelled ? 0.5 : 1,
-                    child: TripStayPhotoCarousel(
+                    child: AmaterasuPlacePhotoCarousel(
                       placeId: stay.googlePlaceId,
-                      type: stay.type,
+                      placeholderIcon: TripStayLabels.typeIcon(stay.type),
+                      keyPrefix: 'stay',
                       height: 94,
                       controls: false,
                     ),

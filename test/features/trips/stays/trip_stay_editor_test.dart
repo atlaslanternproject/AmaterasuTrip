@@ -1,11 +1,11 @@
 // Test automatici dell'editor degli alloggi (creazione e modifica).
 // Casi, ad esempio: "Google place fills name, address, city, country", "invalid link is explained".
 
+import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/hotels/trip_hotels_page.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_booking_platform.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
-import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -16,10 +16,14 @@ Future<void> openNew(WidgetTester tester, FakeTripStaysRepository repo) async {
   tester.view.physicalSize = const Size(1000, 2400);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
-  await tester.pumpWidget(staysTestApp(
-    const TripHotelsPage(tripId: 't1'),
-    stays: const [], repository: repo,
-    extra: [tripStaysPlacesProvider.overrideWithValue(FakePlaces())]));
+  await tester.pumpWidget(
+    staysTestApp(
+      const TripHotelsPage(tripId: 't1'),
+      stays: const [],
+      repository: repo,
+      extra: [amaterasuPlaceSearchProvider.overrideWithValue(FakePlaces())],
+    ),
+  );
   await tester.pumpAndSettle();
   await tester.tap(find.byKey(const Key('stays-add')));
   await tester.pumpAndSettle();
@@ -32,8 +36,9 @@ Future<void> save(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('a name is enough to create a stay (to confirm, today)',
-      (tester) async {
+  testWidgets('a name is enough to create a stay (to confirm, today)', (
+    tester,
+  ) async {
     final repo = FakeTripStaysRepository();
     await openNew(tester, repo);
     expect(find.text('Nuovo alloggio'), findsOneWidget);
@@ -56,7 +61,9 @@ void main() {
     expect(find.text('Alloggio salvato.'), findsOneWidget);
   });
 
-  testWidgets('Google place fills name, address, city, country', (tester) async {
+  testWidgets('Google place fills name, address, city, country', (
+    tester,
+  ) async {
     final repo = FakeTripStaysRepository();
     await openNew(tester, repo);
     await tester.enterText(find.byKey(const Key('stay-search')), 'granvia');
@@ -76,8 +83,9 @@ void main() {
     expect(stay.latitude, 34.98);
   });
 
-  testWidgets('booking: other needs text, invalid link is explained',
-      (tester) async {
+  testWidgets('booking: other needs text, invalid link is explained', (
+    tester,
+  ) async {
     final repo = FakeTripStaysRepository();
     await openNew(tester, repo);
     await tester.enterText(find.byKey(const Key('stay-name')), 'Casa');
@@ -86,18 +94,29 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Altro').last);
     await tester.pumpAndSettle();
-    await tester.enterText(find.byKey(const Key('stay-booking-url')), 'booking.com');
+    await tester.enterText(
+      find.byKey(const Key('stay-booking-url')),
+      'booking.com',
+    );
     await tester.pumpAndSettle();
-    expect(find.text(
-      'Il link deve iniziare con http:// o https:// e non contenere spazi.'),
-      findsWidgets);
+    expect(
+      find.text(
+        'Il link deve iniziare con http:// o https:// e non contenere spazi.',
+      ),
+      findsWidgets,
+    );
     await save(tester);
     expect(find.text('Scrivi dove è stato prenotato.'), findsOneWidget);
     expect(repo.created, isEmpty);
 
-    await tester.enterText(find.byKey(const Key('stay-booked-via-other')), 'Expedia');
-    await tester.enterText(find.byKey(const Key('stay-booking-url')),
-        'https://www.expedia.it/x');
+    await tester.enterText(
+      find.byKey(const Key('stay-booked-via-other')),
+      'Expedia',
+    );
+    await tester.enterText(
+      find.byKey(const Key('stay-booking-url')),
+      'https://www.expedia.it/x',
+    );
     await tester.enterText(find.byKey(const Key('stay-code')), 'ABC123');
     await tester.ensureVisible(find.byKey(const Key('stay-guest-bruno')));
     await tester.tap(find.byKey(const Key('stay-guest-bruno')));
@@ -111,16 +130,23 @@ void main() {
     expect(stay.guestUids, ['bruno']);
   });
 
-  testWidgets('editing keeps id and author, changes the status', (tester) async {
+  testWidgets('editing keeps id and author, changes the status', (
+    tester,
+  ) async {
     tester.view.physicalSize = const Size(1000, 2400);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
     final repo = FakeTripStaysRepository(uid: 'bruno');
-    await tester.pumpWidget(staysTestApp(
-      const TripHotelsPage(tripId: 't1'),
-      stays: [testStay('s1', createdBy: 'anna', status: TripStayStatus.toConfirm)],
-      repository: repo,
-      extra: [tripStaysPlacesProvider.overrideWithValue(FakePlaces())]));
+    await tester.pumpWidget(
+      staysTestApp(
+        const TripHotelsPage(tripId: 't1'),
+        stays: [
+          testStay('s1', createdBy: 'anna', status: TripStayStatus.toConfirm),
+        ],
+        repository: repo,
+        extra: [amaterasuPlaceSearchProvider.overrideWithValue(FakePlaces())],
+      ),
+    );
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('stay-edit-s1')));
     await tester.pumpAndSettle();
@@ -135,15 +161,19 @@ void main() {
     expect(stay.checkInTime, '15:00');
   });
 
-  testWidgets('a failed save keeps the editor open with a message',
-      (tester) async {
+  testWidgets('a failed save keeps the editor open with a message', (
+    tester,
+  ) async {
     final repo = FakeTripStaysRepository()..failSave = true;
     await openNew(tester, repo);
     await tester.enterText(find.byKey(const Key('stay-name')), 'Ryokan');
     await save(tester);
-    expect(find.text(
-      'Impossibile salvare l\'alloggio. Controlla la connessione e riprova.'),
-      findsOneWidget);
+    expect(
+      find.text(
+        'Impossibile salvare l\'alloggio. Controlla la connessione e riprova.',
+      ),
+      findsOneWidget,
+    );
     expect(find.text('Nuovo alloggio'), findsOneWidget);
   });
 }

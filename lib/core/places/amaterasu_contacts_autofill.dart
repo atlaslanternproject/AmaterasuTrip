@@ -1,4 +1,5 @@
-// Telefono e sito presi da Google quando si sceglie il luogo nell'editor.
+// Modulo Luogo condiviso: telefono e sito presi da Google quando si
+// sceglie il luogo in un editor (alloggi e altre sezioni).
 // Si scrivono nei campi vuoti o in quelli ancora uguali a ciò che Google
 // aveva messo prima (cambiando hotel si aggiornano); quello che l'utente
 // ha scritto a mano non viene mai sovrascritto. L'email resta manuale.
@@ -6,22 +7,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/links/amaterasu_web_link.dart';
-import 'package:amaterasutrip/features/trips/stays/models/trip_stay_validator.dart';
-import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
-import 'trip_stay_draft.dart';
+import 'amaterasu_contact_validator.dart';
+import 'amaterasu_place_info.dart';
 
-class TripStayContactsAutofill {
+class AmaterasuContactsAutofill {
   String? _phone;
   String? _site;
 
   /// Errors are ignored: contacts are a bonus, the place is already chosen.
   Future<void> apply(
-    TripStayDraft draft,
-    TripStayPlaceInfoService info,
+    TextEditingController phoneField,
+    TextEditingController websiteField,
+    AmaterasuPlaceInfoService info,
     String placeId, {
     required String languageCode,
   }) async {
-    TripStayPlaceContacts? found;
+    AmaterasuPlaceContacts? found;
     try {
       found = await info.contacts(placeId, languageCode: languageCode);
     } catch (_) {
@@ -30,12 +31,12 @@ class TripStayContactsAutofill {
     final phone = found?.phone;
     final site = found?.website;
     _phone = _fill(
-      draft.phone,
+      phoneField,
       _phone,
-      phone != null && TripStayValidator.isPhone(phone) ? phone : null,
+      phone != null && AmaterasuContactValidator.isPhone(phone) ? phone : null,
     );
     _site = _fill(
-      draft.propertyUrl,
+      websiteField,
       _site,
       site != null && AmaterasuWebLink.isValid(site) ? site : null,
     );

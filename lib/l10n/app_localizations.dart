@@ -5765,77 +5765,77 @@ abstract class AppLocalizations {
   /// **'Contact {name}'**
   String staysContactTitle(String name);
 
-  /// No description provided for @staysContactPhone.
+  /// No description provided for @placesContactPhone.
   ///
   /// In en, this message translates to:
   /// **'Phone'**
-  String get staysContactPhone;
+  String get placesContactPhone;
 
-  /// No description provided for @staysContactEmail.
+  /// No description provided for @placesContactEmail.
   ///
   /// In en, this message translates to:
   /// **'Email'**
-  String get staysContactEmail;
+  String get placesContactEmail;
 
-  /// No description provided for @staysContactWebsite.
+  /// No description provided for @placesContactWebsite.
   ///
   /// In en, this message translates to:
   /// **'Website'**
-  String get staysContactWebsite;
+  String get placesContactWebsite;
 
-  /// No description provided for @staysContactCall.
+  /// No description provided for @placesContactCall.
   ///
   /// In en, this message translates to:
   /// **'Call'**
-  String get staysContactCall;
+  String get placesContactCall;
 
-  /// No description provided for @staysContactWrite.
+  /// No description provided for @placesContactWrite.
   ///
   /// In en, this message translates to:
   /// **'Write'**
-  String get staysContactWrite;
+  String get placesContactWrite;
 
-  /// No description provided for @staysContactOpen.
+  /// No description provided for @placesContactOpen.
   ///
   /// In en, this message translates to:
   /// **'Open'**
-  String get staysContactOpen;
+  String get placesContactOpen;
 
-  /// No description provided for @staysContactCopy.
+  /// No description provided for @placesContactCopy.
   ///
   /// In en, this message translates to:
   /// **'Copy'**
-  String get staysContactCopy;
+  String get placesContactCopy;
 
-  /// No description provided for @staysContactCopied.
+  /// No description provided for @placesContactCopied.
   ///
   /// In en, this message translates to:
   /// **'Copied to the clipboard.'**
-  String get staysContactCopied;
+  String get placesContactCopied;
 
-  /// No description provided for @staysContactOpenFailed.
+  /// No description provided for @placesContactOpenFailed.
   ///
   /// In en, this message translates to:
   /// **'Unable to open the app. You can copy the details.'**
-  String get staysContactOpenFailed;
+  String get placesContactOpenFailed;
 
-  /// No description provided for @staysContactClose.
+  /// No description provided for @placesContactClose.
   ///
   /// In en, this message translates to:
   /// **'Close'**
-  String get staysContactClose;
+  String get placesContactClose;
 
-  /// No description provided for @staysPhotoPrevious.
+  /// No description provided for @placesPhotoPrevious.
   ///
   /// In en, this message translates to:
   /// **'Previous photo'**
-  String get staysPhotoPrevious;
+  String get placesPhotoPrevious;
 
-  /// No description provided for @staysPhotoNext.
+  /// No description provided for @placesPhotoNext.
   ///
   /// In en, this message translates to:
   /// **'Next photo'**
-  String get staysPhotoNext;
+  String get placesPhotoNext;
 
   /// No description provided for @staysFilters.
   ///
@@ -5975,47 +5975,47 @@ abstract class AppLocalizations {
   /// **'Accommodation name'**
   String get staysName;
 
-  /// No description provided for @staysSearchHint.
+  /// No description provided for @placesSearchHint.
   ///
   /// In en, this message translates to:
   /// **'Search on Google: name or address'**
-  String get staysSearchHint;
+  String get placesSearchHint;
 
-  /// No description provided for @staysSearchButton.
+  /// No description provided for @placesSearchButton.
   ///
   /// In en, this message translates to:
   /// **'Search'**
-  String get staysSearchButton;
+  String get placesSearchButton;
 
-  /// No description provided for @staysSearchError.
+  /// No description provided for @placesSearchError.
   ///
   /// In en, this message translates to:
   /// **'Search unavailable. Please retry.'**
-  String get staysSearchError;
+  String get placesSearchError;
 
-  /// No description provided for @staysPlaceLoadError.
+  /// No description provided for @placesLoadError.
   ///
   /// In en, this message translates to:
   /// **'Unable to load this place.'**
-  String get staysPlaceLoadError;
+  String get placesLoadError;
 
-  /// No description provided for @staysNoResults.
+  /// No description provided for @placesNoResults.
   ///
   /// In en, this message translates to:
   /// **'No results.'**
-  String get staysNoResults;
+  String get placesNoResults;
 
-  /// No description provided for @staysPlaceLinked.
+  /// No description provided for @placesLinked.
   ///
   /// In en, this message translates to:
   /// **'Place linked to Google Maps'**
-  String get staysPlaceLinked;
+  String get placesLinked;
 
-  /// No description provided for @staysPlaceUnlink.
+  /// No description provided for @placesUnlink.
   ///
   /// In en, this message translates to:
   /// **'Unlink'**
-  String get staysPlaceUnlink;
+  String get placesUnlink;
 
   /// No description provided for @staysAddress.
   ///

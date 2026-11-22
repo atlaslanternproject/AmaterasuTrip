@@ -39,22 +39,32 @@ Future<void> big(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('Crea spesa opens a prefilled shared-only expense dialog',
-      (tester) async {
+  testWidgets('Crea spesa opens a prefilled shared-only expense dialog', (
+    tester,
+  ) async {
     await big(tester);
-    final budget = FakeBudgetApi(uid: 'anna', members: [
-      {'uid': 'anna', 'name': 'Anna'},
-      {'uid': 'bruno', 'name': 'Bruno'},
-    ]);
-    await tester.pumpWidget(staysTestApp(
-      const TripHotelsPage(tripId: 't1'),
-      stays: [testStay('s1')], repository: FakeTripStaysRepository(),
-      budget: budget));
+    final budget = FakeBudgetApi(
+      uid: 'anna',
+      members: [
+        {'uid': 'anna', 'name': 'Anna'},
+        {'uid': 'bruno', 'name': 'Bruno'},
+      ],
+    );
+    await tester.pumpWidget(
+      staysTestApp(
+        const TripHotelsPage(tripId: 't1'),
+        stays: [testStay('s1')],
+        repository: FakeTripStaysRepository(),
+        budget: budget,
+      ),
+    );
     await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(const Key('stay-expense-create-s1')));
     await tester.pumpAndSettle();
-    final dialog = tester.widget<BudgetCreateDialog>(find.byType(BudgetCreateDialog));
+    final dialog = tester.widget<BudgetCreateDialog>(
+      find.byType(BudgetCreateDialog),
+    );
     expect(dialog.initialTitle, 'Hotel Kyoto');
     expect(dialog.initialCategory, 'accommodation');
     expect(dialog.initialDate, DateTime(2027, 4, 12));
@@ -63,31 +73,44 @@ void main() {
   });
 
   for (final fail in [false, true]) {
-    testWidgets('after Crea spesa the new expense is linked (fail: $fail)',
-        (tester) async {
+    testWidgets('after Crea spesa the new expense is linked (fail: $fail)', (
+      tester,
+    ) async {
       await big(tester);
       final repo = FakeTripStaysRepository()..failLink = fail;
-      await tester.pumpWidget(staysTestApp(
-        const TripHotelsPage(tripId: 't1'),
-        stays: [testStay('s1')], repository: repo,
-        budget: FakeBudgetApi(uid: 'anna', members: [
-          {'uid': 'anna', 'name': 'Anna'},
-        ])));
+      await tester.pumpWidget(
+        staysTestApp(
+          const TripHotelsPage(tripId: 't1'),
+          stays: [testStay('s1')],
+          repository: repo,
+          budget: FakeBudgetApi(
+            uid: 'anna',
+            members: [
+              {'uid': 'anna', 'name': 'Anna'},
+            ],
+          ),
+        ),
+      );
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('stay-expense-create-s1')));
       await tester.pumpAndSettle();
 
       // As if the user completed the expense dialog.
-      tester.widget<BudgetCreateDialog>(find.byType(BudgetCreateDialog))
+      tester
+          .widget<BudgetCreateDialog>(find.byType(BudgetCreateDialog))
           .onCreated!('exp-9');
       await tester.tapAt(const Offset(5, 5));
       await tester.pumpAndSettle();
 
       if (fail) {
         expect(repo.links, isEmpty);
-        expect(find.text('La spesa è stata creata ma non è stata collegata '
-            'all\'alloggio. Usa "Collega spesa esistente" per collegarla.'),
-            findsOneWidget);
+        expect(
+          find.text(
+            'La spesa è stata creata ma non è stata collegata '
+            'all\'alloggio. Usa "Collega spesa esistente" per collegarla.',
+          ),
+          findsOneWidget,
+        );
       } else {
         expect(repo.links, [('s1', 'exp-9')]);
         expect(find.text('Spesa collegata all\'alloggio.'), findsOneWidget);
@@ -98,14 +121,24 @@ void main() {
   testWidgets('an existing shared expense can be linked later', (tester) async {
     await big(tester);
     final repo = FakeTripStaysRepository();
-    await tester.pumpWidget(staysTestApp(
-      const TripHotelsPage(tripId: 't1'),
-      stays: [testStay('s1')], repository: repo,
-      budget: FakeBudgetApi(uid: 'anna', shared: [
-        FakeDoc('e-hotel', hotelExpense()),
-        FakeDoc('e-gone', {...hotelExpense(), 'title': 'Annullata',
-          'lifecycle': 'cancelled'}),
-      ])));
+    await tester.pumpWidget(
+      staysTestApp(
+        const TripHotelsPage(tripId: 't1'),
+        stays: [testStay('s1')],
+        repository: repo,
+        budget: FakeBudgetApi(
+          uid: 'anna',
+          shared: [
+            FakeDoc('e-hotel', hotelExpense()),
+            FakeDoc('e-gone', {
+              ...hotelExpense(),
+              'title': 'Annullata',
+              'lifecycle': 'cancelled',
+            }),
+          ],
+        ),
+      ),
+    );
     await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(const Key('stay-expense-link-s1')));
@@ -121,11 +154,17 @@ void main() {
   testWidgets('a failed link is explained', (tester) async {
     await big(tester);
     final repo = FakeTripStaysRepository()..failLink = true;
-    await tester.pumpWidget(staysTestApp(
-      const TripHotelsPage(tripId: 't1'),
-      stays: [testStay('s1')], repository: repo,
-      budget: FakeBudgetApi(uid: 'anna',
-          shared: [FakeDoc('e-hotel', hotelExpense())])));
+    await tester.pumpWidget(
+      staysTestApp(
+        const TripHotelsPage(tripId: 't1'),
+        stays: [testStay('s1')],
+        repository: repo,
+        budget: FakeBudgetApi(
+          uid: 'anna',
+          shared: [FakeDoc('e-hotel', hotelExpense())],
+        ),
+      ),
+    );
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('stay-expense-link-s1')));
     await tester.pumpAndSettle();
@@ -135,24 +174,37 @@ void main() {
     expect(find.textContaining('Impossibile salvare'), findsOneWidget);
   });
 
-  testWidgets('linked expense shows title, amount and Vedi spesa',
-      (tester) async {
+  testWidgets('linked expense shows title, amount and Vedi spesa', (
+    tester,
+  ) async {
     await big(tester);
-    await tester.pumpWidget(staysTestApp(
-      const TripHotelsPage(tripId: 't1'),
-      stays: [testStay('s1', expenseId: 'e-hotel'),
-        testStay('s2', name: 'Altro', day: 20, expenseId: 'e-missing')],
-      repository: FakeTripStaysRepository(),
-      budget: FakeBudgetApi(uid: 'anna', members: [
-        {'uid': 'anna', 'name': 'Anna'}, {'uid': 'bruno', 'name': 'Bruno'},
-      ], shared: [FakeDoc('e-hotel', hotelExpense())])));
+    await tester.pumpWidget(
+      staysTestApp(
+        const TripHotelsPage(tripId: 't1'),
+        stays: [
+          testStay('s1', expenseId: 'e-hotel'),
+          testStay('s2', name: 'Altro', day: 20, expenseId: 'e-missing'),
+        ],
+        repository: FakeTripStaysRepository(),
+        budget: FakeBudgetApi(
+          uid: 'anna',
+          members: [
+            {'uid': 'anna', 'name': 'Anna'},
+            {'uid': 'bruno', 'name': 'Bruno'},
+          ],
+          shared: [FakeDoc('e-hotel', hotelExpense())],
+        ),
+      ),
+    );
     await tester.pumpAndSettle();
 
     expect(find.textContaining('Spesa collegata: Hotel Kyoto'), findsOneWidget);
     expect(find.textContaining('360,00'), findsOneWidget);
     expect(find.byKey(const Key('stay-expense-create-s1')), findsNothing);
-    expect(find.text('Spesa collegata (non visibile per te o eliminata).'),
-        findsOneWidget);
+    expect(
+      find.text('Spesa collegata (non visibile per te o eliminata).'),
+      findsOneWidget,
+    );
 
     await tester.tap(find.byKey(const Key('stay-expense-view-s1')));
     await tester.pumpAndSettle();

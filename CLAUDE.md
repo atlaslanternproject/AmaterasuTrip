@@ -130,6 +130,13 @@ Componenti riutilizzabili:
   (nuova scheda, "Copia link" se non si apre, Google Maps con
   errore), AmaterasuLinkChip. Da usare per ogni nuovo link;
   la bucket list ha ancora la sua copia (TODO(audit)).
+- lib/core/places/ (modulo Luogo condiviso): ricerca
+  Google (AmaterasuPlaceSearchField, amaterasuPlaceSearchProvider),
+  contatti e foto con cache di sessione (amaterasuPlaceInfoProvider,
+  web/amaterasu_place_info.js), carosello foto, pop-up
+  "Contatta", riempimento automatico di telefono e sito,
+  controllo telefono/email. Da usare in ogni sezione con
+  luoghi; la bucket list ha ancora i suoi (TODO(audit)).
 - Workspace del viaggio
   (lib/features/trips/presentation/pages/workspace/widgets/):
   TripWorkspaceShell, TripWorkspaceBottomBar e
@@ -187,9 +194,8 @@ Finito:
   Google che compila anche telefono e sito, tipo, contatti,
   date e orari, stato, prenotazione, ospiti, note);
   eliminazione per creatore o OWNER, spesa condivisa
-  creata o collegata dalla card. I dati Google extra degli
-  alloggi passano da web/amaterasu_stay_places.js (separato
-  dal ponte della bucket list). Dati in
+  creata o collegata dalla card. Luogo, foto e contatti
+  vengono dal modulo condiviso lib/core/places. Dati in
   trips/{tripId}/stays scritti dall'app con regole in
   firestore.rules; esclusi dalla duplicazione del viaggio.
   L'importo mostrato è quello della spesa collegata (nel

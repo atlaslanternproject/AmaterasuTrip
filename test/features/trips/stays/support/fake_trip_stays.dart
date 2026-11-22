@@ -1,11 +1,12 @@
 // Supporto ai test di Hotel/Alloggi: repository finto senza Firebase,
 // soggiorni di prova e l'app con i provider sostituiti.
 
+import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/features/trips/stays/data/trip_stays_repository.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
-import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
+import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -17,7 +18,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../budget/support/fake_budget_api.dart';
 
-export '../../budget/support/fake_budget_api.dart' show FakeBudgetApi, FakeDoc, eur;
+export '../../budget/support/fake_budget_api.dart'
+    show FakeBudgetApi, FakeDoc, eur;
 
 class FakeTripStaysRepository implements TripStaysRepository {
   FakeTripStaysRepository({this.uid = 'anna'});
@@ -64,24 +66,28 @@ class FakeTripStaysRepository implements TripStaysRepository {
   }
 }
 
-class FakePlaceInfo implements TripStayPlaceInfoService {
+class FakePlaceInfo implements AmaterasuPlaceInfoService {
   FakePlaceInfo({this.contactsResult, this.photosResult = const []});
 
-  TripStayPlaceContacts? contactsResult;
-  List<TripStayPlacePhoto> photosResult;
+  AmaterasuPlaceContacts? contactsResult;
+  List<AmaterasuPlacePhoto> photosResult;
   final contactCalls = <String>[];
   final photoCalls = <String>[];
 
   @override
-  Future<TripStayPlaceContacts?> contacts(String placeId,
-      {required String languageCode}) async {
+  Future<AmaterasuPlaceContacts?> contacts(
+    String placeId, {
+    required String languageCode,
+  }) async {
     contactCalls.add(placeId);
     return contactsResult;
   }
 
   @override
-  Future<List<TripStayPlacePhoto>> photos(String placeId,
-      {required String languageCode}) async {
+  Future<List<AmaterasuPlacePhoto>> photos(
+    String placeId, {
+    required String languageCode,
+  }) async {
     photoCalls.add(placeId);
     return photosResult;
   }
@@ -90,8 +96,11 @@ class FakePlaceInfo implements TripStayPlaceInfoService {
 class FakeLaunch {
   final calls = <(Uri, LaunchMode)>[];
 
-  Future<bool> call(Uri uri, {LaunchMode mode = LaunchMode.platformDefault,
-      String? webOnlyWindowName}) async {
+  Future<bool> call(
+    Uri uri, {
+    LaunchMode mode = LaunchMode.platformDefault,
+    String? webOnlyWindowName,
+  }) async {
     calls.add((uri, mode));
     return true;
   }
@@ -153,7 +162,7 @@ Widget staysTestApp(
     tripStaysBudgetApiProvider('t1').overrideWith(
       (ref) => budget ?? FakeBudgetApi(uid: repository.uid ?? 'anna'),
     ),
-    tripStayPlaceInfoProvider.overrideWithValue(placeInfo ?? FakePlaceInfo()),
+    amaterasuPlaceInfoProvider.overrideWithValue(placeInfo ?? FakePlaceInfo()),
     ...extra,
   ],
   child: MaterialApp(

@@ -16,7 +16,11 @@ abstract final class TripStaysViewPreferences {
     return TripStaysView.fromCode(prefs.getString(key(uid, tripId)));
   }
 
-  static Future<void> save(String uid, String tripId, TripStaysView view) async {
+  static Future<void> save(
+    String uid,
+    String tripId,
+    TripStaysView view,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(key(uid, tripId), view.code);
   }

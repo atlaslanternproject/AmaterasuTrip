@@ -58,19 +58,37 @@ class TripStaysRepository {
     _validate(stay);
     final data = TripStayCodec.toMap(stay);
     const optional = [
-      'checkInTime', 'checkOutTime', 'address', 'city', 'country',
-      'googlePlaceId', 'latitude', 'longitude', 'bookedVia',
-      'bookedViaOther', 'bookingUrl', 'propertyUrl', 'confirmationCode',
-      'notes', 'guestUids', 'expenseId', 'type',
-      'phone', 'email',
+      'checkInTime',
+      'checkOutTime',
+      'address',
+      'city',
+      'country',
+      'googlePlaceId',
+      'latitude',
+      'longitude',
+      'bookedVia',
+      'bookedViaOther',
+      'bookingUrl',
+      'propertyUrl',
+      'confirmationCode',
+      'notes',
+      'guestUids',
+      'expenseId',
+      'type',
+      'phone',
+      'email',
     ];
-    await _firestore.doc(TripStaysPaths.stay(stay.tripId, stay.id)).update({
-      ...data,
-      for (final key in optional)
-        if (!data.containsKey(key)) key: FieldValue.delete(),
-      'createdByUid': stay.createdByUid,
-      'updatedAt': FieldValue.serverTimestamp(),
-    }..remove('createdAt'));
+    await _firestore
+        .doc(TripStaysPaths.stay(stay.tripId, stay.id))
+        .update(
+          {
+            ...data,
+            for (final key in optional)
+              if (!data.containsKey(key)) key: FieldValue.delete(),
+            'createdByUid': stay.createdByUid,
+            'updatedAt': FieldValue.serverTimestamp(),
+          }..remove('createdAt'),
+        );
   }
 
   /// Links a shared budget expense to the stay.

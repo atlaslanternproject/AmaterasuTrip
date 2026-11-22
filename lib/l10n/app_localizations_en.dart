@@ -2965,40 +2965,40 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get staysContactPhone => 'Phone';
+  String get placesContactPhone => 'Phone';
 
   @override
-  String get staysContactEmail => 'Email';
+  String get placesContactEmail => 'Email';
 
   @override
-  String get staysContactWebsite => 'Website';
+  String get placesContactWebsite => 'Website';
 
   @override
-  String get staysContactCall => 'Call';
+  String get placesContactCall => 'Call';
 
   @override
-  String get staysContactWrite => 'Write';
+  String get placesContactWrite => 'Write';
 
   @override
-  String get staysContactOpen => 'Open';
+  String get placesContactOpen => 'Open';
 
   @override
-  String get staysContactCopy => 'Copy';
+  String get placesContactCopy => 'Copy';
 
   @override
-  String get staysContactCopied => 'Copied to the clipboard.';
+  String get placesContactCopied => 'Copied to the clipboard.';
 
   @override
-  String get staysContactOpenFailed => 'Unable to open the app. You can copy the details.';
+  String get placesContactOpenFailed => 'Unable to open the app. You can copy the details.';
 
   @override
-  String get staysContactClose => 'Close';
+  String get placesContactClose => 'Close';
 
   @override
-  String get staysPhotoPrevious => 'Previous photo';
+  String get placesPhotoPrevious => 'Previous photo';
 
   @override
-  String get staysPhotoNext => 'Next photo';
+  String get placesPhotoNext => 'Next photo';
 
   @override
   String get staysFilters => 'Filters';
@@ -3074,25 +3074,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysName => 'Accommodation name';
 
   @override
-  String get staysSearchHint => 'Search on Google: name or address';
+  String get placesSearchHint => 'Search on Google: name or address';
 
   @override
-  String get staysSearchButton => 'Search';
+  String get placesSearchButton => 'Search';
 
   @override
-  String get staysSearchError => 'Search unavailable. Please retry.';
+  String get placesSearchError => 'Search unavailable. Please retry.';
 
   @override
-  String get staysPlaceLoadError => 'Unable to load this place.';
+  String get placesLoadError => 'Unable to load this place.';
 
   @override
-  String get staysNoResults => 'No results.';
+  String get placesNoResults => 'No results.';
 
   @override
-  String get staysPlaceLinked => 'Place linked to Google Maps';
+  String get placesLinked => 'Place linked to Google Maps';
 
   @override
-  String get staysPlaceUnlink => 'Unlink';
+  String get placesUnlink => 'Unlink';
 
   @override
   String get staysAddress => 'Address (optional)';

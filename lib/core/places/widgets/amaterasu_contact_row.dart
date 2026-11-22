@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
-class TripStayContactRow extends StatelessWidget {
-  const TripStayContactRow({
+class AmaterasuContactRow extends StatelessWidget {
+  const AmaterasuContactRow({
     super.key,
     required this.id,
     required this.icon,
@@ -16,9 +16,13 @@ class TripStayContactRow extends StatelessWidget {
     required this.actionLabel,
     required this.onAction,
     required this.onCopy,
+    this.keyPrefix = 'place-contact',
   });
 
-  /// Used in the button keys (stay-contact-{id}-action and -copy).
+  /// Start of the button keys.
+  final String keyPrefix;
+
+  /// Used in the button keys ({keyPrefix}-{id}-action and -copy).
   final String id;
   final IconData icon;
   final String label;
@@ -67,16 +71,16 @@ class TripStayContactRow extends StatelessWidget {
             spacing: 4,
             children: [
               TextButton.icon(
-                key: Key('stay-contact-$id-copy'),
+                key: Key('$keyPrefix-$id-copy'),
                 onPressed: onCopy,
                 style: TextButton.styleFrom(
                   foregroundColor: AmaterasuColors.textSecondary,
                 ),
                 icon: const Icon(Icons.copy_rounded, size: 16),
-                label: Text(AppLocalizations.of(context)!.staysContactCopy),
+                label: Text(AppLocalizations.of(context)!.placesContactCopy),
               ),
               FilledButton.tonal(
-                key: Key('stay-contact-$id-action'),
+                key: Key('$keyPrefix-$id-action'),
                 onPressed: onAction,
                 style: FilledButton.styleFrom(
                   backgroundColor: AmaterasuColors.accentBudget.withValues(

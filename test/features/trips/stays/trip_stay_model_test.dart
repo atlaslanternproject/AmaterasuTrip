@@ -43,17 +43,32 @@ TripStay stay({
 void main() {
   test('codec round trip keeps every field', () {
     final full = TripStay(
-      id: 's9', tripId: 't1', name: ' Ryokan ',
-      checkInDate: DateTime(2027, 4, 12), checkOutDate: DateTime(2027, 4, 15),
-      status: TripStayStatus.toConfirm, createdByUid: 'anna',
+      id: 's9',
+      tripId: 't1',
+      name: ' Ryokan ',
+      checkInDate: DateTime(2027, 4, 12),
+      checkOutDate: DateTime(2027, 4, 15),
+      status: TripStayStatus.toConfirm,
+      createdByUid: 'anna',
       type: TripStayType.bnb,
-      checkInTime: '15:00', checkOutTime: '10:30', address: 'Shijo 1',
-      city: 'Kyoto', country: 'Japan', googlePlaceId: 'ChIJ1',
-      latitude: 35.01, longitude: 135.76,
-      bookedVia: TripStayBookingPlatform.other, bookedViaOther: 'Expedia',
-      bookingUrl: 'https://example.com/b', propertyUrl: 'http://ryokan.jp',
-      confirmationCode: 'ABC', notes: 'Colazione', guestUids: ['anna', 'bruno'],
-      expenseId: 'exp_1', phone: '+39 06 1234 5678', email: 'info@ryokan.jp',
+      checkInTime: '15:00',
+      checkOutTime: '10:30',
+      address: 'Shijo 1',
+      city: 'Kyoto',
+      country: 'Japan',
+      googlePlaceId: 'ChIJ1',
+      latitude: 35.01,
+      longitude: 135.76,
+      bookedVia: TripStayBookingPlatform.other,
+      bookedViaOther: 'Expedia',
+      bookingUrl: 'https://example.com/b',
+      propertyUrl: 'http://ryokan.jp',
+      confirmationCode: 'ABC',
+      notes: 'Colazione',
+      guestUids: ['anna', 'bruno'],
+      expenseId: 'exp_1',
+      phone: '+39 06 1234 5678',
+      email: 'info@ryokan.jp',
     );
     final map = TripStayCodec.toMap(full);
     expect(map['name'], 'Ryokan');
@@ -70,51 +85,82 @@ void main() {
   });
 
   test('empty optional fields are not saved', () {
-    final map = TripStayCodec.toMap(stay(
-      bookedVia: TripStayBookingPlatform.booking, bookedViaOther: 'ignored',
-      bookingUrl: '  ', checkInTime: '',
-    ));
+    final map = TripStayCodec.toMap(
+      stay(
+        bookedVia: TripStayBookingPlatform.booking,
+        bookedViaOther: 'ignored',
+        bookingUrl: '  ',
+        checkInTime: '',
+      ),
+    );
     expect(map.keys.toSet(), {
-      'tripId', 'name', 'checkInDate', 'checkOutDate', 'status',
-      'createdByUid', 'bookedVia',
+      'tripId',
+      'name',
+      'checkInDate',
+      'checkOutDate',
+      'status',
+      'createdByUid',
+      'bookedVia',
     });
   });
 
   test('documents with missing required fields are rejected', () {
     final map = TripStayCodec.toMap(stay());
     for (final key in ['name', 'checkInDate', 'status', 'tripId']) {
-      expect(() => TripStayCodec.fromMap('x', {...map}..remove(key)),
-          throwsFormatException, reason: key);
+      expect(
+        () => TripStayCodec.fromMap('x', {...map}..remove(key)),
+        throwsFormatException,
+        reason: key,
+      );
     }
-    expect(() => TripStayCodec.fromMap('x', {...map, 'checkInDate': '2027-02-30'}),
-        throwsFormatException);
+    expect(
+      () => TripStayCodec.fromMap('x', {...map, 'checkInDate': '2027-02-30'}),
+      throwsFormatException,
+    );
   });
 
   test('validator uses the Firestore rules limits', () {
     expect(TripStayValidator.problems(stay()), isEmpty);
-    expect(TripStayValidator.problems(stay(name: '  ')),
-        [TripStayProblem.nameMissing]);
-    expect(TripStayValidator.problems(stay(name: 'x' * 201)),
-        [TripStayProblem.nameTooLong]);
-    expect(TripStayValidator.problems(stay(checkOut: DateTime(2027, 4, 11))),
-        [TripStayProblem.checkOutBeforeCheckIn]);
-    expect(TripStayValidator.problems(stay(checkInTime: '25:00')),
-        [TripStayProblem.checkInTimeInvalid]);
-    expect(TripStayValidator.problems(
-        stay(bookedVia: TripStayBookingPlatform.other)),
-        [TripStayProblem.bookedViaOtherMissing]);
-    expect(TripStayValidator.problems(stay(
-        bookedVia: TripStayBookingPlatform.other, bookedViaOther: 'x' * 61)),
-        [TripStayProblem.bookedViaOtherTooLong]);
-    expect(TripStayValidator.problems(stay(bookingUrl: 'booking.com')),
-        [TripStayProblem.bookingUrlInvalid]);
-    expect(TripStayValidator.problems(
-        stay(guests: List.generate(51, (i) => 'u$i'))),
-        [TripStayProblem.tooManyGuests]);
-    expect(TripStayValidator.problems(stay(expenseId: 'bad/id')),
-        [TripStayProblem.expenseIdInvalid]);
-    expect(TripStayValidator.problems(stay(latitude: 91)),
-        [TripStayProblem.coordinatesInvalid]);
+    expect(TripStayValidator.problems(stay(name: '  ')), [
+      TripStayProblem.nameMissing,
+    ]);
+    expect(TripStayValidator.problems(stay(name: 'x' * 201)), [
+      TripStayProblem.nameTooLong,
+    ]);
+    expect(TripStayValidator.problems(stay(checkOut: DateTime(2027, 4, 11))), [
+      TripStayProblem.checkOutBeforeCheckIn,
+    ]);
+    expect(TripStayValidator.problems(stay(checkInTime: '25:00')), [
+      TripStayProblem.checkInTimeInvalid,
+    ]);
+    expect(
+      TripStayValidator.problems(
+        stay(bookedVia: TripStayBookingPlatform.other),
+      ),
+      [TripStayProblem.bookedViaOtherMissing],
+    );
+    expect(
+      TripStayValidator.problems(
+        stay(
+          bookedVia: TripStayBookingPlatform.other,
+          bookedViaOther: 'x' * 61,
+        ),
+      ),
+      [TripStayProblem.bookedViaOtherTooLong],
+    );
+    expect(TripStayValidator.problems(stay(bookingUrl: 'booking.com')), [
+      TripStayProblem.bookingUrlInvalid,
+    ]);
+    expect(
+      TripStayValidator.problems(stay(guests: List.generate(51, (i) => 'u$i'))),
+      [TripStayProblem.tooManyGuests],
+    );
+    expect(TripStayValidator.problems(stay(expenseId: 'bad/id')), [
+      TripStayProblem.expenseIdInvalid,
+    ]);
+    expect(TripStayValidator.problems(stay(latitude: 91)), [
+      TripStayProblem.coordinatesInvalid,
+    ]);
   });
 
   test('phone and email: basic checks, same limits as the rules', () {
@@ -131,30 +177,55 @@ void main() {
     expect(TripStayValidator.isEmail('${'a' * 250}@b.it'), isFalse);
     final base = stay();
     TripStay with2({String? phone, String? email}) => TripStay(
-      tripId: base.tripId, name: base.name, checkInDate: base.checkInDate,
-      checkOutDate: base.checkOutDate, createdByUid: 'anna',
-      phone: phone, email: email);
-    expect(TripStayValidator.problems(with2(phone: 'x1')),
-        [TripStayProblem.phoneInvalid]);
-    expect(TripStayValidator.problems(with2(email: 'nope')),
-        [TripStayProblem.emailInvalid]);
+      tripId: base.tripId,
+      name: base.name,
+      checkInDate: base.checkInDate,
+      checkOutDate: base.checkOutDate,
+      createdByUid: 'anna',
+      phone: phone,
+      email: email,
+    );
+    expect(TripStayValidator.problems(with2(phone: 'x1')), [
+      TripStayProblem.phoneInvalid,
+    ]);
+    expect(TripStayValidator.problems(with2(email: 'nope')), [
+      TripStayProblem.emailInvalid,
+    ]);
   });
 
   test('nights and same-day stays', () {
     expect(stay().nights, 3);
     expect(stay(checkOut: DateTime(2027, 4, 12)).nights, 0);
-    expect(TripStayDates.nights(DateTime(2027, 3, 30), DateTime(2027, 4, 2)), 3);
+    expect(
+      TripStayDates.nights(DateTime(2027, 3, 30), DateTime(2027, 4, 2)),
+      3,
+    );
   });
 
   test('check-out on the next check-in day is not an overlap', () {
     final a = stay();
-    expect(a.overlaps(stay(checkIn: DateTime(2027, 4, 15),
-        checkOut: DateTime(2027, 4, 18))), isFalse);
-    expect(a.overlaps(stay(checkIn: DateTime(2027, 4, 14),
-        checkOut: DateTime(2027, 4, 18))), isTrue);
-    expect(a.overlaps(stay(checkIn: DateTime(2027, 4, 14),
-        checkOut: DateTime(2027, 4, 18), status: TripStayStatus.cancelled)),
-        isFalse);
+    expect(
+      a.overlaps(
+        stay(checkIn: DateTime(2027, 4, 15), checkOut: DateTime(2027, 4, 18)),
+      ),
+      isFalse,
+    );
+    expect(
+      a.overlaps(
+        stay(checkIn: DateTime(2027, 4, 14), checkOut: DateTime(2027, 4, 18)),
+      ),
+      isTrue,
+    );
+    expect(
+      a.overlaps(
+        stay(
+          checkIn: DateTime(2027, 4, 14),
+          checkOut: DateTime(2027, 4, 18),
+          status: TripStayStatus.cancelled,
+        ),
+      ),
+      isFalse,
+    );
   });
 
   test('day text and times', () {
@@ -173,15 +244,34 @@ void main() {
   });
 
   test('status and platform codes match firestore.rules', () {
-    expect(TripStayStatus.values.map((s) => s.code),
-        ['booked', 'toConfirm', 'cancelled']);
-    expect(TripStayBookingPlatform.values.map((p) => p.code),
-        ['booking', 'airbnb', 'propertySite', 'agency', 'other']);
+    expect(TripStayStatus.values.map((s) => s.code), [
+      'booked',
+      'toConfirm',
+      'cancelled',
+    ]);
+    expect(TripStayBookingPlatform.values.map((p) => p.code), [
+      'booking',
+      'airbnb',
+      'propertySite',
+      'agency',
+      'other',
+    ]);
     expect(TripStayStatus.cancelled.isActive, isFalse);
-    expect(TripStayType.values.map((t) => t.code),
-        ['hotel', 'bnb', 'apartment', 'hostel', 'camping', 'other']);
+    expect(TripStayType.values.map((t) => t.code), [
+      'hotel',
+      'bnb',
+      'apartment',
+      'hostel',
+      'camping',
+      'other',
+    ]);
     expect(TripStayType.fromCode('villa'), isNull);
-    expect(TripStayCodec.fromMap('x', {...TripStayCodec.toMap(stay()),
-        'type': 'villa'}).type, isNull);
+    expect(
+      TripStayCodec.fromMap('x', {
+        ...TripStayCodec.toMap(stay()),
+        'type': 'villa',
+      }).type,
+      isNull,
+    );
   });
 }
