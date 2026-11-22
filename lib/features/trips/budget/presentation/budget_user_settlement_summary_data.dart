@@ -4,7 +4,8 @@
 // ignore_for_file: invalid_use_of_protected_member
 part of 'budget_user_settlement_summary.dart';
 
-extension _BudgetUserSettlementSummaryStateData on _BudgetUserSettlementSummaryState {
+extension _BudgetUserSettlementSummaryStateData
+    on _BudgetUserSettlementSummaryState {
   void _listen() {
     _expensesSub = widget.api.sharedExpenses().listen(
       (result) {

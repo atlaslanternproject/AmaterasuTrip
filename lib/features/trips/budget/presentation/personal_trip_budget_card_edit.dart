@@ -23,7 +23,9 @@ extension _PersonalTripBudgetCardStateEdit on _PersonalTripBudgetCardState {
             backgroundColor: AmaterasuColors.surfaceCard,
             title: Text(
               budgetL10n(it).btPersonalMyTravelBudget,
-              style: const TextStyle(color: _PersonalTripBudgetCardState._cream),
+              style: const TextStyle(
+                color: _PersonalTripBudgetCardState._cream,
+              ),
             ),
             content: SizedBox(
               width: 400,
@@ -34,7 +36,9 @@ extension _PersonalTripBudgetCardStateEdit on _PersonalTripBudgetCardState {
                   children: [
                     Text(
                       budgetL10n(it).btPersonalOnlyYouCanSee,
-                      style: const TextStyle(color: _PersonalTripBudgetCardState._muted),
+                      style: const TextStyle(
+                        color: _PersonalTripBudgetCardState._muted,
+                      ),
                     ),
                     const SizedBox(height: 18),
                     TextField(
@@ -81,7 +85,12 @@ extension _PersonalTripBudgetCardStateEdit on _PersonalTripBudgetCardState {
                     ),
                     if (error != null) ...[
                       const SizedBox(height: 12),
-                      Text(error!, style: const TextStyle(color: _PersonalTripBudgetCardState._red)),
+                      Text(
+                        error!,
+                        style: const TextStyle(
+                          color: _PersonalTripBudgetCardState._red,
+                        ),
+                      ),
                     ],
                   ],
                 ),

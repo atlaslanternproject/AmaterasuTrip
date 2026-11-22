@@ -6305,6 +6305,18 @@ abstract class AppLocalizations {
   /// **'Included: {list}'**
   String staysAmenities(String list);
 
+  /// No description provided for @staysGapsWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 night of the trip without a stay: {nights}.} other{{count} nights of the trip without a stay: {nights}.}}'**
+  String staysGapsWarning(int count, String nights);
+
+  /// No description provided for @staysGapsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Just a reminder: if it is on purpose, you can ignore it.'**
+  String get staysGapsHint;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

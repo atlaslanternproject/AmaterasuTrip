@@ -126,19 +126,28 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
           const SizedBox(height: 3),
           Text(
             '${budgetL10n(it).btAmountOriginal}: $original',
-            style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 11),
+            style: const TextStyle(
+              color: AmaterasuColors.textSecondary,
+              fontSize: 11,
+            ),
           ),
           if (warning != null)
             Text(
               warning,
-              style: const TextStyle(color: AmaterasuColors.accentGold, fontSize: 11),
+              style: const TextStyle(
+                color: AmaterasuColors.accentGold,
+                fontSize: 11,
+              ),
             ),
           if (source != null)
             Tooltip(
               message: source,
               child: Text(
                 budgetL10n(it).btAmountAutomaticExchangeRate,
-                style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 10),
+                style: const TextStyle(
+                  color: AmaterasuColors.textSecondary,
+                  fontSize: 10,
+                ),
               ),
             ),
         ],

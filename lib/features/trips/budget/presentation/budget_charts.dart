@@ -100,4 +100,3 @@ class BudgetCategoryChart extends StatelessWidget {
     );
   }
 }
-

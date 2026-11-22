@@ -636,7 +636,9 @@ class _InviteCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: _TripTravellersSettingsPageState._accentColor
                               .withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(AmaterasuRadius.md),
+                          borderRadius: BorderRadius.circular(
+                            AmaterasuRadius.md,
+                          ),
                         ),
                         child: busy
                             ? const Padding(

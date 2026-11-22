@@ -178,7 +178,10 @@ class _TripOverviewMessage extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 14),
+              style: const TextStyle(
+                color: AmaterasuColors.textSecondary,
+                fontSize: 14,
+              ),
             ),
           ],
         ),

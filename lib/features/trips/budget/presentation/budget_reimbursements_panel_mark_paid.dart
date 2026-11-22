@@ -139,7 +139,9 @@ extension _BudgetReimbursementsPanelStateMarkPaid
           Text(l10n.btPaidRecordedBy(_name(recordedBy, names)), style: small),
         if (paidOn != null)
           Text(
-            l10n.btPaidOn(MaterialLocalizations.of(context).formatMediumDate(paidOn)),
+            l10n.btPaidOn(
+              MaterialLocalizations.of(context).formatMediumDate(paidOn),
+            ),
             style: small,
           ),
         if (note is String && note.trim().isNotEmpty)

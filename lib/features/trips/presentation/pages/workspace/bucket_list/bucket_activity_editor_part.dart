@@ -209,7 +209,10 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                 vertical: 20,
               ),
               shape: RoundedRectangleBorder(
-                side: const BorderSide(color: AmaterasuColors.borderOrange, width: 1.4),
+                side: const BorderSide(
+                  color: AmaterasuColors.borderOrange,
+                  width: 1.4,
+                ),
                 borderRadius: BorderRadius.circular(22),
               ),
               titlePadding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
@@ -317,7 +320,9 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                           const SizedBox(height: AmaterasuSpacing.sm),
                           Text(
                             searchError!,
-                            style: const TextStyle(color: AmaterasuColors.accentSalmon),
+                            style: const TextStyle(
+                              color: AmaterasuColors.accentSalmon,
+                            ),
                           ),
                         ],
                         if (predictions.isNotEmpty)
@@ -523,7 +528,9 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                         const SizedBox(height: 14),
                         Text(
                           _t('Link utili', 'Useful links'),
-                          style: const TextStyle(color: AmaterasuColors.textCream),
+                          style: const TextStyle(
+                            color: AmaterasuColors.textCream,
+                          ),
                         ),
                         const SizedBox(height: AmaterasuSpacing.sm),
                         for (var i = 0; i < linkControllers.length; i++) ...[
@@ -645,7 +652,9 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                             ),
                             label: Text(
                               _t('Elimina', 'Delete'),
-                              style: const TextStyle(color: AmaterasuColors.accentSalmon),
+                              style: const TextStyle(
+                                color: AmaterasuColors.accentSalmon,
+                              ),
                             ),
                           ),
                         ),

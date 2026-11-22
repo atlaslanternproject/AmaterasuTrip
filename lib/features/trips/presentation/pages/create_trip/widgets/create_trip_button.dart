@@ -44,7 +44,9 @@ class CreateTripButton extends StatelessWidget {
               boxShadow: isEnabled
                   ? [
                       BoxShadow(
-                        color: AmaterasuColors.accentVermilion.withValues(alpha: 0.22),
+                        color: AmaterasuColors.accentVermilion.withValues(
+                          alpha: 0.22,
+                        ),
                         blurRadius: 18,
                         offset: const Offset(0, 7),
                       ),

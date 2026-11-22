@@ -328,7 +328,11 @@ class _PrimaryButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(17),
             gradient: const LinearGradient(
-              colors: [Color(0xFFB93622), AmaterasuColors.accentVermilion, Color(0xFFF08A38)],
+              colors: [
+                Color(0xFFB93622),
+                AmaterasuColors.accentVermilion,
+                Color(0xFFF08A38),
+              ],
             ),
             boxShadow: [
               BoxShadow(
@@ -424,7 +428,11 @@ class _BottomDecoration extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF2A1711), Color(0xFF18100D), AmaterasuColors.surfaceDeep],
+          colors: [
+            Color(0xFF2A1711),
+            Color(0xFF18100D),
+            AmaterasuColors.surfaceDeep,
+          ],
         ),
       ),
       child: const Stack(

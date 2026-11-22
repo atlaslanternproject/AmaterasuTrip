@@ -424,7 +424,9 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                                           0.90,
                                     ),
                                     child: SingleChildScrollView(
-                                      padding: const EdgeInsets.all(AmaterasuSpacing.md),
+                                      padding: const EdgeInsets.all(
+                                        AmaterasuSpacing.md,
+                                      ),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,

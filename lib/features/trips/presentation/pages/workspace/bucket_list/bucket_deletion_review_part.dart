@@ -89,12 +89,17 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                               '${groups.length} attività con eliminazione proposta',
                               '${groups.length} activities proposed for deletion',
                             ),
-                            style: const TextStyle(color: AmaterasuColors.textSecondary),
+                            style: const TextStyle(
+                              color: AmaterasuColors.textSecondary,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    const Icon(Icons.chevron_right, color: AmaterasuColors.accentGoldLight),
+                    const Icon(
+                      Icons.chevron_right,
+                      color: AmaterasuColors.accentGoldLight,
+                    ),
                   ],
                 ),
               ),
@@ -163,7 +168,9 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                         const SizedBox(height: AmaterasuSpacing.xs),
                         Text(
                           group.activity.city,
-                          style: const TextStyle(color: AmaterasuColors.textSecondary),
+                          style: const TextStyle(
+                            color: AmaterasuColors.textSecondary,
+                          ),
                         ),
                         const SizedBox(height: 12),
                         for (final request in group.requests)
@@ -172,7 +179,9 @@ extension _BucketDeletionReview on _TripBucketListPageState {
                             child: Text(
                               '${request.requestedByUid}: '
                               '${request.reason.isEmpty ? _t('Nessuna motivazione', 'No reason provided') : request.reason}',
-                              style: const TextStyle(color: AmaterasuColors.textPrimary),
+                              style: const TextStyle(
+                                color: AmaterasuColors.textPrimary,
+                              ),
                             ),
                           ),
                         Row(

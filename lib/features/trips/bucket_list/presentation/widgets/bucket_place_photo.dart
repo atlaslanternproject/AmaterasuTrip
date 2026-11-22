@@ -123,7 +123,9 @@ class _BucketPlacePhotoState extends State<BucketPlacePhoto> {
                         ),
                         decoration: BoxDecoration(
                           color: const Color(0xE81F1714),
-                          borderRadius: BorderRadius.circular(AmaterasuRadius.sm),
+                          borderRadius: BorderRadius.circular(
+                            AmaterasuRadius.sm,
+                          ),
                         ),
                         child: Wrap(
                           spacing: 8,

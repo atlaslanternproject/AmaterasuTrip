@@ -446,7 +446,8 @@ class _GoogleDriveFolderBrowserPageState
     return ListView.separated(
       padding: const EdgeInsets.fromLTRB(18, 8, 18, 18),
       itemCount: _folders.length,
-      separatorBuilder: (context, index) => const SizedBox(height: AmaterasuSpacing.sm),
+      separatorBuilder: (context, index) =>
+          const SizedBox(height: AmaterasuSpacing.sm),
       itemBuilder: (context, index) {
         final folder = _folders[index];
 

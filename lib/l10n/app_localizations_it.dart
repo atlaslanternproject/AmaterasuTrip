@@ -3258,6 +3258,20 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String staysGapsWarning(int count, String nights) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notti del viaggio senza alloggio: $nights.',
+      one: '1 notte del viaggio senza alloggio: $nights.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get staysGapsHint => 'Solo un promemoria: se è voluto, puoi ignorarlo.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

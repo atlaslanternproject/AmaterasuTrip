@@ -1150,6 +1150,8 @@
   "staysCancellationExpired": "Cancellazione gratuita scaduta il {date}",
   "staysCostEstimated": "Costo previsto: {amount}",
   "staysAmenities": "Inclusi: {list}",
+  "staysGapsWarning": "{count, plural, =1{1 notte del viaggio senza alloggio: {nights}.} other{{count} notti del viaggio senza alloggio: {nights}.}}",
+  "staysGapsHint": "Solo un promemoria: se è voluto, puoi ignorarlo.",
   "staysExpenseCreate": "Crea spesa",
   "staysExpenseLinkExisting": "Collega spesa esistente",
   "staysExpenseLinkedTitle": "Spesa collegata: {title}",

@@ -127,7 +127,9 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
                           decoration: BoxDecoration(
                             color: AmaterasuColors.surfaceRaised,
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: AmaterasuColors.borderTrack),
+                            border: Border.all(
+                              color: AmaterasuColors.borderTrack,
+                            ),
                           ),
                           child: Row(
                             children: [

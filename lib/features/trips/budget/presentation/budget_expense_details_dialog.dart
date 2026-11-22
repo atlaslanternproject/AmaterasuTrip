@@ -102,7 +102,9 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       const SizedBox(height: 6),
                       Text(
                         _categoryLabel(category, it),
-                        style: const TextStyle(color: AmaterasuColors.textSecondary),
+                        style: const TextStyle(
+                          color: AmaterasuColors.textSecondary,
+                        ),
                       ),
                       const SizedBox(height: 18),
                       if (day != null)
@@ -170,7 +172,9 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                       const SizedBox(height: AmaterasuSpacing.sm),
                       Text(
                         _statusLabel(status, it),
-                        style: const TextStyle(color: AmaterasuColors.textSecondary),
+                        style: const TextStyle(
+                          color: AmaterasuColors.textSecondary,
+                        ),
                       ),
                       const SizedBox(height: AmaterasuSpacing.md),
                       BudgetDialogChrome.section(

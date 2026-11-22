@@ -183,7 +183,10 @@ class _NewBudgetCategoryDialogState extends State<_NewBudgetCategoryDialog> {
               onSubmitted: (_) => _save(),
             ),
             if (_error != null)
-              Text(_error!, style: const TextStyle(color: AmaterasuColors.accentPeach)),
+              Text(
+                _error!,
+                style: const TextStyle(color: AmaterasuColors.accentPeach),
+              ),
           ],
         ),
       ),

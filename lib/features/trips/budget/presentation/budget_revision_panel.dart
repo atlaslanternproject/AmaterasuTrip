@@ -136,7 +136,9 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                         padding: const EdgeInsets.only(top: 6),
                         child: Text(
                           l10n.budgetRevisionLocked,
-                          style: const TextStyle(color: AmaterasuColors.textSecondary),
+                          style: const TextStyle(
+                            color: AmaterasuColors.textSecondary,
+                          ),
                         ),
                       ),
 
@@ -208,7 +210,9 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
                           _feedback!,
-                          style: const TextStyle(color: AmaterasuColors.accentGold),
+                          style: const TextStyle(
+                            color: AmaterasuColors.accentGold,
+                          ),
                         ),
                       ),
                   ],

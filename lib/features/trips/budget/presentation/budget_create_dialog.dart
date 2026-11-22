@@ -67,7 +67,10 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
   late final _amount = TextEditingController(
     text: widget.initialMinorUnits == null
         ? ''
-        : BudgetMoneyInput.plainText(widget.initialMinorUnits!, widget.currency),
+        : BudgetMoneyInput.plainText(
+            widget.initialMinorUnits!,
+            widget.currency,
+          ),
   );
   late String _selectedCurrency = widget.currency;
   int _step = 0;

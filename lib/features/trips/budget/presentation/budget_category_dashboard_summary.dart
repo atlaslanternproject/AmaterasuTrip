@@ -3,7 +3,8 @@
 
 part of 'budget_category_dashboard.dart';
 
-extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState {
+extension _BudgetCategoryDashboardStateSummary
+    on _BudgetCategoryDashboardState {
   // TODO(audit): metodo unico di ~321 righe: dividerlo in widget (totali, grafici, filtri).
   Widget _summary(
     BuildContext context,
@@ -141,7 +142,10 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
             children: [
               Text(
                 _chartPersonal ? l10n.b6PersonalTotal : l10n.b6MyShare,
-                style: const TextStyle(color: _BudgetCategoryDashboardState._muted, fontSize: 13),
+                style: const TextStyle(
+                  color: _BudgetCategoryDashboardState._muted,
+                  fontSize: 13,
+                ),
               ),
               const SizedBox(height: 6),
               Text(
@@ -157,13 +161,19 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
                     l10n.b6PartialTotal,
-                    style: const TextStyle(color: _BudgetCategoryDashboardState._gold, fontSize: 12),
+                    style: const TextStyle(
+                      color: _BudgetCategoryDashboardState._gold,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               const SizedBox(height: AmaterasuSpacing.sm),
               Text(
                 '${l10n.b6ExpenseCount}: ${docs.length}',
-                style: const TextStyle(color: _BudgetCategoryDashboardState._muted, fontSize: 12),
+                style: const TextStyle(
+                  color: _BudgetCategoryDashboardState._muted,
+                  fontSize: 12,
+                ),
               ),
             ],
           ),
@@ -194,17 +204,26 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
             padding: const EdgeInsets.only(top: 12),
             child: Text(
               '${l10n.b6LatestExpense}: $mostRecentTitle',
-              style: const TextStyle(color: _BudgetCategoryDashboardState._muted, fontSize: 12),
+              style: const TextStyle(
+                color: _BudgetCategoryDashboardState._muted,
+                fontSize: 12,
+              ),
             ),
           ),
         const Divider(height: 30),
         if (ordered.isEmpty)
-          Text(l10n.b6NoExpenses, style: const TextStyle(color: _BudgetCategoryDashboardState._muted)),
+          Text(
+            l10n.b6NoExpenses,
+            style: const TextStyle(color: _BudgetCategoryDashboardState._muted),
+          ),
         // B8.5: real charts built from the same converted totals.
         if (ordered.isNotEmpty && total > 0) ...[
           Text(
             l10n.b85CategoryChart,
-            style: const TextStyle(color: _BudgetCategoryDashboardState._cream, fontWeight: FontWeight.w700),
+            style: const TextStyle(
+              color: _BudgetCategoryDashboardState._cream,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const SizedBox(height: AmaterasuSpacing.sm),
           BudgetCategoryChart(
@@ -238,7 +257,9 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
               ),
               Text(
                 _money(entry.value, target),
-                style: const TextStyle(color: _BudgetCategoryDashboardState._gold),
+                style: const TextStyle(
+                  color: _BudgetCategoryDashboardState._gold,
+                ),
               ),
             ],
           ),
@@ -258,11 +279,17 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
           const SizedBox(height: 10),
           Text(
             l10n.b85TrendChart,
-            style: const TextStyle(color: _BudgetCategoryDashboardState._cream, fontWeight: FontWeight.w700),
+            style: const TextStyle(
+              color: _BudgetCategoryDashboardState._cream,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           Text(
             trend.monthly ? l10n.b85TrendByMonth : l10n.b85TrendByDay,
-            style: const TextStyle(color: _BudgetCategoryDashboardState._muted, fontSize: 12),
+            style: const TextStyle(
+              color: _BudgetCategoryDashboardState._muted,
+              fontSize: 12,
+            ),
           ),
           const SizedBox(height: 10),
           BudgetTrendChart(
@@ -276,7 +303,10 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
             padding: const EdgeInsets.only(top: 8),
             child: Text(
               l10n.b85ChartsExcludeMissingRates,
-              style: const TextStyle(color: _BudgetCategoryDashboardState._gold, fontSize: 12),
+              style: const TextStyle(
+                color: _BudgetCategoryDashboardState._gold,
+                fontSize: 12,
+              ),
             ),
           ),
         if (observations.isNotEmpty) ...[
@@ -288,7 +318,10 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
             iconColor: _BudgetCategoryDashboardState._gold,
             title: Text(
               l10n.b6RateSource,
-              style: const TextStyle(color: _BudgetCategoryDashboardState._muted, fontSize: 12),
+              style: const TextStyle(
+                color: _BudgetCategoryDashboardState._muted,
+                fontSize: 12,
+              ),
             ),
             children: [
               for (final entry in observations.entries)
@@ -296,13 +329,19 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
                   alignment: Alignment.centerLeft,
                   child: Text(
                     '${entry.key}: ${entry.value}',
-                    style: const TextStyle(color: _BudgetCategoryDashboardState._muted, fontSize: 12),
+                    style: const TextStyle(
+                      color: _BudgetCategoryDashboardState._muted,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               const SizedBox(height: 6),
               Text(
                 l10n.b6RateDoesNotChangeDebts,
-                style: const TextStyle(color: _BudgetCategoryDashboardState._muted, fontSize: 12),
+                style: const TextStyle(
+                  color: _BudgetCategoryDashboardState._muted,
+                  fontSize: 12,
+                ),
               ),
             ],
           ),
@@ -311,16 +350,25 @@ extension _BudgetCategoryDashboardStateSummary on _BudgetCategoryDashboardState 
           const Divider(height: 24),
           Text(
             l10n.b6MissingRate,
-            style: const TextStyle(color: _BudgetCategoryDashboardState._gold, fontSize: 12),
+            style: const TextStyle(
+              color: _BudgetCategoryDashboardState._gold,
+              fontSize: 12,
+            ),
           ),
           for (final entry in excluded.entries)
             Text(
               '${entry.key}: ${_money(entry.value, entry.key)}',
-              style: const TextStyle(color: _BudgetCategoryDashboardState._gold, fontSize: 12),
+              style: const TextStyle(
+                color: _BudgetCategoryDashboardState._gold,
+                fontSize: 12,
+              ),
             ),
           Text(
             '$excludedCount ${l10n.b6ExcludedCount}',
-            style: const TextStyle(color: _BudgetCategoryDashboardState._muted, fontSize: 12),
+            style: const TextStyle(
+              color: _BudgetCategoryDashboardState._muted,
+              fontSize: 12,
+            ),
           ),
         ],
       ],
