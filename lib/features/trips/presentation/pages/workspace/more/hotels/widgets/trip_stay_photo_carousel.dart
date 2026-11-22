@@ -7,9 +7,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
-import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
-import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
+import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_photo_parts.dart';
 
@@ -35,7 +35,7 @@ class TripStayPhotoCarousel extends ConsumerStatefulWidget {
 
 class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
   final _pages = PageController();
-  Future<List<TripStayPlacePhoto>>? _photos;
+  Future<List<AmaterasuPlacePhoto>>? _photos;
   String? _loadedFor;
   int _index = 0;
 
@@ -56,7 +56,7 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
     _photos = id.isEmpty
         ? Future.value(const [])
         : ref
-              .read(tripStayPlaceInfoProvider)
+              .read(amaterasuPlaceInfoProvider)
               .photos(id, languageCode: language);
   }
 
@@ -88,10 +88,10 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
     return SizedBox(
       height: widget.height,
       width: double.infinity,
-      child: FutureBuilder<List<TripStayPlacePhoto>>(
+      child: FutureBuilder<List<AmaterasuPlacePhoto>>(
         future: _photos,
         builder: (context, snapshot) {
-          final photos = snapshot.data ?? const <TripStayPlacePhoto>[];
+          final photos = snapshot.data ?? const <AmaterasuPlacePhoto>[];
           if (snapshot.hasError || photos.isEmpty) return placeholder;
           final photo = photos[_index.clamp(0, photos.length - 1)];
           return Stack(
@@ -126,7 +126,7 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
                 TripStayPhotoDots(count: photos.length, index: _index),
               ],
               if (photo.authors.isNotEmpty)
-                TripStayPhotoAuthors(
+                AmaterasuPhotoAuthors(
                   authors: photo.authors,
                   compact: !widget.controls,
                 ),

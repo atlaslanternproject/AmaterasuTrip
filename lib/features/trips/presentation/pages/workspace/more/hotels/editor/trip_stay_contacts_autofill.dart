@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/links/amaterasu_web_link.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_validator.dart';
-import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
+import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 import 'trip_stay_draft.dart';
 
 class TripStayContactsAutofill {
@@ -17,11 +17,11 @@ class TripStayContactsAutofill {
   /// Errors are ignored: contacts are a bonus, the place is already chosen.
   Future<void> apply(
     TripStayDraft draft,
-    TripStayPlaceInfoService info,
+    AmaterasuPlaceInfoService info,
     String placeId, {
     required String languageCode,
   }) async {
-    TripStayPlaceContacts? found;
+    AmaterasuPlaceContacts? found;
     try {
       found = await info.contacts(placeId, languageCode: languageCode);
     } catch (_) {

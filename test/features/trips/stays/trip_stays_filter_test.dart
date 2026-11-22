@@ -12,8 +12,14 @@ import 'support/fake_trip_stays.dart';
 
 // April 2027: a (2-5), b (10-12), c (20-21, cancelled, B&B).
 final _stays = [
-  testStay('c', name: 'Casa C', day: 20, nights: 1,
-      status: TripStayStatus.cancelled, type: TripStayType.bnb),
+  testStay(
+    'c',
+    name: 'Casa C',
+    day: 20,
+    nights: 1,
+    status: TripStayStatus.cancelled,
+    type: TripStayType.bnb,
+  ),
   testStay('a', name: 'Hotel A', day: 2, nights: 3, type: TripStayType.hotel),
   testStay('b', name: 'Ostello B', day: 10, nights: 2),
 ];
@@ -26,9 +32,13 @@ Future<void> openPage(WidgetTester tester) async {
   tester.view.physicalSize = const Size(1000, 3000);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
-  await tester.pumpWidget(staysTestApp(
+  await tester.pumpWidget(
+    staysTestApp(
       TripHotelsPage(tripId: 't1', today: _today),
-      stays: _stays, repository: FakeTripStaysRepository()));
+      stays: _stays,
+      repository: FakeTripStaysRepository(),
+    ),
+  );
   await tester.pumpAndSettle();
 }
 
@@ -43,23 +53,35 @@ void main() {
     const filter = TripStaysFilter();
     expect(ids(filter), ['a', 'b', 'c']);
     expect(filter.isActive, isFalse);
-    expect(ids(filter.copyWith(sort: TripStaysSort.checkInDesc)),
-        ['c', 'b', 'a']);
+    expect(ids(filter.copyWith(sort: TripStaysSort.checkInDesc)), [
+      'c',
+      'b',
+      'a',
+    ]);
   });
 
   test('upcoming includes the stay that ends today', () {
-    expect(ids(const TripStaysFilter(when: TripStaysWhen.upcoming)), ['b', 'c']);
+    expect(ids(const TripStaysFilter(when: TripStaysWhen.upcoming)), [
+      'b',
+      'c',
+    ]);
     expect(ids(const TripStaysFilter(when: TripStaysWhen.past)), ['a']);
   });
 
   test('status and type; stays without a type are left out', () {
-    expect(ids(const TripStaysFilter(statuses: {TripStayStatus.cancelled})),
-        ['c']);
-    expect(ids(const TripStaysFilter(types: {TripStayType.hotel,
-        TripStayType.bnb})), ['a', 'c']);
-    const all = TripStaysFilter(statuses: {TripStayStatus.booked},
-        types: {TripStayType.hotel}, when: TripStaysWhen.past,
-        sort: TripStaysSort.checkInDesc);
+    expect(ids(const TripStaysFilter(statuses: {TripStayStatus.cancelled})), [
+      'c',
+    ]);
+    expect(
+      ids(const TripStaysFilter(types: {TripStayType.hotel, TripStayType.bnb})),
+      ['a', 'c'],
+    );
+    const all = TripStaysFilter(
+      statuses: {TripStayStatus.booked},
+      types: {TripStayType.hotel},
+      when: TripStaysWhen.past,
+      sort: TripStaysSort.checkInDesc,
+    );
     expect(all.activeCount, 3);
     expect(all.cleared().isActive, isFalse);
     expect(all.cleared().sort, TripStaysSort.checkInDesc);

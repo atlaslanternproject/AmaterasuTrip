@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
-import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
+import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 import 'trip_stay_labels.dart';
 
 /// Dark translucent background used on top of the photos.
@@ -112,14 +112,14 @@ class TripStayPhotoDots extends StatelessWidget {
   );
 }
 
-class TripStayPhotoAuthors extends StatelessWidget {
-  const TripStayPhotoAuthors({
+class AmaterasuPhotoAuthors extends StatelessWidget {
+  const AmaterasuPhotoAuthors({
     super.key,
     required this.authors,
     this.compact = false,
   });
 
-  final List<TripStayPhotoAuthor> authors;
+  final List<AmaterasuPhotoAuthor> authors;
 
   /// Small photo: no room is kept for the page dots.
   final bool compact;

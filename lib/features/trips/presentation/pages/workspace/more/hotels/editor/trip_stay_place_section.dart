@@ -9,7 +9,7 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/models/trip_destination.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_validator.dart';
-import 'package:amaterasutrip/features/trips/stays/places/trip_stay_place_info.dart';
+import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_contacts_autofill.dart';
 import 'trip_stay_draft.dart';
@@ -26,7 +26,7 @@ class TripStayPlaceSection extends StatefulWidget {
 
   final TripStayDraft draft;
   final DestinationPlacesService places;
-  final TripStayPlaceInfoService placeInfo;
+  final AmaterasuPlaceInfoService placeInfo;
   final VoidCallback onChanged;
 
   @override

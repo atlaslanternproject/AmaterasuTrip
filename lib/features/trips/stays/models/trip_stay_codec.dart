@@ -78,8 +78,12 @@ abstract final class TripStayCodec {
     final name = text('name');
     final tripId = text('tripId');
     final author = text('createdByUid');
-    if (checkIn == null || checkOut == null || status == null ||
-        name == null || tripId == null || author == null) {
+    if (checkIn == null ||
+        checkOut == null ||
+        status == null ||
+        name == null ||
+        tripId == null ||
+        author == null) {
       throw FormatException('Invalid stay $id.');
     }
 
@@ -111,7 +115,9 @@ abstract final class TripStayCodec {
       email: text('email'),
       confirmationCode: text('confirmationCode'),
       notes: text('notes'),
-      guestUids: guests is List ? guests.whereType<String>().toList() : const [],
+      guestUids: guests is List
+          ? guests.whereType<String>().toList()
+          : const [],
       expenseId: text('expenseId'),
     );
   }

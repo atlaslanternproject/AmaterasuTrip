@@ -17,16 +17,23 @@ final _stays = [
   testStay('s2', name: 'Ryokan', day: 20, expenseId: 'e-hotel'),
 ];
 
-final _budget = FakeBudgetApi(uid: 'anna', shared: [
-  FakeDoc('e-hotel', {
-    'title': 'Ryokan',
-    'snapshot': {'total': eur(36000), 'status': 'paid',
-        'shares': {'anna': eur(36000)}, 'advances': {'anna': eur(36000)}},
-    'participantUids': ['anna'],
-    'participantNames': {'anna': 'Anna'},
-    'category': 'accommodation',
-  }),
-]);
+final _budget = FakeBudgetApi(
+  uid: 'anna',
+  shared: [
+    FakeDoc('e-hotel', {
+      'title': 'Ryokan',
+      'snapshot': {
+        'total': eur(36000),
+        'status': 'paid',
+        'shares': {'anna': eur(36000)},
+        'advances': {'anna': eur(36000)},
+      },
+      'participantUids': ['anna'],
+      'participantNames': {'anna': 'Anna'},
+      'category': 'accommodation',
+    }),
+  ],
+);
 
 Future<FakeLaunch> openIn(WidgetTester tester, String view) async {
   SharedPreferences.setMockInitialValues({
@@ -36,9 +43,14 @@ Future<FakeLaunch> openIn(WidgetTester tester, String view) async {
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
   final launch = FakeLaunch();
-  await tester.pumpWidget(staysTestApp(
-    TripHotelsPage(tripId: 't1', launch: launch.call),
-    stays: _stays, repository: FakeTripStaysRepository(), budget: _budget));
+  await tester.pumpWidget(
+    staysTestApp(
+      TripHotelsPage(tripId: 't1', launch: launch.call),
+      stays: _stays,
+      repository: FakeTripStaysRepository(),
+      budget: _budget,
+    ),
+  );
   await tester.pumpAndSettle();
   return launch;
 }
@@ -49,22 +61,35 @@ Future<void> tap(WidgetTester tester, String key) async {
 }
 
 void main() {
-  testWidgets('Card: Mappa, Spesa, Contatta and Modifica are visible',
-      (tester) async {
+  testWidgets('Card: Mappa, Spesa, Contatta and Modifica are visible', (
+    tester,
+  ) async {
     await openIn(tester, 'cards');
-    for (final key in ['stay-map', 'stay-contact', 'stay-expense-create-s1',
-        'stay-edit-s1', 'stay-edit-s2', 'stay-expense-view-s2']) {
+    for (final key in [
+      'stay-map',
+      'stay-contact',
+      'stay-expense-create-s1',
+      'stay-edit-s1',
+      'stay-edit-s2',
+      'stay-expense-view-s2',
+    ]) {
       expect(find.byKey(Key(key)), findsWidgets, reason: key);
     }
   });
 
   for (final view in ['list', 'details']) {
-    testWidgets('$view: every action is reachable as an icon with tooltip',
-        (tester) async {
+    testWidgets('$view: every action is reachable as an icon with tooltip', (
+      tester,
+    ) async {
       final launch = await openIn(tester, view);
-      for (final key in ['stay-quick-map-s1', 'stay-quick-expense-s1',
-          'stay-quick-contact-s1', 'stay-quick-edit-s1',
-          'stay-quick-expense-s2', 'stay-quick-edit-s2']) {
+      for (final key in [
+        'stay-quick-map-s1',
+        'stay-quick-expense-s1',
+        'stay-quick-contact-s1',
+        'stay-quick-edit-s1',
+        'stay-quick-expense-s2',
+        'stay-quick-edit-s2',
+      ]) {
         expect(find.byKey(Key(key)), findsOneWidget, reason: key);
       }
       // Contatta only with at least one contact; no Google place, no map.
@@ -91,8 +116,9 @@ void main() {
 
       await tap(tester, 'stay-quick-expense-s2');
       expect(find.byType(BudgetExpenseDetailsDialog), findsOneWidget);
-      Navigator.of(tester.element(find.byType(BudgetExpenseDetailsDialog)))
-          .pop();
+      Navigator.of(
+        tester.element(find.byType(BudgetExpenseDetailsDialog)),
+      ).pop();
       await tester.pumpAndSettle();
 
       await tap(tester, 'stay-quick-edit-s2');

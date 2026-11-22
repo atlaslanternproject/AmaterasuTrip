@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
@@ -56,8 +57,8 @@ class TripHotelsPage extends ConsumerWidget {
         tripId: tripId,
         authorUid: uid,
         memberNames: names,
-        places: ref.read(tripStaysPlacesProvider),
-        placeInfo: ref.read(tripStayPlaceInfoProvider),
+        places: ref.read(amaterasuPlaceSearchProvider),
+        placeInfo: ref.read(amaterasuPlaceInfoProvider),
         initial: initial,
         onSave: (stay) =>
             initial == null ? repository.create(stay) : repository.update(stay),
