@@ -3184,6 +3184,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysErrExpense => 'Spesa collegata non valida.';
 
   @override
+  String get staysErrCost => 'Costo previsto non valido: scrivi un importo maggiore di zero nel formato della valuta.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

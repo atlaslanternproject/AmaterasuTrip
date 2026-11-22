@@ -36,4 +36,8 @@ String tripStayProblemText(TripStayProblem problem, AppLocalizations l10n) =>
       ),
       TripStayProblem.tooManyGuests => l10n.staysErrGuests,
       TripStayProblem.expenseIdInvalid => l10n.staysErrExpense,
+      TripStayProblem.costInvalid => l10n.staysErrCost,
+      TripStayProblem.directionsTooLong => l10n.staysErrTooLong(
+        TripStayValidator.directionsMax,
+      ),
     };

@@ -588,7 +588,9 @@ service cloud.firestore {
             'latitude', 'longitude',
             'bookedVia', 'bookedViaOther', 'bookingUrl', 'propertyUrl',
             'confirmationCode', 'notes', 'guestUids', 'expenseId',
-            'type', 'phone', 'email'
+            'type', 'phone', 'email',
+            'estimatedCostMinorUnits', 'estimatedCostCurrency',
+            'freeCancellationUntil', 'amenities', 'directions'
           ])
           && data.tripId == tripId
           && data.name is string
@@ -661,7 +663,30 @@ service cloud.firestore {
             || (data.email is string
               && data.email.size() <= 254
               && data.email.matches('^[^\\s@]+@[^\\s@]+[.][^\\s@]+$'))
-          );
+          )
+          // Optional cost, free cancellation, services, directions (v1.15.0).
+          && (
+            (data.get('estimatedCostMinorUnits', null) == null
+              && data.get('estimatedCostCurrency', null) == null)
+            || (data.get('estimatedCostMinorUnits', null) is int
+              && data.estimatedCostMinorUnits > 0
+              && data.estimatedCostMinorUnits <= 1000000000000
+              && data.get('estimatedCostCurrency', null) is string
+              && data.estimatedCostCurrency.matches('^[A-Z]{3}$'))
+          )
+          && (
+            data.get('freeCancellationUntil', null) == null
+            || validStayDay(data.freeCancellationUntil)
+          )
+          && (
+            data.get('amenities', null) == null
+            || (data.amenities is list
+              && data.amenities.size() <= 4
+              && data.amenities.hasOnly([
+                'breakfast', 'parking', 'wifi', 'kitchen'
+              ]))
+          )
+          && validStayText(data, 'directions', 2000);
       }
 
       match /stays/{stayId} {

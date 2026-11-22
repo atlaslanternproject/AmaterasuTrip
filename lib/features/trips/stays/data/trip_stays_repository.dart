@@ -77,6 +77,11 @@ class TripStaysRepository {
       'type',
       'phone',
       'email',
+      'estimatedCostMinorUnits',
+      'estimatedCostCurrency',
+      'freeCancellationUntil',
+      'amenities',
+      'directions',
     ];
     await _firestore
         .doc(TripStaysPaths.stay(stay.tripId, stay.id))

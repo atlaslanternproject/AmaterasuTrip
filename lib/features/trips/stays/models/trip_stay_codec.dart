@@ -3,6 +3,7 @@
 // con l'ora del server (come chiede firestore.rules).
 
 import 'trip_stay.dart';
+import 'trip_stay_amenity.dart';
 import 'trip_stay_booking_platform.dart';
 import 'trip_stay_dates.dart';
 import 'trip_stay_status.dart';
@@ -19,6 +20,10 @@ abstract final class TripStayCodec {
     final other = stay.bookedVia == TripStayBookingPlatform.other
         ? text(stay.bookedViaOther)
         : null;
+    final cost = stay.estimatedCostCurrency == null
+        ? null
+        : stay.estimatedCostMinorUnits;
+    final cancellation = stay.freeCancellationUntil;
 
     return {
       'tripId': stay.tripId,
@@ -46,6 +51,18 @@ abstract final class TripStayCodec {
       'notes': ?text(stay.notes),
       if (stay.guestUids.isNotEmpty) 'guestUids': List.of(stay.guestUids),
       'expenseId': ?text(stay.expenseId),
+      if (cost != null) ...{
+        'estimatedCostMinorUnits': cost,
+        'estimatedCostCurrency': stay.estimatedCostCurrency,
+      },
+      if (cancellation != null)
+        'freeCancellationUntil': TripStayDates.format(cancellation),
+      if (stay.amenities.isNotEmpty)
+        'amenities': [
+          for (final a in TripStayAmenity.values)
+            if (stay.amenities.contains(a)) a.code,
+        ],
+      'directions': ?text(stay.directions),
     };
   }
 
@@ -88,6 +105,9 @@ abstract final class TripStayCodec {
     }
 
     final guests = data['guestUids'];
+    final cost = data['estimatedCostMinorUnits'];
+    final currency = text('estimatedCostCurrency');
+    final hasCost = cost is int && currency != null;
     return TripStay(
       id: id,
       tripId: tripId,
@@ -119,6 +139,11 @@ abstract final class TripStayCodec {
           ? guests.whereType<String>().toList()
           : const [],
       expenseId: text('expenseId'),
+      estimatedCostMinorUnits: hasCost ? cost : null,
+      estimatedCostCurrency: hasCost ? currency : null,
+      freeCancellationUntil: TripStayDates.parse(data['freeCancellationUntil']),
+      amenities: TripStayAmenity.fromCodes(data['amenities']),
+      directions: text('directions'),
     );
   }
 }

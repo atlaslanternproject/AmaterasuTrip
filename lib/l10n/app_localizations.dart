@@ -6191,6 +6191,12 @@ abstract class AppLocalizations {
   /// **'Invalid linked expense.'**
   String get staysErrExpense;
 
+  /// No description provided for @staysErrCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid expected cost: enter an amount above zero in the currency format.'**
+  String get staysErrCost;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

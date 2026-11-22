@@ -4,6 +4,7 @@
 
 import 'package:amaterasutrip/core/links/amaterasu_web_link.dart';
 import 'package:amaterasutrip/core/places/amaterasu_contact_validator.dart';
+import 'package:amaterasutrip/features/trips/budget/calculations/currency_minor_units.dart';
 
 import 'trip_stay.dart';
 import 'trip_stay_booking_platform.dart';
@@ -29,6 +30,8 @@ enum TripStayProblem {
   notesTooLong,
   tooManyGuests,
   expenseIdInvalid,
+  costInvalid,
+  directionsTooLong,
 }
 
 abstract final class TripStayValidator {
@@ -38,6 +41,10 @@ abstract final class TripStayValidator {
   static const codeMax = 100;
   static const notesMax = 10000;
   static const guestsMax = 50;
+  static const directionsMax = 2000;
+
+  /// Highest expected cost in minor units (same limit as firestore.rules).
+  static const costMax = 1000000000000;
   static const phoneMax = AmaterasuContactValidator.phoneMax;
   static const emailMax = AmaterasuContactValidator.emailMax;
   static final _expenseId = RegExp(r'^[A-Za-z0-9_-]{1,128}$');
@@ -108,6 +115,20 @@ abstract final class TripStayValidator {
     check(
       expenseId != null && !_expenseId.hasMatch(expenseId),
       TripStayProblem.expenseIdInvalid,
+    );
+    final cost = stay.estimatedCostMinorUnits;
+    check(
+      cost != null &&
+          (cost <= 0 ||
+              cost > costMax ||
+              !CurrencyMinorUnits.supportedCodes.contains(
+                stay.estimatedCostCurrency,
+              )),
+      TripStayProblem.costInvalid,
+    );
+    check(
+      longer(stay.directions, directionsMax),
+      TripStayProblem.directionsTooLong,
     );
     return found;
   }

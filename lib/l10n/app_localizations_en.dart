@@ -3184,6 +3184,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysErrExpense => 'Invalid linked expense.';
 
   @override
+  String get staysErrCost => 'Invalid expected cost: enter an amount above zero in the currency format.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

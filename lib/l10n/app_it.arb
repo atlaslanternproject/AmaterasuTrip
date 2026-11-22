@@ -1131,6 +1131,7 @@
   "staysErrLink": "Il link deve iniziare con http:// o https:// e non contenere spazi.",
   "staysErrGuests": "Al massimo 50 ospiti.",
   "staysErrExpense": "Spesa collegata non valida.",
+  "staysErrCost": "Costo previsto non valido: scrivi un importo maggiore di zero nel formato della valuta.",
   "staysExpenseCreate": "Crea spesa",
   "staysExpenseLinkExisting": "Collega spesa esistente",
   "staysExpenseLinkedTitle": "Spesa collegata: {title}",
