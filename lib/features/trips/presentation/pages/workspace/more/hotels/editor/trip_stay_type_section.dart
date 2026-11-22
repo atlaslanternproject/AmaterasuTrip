@@ -35,12 +35,16 @@ class TripStayTypeSection extends StatelessWidget {
             for (final type in TripStayType.values)
               ChoiceChip(
                 key: Key('stay-type-${type.code}'),
-                avatar: Icon(TripStayLabels.typeIcon(type), size: 16,
-                    color: AmaterasuColors.accentBudget),
+                avatar: Icon(
+                  TripStayLabels.typeIcon(type),
+                  size: 16,
+                  color: AmaterasuColors.accentBudget,
+                ),
                 label: Text(TripStayLabels.type(type, l10n)),
                 selected: draft.type == type,
-                selectedColor:
-                    AmaterasuColors.accentBudget.withValues(alpha: 0.25),
+                selectedColor: AmaterasuColors.accentBudget.withValues(
+                  alpha: 0.25,
+                ),
                 onSelected: (selected) {
                   draft.type = selected ? type : null;
                   onChanged();

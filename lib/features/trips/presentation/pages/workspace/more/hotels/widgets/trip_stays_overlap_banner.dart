@@ -31,8 +31,11 @@ class TripStaysOverlapBanner extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.warning_amber_rounded,
-              color: AmaterasuColors.accentGold, size: 20),
+          const Icon(
+            Icons.warning_amber_rounded,
+            color: AmaterasuColors.accentGold,
+            size: 20,
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Column(

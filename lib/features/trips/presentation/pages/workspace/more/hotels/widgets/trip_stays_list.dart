@@ -14,6 +14,7 @@ import 'trip_stay_card.dart';
 import 'trip_stay_card_menu.dart';
 import 'trip_stay_compact_card.dart';
 import 'trip_stay_details_row.dart';
+import 'trip_stay_quick_actions.dart';
 import 'trip_stays_overlap_banner.dart';
 
 class TripStaysList extends StatelessWidget {
@@ -25,6 +26,7 @@ class TripStaysList extends StatelessWidget {
     this.onEdit,
     this.onDelete,
     this.footerOf,
+    this.expenseOf,
     this.launch,
     this.view = TripStaysView.cards,
   });
@@ -35,6 +37,9 @@ class TripStaysList extends StatelessWidget {
   final void Function(TripStay stay)? onEdit;
   final void Function(TripStay stay)? onDelete;
   final Widget? Function(TripStay stay)? footerOf;
+
+  /// Expense as an icon, for the Elenco and Dettagli views.
+  final Widget? Function(TripStay stay)? expenseOf;
   final AmaterasuLaunch? launch;
   final TripStaysView view;
 
@@ -58,12 +63,18 @@ class TripStaysList extends StatelessWidget {
             final stay = stays[index - 1];
             final edit = onEdit == null ? null : () => onEdit!(stay);
             final remove = onDelete == null ? null : () => onDelete!(stay);
-            final actions = TripStayCardMenu(
-              stayId: stay.id,
-              canEdit: edit != null,
-              canDelete: canDelete(stay) && remove != null,
+            final actions = TripStayQuickActions(
+              stay: stay,
+              expense: expenseOf?.call(stay),
               onEdit: edit,
-              onDelete: remove,
+              launch: launch,
+              menu: TripStayCardMenu(
+                stayId: stay.id,
+                canEdit: false,
+                canDelete: canDelete(stay) && remove != null,
+                onDelete: remove,
+                dense: true,
+              ),
             );
             if (view == TripStaysView.list) {
               return TripStayCompactCard(stay: stay, actions: actions);

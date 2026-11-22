@@ -55,7 +55,9 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
     _index = 0;
     _photos = id.isEmpty
         ? Future.value(const [])
-        : ref.read(tripStayPlaceInfoProvider).photos(id, languageCode: language);
+        : ref
+              .read(tripStayPlaceInfoProvider)
+              .photos(id, languageCode: language);
   }
 
   @override
@@ -73,8 +75,11 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
     super.dispose();
   }
 
-  void _go(int page) => _pages.animateToPage(page,
-      duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+  void _go(int page) => _pages.animateToPage(
+    page,
+    duration: const Duration(milliseconds: 250),
+    curve: Curves.easeOut,
+  );
 
   @override
   Widget build(BuildContext context) {

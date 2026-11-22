@@ -56,7 +56,10 @@ class _TripStayPlaceSectionState extends State<TripStayPlaceSection> {
       _results = null;
     });
     try {
-      final found = await widget.places.search(_search.text, languageCode: _language);
+      final found = await widget.places.search(
+        _search.text,
+        languageCode: _language,
+      );
       if (mounted) setState(() => _results = found);
     } catch (_) {
       if (mounted) setState(() => _error = l10n.staysSearchError);
@@ -72,7 +75,10 @@ class _TripStayPlaceSectionState extends State<TripStayPlaceSection> {
       _error = null;
     });
     try {
-      final place = await widget.places.getDetails(prediction.placeId, languageCode: _language);
+      final place = await widget.places.getDetails(
+        prediction.placeId,
+        languageCode: _language,
+      );
       final draft = widget.draft
         ..googlePlaceId = place.placeId
         ..latitude = place.latitude
@@ -100,13 +106,22 @@ class _TripStayPlaceSectionState extends State<TripStayPlaceSection> {
     }
 
     try {
-      final found = await widget.placeInfo.contacts(placeId, languageCode: _language);
+      final found = await widget.placeInfo.contacts(
+        placeId,
+        languageCode: _language,
+      );
       final phone = found?.phone;
       final site = found?.website;
-      fill(widget.draft.phone, phone,
-          phone != null && TripStayValidator.isPhone(phone));
-      fill(widget.draft.propertyUrl, site,
-          site != null && AmaterasuWebLink.isValid(site));
+      fill(
+        widget.draft.phone,
+        phone,
+        phone != null && TripStayValidator.isPhone(phone),
+      );
+      fill(
+        widget.draft.propertyUrl,
+        site,
+        site != null && AmaterasuWebLink.isValid(site),
+      );
     } catch (_) {}
   }
 
@@ -155,16 +170,25 @@ class _TripStayPlaceSectionState extends State<TripStayPlaceSection> {
         ),
         if (_busy) const LinearProgressIndicator(),
         if (_error != null)
-          Text(_error!, style: const TextStyle(color: AmaterasuColors.accentErrorSoft)),
+          Text(
+            _error!,
+            style: const TextStyle(color: AmaterasuColors.accentErrorSoft),
+          ),
         if (results != null && results.isEmpty)
-          Text(l10n.staysNoResults, style: const TextStyle(color: AmaterasuColors.textSecondary)),
+          Text(
+            l10n.staysNoResults,
+            style: const TextStyle(color: AmaterasuColors.textSecondary),
+          ),
         for (final result in results ?? const <DestinationPrediction>[])
           Material(
             type: MaterialType.transparency,
             child: ListTile(
               dense: true,
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.place, color: AmaterasuColors.accentBudget),
+              leading: const Icon(
+                Icons.place,
+                color: AmaterasuColors.accentBudget,
+              ),
               title: Text(result.primaryText),
               subtitle: Text(result.secondaryText),
               onTap: () => _select(result),
@@ -173,10 +197,22 @@ class _TripStayPlaceSectionState extends State<TripStayPlaceSection> {
         if (draft.googlePlaceId != null)
           Row(
             children: [
-              const Icon(Icons.check_circle, size: 16, color: AmaterasuColors.success),
+              const Icon(
+                Icons.check_circle,
+                size: 16,
+                color: AmaterasuColors.success,
+              ),
               const SizedBox(width: 6),
-              Expanded(child: Text(l10n.staysPlaceLinked, style: const TextStyle(fontSize: 13))),
-              TextButton(onPressed: _unlink, child: Text(l10n.staysPlaceUnlink)),
+              Expanded(
+                child: Text(
+                  l10n.staysPlaceLinked,
+                  style: const TextStyle(fontSize: 13),
+                ),
+              ),
+              TextButton(
+                onPressed: _unlink,
+                child: Text(l10n.staysPlaceUnlink),
+              ),
             ],
           ),
         TextField(

@@ -68,8 +68,11 @@ class TripStaysEmpty extends StatelessWidget {
                     color: AmaterasuColors.accentBudget.withValues(alpha: 0.5),
                   ),
                 ),
-                child: Icon(icon,
-                    color: AmaterasuColors.accentBudget, size: 32),
+                child: Icon(
+                  icon,
+                  color: AmaterasuColors.accentBudget,
+                  size: 32,
+                ),
               ),
               const SizedBox(height: 20),
               Text(

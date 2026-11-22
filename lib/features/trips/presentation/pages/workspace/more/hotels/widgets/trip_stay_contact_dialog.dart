@@ -39,7 +39,8 @@ Future<void> showTripStayContactDialog(
     }
     if (!opened) {
       messenger.showSnackBar(
-          SnackBar(content: Text(l10n.staysContactOpenFailed)));
+        SnackBar(content: Text(l10n.staysContactOpenFailed)),
+      );
     }
   }
 
@@ -55,8 +56,11 @@ Future<void> showTripStayContactDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       title: Text(
         l10n.staysContactTitle(stay.name),
-        style: const TextStyle(color: AmaterasuColors.textPrimary,
-            fontSize: 18, fontWeight: FontWeight.w700),
+        style: const TextStyle(
+          color: AmaterasuColors.textPrimary,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
       ),
       content: SizedBox(
         width: 420,
@@ -70,8 +74,12 @@ Future<void> showTripStayContactDialog(
                 label: l10n.staysContactPhone,
                 value: phone,
                 actionLabel: l10n.staysContactCall,
-                onAction: () => launchApp(Uri(scheme: 'tel',
-                    path: phone.replaceAll(RegExp(r'[^0-9+]'), ''))),
+                onAction: () => launchApp(
+                  Uri(
+                    scheme: 'tel',
+                    path: phone.replaceAll(RegExp(r'[^0-9+]'), ''),
+                  ),
+                ),
                 onCopy: () => copy(phone),
               ),
             if (email != null)

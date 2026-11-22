@@ -33,8 +33,11 @@ class TripStayDetailsRow extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(TripStayLabels.typeIcon(stay.type), size: 20,
-              color: AmaterasuColors.accentBudget),
+          Icon(
+            TripStayLabels.typeIcon(stay.type),
+            size: 20,
+            color: AmaterasuColors.accentBudget,
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -55,20 +58,26 @@ class TripStayDetailsRow extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text.rich(
-                  TextSpan(children: [
-                    TextSpan(text: '${TripStayLabels.period(context, stay)} · '),
-                    TextSpan(
-                      text: TripStayLabels.status(stay.status, l10n),
-                      style: TextStyle(
-                        color: TripStayLabels.statusColor(stay.status),
-                        fontWeight: FontWeight.w700,
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '${TripStayLabels.period(context, stay)} · ',
                       ),
-                    ),
-                  ]),
+                      TextSpan(
+                        text: TripStayLabels.status(stay.status, l10n),
+                        style: TextStyle(
+                          color: TripStayLabels.statusColor(stay.status),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                      color: AmaterasuColors.textSecondary, fontSize: 12),
+                    color: AmaterasuColors.textSecondary,
+                    fontSize: 12,
+                  ),
                 ),
               ],
             ),

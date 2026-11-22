@@ -26,7 +26,10 @@ class TripStayPhotoPlaceholder extends StatelessWidget {
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [AmaterasuColors.backgroundSecondary, AmaterasuColors.surfaceRaised],
+        colors: [
+          AmaterasuColors.backgroundSecondary,
+          AmaterasuColors.surfaceRaised,
+        ],
       ),
     ),
     child: Center(
@@ -67,14 +70,20 @@ class TripStayPhotoArrow extends StatelessWidget {
         ),
         iconSize: 20,
         onPressed: onPressed,
-        icon: Icon(left ? Icons.chevron_left_rounded : Icons.chevron_right_rounded),
+        icon: Icon(
+          left ? Icons.chevron_left_rounded : Icons.chevron_right_rounded,
+        ),
       ),
     ),
   );
 }
 
 class TripStayPhotoDots extends StatelessWidget {
-  const TripStayPhotoDots({super.key, required this.count, required this.index});
+  const TripStayPhotoDots({
+    super.key,
+    required this.count,
+    required this.index,
+  });
 
   final int count;
   final int index;

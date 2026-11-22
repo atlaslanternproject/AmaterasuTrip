@@ -1,13 +1,14 @@
 // Card di un soggiorno, nello stile della card della bucket list: foto
 // Google in testa, nome e città, stato e tipo di alloggio, riquadro con
 // check-in, check-out e notti, prenotazione e ospiti, link con Mappa e
-// Contatta, spesa collegata (se data) e menu modifica/elimina.
+// Contatta, spesa collegata (se data), pulsante Modifica e menu Elimina.
 
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_card_dates.dart';
 import 'trip_stay_card_details.dart';
 import 'trip_stay_card_links.dart';
@@ -41,10 +42,10 @@ class TripStayCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cancelled = !stay.isActive;
-    final place = [stay.city, stay.country]
-        .whereType<String>()
-        .where((part) => part.trim().isNotEmpty)
-        .join(', ');
+    final place = [
+      stay.city,
+      stay.country,
+    ].whereType<String>().where((part) => part.trim().isNotEmpty).join(', ');
 
     return Container(
       key: Key('stay-card-${stay.id}'),
@@ -95,8 +96,9 @@ class TripStayCard extends StatelessWidget {
                             fontSize: wide ? 21 : 19,
                             fontWeight: FontWeight.w700,
                             height: 1.15,
-                            decoration:
-                                cancelled ? TextDecoration.lineThrough : null,
+                            decoration: cancelled
+                                ? TextDecoration.lineThrough
+                                : null,
                           ),
                         ),
                         if (place.isNotEmpty) ...[
@@ -106,9 +108,19 @@ class TripStayCard extends StatelessWidget {
                       ],
                     ),
                   ),
+                  if (onEdit != null)
+                    IconButton(
+                      key: Key('stay-edit-${stay.id}'),
+                      tooltip: AppLocalizations.of(context)!.staysEdit,
+                      onPressed: onEdit,
+                      icon: const Icon(
+                        Icons.edit_outlined,
+                        color: AmaterasuColors.accentGold,
+                      ),
+                    ),
                   TripStayCardMenu(
                     stayId: stay.id,
-                    canEdit: onEdit != null,
+                    canEdit: false,
                     canDelete: canDelete && onDelete != null,
                     onEdit: onEdit,
                     onDelete: onDelete,
@@ -145,12 +157,20 @@ class _Place extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
     children: [
-      const Icon(Icons.location_on_outlined, size: 16,
-          color: AmaterasuColors.textSecondary),
+      const Icon(
+        Icons.location_on_outlined,
+        size: 16,
+        color: AmaterasuColors.textSecondary,
+      ),
       const SizedBox(width: 4),
       Expanded(
-        child: Text(text, style: const TextStyle(
-            color: AmaterasuColors.textSecondary, fontSize: 13)),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: AmaterasuColors.textSecondary,
+            fontSize: 13,
+          ),
+        ),
       ),
     ],
   );

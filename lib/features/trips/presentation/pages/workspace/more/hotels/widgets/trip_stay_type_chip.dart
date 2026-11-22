@@ -26,8 +26,11 @@ class TripStayTypeChip extends StatelessWidget {
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(TripStayLabels.typeIcon(type), size: 14,
-            color: AmaterasuColors.accentGold),
+        Icon(
+          TripStayLabels.typeIcon(type),
+          size: 14,
+          color: AmaterasuColors.accentGold,
+        ),
         const SizedBox(width: 5),
         Text(
           TripStayLabels.type(type, AppLocalizations.of(context)!),

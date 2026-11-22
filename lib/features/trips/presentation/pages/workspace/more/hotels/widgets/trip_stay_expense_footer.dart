@@ -38,15 +38,19 @@ class TripStayExpenseFooter extends StatelessWidget {
           children: [
             TextButton.icon(
               key: Key('stay-expense-create-${stay.id}'),
-              onPressed: () => createExpenseForStay(context, api, repository, stay),
+              onPressed: () =>
+                  createExpenseForStay(context, api, repository, stay),
               icon: const Icon(Icons.add_card_outlined, size: 18),
               label: Text(l10n.staysExpenseCreate, style: accent),
             ),
             TextButton(
               key: Key('stay-expense-link-${stay.id}'),
-              onPressed: () => linkExistingExpenseToStay(context, api, repository, stay),
-              child: Text(l10n.staysExpenseLinkExisting,
-                  style: const TextStyle(color: AmaterasuColors.textSecondary)),
+              onPressed: () =>
+                  linkExistingExpenseToStay(context, api, repository, stay),
+              child: Text(
+                l10n.staysExpenseLinkExisting,
+                style: const TextStyle(color: AmaterasuColors.textSecondary),
+              ),
             ),
           ],
         ),
@@ -62,8 +66,13 @@ class TripStayExpenseFooter extends StatelessWidget {
         if (snapshot.hasData && doc == null) {
           return Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Text(l10n.staysExpenseNotVisible,
-                style: const TextStyle(color: AmaterasuColors.textMuted, fontSize: 13)),
+            child: Text(
+              l10n.staysExpenseNotVisible,
+              style: const TextStyle(
+                color: AmaterasuColors.textMuted,
+                fontSize: 13,
+              ),
+            ),
           );
         }
         if (doc == null) return const SizedBox.shrink();
@@ -75,12 +84,18 @@ class TripStayExpenseFooter extends StatelessWidget {
             spacing: 8,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              const Icon(Icons.receipt_long_outlined, size: 18,
-                  color: AmaterasuColors.accentBudget),
+              const Icon(
+                Icons.receipt_long_outlined,
+                size: 18,
+                color: AmaterasuColors.accentBudget,
+              ),
               Text(
                 '${l10n.staysExpenseLinkedTitle(data['title']?.toString() ?? '')}'
                 '${amount.isEmpty ? '' : ' · $amount'}',
-                style: const TextStyle(color: AmaterasuColors.textPrimary, fontSize: 13),
+                style: const TextStyle(
+                  color: AmaterasuColors.textPrimary,
+                  fontSize: 13,
+                ),
               ),
               TextButton(
                 key: Key('stay-expense-view-${stay.id}'),

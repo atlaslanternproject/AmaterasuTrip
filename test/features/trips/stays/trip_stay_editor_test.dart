@@ -122,9 +122,7 @@ void main() {
       repository: repo,
       extra: [tripStaysPlacesProvider.overrideWithValue(FakePlaces())]));
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const Key('stay-menu-s1')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Modifica'));
+    await tester.tap(find.byKey(const Key('stay-edit-s1')));
     await tester.pumpAndSettle();
     expect(find.text('Modifica alloggio'), findsOneWidget);
     await tester.ensureVisible(find.byKey(const Key('stay-status-booked')));

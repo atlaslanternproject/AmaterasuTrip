@@ -111,8 +111,17 @@ class TripStayDraft {
 
   void dispose() {
     for (final controller in [
-      name, address, city, country, bookedViaOther, bookingUrl,
-      propertyUrl, phone, email, confirmationCode, notes,
+      name,
+      address,
+      city,
+      country,
+      bookedViaOther,
+      bookingUrl,
+      propertyUrl,
+      phone,
+      email,
+      confirmationCode,
+      notes,
     ]) {
       controller.dispose();
     }

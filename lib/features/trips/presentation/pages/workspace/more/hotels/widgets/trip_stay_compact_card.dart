@@ -70,8 +70,9 @@ class TripStayCompactCard extends StatelessWidget {
                             : AmaterasuColors.textCream,
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
-                        decoration:
-                            cancelled ? TextDecoration.lineThrough : null,
+                        decoration: cancelled
+                            ? TextDecoration.lineThrough
+                            : null,
                       ),
                     ),
                     const SizedBox(height: 6),

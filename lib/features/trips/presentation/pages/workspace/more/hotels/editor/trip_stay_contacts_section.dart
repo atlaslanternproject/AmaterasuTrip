@@ -23,8 +23,11 @@ class TripStayContactsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    String? check(TextEditingController controller, bool Function(String) ok,
-        String message) {
+    String? check(
+      TextEditingController controller,
+      bool Function(String) ok,
+      String message,
+    ) {
       final text = controller.text.trim();
       return text.isEmpty || ok(text) ? null : message;
     }
@@ -41,8 +44,11 @@ class TripStayContactsSection extends StatelessWidget {
           onChanged: (_) => onChanged(),
           decoration: InputDecoration(
             labelText: l10n.staysPhone,
-            errorText: check(draft.phone, TripStayValidator.isPhone,
-                l10n.staysErrPhone),
+            errorText: check(
+              draft.phone,
+              TripStayValidator.isPhone,
+              l10n.staysErrPhone,
+            ),
             counterText: '',
           ),
         ),
@@ -54,8 +60,11 @@ class TripStayContactsSection extends StatelessWidget {
           onChanged: (_) => onChanged(),
           decoration: InputDecoration(
             labelText: l10n.staysEmail,
-            errorText: check(draft.email, TripStayValidator.isEmail,
-                l10n.staysErrEmail),
+            errorText: check(
+              draft.email,
+              TripStayValidator.isEmail,
+              l10n.staysErrEmail,
+            ),
             counterText: '',
           ),
         ),
@@ -67,8 +76,11 @@ class TripStayContactsSection extends StatelessWidget {
           onChanged: (_) => onChanged(),
           decoration: InputDecoration(
             labelText: l10n.staysPropertyUrl,
-            errorText: check(draft.propertyUrl, AmaterasuWebLink.isValid,
-                l10n.staysErrLink),
+            errorText: check(
+              draft.propertyUrl,
+              AmaterasuWebLink.isValid,
+              l10n.staysErrLink,
+            ),
             counterText: '',
           ),
         ),

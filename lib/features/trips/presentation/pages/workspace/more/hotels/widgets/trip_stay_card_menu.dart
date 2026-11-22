@@ -17,7 +17,11 @@ class TripStayCardMenu extends StatelessWidget {
     required this.canDelete,
     this.onEdit,
     this.onDelete,
+    this.dense = false,
   });
+
+  /// Smaller button for the Elenco and Dettagli views.
+  final bool dense;
 
   final String stayId;
   final bool canEdit;
@@ -35,6 +39,9 @@ class TripStayCardMenu extends StatelessWidget {
     if (actions.isEmpty) return const SizedBox.shrink();
     return PopupMenuButton<_StayAction>(
       key: Key('stay-menu-$stayId'),
+      tooltip: l10n.staysMore,
+      padding: dense ? EdgeInsets.zero : const EdgeInsets.all(8),
+      iconSize: dense ? 20 : 24,
       iconColor: AmaterasuColors.textSecondary,
       color: AmaterasuColors.surfaceCard,
       onSelected: (action) =>
@@ -43,9 +50,9 @@ class TripStayCardMenu extends StatelessWidget {
         for (final action in actions)
           PopupMenuItem(
             value: action,
-            child: Text(action == _StayAction.edit
-                ? l10n.staysEdit
-                : l10n.staysDelete),
+            child: Text(
+              action == _StayAction.edit ? l10n.staysEdit : l10n.staysDelete,
+            ),
           ),
       ],
     );
