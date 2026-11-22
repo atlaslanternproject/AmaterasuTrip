@@ -10,7 +10,7 @@ riprende dalla prima tappa non finita.
 
 | Tappa | Stato | Branch | Versione |
 |---|---|---|---|
-| 0. Modulo Luogo condiviso (lib/core/places) | in corso | feature/luogo-condiviso | - |
+| 0. Modulo Luogo condiviso (lib/core/places) | fatta | feature/luogo-condiviso | 1.14.0+18 |
 | 1. Hotel e alloggi, migliorie | da fare | - | - |
 | 2. Trasporti | da fare | - | - |
 | 3. Prenotazioni | da fare | - | - |
@@ -31,4 +31,14 @@ Commit:
 - 1af6285 refactor(places): ricerca, carosello foto, pop-up
   Contatta e riempimento automatico condivisi; gli alloggi li
   usano con gli stessi 57 test di prima.
-- docs: CLAUDE.md e questo file.
+- c8a3cc9 docs: CLAUDE.md e questo file.
+- release 1.14.0+18 (tag v1.14.0). Regole e functions invariate.
+
+Prove da fare sul sito (Hotel e alloggi deve funzionare come prima):
+1. Nuovo alloggio: cerca un hotel su Google e sceglilo; nome,
+   indirizzo, telefono e sito si compilano.
+2. Scegli un secondo hotel: telefono e sito cambiano.
+3. Sulla card scorri le foto e vedi gli autori.
+4. Premi Contatta e prova Chiama, Scrivi, Apri e Copia.
+5. Vista Elenco: foto piccola; vista Dettagli: nessuna foto.
+6. Un alloggio senza luogo Google mostra il segnaposto con l'icona.
