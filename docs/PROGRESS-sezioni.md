@@ -10,7 +10,7 @@ riprende dalla prima tappa non finita.
 
 | Tappa | Stato | Branch | Versione |
 |---|---|---|---|
-| 0. Modulo Luogo condiviso (lib/core/places) | fatta | feature/luogo-condiviso | 1.14.0+18 |
+| 0. Modulo Luogo condiviso (lib/core/places) | fatta, pubblicata il 22/11/2026 | feature/luogo-condiviso (eliminato) | 1.14.0+18 |
 | 1. Hotel e alloggi, migliorie | da fare | - | - |
 | 2. Trasporti | da fare | - | - |
 | 3. Prenotazioni | da fare | - | - |
@@ -32,7 +32,12 @@ Commit:
   Contatta e riempimento automatico condivisi; gli alloggi li
   usano con gli stessi 57 test di prima.
 - c8a3cc9 docs: CLAUDE.md e questo file.
-- release 1.14.0+18 (tag v1.14.0). Regole e functions invariate.
+- c9fce93 release 1.14.0+18 (tag v1.14.0). Regole e functions
+  invariate. Pubblicato l'hosting il 22/11/2026 con tutte le
+  verifiche passate (pagine, version.json, manifest, .well-known,
+  32 funzioni attive). La prima build era fallita per una cache
+  vecchia in .dart_tool/flutter_build (plugin tolti nell'audit):
+  svuotata quella cartella, la build è riuscita. Codice invariato.
 
 Prove da fare sul sito (Hotel e alloggi deve funzionare come prima):
 1. Nuovo alloggio: cerca un hotel su Google e sceglilo; nome,
