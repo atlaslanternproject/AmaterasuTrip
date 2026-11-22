@@ -13,7 +13,7 @@ import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import 'editor/trip_stay_editor.dart';
+import 'editor/trip_stay_editor_dialog.dart';
 import 'widgets/trip_stay_delete.dart';
 import 'widgets/trip_stay_expense_button.dart';
 import 'widgets/trip_stay_expense_footer.dart';
@@ -60,6 +60,8 @@ class TripHotelsPage extends ConsumerWidget {
         places: ref.read(amaterasuPlaceSearchProvider),
         placeInfo: ref.read(amaterasuPlaceInfoProvider),
         initial: initial,
+        defaultCurrency:
+            ref.read(tripStaysTripInfoProvider(tripId))?.currency ?? 'EUR',
         onSave: (stay) =>
             initial == null ? repository.create(stay) : repository.update(stay),
       );

@@ -1,11 +1,12 @@
 // Testi e colori di Hotel/Alloggi: nome dello stato, del tipo di alloggio
-// (con la sua icona) e della piattaforma di prenotazione, colore dello
+// (con la sua icona), dei servizi inclusi e della piattaforma di prenotazione, colore dello
 // stato (token del tema) e periodo breve del soggiorno.
 
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_amenity.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_booking_platform.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
@@ -43,6 +44,21 @@ abstract final class TripStayLabels {
     TripStayType.hostel => Icons.bed_rounded,
     TripStayType.camping => Icons.cabin_rounded,
     TripStayType.other => Icons.home_work_rounded,
+  };
+
+  static String amenity(TripStayAmenity amenity, AppLocalizations l10n) =>
+      switch (amenity) {
+        TripStayAmenity.breakfast => l10n.staysAmenityBreakfast,
+        TripStayAmenity.parking => l10n.staysAmenityParking,
+        TripStayAmenity.wifi => l10n.staysAmenityWifi,
+        TripStayAmenity.kitchen => l10n.staysAmenityKitchen,
+      };
+
+  static IconData amenityIcon(TripStayAmenity amenity) => switch (amenity) {
+    TripStayAmenity.breakfast => Icons.free_breakfast_outlined,
+    TripStayAmenity.parking => Icons.local_parking_rounded,
+    TripStayAmenity.wifi => Icons.wifi_rounded,
+    TripStayAmenity.kitchen => Icons.kitchen_outlined,
   };
 
   static String platform(

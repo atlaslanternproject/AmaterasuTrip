@@ -1,11 +1,12 @@
-// Dati del viaggio che servono a Hotel/Alloggi: proprietario (per chi può
-// eliminare) e nomi dei viaggiatori (per gli ospiti). Ricerca e dati
+// Dati del viaggio che servono a Hotel/Alloggi: valuta e date, proprietario
+// (per chi può eliminare) e nomi dei viaggiatori (per gli ospiti). Ricerca e dati
 // Google del luogo sono in lib/core/places. Leggono i provider
 // esistenti del viaggio e dei membri; nei test si sostituiscono facilmente.
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_currency.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_member_provider.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 
@@ -30,4 +31,21 @@ final tripStaysMemberNamesProvider = Provider.autoDispose
         for (final member in members)
           member.uid: member.displayName ?? member.uid,
       };
+    });
+
+/// Currency and dates of the trip: default currency of the expected cost
+/// and range for the "nights without a stay" notice. Null while loading.
+typedef TripStaysTripInfo = ({String currency, DateTime start, DateTime end});
+
+final tripStaysTripInfoProvider = Provider.autoDispose
+    .family<TripStaysTripInfo?, String>((ref, tripId) {
+      final trip = ref.watch(tripProvider(tripId)).asData?.value;
+      if (trip == null) return null;
+      String currency;
+      try {
+        currency = BudgetCurrency.normalize(trip.currency);
+      } on FormatException {
+        currency = 'EUR';
+      }
+      return (currency: currency, start: trip.startDate, end: trip.endDate);
     });

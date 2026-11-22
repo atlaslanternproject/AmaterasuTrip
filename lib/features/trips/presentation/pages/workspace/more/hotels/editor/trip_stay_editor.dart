@@ -1,6 +1,7 @@
 // Editor di un soggiorno (creazione e modifica) in un dialogo largo al
-// massimo 640 punti: sezioni luogo, tipo, contatti, date, stato, prenotazione, ospiti e
-// note; al salvataggio mostra i problemi trovati con messaggi chiari.
+// massimo 640 punti (aperto da showTripStayEditor): sezioni luogo, tipo,
+// contatti, date, stato, prenotazione, costo e cancellazione, servizi,
+// ospiti e note; al salvataggio mostra i problemi trovati con messaggi chiari.
 
 import 'package:flutter/material.dart';
 
@@ -12,48 +13,15 @@ import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_booking_section.dart';
 import 'trip_stay_contacts_section.dart';
+import 'trip_stay_cost_section.dart';
 import 'trip_stay_dates_section.dart';
 import 'trip_stay_draft.dart';
 import 'trip_stay_guests_notes_sections.dart';
 import 'trip_stay_place_section.dart';
 import 'trip_stay_problem_text.dart';
+import 'trip_stay_services_section.dart';
 import 'trip_stay_status_section.dart';
 import 'trip_stay_type_section.dart';
-
-/// Opens the editor; returns true when the stay was saved.
-Future<bool> showTripStayEditor(
-  BuildContext context, {
-  required String tripId,
-  required String authorUid,
-  required Map<String, String> memberNames,
-  required DestinationPlacesService places,
-  required AmaterasuPlaceInfoService placeInfo,
-  required Future<void> Function(TripStay stay) onSave,
-  TripStay? initial,
-}) async {
-  final narrow = MediaQuery.sizeOf(context).width < 600;
-  final saved = await showDialog<bool>(
-    context: context,
-    barrierDismissible: false,
-    builder: (_) => Dialog(
-      backgroundColor: AmaterasuColors.surfaceCard,
-      insetPadding: EdgeInsets.all(narrow ? 8 : 24),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 640),
-        child: TripStayEditor(
-          tripId: tripId,
-          authorUid: authorUid,
-          memberNames: memberNames,
-          places: places,
-          placeInfo: placeInfo,
-          onSave: onSave,
-          initial: initial,
-        ),
-      ),
-    ),
-  );
-  return saved ?? false;
-}
 
 class TripStayEditor extends StatefulWidget {
   const TripStayEditor({
@@ -65,6 +33,7 @@ class TripStayEditor extends StatefulWidget {
     required this.placeInfo,
     required this.onSave,
     this.initial,
+    this.defaultCurrency = 'EUR',
   });
 
   final String tripId;
@@ -75,6 +44,9 @@ class TripStayEditor extends StatefulWidget {
   final Future<void> Function(TripStay stay) onSave;
   final TripStay? initial;
 
+  /// Starting currency of the expected cost (the trip currency).
+  final String defaultCurrency;
+
   @override
   State<TripStayEditor> createState() => _TripStayEditorState();
 }
@@ -83,6 +55,7 @@ class _TripStayEditorState extends State<TripStayEditor> {
   late final _draft = TripStayDraft(
     initial: widget.initial,
     today: DateTime.now(),
+    defaultCurrency: widget.defaultCurrency,
   );
   List<String> _messages = const [];
   bool _saving = false;
@@ -159,6 +132,8 @@ class _TripStayEditorState extends State<TripStayEditor> {
                 TripStayDatesSection(draft: _draft, onChanged: _changed),
                 TripStayStatusSection(draft: _draft, onChanged: _changed),
                 TripStayBookingSection(draft: _draft, onChanged: _changed),
+                TripStayCostSection(draft: _draft, onChanged: _changed),
+                TripStayServicesSection(draft: _draft, onChanged: _changed),
                 TripStayGuestsSection(
                   draft: _draft,
                   memberNames: widget.memberNames,

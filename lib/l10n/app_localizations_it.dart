@@ -3187,6 +3187,45 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysErrCost => 'Costo previsto non valido: scrivi un importo maggiore di zero nel formato della valuta.';
 
   @override
+  String get staysSectionCost => 'Costo e cancellazione';
+
+  @override
+  String get staysCost => 'Costo previsto';
+
+  @override
+  String get staysCostCurrency => 'Valuta';
+
+  @override
+  String get staysCostHint => 'Facoltativo: sarà l\'importo di partenza di «Crea spesa».';
+
+  @override
+  String get staysFreeCancellation => 'Cancellazione gratuita fino al';
+
+  @override
+  String get staysFreeCancellationNone => 'nessuna data';
+
+  @override
+  String get staysFreeCancellationClear => 'Togli la data';
+
+  @override
+  String get staysSectionServices => 'Servizi e come arrivare';
+
+  @override
+  String get staysAmenityBreakfast => 'Colazione';
+
+  @override
+  String get staysAmenityParking => 'Parcheggio';
+
+  @override
+  String get staysAmenityWifi => 'Wi-Fi';
+
+  @override
+  String get staysAmenityKitchen => 'Cucina';
+
+  @override
+  String get staysDirections => 'Come arrivare';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

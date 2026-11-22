@@ -3187,6 +3187,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysErrCost => 'Invalid expected cost: enter an amount above zero in the currency format.';
 
   @override
+  String get staysSectionCost => 'Cost and cancellation';
+
+  @override
+  String get staysCost => 'Expected cost';
+
+  @override
+  String get staysCostCurrency => 'Currency';
+
+  @override
+  String get staysCostHint => 'Optional: it will be the starting amount of “Create expense”.';
+
+  @override
+  String get staysFreeCancellation => 'Free cancellation until';
+
+  @override
+  String get staysFreeCancellationNone => 'no date';
+
+  @override
+  String get staysFreeCancellationClear => 'Remove the date';
+
+  @override
+  String get staysSectionServices => 'Services and directions';
+
+  @override
+  String get staysAmenityBreakfast => 'Breakfast';
+
+  @override
+  String get staysAmenityParking => 'Parking';
+
+  @override
+  String get staysAmenityWifi => 'Wi-Fi';
+
+  @override
+  String get staysAmenityKitchen => 'Kitchen';
+
+  @override
+  String get staysDirections => 'How to get there';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override
