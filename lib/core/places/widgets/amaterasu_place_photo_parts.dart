@@ -1,5 +1,5 @@
-// Pezzi del carosello foto degli alloggi: segnaposto con sfumatura calda e
-// icona del tipo, frecce, puntini della pagina e autori della foto (da
+// Pezzi del carosello foto dei luoghi: segnaposto con sfumatura calda e
+// icona scelta dalla sezione, frecce, puntini della pagina e autori della foto (da
 // mostrare sempre, come chiede Google).
 
 import 'package:flutter/material.dart';
@@ -7,21 +7,24 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_radius.dart';
-import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
 import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
-import 'trip_stay_labels.dart';
 
 /// Dark translucent background used on top of the photos.
 const _veil = Color(0xE81F1714);
 
-class TripStayPhotoPlaceholder extends StatelessWidget {
-  const TripStayPhotoPlaceholder({super.key, this.type});
+class AmaterasuPhotoPlaceholder extends StatelessWidget {
+  const AmaterasuPhotoPlaceholder({
+    super.key,
+    required this.icon,
+    this.keyPrefix = 'place',
+  });
 
-  final TripStayType? type;
+  final IconData icon;
+  final String keyPrefix;
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
-    key: const Key('stay-photo-placeholder'),
+    key: Key('$keyPrefix-photo-placeholder'),
     decoration: const BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topLeft,
@@ -34,7 +37,7 @@ class TripStayPhotoPlaceholder extends StatelessWidget {
     ),
     child: Center(
       child: Icon(
-        TripStayLabels.typeIcon(type),
+        icon,
         size: 48,
         color: AmaterasuColors.accentBudget.withValues(alpha: 0.55),
       ),
@@ -42,8 +45,8 @@ class TripStayPhotoPlaceholder extends StatelessWidget {
   );
 }
 
-class TripStayPhotoArrow extends StatelessWidget {
-  const TripStayPhotoArrow({
+class AmaterasuPhotoArrow extends StatelessWidget {
+  const AmaterasuPhotoArrow({
     super.key,
     required this.left,
     required this.tooltip,
@@ -78,8 +81,8 @@ class TripStayPhotoArrow extends StatelessWidget {
   );
 }
 
-class TripStayPhotoDots extends StatelessWidget {
-  const TripStayPhotoDots({
+class AmaterasuPhotoDots extends StatelessWidget {
+  const AmaterasuPhotoDots({
     super.key,
     required this.count,
     required this.index,

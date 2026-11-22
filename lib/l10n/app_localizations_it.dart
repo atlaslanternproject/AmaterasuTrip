@@ -2965,40 +2965,40 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get staysContactPhone => 'Telefono';
+  String get placesContactPhone => 'Telefono';
 
   @override
-  String get staysContactEmail => 'Email';
+  String get placesContactEmail => 'Email';
 
   @override
-  String get staysContactWebsite => 'Sito';
+  String get placesContactWebsite => 'Sito';
 
   @override
-  String get staysContactCall => 'Chiama';
+  String get placesContactCall => 'Chiama';
 
   @override
-  String get staysContactWrite => 'Scrivi';
+  String get placesContactWrite => 'Scrivi';
 
   @override
-  String get staysContactOpen => 'Apri';
+  String get placesContactOpen => 'Apri';
 
   @override
-  String get staysContactCopy => 'Copia';
+  String get placesContactCopy => 'Copia';
 
   @override
-  String get staysContactCopied => 'Copiato negli appunti.';
+  String get placesContactCopied => 'Copiato negli appunti.';
 
   @override
-  String get staysContactOpenFailed => 'Impossibile aprire l\'app. Puoi copiare il dato.';
+  String get placesContactOpenFailed => 'Impossibile aprire l\'app. Puoi copiare il dato.';
 
   @override
-  String get staysContactClose => 'Chiudi';
+  String get placesContactClose => 'Chiudi';
 
   @override
-  String get staysPhotoPrevious => 'Foto precedente';
+  String get placesPhotoPrevious => 'Foto precedente';
 
   @override
-  String get staysPhotoNext => 'Foto successiva';
+  String get placesPhotoNext => 'Foto successiva';
 
   @override
   String get staysFilters => 'Filtri';
@@ -3074,25 +3074,25 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysName => 'Nome dell\'alloggio';
 
   @override
-  String get staysSearchHint => 'Cerca su Google: nome o indirizzo';
+  String get placesSearchHint => 'Cerca su Google: nome o indirizzo';
 
   @override
-  String get staysSearchButton => 'Cerca';
+  String get placesSearchButton => 'Cerca';
 
   @override
-  String get staysSearchError => 'Ricerca non disponibile. Riprova.';
+  String get placesSearchError => 'Ricerca non disponibile. Riprova.';
 
   @override
-  String get staysPlaceLoadError => 'Impossibile caricare questo luogo.';
+  String get placesLoadError => 'Impossibile caricare questo luogo.';
 
   @override
-  String get staysNoResults => 'Nessun risultato.';
+  String get placesNoResults => 'Nessun risultato.';
 
   @override
-  String get staysPlaceLinked => 'Luogo collegato a Google Maps';
+  String get placesLinked => 'Luogo collegato a Google Maps';
 
   @override
-  String get staysPlaceUnlink => 'Scollega';
+  String get placesUnlink => 'Scollega';
 
   @override
   String get staysAddress => 'Indirizzo (facoltativo)';

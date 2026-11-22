@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
+import 'package:amaterasutrip/core/places/widgets/amaterasu_place_photo_carousel.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -13,7 +14,7 @@ import 'trip_stay_card_dates.dart';
 import 'trip_stay_card_details.dart';
 import 'trip_stay_card_links.dart';
 import 'trip_stay_card_menu.dart';
-import 'trip_stay_photo_carousel.dart';
+import 'trip_stay_labels.dart';
 import 'trip_stay_status_chip.dart';
 import 'trip_stay_type_chip.dart';
 
@@ -72,9 +73,10 @@ class TripStayCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 child: Opacity(
                   opacity: cancelled ? 0.5 : 1,
-                  child: TripStayPhotoCarousel(
+                  child: AmaterasuPlacePhotoCarousel(
                     placeId: stay.googlePlaceId,
-                    type: stay.type,
+                    placeholderIcon: TripStayLabels.typeIcon(stay.type),
+                    keyPrefix: 'stay',
                     height: wide ? 220 : 160,
                   ),
                 ),
