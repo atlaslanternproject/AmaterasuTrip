@@ -25,3 +25,10 @@ riprende dalla prima tappa non finita.
 ## Tappa 0 - Modulo Luogo condiviso
 
 Commit:
+- b01569b refactor(places): dati del luogo in lib/core/places
+  (contatti, foto, cache, ponte JS web/amaterasu_place_info.js,
+  provider di ricerca, controllo telefono/email).
+- 1af6285 refactor(places): ricerca, carosello foto, pop-up
+  Contatta e riempimento automatico condivisi; gli alloggi li
+  usano con gli stessi 57 test di prima.
+- docs: CLAUDE.md e questo file.
