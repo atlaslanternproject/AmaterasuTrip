@@ -144,4 +144,3 @@ class _BudgetHistoryListState extends State<BudgetHistoryList> {
     );
   }
 }
-

@@ -83,7 +83,10 @@ class _BudgetCategoryEditDialogState extends State<BudgetCategoryEditDialog> {
               onChanged: (value) => setState(() => _selected = value),
             ),
             if (_error != null)
-              Text(_error!, style: const TextStyle(color: AmaterasuColors.accentPeach)),
+              Text(
+                _error!,
+                style: const TextStyle(color: AmaterasuColors.accentPeach),
+              ),
           ],
         ),
       ),

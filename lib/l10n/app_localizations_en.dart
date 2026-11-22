@@ -3184,6 +3184,94 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysErrExpense => 'Invalid linked expense.';
 
   @override
+  String get staysErrCost => 'Invalid expected cost: enter an amount above zero in the currency format.';
+
+  @override
+  String get staysSectionCost => 'Cost and cancellation';
+
+  @override
+  String get staysCost => 'Expected cost';
+
+  @override
+  String get staysCostCurrency => 'Currency';
+
+  @override
+  String get staysCostHint => 'Optional: it will be the starting amount of “Create expense”.';
+
+  @override
+  String get staysFreeCancellation => 'Free cancellation until';
+
+  @override
+  String get staysFreeCancellationNone => 'no date';
+
+  @override
+  String get staysFreeCancellationClear => 'Remove the date';
+
+  @override
+  String get staysSectionServices => 'Services and directions';
+
+  @override
+  String get staysAmenityBreakfast => 'Breakfast';
+
+  @override
+  String get staysAmenityParking => 'Parking';
+
+  @override
+  String get staysAmenityWifi => 'Wi-Fi';
+
+  @override
+  String get staysAmenityKitchen => 'Kitchen';
+
+  @override
+  String get staysDirections => 'How to get there';
+
+  @override
+  String staysCancellationUntil(String date) {
+    return 'Free cancellation until $date';
+  }
+
+  @override
+  String staysCancellationSoon(int count, String date) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Free cancellation: $count days left ($date)',
+      one: 'Free cancellation: 1 day left ($date)',
+      zero: 'Free cancellation: last day today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String staysCancellationExpired(String date) {
+    return 'Free cancellation ended on $date';
+  }
+
+  @override
+  String staysCostEstimated(String amount) {
+    return 'Expected cost: $amount';
+  }
+
+  @override
+  String staysAmenities(String list) {
+    return 'Included: $list';
+  }
+
+  @override
+  String staysGapsWarning(int count, String nights) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nights of the trip without a stay: $nights.',
+      one: '1 night of the trip without a stay: $nights.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get staysGapsHint => 'Just a reminder: if it is on purpose, you can ignore it.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

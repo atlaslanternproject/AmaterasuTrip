@@ -1,5 +1,6 @@
 // Card compatta di un soggiorno per la vista "Elenco": foto piccola a
-// sinistra (come l'elenco della bucket list), nome, stato, tipo e periodo
+// sinistra (come l'elenco della bucket list), nome, stato, tipo,
+// cancellazione gratuita e periodo
 // con le notti; sotto, le azioni rapide.
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/places/widgets/amaterasu_place_photo_carousel.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
+import 'trip_stay_cancellation_chip.dart';
 import 'trip_stay_labels.dart';
 import 'trip_stay_status_chip.dart';
 import 'trip_stay_type_chip.dart';
@@ -16,12 +18,14 @@ class TripStayCompactCard extends StatelessWidget {
     super.key,
     required this.stay,
     required this.actions,
+    this.today,
   });
 
   final TripStay stay;
 
   /// Map, expense, contact, edit… (always reachable).
   final Widget actions;
+  final DateTime? today;
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +88,8 @@ class TripStayCompactCard extends StatelessWidget {
                         TripStayStatusChip(status: stay.status),
                         if (stay.type case final type?)
                           TripStayTypeChip(type: type),
+                        if (stay.isActive && stay.freeCancellationUntil != null)
+                          TripStayCancellationChip(stay: stay, today: today),
                       ],
                     ),
                     const SizedBox(height: 6),

@@ -109,10 +109,16 @@ class _BudgetFxManualDialogState extends State<BudgetFxManualDialog> {
               ),
             ),
             if (_error != null)
-              Text(_error!, style: const TextStyle(color: AmaterasuColors.accentPeach)),
+              Text(
+                _error!,
+                style: const TextStyle(color: AmaterasuColors.accentPeach),
+              ),
             Text(
               l10n.b6RateDoesNotChangeDebts,
-              style: const TextStyle(fontSize: 12, color: AmaterasuColors.textSecondary),
+              style: const TextStyle(
+                fontSize: 12,
+                color: AmaterasuColors.textSecondary,
+              ),
             ),
           ],
         ),

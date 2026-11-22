@@ -3,7 +3,8 @@
 
 part of 'budget_reimbursements_panel.dart';
 
-extension _BudgetReimbursementsPanelStateData on _BudgetReimbursementsPanelState {
+extension _BudgetReimbursementsPanelStateData
+    on _BudgetReimbursementsPanelState {
   Future<Map<String, String>> _loadNames() async {
     final travelers = await widget.api.travelers();
     final result = <String, String>{};

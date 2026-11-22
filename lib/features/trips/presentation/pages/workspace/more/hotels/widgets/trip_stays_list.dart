@@ -1,6 +1,6 @@
 // Elenco dei soggiorni (già filtrati e ordinati), centrato e largo al
-// massimo 820 punti (comodo su schermo largo e stretto), con l'avviso
-// delle sovrapposizioni in cima. Ogni alloggio appare come card grande,
+// massimo 820 punti (comodo su schermo largo e stretto), con gli avvisi
+// delle notti senza alloggio e delle sovrapposizioni in cima. Ogni alloggio appare come card grande,
 // card compatta o riga, secondo la modalità scelta (Card, Elenco, Dettagli). Le card si costruiscono solo quando
 // stanno per apparire (ListView), così le foto si chiedono al bisogno.
 
@@ -15,6 +15,7 @@ import 'trip_stay_card_menu.dart';
 import 'trip_stay_compact_card.dart';
 import 'trip_stay_details_row.dart';
 import 'trip_stay_quick_actions.dart';
+import 'trip_stays_gaps_banner.dart';
 import 'trip_stays_overlap_banner.dart';
 
 class TripStaysList extends StatelessWidget {
@@ -29,6 +30,8 @@ class TripStaysList extends StatelessWidget {
     this.expenseOf,
     this.launch,
     this.view = TripStaysView.cards,
+    this.today,
+    this.uncoveredNights = const [],
   });
 
   final List<TripStay> stays;
@@ -42,6 +45,12 @@ class TripStaysList extends StatelessWidget {
   final Widget? Function(TripStay stay)? expenseOf;
   final AmaterasuLaunch? launch;
   final TripStaysView view;
+
+  /// "Today" for the free cancellation countdown; tests set it.
+  final DateTime? today;
+
+  /// Trip nights without an active stay (all stays, not only the shown).
+  final List<DateTime> uncoveredNights;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +68,14 @@ class TripStaysList extends StatelessWidget {
             height: index == 0 ? 0 : (view == TripStaysView.details ? 8 : 12),
           ),
           itemBuilder: (context, index) {
-            if (index == 0) return TripStaysOverlapBanner(pairs: overlaps);
+            if (index == 0) {
+              return Column(
+                children: [
+                  TripStaysGapsBanner(nights: uncoveredNights),
+                  TripStaysOverlapBanner(pairs: overlaps),
+                ],
+              );
+            }
             final stay = stays[index - 1];
             final edit = onEdit == null ? null : () => onEdit!(stay);
             final remove = onDelete == null ? null : () => onDelete!(stay);
@@ -77,10 +93,18 @@ class TripStaysList extends StatelessWidget {
               ),
             );
             if (view == TripStaysView.list) {
-              return TripStayCompactCard(stay: stay, actions: actions);
+              return TripStayCompactCard(
+                stay: stay,
+                actions: actions,
+                today: today,
+              );
             }
             if (view == TripStaysView.details) {
-              return TripStayDetailsRow(stay: stay, actions: actions);
+              return TripStayDetailsRow(
+                stay: stay,
+                actions: actions,
+                today: today,
+              );
             }
             return TripStayCard(
               stay: stay,
@@ -90,6 +114,7 @@ class TripStaysList extends StatelessWidget {
               onDelete: onDelete == null ? null : () => onDelete!(stay),
               footer: footerOf?.call(stay),
               launch: launch,
+              today: today,
             );
           },
         ),

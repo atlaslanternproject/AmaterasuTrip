@@ -190,16 +190,22 @@ Finito:
   per la sessione, mai salvate), tipo di alloggio, stato,
   riquadro check-in/notti/check-out, prenotazione, link,
   Mappa, "Contatta" (telefono, email, sito) e ospiti;
-  avviso di date sovrapposte; editor a sezioni (luogo
-  Google che compila anche telefono e sito, tipo, contatti,
-  date e orari, stato, prenotazione, ospiti, note);
+  avviso di date sovrapposte e avviso (solo informativo)
+  delle notti del viaggio senza alloggio; cancellazione
+  gratuita con data ben visibile (colore di avviso negli
+  ultimi 3 giorni), servizi inclusi (colazione, parcheggio,
+  Wi-Fi, cucina), "come arrivare" e costo previsto; editor
+  a sezioni (luogo Google che compila anche telefono e sito,
+  tipo, contatti, date e orari, stato, prenotazione, costo e
+  cancellazione, servizi e come arrivare, ospiti, note);
   eliminazione per creatore o OWNER, spesa condivisa
   creata o collegata dalla card. Luogo, foto e contatti
   vengono dal modulo condiviso lib/core/places. Dati in
   trips/{tripId}/stays scritti dall'app con regole in
   firestore.rules; esclusi dalla duplicazione del viaggio.
-  L'importo mostrato è quello della spesa collegata (nel
-  soggiorno non c'è un campo importo).
+  L'importo speso è quello della spesa collegata; il costo
+  previsto (facoltativo, importo e valuta) è solo una stima
+  e diventa il valore di partenza di "Crea spesa".
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.

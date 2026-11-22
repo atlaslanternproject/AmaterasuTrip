@@ -4,7 +4,8 @@
 // ignore_for_file: invalid_use_of_protected_member
 part of 'budget_reimbursements_panel.dart';
 
-extension _BudgetReimbursementsPanelStateActions on _BudgetReimbursementsPanelState {
+extension _BudgetReimbursementsPanelStateActions
+    on _BudgetReimbursementsPanelState {
   /// B8.6: the creditor closes the remaining debt of a former traveler.
   Future<void> _closeDebt(_DebtRow debt, String debtorName) async {
     final reason = await showDialog<String>(
@@ -95,7 +96,10 @@ extension _BudgetReimbursementsPanelStateActions on _BudgetReimbursementsPanelSt
     if (raw is! List || raw.isEmpty) {
       return Text(
         budgetL10n(_it).btRefundsReimbursementMethodNotRecorded,
-        style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 12),
+        style: const TextStyle(
+          color: AmaterasuColors.textSecondary,
+          fontSize: 12,
+        ),
       );
     }
 
@@ -120,7 +124,10 @@ extension _BudgetReimbursementsPanelStateActions on _BudgetReimbursementsPanelSt
       children: [
         Text(
           budgetL10n(_it).btRefundsDeclaredMethods,
-          style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 12),
+          style: const TextStyle(
+            color: AmaterasuColors.textSecondary,
+            fontSize: 12,
+          ),
         ),
         for (final entry in entries)
           Padding(
@@ -129,7 +136,10 @@ extension _BudgetReimbursementsPanelStateActions on _BudgetReimbursementsPanelSt
               '${_methodLabel(entry.method)}'
               '${entry.otherLabel == null ? "" : " (${entry.otherLabel})"}'
               ' · ${BudgetMoneyFormatter.format(entry.minorUnits, currency)}',
-              style: const TextStyle(color: AmaterasuColors.textPrimary, fontSize: 12),
+              style: const TextStyle(
+                color: AmaterasuColors.textPrimary,
+                fontSize: 12,
+              ),
             ),
           ),
       ],

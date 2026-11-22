@@ -1,7 +1,9 @@
 // Modello di un soggiorno del viaggio (Hotel/Alloggi): nome, date e orari,
 // stato, tipo di alloggio, contatti, luogo Google, prenotazione (piattaforma, link, codice), note,
-// ospiti e spesa del budget collegata. Le regole sono in TripStayValidator.
+// ospiti, spesa del budget collegata, costo previsto, cancellazione gratuita,
+// servizi inclusi e "come arrivare". Le regole sono in TripStayValidator.
 
+import 'trip_stay_amenity.dart';
 import 'trip_stay_booking_platform.dart';
 import 'trip_stay_dates.dart';
 import 'trip_stay_status.dart';
@@ -37,6 +39,11 @@ class TripStay {
     this.notes,
     this.guestUids = const [],
     this.expenseId,
+    this.estimatedCostMinorUnits,
+    this.estimatedCostCurrency,
+    this.freeCancellationUntil,
+    this.amenities = const [],
+    this.directions,
   });
 
   /// Firestore document ID; empty before the first save.
@@ -85,6 +92,20 @@ class TripStay {
   /// Linked shared expense of the budget, if any.
   final String? expenseId;
 
+  /// Expected cost (optional), in minor units of [estimatedCostCurrency];
+  /// it is the starting amount of "Create expense".
+  final int? estimatedCostMinorUnits;
+  final String? estimatedCostCurrency;
+
+  /// Last calendar day of free cancellation, optional.
+  final DateTime? freeCancellationUntil;
+
+  /// Included services (breakfast, parking, Wi-Fi, kitchen).
+  final List<TripStayAmenity> amenities;
+
+  /// "How to get there", free text.
+  final String? directions;
+
   int get nights => TripStayDates.nights(checkInDate, checkOutDate);
 
   bool get isActive => status.isActive;
@@ -131,5 +152,10 @@ class TripStay {
         notes: notes,
         guestUids: guestUids,
         expenseId: expenseId ?? this.expenseId,
+        estimatedCostMinorUnits: estimatedCostMinorUnits,
+        estimatedCostCurrency: estimatedCostCurrency,
+        freeCancellationUntil: freeCancellationUntil,
+        amenities: amenities,
+        directions: directions,
       );
 }

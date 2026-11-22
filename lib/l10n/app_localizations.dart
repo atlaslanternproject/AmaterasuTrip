@@ -6191,6 +6191,132 @@ abstract class AppLocalizations {
   /// **'Invalid linked expense.'**
   String get staysErrExpense;
 
+  /// No description provided for @staysErrCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid expected cost: enter an amount above zero in the currency format.'**
+  String get staysErrCost;
+
+  /// No description provided for @staysSectionCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost and cancellation'**
+  String get staysSectionCost;
+
+  /// No description provided for @staysCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected cost'**
+  String get staysCost;
+
+  /// No description provided for @staysCostCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get staysCostCurrency;
+
+  /// No description provided for @staysCostHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional: it will be the starting amount of “Create expense”.'**
+  String get staysCostHint;
+
+  /// No description provided for @staysFreeCancellation.
+  ///
+  /// In en, this message translates to:
+  /// **'Free cancellation until'**
+  String get staysFreeCancellation;
+
+  /// No description provided for @staysFreeCancellationNone.
+  ///
+  /// In en, this message translates to:
+  /// **'no date'**
+  String get staysFreeCancellationNone;
+
+  /// No description provided for @staysFreeCancellationClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove the date'**
+  String get staysFreeCancellationClear;
+
+  /// No description provided for @staysSectionServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Services and directions'**
+  String get staysSectionServices;
+
+  /// No description provided for @staysAmenityBreakfast.
+  ///
+  /// In en, this message translates to:
+  /// **'Breakfast'**
+  String get staysAmenityBreakfast;
+
+  /// No description provided for @staysAmenityParking.
+  ///
+  /// In en, this message translates to:
+  /// **'Parking'**
+  String get staysAmenityParking;
+
+  /// No description provided for @staysAmenityWifi.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi'**
+  String get staysAmenityWifi;
+
+  /// No description provided for @staysAmenityKitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Kitchen'**
+  String get staysAmenityKitchen;
+
+  /// No description provided for @staysDirections.
+  ///
+  /// In en, this message translates to:
+  /// **'How to get there'**
+  String get staysDirections;
+
+  /// No description provided for @staysCancellationUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Free cancellation until {date}'**
+  String staysCancellationUntil(String date);
+
+  /// No description provided for @staysCancellationSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Free cancellation: last day today} =1{Free cancellation: 1 day left ({date})} other{Free cancellation: {count} days left ({date})}}'**
+  String staysCancellationSoon(int count, String date);
+
+  /// No description provided for @staysCancellationExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Free cancellation ended on {date}'**
+  String staysCancellationExpired(String date);
+
+  /// No description provided for @staysCostEstimated.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected cost: {amount}'**
+  String staysCostEstimated(String amount);
+
+  /// No description provided for @staysAmenities.
+  ///
+  /// In en, this message translates to:
+  /// **'Included: {list}'**
+  String staysAmenities(String list);
+
+  /// No description provided for @staysGapsWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 night of the trip without a stay: {nights}.} other{{count} nights of the trip without a stay: {nights}.}}'**
+  String staysGapsWarning(int count, String nights);
+
+  /// No description provided for @staysGapsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Just a reminder: if it is on purpose, you can ignore it.'**
+  String get staysGapsHint;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

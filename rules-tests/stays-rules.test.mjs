@@ -1,7 +1,8 @@
 // Test delle regole Firestore di Hotel/Alloggi (trips/{tripId}/stays).
 // Membri: leggono, creano e modificano; creatore o proprietario:
 // cancellano; dati validati campo per campo; link come la bucket list;
-// tipo di alloggio, telefono ed email facoltativi (v1.12.0).
+// tipo di alloggio, telefono ed email facoltativi (v1.12.0); costo
+// previsto, cancellazione gratuita, servizi e "come arrivare" (v1.15.0).
 // Uso: firebase emulators:exec --config firebase.emulators.security-test.json
 //   --project demo-amaterasu-rules --only firestore
 //   "node --test rules-tests/stays-rules.test.mjs"
@@ -162,6 +163,58 @@ test('type, phone and email: optional, typed and limited', async () => {
   }));
   await assertFails(updateDoc(stayRef(OTHER_MEMBER, 'edit'), {
     email: 'nope', updatedAt: serverTimestamp(),
+  }));
+});
+
+test('cost, free cancellation, services and directions: optional and checked', async () => {
+  await assertSucceeds(setDoc(stayRef(MEMBER, 'full'), stay(MEMBER, {
+    estimatedCostMinorUnits: 45000,
+    estimatedCostCurrency: 'EUR',
+    freeCancellationUntil: '2027-04-01',
+    amenities: ['breakfast', 'parking', 'wifi', 'kitchen'],
+    directions: 'Treno fino a Kyoto, poi 5 minuti a piedi.',
+  })));
+  await assertSucceeds(setDoc(stayRef(MEMBER, 'max'), stay(MEMBER, {
+    estimatedCostMinorUnits: 1000000000000,
+    estimatedCostCurrency: 'JPY',
+    amenities: [],
+    directions: 'x'.repeat(2000),
+  })));
+
+  const bad = [
+    {estimatedCostMinorUnits: 100},
+    {estimatedCostCurrency: 'EUR'},
+    {estimatedCostMinorUnits: 0, estimatedCostCurrency: 'EUR'},
+    {estimatedCostMinorUnits: -5, estimatedCostCurrency: 'EUR'},
+    {estimatedCostMinorUnits: 10.5, estimatedCostCurrency: 'EUR'},
+    {estimatedCostMinorUnits: 1000000000001, estimatedCostCurrency: 'EUR'},
+    {estimatedCostMinorUnits: '100', estimatedCostCurrency: 'EUR'},
+    {estimatedCostMinorUnits: 100, estimatedCostCurrency: 'eur'},
+    {estimatedCostMinorUnits: 100, estimatedCostCurrency: 'EURO'},
+    {freeCancellationUntil: '1/4/2027'}, {freeCancellationUntil: 20270401},
+    {amenities: ['pool']}, {amenities: 'wifi'},
+    {amenities: ['wifi', 'wifi', 'wifi', 'wifi', 'wifi']},
+    {directions: 'x'.repeat(2001)}, {directions: 5},
+  ];
+  for (const extra of bad) {
+    await assertFails(setDoc(stayRef(MEMBER, 'bad'), stay(MEMBER, extra)));
+  }
+
+  // Editing adds and removes the new fields like the others.
+  await seedStay(MEMBER, 'edit');
+  await assertSucceeds(updateDoc(stayRef(OTHER_MEMBER, 'edit'), {
+    estimatedCostMinorUnits: 1200, estimatedCostCurrency: 'USD',
+    freeCancellationUntil: '2027-04-10', amenities: ['wifi'],
+    directions: 'Bus 100', updatedAt: serverTimestamp(),
+  }));
+  await assertSucceeds(updateDoc(stayRef(OTHER_MEMBER, 'edit'), {
+    estimatedCostMinorUnits: deleteField(),
+    estimatedCostCurrency: deleteField(),
+    freeCancellationUntil: deleteField(), amenities: deleteField(),
+    directions: deleteField(), updatedAt: serverTimestamp(),
+  }));
+  await assertFails(updateDoc(stayRef(OTHER_MEMBER, 'edit'), {
+    estimatedCostMinorUnits: 500, updatedAt: serverTimestamp(),
   }));
 });
 

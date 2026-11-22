@@ -43,14 +43,22 @@ extension _TripExpensesPageStateWidgets on _TripExpensesPageState {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, size: 18, color: selected ? _TripExpensesPageState._background : _TripExpensesPageState._muted),
+                Icon(
+                  icon,
+                  size: 18,
+                  color: selected
+                      ? _TripExpensesPageState._background
+                      : _TripExpensesPageState._muted,
+                ),
                 const SizedBox(width: AmaterasuSpacing.sm),
                 Flexible(
                   child: Text(
                     label,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: selected ? _TripExpensesPageState._background : _TripExpensesPageState._muted,
+                      color: selected
+                          ? _TripExpensesPageState._background
+                          : _TripExpensesPageState._muted,
                       fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                     ),
                   ),

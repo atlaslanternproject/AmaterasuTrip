@@ -34,7 +34,9 @@ class BudgetCreateSection extends StatelessWidget {
         color: accent ? const Color(0xFF34241D) : const Color(0xFF2B201B),
         borderRadius: BorderRadius.circular(17),
         border: Border.all(
-          color: accent ? const Color(0xFF9A5936) : AmaterasuColors.borderStrong,
+          color: accent
+              ? const Color(0xFF9A5936)
+              : AmaterasuColors.borderStrong,
         ),
       ),
       child: Column(

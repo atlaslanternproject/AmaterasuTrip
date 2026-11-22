@@ -137,4 +137,3 @@ class _TripOverviewContent extends StatelessWidget {
     );
   }
 }
-

@@ -3,7 +3,8 @@
 
 part of 'budget_reimbursements_panel.dart';
 
-extension _BudgetReimbursementsPanelStateRequest on _BudgetReimbursementsPanelState {
+extension _BudgetReimbursementsPanelStateRequest
+    on _BudgetReimbursementsPanelState {
   Future<void> _requestReimbursement(
     _DebtRow debt,
     int maximumMinorUnits,
@@ -44,7 +45,9 @@ extension _BudgetReimbursementsPanelStateRequest on _BudgetReimbursementsPanelSt
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(budgetL10n(_it).btRefundsReimbursementTo(creditorName)),
+                      Text(
+                        budgetL10n(_it).btRefundsReimbursementTo(creditorName),
+                      ),
                       const SizedBox(height: 10),
                       Text(budgetL10n(_it).btRefundsMaximumReimbursable),
                       BudgetDisplayAmount(
@@ -56,8 +59,12 @@ extension _BudgetReimbursementsPanelStateRequest on _BudgetReimbursementsPanelSt
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        budgetL10n(_it).btRefundsRecordHowYouReimbursed(currency),
-                        style: const TextStyle(color: AmaterasuColors.textSecondary),
+                        budgetL10n(
+                          _it,
+                        ).btRefundsRecordHowYouReimbursed(currency),
+                        style: const TextStyle(
+                          color: AmaterasuColors.textSecondary,
+                        ),
                       ),
                       const SizedBox(height: 12),
                       BudgetPaymentMethodsEditor(

@@ -305,7 +305,9 @@ class _TripTravellerProfileEditPageState
                         Container(
                           padding: const EdgeInsets.all(AmaterasuSpacing.lg),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AmaterasuRadius.lg),
+                            borderRadius: BorderRadius.circular(
+                              AmaterasuRadius.lg,
+                            ),
                             gradient: const LinearGradient(
                               colors: [Color(0xFF70261D), Color(0xFF302018)],
                             ),

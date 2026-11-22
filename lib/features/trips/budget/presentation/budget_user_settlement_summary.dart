@@ -348,7 +348,10 @@ class _BudgetUserSettlementSummaryState
                       ],
                     ),
                   ),
-                  const Divider(color: AmaterasuColors.borderStrongAlt, height: 1),
+                  const Divider(
+                    color: AmaterasuColors.borderStrongAlt,
+                    height: 1,
+                  ),
                 ],
               ],
             ),
@@ -429,7 +432,10 @@ class _BudgetUserSettlementSummaryState
                     );
                   },
                 ),
-                const Divider(color: AmaterasuColors.borderStrongAlt, height: 30),
+                const Divider(
+                  color: AmaterasuColors.borderStrongAlt,
+                  height: 30,
+                ),
                 InkWell(
                   onTap: () {
                     setState(() => _showMovements = !_showMovements);
@@ -504,7 +510,10 @@ class _BudgetUserSettlementSummaryState
                         ),
                       ],
                     ),
-                    const Divider(color: AmaterasuColors.borderStrongAlt, height: 22),
+                    const Divider(
+                      color: AmaterasuColors.borderStrongAlt,
+                      height: 22,
+                    ),
                   ],
                 ],
               ],

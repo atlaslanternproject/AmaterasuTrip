@@ -248,7 +248,9 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                           const SizedBox(height: 14),
                           if (incomplete)
                             Text(
-                              budgetL10n(it).btPersonalRemainingUnavailableAnAmount,
+                              budgetL10n(
+                                it,
+                              ).btPersonalRemainingUnavailableAnAmount,
                               style: const TextStyle(color: _gold),
                             )
                           else ...[

@@ -153,12 +153,14 @@ Widget staysTestApp(
   String locale = 'it',
   FakeBudgetApi? budget,
   FakePlaceInfo? placeInfo,
+  TripStaysTripInfo? tripInfo,
 }) => ProviderScope(
   overrides: [
     tripStaysProvider('t1').overrideWith((ref) => Stream.value(stays)),
     tripStaysRepositoryProvider.overrideWithValue(repository),
     tripStaysOwnerUidProvider('t1').overrideWith((ref) => ownerUid),
     tripStaysMemberNamesProvider('t1').overrideWith((ref) => names),
+    tripStaysTripInfoProvider('t1').overrideWith((ref) => tripInfo),
     tripStaysBudgetApiProvider('t1').overrideWith(
       (ref) => budget ?? FakeBudgetApi(uid: repository.uid ?? 'anna'),
     ),

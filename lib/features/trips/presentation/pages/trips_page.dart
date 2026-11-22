@@ -176,7 +176,9 @@ class TripsPage extends ConsumerWidget {
                 ),
               ],
               if (!hasTrips)
-                const SliverToBoxAdapter(child: SizedBox(height: AmaterasuSpacing.xl)),
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: AmaterasuSpacing.xl),
+                ),
               const SliverToBoxAdapter(child: SizedBox(height: 34)),
             ],
           ),
@@ -196,7 +198,8 @@ class TripsPage extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       sliver: SliverList.separated(
         itemCount: trips.length,
-        separatorBuilder: (context, index) => const SizedBox(height: AmaterasuSpacing.md),
+        separatorBuilder: (context, index) =>
+            const SizedBox(height: AmaterasuSpacing.md),
         itemBuilder: (context, index) {
           final trip = trips[index];
 

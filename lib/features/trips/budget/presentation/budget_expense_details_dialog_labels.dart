@@ -98,7 +98,9 @@ extension _BudgetExpenseDetailsDialogLabels on BudgetExpenseDetailsDialog {
                       return Text(
                         label,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(color: AmaterasuColors.textPrimary),
+                        style: const TextStyle(
+                          color: AmaterasuColors.textPrimary,
+                        ),
                       );
                     },
                   ),

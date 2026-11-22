@@ -1,6 +1,7 @@
 // Card di un soggiorno, nello stile della card della bucket list: foto
-// Google in testa, nome e città, stato e tipo di alloggio, riquadro con
-// check-in, check-out e notti, prenotazione e ospiti, link con Mappa e
+// Google in testa, nome e città, stato, tipo e cancellazione gratuita,
+// riquadro con check-in, check-out e notti, prenotazione, costo previsto,
+// servizi, come arrivare e ospiti, link con Mappa e
 // Contatta, spesa collegata (se data), pulsante Modifica e menu Elimina.
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:amaterasutrip/core/places/widgets/amaterasu_place_photo_carousel
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'trip_stay_cancellation_chip.dart';
 import 'trip_stay_card_dates.dart';
 import 'trip_stay_card_details.dart';
 import 'trip_stay_card_links.dart';
@@ -28,6 +30,7 @@ class TripStayCard extends StatelessWidget {
     this.onDelete,
     this.footer,
     this.launch,
+    this.today,
   });
 
   final TripStay stay;
@@ -39,6 +42,7 @@ class TripStayCard extends StatelessWidget {
   /// Extra content at the bottom (linked expense).
   final Widget? footer;
   final AmaterasuLaunch? launch;
+  final DateTime? today;
 
   @override
   Widget build(BuildContext context) {
@@ -136,6 +140,8 @@ class TripStayCard extends StatelessWidget {
                 children: [
                   TripStayStatusChip(status: stay.status),
                   if (stay.type case final type?) TripStayTypeChip(type: type),
+                  if (stay.isActive && stay.freeCancellationUntil != null)
+                    TripStayCancellationChip(stay: stay, today: today),
                 ],
               ),
               const SizedBox(height: 12),

@@ -207,7 +207,9 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                                             doc.id,
                                             true,
                                           ),
-                                    child: Text(budgetL10n(_it).btActionConfirm),
+                                    child: Text(
+                                      budgetL10n(_it).btActionConfirm,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -302,7 +304,9 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                             ],
                             if (pending > 0) ...[
                               const SizedBox(height: AmaterasuSpacing.sm),
-                              Text(budgetL10n(_it).btRefundsPendingConfirmation),
+                              Text(
+                                budgetL10n(_it).btRefundsPendingConfirmation,
+                              ),
                               BudgetDisplayAmount(
                                 expense: widget.expense,
                                 minorUnits: pending,
@@ -481,4 +485,3 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
     );
   }
 }
-

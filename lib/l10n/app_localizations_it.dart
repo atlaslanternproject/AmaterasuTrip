@@ -3184,6 +3184,94 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysErrExpense => 'Spesa collegata non valida.';
 
   @override
+  String get staysErrCost => 'Costo previsto non valido: scrivi un importo maggiore di zero nel formato della valuta.';
+
+  @override
+  String get staysSectionCost => 'Costo e cancellazione';
+
+  @override
+  String get staysCost => 'Costo previsto';
+
+  @override
+  String get staysCostCurrency => 'Valuta';
+
+  @override
+  String get staysCostHint => 'Facoltativo: sarà l\'importo di partenza di «Crea spesa».';
+
+  @override
+  String get staysFreeCancellation => 'Cancellazione gratuita fino al';
+
+  @override
+  String get staysFreeCancellationNone => 'nessuna data';
+
+  @override
+  String get staysFreeCancellationClear => 'Togli la data';
+
+  @override
+  String get staysSectionServices => 'Servizi e come arrivare';
+
+  @override
+  String get staysAmenityBreakfast => 'Colazione';
+
+  @override
+  String get staysAmenityParking => 'Parcheggio';
+
+  @override
+  String get staysAmenityWifi => 'Wi-Fi';
+
+  @override
+  String get staysAmenityKitchen => 'Cucina';
+
+  @override
+  String get staysDirections => 'Come arrivare';
+
+  @override
+  String staysCancellationUntil(String date) {
+    return 'Cancellazione gratuita fino al $date';
+  }
+
+  @override
+  String staysCancellationSoon(int count, String date) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Cancellazione gratuita: mancano $count giorni ($date)',
+      one: 'Cancellazione gratuita: manca 1 giorno ($date)',
+      zero: 'Cancellazione gratuita: ultimo giorno oggi',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String staysCancellationExpired(String date) {
+    return 'Cancellazione gratuita scaduta il $date';
+  }
+
+  @override
+  String staysCostEstimated(String amount) {
+    return 'Costo previsto: $amount';
+  }
+
+  @override
+  String staysAmenities(String list) {
+    return 'Inclusi: $list';
+  }
+
+  @override
+  String staysGapsWarning(int count, String nights) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notti del viaggio senza alloggio: $nights.',
+      one: '1 notte del viaggio senza alloggio: $nights.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get staysGapsHint => 'Solo un promemoria: se è voluto, puoi ignorarlo.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

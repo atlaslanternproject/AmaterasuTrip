@@ -1,5 +1,6 @@
 // Pagina Hotel e alloggi del viaggio: elenco dei soggiorni con filtri e
-// ordinamento, stato vuoto, avviso delle sovrapposizioni ed eliminazione
+// ordinamento, stato vuoto, avvisi delle notti senza alloggio e delle
+// sovrapposizioni ed eliminazione
 // (solo creatore o proprietario del viaggio).
 
 import 'package:flutter/material.dart';
@@ -10,10 +11,11 @@ import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stays_gaps.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import 'editor/trip_stay_editor.dart';
+import 'editor/trip_stay_editor_dialog.dart';
 import 'widgets/trip_stay_delete.dart';
 import 'widgets/trip_stay_expense_button.dart';
 import 'widgets/trip_stay_expense_footer.dart';
@@ -45,6 +47,7 @@ class TripHotelsPage extends ConsumerWidget {
     final ownerUid = ref.watch(tripStaysOwnerUidProvider(tripId));
     final names = ref.watch(tripStaysMemberNamesProvider(tripId));
     final uid = repository.currentUid;
+    final trip = ref.watch(tripStaysTripInfoProvider(tripId));
 
     bool canDelete(TripStay stay) =>
         uid != null && (uid == stay.createdByUid || uid == ownerUid);
@@ -60,6 +63,7 @@ class TripHotelsPage extends ConsumerWidget {
         places: ref.read(amaterasuPlaceSearchProvider),
         placeInfo: ref.read(amaterasuPlaceInfoProvider),
         initial: initial,
+        defaultCurrency: trip?.currency ?? 'EUR',
         onSave: (stay) =>
             initial == null ? repository.create(stay) : repository.update(stay),
       );
@@ -148,6 +152,14 @@ class TripHotelsPage extends ConsumerWidget {
                             repository: repository,
                           ),
                           launch: launch,
+                          today: today,
+                          uncoveredNights: trip == null
+                              ? const []
+                              : TripStaysGaps.uncoveredNights(
+                                  items,
+                                  trip.start,
+                                  trip.end,
+                                ),
                         ),
                       ),
               ),

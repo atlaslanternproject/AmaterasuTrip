@@ -1,10 +1,12 @@
 // Dettagli nella card di un soggiorno, sotto le date: "prenotato su" con
-// il codice di conferma e gli ospiti, come righe con icona.
+// il codice di conferma, costo previsto, servizi inclusi, come arrivare e
+// ospiti, come righe con icona.
 
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/features/trips/budget/calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_labels.dart';
@@ -28,19 +30,46 @@ class TripStayCardDetails extends StatelessWidget {
       ?bookedVia,
       if (code != null) l10n.staysConfirmationCode(code),
     ].join(' · ');
+    final cost = stay.estimatedCostMinorUnits;
+    final currency = stay.estimatedCostCurrency;
+    final amenities = stay.amenities
+        .map((a) => TripStayLabels.amenity(a, l10n))
+        .join(' · ');
+    final directions = stay.directions;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (booking.isNotEmpty)
           _line(Icons.confirmation_number_outlined, booking),
+        if (cost != null && currency != null)
+          _line(
+            Icons.payments_outlined,
+            l10n.staysCostEstimated(
+              BudgetMoneyFormatter.format(cost, currency),
+            ),
+            key: const Key('stay-cost-line'),
+          ),
+        if (amenities.isNotEmpty)
+          _line(
+            Icons.room_service_outlined,
+            l10n.staysAmenities(amenities),
+            key: const Key('stay-amenities-line'),
+          ),
+        if (directions != null)
+          _line(
+            Icons.directions_outlined,
+            '${l10n.staysDirections}: $directions',
+            key: const Key('stay-directions-line'),
+          ),
         if (guestNames.isNotEmpty)
           _line(Icons.people_outline, l10n.staysGuests(guestNames.join(', '))),
       ],
     );
   }
 
-  Widget _line(IconData icon, String text) => Padding(
+  Widget _line(IconData icon, String text, {Key? key}) => Padding(
+    key: key,
     padding: const EdgeInsets.only(top: 10),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
