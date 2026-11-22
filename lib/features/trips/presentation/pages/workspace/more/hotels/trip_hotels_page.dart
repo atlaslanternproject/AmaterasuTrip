@@ -150,6 +150,7 @@ class TripHotelsPage extends ConsumerWidget {
                             repository: repository,
                           ),
                           launch: launch,
+                          today: today,
                         ),
                       ),
               ),

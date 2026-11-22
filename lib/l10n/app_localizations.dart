@@ -6275,6 +6275,36 @@ abstract class AppLocalizations {
   /// **'How to get there'**
   String get staysDirections;
 
+  /// No description provided for @staysCancellationUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Free cancellation until {date}'**
+  String staysCancellationUntil(String date);
+
+  /// No description provided for @staysCancellationSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Free cancellation: last day today} =1{Free cancellation: 1 day left ({date})} other{Free cancellation: {count} days left ({date})}}'**
+  String staysCancellationSoon(int count, String date);
+
+  /// No description provided for @staysCancellationExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Free cancellation ended on {date}'**
+  String staysCancellationExpired(String date);
+
+  /// No description provided for @staysCostEstimated.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected cost: {amount}'**
+  String staysCostEstimated(String amount);
+
+  /// No description provided for @staysAmenities.
+  ///
+  /// In en, this message translates to:
+  /// **'Included: {list}'**
+  String staysAmenities(String list);
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

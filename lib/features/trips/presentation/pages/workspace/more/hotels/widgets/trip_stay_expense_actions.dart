@@ -1,5 +1,6 @@
 // Spesa di un soggiorno: "Crea spesa" apre il dialogo spese già compilato
-// (solo spesa condivisa, categoria Alloggio, data di check-in) e poi la
+// (solo spesa condivisa, categoria Alloggio, data di check-in, importo e
+// valuta del costo previsto se c'è) e poi la
 // collega; "Collega spesa esistente" sceglie tra le spese condivise.
 
 import 'package:flutter/material.dart';
@@ -45,7 +46,10 @@ Future<void> createExpenseForStay(
   TripStaysRepository repository,
   TripStay stay,
 ) async {
-  final currency = await api.tripCurrency();
+  final cost = stay.estimatedCostMinorUnits;
+  final costCurrency = stay.estimatedCostCurrency;
+  final hasCost = cost != null && costCurrency != null;
+  final currency = hasCost ? costCurrency : await api.tripCurrency();
   if (!context.mounted) return;
   String? createdId;
   await showDialog<bool>(
@@ -64,6 +68,7 @@ Future<void> createExpenseForStay(
         initialTitle: stay.name,
         initialCategory: 'accommodation',
         initialDate: stay.checkInDate,
+        initialMinorUnits: hasCost ? cost : null,
         sharedOnly: true,
         onCreated: (id) => createdId = id,
       ),

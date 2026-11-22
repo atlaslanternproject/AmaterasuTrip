@@ -3226,6 +3226,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysDirections => 'How to get there';
 
   @override
+  String staysCancellationUntil(String date) {
+    return 'Free cancellation until $date';
+  }
+
+  @override
+  String staysCancellationSoon(int count, String date) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Free cancellation: $count days left ($date)',
+      one: 'Free cancellation: 1 day left ($date)',
+      zero: 'Free cancellation: last day today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String staysCancellationExpired(String date) {
+    return 'Free cancellation ended on $date';
+  }
+
+  @override
+  String staysCostEstimated(String amount) {
+    return 'Expected cost: $amount';
+  }
+
+  @override
+  String staysAmenities(String list) {
+    return 'Included: $list';
+  }
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

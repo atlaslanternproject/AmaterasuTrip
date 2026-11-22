@@ -29,6 +29,7 @@ class TripStaysList extends StatelessWidget {
     this.expenseOf,
     this.launch,
     this.view = TripStaysView.cards,
+    this.today,
   });
 
   final List<TripStay> stays;
@@ -42,6 +43,9 @@ class TripStaysList extends StatelessWidget {
   final Widget? Function(TripStay stay)? expenseOf;
   final AmaterasuLaunch? launch;
   final TripStaysView view;
+
+  /// "Today" for the free cancellation countdown; tests set it.
+  final DateTime? today;
 
   @override
   Widget build(BuildContext context) {
@@ -77,10 +81,18 @@ class TripStaysList extends StatelessWidget {
               ),
             );
             if (view == TripStaysView.list) {
-              return TripStayCompactCard(stay: stay, actions: actions);
+              return TripStayCompactCard(
+                stay: stay,
+                actions: actions,
+                today: today,
+              );
             }
             if (view == TripStaysView.details) {
-              return TripStayDetailsRow(stay: stay, actions: actions);
+              return TripStayDetailsRow(
+                stay: stay,
+                actions: actions,
+                today: today,
+              );
             }
             return TripStayCard(
               stay: stay,
@@ -90,6 +102,7 @@ class TripStaysList extends StatelessWidget {
               onDelete: onDelete == null ? null : () => onDelete!(stay),
               footer: footerOf?.call(stay),
               launch: launch,
+              today: today,
             );
           },
         ),
