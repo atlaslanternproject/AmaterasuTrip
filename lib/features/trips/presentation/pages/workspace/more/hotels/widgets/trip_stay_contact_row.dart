@@ -43,15 +43,23 @@ class TripStayContactRow extends StatelessWidget {
           children: [
             Icon(icon, size: 18, color: AmaterasuColors.accentBudget),
             const SizedBox(width: 8),
-            Text(label, style: const TextStyle(
-                color: AmaterasuColors.textMuted, fontSize: 12)),
+            Text(
+              label,
+              style: const TextStyle(
+                color: AmaterasuColors.textMuted,
+                fontSize: 12,
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 4),
         SelectableText(
           value,
-          style: const TextStyle(color: AmaterasuColors.textPrimary,
-              fontSize: 15, fontWeight: FontWeight.w600),
+          style: const TextStyle(
+            color: AmaterasuColors.textPrimary,
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         Align(
           alignment: Alignment.centerRight,
@@ -62,7 +70,8 @@ class TripStayContactRow extends StatelessWidget {
                 key: Key('stay-contact-$id-copy'),
                 onPressed: onCopy,
                 style: TextButton.styleFrom(
-                    foregroundColor: AmaterasuColors.textSecondary),
+                  foregroundColor: AmaterasuColors.textSecondary,
+                ),
                 icon: const Icon(Icons.copy_rounded, size: 16),
                 label: Text(AppLocalizations.of(context)!.staysContactCopy),
               ),
@@ -70,8 +79,9 @@ class TripStayContactRow extends StatelessWidget {
                 key: Key('stay-contact-$id-action'),
                 onPressed: onAction,
                 style: FilledButton.styleFrom(
-                  backgroundColor:
-                      AmaterasuColors.accentBudget.withValues(alpha: 0.2),
+                  backgroundColor: AmaterasuColors.accentBudget.withValues(
+                    alpha: 0.2,
+                  ),
                   foregroundColor: AmaterasuColors.accentGold,
                 ),
                 child: Text(actionLabel),

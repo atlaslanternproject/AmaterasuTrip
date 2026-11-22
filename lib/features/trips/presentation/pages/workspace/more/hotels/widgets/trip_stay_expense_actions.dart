@@ -12,23 +12,39 @@ import 'package:amaterasutrip/features/trips/stays/data/trip_stays_repository.da
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
-Future<void> _link(BuildContext context, TripStaysRepository repository,
-    TripStay stay, String expenseId, {required bool justCreated}) async {
+Future<void> _link(
+  BuildContext context,
+  TripStaysRepository repository,
+  TripStay stay,
+  String expenseId, {
+  required bool justCreated,
+}) async {
   final l10n = AppLocalizations.of(context)!;
   final messenger = ScaffoldMessenger.of(context);
   try {
     await repository.linkExpense(
-        tripId: stay.tripId, stayId: stay.id, expenseId: expenseId);
+      tripId: stay.tripId,
+      stayId: stay.id,
+      expenseId: expenseId,
+    );
     messenger.showSnackBar(SnackBar(content: Text(l10n.staysExpenseLinked)));
   } catch (_) {
-    messenger.showSnackBar(SnackBar(content: Text(justCreated
-        ? l10n.staysExpenseLinkError
-        : l10n.staysSaveError)));
+    messenger.showSnackBar(
+      SnackBar(
+        content: Text(
+          justCreated ? l10n.staysExpenseLinkError : l10n.staysSaveError,
+        ),
+      ),
+    );
   }
 }
 
-Future<void> createExpenseForStay(BuildContext context, BudgetApi api,
-    TripStaysRepository repository, TripStay stay) async {
+Future<void> createExpenseForStay(
+  BuildContext context,
+  BudgetApi api,
+  TripStaysRepository repository,
+  TripStay stay,
+) async {
   final currency = await api.tripCurrency();
   if (!context.mounted) return;
   String? createdId;
@@ -58,15 +74,21 @@ Future<void> createExpenseForStay(BuildContext context, BudgetApi api,
   await _link(context, repository, stay, id, justCreated: true);
 }
 
-Future<void> linkExistingExpenseToStay(BuildContext context, BudgetApi api,
-    TripStaysRepository repository, TripStay stay) async {
+Future<void> linkExistingExpenseToStay(
+  BuildContext context,
+  BudgetApi api,
+  TripStaysRepository repository,
+  TripStay stay,
+) async {
   final l10n = AppLocalizations.of(context)!;
   final chosen = await showDialog<String>(
     context: context,
     builder: (dialogContext) => AlertDialog(
       backgroundColor: AmaterasuColors.surfaceCard,
-      title: Text(l10n.staysExpensePickTitle,
-          style: const TextStyle(color: AmaterasuColors.textPrimary)),
+      title: Text(
+        l10n.staysExpensePickTitle,
+        style: const TextStyle(color: AmaterasuColors.textPrimary),
+      ),
       content: SizedBox(
         width: 440,
         child: StreamBuilder(
@@ -107,11 +129,18 @@ Future<void> linkExistingExpenseToStay(BuildContext context, BudgetApi api,
 
 /// Total of an expense document, formatted in its currency.
 String _amount(Map<String, dynamic> expense) {
-  final total = expense['snapshot'] is Map ? (expense['snapshot'] as Map)['total'] : null;
-  if (total is! Map || total['minorUnits'] is! int || total['currency'] is! String) {
+  final total = expense['snapshot'] is Map
+      ? (expense['snapshot'] as Map)['total']
+      : null;
+  if (total is! Map ||
+      total['minorUnits'] is! int ||
+      total['currency'] is! String) {
     return '';
   }
-  return BudgetMoneyFormatter.format(total['minorUnits'] as int, total['currency'] as String);
+  return BudgetMoneyFormatter.format(
+    total['minorUnits'] as int,
+    total['currency'] as String,
+  );
 }
 
 String tripStayExpenseAmount(Map<String, dynamic> expense) => _amount(expense);

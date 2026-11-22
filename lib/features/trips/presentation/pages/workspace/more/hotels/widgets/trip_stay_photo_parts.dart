@@ -26,7 +26,10 @@ class TripStayPhotoPlaceholder extends StatelessWidget {
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [AmaterasuColors.backgroundSecondary, AmaterasuColors.surfaceRaised],
+        colors: [
+          AmaterasuColors.backgroundSecondary,
+          AmaterasuColors.surfaceRaised,
+        ],
       ),
     ),
     child: Center(
@@ -67,14 +70,20 @@ class TripStayPhotoArrow extends StatelessWidget {
         ),
         iconSize: 20,
         onPressed: onPressed,
-        icon: Icon(left ? Icons.chevron_left_rounded : Icons.chevron_right_rounded),
+        icon: Icon(
+          left ? Icons.chevron_left_rounded : Icons.chevron_right_rounded,
+        ),
       ),
     ),
   );
 }
 
 class TripStayPhotoDots extends StatelessWidget {
-  const TripStayPhotoDots({super.key, required this.count, required this.index});
+  const TripStayPhotoDots({
+    super.key,
+    required this.count,
+    required this.index,
+  });
 
   final int count;
   final int index;
@@ -104,15 +113,22 @@ class TripStayPhotoDots extends StatelessWidget {
 }
 
 class TripStayPhotoAuthors extends StatelessWidget {
-  const TripStayPhotoAuthors({super.key, required this.authors});
+  const TripStayPhotoAuthors({
+    super.key,
+    required this.authors,
+    this.compact = false,
+  });
 
   final List<TripStayPhotoAuthor> authors;
 
+  /// Small photo: no room is kept for the page dots.
+  final bool compact;
+
   @override
   Widget build(BuildContext context) => Positioned(
-    left: 8,
-    bottom: 8,
-    right: 90,
+    left: compact ? 4 : 8,
+    bottom: compact ? 4 : 8,
+    right: compact ? 4 : 90,
     child: Align(
       alignment: Alignment.bottomLeft,
       child: Container(

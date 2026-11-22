@@ -5921,6 +5921,36 @@ abstract class AppLocalizations {
   /// **'Try changing or clearing the filters to see the other stays.'**
   String get staysNoMatchBody;
 
+  /// No description provided for @staysViewCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get staysViewCards;
+
+  /// No description provided for @staysViewList.
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get staysViewList;
+
+  /// No description provided for @staysViewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get staysViewDetails;
+
+  /// No description provided for @staysExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get staysExpense;
+
+  /// No description provided for @staysMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More actions'**
+  String get staysMore;
+
   /// No description provided for @staysSectionBooking.
   ///
   /// In en, this message translates to:

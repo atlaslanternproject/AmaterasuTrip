@@ -19,11 +19,15 @@ class TripStayPhotoCarousel extends ConsumerStatefulWidget {
     required this.placeId,
     required this.type,
     required this.height,
+    this.controls = true,
   });
 
   final String? placeId;
   final TripStayType? type;
   final double height;
+
+  /// False in the small photo of the "Elenco" view: first photo only.
+  final bool controls;
 
   @override
   ConsumerState<TripStayPhotoCarousel> createState() => _CarouselState();
@@ -51,7 +55,9 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
     _index = 0;
     _photos = id.isEmpty
         ? Future.value(const [])
-        : ref.read(tripStayPlaceInfoProvider).photos(id, languageCode: language);
+        : ref
+              .read(tripStayPlaceInfoProvider)
+              .photos(id, languageCode: language);
   }
 
   @override
@@ -69,8 +75,11 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
     super.dispose();
   }
 
-  void _go(int page) => _pages.animateToPage(page,
-      duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+  void _go(int page) => _pages.animateToPage(
+    page,
+    duration: const Duration(milliseconds: 250),
+    curve: Curves.easeOut,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +100,7 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
               PageView.builder(
                 key: const Key('stay-photos'),
                 controller: _pages,
-                itemCount: photos.length,
+                itemCount: widget.controls ? photos.length : 1,
                 onPageChanged: (page) => setState(() => _index = page),
                 itemBuilder: (_, page) => Image.network(
                   photos[page].url,
@@ -99,7 +108,7 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
                   errorBuilder: (_, _, _) => placeholder,
                 ),
               ),
-              if (photos.length > 1) ...[
+              if (widget.controls && photos.length > 1) ...[
                 if (_index > 0)
                   TripStayPhotoArrow(
                     key: const Key('stay-photo-prev'),
@@ -117,7 +126,10 @@ class _CarouselState extends ConsumerState<TripStayPhotoCarousel> {
                 TripStayPhotoDots(count: photos.length, index: _index),
               ],
               if (photo.authors.isNotEmpty)
-                TripStayPhotoAuthors(authors: photo.authors),
+                TripStayPhotoAuthors(
+                  authors: photo.authors,
+                  compact: !widget.controls,
+                ),
             ],
           );
         },

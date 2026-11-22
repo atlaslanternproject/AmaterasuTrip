@@ -39,8 +39,9 @@ class TripStaysFilterBar extends StatelessWidget {
             key: const Key('stays-filters'),
             onPressed: onOpen,
             style: OutlinedButton.styleFrom(
-              foregroundColor:
-                  active ? AmaterasuColors.accentGold : AmaterasuColors.textPrimary,
+              foregroundColor: active
+                  ? AmaterasuColors.accentGold
+                  : AmaterasuColors.textPrimary,
               backgroundColor: active
                   ? AmaterasuColors.accentBudget.withValues(alpha: 0.16)
                   : null,
@@ -50,23 +51,31 @@ class TripStaysFilterBar extends StatelessWidget {
                     : AmaterasuColors.borderStrong,
               ),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14)),
+                borderRadius: BorderRadius.circular(14),
+              ),
             ),
             icon: const Icon(Icons.tune_rounded, size: 18),
-            label: Text(active ? l10n.staysFiltersActive(count) : l10n.staysFilters),
+            label: Text(
+              active ? l10n.staysFiltersActive(count) : l10n.staysFilters,
+            ),
           ),
           Text(
             filter.sort == TripStaysSort.checkInAsc
                 ? l10n.staysSortAsc
                 : l10n.staysSortDesc,
-            style: const TextStyle(color: AmaterasuColors.textMuted, fontSize: 12),
+            style: const TextStyle(
+              color: AmaterasuColors.textMuted,
+              fontSize: 12,
+            ),
           ),
           if (active) ...[
             Text(
               l10n.staysFiltersShown(shown, total),
               key: const Key('stays-filters-count'),
               style: const TextStyle(
-                  color: AmaterasuColors.textSecondary, fontSize: 12),
+                color: AmaterasuColors.textSecondary,
+                fontSize: 12,
+              ),
             ),
             TextButton(
               key: const Key('stays-filters-clear'),

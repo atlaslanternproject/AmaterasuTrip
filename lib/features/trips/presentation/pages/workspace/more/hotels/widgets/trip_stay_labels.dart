@@ -1,6 +1,6 @@
 // Testi e colori di Hotel/Alloggi: nome dello stato, del tipo di alloggio
 // (con la sua icona) e della piattaforma di prenotazione, colore dello
-// stato (token del tema).
+// stato (token del tema) e periodo breve del soggiorno.
 
 import 'package:flutter/material.dart';
 
@@ -64,5 +64,13 @@ abstract final class TripStayLabels {
         ? (stay.bookedViaOther ?? platform(via, l10n))
         : platform(via, l10n);
     return l10n.staysBookedVia(name);
+  }
+
+  /// Short period with nights, e.g. "12 apr – 15 apr 2027 · 3 notti".
+  static String period(BuildContext context, TripStay stay) {
+    final dates = MaterialLocalizations.of(context);
+    final nights = AppLocalizations.of(context)!.staysNights(stay.nights);
+    return '${dates.formatShortMonthDay(stay.checkInDate)} – '
+        '${dates.formatMediumDate(stay.checkOutDate)} · $nights';
   }
 }

@@ -3047,6 +3047,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysNoMatchBody => 'Try changing or clearing the filters to see the other stays.';
 
   @override
+  String get staysViewCards => 'Cards';
+
+  @override
+  String get staysViewList => 'List';
+
+  @override
+  String get staysViewDetails => 'Details';
+
+  @override
+  String get staysExpense => 'Expense';
+
+  @override
+  String get staysMore => 'More actions';
+
+  @override
   String get staysSectionBooking => 'Booking';
 
   @override

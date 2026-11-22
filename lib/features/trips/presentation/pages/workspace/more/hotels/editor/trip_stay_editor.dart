@@ -80,7 +80,10 @@ class TripStayEditor extends StatefulWidget {
 }
 
 class _TripStayEditorState extends State<TripStayEditor> {
-  late final _draft = TripStayDraft(initial: widget.initial, today: DateTime.now());
+  late final _draft = TripStayDraft(
+    initial: widget.initial,
+    today: DateTime.now(),
+  );
   List<String> _messages = const [];
   bool _saving = false;
 
@@ -94,11 +97,18 @@ class _TripStayEditorState extends State<TripStayEditor> {
 
   Future<void> _save() async {
     final l10n = AppLocalizations.of(context)!;
-    final stay = _draft.toStay(tripId: widget.tripId, authorUid: widget.authorUid);
+    final stay = _draft.toStay(
+      tripId: widget.tripId,
+      authorUid: widget.authorUid,
+    );
     final problems = TripStayValidator.problems(stay);
     if (problems.isNotEmpty) {
-      setState(() => _messages =
-          problems.map((p) => tripStayProblemText(p, l10n)).toSet().toList());
+      setState(
+        () => _messages = problems
+            .map((p) => tripStayProblemText(p, l10n))
+            .toSet()
+            .toList(),
+      );
       return;
     }
     setState(() {
@@ -126,8 +136,11 @@ class _TripStayEditorState extends State<TripStayEditor> {
           padding: const EdgeInsets.fromLTRB(20, 18, 20, 8),
           child: Text(
             _draft.isNew ? l10n.staysEditorNewTitle : l10n.staysEditorEditTitle,
-            style: const TextStyle(color: AmaterasuColors.textPrimary,
-                fontSize: 20, fontWeight: FontWeight.w700),
+            style: const TextStyle(
+              color: AmaterasuColors.textPrimary,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
         Flexible(
@@ -135,15 +148,22 @@ class _TripStayEditorState extends State<TripStayEditor> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                TripStayPlaceSection(draft: _draft, places: widget.places,
-                    placeInfo: widget.placeInfo, onChanged: _changed),
+                TripStayPlaceSection(
+                  draft: _draft,
+                  places: widget.places,
+                  placeInfo: widget.placeInfo,
+                  onChanged: _changed,
+                ),
                 TripStayTypeSection(draft: _draft, onChanged: _changed),
                 TripStayContactsSection(draft: _draft, onChanged: _changed),
                 TripStayDatesSection(draft: _draft, onChanged: _changed),
                 TripStayStatusSection(draft: _draft, onChanged: _changed),
                 TripStayBookingSection(draft: _draft, onChanged: _changed),
                 TripStayGuestsSection(
-                    draft: _draft, memberNames: widget.memberNames, onChanged: _changed),
+                  draft: _draft,
+                  memberNames: widget.memberNames,
+                  onChanged: _changed,
+                ),
                 TripStayNotesSection(draft: _draft),
               ],
             ),
@@ -152,8 +172,14 @@ class _TripStayEditorState extends State<TripStayEditor> {
         for (final message in _messages)
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
-            child: Text(message, key: const Key('stay-editor-error'),
-                style: const TextStyle(color: AmaterasuColors.accentErrorSoft, fontSize: 13)),
+            child: Text(
+              message,
+              key: const Key('stay-editor-error'),
+              style: const TextStyle(
+                color: AmaterasuColors.accentErrorSoft,
+                fontSize: 13,
+              ),
+            ),
           ),
         if (_saving) const LinearProgressIndicator(),
         Padding(
@@ -168,7 +194,9 @@ class _TripStayEditorState extends State<TripStayEditor> {
               const SizedBox(width: 8),
               FilledButton(
                 key: const Key('stay-save'),
-                style: FilledButton.styleFrom(backgroundColor: AmaterasuColors.accentBudget),
+                style: FilledButton.styleFrom(
+                  backgroundColor: AmaterasuColors.accentBudget,
+                ),
                 onPressed: _saving ? null : _save,
                 child: Text(l10n.staysSave),
               ),

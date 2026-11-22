@@ -1,15 +1,19 @@
 // Elenco degli alloggi con filtri: tiene i filtri scelti (finché la pagina
-// è aperta), mostra la barra "Filtri", l'elenco filtrato e ordinato, oppure
-// uno stato vuoto dedicato se nessun alloggio corrisponde.
+// è aperta) e la modalità di visualizzazione (ricordata sul dispositivo),
+// mostra la barra "Filtri", il selettore Card/Elenco/Dettagli, l'elenco
+// filtrato e ordinato, oppure uno stato vuoto se nessuno corrisponde.
 
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
+import 'package:amaterasutrip/features/trips/stays/data/trip_stays_view_preferences.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stays_filter.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stays_view.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stays_empty.dart';
 import 'trip_stays_filter_bar.dart';
 import 'trip_stays_filter_sheet.dart';
+import 'trip_stays_view_selector.dart';
 
 class TripStaysFilteredView extends StatefulWidget {
   const TripStaysFilteredView({
@@ -17,13 +21,20 @@ class TripStaysFilteredView extends StatefulWidget {
     required this.stays,
     required this.today,
     required this.listOf,
+    required this.tripId,
+    this.uid,
   });
+
+  final String tripId;
+
+  /// Signed-in user: the chosen view is remembered for them and the trip.
+  final String? uid;
 
   final List<TripStay> stays;
   final DateTime today;
 
   /// Builds the list for the stays to show (already filtered and sorted).
-  final Widget Function(List<TripStay> shown) listOf;
+  final Widget Function(List<TripStay> shown, TripStaysView view) listOf;
 
   @override
   State<TripStaysFilteredView> createState() => _TripStaysFilteredViewState();
@@ -31,6 +42,31 @@ class TripStaysFilteredView extends StatefulWidget {
 
 class _TripStaysFilteredViewState extends State<TripStaysFilteredView> {
   var _filter = const TripStaysFilter();
+  var _view = TripStaysView.cards;
+
+  @override
+  void initState() {
+    super.initState();
+    final uid = widget.uid;
+    if (uid == null) return;
+    TripStaysViewPreferences.load(uid, widget.tripId)
+        .then((view) {
+          if (view != null && mounted) setState(() => _view = view);
+        })
+        .catchError((Object _) {});
+  }
+
+  void _setView(TripStaysView view) {
+    setState(() => _view = view);
+    final uid = widget.uid;
+    if (uid != null) {
+      TripStaysViewPreferences.save(
+        uid,
+        widget.tripId,
+        view,
+      ).catchError((Object _) {});
+    }
+  }
 
   void _set(TripStaysFilter filter) {
     if (mounted) setState(() => _filter = filter);
@@ -52,9 +88,25 @@ class _TripStaysFilteredViewState extends State<TripStaysFilteredView> {
                 filter: _filter,
                 shown: shown.length,
                 total: widget.stays.length,
-                onOpen: () => showTripStaysFilterSheet(context,
-                    initial: _filter, onChanged: _set),
+                onOpen: () => showTripStaysFilterSheet(
+                  context,
+                  initial: _filter,
+                  onChanged: _set,
+                ),
                 onClear: () => _set(_filter.cleared()),
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 820),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: TripStaysViewSelector(view: _view, onChanged: _setView),
               ),
             ),
           ),
@@ -71,7 +123,7 @@ class _TripStaysFilteredViewState extends State<TripStaysFilteredView> {
                   actionLabel: l10n.staysFiltersClear,
                   onAction: () => _set(_filter.cleared()),
                 )
-              : widget.listOf(shown),
+              : widget.listOf(shown, _view),
         ),
       ],
     );

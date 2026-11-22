@@ -26,7 +26,9 @@ class TripStayGuestsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final uids = {...memberNames.keys, ...draft.guestUids}.toList()
-      ..sort((a, b) => (memberNames[a] ?? '~').compareTo(memberNames[b] ?? '~'));
+      ..sort(
+        (a, b) => (memberNames[a] ?? '~').compareTo(memberNames[b] ?? '~'),
+      );
     return TripStayEditorSection(
       title: l10n.staysSectionGuests,
       icon: Icons.people_outline,
@@ -43,7 +45,9 @@ class TripStayGuestsSection extends StatelessWidget {
                 label: Text(memberNames[uid] ?? l10n.staysFormerGuest),
                 selected: draft.guestUids.contains(uid),
                 onSelected: (selected) {
-                  selected ? draft.guestUids.add(uid) : draft.guestUids.remove(uid);
+                  selected
+                      ? draft.guestUids.add(uid)
+                      : draft.guestUids.remove(uid);
                   onChanged();
                 },
               ),

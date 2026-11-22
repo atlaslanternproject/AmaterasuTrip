@@ -45,10 +45,14 @@ class TripStayDatesSection extends StatelessWidget {
     final parts = (current ?? (checkIn ? '15:00' : '10:00')).split(':');
     final picked = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay(hour: int.parse(parts[0]), minute: int.parse(parts[1])),
+      initialTime: TimeOfDay(
+        hour: int.parse(parts[0]),
+        minute: int.parse(parts[1]),
+      ),
     );
     if (picked == null) return;
-    final text = '${picked.hour.toString().padLeft(2, '0')}:'
+    final text =
+        '${picked.hour.toString().padLeft(2, '0')}:'
         '${picked.minute.toString().padLeft(2, '0')}';
     checkIn ? draft.checkInTime = text : draft.checkOutTime = text;
     onChanged();
@@ -75,21 +79,29 @@ class TripStayDatesSection extends StatelessWidget {
             key: Key(checkIn ? 'stay-checkin-day' : 'stay-checkout-day'),
             onPressed: () => _pickDay(context, checkIn),
             icon: const Icon(Icons.event_outlined, size: 18),
-            label: Text('${checkIn ? l10n.staysCheckInDay : l10n.staysCheckOutDay}: ${format(day)}'),
+            label: Text(
+              '${checkIn ? l10n.staysCheckInDay : l10n.staysCheckOutDay}: ${format(day)}',
+            ),
           ),
           TextButton.icon(
             key: Key(checkIn ? 'stay-checkin-time' : 'stay-checkout-time'),
             onPressed: () => _pickTime(context, checkIn),
             icon: const Icon(Icons.schedule, size: 18),
-            label: Text(time == null
-                ? '${checkIn ? l10n.staysCheckInTime : l10n.staysCheckOutTime}: ${l10n.staysTimeNone}'
-                : '${checkIn ? l10n.staysCheckInTime : l10n.staysCheckOutTime}: $time'),
+            label: Text(
+              time == null
+                  ? '${checkIn ? l10n.staysCheckInTime : l10n.staysCheckOutTime}: ${l10n.staysTimeNone}'
+                  : '${checkIn ? l10n.staysCheckInTime : l10n.staysCheckOutTime}: $time',
+            ),
           ),
           if (time != null)
             IconButton(
               tooltip: l10n.staysTimeClear,
               onPressed: () => _clearTime(checkIn),
-              icon: const Icon(Icons.close, size: 18, color: AmaterasuColors.textSecondary),
+              icon: const Icon(
+                Icons.close,
+                size: 18,
+                color: AmaterasuColors.textSecondary,
+              ),
             ),
         ],
       );
@@ -104,8 +116,13 @@ class TripStayDatesSection extends StatelessWidget {
         row(false),
         const SizedBox(height: 6),
         Text(
-          l10n.staysNights(TripStayDates.nights(draft.checkInDate, draft.checkOutDate)),
-          style: const TextStyle(color: AmaterasuColors.textSecondary, fontSize: 13),
+          l10n.staysNights(
+            TripStayDates.nights(draft.checkInDate, draft.checkOutDate),
+          ),
+          style: const TextStyle(
+            color: AmaterasuColors.textSecondary,
+            fontSize: 13,
+          ),
         ),
       ],
     );

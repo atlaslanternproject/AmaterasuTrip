@@ -35,8 +35,9 @@ class TripStayStatusSection extends StatelessWidget {
                 key: Key('stay-status-${status.code}'),
                 label: Text(TripStayLabels.status(status, l10n)),
                 selected: draft.status == status,
-                selectedColor: TripStayLabels.statusColor(status)
-                    .withValues(alpha: 0.25),
+                selectedColor: TripStayLabels.statusColor(
+                  status,
+                ).withValues(alpha: 0.25),
                 onSelected: (_) {
                   draft.status = status;
                   onChanged();

@@ -46,13 +46,19 @@ class TripStayCardDates extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.nightlight_round, size: 14,
-                      color: AmaterasuColors.accentGold),
+                  const Icon(
+                    Icons.nightlight_round,
+                    size: 14,
+                    color: AmaterasuColors.accentGold,
+                  ),
                   const SizedBox(width: 5),
                   Text(
                     l10n.staysNights(stay.nights),
-                    style: const TextStyle(color: AmaterasuColors.accentGold,
-                        fontSize: 12, fontWeight: FontWeight.w700),
+                    style: const TextStyle(
+                      color: AmaterasuColors.accentGold,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ],
               ),
@@ -98,9 +104,15 @@ class _End extends StatelessWidget {
           Icon(icon, size: 13, color: AmaterasuColors.textMuted),
           const SizedBox(width: 4),
           Flexible(
-            child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                    color: AmaterasuColors.textMuted, fontSize: 12)),
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: AmaterasuColors.textMuted,
+                fontSize: 12,
+              ),
+            ),
           ),
         ],
       ),
@@ -108,13 +120,21 @@ class _End extends StatelessWidget {
       Text(
         day,
         textAlign: end ? TextAlign.end : TextAlign.start,
-        style: const TextStyle(color: AmaterasuColors.textPrimary,
-            fontSize: 15, fontWeight: FontWeight.w700),
+        style: const TextStyle(
+          color: AmaterasuColors.textPrimary,
+          fontSize: 15,
+          fontWeight: FontWeight.w700,
+        ),
       ),
       if (time != null)
-        Text(time!, style: const TextStyle(
-            color: AmaterasuColors.accentGold, fontSize: 13,
-            fontWeight: FontWeight.w600)),
+        Text(
+          time!,
+          style: const TextStyle(
+            color: AmaterasuColors.accentGold,
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
     ],
   );
 }
