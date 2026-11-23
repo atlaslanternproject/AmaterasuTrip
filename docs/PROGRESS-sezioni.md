@@ -13,7 +13,7 @@ riprende dalla prima tappa non finita.
 | 0. Modulo Luogo condiviso (lib/core/places) | fatta, pubblicata il 22/11/2026 | feature/luogo-condiviso (eliminato) | 1.14.0+18 |
 | 1. Hotel e alloggi, migliorie | fatta, pubblicata 1.15.0 il 22/11/2026 | feature/alloggi-migliorie | 1.15.0+19 |
 | 2. Trasporti | fatta, pubblicata 1.16.0 il 23/11/2026 | feature/trasporti | 1.16.0+20 |
-| 3. Prenotazioni | da fare | - | - |
+| 3. Prenotazioni | fatta (pubblicazione: vedi tappa 4) | feature/prenotazioni | 1.17.0+21 |
 | 4. Ristoranti | da fare | - | - |
 | 5. Luoghi salvati | da fare | - | - |
 | 6. Note | da fare | - | - |
@@ -105,3 +105,24 @@ Prove da fare sul sito:
 7. Filtra per tipo e stato; un altro membro non vede "Elimina"
    sui tuoi trasporti, il proprietario sì.
 8. Duplica il viaggio: la copia non ha trasporti.
+
+## Tappa 3 - Prenotazioni
+
+Commit:
+- 8fe4652 docs: tappa 2 pubblicata.
+- b631ff9 dati e regole (blocco reservations, test in
+  rules-tests/sections) e filtro comune delle sezioni.
+- 61180ab pagina Prenotazioni: tre viste, filtri, editor,
+  spesa collegata (categoria Attività), eliminazione.
+
+Prove da fare sul sito:
+1. Prenotazioni è vuota; premi "+" e salva senza nome: compare
+   il messaggio "Compila il campo «Nome»".
+2. Crea un ingresso a un museo cercando il luogo su Google:
+   la card mostra le foto e il pulsante Mappa.
+3. Aggiungi data, ora, partecipanti e regole di cancellazione.
+4. "Crea spesa": categoria Attività e titolo già messi.
+5. Filtra per categoria e per stato; prova Prossimi/Passati.
+6. Cambia vista e ricarica: la vista resta.
+7. Un altro membro modifica ma non elimina la tua prenotazione.
+8. Su telefono card ed editor si leggono senza tagli.
