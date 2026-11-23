@@ -12,7 +12,7 @@ riprende dalla prima tappa non finita.
 |---|---|---|---|
 | 0. Modulo Luogo condiviso (lib/core/places) | fatta, pubblicata il 22/11/2026 | feature/luogo-condiviso (eliminato) | 1.14.0+18 |
 | 1. Hotel e alloggi, migliorie | fatta, pubblicata 1.15.0 il 22/11/2026 | feature/alloggi-migliorie | 1.15.0+19 |
-| 2. Trasporti | fatta (pubblicazione: vedi tappa 3) | feature/trasporti | 1.16.0+20 |
+| 2. Trasporti | fatta, pubblicata 1.16.0 il 23/11/2026 | feature/trasporti | 1.16.0+20 |
 | 3. Prenotazioni | da fare | - | - |
 | 4. Ristoranti | da fare | - | - |
 | 5. Luoghi salvati | da fare | - | - |
