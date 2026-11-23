@@ -242,6 +242,16 @@ Finito:
   di cancellazione, note, costo previsto e spesa collegata
   (categoria activities); filtri, tre viste ricordate. Dati
   in trips/{tripId}/reservations.
+- Ristoranti (lib/features/trips/restaurants e
+  pages/workspace/more/restaurants): luogo Google con foto
+  (compila anche telefono e sito), cucina, fascia di prezzo
+  (€-€€€€), stato (da provare, prenotato, provato),
+  prenotazione (data, ora, persone), voti dei viaggiatori
+  SS/S/A/B come nella bucket list ma senza toccarla (campo
+  votes: ognuno cambia solo il proprio, garantito dalle
+  regole), note, costo previsto e spesa collegata (categoria
+  food); filtri, ordine per voti/nome/prenotazione, tre viste.
+  Dati in trips/{tripId}/restaurants.
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.
@@ -263,7 +273,6 @@ Da sviluppare (oggi sono solo pagine segnaposto):
 - Itinerario
 - Mappa
 - Viaggiatori (pagina del workspace)
-- Ristoranti
 - Luoghi salvati
 - Note
 - Shopping

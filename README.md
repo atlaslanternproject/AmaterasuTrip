@@ -22,7 +22,8 @@ Storage, Cloud Functions, Hosting, App Check).
 | Hotel e alloggi (tipo, contatti, foto Google, filtri, costo previsto, cancellazione gratuita, servizi) | rilasciato nella 1.11.0, card nuova nella 1.12.0, migliorie nella 1.15.0 |
 | Trasporti (tipo, da/a, orari con fuso, passeggeri, avvisi di coincidenza, spesa) | rilasciato nella 1.16.0 |
 | Prenotazioni (biglietti, ingressi, tour, escursioni, partecipanti, cancellazione, spesa) | rilasciato nella 1.17.0 |
-| Itinerario, mappa, ristoranti, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
+| Ristoranti (luogo Google, cucina, prezzo, prenotazione, voti, spesa) | rilasciato nella 1.18.0 |
+| Itinerario, mappa, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
 
 ## Requisiti
 

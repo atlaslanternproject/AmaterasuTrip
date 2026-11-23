@@ -7043,6 +7043,138 @@ abstract class AppLocalizations {
   /// **'Cancellation: {policy}'**
   String reservationPolicyValue(String policy);
 
+  /// No description provided for @restaurantAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add restaurant'**
+  String get restaurantAdd;
+
+  /// No description provided for @restaurantEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No restaurants yet: add places to eat and vote on them together.'**
+  String get restaurantEmpty;
+
+  /// No description provided for @restaurantEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New restaurant'**
+  String get restaurantEditorNewTitle;
+
+  /// No description provided for @restaurantEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit restaurant'**
+  String get restaurantEditorEditTitle;
+
+  /// No description provided for @restaurantStatusToTry.
+  ///
+  /// In en, this message translates to:
+  /// **'To try'**
+  String get restaurantStatusToTry;
+
+  /// No description provided for @restaurantStatusBooked.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked'**
+  String get restaurantStatusBooked;
+
+  /// No description provided for @restaurantStatusTried.
+  ///
+  /// In en, this message translates to:
+  /// **'Tried'**
+  String get restaurantStatusTried;
+
+  /// No description provided for @restaurantBlockPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant'**
+  String get restaurantBlockPlace;
+
+  /// No description provided for @restaurantBlockKind.
+  ///
+  /// In en, this message translates to:
+  /// **'Status, cuisine and price'**
+  String get restaurantBlockKind;
+
+  /// No description provided for @restaurantBlockReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Reservation'**
+  String get restaurantBlockReservation;
+
+  /// No description provided for @restaurantName.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant name'**
+  String get restaurantName;
+
+  /// No description provided for @restaurantPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get restaurantPhone;
+
+  /// No description provided for @restaurantWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get restaurantWebsite;
+
+  /// No description provided for @restaurantCuisine.
+  ///
+  /// In en, this message translates to:
+  /// **'Cuisine (e.g. ramen, sushi)'**
+  String get restaurantCuisine;
+
+  /// No description provided for @restaurantParty.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get restaurantParty;
+
+  /// No description provided for @restaurantPartyValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 person} other{{count} people}}'**
+  String restaurantPartyValue(int count);
+
+  /// No description provided for @restaurantVotesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No votes: choose yours} =1{1 vote} other{{count} votes}}'**
+  String restaurantVotesTitle(int count);
+
+  /// No description provided for @restaurantSortVotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Most voted'**
+  String get restaurantSortVotes;
+
+  /// No description provided for @restaurantSortName.
+  ///
+  /// In en, this message translates to:
+  /// **'By name'**
+  String get restaurantSortName;
+
+  /// No description provided for @restaurantSortDate.
+  ///
+  /// In en, this message translates to:
+  /// **'By reservation'**
+  String get restaurantSortDate;
+
+  /// No description provided for @restaurantErrPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid phone: use digits, spaces and + ( ) . / -'**
+  String get restaurantErrPhone;
+
+  /// No description provided for @restaurantErrParty.
+  ///
+  /// In en, this message translates to:
+  /// **'People: enter a number from 1 to 100.'**
+  String get restaurantErrParty;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

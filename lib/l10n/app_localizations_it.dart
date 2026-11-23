@@ -3665,6 +3665,89 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get restaurantAdd => 'Aggiungi ristorante';
+
+  @override
+  String get restaurantEmpty => 'Nessun ristorante ancora: aggiungi i posti dove mangiare e votali insieme.';
+
+  @override
+  String get restaurantEditorNewTitle => 'Nuovo ristorante';
+
+  @override
+  String get restaurantEditorEditTitle => 'Modifica ristorante';
+
+  @override
+  String get restaurantStatusToTry => 'Da provare';
+
+  @override
+  String get restaurantStatusBooked => 'Prenotato';
+
+  @override
+  String get restaurantStatusTried => 'Provato';
+
+  @override
+  String get restaurantBlockPlace => 'Ristorante';
+
+  @override
+  String get restaurantBlockKind => 'Stato, cucina e prezzo';
+
+  @override
+  String get restaurantBlockReservation => 'Prenotazione';
+
+  @override
+  String get restaurantName => 'Nome del ristorante';
+
+  @override
+  String get restaurantPhone => 'Telefono';
+
+  @override
+  String get restaurantWebsite => 'Sito';
+
+  @override
+  String get restaurantCuisine => 'Cucina (es. ramen, sushi)';
+
+  @override
+  String get restaurantParty => 'Persone';
+
+  @override
+  String restaurantPartyValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count persone',
+      one: '1 persona',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String restaurantVotesTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count voti',
+      one: '1 voto',
+      zero: 'Nessun voto: scegli il tuo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get restaurantSortVotes => 'Più votati';
+
+  @override
+  String get restaurantSortName => 'Per nome';
+
+  @override
+  String get restaurantSortDate => 'Per prenotazione';
+
+  @override
+  String get restaurantErrPhone => 'Telefono non valido: usa cifre, spazi e + ( ) . / -';
+
+  @override
+  String get restaurantErrParty => 'Persone: scrivi un numero da 1 a 100.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

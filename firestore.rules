@@ -913,6 +913,63 @@ service cloud.firestore {
         allow delete: if sectionDeleteOk();
       }
 
+      // RISTORANTI (restaurants, v1.18.0). I voti stanno nel campo votes
+      // (uid -> SS/S/A/B): ognuno crea o cambia solo il proprio voto.
+      function validRestaurant(data) {
+        return sectionBase(data, ['name', 'status'], [
+          'name', 'status',
+          'placeName', 'placeAddress', 'placePlaceId',
+          'placeLatitude', 'placeLongitude',
+          'phone', 'website', 'cuisine', 'priceLevel',
+          'reservationDate', 'reservationTime', 'partySize',
+          'notes', 'votes'
+        ])
+          && sectionName(data, 'name', 200)
+          && data.status in ['toTry', 'booked', 'tried']
+          && sectionPlace(data, 'place')
+          && (
+            data.get('phone', null) == null
+            || (data.phone is string
+              && data.phone.size() <= 40
+              && data.phone.matches('^[+]?[0-9 ()./-]{4,40}$'))
+          )
+          && sectionLink(data, 'website')
+          && sectionText(data, 'cuisine', 120)
+          && (
+            data.get('priceLevel', null) == null
+            || (data.priceLevel is int
+              && data.priceLevel >= 1 && data.priceLevel <= 4)
+          )
+          && sectionDay(data, 'reservationDate')
+          && sectionTime(data, 'reservationTime')
+          && (
+            data.get('partySize', null) == null
+            || (data.partySize is int
+              && data.partySize >= 1 && data.partySize <= 100)
+          )
+          && sectionText(data, 'notes', 10000)
+          && (
+            data.get('votes', null) == null
+            || (data.votes is map
+              && data.votes.size() <= 50
+              && data.votes.values().hasOnly(['SS', 'S', 'A', 'B']))
+          );
+      }
+
+      match /restaurants/{itemId} {
+        allow get, list: if sectionMember();
+        allow create: if validRestaurant(request.resource.data)
+          && sectionCreateOk(request.resource.data)
+          && request.resource.data.get('votes', {}).keys()
+            .hasOnly([request.auth.uid]);
+        allow update: if validRestaurant(request.resource.data)
+          && sectionUpdateOk(request.resource.data)
+          && request.resource.data.get('votes', {})
+            .diff(resource.data.get('votes', {}))
+            .affectedKeys().hasOnly([request.auth.uid]);
+        allow delete: if sectionDeleteOk();
+      }
+
       match /members/{memberUid} {
         allow read: if false;
 

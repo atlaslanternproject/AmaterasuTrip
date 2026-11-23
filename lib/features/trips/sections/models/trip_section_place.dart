@@ -23,6 +23,15 @@ class TripSectionPlace {
   final double? latitude;
   final double? longitude;
 
+  /// Same place with [newName] when given (e.g. the restaurant name).
+  TripSectionPlace withName(String? newName) => TripSectionPlace(
+    name: newName ?? name,
+    address: address,
+    placeId: placeId,
+    latitude: latitude,
+    longitude: longitude,
+  );
+
   bool get isEmpty => name == null && address == null && placeId == null;
 
   /// Google Maps link, when there is a Google place or coordinates.

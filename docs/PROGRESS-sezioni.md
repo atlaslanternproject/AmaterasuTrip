@@ -13,8 +13,8 @@ riprende dalla prima tappa non finita.
 | 0. Modulo Luogo condiviso (lib/core/places) | fatta, pubblicata il 22/11/2026 | feature/luogo-condiviso (eliminato) | 1.14.0+18 |
 | 1. Hotel e alloggi, migliorie | fatta, pubblicata 1.15.0 il 22/11/2026 | feature/alloggi-migliorie | 1.15.0+19 |
 | 2. Trasporti | fatta, pubblicata 1.16.0 il 23/11/2026 | feature/trasporti | 1.16.0+20 |
-| 3. Prenotazioni | fatta (pubblicazione: vedi tappa 4) | feature/prenotazioni | 1.17.0+21 |
-| 4. Ristoranti | da fare | - | - |
+| 3. Prenotazioni | fatta, pubblicata 1.17.0 il 23/11/2026 | feature/prenotazioni | 1.17.0+21 |
+| 4. Ristoranti | fatta (pubblicazione: vedi tappa 5) | feature/ristoranti | 1.18.0+22 |
 | 5. Luoghi salvati | da fare | - | - |
 | 6. Note | da fare | - | - |
 | 7. Shopping e valigia | da fare | - | - |
@@ -126,3 +126,24 @@ Prove da fare sul sito:
 6. Cambia vista e ricarica: la vista resta.
 7. Un altro membro modifica ma non elimina la tua prenotazione.
 8. Su telefono card ed editor si leggono senza tagli.
+
+## Tappa 4 - Ristoranti
+
+Commit:
+- a89aab4 docs: tappa 3 pubblicata.
+- be890e3 dati, regole (blocco restaurants: ognuno cambia solo il
+  proprio voto) e servizio dei voti.
+- 20a35f8 pagina Ristoranti: voti nella card, filtri per stato e
+  prezzo, ordine, editor con contatti da Google, spesa collegata.
+
+Prove da fare sul sito:
+1. Aggiungi un ristorante cercandolo su Google: nome, telefono
+   e sito si compilano; la card mostra le foto.
+2. Scegli cucina, prezzo €€ e una prenotazione per 4 persone.
+3. Vota SS; toccando di nuovo SS il voto si toglie.
+4. Con un altro membro vota S: i conteggi si aggiornano e il
+   tuo voto resta.
+5. Ordina per voti, nome e prenotazione; filtra per prezzo.
+6. "Contatta" e "Mappa" funzionano anche in Elenco e Dettagli.
+7. "Crea spesa": categoria Cibo.
+8. Su telefono card, voti ed editor si leggono senza tagli.
