@@ -25,6 +25,7 @@ Storage, Cloud Functions, Hosting, App Check).
 | Ristoranti (luogo Google, cucina, prezzo, prenotazione, voti, spesa) | rilasciato nella 1.18.0 |
 | Luoghi salvati (Google o link di Google Maps, categorie, chi l'ha aggiunto) | rilasciato nella 1.19.0 |
 | Note (condivise o private, fissate, checklist, Info utili) | rilasciato nella 1.20.0 |
+| Shopping e valigia (acquisti con budget e prezzo reale, lista valigia per persona) | rilasciato nella 1.21.0 |
 | Itinerario, mappa, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
 
 ## Requisiti
