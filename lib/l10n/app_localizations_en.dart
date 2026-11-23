@@ -3748,6 +3748,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String get restaurantErrParty => 'People: enter a number from 1 to 100.';
 
   @override
+  String get savedPlaceAdd => 'Save a place';
+
+  @override
+  String get savedPlaceEmpty => 'No saved places: search on Google or paste a Google Maps link.';
+
+  @override
+  String get savedPlaceEditorNewTitle => 'New saved place';
+
+  @override
+  String get savedPlaceEditorEditTitle => 'Edit saved place';
+
+  @override
+  String get savedPlaceBlockPlace => 'Place';
+
+  @override
+  String get savedPlaceBlockCategory => 'Category and notes';
+
+  @override
+  String get savedPlaceName => 'Place name';
+
+  @override
+  String get savedPlaceMapsLink => 'Google Maps link';
+
+  @override
+  String get savedPlaceMapsLinkHint => 'Optional: pasting the link fills the name and position when available.';
+
+  @override
+  String savedPlaceAddedBy(String name) {
+    return 'Added by $name';
+  }
+
+  @override
+  String get savedPlaceCategorySight => 'To see';
+
+  @override
+  String get savedPlaceCategoryFood => 'Food';
+
+  @override
+  String get savedPlaceCategoryShopping => 'Shopping';
+
+  @override
+  String get savedPlaceCategoryNature => 'Nature';
+
+  @override
+  String get savedPlaceCategoryNightlife => 'Nightlife';
+
+  @override
+  String get savedPlaceCategoryOther => 'Other';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

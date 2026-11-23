@@ -3748,6 +3748,56 @@ class AppLocalizationsIt extends AppLocalizations {
   String get restaurantErrParty => 'Persone: scrivi un numero da 1 a 100.';
 
   @override
+  String get savedPlaceAdd => 'Salva un luogo';
+
+  @override
+  String get savedPlaceEmpty => 'Nessun luogo salvato: cercalo su Google o incolla un link di Google Maps.';
+
+  @override
+  String get savedPlaceEditorNewTitle => 'Nuovo luogo salvato';
+
+  @override
+  String get savedPlaceEditorEditTitle => 'Modifica luogo salvato';
+
+  @override
+  String get savedPlaceBlockPlace => 'Luogo';
+
+  @override
+  String get savedPlaceBlockCategory => 'Categoria e note';
+
+  @override
+  String get savedPlaceName => 'Nome del luogo';
+
+  @override
+  String get savedPlaceMapsLink => 'Link di Google Maps';
+
+  @override
+  String get savedPlaceMapsLinkHint => 'Facoltativo: incollando il link si ricavano nome e posizione quando ci sono.';
+
+  @override
+  String savedPlaceAddedBy(String name) {
+    return 'Aggiunto da $name';
+  }
+
+  @override
+  String get savedPlaceCategorySight => 'Da vedere';
+
+  @override
+  String get savedPlaceCategoryFood => 'Mangiare';
+
+  @override
+  String get savedPlaceCategoryShopping => 'Shopping';
+
+  @override
+  String get savedPlaceCategoryNature => 'Natura';
+
+  @override
+  String get savedPlaceCategoryNightlife => 'Vita notturna';
+
+  @override
+  String get savedPlaceCategoryOther => 'Altro';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

@@ -7175,6 +7175,102 @@ abstract class AppLocalizations {
   /// **'People: enter a number from 1 to 100.'**
   String get restaurantErrParty;
 
+  /// No description provided for @savedPlaceAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Save a place'**
+  String get savedPlaceAdd;
+
+  /// No description provided for @savedPlaceEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved places: search on Google or paste a Google Maps link.'**
+  String get savedPlaceEmpty;
+
+  /// No description provided for @savedPlaceEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New saved place'**
+  String get savedPlaceEditorNewTitle;
+
+  /// No description provided for @savedPlaceEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit saved place'**
+  String get savedPlaceEditorEditTitle;
+
+  /// No description provided for @savedPlaceBlockPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Place'**
+  String get savedPlaceBlockPlace;
+
+  /// No description provided for @savedPlaceBlockCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category and notes'**
+  String get savedPlaceBlockCategory;
+
+  /// No description provided for @savedPlaceName.
+  ///
+  /// In en, this message translates to:
+  /// **'Place name'**
+  String get savedPlaceName;
+
+  /// No description provided for @savedPlaceMapsLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Maps link'**
+  String get savedPlaceMapsLink;
+
+  /// No description provided for @savedPlaceMapsLinkHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional: pasting the link fills the name and position when available.'**
+  String get savedPlaceMapsLinkHint;
+
+  /// No description provided for @savedPlaceAddedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Added by {name}'**
+  String savedPlaceAddedBy(String name);
+
+  /// No description provided for @savedPlaceCategorySight.
+  ///
+  /// In en, this message translates to:
+  /// **'To see'**
+  String get savedPlaceCategorySight;
+
+  /// No description provided for @savedPlaceCategoryFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get savedPlaceCategoryFood;
+
+  /// No description provided for @savedPlaceCategoryShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get savedPlaceCategoryShopping;
+
+  /// No description provided for @savedPlaceCategoryNature.
+  ///
+  /// In en, this message translates to:
+  /// **'Nature'**
+  String get savedPlaceCategoryNature;
+
+  /// No description provided for @savedPlaceCategoryNightlife.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightlife'**
+  String get savedPlaceCategoryNightlife;
+
+  /// No description provided for @savedPlaceCategoryOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get savedPlaceCategoryOther;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

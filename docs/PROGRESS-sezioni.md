@@ -14,8 +14,8 @@ riprende dalla prima tappa non finita.
 | 1. Hotel e alloggi, migliorie | fatta, pubblicata 1.15.0 il 22/11/2026 | feature/alloggi-migliorie | 1.15.0+19 |
 | 2. Trasporti | fatta, pubblicata 1.16.0 il 23/11/2026 | feature/trasporti | 1.16.0+20 |
 | 3. Prenotazioni | fatta, pubblicata 1.17.0 il 23/11/2026 | feature/prenotazioni | 1.17.0+21 |
-| 4. Ristoranti | fatta (pubblicazione: vedi tappa 5) | feature/ristoranti | 1.18.0+22 |
-| 5. Luoghi salvati | da fare | - | - |
+| 4. Ristoranti | fatta, pubblicata 1.18.0 il 23/11/2026 | feature/ristoranti | 1.18.0+22 |
+| 5. Luoghi salvati | fatta (pubblicazione: vedi tappa 6) | feature/luoghi-salvati | 1.19.0+23 |
 | 6. Note | da fare | - | - |
 | 7. Shopping e valigia | da fare | - | - |
 | 8. Ricordi | da fare | - | - |
@@ -147,3 +147,23 @@ Prove da fare sul sito:
 6. "Contatta" e "Mappa" funzionano anche in Elenco e Dettagli.
 7. "Crea spesa": categoria Cibo.
 8. Su telefono card, voti ed editor si leggono senza tagli.
+
+## Tappa 5 - Luoghi salvati
+
+Commit:
+- 26a4fa7 docs: tappa 4 pubblicata.
+- f355e7a dati, regole (blocco savedPlaces) e lettura dei link di
+  Google Maps (nome da /place/…, coordinate da @lat,lng o ?q=).
+- pagina Luoghi salvati (commit successivo a f355e7a).
+
+Prove da fare sul sito:
+1. Incolla un link di Google Maps di un luogo (dal browser):
+   nome e posizione si compilano; salva.
+2. Incolla un link corto (maps.app.goo.gl): il nome va scritto a
+   mano, il link resta e si apre da "Google Maps".
+3. Cerca un luogo su Google: la card mostra le foto.
+4. La card dice "Aggiunto da" con il tuo nome.
+5. Filtra per categoria; cambia vista e ricarica.
+6. Il proprietario elimina un luogo di un altro membro; un
+   membro non vede "Elimina" sui luoghi altrui.
+7. Su telefono card ed editor si leggono senza tagli.
