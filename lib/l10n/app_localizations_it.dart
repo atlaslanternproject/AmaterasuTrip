@@ -3598,6 +3598,73 @@ class AppLocalizationsIt extends AppLocalizations {
   String get transportErrTimeZone => 'Fuso orario non valido.';
 
   @override
+  String get reservationAdd => 'Aggiungi prenotazione';
+
+  @override
+  String get reservationEmpty => 'Nessuna prenotazione ancora: aggiungi biglietti, ingressi, tour ed escursioni.';
+
+  @override
+  String get reservationEditorNewTitle => 'Nuova prenotazione';
+
+  @override
+  String get reservationEditorEditTitle => 'Modifica prenotazione';
+
+  @override
+  String get reservationCategoryTicket => 'Biglietto';
+
+  @override
+  String get reservationCategoryEntry => 'Ingresso';
+
+  @override
+  String get reservationCategoryTour => 'Tour';
+
+  @override
+  String get reservationCategoryExcursion => 'Escursione';
+
+  @override
+  String get reservationCategoryOther => 'Altro';
+
+  @override
+  String get reservationBlockMain => 'Nome, categoria e stato';
+
+  @override
+  String get reservationBlockWhenWhere => 'Quando e dove';
+
+  @override
+  String get reservationBlockBooking => 'Prenotazione e partecipanti';
+
+  @override
+  String get reservationName => 'Nome';
+
+  @override
+  String get reservationDay => 'Giorno';
+
+  @override
+  String get reservationTime => 'Ora';
+
+  @override
+  String get reservationPlace => 'Luogo';
+
+  @override
+  String get reservationLink => 'Link della prenotazione';
+
+  @override
+  String get reservationParticipants => 'Partecipanti';
+
+  @override
+  String get reservationPolicy => 'Regole di cancellazione';
+
+  @override
+  String reservationParticipantsValue(String names) {
+    return 'Partecipanti: $names';
+  }
+
+  @override
+  String reservationPolicyValue(String policy) {
+    return 'Cancellazione: $policy';
+  }
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

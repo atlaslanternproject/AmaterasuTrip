@@ -3598,6 +3598,73 @@ class AppLocalizationsEn extends AppLocalizations {
   String get transportErrTimeZone => 'Invalid time zone.';
 
   @override
+  String get reservationAdd => 'Add booking';
+
+  @override
+  String get reservationEmpty => 'No bookings yet: add tickets, entries, tours and excursions.';
+
+  @override
+  String get reservationEditorNewTitle => 'New booking';
+
+  @override
+  String get reservationEditorEditTitle => 'Edit booking';
+
+  @override
+  String get reservationCategoryTicket => 'Ticket';
+
+  @override
+  String get reservationCategoryEntry => 'Entry';
+
+  @override
+  String get reservationCategoryTour => 'Tour';
+
+  @override
+  String get reservationCategoryExcursion => 'Excursion';
+
+  @override
+  String get reservationCategoryOther => 'Other';
+
+  @override
+  String get reservationBlockMain => 'Name, category and status';
+
+  @override
+  String get reservationBlockWhenWhere => 'When and where';
+
+  @override
+  String get reservationBlockBooking => 'Booking and participants';
+
+  @override
+  String get reservationName => 'Name';
+
+  @override
+  String get reservationDay => 'Day';
+
+  @override
+  String get reservationTime => 'Time';
+
+  @override
+  String get reservationPlace => 'Place';
+
+  @override
+  String get reservationLink => 'Booking link';
+
+  @override
+  String get reservationParticipants => 'Participants';
+
+  @override
+  String get reservationPolicy => 'Cancellation policy';
+
+  @override
+  String reservationParticipantsValue(String names) {
+    return 'Participants: $names';
+  }
+
+  @override
+  String reservationPolicyValue(String policy) {
+    return 'Cancellation: $policy';
+  }
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

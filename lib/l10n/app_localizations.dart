@@ -6917,6 +6917,132 @@ abstract class AppLocalizations {
   /// **'Invalid time zone.'**
   String get transportErrTimeZone;
 
+  /// No description provided for @reservationAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add booking'**
+  String get reservationAdd;
+
+  /// No description provided for @reservationEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No bookings yet: add tickets, entries, tours and excursions.'**
+  String get reservationEmpty;
+
+  /// No description provided for @reservationEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New booking'**
+  String get reservationEditorNewTitle;
+
+  /// No description provided for @reservationEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit booking'**
+  String get reservationEditorEditTitle;
+
+  /// No description provided for @reservationCategoryTicket.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket'**
+  String get reservationCategoryTicket;
+
+  /// No description provided for @reservationCategoryEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry'**
+  String get reservationCategoryEntry;
+
+  /// No description provided for @reservationCategoryTour.
+  ///
+  /// In en, this message translates to:
+  /// **'Tour'**
+  String get reservationCategoryTour;
+
+  /// No description provided for @reservationCategoryExcursion.
+  ///
+  /// In en, this message translates to:
+  /// **'Excursion'**
+  String get reservationCategoryExcursion;
+
+  /// No description provided for @reservationCategoryOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get reservationCategoryOther;
+
+  /// No description provided for @reservationBlockMain.
+  ///
+  /// In en, this message translates to:
+  /// **'Name, category and status'**
+  String get reservationBlockMain;
+
+  /// No description provided for @reservationBlockWhenWhere.
+  ///
+  /// In en, this message translates to:
+  /// **'When and where'**
+  String get reservationBlockWhenWhere;
+
+  /// No description provided for @reservationBlockBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking and participants'**
+  String get reservationBlockBooking;
+
+  /// No description provided for @reservationName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get reservationName;
+
+  /// No description provided for @reservationDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get reservationDay;
+
+  /// No description provided for @reservationTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get reservationTime;
+
+  /// No description provided for @reservationPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Place'**
+  String get reservationPlace;
+
+  /// No description provided for @reservationLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking link'**
+  String get reservationLink;
+
+  /// No description provided for @reservationParticipants.
+  ///
+  /// In en, this message translates to:
+  /// **'Participants'**
+  String get reservationParticipants;
+
+  /// No description provided for @reservationPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancellation policy'**
+  String get reservationPolicy;
+
+  /// No description provided for @reservationParticipantsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Participants: {names}'**
+  String reservationParticipantsValue(String names);
+
+  /// No description provided for @reservationPolicyValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancellation: {policy}'**
+  String reservationPolicyValue(String policy);
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

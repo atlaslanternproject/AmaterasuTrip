@@ -235,6 +235,13 @@ Finito:
   savedPlaces, notes, shoppingItems, packingItems, memories)
   sono escluse da duplicateTrip; deleteTrip le cancella come
   sottoraccolte.
+- Prenotazioni (lib/features/trips/reservations e
+  pages/workspace/more/bookings): nome, categoria (biglietto,
+  ingresso, tour, escursione, altro), stato, data e ora,
+  luogo Google con foto, codice, link, partecipanti, regole
+  di cancellazione, note, costo previsto e spesa collegata
+  (categoria activities); filtri, tre viste ricordate. Dati
+  in trips/{tripId}/reservations.
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.
@@ -256,7 +263,6 @@ Da sviluppare (oggi sono solo pagine segnaposto):
 - Itinerario
 - Mappa
 - Viaggiatori (pagina del workspace)
-- Prenotazioni
 - Ristoranti
 - Luoghi salvati
 - Note

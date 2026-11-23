@@ -21,7 +21,8 @@ Storage, Cloud Functions, Hosting, App Check).
 | Budget e spese | rilasciato nella 1.10.0 |
 | Hotel e alloggi (tipo, contatti, foto Google, filtri, costo previsto, cancellazione gratuita, servizi) | rilasciato nella 1.11.0, card nuova nella 1.12.0, migliorie nella 1.15.0 |
 | Trasporti (tipo, da/a, orari con fuso, passeggeri, avvisi di coincidenza, spesa) | rilasciato nella 1.16.0 |
-| Itinerario, mappa, prenotazioni, ristoranti, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
+| Prenotazioni (biglietti, ingressi, tour, escursioni, partecipanti, cancellazione, spesa) | rilasciato nella 1.17.0 |
+| Itinerario, mappa, ristoranti, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
 
 ## Requisiti
 
