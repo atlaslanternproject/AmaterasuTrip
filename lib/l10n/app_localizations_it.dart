@@ -3863,6 +3863,96 @@ class AppLocalizationsIt extends AppLocalizations {
   String get noteErrChecklist => 'La checklist può avere al massimo 100 voci.';
 
   @override
+  String get shoppingTabItems => 'Acquisti';
+
+  @override
+  String get shoppingTabPacking => 'Valigia';
+
+  @override
+  String get shoppingAdd => 'Aggiungi acquisto';
+
+  @override
+  String get shoppingEmpty => 'Niente da comprare per ora: aggiungi regali, souvenir e cose che servono.';
+
+  @override
+  String get shoppingEditorNewTitle => 'Nuovo acquisto';
+
+  @override
+  String get shoppingEditorEditTitle => 'Modifica acquisto';
+
+  @override
+  String get shoppingBlockItem => 'Cosa e per chi';
+
+  @override
+  String get shoppingName => 'Cosa';
+
+  @override
+  String get shoppingFor => 'Per chi';
+
+  @override
+  String shoppingForValue(String name) {
+    return 'Per $name';
+  }
+
+  @override
+  String get shoppingWhere => 'Dove (negozio o zona)';
+
+  @override
+  String get shoppingBought => 'Comprato';
+
+  @override
+  String get shoppingToBuy => 'Da comprare';
+
+  @override
+  String get shoppingBudget => 'Budget stimato';
+
+  @override
+  String get shoppingPrice => 'Prezzo reale';
+
+  @override
+  String shoppingBudgetValue(String amount) {
+    return 'Budget stimato: $amount';
+  }
+
+  @override
+  String shoppingPriceValue(String amount) {
+    return 'Prezzo reale: $amount';
+  }
+
+  @override
+  String get packingAdd => 'Aggiungi alla valigia';
+
+  @override
+  String get packingEmpty => 'La lista valigia è vuota: aggiungi cosa portare, per persona o per tutti.';
+
+  @override
+  String get packingEditorNewTitle => 'Nuova voce della valigia';
+
+  @override
+  String get packingEditorEditTitle => 'Modifica voce della valigia';
+
+  @override
+  String get packingBlockItem => 'Cosa portare';
+
+  @override
+  String get packingFor => 'Per chi (nessuno = per tutti)';
+
+  @override
+  String get packingForEveryone => 'Per tutti';
+
+  @override
+  String get packingQuantity => 'Quantità';
+
+  @override
+  String get packingPacked => 'In valigia';
+
+  @override
+  String get packingToPack => 'Da mettere';
+
+  @override
+  String get packingErrQuantity => 'Quantità: scrivi un numero da 1 a 99.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

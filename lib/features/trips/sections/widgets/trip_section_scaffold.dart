@@ -1,6 +1,6 @@
 // Impalcatura comune delle pagine delle sezioni del viaggio: intestazione
-// con indietro, titolo e "+" (come Hotel e alloggi) e corpo con
-// caricamento, errore, stato vuoto oppure il contenuto.
+// con indietro, titolo e "+" (come Hotel e alloggi), eventuali schede e
+// corpo con caricamento, errore, stato vuoto oppure il contenuto.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,6 +22,7 @@ class TripSectionScaffold<T> extends StatelessWidget {
     required this.emptyIcon,
     required this.emptyText,
     required this.body,
+    this.top,
   });
 
   final String tripId;
@@ -33,6 +34,9 @@ class TripSectionScaffold<T> extends StatelessWidget {
   final IconData emptyIcon;
   final String emptyText;
   final Widget Function(List<T> items) body;
+
+  /// Shown above the content and the empty state (e.g. tabs).
+  final Widget? top;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +80,7 @@ class TripSectionScaffold<T> extends StatelessWidget {
                 ],
               ),
             ),
+            ?top,
             Expanded(
               child: items.when(
                 loading: () => const Center(child: CircularProgressIndicator()),

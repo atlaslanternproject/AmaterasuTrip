@@ -1034,6 +1034,60 @@ service cloud.firestore {
         allow delete: if sectionDeleteOk() && noteReadable();
       }
 
+      // SHOPPING E VALIGIA (shoppingItems, packingItems, v1.21.0)
+      function validShoppingItem(data) {
+        return sectionBase(data, ['name', 'bought'], [
+          'name', 'bought', 'forUid', 'where',
+          'actualCostMinorUnits', 'actualCostCurrency', 'notes'
+        ])
+          && sectionName(data, 'name', 200)
+          && data.bought is bool
+          && sectionText(data, 'forUid', 128)
+          && sectionText(data, 'where', 200)
+          && sectionText(data, 'notes', 10000)
+          && (
+            (data.get('actualCostMinorUnits', null) == null
+              && data.get('actualCostCurrency', null) == null)
+            || (data.get('actualCostMinorUnits', null) is int
+              && data.actualCostMinorUnits > 0
+              && data.actualCostMinorUnits <= 1000000000000
+              && data.get('actualCostCurrency', null) is string
+              && data.actualCostCurrency.matches('^[A-Z]{3}$'))
+          );
+      }
+
+      function validPackingItem(data) {
+        return sectionBase(data, ['name', 'packed'], [
+          'name', 'packed', 'personUid', 'quantity'
+        ])
+          && sectionName(data, 'name', 200)
+          && data.packed is bool
+          && sectionText(data, 'personUid', 128)
+          && (
+            data.get('quantity', null) == null
+            || (data.quantity is int
+              && data.quantity >= 1 && data.quantity <= 99)
+          );
+      }
+
+      match /shoppingItems/{itemId} {
+        allow get, list: if sectionMember();
+        allow create: if validShoppingItem(request.resource.data)
+          && sectionCreateOk(request.resource.data);
+        allow update: if validShoppingItem(request.resource.data)
+          && sectionUpdateOk(request.resource.data);
+        allow delete: if sectionDeleteOk();
+      }
+
+      match /packingItems/{itemId} {
+        allow get, list: if sectionMember();
+        allow create: if validPackingItem(request.resource.data)
+          && sectionCreateOk(request.resource.data);
+        allow update: if validPackingItem(request.resource.data)
+          && sectionUpdateOk(request.resource.data);
+        allow delete: if sectionDeleteOk();
+      }
+
       match /members/{memberUid} {
         allow read: if false;
 

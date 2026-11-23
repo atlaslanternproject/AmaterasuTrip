@@ -3863,6 +3863,96 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noteErrChecklist => 'The checklist can have at most 100 items.';
 
   @override
+  String get shoppingTabItems => 'Shopping';
+
+  @override
+  String get shoppingTabPacking => 'Packing';
+
+  @override
+  String get shoppingAdd => 'Add item';
+
+  @override
+  String get shoppingEmpty => 'Nothing to buy yet: add gifts, souvenirs and things you need.';
+
+  @override
+  String get shoppingEditorNewTitle => 'New item';
+
+  @override
+  String get shoppingEditorEditTitle => 'Edit item';
+
+  @override
+  String get shoppingBlockItem => 'What and for whom';
+
+  @override
+  String get shoppingName => 'What';
+
+  @override
+  String get shoppingFor => 'For whom';
+
+  @override
+  String shoppingForValue(String name) {
+    return 'For $name';
+  }
+
+  @override
+  String get shoppingWhere => 'Where (shop or area)';
+
+  @override
+  String get shoppingBought => 'Bought';
+
+  @override
+  String get shoppingToBuy => 'To buy';
+
+  @override
+  String get shoppingBudget => 'Estimated budget';
+
+  @override
+  String get shoppingPrice => 'Real price';
+
+  @override
+  String shoppingBudgetValue(String amount) {
+    return 'Estimated budget: $amount';
+  }
+
+  @override
+  String shoppingPriceValue(String amount) {
+    return 'Real price: $amount';
+  }
+
+  @override
+  String get packingAdd => 'Add to packing list';
+
+  @override
+  String get packingEmpty => 'The packing list is empty: add what to bring, per person or for everyone.';
+
+  @override
+  String get packingEditorNewTitle => 'New packing item';
+
+  @override
+  String get packingEditorEditTitle => 'Edit packing item';
+
+  @override
+  String get packingBlockItem => 'What to bring';
+
+  @override
+  String get packingFor => 'For whom (none = everyone)';
+
+  @override
+  String get packingForEveryone => 'For everyone';
+
+  @override
+  String get packingQuantity => 'Quantity';
+
+  @override
+  String get packingPacked => 'Packed';
+
+  @override
+  String get packingToPack => 'To pack';
+
+  @override
+  String get packingErrQuantity => 'Quantity: enter a number from 1 to 99.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

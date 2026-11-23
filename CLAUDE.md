@@ -266,6 +266,13 @@ Finito:
   in alto, checklist con voci spuntabili anche dalla card,
   modello "Info utili" (Wi-Fi, numeri di emergenza…); filtro
   condivise/private, tre viste. Dati in trips/{tripId}/notes.
+- Shopping e valigia (lib/features/trips/shopping e
+  pages/workspace/more/shopping, due schede): Acquisti (cosa,
+  per chi, dove, budget stimato, comprato, prezzo reale, note,
+  spesa collegata categoria shopping che parte dal prezzo reale o
+  dal budget) e Valigia (voce, per persona o per tutti,
+  quantità, in valigia); spunta dalla card, filtri, tre viste.
+  Dati in trips/{tripId}/shoppingItems e packingItems.
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.
@@ -287,7 +294,6 @@ Da sviluppare (oggi sono solo pagine segnaposto):
 - Itinerario
 - Mappa
 - Viaggiatori (pagina del workspace)
-- Shopping
 - Ricordi
 
 Documentazione: README.md (avvio, struttura, test,

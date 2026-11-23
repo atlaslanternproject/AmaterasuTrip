@@ -16,8 +16,8 @@ riprende dalla prima tappa non finita.
 | 3. Prenotazioni | fatta, pubblicata 1.17.0 il 23/11/2026 | feature/prenotazioni | 1.17.0+21 |
 | 4. Ristoranti | fatta, pubblicata 1.18.0 il 23/11/2026 | feature/ristoranti | 1.18.0+22 |
 | 5. Luoghi salvati | fatta, pubblicata 1.19.0 il 23/11/2026 | feature/luoghi-salvati | 1.19.0+23 |
-| 6. Note | fatta (pubblicazione: vedi tappa 7) | feature/note | 1.20.0+24 |
-| 7. Shopping e valigia | da fare | - | - |
+| 6. Note | fatta, pubblicata 1.20.0 il 23/11/2026 | feature/note | 1.20.0+24 |
+| 7. Shopping e valigia | fatta (pubblicazione: vedi tappa 8) | feature/shopping | 1.21.0+25 |
 | 8. Ricordi | da fare | - | - |
 | 9. Spese, esportazione CSV/PDF | da fare | - | - |
 | 10. Analisi Drive e budget per categoria | da fare | - | - |
@@ -189,3 +189,22 @@ Prove da fare sul sito:
 7. Il proprietario del viaggio elimina una nota condivisa di un
    altro; nessuno vede le note private altrui.
 8. Su telefono card ed editor si leggono senza tagli.
+
+## Tappa 7 - Shopping e valigia
+
+Commit:
+- e222ae3 docs: tappa 6 pubblicata.
+- c1c7b12 dati e regole (blocchi shoppingItems e packingItems).
+- pagina Shopping con schede Acquisti e Valigia (commit seguente).
+
+Prove da fare sul sito:
+1. Acquisti: aggiungi un regalo per un altro viaggiatore con
+   budget stimato e negozio.
+2. Dopo l'acquisto scrivi il prezzo reale e spunta "Comprato"
+   dalla card.
+3. "Crea spesa": categoria Shopping e importo dal prezzo reale.
+4. Filtra Da comprare / Comprati e per persona.
+5. Valigia: aggiungi voci per te, per un altro e per tutti, con
+   quantità; spuntale dalla card.
+6. Filtra la valigia per persona; cambia vista e ricarica.
+7. Su telefono le due schede e gli editor si leggono senza tagli.
