@@ -14,7 +14,7 @@ riprende dalla prima tappa non finita.
 | 1. Hotel e alloggi, migliorie | fatta, pubblicata 1.15.0 il 22/11/2026 | feature/alloggi-migliorie | 1.15.0+19 |
 | 2. Trasporti | fatta, pubblicata 1.16.0 il 23/11/2026 | feature/trasporti | 1.16.0+20 |
 | 3. Prenotazioni | fatta, pubblicata 1.17.0 il 23/11/2026 | feature/prenotazioni | 1.17.0+21 |
-| 4. Ristoranti | fatta (pubblicazione: vedi tappa 5) | feature/ristoranti | 1.18.0+22 |
+| 4. Ristoranti | fatta, pubblicata 1.18.0 il 23/11/2026 | feature/ristoranti | 1.18.0+22 |
 | 5. Luoghi salvati | da fare | - | - |
 | 6. Note | da fare | - | - |
 | 7. Shopping e valigia | da fare | - | - |
