@@ -16,7 +16,7 @@ riprende dalla prima tappa non finita.
 | 3. Prenotazioni | fatta, pubblicata 1.17.0 il 23/11/2026 | feature/prenotazioni | 1.17.0+21 |
 | 4. Ristoranti | fatta, pubblicata 1.18.0 il 23/11/2026 | feature/ristoranti | 1.18.0+22 |
 | 5. Luoghi salvati | fatta, pubblicata 1.19.0 il 23/11/2026 | feature/luoghi-salvati | 1.19.0+23 |
-| 6. Note | fatta (pubblicazione: vedi tappa 7) | feature/note | 1.20.0+24 |
+| 6. Note | fatta, pubblicata 1.20.0 il 23/11/2026 | feature/note | 1.20.0+24 |
 | 7. Shopping e valigia | da fare | - | - |
 | 8. Ricordi | da fare | - | - |
 | 9. Spese, esportazione CSV/PDF | da fare | - | - |
