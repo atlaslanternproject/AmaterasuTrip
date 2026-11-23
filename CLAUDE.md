@@ -259,6 +259,13 @@ Finito:
   vedere, mangiare, shopping, natura, vita notturna, altro),
   note, "aggiunto da"; filtro per categoria, ordine per nome,
   tre viste. Nessuna spesa. Dati in trips/{tripId}/savedPlaces.
+- Note (lib/features/trips/notes e pages/workspace/more/notes):
+  titolo, testo, condivise o private (le private le leggono,
+  modificano ed eliminano solo gli autori: regole e test; l'app
+  legge con due richieste, condivise + proprie private), fissate
+  in alto, checklist con voci spuntabili anche dalla card,
+  modello "Info utili" (Wi-Fi, numeri di emergenza…); filtro
+  condivise/private, tre viste. Dati in trips/{tripId}/notes.
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.
@@ -280,7 +287,6 @@ Da sviluppare (oggi sono solo pagine segnaposto):
 - Itinerario
 - Mappa
 - Viaggiatori (pagina del workspace)
-- Note
 - Shopping
 - Ricordi
 

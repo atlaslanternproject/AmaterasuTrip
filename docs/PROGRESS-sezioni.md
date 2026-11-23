@@ -16,7 +16,7 @@ riprende dalla prima tappa non finita.
 | 3. Prenotazioni | fatta, pubblicata 1.17.0 il 23/11/2026 | feature/prenotazioni | 1.17.0+21 |
 | 4. Ristoranti | fatta, pubblicata 1.18.0 il 23/11/2026 | feature/ristoranti | 1.18.0+22 |
 | 5. Luoghi salvati | fatta, pubblicata 1.19.0 il 23/11/2026 | feature/luoghi-salvati | 1.19.0+23 |
-| 6. Note | da fare | - | - |
+| 6. Note | fatta (pubblicazione: vedi tappa 7) | feature/note | 1.20.0+24 |
 | 7. Shopping e valigia | da fare | - | - |
 | 8. Ricordi | da fare | - | - |
 | 9. Spese, esportazione CSV/PDF | da fare | - | - |
@@ -167,3 +167,25 @@ Prove da fare sul sito:
 6. Il proprietario elimina un luogo di un altro membro; un
    membro non vede "Elimina" sui luoghi altrui.
 7. Su telefono card ed editor si leggono senza tagli.
+
+## Tappa 6 - Note
+
+Commit:
+- e3b29de docs: tappa 5 pubblicata.
+- a6760e2 dati e regole (blocco notes: le private solo per
+  l'autore, con test) e lettura con più richieste nel modulo comune.
+- c882990 pagina Note: private, fissate, checklist, Info utili.
+
+Prove da fare sul sito:
+1. Crea una nota con "Usa il modello Info utili": è fissata
+   in alto e ha Wi-Fi e numero di emergenza.
+2. Crea una nota privata con una checklist di 3 voci.
+3. Con un altro membro: la nota privata non si vede; la nota
+   condivisa sì.
+4. L'altro membro modifica una nota condivisa ma non può
+   renderla privata (l'interruttore è spento).
+5. Spunta una voce dalla card: il conteggio "1 di 3 fatte" cambia.
+6. Filtra Condivise / Private; cambia vista e ricarica.
+7. Il proprietario del viaggio elimina una nota condivisa di un
+   altro; nessuno vede le note private altrui.
+8. Su telefono card ed editor si leggono senza tagli.
