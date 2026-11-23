@@ -15,7 +15,7 @@ riprende dalla prima tappa non finita.
 | 2. Trasporti | fatta, pubblicata 1.16.0 il 23/11/2026 | feature/trasporti | 1.16.0+20 |
 | 3. Prenotazioni | fatta, pubblicata 1.17.0 il 23/11/2026 | feature/prenotazioni | 1.17.0+21 |
 | 4. Ristoranti | fatta, pubblicata 1.18.0 il 23/11/2026 | feature/ristoranti | 1.18.0+22 |
-| 5. Luoghi salvati | fatta (pubblicazione: vedi tappa 6) | feature/luoghi-salvati | 1.19.0+23 |
+| 5. Luoghi salvati | fatta, pubblicata 1.19.0 il 23/11/2026 | feature/luoghi-salvati | 1.19.0+23 |
 | 6. Note | da fare | - | - |
 | 7. Shopping e valigia | da fare | - | - |
 | 8. Ricordi | da fare | - | - |
@@ -154,7 +154,7 @@ Commit:
 - 26a4fa7 docs: tappa 4 pubblicata.
 - f355e7a dati, regole (blocco savedPlaces) e lettura dei link di
   Google Maps (nome da /place/…, coordinate da @lat,lng o ?q=).
-- pagina Luoghi salvati (commit successivo a f355e7a).
+- 90e758e pagina Luoghi salvati.
 
 Prove da fare sul sito:
 1. Incolla un link di Google Maps di un luogo (dal browser):
