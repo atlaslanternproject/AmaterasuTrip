@@ -88,11 +88,12 @@ emu_storage_rules() {
 }
 
 # Regole Firestore: soggiorni (Hotel/Alloggi), regole generali (21 test),
-# budget personale (B7.1) e metodi di pagamento (B7.5.2).
+# budget personale (B7.1), metodi di pagamento (B7.5.2) e sezioni del
+# viaggio (rules-tests/sections: trasporti, prenotazioni, ...).
 emu_firestore_rules() {
   firebase emulators:exec --config "$EMU_CONFIG" \
     --project demo-amaterasu-rules --only firestore \
-    "node --test rules-tests/stays-rules.test.mjs && node --test rules-tests/firestore.rules.test.mjs && node rules-tests/b71-personal-budget-rules.cjs && node rules-tests/b752-payment-methods.cjs"
+    "node --test rules-tests/stays-rules.test.mjs && node --test rules-tests/firestore.rules.test.mjs && node rules-tests/b71-personal-budget-rules.cjs && node rules-tests/b752-payment-methods.cjs && node --test rules-tests/sections/*.test.mjs"
 }
 
 # "Segna come pagato": pagamenti dichiarati dal creditore e annullati.

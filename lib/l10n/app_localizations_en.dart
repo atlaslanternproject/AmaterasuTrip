@@ -3272,6 +3272,200 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysGapsHint => 'Just a reminder: if it is on purpose, you can ignore it.';
 
   @override
+  String get sectionsViewCards => 'Cards';
+
+  @override
+  String get sectionsViewList => 'List';
+
+  @override
+  String get sectionsViewDetails => 'Details';
+
+  @override
+  String get sectionsEdit => 'Edit';
+
+  @override
+  String get sectionsDelete => 'Delete';
+
+  @override
+  String get sectionsMore => 'More actions';
+
+  @override
+  String get sectionsCancel => 'Cancel';
+
+  @override
+  String get sectionsSave => 'Save';
+
+  @override
+  String get sectionsSaved => 'Saved.';
+
+  @override
+  String get sectionsSaveError => 'Could not save. Check the connection and try again.';
+
+  @override
+  String get sectionsLoadError => 'Could not load the data. Try again later.';
+
+  @override
+  String get sectionsDeleteTitle => 'Delete for everyone?';
+
+  @override
+  String sectionsDeleteBody(String name) {
+    return '“$name” will be deleted for every traveler. This cannot be undone.';
+  }
+
+  @override
+  String get sectionsDeleted => 'Deleted.';
+
+  @override
+  String get sectionsDeleteError => 'Could not delete: only its creator or the trip owner can delete it.';
+
+  @override
+  String get sectionsOpenMap => 'Open in Google Maps';
+
+  @override
+  String get sectionsContact => 'Contact';
+
+  @override
+  String sectionsContactTitle(String name) {
+    return 'Contact $name';
+  }
+
+  @override
+  String get sectionsExpense => 'Expense';
+
+  @override
+  String get sectionsExpenseCreate => 'Create expense';
+
+  @override
+  String get sectionsExpenseLinkExisting => 'Link existing expense';
+
+  @override
+  String get sectionsExpenseView => 'View expense';
+
+  @override
+  String get sectionsExpenseLinked => 'Expense linked.';
+
+  @override
+  String get sectionsExpenseLinkError => 'Expense created but not linked: link it with “Link existing expense”.';
+
+  @override
+  String get sectionsExpensePickTitle => 'Choose a shared expense';
+
+  @override
+  String get sectionsExpensePickEmpty => 'There are no shared expenses to link.';
+
+  @override
+  String get sectionsExpenseLoadError => 'Could not load the expenses.';
+
+  @override
+  String get sectionsExpenseNotVisible => 'Linked expense not visible to you.';
+
+  @override
+  String sectionsExpenseLinkedTitle(String title) {
+    return 'Expense: $title';
+  }
+
+  @override
+  String get sectionsDateNone => 'no date';
+
+  @override
+  String get sectionsTimeNone => 'no time';
+
+  @override
+  String get sectionsClear => 'Remove';
+
+  @override
+  String get sectionsCost => 'Expected cost';
+
+  @override
+  String get sectionsCostCurrency => 'Currency';
+
+  @override
+  String get sectionsCostHint => 'Optional: it will be the starting amount of “Create expense”.';
+
+  @override
+  String sectionsCostEstimated(String amount) {
+    return 'Expected cost: $amount';
+  }
+
+  @override
+  String get sectionsAll => 'All';
+
+  @override
+  String get sectionsUpcoming => 'Upcoming';
+
+  @override
+  String get sectionsPast => 'Past';
+
+  @override
+  String get sectionsSortFirst => 'Earliest first';
+
+  @override
+  String get sectionsSortLast => 'Latest first';
+
+  @override
+  String get sectionsNoMatch => 'Nothing matches these filters.';
+
+  @override
+  String get sectionsStatusToBook => 'To book';
+
+  @override
+  String get sectionsStatusBooked => 'Booked';
+
+  @override
+  String get sectionsStatusCancelled => 'Cancelled';
+
+  @override
+  String get sectionsBlockStatus => 'Status';
+
+  @override
+  String get sectionsBlockNotes => 'Notes';
+
+  @override
+  String get sectionsBlockCost => 'Cost';
+
+  @override
+  String get sectionsNotes => 'Notes';
+
+  @override
+  String get sectionsLink => 'Link';
+
+  @override
+  String get sectionsBookingCode => 'Booking code';
+
+  @override
+  String sectionsBookingCodeValue(String code) {
+    return 'Code: $code';
+  }
+
+  @override
+  String get sectionsFormerMember => 'Former traveler';
+
+  @override
+  String sectionsErrRequired(String field) {
+    return 'Fill in “$field”.';
+  }
+
+  @override
+  String sectionsErrTooLong(int max) {
+    return 'Text too long (at most $max characters).';
+  }
+
+  @override
+  String get sectionsErrLink => 'The link must start with http:// or https:// and contain no spaces.';
+
+  @override
+  String get sectionsErrCost => 'Invalid expected cost: enter an amount above zero in the currency format.';
+
+  @override
+  String get sectionsErrMembers => 'At most 50 travelers.';
+
+  @override
+  String get sectionsErrExpense => 'Invalid linked expense.';
+
+  @override
+  String get sectionsErrPlace => 'Invalid place.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

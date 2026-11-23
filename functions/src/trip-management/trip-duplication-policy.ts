@@ -18,6 +18,17 @@ const excludedSubcollections = new Set<string>([
   // Hotel/Alloggi: bookings belong to the original trip (dates, links,
   // linked expenses) and are not copied.
   "stays",
+  // Trip sections (v1.16.0+): transports, bookings, restaurants, saved
+  // places, notes, shopping, packing and memories belong to the original
+  // trip (dates, links, private notes, linked expenses) and are not copied.
+  "transports",
+  "reservations",
+  "restaurants",
+  "savedPlaces",
+  "notes",
+  "shoppingItems",
+  "packingItems",
+  "memories",
 ]);
 
 const excludedExternalReferenceFields =
