@@ -252,6 +252,13 @@ Finito:
   regole), note, costo previsto e spesa collegata (categoria
   food); filtri, ordine per voti/nome/prenotazione, tre viste.
   Dati in trips/{tripId}/restaurants.
+- Luoghi salvati (lib/features/trips/saved_places e
+  pages/workspace/more/saved_places): luogo cercato su Google
+  (con foto) oppure link di Google Maps incollato (da cui si
+  ricavano nome e coordinate se presenti), categoria (da
+  vedere, mangiare, shopping, natura, vita notturna, altro),
+  note, "aggiunto da"; filtro per categoria, ordine per nome,
+  tre viste. Nessuna spesa. Dati in trips/{tripId}/savedPlaces.
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.
@@ -273,7 +280,6 @@ Da sviluppare (oggi sono solo pagine segnaposto):
 - Itinerario
 - Mappa
 - Viaggiatori (pagina del workspace)
-- Luoghi salvati
 - Note
 - Shopping
 - Ricordi

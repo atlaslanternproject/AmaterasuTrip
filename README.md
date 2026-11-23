@@ -23,6 +23,7 @@ Storage, Cloud Functions, Hosting, App Check).
 | Trasporti (tipo, da/a, orari con fuso, passeggeri, avvisi di coincidenza, spesa) | rilasciato nella 1.16.0 |
 | Prenotazioni (biglietti, ingressi, tour, escursioni, partecipanti, cancellazione, spesa) | rilasciato nella 1.17.0 |
 | Ristoranti (luogo Google, cucina, prezzo, prenotazione, voti, spesa) | rilasciato nella 1.18.0 |
+| Luoghi salvati (Google o link di Google Maps, categorie, chi l'ha aggiunto) | rilasciato nella 1.19.0 |
 | Itinerario, mappa, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
 
 ## Requisiti
