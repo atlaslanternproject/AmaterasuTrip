@@ -70,8 +70,10 @@ export function setupSectionRules(projectId) {
 /**
  * The tests every section shares. [item](uid, extra) is a valid new
  * document; [bad] lists invalid extra fields; [edit] is a valid change.
+ * [wholeList] false: members may not list the collection without filters.
  */
-export function sectionCommonTests(name, path, item, bad, edit) {
+export function sectionCommonTests(name, path, item, bad, edit,
+  {wholeList = true} = {}) {
   const ref = (uid, id = 'item-1') =>
     doc(db(uid), 'trips', TRIP, path, id);
 
@@ -88,7 +90,9 @@ export function sectionCommonTests(name, path, item, bad, edit) {
   test(`${name}: members read, outsiders and anonymous users do not`, async () => {
     await seed(MEMBER);
     await assertSucceeds(getDoc(ref(OTHER_MEMBER)));
-    await assertSucceeds(getDocs(collection(db(OWNER), 'trips', TRIP, path)));
+    if (wholeList) {
+      await assertSucceeds(getDocs(collection(db(OWNER), 'trips', TRIP, path)));
+    }
     await assertFails(getDoc(ref(OUTSIDER)));
     await assertFails(getDoc(ref(null)));
   });

@@ -996,6 +996,44 @@ service cloud.firestore {
         allow delete: if sectionDeleteOk();
       }
 
+      // NOTE (notes, v1.20.0). Le note private (visibility 'private') le
+      // leggono, modificano ed eliminano solo i loro autori.
+      function validNote(data) {
+        return sectionBase(data, ['title', 'visibility'], [
+          'title', 'visibility', 'body', 'pinned', 'checklist'
+        ])
+          && sectionName(data, 'title', 200)
+          && data.visibility in ['shared', 'private']
+          && sectionText(data, 'body', 10000)
+          && (data.get('pinned', null) == null || data.pinned is bool)
+          && (
+            data.get('checklist', null) == null
+            || (data.checklist is list && data.checklist.size() <= 100)
+          );
+      }
+
+      function noteReadable() {
+        return sectionMember()
+          && (
+            resource.data.visibility == 'shared'
+            || resource.data.createdByUid == request.auth.uid
+          );
+      }
+
+      match /notes/{itemId} {
+        allow get, list: if noteReadable();
+        allow create: if validNote(request.resource.data)
+          && sectionCreateOk(request.resource.data);
+        allow update: if validNote(request.resource.data)
+          && sectionUpdateOk(request.resource.data)
+          && (
+            resource.data.createdByUid == request.auth.uid
+            || (resource.data.visibility == 'shared'
+              && request.resource.data.visibility == 'shared')
+          );
+        allow delete: if sectionDeleteOk() && noteReadable();
+      }
+
       match /members/{memberUid} {
         allow read: if false;
 

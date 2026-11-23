@@ -1,20 +1,35 @@
 // Versione Firestore del TripSectionStore: scrive direttamente dall'app in
 // trips/{tripId}/{collection}, con createdAt e updatedAt dell'ora del
 // server come chiedono le regole. I documenti illeggibili si saltano.
+// Con [queries] legge solo ciò che le regole permettono (es. note private).
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/trip_section_item.dart';
+import 'trip_section_joined_queries.dart';
 import 'trip_section_store.dart';
 
 class FirestoreTripSectionStore<T extends TripSectionItem>
     implements TripSectionStore<T> {
-  FirestoreTripSectionStore(this._firestore, this._auth, this.codec);
+  FirestoreTripSectionStore(
+    this._firestore,
+    this._auth,
+    this.codec, {
+    this.queries,
+  });
 
   final FirebaseFirestore _firestore;
   final FirebaseAuth _auth;
   final TripSectionCodec<T> codec;
+
+  /// Separate queries whose results are joined, for collections that
+  /// members may not list as a whole.
+  final List<Query<Map<String, dynamic>>> Function(
+    CollectionReference<Map<String, dynamic>> items,
+    String uid,
+  )?
+  queries;
 
   @override
   String? get currentUid => _auth.currentUser?.uid;
@@ -39,7 +54,13 @@ class FirestoreTripSectionStore<T extends TripSectionItem>
   }
 
   @override
-  Stream<List<T>> watch(String tripId) => _items(tripId).snapshots().map(read);
+  Stream<List<T>> watch(String tripId) {
+    final split = queries;
+    if (split == null) return _items(tripId).snapshots().map(read);
+    final uid = currentUid;
+    if (uid == null) return Stream.value(const []);
+    return joinTripSectionQueries(split(_items(tripId), uid), read);
+  }
 
   @override
   Future<String> create(T item) async {
