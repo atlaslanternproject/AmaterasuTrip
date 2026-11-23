@@ -882,6 +882,37 @@ service cloud.firestore {
         allow delete: if sectionDeleteOk();
       }
 
+      // PRENOTAZIONI (reservations, v1.17.0)
+      function validReservation(data) {
+        return sectionBase(data, ['name', 'category', 'status'], [
+          'name', 'category', 'status', 'date', 'time',
+          'placeName', 'placeAddress', 'placePlaceId',
+          'placeLatitude', 'placeLongitude',
+          'bookingCode', 'bookingUrl', 'participantUids',
+          'cancellationPolicy', 'notes'
+        ])
+          && sectionName(data, 'name', 200)
+          && data.category in ['ticket', 'entry', 'tour', 'excursion', 'other']
+          && data.status in ['toBook', 'booked', 'cancelled']
+          && sectionDay(data, 'date')
+          && sectionTime(data, 'time')
+          && sectionPlace(data, 'place')
+          && sectionText(data, 'bookingCode', 100)
+          && sectionLink(data, 'bookingUrl')
+          && sectionUids(data, 'participantUids')
+          && sectionText(data, 'cancellationPolicy', 2000)
+          && sectionText(data, 'notes', 10000);
+      }
+
+      match /reservations/{itemId} {
+        allow get, list: if sectionMember();
+        allow create: if validReservation(request.resource.data)
+          && sectionCreateOk(request.resource.data);
+        allow update: if validReservation(request.resource.data)
+          && sectionUpdateOk(request.resource.data);
+        allow delete: if sectionDeleteOk();
+      }
+
       match /members/{memberUid} {
         allow read: if false;
 
