@@ -26,24 +26,29 @@ Future<void> pump(WidgetTester tester, Widget dialog) async {
 }
 
 void main() {
-  final api = FakeBudgetApi(members: [
-    {'uid': 'A', 'name': 'Anna'},
-    {'uid': 'B', 'name': 'Bruno'},
-  ]);
+  final api = FakeBudgetApi(
+    members: [
+      {'uid': 'A', 'name': 'Anna'},
+      {'uid': 'B', 'name': 'Bruno'},
+    ],
+  );
 
-  testWidgets('starts from the given title, amount and date, shared only',
-      (tester) async {
-    await pump(tester, BudgetCreateDialog(
-      api: api,
-      currency: 'EUR',
-      initialTitle: 'Alloggio: Hotel Kyoto',
-      initialCategory: 'accommodation',
-      initialDate: DateTime(2027, 4, 12),
-      initialMinorUnits: 12000,
-      sharedOnly: true,
-    ));
-    expect(find.text('Alloggio: Hotel Kyoto'),
-        findsOneWidget);
+  testWidgets('starts from the given title, amount and date, shared only', (
+    tester,
+  ) async {
+    await pump(
+      tester,
+      BudgetCreateDialog(
+        api: api,
+        currency: 'EUR',
+        initialTitle: 'Alloggio: Hotel Kyoto',
+        initialCategory: 'accommodation',
+        initialDate: DateTime(2027, 4, 12),
+        initialMinorUnits: 12000,
+        sharedOnly: true,
+      ),
+    );
+    expect(find.text('Alloggio: Hotel Kyoto'), findsOneWidget);
     expect(find.text('Personale'), findsNothing);
     expect(find.text('Condivisa'), findsOneWidget);
 
@@ -55,21 +60,29 @@ void main() {
     expect(find.text('120.00'), findsOneWidget);
   });
 
-  testWidgets('without values the dialog is the same as before',
-      (tester) async {
+  testWidgets('without values the dialog is the same as before', (
+    tester,
+  ) async {
     await pump(tester, BudgetCreateDialog(api: api, currency: 'EUR'));
     expect(find.text('Personale'), findsOneWidget);
     expect(find.text('Condivisa'), findsOneWidget);
     expect(find.text('120.00'), findsNothing);
   });
 
-  test('BudgetApi.create returns the ID of the new expense (fake API)',
-      () async {
-    final id = await FakeBudgetApi().create(
-      title: 'x', category: 'other', notes: '', shared: true,
-      currency: 'EUR', minorUnits: 100, status: 'planned',
-      participants: ['A'],
-    );
-    expect(id, isNotEmpty);
-  });
+  test(
+    'BudgetApi.create returns the ID of the new expense (fake API)',
+    () async {
+      final id = await FakeBudgetApi().create(
+        title: 'x',
+        category: 'other',
+        notes: '',
+        shared: true,
+        currency: 'EUR',
+        minorUnits: 100,
+        status: 'planned',
+        participants: ['A'],
+      );
+      expect(id, isNotEmpty);
+    },
+  );
 }

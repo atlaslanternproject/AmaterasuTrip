@@ -3272,6 +3272,332 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysGapsHint => 'Solo un promemoria: se è voluto, puoi ignorarlo.';
 
   @override
+  String get sectionsViewCards => 'Card';
+
+  @override
+  String get sectionsViewList => 'Elenco';
+
+  @override
+  String get sectionsViewDetails => 'Dettagli';
+
+  @override
+  String get sectionsEdit => 'Modifica';
+
+  @override
+  String get sectionsDelete => 'Elimina';
+
+  @override
+  String get sectionsMore => 'Altre azioni';
+
+  @override
+  String get sectionsCancel => 'Annulla';
+
+  @override
+  String get sectionsSave => 'Salva';
+
+  @override
+  String get sectionsSaved => 'Salvato.';
+
+  @override
+  String get sectionsSaveError => 'Salvataggio non riuscito. Controlla la connessione e riprova.';
+
+  @override
+  String get sectionsLoadError => 'Impossibile caricare i dati. Riprova più tardi.';
+
+  @override
+  String get sectionsDeleteTitle => 'Eliminare per tutti?';
+
+  @override
+  String sectionsDeleteBody(String name) {
+    return '«$name» verrà eliminato per tutti i viaggiatori. L\'operazione non si può annullare.';
+  }
+
+  @override
+  String get sectionsDeleted => 'Eliminato.';
+
+  @override
+  String get sectionsDeleteError => 'Eliminazione non riuscita: può eliminare solo chi l\'ha creato o il proprietario del viaggio.';
+
+  @override
+  String get sectionsOpenMap => 'Apri in Google Maps';
+
+  @override
+  String get sectionsContact => 'Contatta';
+
+  @override
+  String sectionsContactTitle(String name) {
+    return 'Contatta $name';
+  }
+
+  @override
+  String get sectionsExpense => 'Spesa';
+
+  @override
+  String get sectionsExpenseCreate => 'Crea spesa';
+
+  @override
+  String get sectionsExpenseLinkExisting => 'Collega spesa esistente';
+
+  @override
+  String get sectionsExpenseView => 'Vedi spesa';
+
+  @override
+  String get sectionsExpenseLinked => 'Spesa collegata.';
+
+  @override
+  String get sectionsExpenseLinkError => 'Spesa creata, ma non collegata: collegala con «Collega spesa esistente».';
+
+  @override
+  String get sectionsExpensePickTitle => 'Scegli una spesa condivisa';
+
+  @override
+  String get sectionsExpensePickEmpty => 'Non ci sono spese condivise da collegare.';
+
+  @override
+  String get sectionsExpenseLoadError => 'Impossibile caricare le spese.';
+
+  @override
+  String get sectionsExpenseNotVisible => 'Spesa collegata non visibile per te.';
+
+  @override
+  String sectionsExpenseLinkedTitle(String title) {
+    return 'Spesa: $title';
+  }
+
+  @override
+  String get sectionsDateNone => 'nessuna data';
+
+  @override
+  String get sectionsTimeNone => 'nessun orario';
+
+  @override
+  String get sectionsClear => 'Togli';
+
+  @override
+  String get sectionsCost => 'Costo previsto';
+
+  @override
+  String get sectionsCostCurrency => 'Valuta';
+
+  @override
+  String get sectionsCostHint => 'Facoltativo: sarà l\'importo di partenza di «Crea spesa».';
+
+  @override
+  String sectionsCostEstimated(String amount) {
+    return 'Costo previsto: $amount';
+  }
+
+  @override
+  String get sectionsAll => 'Tutti';
+
+  @override
+  String get sectionsUpcoming => 'Prossimi';
+
+  @override
+  String get sectionsPast => 'Passati';
+
+  @override
+  String get sectionsSortFirst => 'Dal primo';
+
+  @override
+  String get sectionsSortLast => 'Dall\'ultimo';
+
+  @override
+  String get sectionsNoMatch => 'Nessun elemento con questi filtri.';
+
+  @override
+  String get sectionsStatusToBook => 'Da prenotare';
+
+  @override
+  String get sectionsStatusBooked => 'Prenotato';
+
+  @override
+  String get sectionsStatusCancelled => 'Annullato';
+
+  @override
+  String get sectionsBlockStatus => 'Stato';
+
+  @override
+  String get sectionsBlockNotes => 'Note';
+
+  @override
+  String get sectionsBlockCost => 'Costo';
+
+  @override
+  String get sectionsNotes => 'Note';
+
+  @override
+  String get sectionsLink => 'Link';
+
+  @override
+  String get sectionsBookingCode => 'Codice di prenotazione';
+
+  @override
+  String sectionsBookingCodeValue(String code) {
+    return 'Codice: $code';
+  }
+
+  @override
+  String get sectionsFormerMember => 'Ex viaggiatore';
+
+  @override
+  String sectionsErrRequired(String field) {
+    return 'Compila il campo «$field».';
+  }
+
+  @override
+  String sectionsErrTooLong(int max) {
+    return 'Testo troppo lungo (massimo $max caratteri).';
+  }
+
+  @override
+  String get sectionsErrLink => 'Il link deve iniziare con http:// o https:// e non contenere spazi.';
+
+  @override
+  String get sectionsErrCost => 'Costo previsto non valido: scrivi un importo maggiore di zero nel formato della valuta.';
+
+  @override
+  String get sectionsErrMembers => 'Al massimo 50 viaggiatori.';
+
+  @override
+  String get sectionsErrExpense => 'Spesa collegata non valida.';
+
+  @override
+  String get sectionsErrPlace => 'Luogo non valido.';
+
+  @override
+  String get transportAdd => 'Aggiungi trasporto';
+
+  @override
+  String get transportEmpty => 'Nessun trasporto ancora: aggiungi voli, treni, bus, traghetti, noleggi e transfer del viaggio.';
+
+  @override
+  String get transportEditorNewTitle => 'Nuovo trasporto';
+
+  @override
+  String get transportEditorEditTitle => 'Modifica trasporto';
+
+  @override
+  String get transportTypeFlight => 'Volo';
+
+  @override
+  String get transportTypeTrain => 'Treno';
+
+  @override
+  String get transportTypeBus => 'Bus';
+
+  @override
+  String get transportTypeFerry => 'Traghetto';
+
+  @override
+  String get transportTypeCarRental => 'Noleggio auto';
+
+  @override
+  String get transportTypeTransfer => 'Transfer';
+
+  @override
+  String get transportTypeOther => 'Altro';
+
+  @override
+  String get transportBlockType => 'Tipo e stato';
+
+  @override
+  String get transportBlockRoute => 'Da / a';
+
+  @override
+  String get transportBlockTimes => 'Partenza e arrivo';
+
+  @override
+  String get transportBlockService => 'Compagnia, posti e passeggeri';
+
+  @override
+  String get transportBlockBooking => 'Prenotazione';
+
+  @override
+  String get transportFrom => 'Da (luogo di partenza)';
+
+  @override
+  String get transportTo => 'A (luogo di arrivo)';
+
+  @override
+  String get transportDepartureDay => 'Giorno di partenza';
+
+  @override
+  String get transportDepartureTime => 'Ora di partenza';
+
+  @override
+  String get transportArrivalDay => 'Giorno di arrivo';
+
+  @override
+  String get transportArrivalTime => 'Ora di arrivo';
+
+  @override
+  String get transportTimeZone => 'Fuso orario';
+
+  @override
+  String get transportTimeZoneNone => 'Non indicato';
+
+  @override
+  String get transportCarrier => 'Compagnia';
+
+  @override
+  String get transportNumber => 'Numero (volo, treno…)';
+
+  @override
+  String get transportSeats => 'Posti';
+
+  @override
+  String get transportPassengers => 'Passeggeri';
+
+  @override
+  String get transportBookedVia => 'Prenotato su';
+
+  @override
+  String get transportBookingLink => 'Link della prenotazione';
+
+  @override
+  String transportDuration(String duration) {
+    return 'Durata: $duration';
+  }
+
+  @override
+  String transportSeatsValue(String seats) {
+    return 'Posti: $seats';
+  }
+
+  @override
+  String transportBookedViaValue(String name) {
+    return 'Prenotato su $name';
+  }
+
+  @override
+  String transportPassengersValue(String names) {
+    return 'Passeggeri: $names';
+  }
+
+  @override
+  String transportWarningTight(int minutes, String first, String second) {
+    return 'Coincidenza stretta: $minutes min tra «$first» e «$second».';
+  }
+
+  @override
+  String transportWarningOverlap(String first, String second) {
+    return '«$first» arriva dopo la partenza di «$second».';
+  }
+
+  @override
+  String get transportWarningHint => 'Solo un avviso: controlla orari e fusi orari.';
+
+  @override
+  String get transportErrArrival => 'L\'arrivo non può essere prima della partenza.';
+
+  @override
+  String get transportErrTime => 'Orario non valido.';
+
+  @override
+  String get transportErrTimeZone => 'Fuso orario non valido.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

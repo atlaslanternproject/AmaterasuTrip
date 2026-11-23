@@ -11,8 +11,8 @@ riprende dalla prima tappa non finita.
 | Tappa | Stato | Branch | Versione |
 |---|---|---|---|
 | 0. Modulo Luogo condiviso (lib/core/places) | fatta, pubblicata il 22/11/2026 | feature/luogo-condiviso (eliminato) | 1.14.0+18 |
-| 1. Hotel e alloggi, migliorie | fatta (pubblicazione: vedi sotto) | feature/alloggi-migliorie | 1.15.0+19 |
-| 2. Trasporti | da fare | - | - |
+| 1. Hotel e alloggi, migliorie | fatta, pubblicata 1.15.0 il 22/11/2026 | feature/alloggi-migliorie | 1.15.0+19 |
+| 2. Trasporti | fatta (pubblicazione: vedi tappa 3) | feature/trasporti | 1.16.0+20 |
 | 3. Prenotazioni | da fare | - | - |
 | 4. Ristoranti | da fare | - | - |
 | 5. Luoghi salvati | da fare | - | - |
@@ -79,3 +79,29 @@ Prove da fare sul sito:
    diventano scoperte.
 7. Togli costo, data e servizi: spariscono dalla card.
 8. Su telefono la card e l'editor si leggono senza tagli.
+
+## Tappa 2 - Trasporti
+
+Commit:
+- 7fb886e docs: tappa 1 pubblicata.
+- 5a72938 modulo comune delle sezioni (lib/features/trips/sections),
+  dati e regole dei trasporti (funzioni section* e blocco
+  transports in firestore.rules, test in rules-tests/sections);
+  tutte le sezioni nuove escluse da duplicateTrip (con test).
+- 1cbba49 pagina Trasporti: tre viste ricordate, filtri, avvisi
+  di coincidenza, editor, spesa collegata, eliminazione.
+- Fuori programma: duplicateTrip esclude già anche le raccolte
+  delle tappe 3-8, così le functions si pubblicano una volta.
+
+Prove da fare sul sito:
+1. Trasporti è vuota e invita ad aggiungere; premi "+".
+2. Crea un volo: cerca l'aeroporto di arrivo su Google, metti
+   orari e fusi orari, compagnia, numero, passeggeri e costo.
+3. La card mostra percorso, partenza → arrivo con UTC e durata.
+4. Crea un treno che parte 30 minuti dopo l'arrivo del volo:
+   in cima compare l'avviso di coincidenza stretta.
+5. "Crea spesa": categoria Trasporti, data e costo già messi.
+6. Cambia vista (Elenco, Dettagli), ricarica: la vista resta.
+7. Filtra per tipo e stato; un altro membro non vede "Elimina"
+   sui tuoi trasporti, il proprietario sì.
+8. Duplica il viaggio: la copia non ha trasporti.

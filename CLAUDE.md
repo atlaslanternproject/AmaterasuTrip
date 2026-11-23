@@ -146,6 +146,21 @@ Componenti riutilizzabili:
 - lib/features/trips/presentation/widgets/: TripCard,
   TripSectionTitle (titolo con icona e colore di accento),
   foglio per scegliere la copertina.
+- Sezioni del viaggio (lib/features/trips/sections/,
+  modulo comune delle nuove sezioni): TripSectionStore
+  (Firestore in trips/{tripId}/{collezione}, campi vuoti tolti
+  in modifica), TripSectionCodec, TripSectionFields (limiti
+  come le regole), TripSectionPlace (luogo con prefisso),
+  TripBookingStatus; viste TripSectionCard /
+  TripSectionCompactCard / TripSectionDetailsRow costruite da
+  un TripSectionEntry, TripSectionList, TripSectionScaffold,
+  TripSectionToolbar (filtri e vista ricordata con
+  TripSectionViewMemory), spesa collegata
+  (TripSectionExpenseTarget, footer e pulsante), conferma di
+  eliminazione, editor (TripSectionEditorFrame, blocchi,
+  giorno/ora, scelte, viaggiatori, costo, luogo). Nelle regole
+  le funzioni section* valgono solo per i nuovi blocchi; test
+  in rules-tests/sections. Nuove sezioni: usare questo modulo.
 - Budget (lib/features/trips/budget/presentation/):
   BudgetDialogChrome (stile dei dialoghi), BudgetMoneyInput
   (inserimento importi), BudgetTravelerAvatar, budgetL10n
@@ -206,6 +221,20 @@ Finito:
   L'importo speso è quello della spesa collegata; il costo
   previsto (facoltativo, importo e valuta) è solo una stima
   e diventa il valore di partenza di "Crea spesa".
+- Trasporti (lib/features/trips/transports e
+  pages/workspace/more/transport): tipo (volo, treno, bus,
+  traghetto, noleggio auto, transfer, altro), da/a con luogo
+  Google, partenza e arrivo con data, ora e fuso orario,
+  compagnia, numero, codice, posti, passeggeri, prenotato su,
+  link, stato, note, costo previsto e spesa collegata
+  (categoria transport); filtri (stato, tipo, prossimi/
+  passati, ordine), tre viste ricordate; avviso solo
+  informativo per coincidenze sotto l'ora e arrivi dopo la
+  partenza successiva. Dati in trips/{tripId}/transports.
+- Le sezioni nuove (transports, reservations, restaurants,
+  savedPlaces, notes, shoppingItems, packingItems, memories)
+  sono escluse da duplicateTrip; deleteTrip le cancella come
+  sottoraccolte.
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.
@@ -229,7 +258,6 @@ Da sviluppare (oggi sono solo pagine segnaposto):
 - Viaggiatori (pagina del workspace)
 - Prenotazioni
 - Ristoranti
-- Trasporti
 - Luoghi salvati
 - Note
 - Shopping

@@ -6317,6 +6317,606 @@ abstract class AppLocalizations {
   /// **'Just a reminder: if it is on purpose, you can ignore it.'**
   String get staysGapsHint;
 
+  /// No description provided for @sectionsViewCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get sectionsViewCards;
+
+  /// No description provided for @sectionsViewList.
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get sectionsViewList;
+
+  /// No description provided for @sectionsViewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get sectionsViewDetails;
+
+  /// No description provided for @sectionsEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get sectionsEdit;
+
+  /// No description provided for @sectionsDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get sectionsDelete;
+
+  /// No description provided for @sectionsMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More actions'**
+  String get sectionsMore;
+
+  /// No description provided for @sectionsCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get sectionsCancel;
+
+  /// No description provided for @sectionsSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get sectionsSave;
+
+  /// No description provided for @sectionsSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved.'**
+  String get sectionsSaved;
+
+  /// No description provided for @sectionsSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save. Check the connection and try again.'**
+  String get sectionsSaveError;
+
+  /// No description provided for @sectionsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load the data. Try again later.'**
+  String get sectionsLoadError;
+
+  /// No description provided for @sectionsDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete for everyone?'**
+  String get sectionsDeleteTitle;
+
+  /// No description provided for @sectionsDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'“{name}” will be deleted for every traveler. This cannot be undone.'**
+  String sectionsDeleteBody(String name);
+
+  /// No description provided for @sectionsDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleted.'**
+  String get sectionsDeleted;
+
+  /// No description provided for @sectionsDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not delete: only its creator or the trip owner can delete it.'**
+  String get sectionsDeleteError;
+
+  /// No description provided for @sectionsOpenMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in Google Maps'**
+  String get sectionsOpenMap;
+
+  /// No description provided for @sectionsContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get sectionsContact;
+
+  /// No description provided for @sectionsContactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact {name}'**
+  String sectionsContactTitle(String name);
+
+  /// No description provided for @sectionsExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get sectionsExpense;
+
+  /// No description provided for @sectionsExpenseCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create expense'**
+  String get sectionsExpenseCreate;
+
+  /// No description provided for @sectionsExpenseLinkExisting.
+  ///
+  /// In en, this message translates to:
+  /// **'Link existing expense'**
+  String get sectionsExpenseLinkExisting;
+
+  /// No description provided for @sectionsExpenseView.
+  ///
+  /// In en, this message translates to:
+  /// **'View expense'**
+  String get sectionsExpenseView;
+
+  /// No description provided for @sectionsExpenseLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense linked.'**
+  String get sectionsExpenseLinked;
+
+  /// No description provided for @sectionsExpenseLinkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense created but not linked: link it with “Link existing expense”.'**
+  String get sectionsExpenseLinkError;
+
+  /// No description provided for @sectionsExpensePickTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a shared expense'**
+  String get sectionsExpensePickTitle;
+
+  /// No description provided for @sectionsExpensePickEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no shared expenses to link.'**
+  String get sectionsExpensePickEmpty;
+
+  /// No description provided for @sectionsExpenseLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load the expenses.'**
+  String get sectionsExpenseLoadError;
+
+  /// No description provided for @sectionsExpenseNotVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked expense not visible to you.'**
+  String get sectionsExpenseNotVisible;
+
+  /// No description provided for @sectionsExpenseLinkedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense: {title}'**
+  String sectionsExpenseLinkedTitle(String title);
+
+  /// No description provided for @sectionsDateNone.
+  ///
+  /// In en, this message translates to:
+  /// **'no date'**
+  String get sectionsDateNone;
+
+  /// No description provided for @sectionsTimeNone.
+  ///
+  /// In en, this message translates to:
+  /// **'no time'**
+  String get sectionsTimeNone;
+
+  /// No description provided for @sectionsClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get sectionsClear;
+
+  /// No description provided for @sectionsCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected cost'**
+  String get sectionsCost;
+
+  /// No description provided for @sectionsCostCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get sectionsCostCurrency;
+
+  /// No description provided for @sectionsCostHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional: it will be the starting amount of “Create expense”.'**
+  String get sectionsCostHint;
+
+  /// No description provided for @sectionsCostEstimated.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected cost: {amount}'**
+  String sectionsCostEstimated(String amount);
+
+  /// No description provided for @sectionsAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get sectionsAll;
+
+  /// No description provided for @sectionsUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get sectionsUpcoming;
+
+  /// No description provided for @sectionsPast.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get sectionsPast;
+
+  /// No description provided for @sectionsSortFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Earliest first'**
+  String get sectionsSortFirst;
+
+  /// No description provided for @sectionsSortLast.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest first'**
+  String get sectionsSortLast;
+
+  /// No description provided for @sectionsNoMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing matches these filters.'**
+  String get sectionsNoMatch;
+
+  /// No description provided for @sectionsStatusToBook.
+  ///
+  /// In en, this message translates to:
+  /// **'To book'**
+  String get sectionsStatusToBook;
+
+  /// No description provided for @sectionsStatusBooked.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked'**
+  String get sectionsStatusBooked;
+
+  /// No description provided for @sectionsStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get sectionsStatusCancelled;
+
+  /// No description provided for @sectionsBlockStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get sectionsBlockStatus;
+
+  /// No description provided for @sectionsBlockNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get sectionsBlockNotes;
+
+  /// No description provided for @sectionsBlockCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost'**
+  String get sectionsBlockCost;
+
+  /// No description provided for @sectionsNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get sectionsNotes;
+
+  /// No description provided for @sectionsLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get sectionsLink;
+
+  /// No description provided for @sectionsBookingCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking code'**
+  String get sectionsBookingCode;
+
+  /// No description provided for @sectionsBookingCodeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Code: {code}'**
+  String sectionsBookingCodeValue(String code);
+
+  /// No description provided for @sectionsFormerMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Former traveler'**
+  String get sectionsFormerMember;
+
+  /// No description provided for @sectionsErrRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in “{field}”.'**
+  String sectionsErrRequired(String field);
+
+  /// No description provided for @sectionsErrTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Text too long (at most {max} characters).'**
+  String sectionsErrTooLong(int max);
+
+  /// No description provided for @sectionsErrLink.
+  ///
+  /// In en, this message translates to:
+  /// **'The link must start with http:// or https:// and contain no spaces.'**
+  String get sectionsErrLink;
+
+  /// No description provided for @sectionsErrCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid expected cost: enter an amount above zero in the currency format.'**
+  String get sectionsErrCost;
+
+  /// No description provided for @sectionsErrMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'At most 50 travelers.'**
+  String get sectionsErrMembers;
+
+  /// No description provided for @sectionsErrExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid linked expense.'**
+  String get sectionsErrExpense;
+
+  /// No description provided for @sectionsErrPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid place.'**
+  String get sectionsErrPlace;
+
+  /// No description provided for @transportAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add transport'**
+  String get transportAdd;
+
+  /// No description provided for @transportEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No transport yet: add the flights, trains, buses, ferries, rentals and transfers of the trip.'**
+  String get transportEmpty;
+
+  /// No description provided for @transportEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New transport'**
+  String get transportEditorNewTitle;
+
+  /// No description provided for @transportEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit transport'**
+  String get transportEditorEditTitle;
+
+  /// No description provided for @transportTypeFlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Flight'**
+  String get transportTypeFlight;
+
+  /// No description provided for @transportTypeTrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Train'**
+  String get transportTypeTrain;
+
+  /// No description provided for @transportTypeBus.
+  ///
+  /// In en, this message translates to:
+  /// **'Bus'**
+  String get transportTypeBus;
+
+  /// No description provided for @transportTypeFerry.
+  ///
+  /// In en, this message translates to:
+  /// **'Ferry'**
+  String get transportTypeFerry;
+
+  /// No description provided for @transportTypeCarRental.
+  ///
+  /// In en, this message translates to:
+  /// **'Car rental'**
+  String get transportTypeCarRental;
+
+  /// No description provided for @transportTypeTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer'**
+  String get transportTypeTransfer;
+
+  /// No description provided for @transportTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get transportTypeOther;
+
+  /// No description provided for @transportBlockType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type and status'**
+  String get transportBlockType;
+
+  /// No description provided for @transportBlockRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'From / to'**
+  String get transportBlockRoute;
+
+  /// No description provided for @transportBlockTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure and arrival'**
+  String get transportBlockTimes;
+
+  /// No description provided for @transportBlockService.
+  ///
+  /// In en, this message translates to:
+  /// **'Company, seats and passengers'**
+  String get transportBlockService;
+
+  /// No description provided for @transportBlockBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get transportBlockBooking;
+
+  /// No description provided for @transportFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From (departure place)'**
+  String get transportFrom;
+
+  /// No description provided for @transportTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To (arrival place)'**
+  String get transportTo;
+
+  /// No description provided for @transportDepartureDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure day'**
+  String get transportDepartureDay;
+
+  /// No description provided for @transportDepartureTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure time'**
+  String get transportDepartureTime;
+
+  /// No description provided for @transportArrivalDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival day'**
+  String get transportArrivalDay;
+
+  /// No description provided for @transportArrivalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival time'**
+  String get transportArrivalTime;
+
+  /// No description provided for @transportTimeZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Time zone'**
+  String get transportTimeZone;
+
+  /// No description provided for @transportTimeZoneNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get transportTimeZoneNone;
+
+  /// No description provided for @transportCarrier.
+  ///
+  /// In en, this message translates to:
+  /// **'Company'**
+  String get transportCarrier;
+
+  /// No description provided for @transportNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Number (flight, train…)'**
+  String get transportNumber;
+
+  /// No description provided for @transportSeats.
+  ///
+  /// In en, this message translates to:
+  /// **'Seats'**
+  String get transportSeats;
+
+  /// No description provided for @transportPassengers.
+  ///
+  /// In en, this message translates to:
+  /// **'Passengers'**
+  String get transportPassengers;
+
+  /// No description provided for @transportBookedVia.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked on'**
+  String get transportBookedVia;
+
+  /// No description provided for @transportBookingLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking link'**
+  String get transportBookingLink;
+
+  /// No description provided for @transportDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration: {duration}'**
+  String transportDuration(String duration);
+
+  /// No description provided for @transportSeatsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Seats: {seats}'**
+  String transportSeatsValue(String seats);
+
+  /// No description provided for @transportBookedViaValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked on {name}'**
+  String transportBookedViaValue(String name);
+
+  /// No description provided for @transportPassengersValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Passengers: {names}'**
+  String transportPassengersValue(String names);
+
+  /// No description provided for @transportWarningTight.
+  ///
+  /// In en, this message translates to:
+  /// **'Tight connection: {minutes} min between “{first}” and “{second}”.'**
+  String transportWarningTight(int minutes, String first, String second);
+
+  /// No description provided for @transportWarningOverlap.
+  ///
+  /// In en, this message translates to:
+  /// **'“{first}” arrives after “{second}” leaves.'**
+  String transportWarningOverlap(String first, String second);
+
+  /// No description provided for @transportWarningHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Just a notice: check times and time zones.'**
+  String get transportWarningHint;
+
+  /// No description provided for @transportErrArrival.
+  ///
+  /// In en, this message translates to:
+  /// **'The arrival cannot be before the departure.'**
+  String get transportErrArrival;
+
+  /// No description provided for @transportErrTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid time.'**
+  String get transportErrTime;
+
+  /// No description provided for @transportErrTimeZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid time zone.'**
+  String get transportErrTimeZone;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

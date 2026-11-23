@@ -13,6 +13,15 @@ test("Hotel/Alloggi (stays) are never copied", () => {
   assert.equal(shouldCopyTripSubcollection("stays"), false);
 });
 
+test("trip sections (transports, bookings, ...) are never copied", () => {
+  for (const id of [
+    "transports", "reservations", "restaurants", "savedPlaces", "notes",
+    "shoppingItems", "packingItems", "memories",
+  ]) {
+    assert.equal(shouldCopyTripSubcollection(id), false, id);
+  }
+});
+
 test("members and budget data are still not copied", () => {
   for (const id of ["members", "budgetSharedExpenses", "budgetPrivateOwners"]) {
     assert.equal(shouldCopyTripSubcollection(id), false, id);
