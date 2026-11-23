@@ -7397,6 +7397,174 @@ abstract class AppLocalizations {
   /// **'The checklist can have at most 100 items.'**
   String get noteErrChecklist;
 
+  /// No description provided for @shoppingTabItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get shoppingTabItems;
+
+  /// No description provided for @shoppingTabPacking.
+  ///
+  /// In en, this message translates to:
+  /// **'Packing'**
+  String get shoppingTabPacking;
+
+  /// No description provided for @shoppingAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get shoppingAdd;
+
+  /// No description provided for @shoppingEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to buy yet: add gifts, souvenirs and things you need.'**
+  String get shoppingEmpty;
+
+  /// No description provided for @shoppingEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New item'**
+  String get shoppingEditorNewTitle;
+
+  /// No description provided for @shoppingEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit item'**
+  String get shoppingEditorEditTitle;
+
+  /// No description provided for @shoppingBlockItem.
+  ///
+  /// In en, this message translates to:
+  /// **'What and for whom'**
+  String get shoppingBlockItem;
+
+  /// No description provided for @shoppingName.
+  ///
+  /// In en, this message translates to:
+  /// **'What'**
+  String get shoppingName;
+
+  /// No description provided for @shoppingFor.
+  ///
+  /// In en, this message translates to:
+  /// **'For whom'**
+  String get shoppingFor;
+
+  /// No description provided for @shoppingForValue.
+  ///
+  /// In en, this message translates to:
+  /// **'For {name}'**
+  String shoppingForValue(String name);
+
+  /// No description provided for @shoppingWhere.
+  ///
+  /// In en, this message translates to:
+  /// **'Where (shop or area)'**
+  String get shoppingWhere;
+
+  /// No description provided for @shoppingBought.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought'**
+  String get shoppingBought;
+
+  /// No description provided for @shoppingToBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'To buy'**
+  String get shoppingToBuy;
+
+  /// No description provided for @shoppingBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated budget'**
+  String get shoppingBudget;
+
+  /// No description provided for @shoppingPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Real price'**
+  String get shoppingPrice;
+
+  /// No description provided for @shoppingBudgetValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated budget: {amount}'**
+  String shoppingBudgetValue(String amount);
+
+  /// No description provided for @shoppingPriceValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Real price: {amount}'**
+  String shoppingPriceValue(String amount);
+
+  /// No description provided for @packingAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to packing list'**
+  String get packingAdd;
+
+  /// No description provided for @packingEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'The packing list is empty: add what to bring, per person or for everyone.'**
+  String get packingEmpty;
+
+  /// No description provided for @packingEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New packing item'**
+  String get packingEditorNewTitle;
+
+  /// No description provided for @packingEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit packing item'**
+  String get packingEditorEditTitle;
+
+  /// No description provided for @packingBlockItem.
+  ///
+  /// In en, this message translates to:
+  /// **'What to bring'**
+  String get packingBlockItem;
+
+  /// No description provided for @packingFor.
+  ///
+  /// In en, this message translates to:
+  /// **'For whom (none = everyone)'**
+  String get packingFor;
+
+  /// No description provided for @packingForEveryone.
+  ///
+  /// In en, this message translates to:
+  /// **'For everyone'**
+  String get packingForEveryone;
+
+  /// No description provided for @packingQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get packingQuantity;
+
+  /// No description provided for @packingPacked.
+  ///
+  /// In en, this message translates to:
+  /// **'Packed'**
+  String get packingPacked;
+
+  /// No description provided for @packingToPack.
+  ///
+  /// In en, this message translates to:
+  /// **'To pack'**
+  String get packingToPack;
+
+  /// No description provided for @packingErrQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity: enter a number from 1 to 99.'**
+  String get packingErrQuantity;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:
