@@ -3665,6 +3665,89 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get restaurantAdd => 'Add restaurant';
+
+  @override
+  String get restaurantEmpty => 'No restaurants yet: add places to eat and vote on them together.';
+
+  @override
+  String get restaurantEditorNewTitle => 'New restaurant';
+
+  @override
+  String get restaurantEditorEditTitle => 'Edit restaurant';
+
+  @override
+  String get restaurantStatusToTry => 'To try';
+
+  @override
+  String get restaurantStatusBooked => 'Booked';
+
+  @override
+  String get restaurantStatusTried => 'Tried';
+
+  @override
+  String get restaurantBlockPlace => 'Restaurant';
+
+  @override
+  String get restaurantBlockKind => 'Status, cuisine and price';
+
+  @override
+  String get restaurantBlockReservation => 'Reservation';
+
+  @override
+  String get restaurantName => 'Restaurant name';
+
+  @override
+  String get restaurantPhone => 'Phone';
+
+  @override
+  String get restaurantWebsite => 'Website';
+
+  @override
+  String get restaurantCuisine => 'Cuisine (e.g. ramen, sushi)';
+
+  @override
+  String get restaurantParty => 'People';
+
+  @override
+  String restaurantPartyValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count people',
+      one: '1 person',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String restaurantVotesTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count votes',
+      one: '1 vote',
+      zero: 'No votes: choose yours',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get restaurantSortVotes => 'Most voted';
+
+  @override
+  String get restaurantSortName => 'By name';
+
+  @override
+  String get restaurantSortDate => 'By reservation';
+
+  @override
+  String get restaurantErrPhone => 'Invalid phone: use digits, spaces and + ( ) . / -';
+
+  @override
+  String get restaurantErrParty => 'People: enter a number from 1 to 100.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

@@ -75,6 +75,7 @@ Widget sectionsTestApp(
   String ownerUid = 'anna',
   String locale = 'it',
   FakeBudgetApi? budget,
+  FakePlaceInfo? placeInfo,
 }) => ProviderScope(
   overrides: [
     tripStaysOwnerUidProvider('t1').overrideWith((ref) => ownerUid),
@@ -100,7 +101,7 @@ Widget sectionsTestApp(
       ),
     ),
     amaterasuPlaceSearchProvider.overrideWithValue(FakePlaces()),
-    amaterasuPlaceInfoProvider.overrideWithValue(FakePlaceInfo()),
+    amaterasuPlaceInfoProvider.overrideWithValue(placeInfo ?? FakePlaceInfo()),
     ...overrides,
   ],
   child: MaterialApp(
