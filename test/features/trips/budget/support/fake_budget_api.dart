@@ -230,11 +230,7 @@ class FakeBudgetApi extends BudgetApi {
     required String refundId,
     required String reason,
   }) async {
-    voids.add({
-      'expenseId': expenseId,
-      'refundId': refundId,
-      'reason': reason,
-    });
+    voids.add({'expenseId': expenseId, 'refundId': refundId, 'reason': reason});
   }
 }
 

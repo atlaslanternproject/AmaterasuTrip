@@ -75,7 +75,10 @@ void main() {
 
     await tester.tap(find.byKey(const Key('paid-mark-B')));
     await tester.pumpAndSettle();
-    expect(find.text('Bruno ti ha pagato, anche fuori dall\'app.'), findsOneWidget);
+    expect(
+      find.text('Bruno ti ha pagato, anche fuori dall\'app.'),
+      findsOneWidget,
+    );
     expect(find.text('50.00'), findsOneWidget, reason: 'default: remaining');
 
     await tester.tap(find.byKey(const Key('paid-save')));
@@ -131,7 +134,9 @@ void main() {
     await tester.enterText(find.byKey(const Key('paid-amount')), '50.01');
     await tester.pumpAndSettle();
 
-    final save = tester.widget<FilledButton>(find.byKey(const Key('paid-save')));
+    final save = tester.widget<FilledButton>(
+      find.byKey(const Key('paid-save')),
+    );
     expect(save.onPressed, isNull);
     expect(
       find.text(
@@ -259,7 +264,11 @@ void main() {
     expect(BudgetMoneyInput.plainText(5000, 'EUR'), '50.00');
     expect(BudgetMoneyInput.plainText(5, 'EUR'), '0.05');
     expect(BudgetMoneyInput.plainText(1200, 'JPY'), '1200');
-    for (final (minor, currency) in [(5000, 'EUR'), (5, 'EUR'), (1200, 'JPY')]) {
+    for (final (minor, currency) in [
+      (5000, 'EUR'),
+      (5, 'EUR'),
+      (1200, 'JPY'),
+    ]) {
       expect(
         BudgetMoneyInput.parse(
           BudgetMoneyInput.plainText(minor, currency),

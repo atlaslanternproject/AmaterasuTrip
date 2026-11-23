@@ -6677,6 +6677,246 @@ abstract class AppLocalizations {
   /// **'Invalid place.'**
   String get sectionsErrPlace;
 
+  /// No description provided for @transportAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add transport'**
+  String get transportAdd;
+
+  /// No description provided for @transportEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No transport yet: add the flights, trains, buses, ferries, rentals and transfers of the trip.'**
+  String get transportEmpty;
+
+  /// No description provided for @transportEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New transport'**
+  String get transportEditorNewTitle;
+
+  /// No description provided for @transportEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit transport'**
+  String get transportEditorEditTitle;
+
+  /// No description provided for @transportTypeFlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Flight'**
+  String get transportTypeFlight;
+
+  /// No description provided for @transportTypeTrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Train'**
+  String get transportTypeTrain;
+
+  /// No description provided for @transportTypeBus.
+  ///
+  /// In en, this message translates to:
+  /// **'Bus'**
+  String get transportTypeBus;
+
+  /// No description provided for @transportTypeFerry.
+  ///
+  /// In en, this message translates to:
+  /// **'Ferry'**
+  String get transportTypeFerry;
+
+  /// No description provided for @transportTypeCarRental.
+  ///
+  /// In en, this message translates to:
+  /// **'Car rental'**
+  String get transportTypeCarRental;
+
+  /// No description provided for @transportTypeTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer'**
+  String get transportTypeTransfer;
+
+  /// No description provided for @transportTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get transportTypeOther;
+
+  /// No description provided for @transportBlockType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type and status'**
+  String get transportBlockType;
+
+  /// No description provided for @transportBlockRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'From / to'**
+  String get transportBlockRoute;
+
+  /// No description provided for @transportBlockTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure and arrival'**
+  String get transportBlockTimes;
+
+  /// No description provided for @transportBlockService.
+  ///
+  /// In en, this message translates to:
+  /// **'Company, seats and passengers'**
+  String get transportBlockService;
+
+  /// No description provided for @transportBlockBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get transportBlockBooking;
+
+  /// No description provided for @transportFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From (departure place)'**
+  String get transportFrom;
+
+  /// No description provided for @transportTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To (arrival place)'**
+  String get transportTo;
+
+  /// No description provided for @transportDepartureDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure day'**
+  String get transportDepartureDay;
+
+  /// No description provided for @transportDepartureTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure time'**
+  String get transportDepartureTime;
+
+  /// No description provided for @transportArrivalDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival day'**
+  String get transportArrivalDay;
+
+  /// No description provided for @transportArrivalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival time'**
+  String get transportArrivalTime;
+
+  /// No description provided for @transportTimeZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Time zone'**
+  String get transportTimeZone;
+
+  /// No description provided for @transportTimeZoneNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get transportTimeZoneNone;
+
+  /// No description provided for @transportCarrier.
+  ///
+  /// In en, this message translates to:
+  /// **'Company'**
+  String get transportCarrier;
+
+  /// No description provided for @transportNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Number (flight, train…)'**
+  String get transportNumber;
+
+  /// No description provided for @transportSeats.
+  ///
+  /// In en, this message translates to:
+  /// **'Seats'**
+  String get transportSeats;
+
+  /// No description provided for @transportPassengers.
+  ///
+  /// In en, this message translates to:
+  /// **'Passengers'**
+  String get transportPassengers;
+
+  /// No description provided for @transportBookedVia.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked on'**
+  String get transportBookedVia;
+
+  /// No description provided for @transportBookingLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking link'**
+  String get transportBookingLink;
+
+  /// No description provided for @transportDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration: {duration}'**
+  String transportDuration(String duration);
+
+  /// No description provided for @transportSeatsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Seats: {seats}'**
+  String transportSeatsValue(String seats);
+
+  /// No description provided for @transportBookedViaValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Booked on {name}'**
+  String transportBookedViaValue(String name);
+
+  /// No description provided for @transportPassengersValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Passengers: {names}'**
+  String transportPassengersValue(String names);
+
+  /// No description provided for @transportWarningTight.
+  ///
+  /// In en, this message translates to:
+  /// **'Tight connection: {minutes} min between “{first}” and “{second}”.'**
+  String transportWarningTight(int minutes, String first, String second);
+
+  /// No description provided for @transportWarningOverlap.
+  ///
+  /// In en, this message translates to:
+  /// **'“{first}” arrives after “{second}” leaves.'**
+  String transportWarningOverlap(String first, String second);
+
+  /// No description provided for @transportWarningHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Just a notice: check times and time zones.'**
+  String get transportWarningHint;
+
+  /// No description provided for @transportErrArrival.
+  ///
+  /// In en, this message translates to:
+  /// **'The arrival cannot be before the departure.'**
+  String get transportErrArrival;
+
+  /// No description provided for @transportErrTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid time.'**
+  String get transportErrTime;
+
+  /// No description provided for @transportErrTimeZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid time zone.'**
+  String get transportErrTimeZone;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

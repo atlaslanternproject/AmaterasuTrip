@@ -3466,6 +3466,138 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sectionsErrPlace => 'Invalid place.';
 
   @override
+  String get transportAdd => 'Add transport';
+
+  @override
+  String get transportEmpty => 'No transport yet: add the flights, trains, buses, ferries, rentals and transfers of the trip.';
+
+  @override
+  String get transportEditorNewTitle => 'New transport';
+
+  @override
+  String get transportEditorEditTitle => 'Edit transport';
+
+  @override
+  String get transportTypeFlight => 'Flight';
+
+  @override
+  String get transportTypeTrain => 'Train';
+
+  @override
+  String get transportTypeBus => 'Bus';
+
+  @override
+  String get transportTypeFerry => 'Ferry';
+
+  @override
+  String get transportTypeCarRental => 'Car rental';
+
+  @override
+  String get transportTypeTransfer => 'Transfer';
+
+  @override
+  String get transportTypeOther => 'Other';
+
+  @override
+  String get transportBlockType => 'Type and status';
+
+  @override
+  String get transportBlockRoute => 'From / to';
+
+  @override
+  String get transportBlockTimes => 'Departure and arrival';
+
+  @override
+  String get transportBlockService => 'Company, seats and passengers';
+
+  @override
+  String get transportBlockBooking => 'Booking';
+
+  @override
+  String get transportFrom => 'From (departure place)';
+
+  @override
+  String get transportTo => 'To (arrival place)';
+
+  @override
+  String get transportDepartureDay => 'Departure day';
+
+  @override
+  String get transportDepartureTime => 'Departure time';
+
+  @override
+  String get transportArrivalDay => 'Arrival day';
+
+  @override
+  String get transportArrivalTime => 'Arrival time';
+
+  @override
+  String get transportTimeZone => 'Time zone';
+
+  @override
+  String get transportTimeZoneNone => 'Not set';
+
+  @override
+  String get transportCarrier => 'Company';
+
+  @override
+  String get transportNumber => 'Number (flight, train…)';
+
+  @override
+  String get transportSeats => 'Seats';
+
+  @override
+  String get transportPassengers => 'Passengers';
+
+  @override
+  String get transportBookedVia => 'Booked on';
+
+  @override
+  String get transportBookingLink => 'Booking link';
+
+  @override
+  String transportDuration(String duration) {
+    return 'Duration: $duration';
+  }
+
+  @override
+  String transportSeatsValue(String seats) {
+    return 'Seats: $seats';
+  }
+
+  @override
+  String transportBookedViaValue(String name) {
+    return 'Booked on $name';
+  }
+
+  @override
+  String transportPassengersValue(String names) {
+    return 'Passengers: $names';
+  }
+
+  @override
+  String transportWarningTight(int minutes, String first, String second) {
+    return 'Tight connection: $minutes min between “$first” and “$second”.';
+  }
+
+  @override
+  String transportWarningOverlap(String first, String second) {
+    return '“$first” arrives after “$second” leaves.';
+  }
+
+  @override
+  String get transportWarningHint => 'Just a notice: check times and time zones.';
+
+  @override
+  String get transportErrArrival => 'The arrival cannot be before the departure.';
+
+  @override
+  String get transportErrTime => 'Invalid time.';
+
+  @override
+  String get transportErrTimeZone => 'Invalid time zone.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

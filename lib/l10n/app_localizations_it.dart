@@ -3466,6 +3466,138 @@ class AppLocalizationsIt extends AppLocalizations {
   String get sectionsErrPlace => 'Luogo non valido.';
 
   @override
+  String get transportAdd => 'Aggiungi trasporto';
+
+  @override
+  String get transportEmpty => 'Nessun trasporto ancora: aggiungi voli, treni, bus, traghetti, noleggi e transfer del viaggio.';
+
+  @override
+  String get transportEditorNewTitle => 'Nuovo trasporto';
+
+  @override
+  String get transportEditorEditTitle => 'Modifica trasporto';
+
+  @override
+  String get transportTypeFlight => 'Volo';
+
+  @override
+  String get transportTypeTrain => 'Treno';
+
+  @override
+  String get transportTypeBus => 'Bus';
+
+  @override
+  String get transportTypeFerry => 'Traghetto';
+
+  @override
+  String get transportTypeCarRental => 'Noleggio auto';
+
+  @override
+  String get transportTypeTransfer => 'Transfer';
+
+  @override
+  String get transportTypeOther => 'Altro';
+
+  @override
+  String get transportBlockType => 'Tipo e stato';
+
+  @override
+  String get transportBlockRoute => 'Da / a';
+
+  @override
+  String get transportBlockTimes => 'Partenza e arrivo';
+
+  @override
+  String get transportBlockService => 'Compagnia, posti e passeggeri';
+
+  @override
+  String get transportBlockBooking => 'Prenotazione';
+
+  @override
+  String get transportFrom => 'Da (luogo di partenza)';
+
+  @override
+  String get transportTo => 'A (luogo di arrivo)';
+
+  @override
+  String get transportDepartureDay => 'Giorno di partenza';
+
+  @override
+  String get transportDepartureTime => 'Ora di partenza';
+
+  @override
+  String get transportArrivalDay => 'Giorno di arrivo';
+
+  @override
+  String get transportArrivalTime => 'Ora di arrivo';
+
+  @override
+  String get transportTimeZone => 'Fuso orario';
+
+  @override
+  String get transportTimeZoneNone => 'Non indicato';
+
+  @override
+  String get transportCarrier => 'Compagnia';
+
+  @override
+  String get transportNumber => 'Numero (volo, treno…)';
+
+  @override
+  String get transportSeats => 'Posti';
+
+  @override
+  String get transportPassengers => 'Passeggeri';
+
+  @override
+  String get transportBookedVia => 'Prenotato su';
+
+  @override
+  String get transportBookingLink => 'Link della prenotazione';
+
+  @override
+  String transportDuration(String duration) {
+    return 'Durata: $duration';
+  }
+
+  @override
+  String transportSeatsValue(String seats) {
+    return 'Posti: $seats';
+  }
+
+  @override
+  String transportBookedViaValue(String name) {
+    return 'Prenotato su $name';
+  }
+
+  @override
+  String transportPassengersValue(String names) {
+    return 'Passeggeri: $names';
+  }
+
+  @override
+  String transportWarningTight(int minutes, String first, String second) {
+    return 'Coincidenza stretta: $minutes min tra «$first» e «$second».';
+  }
+
+  @override
+  String transportWarningOverlap(String first, String second) {
+    return '«$first» arriva dopo la partenza di «$second».';
+  }
+
+  @override
+  String get transportWarningHint => 'Solo un avviso: controlla orari e fusi orari.';
+
+  @override
+  String get transportErrArrival => 'L\'arrivo non può essere prima della partenza.';
+
+  @override
+  String get transportErrTime => 'Orario non valido.';
+
+  @override
+  String get transportErrTimeZone => 'Fuso orario non valido.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

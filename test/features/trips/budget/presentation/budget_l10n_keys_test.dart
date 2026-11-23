@@ -32,11 +32,7 @@ void main() {
     for (final key in budgetKeys) {
       Set<String> names(String text) =>
           placeholder.allMatches(text).map((m) => m.group(1)!).toSet();
-      expect(
-        names(it[key] as String),
-        names(en[key] as String),
-        reason: key,
-      );
+      expect(names(it[key] as String), names(en[key] as String), reason: key);
     }
   });
 }
