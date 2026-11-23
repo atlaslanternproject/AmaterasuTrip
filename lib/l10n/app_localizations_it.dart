@@ -3798,6 +3798,71 @@ class AppLocalizationsIt extends AppLocalizations {
   String get savedPlaceCategoryOther => 'Altro';
 
   @override
+  String get noteAdd => 'Nuova nota';
+
+  @override
+  String get noteEmpty => 'Nessuna nota: scrivi appunti, checklist o le info utili del viaggio.';
+
+  @override
+  String get noteEditorNewTitle => 'Nuova nota';
+
+  @override
+  String get noteEditorEditTitle => 'Modifica nota';
+
+  @override
+  String get noteBlockText => 'Nota';
+
+  @override
+  String get noteBlockChecklist => 'Checklist';
+
+  @override
+  String get noteTitle => 'Titolo';
+
+  @override
+  String get noteBody => 'Testo';
+
+  @override
+  String get noteShared => 'Condivisa';
+
+  @override
+  String get notePrivate => 'Privata';
+
+  @override
+  String get notePinned => 'Fissata';
+
+  @override
+  String get notePrivateSwitch => 'Nota privata';
+
+  @override
+  String get notePrivateHint => 'La legge solo chi l\'ha scritta; gli altri viaggiatori non la vedono.';
+
+  @override
+  String get notePinnedSwitch => 'Fissa in alto';
+
+  @override
+  String get noteItemHint => 'Voce della checklist';
+
+  @override
+  String get noteItemAdd => 'Aggiungi voce';
+
+  @override
+  String noteChecklistProgress(int done, int total) {
+    return '$done di $total fatte';
+  }
+
+  @override
+  String get noteTemplateUseful => 'Usa il modello «Info utili»';
+
+  @override
+  String get noteTemplateUsefulTitle => 'Info utili';
+
+  @override
+  String get noteTemplateUsefulBody => 'Wi-Fi (nome rete): \nPassword Wi-Fi: \nIndirizzo dell\'alloggio: \nNumero di emergenza: 112\nAmbasciata o consolato: \nAssicurazione di viaggio: \nTaxi: ';
+
+  @override
+  String get noteErrChecklist => 'La checklist può avere al massimo 100 voci.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

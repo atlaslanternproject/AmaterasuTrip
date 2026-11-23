@@ -7271,6 +7271,132 @@ abstract class AppLocalizations {
   /// **'Other'**
   String get savedPlaceCategoryOther;
 
+  /// No description provided for @noteAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'New note'**
+  String get noteAdd;
+
+  /// No description provided for @noteEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes: write reminders, checklists or the useful info of the trip.'**
+  String get noteEmpty;
+
+  /// No description provided for @noteEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New note'**
+  String get noteEditorNewTitle;
+
+  /// No description provided for @noteEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit note'**
+  String get noteEditorEditTitle;
+
+  /// No description provided for @noteBlockText.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get noteBlockText;
+
+  /// No description provided for @noteBlockChecklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Checklist'**
+  String get noteBlockChecklist;
+
+  /// No description provided for @noteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get noteTitle;
+
+  /// No description provided for @noteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get noteBody;
+
+  /// No description provided for @noteShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared'**
+  String get noteShared;
+
+  /// No description provided for @notePrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get notePrivate;
+
+  /// No description provided for @notePinned.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned'**
+  String get notePinned;
+
+  /// No description provided for @notePrivateSwitch.
+  ///
+  /// In en, this message translates to:
+  /// **'Private note'**
+  String get notePrivateSwitch;
+
+  /// No description provided for @notePrivateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only its author can read it; the other travelers do not see it.'**
+  String get notePrivateHint;
+
+  /// No description provided for @notePinnedSwitch.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin to the top'**
+  String get notePinnedSwitch;
+
+  /// No description provided for @noteItemHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Checklist item'**
+  String get noteItemHint;
+
+  /// No description provided for @noteItemAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get noteItemAdd;
+
+  /// No description provided for @noteChecklistProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} done'**
+  String noteChecklistProgress(int done, int total);
+
+  /// No description provided for @noteTemplateUseful.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the “Useful info” template'**
+  String get noteTemplateUseful;
+
+  /// No description provided for @noteTemplateUsefulTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Useful info'**
+  String get noteTemplateUsefulTitle;
+
+  /// No description provided for @noteTemplateUsefulBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi (network): \nWi-Fi password: \nStay address: \nEmergency number: 112\nEmbassy or consulate: \nTravel insurance: \nTaxi: '**
+  String get noteTemplateUsefulBody;
+
+  /// No description provided for @noteErrChecklist.
+  ///
+  /// In en, this message translates to:
+  /// **'The checklist can have at most 100 items.'**
+  String get noteErrChecklist;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

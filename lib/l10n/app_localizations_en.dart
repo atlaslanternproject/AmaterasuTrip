@@ -3798,6 +3798,71 @@ class AppLocalizationsEn extends AppLocalizations {
   String get savedPlaceCategoryOther => 'Other';
 
   @override
+  String get noteAdd => 'New note';
+
+  @override
+  String get noteEmpty => 'No notes: write reminders, checklists or the useful info of the trip.';
+
+  @override
+  String get noteEditorNewTitle => 'New note';
+
+  @override
+  String get noteEditorEditTitle => 'Edit note';
+
+  @override
+  String get noteBlockText => 'Note';
+
+  @override
+  String get noteBlockChecklist => 'Checklist';
+
+  @override
+  String get noteTitle => 'Title';
+
+  @override
+  String get noteBody => 'Text';
+
+  @override
+  String get noteShared => 'Shared';
+
+  @override
+  String get notePrivate => 'Private';
+
+  @override
+  String get notePinned => 'Pinned';
+
+  @override
+  String get notePrivateSwitch => 'Private note';
+
+  @override
+  String get notePrivateHint => 'Only its author can read it; the other travelers do not see it.';
+
+  @override
+  String get notePinnedSwitch => 'Pin to the top';
+
+  @override
+  String get noteItemHint => 'Checklist item';
+
+  @override
+  String get noteItemAdd => 'Add item';
+
+  @override
+  String noteChecklistProgress(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String get noteTemplateUseful => 'Use the “Useful info” template';
+
+  @override
+  String get noteTemplateUsefulTitle => 'Useful info';
+
+  @override
+  String get noteTemplateUsefulBody => 'Wi-Fi (network): \nWi-Fi password: \nStay address: \nEmergency number: 112\nEmbassy or consulate: \nTravel insurance: \nTaxi: ';
+
+  @override
+  String get noteErrChecklist => 'The checklist can have at most 100 items.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override
