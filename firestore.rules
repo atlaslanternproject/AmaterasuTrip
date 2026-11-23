@@ -970,6 +970,32 @@ service cloud.firestore {
         allow delete: if sectionDeleteOk();
       }
 
+      // LUOGHI SALVATI (savedPlaces, v1.19.0)
+      function validSavedPlace(data) {
+        return sectionBase(data, ['name', 'category'], [
+          'name', 'category',
+          'placeName', 'placeAddress', 'placePlaceId',
+          'placeLatitude', 'placeLongitude',
+          'mapsUrl', 'notes'
+        ])
+          && sectionName(data, 'name', 200)
+          && data.category in [
+            'sight', 'food', 'shopping', 'nature', 'nightlife', 'other'
+          ]
+          && sectionPlace(data, 'place')
+          && sectionLink(data, 'mapsUrl')
+          && sectionText(data, 'notes', 10000);
+      }
+
+      match /savedPlaces/{itemId} {
+        allow get, list: if sectionMember();
+        allow create: if validSavedPlace(request.resource.data)
+          && sectionCreateOk(request.resource.data);
+        allow update: if validSavedPlace(request.resource.data)
+          && sectionUpdateOk(request.resource.data);
+        allow delete: if sectionDeleteOk();
+      }
+
       match /members/{memberUid} {
         allow read: if false;
 
