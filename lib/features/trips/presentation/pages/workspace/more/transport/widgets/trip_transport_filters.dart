@@ -16,6 +16,7 @@ List<TripSectionFilterGroup> tripTransportFilterGroups(
 ) => [
   TripSectionFilterGroup(
     id: 'status',
+    title: l10n.sectionsBlockStatus,
     options: [
       ('all', l10n.sectionsAll),
       for (final s in TripBookingStatus.values)
@@ -26,6 +27,7 @@ List<TripSectionFilterGroup> tripTransportFilterGroups(
   ),
   TripSectionFilterGroup(
     id: 'type',
+    title: l10n.sectionsFilterType,
     options: [
       ('all', l10n.sectionsAll),
       for (final t in TripTransportType.values)
@@ -36,6 +38,7 @@ List<TripSectionFilterGroup> tripTransportFilterGroups(
   ),
   TripSectionFilterGroup(
     id: 'when',
+    title: l10n.sectionsFilterWhen,
     options: [
       ('all', l10n.sectionsAll),
       ('upcoming', l10n.sectionsUpcoming),
@@ -46,6 +49,8 @@ List<TripSectionFilterGroup> tripTransportFilterGroups(
   ),
   TripSectionFilterGroup(
     id: 'sort',
+    title: l10n.filtersSort,
+    isSort: true,
     options: [
       ('first', l10n.sectionsSortFirst),
       ('last', l10n.sectionsSortLast),

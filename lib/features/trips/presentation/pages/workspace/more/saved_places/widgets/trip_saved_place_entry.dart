@@ -58,6 +58,8 @@ TripSectionEntry tripSavedPlaceEntry(
     ],
     links: [if (link != null) (l10n.savedPlaceMapsLink, link)],
     photoPlaceId: item.place.placeId,
+    phone: item.phone,
+    website: item.website,
     maps: item.place.maps ?? (link == null ? null : Uri.tryParse(link)),
   );
 }

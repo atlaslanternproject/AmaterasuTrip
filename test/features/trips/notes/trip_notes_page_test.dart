@@ -118,10 +118,10 @@ void main() {
         note('p', private: true),
       ],
     );
-    await tapKey(tester, 'note-filter-kind-private');
+    await pickFilter(tester, 'note', 'note-filter-kind-private');
     expect(find.byKey(const Key('note-card-p')), findsOneWidget);
     expect(find.byKey(const Key('note-card-s')), findsNothing);
-    await tapKey(tester, 'note-filter-kind-all');
+    await pickFilter(tester, 'note', 'note-filter-kind-all');
     // Anna owns the trip: she may delete Bruno's shared note.
     expect(find.byKey(const Key('note-menu-s')), findsOneWidget);
   });

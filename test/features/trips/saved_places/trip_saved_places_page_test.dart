@@ -12,6 +12,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../sections/support/fake_section_store.dart';
+import '../stays/support/fake_trip_stays.dart' show FakePlaceInfo;
+import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 
 TripSavedPlace place(
   String id, {
@@ -31,12 +33,14 @@ Future<FakeSectionStore<TripSavedPlace>> open(
   List<TripSavedPlace> items = const [],
   String uid = 'anna',
   double width = 1000,
+  FakePlaceInfo? placeInfo,
 }) async {
   bigWindow(tester, width: width);
   final store = FakeSectionStore<TripSavedPlace>(uid: uid, items: items);
   await tester.pumpWidget(
     sectionsTestApp(
       const TripSavedPlacesPage(tripId: 't1'),
+      placeInfo: placeInfo,
       overrides: [tripSavedPlacesStoreProvider.overrideWithValue(store)],
     ),
   );
@@ -89,7 +93,7 @@ void main() {
       ],
     );
     expect(find.text('Aggiunto da Bruno'), findsOneWidget);
-    await tapKey(tester, 'saved-place-filter-kind-food');
+    await pickFilter(tester, 'saved-place', 'saved-place-filter-kind-food');
     expect(find.byKey(const Key('saved-place-card-b')), findsOneWidget);
     expect(find.byKey(const Key('saved-place-card-a')), findsNothing);
     await tester.tap(
@@ -118,6 +122,31 @@ void main() {
     );
     await tapKey(tester, 'saved-place-delete-ok');
     expect(store.deleted.single.id, 'a');
+  });
+
+  testWidgets('Google place fills phone and website; Contatta works', (
+    tester,
+  ) async {
+    final store = await open(
+      tester,
+      placeInfo: FakePlaceInfo(
+        contactsResult: const AmaterasuPlaceContacts(
+          phone: '+81 75 641',
+          website: 'https://inari.jp',
+        ),
+      ),
+    );
+    await tapKey(tester, 'saved-place-add');
+    await tester.enterText(
+      find.byKey(const Key('saved-place-search')),
+      'granvia',
+    );
+    await tapKey(tester, 'saved-place-search-go');
+    await tester.tap(find.text('Hotel Granvia'));
+    await tester.pumpAndSettle();
+    await tapKey(tester, 'saved-place-save');
+    expect(store.created.single.phone, '+81 75 641');
+    expect(store.created.single.website, 'https://inari.jp');
   });
 
   testWidgets('phone width without overflow', (tester) async {

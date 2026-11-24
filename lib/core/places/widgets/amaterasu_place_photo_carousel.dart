@@ -1,8 +1,7 @@
-// Carosello delle foto Google di un luogo (al massimo 5), in testa alle
-// card di alloggi e altre sezioni. Le foto si chiedono solo quando la card viene costruita, cioè
-// quando sta per apparire sullo schermo (l'elenco è "pigro"), e una volta
-// sola per luogo grazie alla cache; ogni immagine si scarica solo quando la
-// sua pagina è visibile. Nessuna foto viene salvata.
+// Foto Google in testa alle card (alloggi e sezioni). Nella card c'è solo la
+// prima foto: si chiede una volta per luogo, quando la card sta per apparire
+// (elenco "pigro", cache di sessione). Toccandola si apre il visore con fino
+// a 5 foto, scaricate solo lì. Nella card solo la scritta "Google Maps".
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +9,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'amaterasu_place_photo_marks.dart';
 import 'amaterasu_place_photo_parts.dart';
+import 'amaterasu_place_photo_viewer.dart';
 
 class AmaterasuPlacePhotoCarousel extends ConsumerStatefulWidget {
   const AmaterasuPlacePhotoCarousel({
@@ -31,7 +32,7 @@ class AmaterasuPlacePhotoCarousel extends ConsumerStatefulWidget {
   final String keyPrefix;
   final double height;
 
-  /// False in the small photo of the "Elenco" view: first photo only.
+  /// False in the small photo of the "Elenco" view: no count, no viewer.
   final bool controls;
 
   @override
@@ -39,10 +40,8 @@ class AmaterasuPlacePhotoCarousel extends ConsumerStatefulWidget {
 }
 
 class _CarouselState extends ConsumerState<AmaterasuPlacePhotoCarousel> {
-  final _pages = PageController();
   Future<List<AmaterasuPlacePhoto>>? _photos;
   String? _loadedFor;
-  int _index = 0;
 
   @override
   void didChangeDependencies() {
@@ -57,7 +56,6 @@ class _CarouselState extends ConsumerState<AmaterasuPlacePhotoCarousel> {
     final key = '$id|$language';
     if (key == _loadedFor) return;
     _loadedFor = key;
-    _index = 0;
     _photos = id.isEmpty
         ? Future.value(const [])
         : ref
@@ -68,30 +66,16 @@ class _CarouselState extends ConsumerState<AmaterasuPlacePhotoCarousel> {
   @override
   void didUpdateWidget(covariant AmaterasuPlacePhotoCarousel oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.placeId != widget.placeId) {
-      _load();
-      if (_pages.hasClients) _pages.jumpToPage(0);
-    }
+    if (oldWidget.placeId != widget.placeId) _load();
   }
-
-  @override
-  void dispose() {
-    _pages.dispose();
-    super.dispose();
-  }
-
-  void _go(int page) => _pages.animateToPage(
-    page,
-    duration: const Duration(milliseconds: 250),
-    curve: Curves.easeOut,
-  );
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final prefix = widget.keyPrefix;
     final placeholder = AmaterasuPhotoPlaceholder(
       icon: widget.placeholderIcon,
-      keyPrefix: widget.keyPrefix,
+      keyPrefix: prefix,
     );
     return SizedBox(
       height: widget.height,
@@ -101,44 +85,33 @@ class _CarouselState extends ConsumerState<AmaterasuPlacePhotoCarousel> {
         builder: (context, snapshot) {
           final photos = snapshot.data ?? const <AmaterasuPlacePhoto>[];
           if (snapshot.hasError || photos.isEmpty) return placeholder;
-          final photo = photos[_index.clamp(0, photos.length - 1)];
-          return Stack(
-            fit: StackFit.expand,
-            children: [
-              PageView.builder(
-                key: Key('${widget.keyPrefix}-photos'),
-                controller: _pages,
-                itemCount: widget.controls ? photos.length : 1,
-                onPageChanged: (page) => setState(() => _index = page),
-                itemBuilder: (_, page) => Image.network(
-                  photos[page].url,
+          return GestureDetector(
+            key: Key('$prefix-photos'),
+            onTap: widget.controls
+                ? () => showAmaterasuPhotoViewer(
+                    context,
+                    photos: photos,
+                    keyPrefix: prefix,
+                    placeholderIcon: widget.placeholderIcon,
+                  )
+                : null,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.network(
+                  photos.first.url,
                   fit: BoxFit.cover,
                   errorBuilder: (_, _, _) => placeholder,
                 ),
-              ),
-              if (widget.controls && photos.length > 1) ...[
-                if (_index > 0)
-                  AmaterasuPhotoArrow(
-                    key: Key('${widget.keyPrefix}-photo-prev'),
-                    left: true,
-                    tooltip: l10n.placesPhotoPrevious,
-                    onPressed: () => _go(_index - 1),
+                if (widget.controls && photos.length > 1)
+                  AmaterasuPhotoCount(
+                    key: Key('$prefix-photo-count'),
+                    count: photos.length,
+                    tooltip: l10n.placesPhotoOpen,
                   ),
-                if (_index < photos.length - 1)
-                  AmaterasuPhotoArrow(
-                    key: Key('${widget.keyPrefix}-photo-next'),
-                    left: false,
-                    tooltip: l10n.placesPhotoNext,
-                    onPressed: () => _go(_index + 1),
-                  ),
-                AmaterasuPhotoDots(count: photos.length, index: _index),
+                if (widget.controls) const AmaterasuGoogleMark(),
               ],
-              if (photo.authors.isNotEmpty)
-                AmaterasuPhotoAuthors(
-                  authors: photo.authors,
-                  compact: !widget.controls,
-                ),
-            ],
+            ),
           );
         },
       ),

@@ -46,7 +46,9 @@ void main() {
     expect(info.photoCalls, isEmpty);
   });
 
-  testWidgets('photos: one request, arrows, dots and authors', (tester) async {
+  testWidgets('first photo in the card; viewer with arrows and authors', (
+    tester,
+  ) async {
     final info = FakePlaceInfo(photosResult: _photos);
     await tester.pumpWidget(
       staysTestApp(
@@ -58,6 +60,15 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('stay-photos')), findsOneWidget);
+    // In the card: first photo, count and Google mark, no author names.
+    expect(find.text('Aiko'), findsNothing);
+    expect(find.byKey(const Key('stay-photo-count')), findsOneWidget);
+    expect(find.text('Google Maps'), findsOneWidget);
+    expect(find.byKey(const Key('stay-photo-next')), findsNothing);
+
+    await tester.tap(find.byKey(const Key('stay-photos')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('stay-photo-viewer')), findsOneWidget);
     expect(find.text('Aiko'), findsOneWidget);
     expect(find.byKey(const Key('stay-photo-prev')), findsNothing);
 
@@ -68,6 +79,8 @@ void main() {
     await tester.tap(find.byKey(const Key('stay-photo-next')));
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('stay-photo-next')), findsNothing);
+    await tester.tap(find.byKey(const Key('stay-photo-close')));
+    await tester.pumpAndSettle();
 
     // Rebuilding the page does not ask Google again.
     await tester.pumpWidget(

@@ -4072,6 +4072,132 @@ class AppLocalizationsIt extends AppLocalizations {
   String get uiConfirmYes => 'Sì, conferma';
 
   @override
+  String get filtersTitle => 'Filtri';
+
+  @override
+  String filtersActive(int count) {
+    return 'Filtri ($count)';
+  }
+
+  @override
+  String filtersShown(int shown, int total) {
+    return '$shown di $total';
+  }
+
+  @override
+  String get filtersClear => 'Azzera filtri';
+
+  @override
+  String get filtersDone => 'Fatto';
+
+  @override
+  String get filtersSort => 'Ordine';
+
+  @override
+  String get sectionsFilterWhen => 'Periodo';
+
+  @override
+  String get sectionsFilterCategory => 'Categoria';
+
+  @override
+  String get sectionsFilterType => 'Tipo';
+
+  @override
+  String get restaurantFilterPrice => 'Fascia di prezzo';
+
+  @override
+  String get noteFilterVisibility => 'Visibilità';
+
+  @override
+  String get allergenGluten => 'Glutine';
+
+  @override
+  String get allergenCrustaceans => 'Crostacei';
+
+  @override
+  String get allergenEggs => 'Uova';
+
+  @override
+  String get allergenFish => 'Pesce';
+
+  @override
+  String get allergenPeanuts => 'Arachidi';
+
+  @override
+  String get allergenSoy => 'Soia';
+
+  @override
+  String get allergenMilk => 'Latte';
+
+  @override
+  String get allergenNuts => 'Frutta a guscio';
+
+  @override
+  String get allergenCelery => 'Sedano';
+
+  @override
+  String get allergenMustard => 'Senape';
+
+  @override
+  String get allergenSesame => 'Sesamo';
+
+  @override
+  String get allergenSulphites => 'Solfiti';
+
+  @override
+  String get allergenLupin => 'Lupini';
+
+  @override
+  String get allergenMolluscs => 'Molluschi';
+
+  @override
+  String get dietVegetarian => 'Vegetariano';
+
+  @override
+  String get dietVegan => 'Vegano';
+
+  @override
+  String get dietHalal => 'Halal';
+
+  @override
+  String get dietKosher => 'Kosher';
+
+  @override
+  String get dietGlutenFree => 'Senza glutine';
+
+  @override
+  String get restaurantBlockFood => 'Allergeni e dieta';
+
+  @override
+  String get restaurantAllergensHint => 'Allergeni da segnalare al ristorante (non si salvano allergie delle persone).';
+
+  @override
+  String get restaurantAllergenNotes => 'Nota sugli allergeni';
+
+  @override
+  String get restaurantDiets => 'Dieta';
+
+  @override
+  String restaurantAllergensValue(String list) {
+    return 'Da segnalare: $list';
+  }
+
+  @override
+  String get restaurantFilterAllergens => 'Allergeni da segnalare';
+
+  @override
+  String get restaurantFilterYes => 'Sì';
+
+  @override
+  String get restaurantFilterNo => 'No';
+
+  @override
+  String get placesPhotoOpen => 'Apri le foto';
+
+  @override
+  String get placesGoogleMark => 'Google Maps';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

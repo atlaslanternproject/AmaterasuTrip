@@ -26,6 +26,7 @@ TripRestaurant restaurant({
 );
 
 void main() {
+  allergenTests();
   test('codec round trip; edits never write the votes', () {
     final original = TripRestaurant(
       tripId: 'trip',
@@ -72,5 +73,41 @@ void main() {
     });
     expect(TripRestaurantVotes.average(votes), 3);
     expect(TripRestaurantVotes.average(const {}), 0);
+  });
+}
+
+void allergenTests() {
+  test('allergens and diets: known codes in order, note limit', () {
+    final saved = codec.toMap(
+      const TripRestaurant(
+        tripId: 'trip',
+        createdByUid: 'anna',
+        name: 'Ippudo',
+        allergens: ['gluten', 'milk'],
+        allergenNotes: 'Bruno: niente latte',
+        diets: ['vegan'],
+      ),
+    );
+    expect(saved['allergens'], ['gluten', 'milk']);
+    final back = codec.fromMap('x', {
+      ...saved,
+      'allergens': ['milk', 'pollen', 'gluten'],
+    });
+    expect(back.allergens, ['gluten', 'milk']);
+    expect(back.diets, ['vegan']);
+    expect(
+      codec
+          .problems(
+            TripRestaurant(
+              tripId: 't',
+              createdByUid: 'a',
+              name: 'x',
+              allergenNotes: 'x' * 501,
+            ),
+          )
+          .single
+          .field,
+      'allergenNotes',
+    );
   });
 }

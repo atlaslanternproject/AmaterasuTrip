@@ -31,6 +31,10 @@ class TripTransportsFilter {
     latestFirst: latestFirst ?? this.latestFirst,
   );
 
+  /// No filters, same order.
+  TripTransportsFilter cleared() =>
+      TripTransportsFilter(latestFirst: latestFirst);
+
   bool matches(TripTransport item, DateTime today) {
     final day = DateTime(today.year, today.month, today.day);
     final last = item.arrivalDate ?? item.departureDate;

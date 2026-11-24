@@ -126,7 +126,7 @@ void main() {
         reservation('b', category: TripReservationCategory.tour),
       ],
     );
-    await tapKey(tester, 'reservation-filter-kind-tour');
+    await pickFilter(tester, 'reservation', 'reservation-filter-kind-tour');
     expect(find.byKey(const Key('reservation-card-b')), findsOneWidget);
     expect(find.byKey(const Key('reservation-card-a')), findsNothing);
   });

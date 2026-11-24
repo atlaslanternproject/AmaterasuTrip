@@ -1,12 +1,13 @@
-// Dati del viaggio che servono a Hotel/Alloggi: valuta e date, proprietario
-// (per chi può eliminare) e nomi dei viaggiatori (per gli ospiti). Ricerca e dati
-// Google del luogo sono in lib/core/places. Leggono i provider
+// Dati del viaggio che servono a Hotel/Alloggi e alle sezioni: valuta e
+// date, proprietario (per chi può eliminare) e username dei viaggiatori.
+// Ricerca e dati Google del luogo sono in lib/core/places. Leggono i provider
 // esistenti del viaggio e dei membri; nei test si sostituiscono facilmente.
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_currency.dart';
+import 'package:amaterasutrip/features/trips/models/trip_member_name.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_member_provider.dart';
 import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 
@@ -29,7 +30,7 @@ final tripStaysMemberNamesProvider = Provider.autoDispose
       if (members == null) return const {};
       return {
         for (final member in members)
-          member.uid: member.displayName ?? member.uid,
+          member.uid: tripMemberShownName(member) ?? member.uid,
       };
     });
 

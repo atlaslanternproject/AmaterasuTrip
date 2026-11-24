@@ -154,11 +154,11 @@ void main() {
         transport('c', status: TripBookingStatus.cancelled),
       ],
     );
-    await tapKey(tester, 'transport-filter-type-flight');
+    await pickFilter(tester, 'transport', 'transport-filter-type-flight');
     expect(find.byKey(const Key('transport-card-b')), findsOneWidget);
     expect(find.byKey(const Key('transport-card-a')), findsNothing);
-    await tapKey(tester, 'transport-filter-type-all');
-    await tapKey(tester, 'transport-filter-status-cancelled');
+    await pickFilter(tester, 'transport', 'transport-filter-type-all');
+    await pickFilter(tester, 'transport', 'transport-filter-status-cancelled');
     expect(find.byKey(const Key('transport-card-c')), findsOneWidget);
     expect(find.byKey(const Key('transport-card-b')), findsNothing);
   });

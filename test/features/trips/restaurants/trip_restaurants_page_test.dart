@@ -149,11 +149,11 @@ void main() {
         restaurant('b', price: 3, status: TripRestaurantStatus.tried),
       ],
     );
-    await tapKey(tester, 'restaurant-filter-kind-3');
+    await pickFilter(tester, 'restaurant', 'restaurant-filter-kind-3');
     expect(find.byKey(const Key('restaurant-card-b')), findsOneWidget);
     expect(find.byKey(const Key('restaurant-card-a')), findsNothing);
-    await tapKey(tester, 'restaurant-filter-kind-all');
-    await tapKey(tester, 'restaurant-filter-status-toTry');
+    await pickFilter(tester, 'restaurant', 'restaurant-filter-kind-all');
+    await pickFilter(tester, 'restaurant', 'restaurant-filter-status-toTry');
     expect(find.byKey(const Key('restaurant-card-a')), findsOneWidget);
     await tester.tap(
       find.descendant(
@@ -172,6 +172,49 @@ void main() {
       find.byType(BudgetCreateDialog),
     );
     expect(dialog.initialCategory, 'food');
+  });
+
+  testWidgets('allergens to tell: editor, card line and yes/no filter', (
+    tester,
+  ) async {
+    final (store, _) = await open(
+      tester,
+      items: [
+        const TripRestaurant(
+          id: 'a',
+          tripId: 't1',
+          createdByUid: 'anna',
+          name: 'Con glutine',
+          allergens: ['gluten'],
+          diets: ['vegan'],
+        ),
+        restaurant('b'),
+      ],
+    );
+    expect(find.text('Da segnalare: Glutine'), findsOneWidget);
+    expect(find.text('Vegano'), findsOneWidget);
+    await pickFilter(tester, 'restaurant', 'restaurant-filter-allergens-yes');
+    expect(find.byKey(const Key('restaurant-card-a')), findsOneWidget);
+    expect(find.byKey(const Key('restaurant-card-b')), findsNothing);
+    await pickFilter(tester, 'restaurant', 'restaurant-filter-allergens-no');
+    expect(find.byKey(const Key('restaurant-card-a')), findsNothing);
+
+    await tapKey(tester, 'restaurant-add');
+    await tester.enterText(
+      find.byKey(const Key('restaurant-place-name')),
+      'Sushi',
+    );
+    await tapKey(tester, 'restaurant-allergen-fish');
+    await tapKey(tester, 'restaurant-diet-vegetarian');
+    await tester.enterText(
+      find.byKey(const Key('restaurant-allergen-notes')),
+      'Niente pesce crudo',
+    );
+    await tapKey(tester, 'restaurant-save');
+    final saved = store.created.single;
+    expect(saved.allergens, ['fish']);
+    expect(saved.diets, ['vegetarian']);
+    expect(saved.allergenNotes, 'Niente pesce crudo');
   });
 
   testWidgets('phone width without overflow', (tester) async {

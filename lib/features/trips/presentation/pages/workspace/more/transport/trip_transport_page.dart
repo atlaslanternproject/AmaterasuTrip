@@ -106,6 +106,9 @@ class _TripTransportPageState extends ConsumerState<TripTransportPage>
           children: [
             TripSectionToolbar(
               keyPrefix: 'transport',
+              onClear: () => setState(() => _filter = _filter.cleared()),
+              shown: shown.length,
+              total: items.length,
               groups: tripTransportFilterGroups(
                 l10n,
                 _filter,

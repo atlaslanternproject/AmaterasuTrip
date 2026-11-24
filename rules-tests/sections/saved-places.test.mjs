@@ -25,6 +25,8 @@ const {ref} = sectionCommonTests('savedPlaces', 'savedPlaces', savedPlace, [
   {placeLongitude: 200},
   {mapsUrl: 'maps.google.com'},
   {notes: 'x'.repeat(10001)},
+  {phone: 'chiama'},
+  {website: 'inari.jp'},
 ], {category: 'nature', notes: 'All\'alba'});
 
 test('savedPlaces: Google place or pasted Maps link', async () => {
@@ -34,6 +36,8 @@ test('savedPlaces: Google place or pasted Maps link', async () => {
     placePlaceId: 'ChIJ-inari',
     placeLatitude: 34.96,
     placeLongitude: 135.77,
+    phone: '+81 75 641 7331',
+    website: 'https://inari.jp',
   })));
   await assertSucceeds(setDoc(ref(MEMBER, 'link'), savedPlace(MEMBER, {
     mapsUrl: 'https://maps.app.goo.gl/abc123',

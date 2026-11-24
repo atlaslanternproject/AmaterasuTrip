@@ -29,6 +29,9 @@ class TripSectionFilter {
     latestFirst: latestFirst ?? this.latestFirst,
   );
 
+  /// No filters, same order.
+  TripSectionFilter cleared() => TripSectionFilter(latestFirst: latestFirst);
+
   List<T> apply<T>(
     List<T> items, {
     required DateTime today,

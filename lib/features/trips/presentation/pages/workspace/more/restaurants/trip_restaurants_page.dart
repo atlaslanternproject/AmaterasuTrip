@@ -25,6 +25,8 @@ import 'editor/trip_restaurant_editor.dart';
 import 'widgets/trip_restaurant_entry.dart';
 import 'widgets/trip_restaurant_votes_bar.dart';
 
+part 'trip_restaurants_page_filters.dart';
+
 class TripRestaurantsPage extends ConsumerStatefulWidget {
   const TripRestaurantsPage({super.key, required this.tripId, this.launch});
 
@@ -40,6 +42,9 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
     with TripSectionViewMemory {
   var _filter = const TripSectionFilter();
   var _sort = 'votes';
+
+  /// 'all', 'yes' (allergens to tell) or 'no'.
+  var _allergens = 'all';
 
   @override
   String get viewSection => 'restaurants';
@@ -74,30 +79,6 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
     }
   }
 
-  List<TripRestaurant> _sorted(List<TripRestaurant> items) {
-    final shown = _filter.apply(
-      items,
-      today: DateTime.now(),
-      dayOf: (r) => r.reservationDate,
-      timeOf: (r) => r.reservationTime,
-      statusOf: (r) => r.status.code,
-      kindOf: (r) => '${r.priceLevel ?? 0}',
-    );
-    if (_sort == 'date') return shown;
-    int byName(TripRestaurant a, TripRestaurant b) =>
-        a.name.toLowerCase().compareTo(b.name.toLowerCase());
-    return shown..sort(
-      _sort == 'name'
-          ? byName
-          : (a, b) {
-              final byVotes = TripRestaurantVotes.average(
-                b.votes,
-              ).compareTo(TripRestaurantVotes.average(a.votes));
-              return byVotes != 0 ? byVotes : byName(a, b);
-            },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -123,32 +104,13 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
           children: [
             TripSectionToolbar(
               keyPrefix: 'restaurant',
-              groups: [
-                ...tripSectionFilterGroups(
-                  l10n,
-                  _filter,
-                  (f) => setState(() => _filter = f),
-                  statuses: [
-                    for (final s in TripRestaurantStatus.values)
-                      (s.code, TripRestaurantLabels.status(s, l10n)),
-                  ],
-                  kinds: [
-                    for (final p in [1, 2, 3, 4])
-                      ('$p', TripRestaurantLabels.price(p)),
-                  ],
-                  dated: false,
-                ),
-                TripSectionFilterGroup(
-                  id: 'sort',
-                  options: [
-                    ('votes', l10n.restaurantSortVotes),
-                    ('name', l10n.restaurantSortName),
-                    ('date', l10n.restaurantSortDate),
-                  ],
-                  selected: _sort,
-                  onSelected: (v) => setState(() => _sort = v),
-                ),
-              ],
+              onClear: () => setState(() {
+                _filter = _filter.cleared();
+                _allergens = 'all';
+              }),
+              shown: shown.length,
+              total: items.length,
+              groups: _groups(l10n),
               view: view,
               onView: changeView,
             ),

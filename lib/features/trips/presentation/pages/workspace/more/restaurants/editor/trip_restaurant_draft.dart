@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant.dart';
+import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant_food.dart';
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant_status.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_cost_field.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_place_field.dart';
@@ -30,6 +31,11 @@ class TripRestaurantDraft {
          text: initial?.partySize?.toString() ?? '',
        ),
        notes = TextEditingController(text: initial?.notes ?? ''),
+       allergens = {...?initial?.allergens},
+       allergenNotes = TextEditingController(
+         text: initial?.allergenNotes ?? '',
+       ),
+       diets = {...?initial?.diets},
        cost = TripSectionCostDraft(
          minorUnits: initial?.estimatedCostMinorUnits,
          currency: initial?.estimatedCostCurrency,
@@ -47,6 +53,9 @@ class TripRestaurantDraft {
   String? reservationTime;
   final TextEditingController partySize;
   final TextEditingController notes;
+  final Set<String> allergens;
+  final TextEditingController allergenNotes;
+  final Set<String> diets;
   final TripSectionCostDraft cost;
 
   bool get isNew => _initial == null;
@@ -71,6 +80,15 @@ class TripRestaurantDraft {
       partySize: party == null ? null : (int.tryParse(party) ?? 0),
       notes: text(notes),
       votes: initial?.votes ?? const {},
+      allergens: [
+        for (final code in TripRestaurantFood.allergens)
+          if (allergens.contains(code)) code,
+      ],
+      allergenNotes: text(allergenNotes),
+      diets: [
+        for (final code in TripRestaurantFood.diets)
+          if (diets.contains(code)) code,
+      ],
       estimatedCostMinorUnits: cost.minorUnits,
       estimatedCostCurrency: cost.savedCurrency,
       expenseId: initial?.expenseId,
@@ -78,7 +96,14 @@ class TripRestaurantDraft {
   }
 
   void dispose() {
-    for (final c in [phone, website, cuisine, partySize, notes]) {
+    for (final c in [
+      phone,
+      website,
+      cuisine,
+      partySize,
+      notes,
+      allergenNotes,
+    ]) {
       c.dispose();
     }
     place.dispose();

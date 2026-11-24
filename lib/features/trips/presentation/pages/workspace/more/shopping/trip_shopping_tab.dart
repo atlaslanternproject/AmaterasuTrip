@@ -102,6 +102,9 @@ class _TripShoppingTabState extends ConsumerState<TripShoppingTab>
           children: [
             TripSectionToolbar(
               keyPrefix: 'shopping',
+              onClear: () => setState(() => _filter = _filter.cleared()),
+              shown: shown.length,
+              total: items.length,
               groups: tripSectionFilterGroups(
                 l10n,
                 _filter,
@@ -112,6 +115,7 @@ class _TripShoppingTabState extends ConsumerState<TripShoppingTab>
                 ],
                 kinds: [for (final e in names.entries) (e.key, e.value)],
                 dated: false,
+                kindTitle: l10n.shoppingFor,
               ),
               view: view,
               onView: changeView,

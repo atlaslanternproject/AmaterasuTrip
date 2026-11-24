@@ -129,3 +129,10 @@ Future<void> tapKey(WidgetTester tester, String key) async {
   await tester.tap(find.byKey(Key(key)));
   await tester.pumpAndSettle();
 }
+
+/// Opens the filters sheet of [prefix], picks [key] and closes the sheet.
+Future<void> pickFilter(WidgetTester tester, String prefix, String key) async {
+  await tapKey(tester, '$prefix-filters');
+  await tapKey(tester, key);
+  await tapKey(tester, '$prefix-sheet-done');
+}

@@ -20,6 +20,9 @@ import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_label
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../widgets/trip_restaurant_entry.dart';
 import 'trip_restaurant_draft.dart';
+import 'trip_restaurant_food_block.dart';
+
+part 'trip_restaurant_editor_parts.dart';
 
 class TripRestaurantEditor extends StatefulWidget {
   const TripRestaurantEditor({
@@ -85,23 +88,6 @@ class _TripRestaurantEditorState extends State<TripRestaurantEditor>
     );
   }
 
-  Widget _text(
-    String key,
-    TextEditingController c,
-    String label, {
-    int max = 120,
-    TextInputType? type,
-    int lines = 1,
-  }) => TextField(
-    key: Key('restaurant-$key'),
-    controller: c,
-    maxLength: max,
-    keyboardType: type,
-    minLines: lines,
-    maxLines: lines == 1 ? 1 : lines + 3,
-    decoration: InputDecoration(labelText: label),
-  );
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -137,30 +123,12 @@ class _TripRestaurantEditorState extends State<TripRestaurantEditor>
             _text('website', d.website, l10n.restaurantWebsite, max: 2048),
           ],
         ),
-        TripSectionBlock(
-          title: l10n.restaurantBlockKind,
-          icon: Icons.ramen_dining_outlined,
-          children: [
-            TripSectionChoices<TripRestaurantStatus>(
-              keyPrefix: 'restaurant-status',
-              values: TripRestaurantStatus.values,
-              codeOf: (s) => s.code,
-              labelOf: (s) => TripRestaurantLabels.status(s, l10n),
-              selected: d.status,
-              onChanged: (s) => setState(() => d.status = s ?? d.status),
-            ),
-            const SizedBox(height: 8),
-            _text('cuisine', d.cuisine, l10n.restaurantCuisine),
-            TripSectionChoices<int>(
-              keyPrefix: 'restaurant-price',
-              values: const [1, 2, 3, 4],
-              codeOf: (p) => '$p',
-              labelOf: TripRestaurantLabels.price,
-              selected: d.priceLevel,
-              allowNone: true,
-              onChanged: (p) => setState(() => d.priceLevel = p),
-            ),
-          ],
+        _kindBlock(l10n, d),
+        TripRestaurantFoodBlock(
+          allergens: d.allergens,
+          diets: d.diets,
+          notes: d.allergenNotes,
+          onChanged: _changed,
         ),
         TripSectionBlock(
           title: l10n.restaurantBlockReservation,
