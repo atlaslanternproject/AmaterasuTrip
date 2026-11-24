@@ -303,7 +303,7 @@ Mappa/Itinerario).
 |---|---|---|---|
 | Passo 0 - regole fisse in CLAUDE.md | fatta | docs/v2-regole-analisi | - |
 | Passo 1 - INVENTARIO-UI, COSTI, API-ESTERNE, DIRETTIVE-UI | fatta | docs/v2-regole-analisi | - |
-| U1 - componenti condivisi delle direttive | da fare | - | - |
+| U1 - componenti condivisi delle direttive | fatta (pubblicazione: vedi 1b) | feature/ui-componenti | 1.24.0+28 |
 | 1b - correzioni di stile (filtri, valuta, nomi, allergeni, checklist, foto) | da fare | - | - |
 | Sezioni - aggiunte v2 | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
@@ -311,3 +311,35 @@ Mappa/Itinerario).
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
+
+## U1 - Componenti condivisi delle direttive
+Valutazione (regola 1): (a) esistevano AmaterasuPrimaryButton (56, tutta
+larghezza), AlertDialog sparsi, i blocchi aperti dell'editor sezioni;
+(b) nuovi componenti in lib/core/widgets riusati in modo identico, il
+pulsante da 56 resta per le schermate di accesso; (c) toccano solo il
+modulo sections (non i moduli approvati); test nuovi e test delle
+sezioni aggiornati (doppia conferma, matita in alto).
+
+Commit:
+- f1da8d5 AmaterasuButton (principale, secondario, terziario,
+  distruttivo), AmaterasuEditButton (matita; "Modifica" su schermo
+  largo), showAmaterasuSheet (pannello dal basso sul telefono,
+  finestra al centro su schermo largo), confirmAmaterasuAction (doppia
+  conferma per le azioni distruttive, nello stesso pannello),
+  AmaterasuFoldSection (sezione a tendina con riepilogo). Le sezioni
+  nuove li usano: blocchi a tendina, Salva/Annulla, matita in alto
+  nella card, eliminazione con doppia conferma.
+- Da completare nella tappa delle sezioni: riepiloghi delle sezioni
+  chiuse e "solo la sezione essenziale aperta in creazione" editor per
+  editor (oggi i blocchi partono aperti); su errore restano aperti.
+
+Prove da fare sul sito:
+1. In una sezione nuova (es. Trasporti) tocca il titolo di un blocco
+   dell'editor: si chiude e si riapre.
+2. Su schermo largo la card mostra "Modifica" con la matita in alto; su
+   telefono solo la matita.
+3. Elimina un elemento: pannello rosso, poi "Sei sicuro?" e "Sì,
+   conferma"; su telefono il pannello sale dal basso.
+4. Salva e Annulla dell'editor hanno lo stesso aspetto in tutte le
+   sezioni nuove.
+

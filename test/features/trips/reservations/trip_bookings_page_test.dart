@@ -154,7 +154,13 @@ void main() {
     await tapKey(tester, 'reservation-menu-b');
     await tester.tap(find.byKey(const Key('reservation-delete-b')));
     await tester.pumpAndSettle();
-    await tapKey(tester, 'reservation-delete-confirm');
+    // Two steps: destructive actions are confirmed twice.
+    await tapKey(tester, 'reservation-delete-ok');
+    expect(
+      find.text('Sei sicuro? Questa azione non si può annullare.'),
+      findsOneWidget,
+    );
+    await tapKey(tester, 'reservation-delete-ok');
     expect(store.deleted.single.id, 'b');
   });
 

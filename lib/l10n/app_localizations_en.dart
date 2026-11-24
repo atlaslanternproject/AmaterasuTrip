@@ -4060,6 +4060,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get budgetExportWrittenOff => 'Closed';
 
   @override
+  String get uiEdit => 'Edit';
+
+  @override
+  String get uiCancel => 'Cancel';
+
+  @override
+  String get uiConfirmAgain => 'Are you sure? This cannot be undone.';
+
+  @override
+  String get uiConfirmYes => 'Yes, confirm';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

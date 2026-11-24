@@ -4060,6 +4060,18 @@ class AppLocalizationsIt extends AppLocalizations {
   String get budgetExportWrittenOff => 'Chiuso';
 
   @override
+  String get uiEdit => 'Modifica';
+
+  @override
+  String get uiCancel => 'Annulla';
+
+  @override
+  String get uiConfirmAgain => 'Sei sicuro? Questa azione non si può annullare.';
+
+  @override
+  String get uiConfirmYes => 'Sì, conferma';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

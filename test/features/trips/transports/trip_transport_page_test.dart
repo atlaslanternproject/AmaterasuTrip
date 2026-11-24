@@ -200,7 +200,13 @@ void main() {
     await tapKey(tester, 'transport-menu-b');
     await tester.tap(find.byKey(const Key('transport-delete-b')));
     await tester.pumpAndSettle();
-    await tapKey(tester, 'transport-delete-confirm');
+    // Two steps: destructive actions are confirmed twice.
+    await tapKey(tester, 'transport-delete-ok');
+    expect(
+      find.text('Sei sicuro? Questa azione non si può annullare.'),
+      findsOneWidget,
+    );
+    await tapKey(tester, 'transport-delete-ok');
     expect(store.deleted.single.id, 'b');
   });
 
