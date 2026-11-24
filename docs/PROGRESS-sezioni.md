@@ -306,8 +306,9 @@ Mappa/Itinerario).
 | U1 - componenti condivisi delle direttive | fatta, pubblicata 1.24.0 il 24/11/2026 | feature/ui-componenti | 1.24.0+28 |
 | 1b parte 1 - filtri, valuta, nomi, allergeni, luoghi, foto | fatta, pubblicata 1.25.0 il 24/11/2026 | feature/stile-1b | 1.25.0+29 |
 | 1b parte 2 - sezione Checklist | fatta, pubblicata 1.26.0 il 25/11/2026 | feature/checklist | 1.26.0+30 |
-| Sezioni v2 - Trasporti | fatta (pubblicazione: vedi tappa seguente) | feature/trasporti-v2 | 1.27.0+31 |
-| Sezioni v2 - Prenotazioni, Ristoranti, Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
+| Sezioni v2 - Trasporti | fatta, pubblicata 1.27.0 il 25/11/2026 | feature/trasporti-v2 | 1.27.0+31 |
+| Sezioni v2 - Prenotazioni | fatta (pubblicazione: vedi tappa seguente) | feature/prenotazioni-v2 | 1.28.0+32 |
+| Sezioni v2 - Ristoranti, Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
@@ -445,3 +446,22 @@ Prove da fare sul sito:
    minuti che scegli).
 5. "Stato del volo" apre FlightAware con il numero del volo.
 6. Un noleggio auto mostra carburante e franchigia.
+
+## Sezioni v2 - Prenotazioni
+Valutazione (regola 1): (a) esistevano stato (da prenotare / prenotato /
+annullato), codice e partecipanti; (b) nuovi campi aggiunti al modello
+esistente, scadenza mostrata con l'etichetta comune TripSectionChip, QR
+generato nel browser con il pacchetto qr_flutter (nessuna API, nessun
+file); (c) tocca solo il blocco reservations delle regole; test di regole,
+modello, card, biglietto ed editor.
+
+Commit: 33688ef.
+
+Prove da fare sul sito:
+1. Prenotazione "da prenotare" con "Da prenotare entro il" fra 2 giorni:
+   l'etichetta sulla card è rossa; fra un mese è dorata.
+2. Passando a "prenotato" la scadenza non compare più.
+3. Intestatario e numero di biglietti compaiono nella card.
+4. Con il codice del biglietto compare "Mostra biglietto": si apre a
+   schermo intero con il QR e il codice sotto; "Chiudi" torna all'elenco.
+5. Il QR si legge con la fotocamera di un telefono.
