@@ -55,6 +55,50 @@ italiano.
   aspetto restino identici e tutti i controlli passino.
   Spiegami sempre cosa hai spostato.
 
+## Regole fisse v2 (verso la 2.0.0)
+Obiettivo: arrivare alla 2.0.0 come base definitiva (dopo solo
+extra e correzioni), utile prima, durante e dopo il viaggio,
+facile e rassicurante ("so da dove partire").
+
+1. VALUTARE PRIMA DI MODIFICARE. Prima di creare o cambiare un
+   componente, una schermata, un dialogo, un campo o una
+   funzione, cerca se esiste già qualcosa di simile e scrivi in
+   docs/PROGRESS-sezioni.md una valutazione in 3 righe:
+   (a) esiste già? (b) conviene modificarlo, estrarlo in un
+   modulo condiviso o unificarlo in un modulo unico? (c) cosa
+   tocca e quali test servono. Riusa in modo IDENTICO, mai
+   varianti nuove. Se sta in un modulo approvato si estrae senza
+   cambiarne il comportamento, con test prima e dopo.
+2. Nomi delle persone: sempre lo USERNAME (es. "Yato"), mai il
+   nome completo né le sole iniziali, ovunque, con un'unica
+   funzione condivisa.
+3. Costi sotto 5 euro al mese (idealmente 0): nessuna chiamata
+   esterna in cicli o per ogni card; ricerche e Audit Trail a
+   pagine e su richiesta; niente ascoltatori Firestore sempre
+   attivi se non servono; meteo, cambi e info paese con cache
+   condivisa per viaggio e scadenza; foto e contatti Google solo
+   quando servono e mai salvati; ogni nuova API esterna va
+   dichiarata con i suoi limiti in docs/audit/API-ESTERNE.md. Se
+   un limite è inevitabile: funzione limitata, non bloccata.
+4. Grafica: docs/design/DIRETTIVE-UI.md. Nessun banner
+   decorativo. Restano la copertina del viaggio (I miei viaggi e
+   testa della home del viaggio) e la foto del luogo in testa
+   alle card delle sezioni, senza cambiarne l'aspetto. Icona
+   diversa per ogni sezione, stesso colore di accento.
+5. Decisioni fisse: nessuna AI, nessuna notifica, nessun
+   offline, nessun nucleo familiare, nessun saldo semplificato,
+   nessun documento sensibile nel database, nessun registro
+   errori né statistiche d'uso; solo web (Android deprecato);
+   l'app non è un navigatore (i percorsi aprono Google Maps);
+   solo tema scuro; solo i ruoli OWNER e TRAVELER; API esterne
+   gratuite benvenute se dichiarate.
+6. Moduli approvati (bucket list, budget, gestione viaggio,
+   impostazioni, alloggi): nessun cambio di funzioni, dati o
+   regole oltre quanto scritto nel prompt v2. Il loro aspetto
+   cambia solo dopo l'ok sulla tabella docs/audit/COERENZA.md.
+7. Release: a ogni rilascio si aggiorna anche il file delle
+   novità (it/en) per la nuova versione (tappa A del prompt v2).
+
 ## Convenzioni del codice
 - File piccoli: obiettivo sotto le 200 righe, un solo
   compito per file. Per dividere una schermata senza

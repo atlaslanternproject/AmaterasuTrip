@@ -291,3 +291,23 @@ Prove da fare sul sito:
   nuovi campi, confronto previsto/speso per categoria nella
   dashboard e avviso al superamento. Tocca regole e schermate del
   budget (approvato): si fa solo dopo l'ok, nell'analisi BUDGET-2.
+
+# Prompt v2 (verso la 2.0.0)
+
+Ordine: Passo 0, Passo 1, U1, 1b, sezioni, Crea spesa dalle sezioni,
+extra A-H, nuove tappe 1-4, analisi Budget (K), documento Mappa e
+Itinerario (L); poi stop per l'ok (COERENZA, HOME-VIAGGIO, BUDGET-2,
+Mappa/Itinerario).
+
+| Tappa v2 | Stato | Branch | Versione |
+|---|---|---|---|
+| Passo 0 - regole fisse in CLAUDE.md | fatta | docs/v2-regole-analisi | - |
+| Passo 1 - INVENTARIO-UI, COSTI, API-ESTERNE, DIRETTIVE-UI | fatta | docs/v2-regole-analisi | - |
+| U1 - componenti condivisi delle direttive | da fare | - | - |
+| 1b - correzioni di stile (filtri, valuta, nomi, allergeni, checklist, foto) | da fare | - | - |
+| Sezioni - aggiunte v2 | da fare | - | - |
+| Crea spesa dalle sezioni | da fare | - | - |
+| Extra A-H | da fare | - | - |
+| Nuove tappe 1-4 | da fare | - | - |
+| K - BUDGET-2 (solo analisi) | da fare | - | - |
+| L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
