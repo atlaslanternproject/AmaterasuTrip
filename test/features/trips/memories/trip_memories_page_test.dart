@@ -87,7 +87,7 @@ void main() {
     );
     expect(find.text('Scritto da Bruno'), findsOneWidget);
     expect(find.text('★★★☆☆'), findsOneWidget);
-    await tapKey(tester, 'memory-filter-kind-album');
+    await pickFilter(tester, 'memory', 'memory-filter-kind-album');
     expect(find.byKey(const Key('memory-card-a')), findsOneWidget);
     expect(find.byKey(const Key('memory-card-d')), findsNothing);
   });

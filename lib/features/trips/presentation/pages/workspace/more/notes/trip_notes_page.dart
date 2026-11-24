@@ -104,6 +104,9 @@ class _TripNotesPageState extends ConsumerState<TripNotesPage>
           children: [
             TripSectionToolbar(
               keyPrefix: 'note',
+              onClear: () => setState(() => _filter = _filter.cleared()),
+              shown: shown.length,
+              total: items.length,
               groups: tripSectionFilterGroups(
                 l10n,
                 _filter,
@@ -113,6 +116,7 @@ class _TripNotesPageState extends ConsumerState<TripNotesPage>
                   ('private', l10n.notePrivate),
                 ],
                 dated: false,
+                kindTitle: l10n.noteFilterVisibility,
               ),
               view: view,
               onView: changeView,

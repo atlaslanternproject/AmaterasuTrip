@@ -110,6 +110,9 @@ class _TripBookingsPageState extends ConsumerState<TripBookingsPage>
           children: [
             TripSectionToolbar(
               keyPrefix: 'reservation',
+              onClear: () => setState(() => _filter = _filter.cleared()),
+              shown: shown.length,
+              total: items.length,
               groups: tripSectionFilterGroups(
                 l10n,
                 _filter,

@@ -123,6 +123,9 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
           children: [
             TripSectionToolbar(
               keyPrefix: 'restaurant',
+              onClear: () => setState(() => _filter = _filter.cleared()),
+              shown: shown.length,
+              total: items.length,
               groups: [
                 ...tripSectionFilterGroups(
                   l10n,
@@ -137,9 +140,12 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
                       ('$p', TripRestaurantLabels.price(p)),
                   ],
                   dated: false,
+                  kindTitle: l10n.restaurantFilterPrice,
                 ),
                 TripSectionFilterGroup(
                   id: 'sort',
+                  title: l10n.filtersSort,
+                  isSort: true,
                   options: [
                     ('votes', l10n.restaurantSortVotes),
                     ('name', l10n.restaurantSortName),

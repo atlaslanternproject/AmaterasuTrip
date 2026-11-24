@@ -149,11 +149,11 @@ void main() {
         restaurant('b', price: 3, status: TripRestaurantStatus.tried),
       ],
     );
-    await tapKey(tester, 'restaurant-filter-kind-3');
+    await pickFilter(tester, 'restaurant', 'restaurant-filter-kind-3');
     expect(find.byKey(const Key('restaurant-card-b')), findsOneWidget);
     expect(find.byKey(const Key('restaurant-card-a')), findsNothing);
-    await tapKey(tester, 'restaurant-filter-kind-all');
-    await tapKey(tester, 'restaurant-filter-status-toTry');
+    await pickFilter(tester, 'restaurant', 'restaurant-filter-kind-all');
+    await pickFilter(tester, 'restaurant', 'restaurant-filter-status-toTry');
     expect(find.byKey(const Key('restaurant-card-a')), findsOneWidget);
     await tester.tap(
       find.descendant(

@@ -98,6 +98,9 @@ class _TripPackingTabState extends ConsumerState<TripPackingTab>
           children: [
             TripSectionToolbar(
               keyPrefix: 'packing',
+              onClear: () => setState(() => _filter = _filter.cleared()),
+              shown: shown.length,
+              total: items.length,
               groups: tripSectionFilterGroups(
                 l10n,
                 _filter,
@@ -111,6 +114,7 @@ class _TripPackingTabState extends ConsumerState<TripPackingTab>
                   for (final e in names.entries) (e.key, e.value),
                 ],
                 dated: false,
+                kindTitle: l10n.shoppingFor,
               ),
               view: view,
               onView: changeView,

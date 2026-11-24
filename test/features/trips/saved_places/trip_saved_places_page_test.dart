@@ -89,7 +89,7 @@ void main() {
       ],
     );
     expect(find.text('Aggiunto da Bruno'), findsOneWidget);
-    await tapKey(tester, 'saved-place-filter-kind-food');
+    await pickFilter(tester, 'saved-place', 'saved-place-filter-kind-food');
     expect(find.byKey(const Key('saved-place-card-b')), findsOneWidget);
     expect(find.byKey(const Key('saved-place-card-a')), findsNothing);
     await tester.tap(

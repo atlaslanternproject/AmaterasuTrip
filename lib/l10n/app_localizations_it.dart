@@ -4072,6 +4072,43 @@ class AppLocalizationsIt extends AppLocalizations {
   String get uiConfirmYes => 'Sì, conferma';
 
   @override
+  String get filtersTitle => 'Filtri';
+
+  @override
+  String filtersActive(int count) {
+    return 'Filtri ($count)';
+  }
+
+  @override
+  String filtersShown(int shown, int total) {
+    return '$shown di $total';
+  }
+
+  @override
+  String get filtersClear => 'Azzera filtri';
+
+  @override
+  String get filtersDone => 'Fatto';
+
+  @override
+  String get filtersSort => 'Ordine';
+
+  @override
+  String get sectionsFilterWhen => 'Periodo';
+
+  @override
+  String get sectionsFilterCategory => 'Categoria';
+
+  @override
+  String get sectionsFilterType => 'Tipo';
+
+  @override
+  String get restaurantFilterPrice => 'Fascia di prezzo';
+
+  @override
+  String get noteFilterVisibility => 'Visibilità';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

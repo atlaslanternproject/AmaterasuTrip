@@ -99,10 +99,14 @@ class _TripMemoriesPageState extends ConsumerState<TripMemoriesPage>
           children: [
             TripSectionToolbar(
               keyPrefix: 'memory',
+              onClear: () => setState(() => _filter = _filter.cleared()),
+              shown: shown.length,
+              total: items.length,
               groups: tripSectionFilterGroups(
                 l10n,
                 _filter,
                 (f) => setState(() => _filter = f),
+                kindTitle: l10n.memoryBlockKind,
                 kinds: [('day', l10n.memoryDiary), ('album', l10n.memoryAlbum)],
               ),
               view: view,

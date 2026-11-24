@@ -7799,6 +7799,72 @@ abstract class AppLocalizations {
   /// **'Yes, confirm'**
   String get uiConfirmYes;
 
+  /// No description provided for @filtersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get filtersTitle;
+
+  /// No description provided for @filtersActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters ({count})'**
+  String filtersActive(int count);
+
+  /// No description provided for @filtersShown.
+  ///
+  /// In en, this message translates to:
+  /// **'{shown} of {total}'**
+  String filtersShown(int shown, int total);
+
+  /// No description provided for @filtersClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get filtersClear;
+
+  /// No description provided for @filtersDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get filtersDone;
+
+  /// No description provided for @filtersSort.
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get filtersSort;
+
+  /// No description provided for @sectionsFilterWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'Period'**
+  String get sectionsFilterWhen;
+
+  /// No description provided for @sectionsFilterCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get sectionsFilterCategory;
+
+  /// No description provided for @sectionsFilterType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get sectionsFilterType;
+
+  /// No description provided for @restaurantFilterPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price range'**
+  String get restaurantFilterPrice;
+
+  /// No description provided for @noteFilterVisibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Visibility'**
+  String get noteFilterVisibility;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

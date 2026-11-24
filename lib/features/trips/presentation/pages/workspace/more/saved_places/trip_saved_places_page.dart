@@ -96,6 +96,9 @@ class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
           children: [
             TripSectionToolbar(
               keyPrefix: 'saved-place',
+              onClear: () => setState(() => _filter = _filter.cleared()),
+              shown: shown.length,
+              total: items.length,
               groups: tripSectionFilterGroups(
                 l10n,
                 _filter,

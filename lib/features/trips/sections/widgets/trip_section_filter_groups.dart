@@ -11,11 +11,13 @@ List<TripSectionFilterGroup> tripSectionFilterGroups(
   void Function(TripSectionFilter filter) onChanged, {
   List<(String, String)>? statuses,
   List<(String, String)>? kinds,
+  String? kindTitle,
   bool dated = true,
 }) => [
   if (statuses != null)
     TripSectionFilterGroup(
       id: 'status',
+      title: l10n.sectionsBlockStatus,
       options: [('all', l10n.sectionsAll), ...statuses],
       selected: filter.status,
       onSelected: (v) => onChanged(filter.copyWith(status: v)),
@@ -23,6 +25,7 @@ List<TripSectionFilterGroup> tripSectionFilterGroups(
   if (kinds != null)
     TripSectionFilterGroup(
       id: 'kind',
+      title: kindTitle ?? l10n.sectionsFilterCategory,
       options: [('all', l10n.sectionsAll), ...kinds],
       selected: filter.kind,
       onSelected: (v) => onChanged(filter.copyWith(kind: v)),
@@ -30,6 +33,7 @@ List<TripSectionFilterGroup> tripSectionFilterGroups(
   if (dated) ...[
     TripSectionFilterGroup(
       id: 'when',
+      title: l10n.sectionsFilterWhen,
       options: [
         ('all', l10n.sectionsAll),
         ('upcoming', l10n.sectionsUpcoming),
@@ -40,6 +44,8 @@ List<TripSectionFilterGroup> tripSectionFilterGroups(
     ),
     TripSectionFilterGroup(
       id: 'sort',
+      title: l10n.filtersSort,
+      isSort: true,
       options: [
         ('first', l10n.sectionsSortFirst),
         ('last', l10n.sectionsSortLast),

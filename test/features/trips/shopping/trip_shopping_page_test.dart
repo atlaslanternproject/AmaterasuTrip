@@ -121,9 +121,8 @@ void main() {
     await tester.tap(find.text('Valigia'));
     await tester.pumpAndSettle();
     expect(find.text('Calze × 3'), findsOneWidget);
-    // Card line and filter chip.
-    expect(find.text('Per tutti'), findsNWidgets(2));
-    await tapKey(tester, 'packing-filter-kind-bruno');
+    expect(find.text('Per tutti'), findsOneWidget);
+    await pickFilter(tester, 'packing', 'packing-filter-kind-bruno');
     expect(find.byKey(const Key('packing-card-a')), findsNothing);
     await tapKey(tester, 'packing-done-b');
     expect(pack.updated.single.packed, isTrue);
