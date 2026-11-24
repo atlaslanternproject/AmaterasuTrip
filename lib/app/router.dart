@@ -1,6 +1,8 @@
 // Tutte le rotte dell'app (GoRouter): accesso, home, viaggi, workspace
 // del viaggio, impostazioni e inviti, con i controlli di accesso.
 
+import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/checklists/trip_checklist_detail_page.dart';
+import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/checklists/trip_checklists_page.dart';
 import 'package:amaterasutrip/features/auth/presentation/pages/auth_gate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
@@ -401,6 +403,22 @@ final amaterasuRouter = GoRouter(
 
             return TripShoppingPage(tripId: tripId);
           },
+        ),
+
+        // ------------------------------------------------------
+        // ALTRO > CHECKLIST (elenco e singola lista)
+        // ------------------------------------------------------
+        GoRoute(
+          path: '/trips/:tripId/more/checklists',
+          builder: (context, state) =>
+              TripChecklistsPage(tripId: state.pathParameters['tripId']!),
+        ),
+        GoRoute(
+          path: '/trips/:tripId/more/checklists/:listId',
+          builder: (context, state) => TripChecklistDetailPage(
+            tripId: state.pathParameters['tripId']!,
+            listId: state.pathParameters['listId']!,
+          ),
         ),
 
         // ------------------------------------------------------

@@ -1,7 +1,7 @@
 // Test automatici della pagina Shopping: acquisto con per chi, budget e
 // prezzo reale, "comprato" dalla card, spesa collegata dal prezzo reale,
-// scheda Valigia con voce per persona, spunta e filtro per persona.
-// Casi, ad esempio: "new item with budget and real price", "packing per person".
+// (la lista valigia è passata nella sezione Checklist).
+// Casi, ad esempio: "new item with budget and real price".
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_dialog.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/shopping/trip_shopping_page.dart';
@@ -97,45 +97,6 @@ void main() {
       expect(dialog.currency, 'JPY');
     },
   );
-
-  testWidgets('packing per person, tick and filter', (tester) async {
-    final (_, pack) = await open(
-      tester,
-      packing: const [
-        TripPackingItem(
-          id: 'a',
-          tripId: 't1',
-          createdByUid: 'anna',
-          name: 'Adattatore',
-        ),
-        TripPackingItem(
-          id: 'b',
-          tripId: 't1',
-          createdByUid: 'anna',
-          name: 'Calze',
-          personUid: 'bruno',
-          quantity: 3,
-        ),
-      ],
-    );
-    await tester.tap(find.text('Valigia'));
-    await tester.pumpAndSettle();
-    expect(find.text('Calze × 3'), findsOneWidget);
-    expect(find.text('Per tutti'), findsOneWidget);
-    await pickFilter(tester, 'packing', 'packing-filter-kind-bruno');
-    expect(find.byKey(const Key('packing-card-a')), findsNothing);
-    await tapKey(tester, 'packing-done-b');
-    expect(pack.updated.single.packed, isTrue);
-
-    await tapKey(tester, 'packing-add');
-    await tester.enterText(find.byKey(const Key('packing-name')), 'Ombrello');
-    await tester.enterText(find.byKey(const Key('packing-quantity')), '0');
-    await tapKey(tester, 'packing-save');
-    expect(find.text('Quantità: scrivi un numero da 1 a 99.'), findsOneWidget);
-    await tester.enterText(find.byKey(const Key('packing-quantity')), '1');
-    await tapKey(tester, 'packing-save');
-    expect(pack.created.single.name, 'Ombrello');
-  });
 
   testWidgets('phone width without overflow', (tester) async {
     await open(tester, width: 360, shopping: [tea]);

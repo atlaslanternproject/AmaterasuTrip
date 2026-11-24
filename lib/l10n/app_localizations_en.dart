@@ -4291,6 +4291,98 @@ class AppLocalizationsEn extends AppLocalizations {
   String get checklistItemsElectronics => 'Phone charger|Power bank|Plug adapter|Headphones|Cables|Camera';
 
   @override
+  String get checklistEditTitle => 'Edit checklist';
+
+  @override
+  String get checklistTemplate => 'Start from a template';
+
+  @override
+  String get checklistBlockList => 'List';
+
+  @override
+  String get checklistPrivate => 'Personal list';
+
+  @override
+  String get checklistPrivateHint => 'Only its author can see it.';
+
+  @override
+  String get checklistPersonal => 'Personal';
+
+  @override
+  String checklistDoneOf(int done, int total) {
+    return '$done of $total';
+  }
+
+  @override
+  String checklistProgress(int done, int total, int percent) {
+    return '$done of $total · $percent%';
+  }
+
+  @override
+  String get checklistImport => 'Import the packing list';
+
+  @override
+  String checklistImportText(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Shopping still has $count items of the old packing list: import them here as a checklist.',
+      one: 'Shopping still has 1 item of the old packing list: import it here as a checklist.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get checklistImported => 'Packing list imported into the checklists.';
+
+  @override
+  String get checklistQuantityHint => 'no.';
+
+  @override
+  String get checklistDeleteEntry => 'Delete the item?';
+
+  @override
+  String get checklistEntry => 'Item';
+
+  @override
+  String get checklistAssignee => 'Assigned to';
+
+  @override
+  String get checklistAddEntry => 'Add an item';
+
+  @override
+  String get checklistAddCategory => 'Add a category';
+
+  @override
+  String get checklistTodo => 'To do';
+
+  @override
+  String get checklistDone => 'Done';
+
+  @override
+  String get checklistReset => 'Clear the ticks';
+
+  @override
+  String get checklistDuplicate => 'Duplicate the list';
+
+  @override
+  String get checklistDuplicated => 'List duplicated.';
+
+  @override
+  String checklistCopyOf(String title) {
+    return '$title (copy)';
+  }
+
+  @override
+  String get checklistPrint => 'Print';
+
+  @override
+  String get checklistExport => 'Export CSV';
+
+  @override
+  String get checklistCsvColumns => 'Category|Item|Quantity|Person|Done';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

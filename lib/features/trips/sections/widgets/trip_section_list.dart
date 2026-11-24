@@ -33,6 +33,7 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
     this.header = const [],
     this.extraOf,
     this.launch,
+    this.onOpen,
   });
 
   final String keyPrefix;
@@ -57,6 +58,9 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
   final Widget? Function(T item)? extraOf;
   final AmaterasuLaunch? launch;
 
+  /// Opens the item when its card or row is tapped (e.g. a checklist).
+  final void Function(T item)? onOpen;
+
   @override
   Widget build(BuildContext context) => Align(
     alignment: Alignment.topCenter,
@@ -71,7 +75,16 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           if (index == 0) return Column(children: header);
-          return _item(items[index - 1]);
+          final item = items[index - 1];
+          final open = onOpen;
+          final child = _item(item);
+          if (open == null) return child;
+          return GestureDetector(
+            key: Key('$keyPrefix-open-${item.id}'),
+            behavior: HitTestBehavior.opaque,
+            onTap: () => open(item),
+            child: child,
+          );
         },
       ),
     ),

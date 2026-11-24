@@ -4291,6 +4291,98 @@ class AppLocalizationsIt extends AppLocalizations {
   String get checklistItemsElectronics => 'Caricatore del telefono|Power bank|Adattatore per le prese|Cuffie|Cavi|Fotocamera';
 
   @override
+  String get checklistEditTitle => 'Modifica checklist';
+
+  @override
+  String get checklistTemplate => 'Parti da un modello';
+
+  @override
+  String get checklistBlockList => 'Lista';
+
+  @override
+  String get checklistPrivate => 'Lista personale';
+
+  @override
+  String get checklistPrivateHint => 'La vede solo chi l\'ha creata.';
+
+  @override
+  String get checklistPersonal => 'Personale';
+
+  @override
+  String checklistDoneOf(int done, int total) {
+    return '$done su $total';
+  }
+
+  @override
+  String checklistProgress(int done, int total, int percent) {
+    return '$done su $total · $percent%';
+  }
+
+  @override
+  String get checklistImport => 'Importa la lista valigia';
+
+  @override
+  String checklistImportText(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'In Shopping ci sono $count voci della vecchia lista valigia: importale qui come checklist.',
+      one: 'In Shopping c\'è 1 voce della vecchia lista valigia: importala qui come checklist.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get checklistImported => 'Lista valigia importata nelle checklist.';
+
+  @override
+  String get checklistQuantityHint => 'n.';
+
+  @override
+  String get checklistDeleteEntry => 'Eliminare la voce?';
+
+  @override
+  String get checklistEntry => 'Voce';
+
+  @override
+  String get checklistAssignee => 'Assegnata a';
+
+  @override
+  String get checklistAddEntry => 'Aggiungi una voce';
+
+  @override
+  String get checklistAddCategory => 'Aggiungi una categoria';
+
+  @override
+  String get checklistTodo => 'Da fare';
+
+  @override
+  String get checklistDone => 'Fatte';
+
+  @override
+  String get checklistReset => 'Azzera le spunte';
+
+  @override
+  String get checklistDuplicate => 'Duplica la lista';
+
+  @override
+  String get checklistDuplicated => 'Lista duplicata.';
+
+  @override
+  String checklistCopyOf(String title) {
+    return '$title (copia)';
+  }
+
+  @override
+  String get checklistPrint => 'Stampa';
+
+  @override
+  String get checklistExport => 'Esporta CSV';
+
+  @override
+  String get checklistCsvColumns => 'Categoria|Voce|Quantità|Persona|Fatta';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

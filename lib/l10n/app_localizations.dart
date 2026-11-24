@@ -8225,6 +8225,162 @@ abstract class AppLocalizations {
   /// **'Phone charger|Power bank|Plug adapter|Headphones|Cables|Camera'**
   String get checklistItemsElectronics;
 
+  /// No description provided for @checklistEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit checklist'**
+  String get checklistEditTitle;
+
+  /// No description provided for @checklistTemplate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start from a template'**
+  String get checklistTemplate;
+
+  /// No description provided for @checklistBlockList.
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get checklistBlockList;
+
+  /// No description provided for @checklistPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal list'**
+  String get checklistPrivate;
+
+  /// No description provided for @checklistPrivateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only its author can see it.'**
+  String get checklistPrivateHint;
+
+  /// No description provided for @checklistPersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal'**
+  String get checklistPersonal;
+
+  /// No description provided for @checklistDoneOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total}'**
+  String checklistDoneOf(int done, int total);
+
+  /// No description provided for @checklistProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} · {percent}%'**
+  String checklistProgress(int done, int total, int percent);
+
+  /// No description provided for @checklistImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import the packing list'**
+  String get checklistImport;
+
+  /// No description provided for @checklistImportText.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Shopping still has 1 item of the old packing list: import it here as a checklist.} other{Shopping still has {count} items of the old packing list: import them here as a checklist.}}'**
+  String checklistImportText(int count);
+
+  /// No description provided for @checklistImported.
+  ///
+  /// In en, this message translates to:
+  /// **'Packing list imported into the checklists.'**
+  String get checklistImported;
+
+  /// No description provided for @checklistQuantityHint.
+  ///
+  /// In en, this message translates to:
+  /// **'no.'**
+  String get checklistQuantityHint;
+
+  /// No description provided for @checklistDeleteEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete the item?'**
+  String get checklistDeleteEntry;
+
+  /// No description provided for @checklistEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get checklistEntry;
+
+  /// No description provided for @checklistAssignee.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned to'**
+  String get checklistAssignee;
+
+  /// No description provided for @checklistAddEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an item'**
+  String get checklistAddEntry;
+
+  /// No description provided for @checklistAddCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a category'**
+  String get checklistAddCategory;
+
+  /// No description provided for @checklistTodo.
+  ///
+  /// In en, this message translates to:
+  /// **'To do'**
+  String get checklistTodo;
+
+  /// No description provided for @checklistDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get checklistDone;
+
+  /// No description provided for @checklistReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear the ticks'**
+  String get checklistReset;
+
+  /// No description provided for @checklistDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate the list'**
+  String get checklistDuplicate;
+
+  /// No description provided for @checklistDuplicated.
+  ///
+  /// In en, this message translates to:
+  /// **'List duplicated.'**
+  String get checklistDuplicated;
+
+  /// No description provided for @checklistCopyOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} (copy)'**
+  String checklistCopyOf(String title);
+
+  /// No description provided for @checklistPrint.
+  ///
+  /// In en, this message translates to:
+  /// **'Print'**
+  String get checklistPrint;
+
+  /// No description provided for @checklistExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get checklistExport;
+
+  /// No description provided for @checklistCsvColumns.
+  ///
+  /// In en, this message translates to:
+  /// **'Category|Item|Quantity|Person|Done'**
+  String get checklistCsvColumns;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

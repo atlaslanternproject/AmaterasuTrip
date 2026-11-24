@@ -62,6 +62,12 @@ class TripMorePage extends StatelessWidget {
         route: '/trips/$tripId/more/shopping',
       ),
       _TripMoreItem(
+        title: l10n.tripMoreChecklists,
+        subtitle: l10n.tripMoreChecklistsSubtitle,
+        icon: Icons.checklist_rounded,
+        route: '/trips/$tripId/more/checklists',
+      ),
+      _TripMoreItem(
         title: l10n.tripMoreTransport,
         subtitle: l10n.tripMoreTransportSubtitle,
         icon: Icons.train_rounded,

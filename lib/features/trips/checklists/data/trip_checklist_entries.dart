@@ -16,6 +16,9 @@ abstract interface class TripChecklistEntries {
 
   /// New order of the entries of one category (first = 0).
   Future<void> reorder(TripChecklist list, List<String> entryIds);
+
+  /// Category names in their new order.
+  Future<void> setCategories(TripChecklist list, List<String> categories);
 }
 
 class FirestoreTripChecklistEntries implements TripChecklistEntries {
@@ -65,4 +68,8 @@ class FirestoreTripChecklistEntries implements TripChecklistEntries {
         for (final (index, id) in entryIds.indexed)
           FieldPath(['items', id, 'order']): index,
       });
+
+  @override
+  Future<void> setCategories(TripChecklist list, List<String> categories) =>
+      _update(list, {'categories': List.of(categories)});
 }

@@ -1,6 +1,5 @@
 // Editor dello shopping (cosa, per chi, dove, comprato, budget stimato,
-// prezzo reale, note) e della valigia (cosa, per chi, quantità) nella
-// cornice comune delle sezioni.
+// prezzo reale, note) nella cornice comune delle sezioni.
 
 import 'package:flutter/material.dart';
 
@@ -10,12 +9,9 @@ import 'package:amaterasutrip/features/trips/sections/editor/trip_section_cost_f
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_editor_frame.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
-import 'package:amaterasutrip/features/trips/shopping/models/trip_packing_item.dart';
 import 'package:amaterasutrip/features/trips/shopping/models/trip_shopping_codecs.dart';
 import 'package:amaterasutrip/features/trips/shopping/models/trip_shopping_item.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-
-part 'trip_packing_editor.dart';
 
 /// Traveler choice: tap again to remove it.
 Widget _personChoice(
