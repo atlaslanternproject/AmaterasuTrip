@@ -304,8 +304,8 @@ Mappa/Itinerario).
 | Passo 0 - regole fisse in CLAUDE.md | fatta | docs/v2-regole-analisi | - |
 | Passo 1 - INVENTARIO-UI, COSTI, API-ESTERNE, DIRETTIVE-UI | fatta | docs/v2-regole-analisi | - |
 | U1 - componenti condivisi delle direttive | fatta, pubblicata 1.24.0 il 24/11/2026 | feature/ui-componenti | 1.24.0+28 |
-| 1b parte 1 - filtri, valuta, nomi, allergeni, luoghi, foto | fatta (pubblicazione: vedi 1b parte 2) | feature/stile-1b | 1.25.0+29 |
-| 1b parte 2 - sezione Checklist | da fare | - | - |
+| 1b parte 1 - filtri, valuta, nomi, allergeni, luoghi, foto | fatta, pubblicata 1.25.0 il 24/11/2026 | feature/stile-1b | 1.25.0+29 |
+| 1b parte 2 - sezione Checklist | fatta (pubblicazione: vedi tappa seguente) | feature/checklist | 1.26.0+30 |
 | Sezioni - aggiunte v2 | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
@@ -385,3 +385,33 @@ Prove da fare sul sito:
    "Contatta" funziona.
 7. Card con foto: si vede una sola foto con "Google Maps" e il numero
    di foto; toccandola si apre il visore con frecce e autori.
+
+## 1b parte 2 - Sezione Checklist
+Valutazione (regola 1): (a) esistevano la lista valigia di Shopping e la
+checklist dentro le Note; (b) nuova sezione Checklist con il modulo comune
+delle sezioni e i componenti U1 (sezioni a tendina, pannello, doppia
+conferma), la valigia di Shopping si importa e la scheda Valigia sparisce;
+(c) nuovo blocco checklists nelle regole (liste personali solo per
+l'autore, al massimo 300 voci), duplicateTrip la esclude (functions da
+ripubblicare), test di regole e widget.
+
+Commit: 1cfcdb0 dati, regole e modelli pronti; de974c7 pagine Checklist,
+import della valigia, Shopping senza scheda Valigia.
+
+Impatto su firestore.rules: nuovo blocco checklists (membri leggono le
+liste condivise e le proprie personali; eliminano autore o proprietario,
+mai le personali altrui). Nessun blocco esistente cambiato.
+
+Prove da fare sul sito:
+1. Altro > Checklist > "+": scegli Valigia e salva: 3 categorie, 17 voci.
+2. Spunta voci dalla lista: barra della categoria e "x su y" cambiano;
+   un altro membro vede le spunte.
+3. Scrivi un numero nella casella della quantità e premi Invio.
+4. Aggiungi una voce in fondo a una categoria e una nuova categoria.
+5. Tocca una voce: cambia assegnatario (username) o eliminala (doppia
+   conferma).
+6. Filtri: Da fare / Fatte e per persona; tieni premuta una voce e
+   trascinala per riordinare (senza filtri attivi).
+7. Menu: Azzera le spunte, Duplica la lista, Stampa, Esporta CSV.
+8. Lista personale: un altro membro non la vede. Se avevi voci nella
+   vecchia Valigia di Shopping compare "Importa la lista valigia".
