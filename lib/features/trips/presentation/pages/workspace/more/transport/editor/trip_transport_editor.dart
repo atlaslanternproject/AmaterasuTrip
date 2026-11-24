@@ -20,6 +20,7 @@ import 'package:amaterasutrip/features/trips/transports/models/trip_transport_ty
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../widgets/trip_transport_labels.dart';
 import 'trip_transport_draft.dart';
+import 'trip_transport_extras_block.dart';
 
 part 'trip_transport_editor_blocks.dart';
 
@@ -71,6 +72,9 @@ class _TripTransportEditorState extends State<TripTransportEditor>
         other: (p) => switch (p.field) {
           'arrivalBeforeDeparture' => l10n.transportErrArrival,
           'departureOffset' || 'arrivalOffset' => l10n.transportErrTimeZone,
+          'seats' ||
+          'checkInHours' ||
+          'airportMinutes' => l10n.transportErrExtras,
           _ => l10n.transportErrTime,
         },
       );
@@ -107,6 +111,12 @@ class _TripTransportEditorState extends State<TripTransportEditor>
         _timesBlock(l10n),
         _serviceBlock(l10n),
         _bookingBlock(l10n),
+        TripTransportExtrasBlock(
+          draft: _draft.extras,
+          type: _draft.type,
+          passengers: _draft.passengers,
+          memberNames: widget.memberNames,
+        ),
         TripSectionBlock(
           title: l10n.sectionsBlockCost,
           icon: Icons.payments_outlined,

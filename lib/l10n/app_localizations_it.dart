@@ -4383,6 +4383,75 @@ class AppLocalizationsIt extends AppLocalizations {
   String get checklistCsvColumns => 'Categoria|Voce|Quantità|Persona|Fatta';
 
   @override
+  String get transportBlockExtras => 'Posti, check-in e noleggio';
+
+  @override
+  String get transportSeatLetter => 'Lettera o carrozza';
+
+  @override
+  String get transportSeatNumber => 'Posto';
+
+  @override
+  String get transportCheckInHours => 'Check-in online: ore prima della partenza';
+
+  @override
+  String get transportCheckInHoursFlight => 'Check-in online: ore prima (vuoto = 24)';
+
+  @override
+  String get transportCheckInLink => 'Link del check-in';
+
+  @override
+  String get transportAirportMinutes => 'Arrivare prima: minuti';
+
+  @override
+  String get transportAirportMinutesFlight => 'Arrivare in aeroporto: minuti prima (vuoto = 120)';
+
+  @override
+  String get transportFuel => 'Carburante (es. pieno-pieno)';
+
+  @override
+  String get transportDeductible => 'Franchigia';
+
+  @override
+  String transportLayover(String duration) {
+    return 'Scalo di $duration';
+  }
+
+  @override
+  String transportLayoverAt(String duration, String place) {
+    return 'Scalo di $duration a $place';
+  }
+
+  @override
+  String transportCheckInOpensIn(String duration) {
+    return 'Check-in apre tra $duration';
+  }
+
+  @override
+  String get transportCheckInOpen => 'Check-in online aperto';
+
+  @override
+  String transportAirportBy(String time) {
+    return 'Arriva in aeroporto entro le $time';
+  }
+
+  @override
+  String transportFuelValue(String value) {
+    return 'Carburante: $value';
+  }
+
+  @override
+  String transportDeductibleValue(String value) {
+    return 'Franchigia: $value';
+  }
+
+  @override
+  String get transportFlightStatus => 'Stato del volo';
+
+  @override
+  String get transportErrExtras => 'Controlla posti, ore del check-in (0-168) e minuti (0-600).';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override
