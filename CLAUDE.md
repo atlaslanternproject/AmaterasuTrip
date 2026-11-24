@@ -205,6 +205,10 @@ Componenti riutilizzabili:
   giorno/ora, scelte, viaggiatori, costo, luogo). Nelle regole
   le funzioni section* valgono solo per i nuovi blocchi; test
   in rules-tests/sections. Nuove sezioni: usare questo modulo.
+  Limite delle regole: al massimo 1000 operazioni per controllo;
+  nei blocchi con molti campi: controlli leggeri per primi, testi
+  in linea, campi rari raggruppati in una mappa (es. extras dei
+  trasporti).
 - Budget (lib/features/trips/budget/presentation/):
   BudgetDialogChrome (stile dei dialoghi), BudgetMoneyInput
   (inserimento importi), BudgetTravelerAvatar, budgetL10n

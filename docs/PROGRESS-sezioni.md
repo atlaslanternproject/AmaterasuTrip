@@ -305,8 +305,9 @@ Mappa/Itinerario).
 | Passo 1 - INVENTARIO-UI, COSTI, API-ESTERNE, DIRETTIVE-UI | fatta | docs/v2-regole-analisi | - |
 | U1 - componenti condivisi delle direttive | fatta, pubblicata 1.24.0 il 24/11/2026 | feature/ui-componenti | 1.24.0+28 |
 | 1b parte 1 - filtri, valuta, nomi, allergeni, luoghi, foto | fatta, pubblicata 1.25.0 il 24/11/2026 | feature/stile-1b | 1.25.0+29 |
-| 1b parte 2 - sezione Checklist | fatta (pubblicazione: vedi tappa seguente) | feature/checklist | 1.26.0+30 |
-| Sezioni - aggiunte v2 | da fare | - | - |
+| 1b parte 2 - sezione Checklist | fatta, pubblicata 1.26.0 il 25/11/2026 | feature/checklist | 1.26.0+30 |
+| Sezioni v2 - Trasporti | fatta (pubblicazione: vedi tappa seguente) | feature/trasporti-v2 | 1.27.0+31 |
+| Sezioni v2 - Prenotazioni, Ristoranti, Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
@@ -415,3 +416,32 @@ Prove da fare sul sito:
 7. Menu: Azzera le spunte, Duplica la lista, Stampa, Esporta CSV.
 8. Lista personale: un altro membro non la vede. Se avevi voci nella
    vecchia Valigia di Shopping compare "Importa la lista valigia".
+
+## Sezioni v2 - Trasporti
+Valutazione (regola 1): (a) esistevano posti come testo libero, avvisi di
+coincidenza e orari con fuso; (b) nuovi dettagli raccolti in un campo
+"extras" del trasporto, scali calcolati dagli orari già salvati (nessuna
+API), stato del volo come semplice link; (c) tocca solo il blocco
+transports delle regole e le funzioni section*; test di regole e widget.
+
+Commit: 1f2de63.
+
+Nota tecnica sulle regole: Firestore conta al massimo 1000 operazioni per
+ogni controllo. Il documento di un trasporto con tutti i campi lo
+superava. Soluzione: funzioni section* più corte ("il campo non c'è,
+oppure è valido"), controlli leggeri (autore, data del server) per primi,
+testi del blocco transports scritti in linea, nuovi campi raggruppati in
+"extras". Conseguenza: nei blocchi nuovi un campo presente ma vuoto (null)
+viene rifiutato; l'app non li scrive mai.
+
+Prove da fare sul sito:
+1. Due voli con lo stesso codice di prenotazione (Roma→Doha, Doha→Tokyo):
+   sulla seconda card compare "Scalo di … a Doha".
+2. Nel blocco "Posti, check-in e noleggio" scrivi Lettera e Posto di un
+   passeggero: la card mostra "Posti: username C · 23A".
+3. Un volo fra più di 24 ore mostra "Check-in apre tra …"; con il link del
+   check-in compare il pulsante.
+4. "Arriva in aeroporto entro le …" è 2 ore prima della partenza (o i
+   minuti che scegli).
+5. "Stato del volo" apre FlightAware con il numero del volo.
+6. Un noleggio auto mostra carburante e franchigia.
