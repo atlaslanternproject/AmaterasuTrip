@@ -4452,6 +4452,51 @@ class AppLocalizationsIt extends AppLocalizations {
   String get transportErrExtras => 'Controlla posti, ore del check-in (0-168) e minuti (0-600).';
 
   @override
+  String get reservationBlockTickets => 'Biglietti';
+
+  @override
+  String get reservationBookBy => 'Da prenotare entro il';
+
+  @override
+  String get reservationHolder => 'Intestatario';
+
+  @override
+  String get reservationTickets => 'Numero di biglietti';
+
+  @override
+  String get reservationTicketCode => 'Codice del biglietto';
+
+  @override
+  String get reservationTicketCodeHint => 'Testo o codice del biglietto: si mostra come codice QR. Nessun file viene caricato.';
+
+  @override
+  String get reservationShowTicket => 'Mostra biglietto';
+
+  @override
+  String reservationBookByValue(String date) {
+    return 'Da prenotare entro il $date';
+  }
+
+  @override
+  String reservationHolderValue(String name) {
+    return 'Intestatario: $name';
+  }
+
+  @override
+  String reservationTicketsValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count biglietti',
+      one: '1 biglietto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reservationErrTickets => 'Biglietti: scrivi un numero da 1 a 99.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

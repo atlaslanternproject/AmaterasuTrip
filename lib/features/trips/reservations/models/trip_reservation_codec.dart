@@ -15,6 +15,8 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
   const TripReservationCodec();
 
   static const policyMax = 2000;
+  static const ticketCodeMax = 500;
+  static const ticketsMax = 99;
 
   @override
   String get collection => 'reservations';
@@ -28,6 +30,10 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
     'bookingUrl',
     'participantUids',
     'cancellationPolicy',
+    'bookBy',
+    'holder',
+    'ticketCount',
+    'ticketCode',
     'notes',
     'estimatedCostMinorUnits',
     'estimatedCostCurrency',
@@ -52,6 +58,10 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       if (item.participantUids.isNotEmpty)
         'participantUids': List.of(item.participantUids),
       'cancellationPolicy': ?text(item.cancellationPolicy),
+      if (item.bookBy case final day?) 'bookBy': TripStayDates.format(day),
+      'holder': ?text(item.holder),
+      'ticketCount': ?item.ticketCount,
+      'ticketCode': ?text(item.ticketCode),
       'notes': ?text(item.notes),
       ...TripSectionFields.costMap(
         item.estimatedCostMinorUnits,
@@ -91,6 +101,12 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       bookingUrl: text('bookingUrl'),
       participantUids: TripSectionFields.readUids(data, 'participantUids'),
       cancellationPolicy: text('cancellationPolicy'),
+      bookBy: TripStayDates.parse(data['bookBy']),
+      holder: text('holder'),
+      ticketCount: data['ticketCount'] is int
+          ? data['ticketCount'] as int
+          : null,
+      ticketCode: text('ticketCode'),
       notes: text('notes'),
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
@@ -105,8 +121,16 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       ..maxLength(item.name.trim(), TripSectionFields.nameMax, 'name')
       ..maxLength(item.bookingCode, TripSectionFields.codeMax, 'bookingCode')
       ..maxLength(item.cancellationPolicy, policyMax, 'cancellationPolicy')
+      ..maxLength(item.holder, TripSectionFields.shortMax, 'holder')
+      ..maxLength(item.ticketCode, ticketCodeMax, 'ticketCode')
       ..maxLength(item.notes, TripSectionFields.notesMax, 'notes');
     c.check(item.place.invalid, TripSectionProblemKind.place, 'place');
+    final tickets = item.ticketCount;
+    c.check(
+      tickets != null && (tickets < 1 || tickets > ticketsMax),
+      TripSectionProblemKind.other,
+      'tickets',
+    );
     c.check(
       item.time != null && !TripStayDates.isValidTime(item.time),
       TripSectionProblemKind.other,

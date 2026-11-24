@@ -1,6 +1,6 @@
 // Editor di una prenotazione nella cornice comune delle sezioni: nome,
 // categoria e stato; data, ora e luogo Google; codice, link e
-// partecipanti; regole di cancellazione; costo; note.
+// partecipanti; regole di cancellazione; biglietti; costo; note.
 
 import 'package:flutter/material.dart';
 
@@ -19,6 +19,7 @@ import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_label
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../widgets/trip_reservation_entry.dart';
 import 'trip_reservation_draft.dart';
+import 'trip_reservation_tickets_block.dart';
 
 class TripReservationEditor extends StatefulWidget {
   const TripReservationEditor({
@@ -59,6 +60,8 @@ class _TripReservationEditorState extends State<TripReservationEditor>
 
   void _changed() => setState(() {});
 
+  static const _text = tripReservationText;
+
   Future<void> _save() {
     final l10n = AppLocalizations.of(context)!;
     final item = _draft.toItem(
@@ -72,27 +75,14 @@ class _TripReservationEditorState extends State<TripReservationEditor>
             p,
             l10n,
             fieldLabel: (_) => l10n.reservationName,
-            other: (_) => l10n.transportErrTime,
+            other: (p) => p.field == 'tickets'
+                ? l10n.reservationErrTickets
+                : l10n.transportErrTime,
           ),
       ],
       save: () => widget.onSave(item),
     );
   }
-
-  Widget _text(
-    String key,
-    TextEditingController c,
-    String label,
-    int max, {
-    int lines = 1,
-  }) => TextField(
-    key: Key('reservation-$key'),
-    controller: c,
-    minLines: lines,
-    maxLines: lines == 1 ? 1 : lines + 3,
-    maxLength: max,
-    decoration: InputDecoration(labelText: label),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -177,6 +167,7 @@ class _TripReservationEditorState extends State<TripReservationEditor>
             _text('policy', d.policy, l10n.reservationPolicy, 2000, lines: 2),
           ],
         ),
+        TripReservationTicketsBlock(draft: d, onChanged: _changed),
         TripSectionBlock(
           title: l10n.sectionsBlockCost,
           icon: Icons.payments_outlined,

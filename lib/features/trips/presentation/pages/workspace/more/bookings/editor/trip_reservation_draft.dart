@@ -1,6 +1,7 @@
 // Stato modificabile dell'editor di una prenotazione: nome, categoria,
 // stato, data e ora, luogo, codice, link, partecipanti, regole di
-// cancellazione, note e costo. Si trasforma in TripReservation.
+// cancellazione, scadenza, intestatario, biglietti, note e costo. Si
+// trasforma in TripReservation.
 
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,12 @@ class TripReservationDraft {
        bookingUrl = TextEditingController(text: initial?.bookingUrl ?? ''),
        policy = TextEditingController(text: initial?.cancellationPolicy ?? ''),
        notes = TextEditingController(text: initial?.notes ?? ''),
+       bookBy = initial?.bookBy,
+       holder = TextEditingController(text: initial?.holder ?? ''),
+       tickets = TextEditingController(
+         text: initial?.ticketCount?.toString() ?? '',
+       ),
+       ticketCode = TextEditingController(text: initial?.ticketCode ?? ''),
        participants = {...?initial?.participantUids},
        cost = TripSectionCostDraft(
          minorUnits: initial?.estimatedCostMinorUnits,
@@ -47,6 +54,10 @@ class TripReservationDraft {
   final TextEditingController bookingUrl;
   final TextEditingController policy;
   final TextEditingController notes;
+  DateTime? bookBy;
+  final TextEditingController holder;
+  final TextEditingController tickets;
+  final TextEditingController ticketCode;
   final Set<String> participants;
   final TripSectionCostDraft cost;
 
@@ -70,6 +81,11 @@ class TripReservationDraft {
       participantUids: participants.toList()..sort(),
       cancellationPolicy: text(policy),
       notes: text(notes),
+      // The book-by day only matters while the status is "to book".
+      bookBy: status == TripBookingStatus.toBook ? bookBy : null,
+      holder: text(holder),
+      ticketCount: int.tryParse(tickets.text.trim()),
+      ticketCode: text(ticketCode),
       estimatedCostMinorUnits: cost.minorUnits,
       estimatedCostCurrency: cost.savedCurrency,
       expenseId: initial?.expenseId,
@@ -77,7 +93,16 @@ class TripReservationDraft {
   }
 
   void dispose() {
-    for (final c in [name, bookingCode, bookingUrl, policy, notes]) {
+    for (final c in [
+      name,
+      bookingCode,
+      bookingUrl,
+      policy,
+      notes,
+      holder,
+      tickets,
+      ticketCode,
+    ]) {
       c.dispose();
     }
     place.dispose();

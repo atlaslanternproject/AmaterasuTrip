@@ -287,7 +287,10 @@ Finito:
   pages/workspace/more/bookings): nome, categoria (biglietto,
   ingresso, tour, escursione, altro), stato, data e ora,
   luogo Google con foto, codice, link, partecipanti, regole
-  di cancellazione, note, costo previsto e spesa collegata
+  di cancellazione, scadenza "da prenotare entro il" (rossa
+  negli ultimi 3 giorni), intestatario, numero di biglietti,
+  biglietto a schermo intero come QR da un testo (qr_flutter,
+  nessun file), note, costo previsto e spesa collegata
   (categoria activities); filtri, tre viste ricordate. Dati
   in trips/{tripId}/reservations.
 - Ristoranti (lib/features/trips/restaurants e
