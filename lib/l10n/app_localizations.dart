@@ -7775,6 +7775,30 @@ abstract class AppLocalizations {
   /// **'Closed'**
   String get budgetExportWrittenOff;
 
+  /// No description provided for @uiEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get uiEdit;
+
+  /// No description provided for @uiCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get uiCancel;
+
+  /// No description provided for @uiConfirmAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure? This cannot be undone.'**
+  String get uiConfirmAgain;
+
+  /// No description provided for @uiConfirmYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, confirm'**
+  String get uiConfirmYes;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

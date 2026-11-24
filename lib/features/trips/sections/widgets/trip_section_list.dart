@@ -89,7 +89,7 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
       expense: compact && target != null && api != null
           ? TripSectionExpenseButton(target: target, api: api)
           : null,
-      onEdit: () => onEdit(item),
+      onEdit: compact ? () => onEdit(item) : null,
       launch: launch,
       menu: TripSectionMenu(
         keyPrefix: keyPrefix,
@@ -115,6 +115,7 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
         entry: entry,
         actions: actions,
         launch: launch,
+        onEdit: () => onEdit(item),
         footer: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

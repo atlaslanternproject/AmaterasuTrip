@@ -128,7 +128,7 @@ void main() {
 
   testWidgets('another member cannot change who reads a note', (tester) async {
     await open(tester, uid: 'bruno', items: [note('a')]);
-    await tapKey(tester, 'note-quick-edit-a');
+    await tapKey(tester, 'note-edit-a');
     final privacy = tester.widget<SwitchListTile>(
       find.byKey(const Key('note-private')),
     );

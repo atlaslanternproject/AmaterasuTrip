@@ -8,7 +8,8 @@ import 'package:amaterasutrip/core/links/amaterasu_link_chip.dart';
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/places/widgets/amaterasu_place_photo_carousel.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
-import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_edit_button.dart';
+import 'trip_section_card_parts.dart';
 import 'trip_section_entry.dart';
 
 class TripSectionCard extends StatelessWidget {
@@ -19,6 +20,7 @@ class TripSectionCard extends StatelessWidget {
     required this.actions,
     this.footer,
     this.launch,
+    this.onEdit,
   });
 
   final String keyPrefix;
@@ -30,6 +32,9 @@ class TripSectionCard extends StatelessWidget {
   /// Linked expense or other content at the bottom.
   final Widget? footer;
   final AmaterasuLaunch? launch;
+
+  /// Pencil at the top of the card.
+  final VoidCallback? onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +71,23 @@ class TripSectionCard extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _Badge(icon: entry.icon),
+                  TripSectionCardBadge(icon: entry.icon),
                   const SizedBox(width: 10),
                   Expanded(
                     child: _Titles(entry: entry, wide: wide),
                   ),
+                  if (onEdit != null)
+                    AmaterasuEditButton(
+                      key: Key('$keyPrefix-edit-${entry.id}'),
+                      onPressed: onEdit,
+                    ),
                 ],
               ),
               if (entry.chips.isNotEmpty) ...[
                 const SizedBox(height: 10),
                 Wrap(spacing: 7, runSpacing: 7, children: entry.chips),
               ],
-              for (final line in entry.lines) _Line(line),
+              for (final line in entry.lines) TripSectionCardLine(line),
               if (entry.links.isNotEmpty) ...[
                 const SizedBox(height: 10),
                 Wrap(
@@ -101,23 +111,6 @@ class TripSectionCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class _Badge extends StatelessWidget {
-  const _Badge({required this.icon});
-
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) => Container(
-    width: 40,
-    height: 40,
-    decoration: BoxDecoration(
-      color: AmaterasuColors.accentBudget.withValues(alpha: 0.16),
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Icon(icon, color: AmaterasuColors.accentBudget, size: 22),
-  );
 }
 
 class _Titles extends StatelessWidget {
@@ -168,32 +161,4 @@ class _Titles extends StatelessWidget {
       ],
     );
   }
-}
-
-class _Line extends StatelessWidget {
-  const _Line(this.line);
-
-  final TripSectionLine line;
-
-  @override
-  Widget build(BuildContext context) => Padding(
-    key: line.key,
-    padding: const EdgeInsets.only(top: 10),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(line.icon, size: 16, color: AmaterasuColors.textSecondary),
-        const SizedBox(width: AmaterasuSpacing.sm),
-        Expanded(
-          child: Text(
-            line.text,
-            style: const TextStyle(
-              color: AmaterasuColors.textSecondary,
-              fontSize: 13,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }

@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 /// Opens [editor] in a dialog; true when it was saved (it pops with true).
@@ -85,18 +86,15 @@ class TripSectionEditorFrame extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              TextButton(
+              AmaterasuButton.tertiary(
+                label: l10n.sectionsCancel,
                 onPressed: saving ? null : () => Navigator.pop(context, false),
-                child: Text(l10n.sectionsCancel),
               ),
               const SizedBox(width: 8),
-              FilledButton(
+              AmaterasuButton.primary(
                 key: Key('$keyPrefix-save'),
-                style: FilledButton.styleFrom(
-                  backgroundColor: AmaterasuColors.accentBudget,
-                ),
+                label: l10n.sectionsSave,
                 onPressed: saving ? null : onSave,
-                child: Text(l10n.sectionsSave),
               ),
             ],
           ),
