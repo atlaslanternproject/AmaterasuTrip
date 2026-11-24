@@ -40,10 +40,20 @@ const {ref} = sectionCommonTests('transports', 'transports', transport, [
   {fromLatitude: 91},
   {toName: 'x'.repeat(201)},
   {carrier: 'x'.repeat(121)},
+  {carrier: ['ITA']},
+  {notes: 5},
   {bookingCode: 'x'.repeat(101)},
   {passengerUids: Array.from({length: 51}, (_, i) => `u${i}`)},
   {bookingUrl: 'javascript:alert(1)'},
   {notes: 'x'.repeat(10001)},
+  {extras: 'x'},
+  {extras: {seatsByPassenger: 'A12'}},
+  {extras: {checkInHoursBefore: 200}},
+  {extras: {checkInHoursBefore: 2.5}},
+  {extras: {checkInUrl: 'check-in'}},
+  {extras: {airportMinutesBefore: 700}},
+  {extras: {fuelPolicy: 'x'.repeat(61)}},
+  {extras: {other: 1}},
 ], {status: 'cancelled', carrier: 'Trenitalia'});
 
 test('transports: a complete trip with every optional field', async () => {
@@ -71,6 +81,14 @@ test('transports: a complete trip with every optional field', async () => {
     bookedVia: 'Sito della compagnia',
     bookingUrl: 'https://www.ita-airways.com',
     notes: 'Bagaglio in stiva',
+    extras: {
+      seatsByPassenger: {[MEMBER]: {letter: 'C', seat: '23A'}},
+      checkInHoursBefore: 24,
+      checkInUrl: 'https://www.ita-airways.com/check-in',
+      airportMinutesBefore: 120,
+      fuelPolicy: 'Pieno-pieno',
+      deductible: '800 EUR',
+    },
   })));
   await assertSucceeds(setDoc(ref(MEMBER, 'half-hour'), transport(MEMBER, {
     departureOffset: '+05:30', arrivalOffset: '-03:30',

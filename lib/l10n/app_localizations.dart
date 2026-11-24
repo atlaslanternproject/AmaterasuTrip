@@ -8381,6 +8381,120 @@ abstract class AppLocalizations {
   /// **'Category|Item|Quantity|Person|Done'**
   String get checklistCsvColumns;
 
+  /// No description provided for @transportBlockExtras.
+  ///
+  /// In en, this message translates to:
+  /// **'Seats, check-in and rental'**
+  String get transportBlockExtras;
+
+  /// No description provided for @transportSeatLetter.
+  ///
+  /// In en, this message translates to:
+  /// **'Letter or coach'**
+  String get transportSeatLetter;
+
+  /// No description provided for @transportSeatNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Seat'**
+  String get transportSeatNumber;
+
+  /// No description provided for @transportCheckInHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Online check-in: hours before departure'**
+  String get transportCheckInHours;
+
+  /// No description provided for @transportCheckInHoursFlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Online check-in: hours before (empty = 24)'**
+  String get transportCheckInHoursFlight;
+
+  /// No description provided for @transportCheckInLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in link'**
+  String get transportCheckInLink;
+
+  /// No description provided for @transportAirportMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrive early: minutes'**
+  String get transportAirportMinutes;
+
+  /// No description provided for @transportAirportMinutesFlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Be at the airport: minutes before (empty = 120)'**
+  String get transportAirportMinutesFlight;
+
+  /// No description provided for @transportFuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel (e.g. full to full)'**
+  String get transportFuel;
+
+  /// No description provided for @transportDeductible.
+  ///
+  /// In en, this message translates to:
+  /// **'Deductible'**
+  String get transportDeductible;
+
+  /// No description provided for @transportLayover.
+  ///
+  /// In en, this message translates to:
+  /// **'Layover of {duration}'**
+  String transportLayover(String duration);
+
+  /// No description provided for @transportLayoverAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Layover of {duration} in {place}'**
+  String transportLayoverAt(String duration, String place);
+
+  /// No description provided for @transportCheckInOpensIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in opens in {duration}'**
+  String transportCheckInOpensIn(String duration);
+
+  /// No description provided for @transportCheckInOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Online check-in open'**
+  String get transportCheckInOpen;
+
+  /// No description provided for @transportAirportBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Be at the airport by {time}'**
+  String transportAirportBy(String time);
+
+  /// No description provided for @transportFuelValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel: {value}'**
+  String transportFuelValue(String value);
+
+  /// No description provided for @transportDeductibleValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Deductible: {value}'**
+  String transportDeductibleValue(String value);
+
+  /// No description provided for @transportFlightStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Flight status'**
+  String get transportFlightStatus;
+
+  /// No description provided for @transportErrExtras.
+  ///
+  /// In en, this message translates to:
+  /// **'Check seats, check-in hours (0-168) and minutes (0-600).'**
+  String get transportErrExtras;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

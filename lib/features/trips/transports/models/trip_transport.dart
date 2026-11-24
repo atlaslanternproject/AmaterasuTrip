@@ -5,6 +5,7 @@
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
+import 'trip_transport_extras.dart';
 import 'trip_transport_type.dart';
 
 class TripTransport implements TripSectionItem {
@@ -30,6 +31,7 @@ class TripTransport implements TripSectionItem {
     this.bookedVia,
     this.bookingUrl,
     this.notes,
+    this.extras = const TripTransportExtras(),
     this.estimatedCostMinorUnits,
     this.estimatedCostCurrency,
     this.expenseId,
@@ -63,6 +65,9 @@ class TripTransport implements TripSectionItem {
   final String? bookedVia;
   final String? bookingUrl;
   final String? notes;
+
+  /// Seats per passenger, check-in, airport time, car rental details.
+  final TripTransportExtras extras;
   final int? estimatedCostMinorUnits;
   final String? estimatedCostCurrency;
   @override

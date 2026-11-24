@@ -10,6 +10,8 @@ import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport.dart';
+import 'package:amaterasutrip/features/trips/transports/models/trip_transport_extras.dart';
+import 'trip_transport_extras_block.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport_type.dart';
 
 class TripTransportDraft {
@@ -36,6 +38,9 @@ class TripTransportDraft {
        bookingUrl = TextEditingController(text: initial?.bookingUrl ?? ''),
        notes = TextEditingController(text: initial?.notes ?? ''),
        passengers = {...?initial?.passengerUids},
+       extras = TripTransportExtrasDraft(
+         initial?.extras ?? const TripTransportExtras(),
+       ),
        cost = TripSectionCostDraft(
          minorUnits: initial?.estimatedCostMinorUnits,
          currency: initial?.estimatedCostCurrency,
@@ -61,6 +66,7 @@ class TripTransportDraft {
   final TextEditingController bookingUrl;
   final TextEditingController notes;
   final Set<String> passengers;
+  final TripTransportExtrasDraft extras;
   final TripSectionCostDraft cost;
 
   bool get isNew => _initial == null;
@@ -90,6 +96,7 @@ class TripTransportDraft {
       bookedVia: text(bookedVia),
       bookingUrl: text(bookingUrl),
       notes: text(notes),
+      extras: extras.toExtras(passengers),
       estimatedCostMinorUnits: cost.minorUnits,
       estimatedCostCurrency: cost.savedCurrency,
       expenseId: initial?.expenseId,
@@ -108,6 +115,7 @@ class TripTransportDraft {
     ]) {
       c.dispose();
     }
+    extras.dispose();
     from.dispose();
     to.dispose();
     cost.dispose();

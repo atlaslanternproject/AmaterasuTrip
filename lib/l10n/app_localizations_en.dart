@@ -4383,6 +4383,75 @@ class AppLocalizationsEn extends AppLocalizations {
   String get checklistCsvColumns => 'Category|Item|Quantity|Person|Done';
 
   @override
+  String get transportBlockExtras => 'Seats, check-in and rental';
+
+  @override
+  String get transportSeatLetter => 'Letter or coach';
+
+  @override
+  String get transportSeatNumber => 'Seat';
+
+  @override
+  String get transportCheckInHours => 'Online check-in: hours before departure';
+
+  @override
+  String get transportCheckInHoursFlight => 'Online check-in: hours before (empty = 24)';
+
+  @override
+  String get transportCheckInLink => 'Check-in link';
+
+  @override
+  String get transportAirportMinutes => 'Arrive early: minutes';
+
+  @override
+  String get transportAirportMinutesFlight => 'Be at the airport: minutes before (empty = 120)';
+
+  @override
+  String get transportFuel => 'Fuel (e.g. full to full)';
+
+  @override
+  String get transportDeductible => 'Deductible';
+
+  @override
+  String transportLayover(String duration) {
+    return 'Layover of $duration';
+  }
+
+  @override
+  String transportLayoverAt(String duration, String place) {
+    return 'Layover of $duration in $place';
+  }
+
+  @override
+  String transportCheckInOpensIn(String duration) {
+    return 'Check-in opens in $duration';
+  }
+
+  @override
+  String get transportCheckInOpen => 'Online check-in open';
+
+  @override
+  String transportAirportBy(String time) {
+    return 'Be at the airport by $time';
+  }
+
+  @override
+  String transportFuelValue(String value) {
+    return 'Fuel: $value';
+  }
+
+  @override
+  String transportDeductibleValue(String value) {
+    return 'Deductible: $value';
+  }
+
+  @override
+  String get transportFlightStatus => 'Flight status';
+
+  @override
+  String get transportErrExtras => 'Check seats, check-in hours (0-168) and minutes (0-600).';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

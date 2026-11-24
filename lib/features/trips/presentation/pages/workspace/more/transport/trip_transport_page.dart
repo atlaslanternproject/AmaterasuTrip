@@ -16,6 +16,7 @@ import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_scaff
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_toolbar.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport.dart';
+import 'package:amaterasutrip/features/trips/transports/models/trip_transport_schedule.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transports_filter.dart';
 import 'package:amaterasutrip/features/trips/transports/providers/trip_transports_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -102,6 +103,7 @@ class _TripTransportPageState extends ConsumerState<TripTransportPage>
       emptyText: l10n.transportEmpty,
       body: (items) {
         final shown = _filter.apply(items, widget.today ?? DateTime.now());
+        final layovers = TripTransportSchedule.layovers(items);
         return Column(
           children: [
             TripSectionToolbar(
@@ -126,7 +128,13 @@ class _TripTransportPageState extends ConsumerState<TripTransportPage>
                   TripTransportWarnings(items: items),
                   if (shown.isEmpty) Text(l10n.sectionsNoMatch),
                 ],
-                entryOf: (item) => tripTransportEntry(context, item, nameOf),
+                entryOf: (item) => tripTransportEntry(
+                  context,
+                  item,
+                  nameOf,
+                  now: widget.today,
+                  layover: layovers[item.id],
+                ),
                 statusOf: (item) => (
                   TripSectionLabels.status(item.status, l10n),
                   TripSectionLabels.statusColor(item.status),

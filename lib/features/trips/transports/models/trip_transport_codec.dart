@@ -9,6 +9,7 @@ import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
 import 'trip_transport.dart';
+import 'trip_transport_extras.dart';
 import 'trip_transport_type.dart';
 
 class TripTransportCodec implements TripSectionCodec<TripTransport> {
@@ -40,6 +41,7 @@ class TripTransportCodec implements TripSectionCodec<TripTransport> {
     'bookedVia',
     'bookingUrl',
     'notes',
+    ...TripTransportExtras.keys,
     'estimatedCostMinorUnits',
     'estimatedCostCurrency',
     'expenseId',
@@ -71,6 +73,7 @@ class TripTransportCodec implements TripSectionCodec<TripTransport> {
       'bookedVia': ?text(item.bookedVia),
       'bookingUrl': ?text(item.bookingUrl),
       'notes': ?text(item.notes),
+      ...item.extras.toMap(),
       ...TripSectionFields.costMap(
         item.estimatedCostMinorUnits,
         item.estimatedCostCurrency,
@@ -117,6 +120,7 @@ class TripTransportCodec implements TripSectionCodec<TripTransport> {
       bookedVia: text('bookedVia'),
       bookingUrl: text('bookingUrl'),
       notes: text('notes'),
+      extras: TripTransportExtras.fromMap(data),
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
       expenseId: text('expenseId'),
@@ -160,6 +164,7 @@ class TripTransportCodec implements TripSectionCodec<TripTransport> {
     }
     c.maxLength(item.bookingCode, TripSectionFields.codeMax, 'bookingCode');
     c.maxLength(item.notes, TripSectionFields.notesMax, 'notes');
+    item.extras.check(c);
     c.check(
       item.passengerUids.length > TripSectionFields.uidsMax,
       TripSectionProblemKind.members,

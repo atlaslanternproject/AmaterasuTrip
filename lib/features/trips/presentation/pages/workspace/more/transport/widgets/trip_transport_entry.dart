@@ -10,13 +10,17 @@ import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_label
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport_timeline.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/features/trips/transports/models/trip_transport_schedule.dart';
+import 'trip_transport_extras_lines.dart';
 import 'trip_transport_labels.dart';
 
 TripSectionEntry tripTransportEntry(
   BuildContext context,
   TripTransport item,
-  String Function(String uid) nameOf,
-) {
+  String Function(String uid) nameOf, {
+  DateTime? now,
+  TripTransportLayover? layover,
+}) {
   final l10n = AppLocalizations.of(context)!;
   String when(DateTime? day, String? time, String? offset) {
     final text = tripSectionWhen(context, day, time);
@@ -85,10 +89,20 @@ TripSectionEntry tripTransportEntry(
           cost,
           key: Key('transport-cost-${item.id}'),
         ),
+      ...tripTransportExtraLines(
+        l10n,
+        item,
+        now: now ?? DateTime.now(),
+        layover: layover,
+        nameOf: nameOf,
+      ),
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),
     ],
-    links: [if (url != null) (l10n.transportBookingLink, url)],
+    links: [
+      if (url != null) (l10n.transportBookingLink, url),
+      ...tripTransportExtraLinks(l10n, item),
+    ],
     maps: item.from.maps ?? item.to.maps,
   );
 }
