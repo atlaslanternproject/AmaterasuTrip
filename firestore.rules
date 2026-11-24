@@ -927,7 +927,8 @@ service cloud.firestore {
           'placeName', 'placeAddress', 'placePlaceId',
           'placeLatitude', 'placeLongitude',
           'bookingCode', 'bookingUrl', 'participantUids',
-          'cancellationPolicy', 'notes'
+          'cancellationPolicy', 'notes',
+          'bookBy', 'holder', 'ticketCount', 'ticketCode'
         ])
           && sectionName(data, 'name', 200)
           && data.category in ['ticket', 'entry', 'tour', 'excursion', 'other']
@@ -939,6 +940,13 @@ service cloud.firestore {
           && sectionLink(data, 'bookingUrl')
           && sectionUids(data, 'participantUids')
           && sectionText(data, 'cancellationPolicy', 2000)
+          // Book-by day, holder, tickets and QR code text (v1.28.0).
+          && sectionDay(data, 'bookBy')
+          && sectionText(data, 'holder', 120)
+          && (!('ticketCount' in data)
+            || (data.ticketCount is int
+              && data.ticketCount >= 1 && data.ticketCount <= 99))
+          && sectionText(data, 'ticketCode', 500)
           && sectionText(data, 'notes', 10000);
       }
 

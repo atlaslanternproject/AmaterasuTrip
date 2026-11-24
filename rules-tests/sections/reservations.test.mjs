@@ -38,6 +38,12 @@ const {ref} = sectionCommonTests('reservations', 'reservations', reservation, [
   {bookingUrl: 'www.example.com'},
   {participantUids: 'anna'},
   {cancellationPolicy: 'x'.repeat(2001)},
+  {bookBy: '1 aprile'},
+  {holder: 'x'.repeat(121)},
+  {ticketCount: 0},
+  {ticketCount: 100},
+  {ticketCount: 1.5},
+  {ticketCode: 'x'.repeat(501)},
 ], {status: 'booked', bookingCode: 'GHB-1'});
 
 test('reservations: every optional field', async () => {
@@ -56,5 +62,9 @@ test('reservations: every optional field', async () => {
     participantUids: [MEMBER],
     cancellationPolicy: 'Non rimborsabile',
     notes: 'Arrivare 15 minuti prima',
+    bookBy: '2027-03-01',
+    holder: 'Yato',
+    ticketCount: 4,
+    ticketCode: 'GHB-2027-0414-001',
   })));
 });

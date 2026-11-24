@@ -8495,6 +8495,72 @@ abstract class AppLocalizations {
   /// **'Check seats, check-in hours (0-168) and minutes (0-600).'**
   String get transportErrExtras;
 
+  /// No description provided for @reservationBlockTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Tickets'**
+  String get reservationBlockTickets;
+
+  /// No description provided for @reservationBookBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Book by'**
+  String get reservationBookBy;
+
+  /// No description provided for @reservationHolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking holder'**
+  String get reservationHolder;
+
+  /// No description provided for @reservationTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of tickets'**
+  String get reservationTickets;
+
+  /// No description provided for @reservationTicketCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket code'**
+  String get reservationTicketCode;
+
+  /// No description provided for @reservationTicketCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Text or code of the ticket: it is shown as a QR code. No file is uploaded.'**
+  String get reservationTicketCodeHint;
+
+  /// No description provided for @reservationShowTicket.
+  ///
+  /// In en, this message translates to:
+  /// **'Show ticket'**
+  String get reservationShowTicket;
+
+  /// No description provided for @reservationBookByValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Book by {date}'**
+  String reservationBookByValue(String date);
+
+  /// No description provided for @reservationHolderValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Holder: {name}'**
+  String reservationHolderValue(String name);
+
+  /// No description provided for @reservationTicketsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 ticket} other{{count} tickets}}'**
+  String reservationTicketsValue(int count);
+
+  /// No description provided for @reservationErrTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Tickets: enter a number from 1 to 99.'**
+  String get reservationErrTickets;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

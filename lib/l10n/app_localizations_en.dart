@@ -4452,6 +4452,51 @@ class AppLocalizationsEn extends AppLocalizations {
   String get transportErrExtras => 'Check seats, check-in hours (0-168) and minutes (0-600).';
 
   @override
+  String get reservationBlockTickets => 'Tickets';
+
+  @override
+  String get reservationBookBy => 'Book by';
+
+  @override
+  String get reservationHolder => 'Booking holder';
+
+  @override
+  String get reservationTickets => 'Number of tickets';
+
+  @override
+  String get reservationTicketCode => 'Ticket code';
+
+  @override
+  String get reservationTicketCodeHint => 'Text or code of the ticket: it is shown as a QR code. No file is uploaded.';
+
+  @override
+  String get reservationShowTicket => 'Show ticket';
+
+  @override
+  String reservationBookByValue(String date) {
+    return 'Book by $date';
+  }
+
+  @override
+  String reservationHolderValue(String name) {
+    return 'Holder: $name';
+  }
+
+  @override
+  String reservationTicketsValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tickets',
+      one: '1 ticket',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reservationErrTickets => 'Tickets: enter a number from 1 to 99.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

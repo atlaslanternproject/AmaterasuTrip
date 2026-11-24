@@ -1,6 +1,7 @@
 // Pagina Prenotazioni del viaggio (biglietti, ingressi, tour, escursioni):
 // filtri per stato, categoria e data, viste Card/Elenco/Dettagli ricordate
-// sul dispositivo, editor, spesa collegata ed eliminazione.
+// sul dispositivo, editor, biglietto QR a schermo intero, spesa collegata
+// ed eliminazione.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,7 +24,10 @@ import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_toolb
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'editor/trip_reservation_editor.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_pickers.dart';
 import 'widgets/trip_reservation_entry.dart';
+import 'widgets/trip_reservation_ticket.dart';
 
 class TripBookingsPage extends ConsumerStatefulWidget {
   const TripBookingsPage({
@@ -135,7 +139,27 @@ class _TripBookingsPageState extends ConsumerState<TripBookingsPage>
                 items: shown,
                 view: view,
                 header: [if (shown.isEmpty) Text(l10n.sectionsNoMatch)],
-                entryOf: (r) => tripReservationEntry(context, r, nameOf),
+                entryOf: (r) => tripReservationEntry(
+                  context,
+                  r,
+                  nameOf,
+                  today: widget.today,
+                ),
+                extraOf: (r) => r.ticketCode == null
+                    ? null
+                    : Align(
+                        alignment: Alignment.centerLeft,
+                        child: AmaterasuButton.secondary(
+                          key: Key('reservation-ticket-${r.id}'),
+                          icon: Icons.qr_code_2_rounded,
+                          label: l10n.reservationShowTicket,
+                          onPressed: () => showTripReservationTicket(
+                            context,
+                            r,
+                            tripSectionWhen(context, r.date, r.time),
+                          ),
+                        ),
+                      ),
                 statusOf: (r) => (
                   TripSectionLabels.status(r.status, l10n),
                   TripSectionLabels.statusColor(r.status),
