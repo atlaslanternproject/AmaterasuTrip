@@ -4006,6 +4006,60 @@ class AppLocalizationsEn extends AppLocalizations {
   String get memoryErrDate => 'Choose the day of the diary.';
 
   @override
+  String get budgetExportTitle => 'Export expenses';
+
+  @override
+  String get budgetExportCsv => 'CSV for Excel';
+
+  @override
+  String get budgetExportPdf => 'PDF (print or save as PDF)';
+
+  @override
+  String get budgetExportError => 'Export failed. If a new tab should open, allow pop-ups for this site.';
+
+  @override
+  String get budgetExportExpenseColumns => 'Date|Expense|Category|Status|Type|Total|Currency|Paid by|Shares|Notes';
+
+  @override
+  String get budgetExportRefundColumns => 'Refund of the expense|From|To|Amount|Currency|Status';
+
+  @override
+  String get budgetExportTotalColumns => 'Currency|Total of the expenses';
+
+  @override
+  String get budgetExportPersonColumns => 'Person|Currency|Share|Paid';
+
+  @override
+  String get budgetExportPlanned => 'Planned';
+
+  @override
+  String get budgetExportOutstanding => 'To pay';
+
+  @override
+  String get budgetExportPaid => 'Paid';
+
+  @override
+  String get budgetExportCancelled => 'Cancelled';
+
+  @override
+  String get budgetExportPersonal => 'Personal';
+
+  @override
+  String get budgetExportShared => 'Shared';
+
+  @override
+  String get budgetExportPending => 'Pending';
+
+  @override
+  String get budgetExportConfirmed => 'Confirmed';
+
+  @override
+  String get budgetExportRejected => 'Rejected';
+
+  @override
+  String get budgetExportWrittenOff => 'Closed';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

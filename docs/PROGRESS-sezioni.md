@@ -19,7 +19,7 @@ riprende dalla prima tappa non finita.
 | 6. Note | fatta, pubblicata 1.20.0 il 23/11/2026 | feature/note | 1.20.0+24 |
 | 7. Shopping e valigia | fatta, pubblicata 1.21.0 il 23/11/2026 | feature/shopping | 1.21.0+25 |
 | 8. Ricordi | fatta (pubblicazione: vedi tappa 9) | feature/ricordi | 1.22.0+26 |
-| 9. Spese, esportazione CSV/PDF | da fare | - | - |
+| 9. Spese, esportazione CSV/PDF | fatta (pubblicazione: vedi tappa 10) | feature/esporta-spese | 1.23.0+27 |
 | 10. Analisi Drive e budget per categoria | da fare | - | - |
 
 ## Tappa 0 - Modulo Luogo condiviso
@@ -227,3 +227,28 @@ Prove da fare sul sito:
    ricarica.
 5. Un altro membro modifica il tuo diario ma non lo elimina.
 6. Su telefono card ed editor si leggono senza tagli.
+
+## Tappa 9 - Esportazione spese
+
+Commit:
+- e882527 pulsante "Esporta spese" nella pagina spese (unica riga
+  aggiunta alla pagina approvata): CSV per Excel (separatore ";",
+  virgola decimale in italiano, UTF-8 con BOM) e pagina da stampare
+  o salvare come PDF dal browser. Solo lettura, una volta sola.
+- Scelta: nessun pacchetto PDF aggiunto (quello diffuso non stampa
+  i caratteri non latini); il PDF lo crea il browser con "Salva come
+  PDF". File web/amaterasu_files.js caricato da web/index.html.
+- Contenuto: spese condivise visibili a te e tue personali (data,
+  titolo, categoria, stato, totale, chi ha pagato, quote, note),
+  rimborsi, totali per valuta (annullate escluse), quota e pagato
+  per persona.
+
+Prove da fare sul sito:
+1. Spese > icona Condividi > "CSV per Excel": si scarica spese.csv;
+   aprilo con Excel: colonne separate, importi con la virgola.
+2. Le spese annullate compaiono come "Annullata" ma non nei totali.
+3. "PDF": si apre una scheda con le tabelle e la finestra di stampa;
+   scegli "Salva come PDF".
+4. Se il browser blocca i pop-up compare il messaggio: consenti i
+   pop-up e riprova.
+5. In inglese le colonne e gli stati sono in inglese.
