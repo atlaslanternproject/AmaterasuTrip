@@ -18,7 +18,7 @@ riprende dalla prima tappa non finita.
 | 5. Luoghi salvati | fatta, pubblicata 1.19.0 il 23/11/2026 | feature/luoghi-salvati | 1.19.0+23 |
 | 6. Note | fatta, pubblicata 1.20.0 il 23/11/2026 | feature/note | 1.20.0+24 |
 | 7. Shopping e valigia | fatta, pubblicata 1.21.0 il 23/11/2026 | feature/shopping | 1.21.0+25 |
-| 8. Ricordi | da fare | - | - |
+| 8. Ricordi | fatta (pubblicazione: vedi tappa 9) | feature/ricordi | 1.22.0+26 |
 | 9. Spese, esportazione CSV/PDF | da fare | - | - |
 | 10. Analisi Drive e budget per categoria | da fare | - | - |
 
@@ -208,3 +208,22 @@ Prove da fare sul sito:
    quantità; spuntale dalla card.
 6. Filtra la valigia per persona; cambia vista e ricarica.
 7. Su telefono le due schede e gli editor si leggono senza tagli.
+
+## Tappa 8 - Ricordi
+
+Commit:
+- c4ff93e docs: tappa 7 pubblicata.
+- 46df481 dati, regole (blocco memories) e pagina Ricordi con
+  diario (valutazione e momento del giorno, già dal prompt v2) e
+  album esterni.
+
+Prove da fare sul sito:
+1. Scrivi la pagina di diario di oggi con 4 stelle e il momento
+   del giorno.
+2. Aggiungi un album: senza link non si salva; con il link di
+   Google Foto sì, e "Apri l'album" lo apre.
+3. La card dice "Scritto da" con il tuo nome.
+4. Filtra Diario / Album, Prossimi / Passati; cambia vista e
+   ricarica.
+5. Un altro membro modifica il tuo diario ma non lo elimina.
+6. Su telefono card ed editor si leggono senza tagli.

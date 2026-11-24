@@ -26,7 +26,8 @@ Storage, Cloud Functions, Hosting, App Check).
 | Luoghi salvati (Google o link di Google Maps, categorie, chi l'ha aggiunto) | rilasciato nella 1.19.0 |
 | Note (condivise o private, fissate, checklist, Info utili) | rilasciato nella 1.20.0 |
 | Shopping e valigia (acquisti con budget e prezzo reale, lista valigia per persona) | rilasciato nella 1.21.0 |
-| Itinerario, mappa, luoghi salvati, note, shopping, ricordi | pagine segnaposto, da sviluppare |
+| Ricordi (diario per giorno, valutazione, momento del giorno, album esterni) | rilasciato nella 1.22.0 |
+| Itinerario, mappa | pagine segnaposto, da sviluppare |
 
 ## Requisiti
 
