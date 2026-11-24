@@ -4109,6 +4109,89 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noteFilterVisibility => 'Visibility';
 
   @override
+  String get allergenGluten => 'Gluten';
+
+  @override
+  String get allergenCrustaceans => 'Crustaceans';
+
+  @override
+  String get allergenEggs => 'Eggs';
+
+  @override
+  String get allergenFish => 'Fish';
+
+  @override
+  String get allergenPeanuts => 'Peanuts';
+
+  @override
+  String get allergenSoy => 'Soy';
+
+  @override
+  String get allergenMilk => 'Milk';
+
+  @override
+  String get allergenNuts => 'Tree nuts';
+
+  @override
+  String get allergenCelery => 'Celery';
+
+  @override
+  String get allergenMustard => 'Mustard';
+
+  @override
+  String get allergenSesame => 'Sesame';
+
+  @override
+  String get allergenSulphites => 'Sulphites';
+
+  @override
+  String get allergenLupin => 'Lupin';
+
+  @override
+  String get allergenMolluscs => 'Molluscs';
+
+  @override
+  String get dietVegetarian => 'Vegetarian';
+
+  @override
+  String get dietVegan => 'Vegan';
+
+  @override
+  String get dietHalal => 'Halal';
+
+  @override
+  String get dietKosher => 'Kosher';
+
+  @override
+  String get dietGlutenFree => 'Gluten free';
+
+  @override
+  String get restaurantBlockFood => 'Allergens and diet';
+
+  @override
+  String get restaurantAllergensHint => 'Allergens to tell the restaurant about (people\'s allergies are not saved).';
+
+  @override
+  String get restaurantAllergenNotes => 'Allergen note';
+
+  @override
+  String get restaurantDiets => 'Diet';
+
+  @override
+  String restaurantAllergensValue(String list) {
+    return 'To tell: $list';
+  }
+
+  @override
+  String get restaurantFilterAllergens => 'Allergens to tell';
+
+  @override
+  String get restaurantFilterYes => 'Yes';
+
+  @override
+  String get restaurantFilterNo => 'No';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

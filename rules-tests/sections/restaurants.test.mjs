@@ -39,6 +39,10 @@ const {ref, seed} = sectionCommonTests('restaurants', 'restaurants',
     {partySize: 101},
     {votes: {[MEMBER]: 'Z'}},
     {votes: 'SS'},
+    {allergens: ['pollen']},
+    {allergens: 'gluten'},
+    {allergenNotes: 'x'.repeat(501)},
+    {diets: ['paleo']},
   ], {status: 'tried', cuisine: 'Ramen'});
 
 test('restaurants: every optional field and the own vote on create', async () => {
@@ -56,6 +60,9 @@ test('restaurants: every optional field and the own vote on create', async () =>
     reservationTime: '19:30',
     partySize: 4,
     notes: 'Coda lunga',
+    allergens: ['gluten', 'peanuts', 'molluscs'],
+    allergenNotes: 'Senza arachidi per Bruno',
+    diets: ['vegetarian', 'glutenFree'],
     votes: {[MEMBER]: 'SS'},
   })));
   await assertFails(setDoc(ref(MEMBER, 'other-vote'), restaurant(MEMBER, {

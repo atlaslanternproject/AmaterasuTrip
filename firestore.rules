@@ -922,10 +922,30 @@ service cloud.firestore {
           'placeLatitude', 'placeLongitude',
           'phone', 'website', 'cuisine', 'priceLevel',
           'reservationDate', 'reservationTime', 'partySize',
-          'notes', 'votes'
+          'notes', 'votes', 'allergens', 'allergenNotes', 'diets'
         ])
           && sectionName(data, 'name', 200)
           && data.status in ['toTry', 'booked', 'tried']
+          // EU allergens to tell the restaurant and diet labels (v1.25.0).
+          && (
+            data.get('allergens', null) == null
+            || (data.allergens is list
+              && data.allergens.size() <= 14
+              && data.allergens.hasOnly([
+                'gluten', 'crustaceans', 'eggs', 'fish', 'peanuts', 'soy',
+                'milk', 'nuts', 'celery', 'mustard', 'sesame', 'sulphites',
+                'lupin', 'molluscs'
+              ]))
+          )
+          && sectionText(data, 'allergenNotes', 500)
+          && (
+            data.get('diets', null) == null
+            || (data.diets is list
+              && data.diets.size() <= 5
+              && data.diets.hasOnly([
+                'vegetarian', 'vegan', 'halal', 'kosher', 'glutenFree'
+              ]))
+          )
           && sectionPlace(data, 'place')
           && (
             data.get('phone', null) == null

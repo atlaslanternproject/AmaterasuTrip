@@ -12,6 +12,7 @@ import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_chip.
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_entry.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'trip_restaurant_food_labels.dart';
 
 abstract final class TripRestaurantLabels {
   static String status(TripRestaurantStatus s, AppLocalizations l10n) =>
@@ -74,8 +75,28 @@ TripSectionEntry tripRestaurantEntry(
           label: TripRestaurantLabels.price(level),
           color: AmaterasuColors.accentGold,
         ),
+      for (final diet in item.diets)
+        TripSectionChip(
+          label: TripRestaurantFoodLabels.diet(diet, l10n),
+          color: AmaterasuColors.success,
+          icon: Icons.eco_outlined,
+        ),
     ],
     lines: [
+      if (item.allergens.isNotEmpty || item.allergenNotes != null)
+        TripSectionLine(
+          Icons.no_food_outlined,
+          [
+            if (item.allergens.isNotEmpty)
+              l10n.restaurantAllergensValue(
+                item.allergens
+                    .map((c) => TripRestaurantFoodLabels.allergen(c, l10n))
+                    .join(', '),
+              ),
+            ?item.allergenNotes,
+          ].join(' · '),
+          key: Key('restaurant-allergens-${item.id}'),
+        ),
       if (cost != null) TripSectionLine(Icons.payments_outlined, cost),
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),

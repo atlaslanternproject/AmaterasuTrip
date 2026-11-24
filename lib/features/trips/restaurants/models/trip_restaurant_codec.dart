@@ -10,6 +10,7 @@ import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
 import 'trip_restaurant.dart';
+import 'trip_restaurant_food.dart';
 import 'trip_restaurant_status.dart';
 import 'trip_restaurant_votes.dart';
 
@@ -32,6 +33,9 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
     'reservationTime',
     'partySize',
     'notes',
+    'allergens',
+    'allergenNotes',
+    'diets',
     'estimatedCostMinorUnits',
     'estimatedCostCurrency',
     'expenseId',
@@ -55,6 +59,9 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       'reservationTime': ?text(item.reservationTime),
       'partySize': ?item.partySize,
       'notes': ?text(item.notes),
+      if (item.allergens.isNotEmpty) 'allergens': List.of(item.allergens),
+      'allergenNotes': ?text(item.allergenNotes),
+      if (item.diets.isNotEmpty) 'diets': List.of(item.diets),
       ...TripSectionFields.costMap(
         item.estimatedCostMinorUnits,
         item.estimatedCostCurrency,
@@ -91,6 +98,12 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       partySize: number('partySize'),
       notes: text('notes'),
       votes: TripRestaurantVotes.read(data['votes']),
+      allergens: TripRestaurantFood.read(
+        data['allergens'],
+        TripRestaurantFood.allergens,
+      ),
+      allergenNotes: text('allergenNotes'),
+      diets: TripRestaurantFood.read(data['diets'], TripRestaurantFood.diets),
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
       expenseId: text('expenseId'),
@@ -104,7 +117,12 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       ..required(item.name, 'name')
       ..maxLength(item.name.trim(), TripSectionFields.nameMax, 'name')
       ..maxLength(item.cuisine, TripSectionFields.shortMax, 'cuisine')
-      ..maxLength(item.notes, TripSectionFields.notesMax, 'notes');
+      ..maxLength(item.notes, TripSectionFields.notesMax, 'notes')
+      ..maxLength(
+        item.allergenNotes,
+        TripRestaurantFood.notesMax,
+        'allergenNotes',
+      );
     final phone = item.phone;
     final party = item.partySize;
     c

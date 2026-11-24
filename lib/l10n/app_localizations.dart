@@ -7865,6 +7865,168 @@ abstract class AppLocalizations {
   /// **'Visibility'**
   String get noteFilterVisibility;
 
+  /// No description provided for @allergenGluten.
+  ///
+  /// In en, this message translates to:
+  /// **'Gluten'**
+  String get allergenGluten;
+
+  /// No description provided for @allergenCrustaceans.
+  ///
+  /// In en, this message translates to:
+  /// **'Crustaceans'**
+  String get allergenCrustaceans;
+
+  /// No description provided for @allergenEggs.
+  ///
+  /// In en, this message translates to:
+  /// **'Eggs'**
+  String get allergenEggs;
+
+  /// No description provided for @allergenFish.
+  ///
+  /// In en, this message translates to:
+  /// **'Fish'**
+  String get allergenFish;
+
+  /// No description provided for @allergenPeanuts.
+  ///
+  /// In en, this message translates to:
+  /// **'Peanuts'**
+  String get allergenPeanuts;
+
+  /// No description provided for @allergenSoy.
+  ///
+  /// In en, this message translates to:
+  /// **'Soy'**
+  String get allergenSoy;
+
+  /// No description provided for @allergenMilk.
+  ///
+  /// In en, this message translates to:
+  /// **'Milk'**
+  String get allergenMilk;
+
+  /// No description provided for @allergenNuts.
+  ///
+  /// In en, this message translates to:
+  /// **'Tree nuts'**
+  String get allergenNuts;
+
+  /// No description provided for @allergenCelery.
+  ///
+  /// In en, this message translates to:
+  /// **'Celery'**
+  String get allergenCelery;
+
+  /// No description provided for @allergenMustard.
+  ///
+  /// In en, this message translates to:
+  /// **'Mustard'**
+  String get allergenMustard;
+
+  /// No description provided for @allergenSesame.
+  ///
+  /// In en, this message translates to:
+  /// **'Sesame'**
+  String get allergenSesame;
+
+  /// No description provided for @allergenSulphites.
+  ///
+  /// In en, this message translates to:
+  /// **'Sulphites'**
+  String get allergenSulphites;
+
+  /// No description provided for @allergenLupin.
+  ///
+  /// In en, this message translates to:
+  /// **'Lupin'**
+  String get allergenLupin;
+
+  /// No description provided for @allergenMolluscs.
+  ///
+  /// In en, this message translates to:
+  /// **'Molluscs'**
+  String get allergenMolluscs;
+
+  /// No description provided for @dietVegetarian.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetarian'**
+  String get dietVegetarian;
+
+  /// No description provided for @dietVegan.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegan'**
+  String get dietVegan;
+
+  /// No description provided for @dietHalal.
+  ///
+  /// In en, this message translates to:
+  /// **'Halal'**
+  String get dietHalal;
+
+  /// No description provided for @dietKosher.
+  ///
+  /// In en, this message translates to:
+  /// **'Kosher'**
+  String get dietKosher;
+
+  /// No description provided for @dietGlutenFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Gluten free'**
+  String get dietGlutenFree;
+
+  /// No description provided for @restaurantBlockFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergens and diet'**
+  String get restaurantBlockFood;
+
+  /// No description provided for @restaurantAllergensHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergens to tell the restaurant about (people\'s allergies are not saved).'**
+  String get restaurantAllergensHint;
+
+  /// No description provided for @restaurantAllergenNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergen note'**
+  String get restaurantAllergenNotes;
+
+  /// No description provided for @restaurantDiets.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet'**
+  String get restaurantDiets;
+
+  /// No description provided for @restaurantAllergensValue.
+  ///
+  /// In en, this message translates to:
+  /// **'To tell: {list}'**
+  String restaurantAllergensValue(String list);
+
+  /// No description provided for @restaurantFilterAllergens.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergens to tell'**
+  String get restaurantFilterAllergens;
+
+  /// No description provided for @restaurantFilterYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get restaurantFilterYes;
+
+  /// No description provided for @restaurantFilterNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get restaurantFilterNo;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

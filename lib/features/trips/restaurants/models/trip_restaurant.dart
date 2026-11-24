@@ -1,6 +1,6 @@
 // Un ristorante del viaggio: nome e luogo Google (con telefono e sito),
 // cucina, fascia di prezzo, stato, prenotazione (data, ora, persone), voti
-// dei viaggiatori, note, costo previsto e spesa collegata.
+// dei viaggiatori, allergeni da segnalare, diete, note, costo e spesa.
 
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
@@ -23,6 +23,9 @@ class TripRestaurant implements TripSectionItem {
     this.partySize,
     this.notes,
     this.votes = const {},
+    this.allergens = const [],
+    this.allergenNotes,
+    this.diets = const [],
     this.estimatedCostMinorUnits,
     this.estimatedCostCurrency,
     this.expenseId,
@@ -52,6 +55,14 @@ class TripRestaurant implements TripSectionItem {
 
   /// Traveler uid -> priority (SS, S, A, B); saved apart from the edits.
   final Map<String, String> votes;
+
+  /// EU allergens to tell the restaurant about (codes of
+  /// TripRestaurantFood.allergens) and a free note.
+  final List<String> allergens;
+  final String? allergenNotes;
+
+  /// Diet labels (vegetarian, vegan, halal, kosher, glutenFree).
+  final List<String> diets;
   final int? estimatedCostMinorUnits;
   final String? estimatedCostCurrency;
   @override
