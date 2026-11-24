@@ -996,12 +996,20 @@ service cloud.firestore {
           'name', 'category',
           'placeName', 'placeAddress', 'placePlaceId',
           'placeLatitude', 'placeLongitude',
-          'mapsUrl', 'notes'
+          'mapsUrl', 'notes', 'phone', 'website'
         ])
           && sectionName(data, 'name', 200)
           && data.category in [
             'sight', 'food', 'shopping', 'nature', 'nightlife', 'other'
           ]
+          // Contacts of the place (v1.25.0).
+          && (
+            data.get('phone', null) == null
+            || (data.phone is string
+              && data.phone.size() <= 40
+              && data.phone.matches('^[+]?[0-9 ()./-]{4,40}$'))
+          )
+          && sectionLink(data, 'website')
           && sectionPlace(data, 'place')
           && sectionLink(data, 'mapsUrl')
           && sectionText(data, 'notes', 10000);

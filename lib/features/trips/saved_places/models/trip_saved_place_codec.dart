@@ -1,6 +1,7 @@
 // Conversione dei luoghi salvati da e verso Firestore
 // (trips/{tripId}/savedPlaces) e controlli con i limiti di firestore.rules.
 
+import 'package:amaterasutrip/core/places/amaterasu_contact_validator.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
@@ -19,6 +20,8 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
     ...TripSectionPlace.keys('place'),
     'mapsUrl',
     'notes',
+    'phone',
+    'website',
   ];
 
   @override
@@ -30,6 +33,8 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
     ...item.place.toMap('place'),
     'mapsUrl': ?TripSectionFields.clean(item.mapsUrl),
     'notes': ?TripSectionFields.clean(item.notes),
+    'phone': ?TripSectionFields.clean(item.phone),
+    'website': ?TripSectionFields.clean(item.website),
   };
 
   @override
@@ -51,6 +56,8 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
       place: TripSectionPlace.fromMap(data, 'place'),
       mapsUrl: text('mapsUrl'),
       notes: text('notes'),
+      phone: text('phone'),
+      website: text('website'),
     );
   }
 
@@ -66,6 +73,16 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
         TripSectionFields.badLink(item.mapsUrl),
         TripSectionProblemKind.link,
         'mapsUrl',
+      )
+      ..check(
+        item.phone != null && !AmaterasuContactValidator.isPhone(item.phone!),
+        TripSectionProblemKind.other,
+        'phone',
+      )
+      ..check(
+        TripSectionFields.badLink(item.website),
+        TripSectionProblemKind.link,
+        'website',
       );
     return c.found;
   }

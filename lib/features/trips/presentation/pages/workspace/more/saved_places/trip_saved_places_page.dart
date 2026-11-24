@@ -56,6 +56,7 @@ class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
         tripId: widget.tripId,
         authorUid: uid,
         places: ref.read(amaterasuPlaceSearchProvider),
+        placeInfo: ref.read(amaterasuPlaceInfoProvider),
         initial: initial,
         onSave: (item) =>
             initial == null ? store.create(item) : store.update(item),

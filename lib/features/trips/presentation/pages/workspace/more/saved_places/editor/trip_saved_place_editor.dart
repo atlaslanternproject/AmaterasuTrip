@@ -1,8 +1,12 @@
 // Editor di un luogo salvato nella cornice comune delle sezioni: luogo
 // cercato su Google oppure link di Google Maps incollato (da cui si
-// ricavano nome e coordinate se ci sono), categoria e note.
+// ricavano nome e coordinate se ci sono), contatti (telefono e sito,
+// compilati da Google), categoria e note.
 
 import 'package:flutter/material.dart';
+
+import 'package:amaterasutrip/core/places/amaterasu_contacts_autofill.dart';
+import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_maps_link.dart';
@@ -25,6 +29,7 @@ class TripSavedPlaceEditor extends StatefulWidget {
     required this.tripId,
     required this.authorUid,
     required this.places,
+    required this.placeInfo,
     required this.onSave,
     this.initial,
   });
@@ -32,6 +37,7 @@ class TripSavedPlaceEditor extends StatefulWidget {
   final String tripId;
   final String authorUid;
   final DestinationPlacesService places;
+  final AmaterasuPlaceInfoService placeInfo;
   final Future<void> Function(TripSavedPlace item) onSave;
   final TripSavedPlace? initial;
 
@@ -48,6 +54,9 @@ class _TripSavedPlaceEditorState extends State<TripSavedPlaceEditor>
   );
   late final _link = TextEditingController(text: widget.initial?.mapsUrl);
   late final _notes = TextEditingController(text: widget.initial?.notes);
+  late final _phone = TextEditingController(text: widget.initial?.phone);
+  late final _website = TextEditingController(text: widget.initial?.website);
+  final _contacts = AmaterasuContactsAutofill();
   late var _category = widget.initial?.category ?? TripSavedPlaceCategory.sight;
 
   @override
@@ -55,6 +64,8 @@ class _TripSavedPlaceEditorState extends State<TripSavedPlaceEditor>
     _place.dispose();
     _link.dispose();
     _notes.dispose();
+    _phone.dispose();
+    _website.dispose();
     super.dispose();
   }
 
@@ -86,6 +97,8 @@ class _TripSavedPlaceEditorState extends State<TripSavedPlaceEditor>
       place: _place.toPlace(),
       mapsUrl: TripSectionFields.clean(_link.text),
       notes: TripSectionFields.clean(_notes.text),
+      phone: TripSectionFields.clean(_phone.text),
+      website: TripSectionFields.clean(_website.text),
     );
     return saveWith(
       problems: [
@@ -94,6 +107,7 @@ class _TripSavedPlaceEditorState extends State<TripSavedPlaceEditor>
             p,
             l10n,
             fieldLabel: (_) => l10n.savedPlaceName,
+            other: (_) => l10n.restaurantErrPhone,
           ),
       ],
       save: () => widget.onSave(item),
@@ -122,6 +136,26 @@ class _TripSavedPlaceEditorState extends State<TripSavedPlaceEditor>
               draft: _place,
               places: widget.places,
               onChanged: () => setState(() {}),
+              onPicked: (place) => _contacts.apply(
+                _phone,
+                _website,
+                widget.placeInfo,
+                place.placeId,
+                languageCode: Localizations.localeOf(context).languageCode,
+              ),
+            ),
+            TextField(
+              key: const Key('saved-place-phone'),
+              controller: _phone,
+              maxLength: 40,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(labelText: l10n.restaurantPhone),
+            ),
+            TextField(
+              key: const Key('saved-place-website'),
+              controller: _website,
+              keyboardType: TextInputType.url,
+              decoration: InputDecoration(labelText: l10n.restaurantWebsite),
             ),
             TextField(
               key: const Key('saved-place-link'),
