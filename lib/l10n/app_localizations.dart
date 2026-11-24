@@ -7565,6 +7565,108 @@ abstract class AppLocalizations {
   /// **'Quantity: enter a number from 1 to 99.'**
   String get packingErrQuantity;
 
+  /// No description provided for @memoryAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'New memory'**
+  String get memoryAdd;
+
+  /// No description provided for @memoryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No memories yet: write the diary of each day or link the photo album.'**
+  String get memoryEmpty;
+
+  /// No description provided for @memoryEditorNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New memory'**
+  String get memoryEditorNewTitle;
+
+  /// No description provided for @memoryEditorEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit memory'**
+  String get memoryEditorEditTitle;
+
+  /// No description provided for @memoryBlockKind.
+  ///
+  /// In en, this message translates to:
+  /// **'Kind of memory'**
+  String get memoryBlockKind;
+
+  /// No description provided for @memoryDiary.
+  ///
+  /// In en, this message translates to:
+  /// **'Day diary'**
+  String get memoryDiary;
+
+  /// No description provided for @memoryAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Album'**
+  String get memoryAlbum;
+
+  /// No description provided for @memoryDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get memoryDay;
+
+  /// No description provided for @memoryRating.
+  ///
+  /// In en, this message translates to:
+  /// **'How the day went'**
+  String get memoryRating;
+
+  /// No description provided for @memoryMoment.
+  ///
+  /// In en, this message translates to:
+  /// **'The moment of the day (one sentence)'**
+  String get memoryMoment;
+
+  /// No description provided for @memoryText.
+  ///
+  /// In en, this message translates to:
+  /// **'Diary'**
+  String get memoryText;
+
+  /// No description provided for @memoryAlbumName.
+  ///
+  /// In en, this message translates to:
+  /// **'Album name'**
+  String get memoryAlbumName;
+
+  /// No description provided for @memoryAlbumLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Album link'**
+  String get memoryAlbumLink;
+
+  /// No description provided for @memoryAlbumHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos stay in your service (Google Photos, iCloud…): only the link is saved here.'**
+  String get memoryAlbumHint;
+
+  /// No description provided for @memoryOpenAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the album'**
+  String get memoryOpenAlbum;
+
+  /// No description provided for @memoryWrittenBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Written by {name}'**
+  String memoryWrittenBy(String name);
+
+  /// No description provided for @memoryErrDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the day of the diary.'**
+  String get memoryErrDate;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:
