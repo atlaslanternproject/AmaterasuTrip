@@ -19,6 +19,8 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
+import 'trip_expenses_export_button.dart';
+
 part 'trip_expenses_page_actions.dart';
 part 'trip_expenses_page_widgets.dart';
 
@@ -92,6 +94,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
             ),
             icon: const Icon(Icons.history_rounded, color: _cream),
           ),
+          TripExpensesExportButton(api: _api),
           IconButton(
             tooltip: budgetL10n(it).btPageFilters,
             onPressed: _openExpenseFilters,

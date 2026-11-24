@@ -7667,6 +7667,114 @@ abstract class AppLocalizations {
   /// **'Choose the day of the diary.'**
   String get memoryErrDate;
 
+  /// No description provided for @budgetExportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export expenses'**
+  String get budgetExportTitle;
+
+  /// No description provided for @budgetExportCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'CSV for Excel'**
+  String get budgetExportCsv;
+
+  /// No description provided for @budgetExportPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF (print or save as PDF)'**
+  String get budgetExportPdf;
+
+  /// No description provided for @budgetExportError.
+  ///
+  /// In en, this message translates to:
+  /// **'Export failed. If a new tab should open, allow pop-ups for this site.'**
+  String get budgetExportError;
+
+  /// No description provided for @budgetExportExpenseColumns.
+  ///
+  /// In en, this message translates to:
+  /// **'Date|Expense|Category|Status|Type|Total|Currency|Paid by|Shares|Notes'**
+  String get budgetExportExpenseColumns;
+
+  /// No description provided for @budgetExportRefundColumns.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund of the expense|From|To|Amount|Currency|Status'**
+  String get budgetExportRefundColumns;
+
+  /// No description provided for @budgetExportTotalColumns.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency|Total of the expenses'**
+  String get budgetExportTotalColumns;
+
+  /// No description provided for @budgetExportPersonColumns.
+  ///
+  /// In en, this message translates to:
+  /// **'Person|Currency|Share|Paid'**
+  String get budgetExportPersonColumns;
+
+  /// No description provided for @budgetExportPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned'**
+  String get budgetExportPlanned;
+
+  /// No description provided for @budgetExportOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'To pay'**
+  String get budgetExportOutstanding;
+
+  /// No description provided for @budgetExportPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get budgetExportPaid;
+
+  /// No description provided for @budgetExportCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get budgetExportCancelled;
+
+  /// No description provided for @budgetExportPersonal.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal'**
+  String get budgetExportPersonal;
+
+  /// No description provided for @budgetExportShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared'**
+  String get budgetExportShared;
+
+  /// No description provided for @budgetExportPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get budgetExportPending;
+
+  /// No description provided for @budgetExportConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get budgetExportConfirmed;
+
+  /// No description provided for @budgetExportRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get budgetExportRejected;
+
+  /// No description provided for @budgetExportWrittenOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get budgetExportWrittenOff;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:
