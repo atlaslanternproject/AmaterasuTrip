@@ -310,13 +310,22 @@ Finito:
   in alto, checklist con voci spuntabili anche dalla card,
   modello "Info utili" (Wi-Fi, numeri di emergenza…); filtro
   condivise/private, tre viste. Dati in trips/{tripId}/notes.
-- Shopping e valigia (lib/features/trips/shopping e
-  pages/workspace/more/shopping, due schede): Acquisti (cosa,
+- Shopping (lib/features/trips/shopping e
+  pages/workspace/more/shopping): Acquisti (cosa,
   per chi, dove, budget stimato, comprato, prezzo reale, note,
   spesa collegata categoria shopping che parte dal prezzo reale o
-  dal budget) e Valigia (voce, per persona o per tutti,
-  quantità, in valigia); spunta dalla card, filtri, tre viste.
-  Dati in trips/{tripId}/shoppingItems e packingItems.
+  dal budget); spunta dalla card, filtri, tre viste. Dati in
+  trips/{tripId}/shoppingItems. La vecchia Valigia (packingItems)
+  si importa nella Checklist.
+- Checklist (lib/features/trips/checklists e
+  pages/workspace/more/checklists): più liste per viaggio,
+  modelli pronti (Valigia, Documenti, Prima di partire, Prima di
+  uscire di casa, Farmaci e igiene, Elettronica, Vuota),
+  condivise o personali (solo l'autore: regole e test), categorie
+  a tendina con barra, voci in linea con quantità e assegnatario,
+  filtri da fare/fatte e persona, azzera, duplica, riordino,
+  stampa e CSV. Le voci stanno nella lista (campo items) e si
+  cambiano una alla volta. Dati in trips/{tripId}/checklists.
 - Ricordi (lib/features/trips/memories e
   pages/workspace/more/memories): diario per giorno (data,
   valutazione 1-5 stelle, il momento del giorno, testo, autore)

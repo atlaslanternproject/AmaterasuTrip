@@ -4198,6 +4198,191 @@ class AppLocalizationsIt extends AppLocalizations {
   String get placesGoogleMark => 'Google Maps';
 
   @override
+  String get tripMoreChecklists => 'Checklist';
+
+  @override
+  String get tripMoreChecklistsSubtitle => 'Valigia, documenti e cose da non dimenticare';
+
+  @override
+  String get checklistTitle => 'Checklist';
+
+  @override
+  String get checklistAdd => 'Nuova checklist';
+
+  @override
+  String get checklistEmpty => 'Nessuna checklist: parti da un modello pronto come la Valigia.';
+
+  @override
+  String get checklistTplPacking => 'Valigia';
+
+  @override
+  String get checklistTplDocuments => 'Documenti';
+
+  @override
+  String get checklistTplBeforeTrip => 'Prima di partire';
+
+  @override
+  String get checklistTplLeavingHome => 'Prima di uscire di casa';
+
+  @override
+  String get checklistTplHealth => 'Farmaci e igiene';
+
+  @override
+  String get checklistTplElectronics => 'Elettronica';
+
+  @override
+  String get checklistTplEmpty => 'Vuota';
+
+  @override
+  String get checklistCatClothes => 'Vestiti';
+
+  @override
+  String get checklistCatBathroom => 'Bagno';
+
+  @override
+  String get checklistCatAccessories => 'Accessori';
+
+  @override
+  String get checklistCatDocuments => 'Documenti';
+
+  @override
+  String get checklistCatTodo => 'Da fare';
+
+  @override
+  String get checklistCatHome => 'Casa';
+
+  @override
+  String get checklistCatMedicines => 'Farmaci';
+
+  @override
+  String get checklistCatHygiene => 'Igiene';
+
+  @override
+  String get checklistCatElectronics => 'Elettronica';
+
+  @override
+  String get checklistCatGeneral => 'Generale';
+
+  @override
+  String get checklistItemsClothes => 'Magliette|Pantaloni|Intimo|Calze|Pigiama|Felpa o maglione|Giacca|Scarpe comode';
+
+  @override
+  String get checklistItemsBathroom => 'Spazzolino e dentifricio|Deodorante|Shampoo|Crema solare|Pettine';
+
+  @override
+  String get checklistItemsAccessories => 'Occhiali da sole|Borraccia|Zaino da giorno|Ombrello';
+
+  @override
+  String get checklistItemsDocuments => 'Carta d\'identità o passaporto|Patente|Tessera sanitaria|Biglietti|Prenotazioni|Assicurazione di viaggio|Carte di pagamento|Contanti';
+
+  @override
+  String get checklistItemsBeforeTrip => 'Check-in online|Controllare la scadenza dei documenti|Avvisare la banca|Scaricare le mappe|Cambiare un po\' di valuta|Preparare la valigia|Salvare le prenotazioni';
+
+  @override
+  String get checklistItemsLeavingHome => 'Chiudere il gas|Spegnere le luci|Staccare le prese|Chiudere le finestre|Buttare la spazzatura|Annaffiare le piante|Chiudere a chiave';
+
+  @override
+  String get checklistItemsMedicines => 'Farmaci abituali|Antidolorifico|Cerotti|Disinfettante|Antistaminico';
+
+  @override
+  String get checklistItemsHygiene => 'Gel per le mani|Fazzoletti|Assorbenti';
+
+  @override
+  String get checklistItemsElectronics => 'Caricatore del telefono|Power bank|Adattatore per le prese|Cuffie|Cavi|Fotocamera';
+
+  @override
+  String get checklistEditTitle => 'Modifica checklist';
+
+  @override
+  String get checklistTemplate => 'Parti da un modello';
+
+  @override
+  String get checklistBlockList => 'Lista';
+
+  @override
+  String get checklistPrivate => 'Lista personale';
+
+  @override
+  String get checklistPrivateHint => 'La vede solo chi l\'ha creata.';
+
+  @override
+  String get checklistPersonal => 'Personale';
+
+  @override
+  String checklistDoneOf(int done, int total) {
+    return '$done su $total';
+  }
+
+  @override
+  String checklistProgress(int done, int total, int percent) {
+    return '$done su $total · $percent%';
+  }
+
+  @override
+  String get checklistImport => 'Importa la lista valigia';
+
+  @override
+  String checklistImportText(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'In Shopping ci sono $count voci della vecchia lista valigia: importale qui come checklist.',
+      one: 'In Shopping c\'è 1 voce della vecchia lista valigia: importala qui come checklist.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get checklistImported => 'Lista valigia importata nelle checklist.';
+
+  @override
+  String get checklistQuantityHint => 'n.';
+
+  @override
+  String get checklistDeleteEntry => 'Eliminare la voce?';
+
+  @override
+  String get checklistEntry => 'Voce';
+
+  @override
+  String get checklistAssignee => 'Assegnata a';
+
+  @override
+  String get checklistAddEntry => 'Aggiungi una voce';
+
+  @override
+  String get checklistAddCategory => 'Aggiungi una categoria';
+
+  @override
+  String get checklistTodo => 'Da fare';
+
+  @override
+  String get checklistDone => 'Fatte';
+
+  @override
+  String get checklistReset => 'Azzera le spunte';
+
+  @override
+  String get checklistDuplicate => 'Duplica la lista';
+
+  @override
+  String get checklistDuplicated => 'Lista duplicata.';
+
+  @override
+  String checklistCopyOf(String title) {
+    return '$title (copia)';
+  }
+
+  @override
+  String get checklistPrint => 'Stampa';
+
+  @override
+  String get checklistExport => 'Esporta CSV';
+
+  @override
+  String get checklistCsvColumns => 'Categoria|Voce|Quantità|Persona|Fatta';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

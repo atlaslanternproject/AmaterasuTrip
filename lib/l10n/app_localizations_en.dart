@@ -4198,6 +4198,191 @@ class AppLocalizationsEn extends AppLocalizations {
   String get placesGoogleMark => 'Google Maps';
 
   @override
+  String get tripMoreChecklists => 'Checklists';
+
+  @override
+  String get tripMoreChecklistsSubtitle => 'Packing, documents and things not to forget';
+
+  @override
+  String get checklistTitle => 'Checklists';
+
+  @override
+  String get checklistAdd => 'New checklist';
+
+  @override
+  String get checklistEmpty => 'No checklists yet: start from a ready template like Packing.';
+
+  @override
+  String get checklistTplPacking => 'Packing';
+
+  @override
+  String get checklistTplDocuments => 'Documents';
+
+  @override
+  String get checklistTplBeforeTrip => 'Before leaving';
+
+  @override
+  String get checklistTplLeavingHome => 'Before leaving home';
+
+  @override
+  String get checklistTplHealth => 'Medicines and hygiene';
+
+  @override
+  String get checklistTplElectronics => 'Electronics';
+
+  @override
+  String get checklistTplEmpty => 'Empty';
+
+  @override
+  String get checklistCatClothes => 'Clothes';
+
+  @override
+  String get checklistCatBathroom => 'Bathroom';
+
+  @override
+  String get checklistCatAccessories => 'Accessories';
+
+  @override
+  String get checklistCatDocuments => 'Documents';
+
+  @override
+  String get checklistCatTodo => 'To do';
+
+  @override
+  String get checklistCatHome => 'Home';
+
+  @override
+  String get checklistCatMedicines => 'Medicines';
+
+  @override
+  String get checklistCatHygiene => 'Hygiene';
+
+  @override
+  String get checklistCatElectronics => 'Electronics';
+
+  @override
+  String get checklistCatGeneral => 'General';
+
+  @override
+  String get checklistItemsClothes => 'T-shirts|Trousers|Underwear|Socks|Pyjamas|Sweater|Jacket|Comfortable shoes';
+
+  @override
+  String get checklistItemsBathroom => 'Toothbrush and toothpaste|Deodorant|Shampoo|Sunscreen|Comb';
+
+  @override
+  String get checklistItemsAccessories => 'Sunglasses|Water bottle|Day backpack|Umbrella';
+
+  @override
+  String get checklistItemsDocuments => 'ID card or passport|Driving licence|Health card|Tickets|Bookings|Travel insurance|Payment cards|Cash';
+
+  @override
+  String get checklistItemsBeforeTrip => 'Online check-in|Check document expiry dates|Tell the bank|Download maps|Change some currency|Pack the suitcase|Save the bookings';
+
+  @override
+  String get checklistItemsLeavingHome => 'Turn off the gas|Switch off the lights|Unplug devices|Close the windows|Take out the rubbish|Water the plants|Lock the door';
+
+  @override
+  String get checklistItemsMedicines => 'Usual medicines|Painkiller|Plasters|Disinfectant|Antihistamine';
+
+  @override
+  String get checklistItemsHygiene => 'Hand sanitiser|Tissues|Sanitary pads';
+
+  @override
+  String get checklistItemsElectronics => 'Phone charger|Power bank|Plug adapter|Headphones|Cables|Camera';
+
+  @override
+  String get checklistEditTitle => 'Edit checklist';
+
+  @override
+  String get checklistTemplate => 'Start from a template';
+
+  @override
+  String get checklistBlockList => 'List';
+
+  @override
+  String get checklistPrivate => 'Personal list';
+
+  @override
+  String get checklistPrivateHint => 'Only its author can see it.';
+
+  @override
+  String get checklistPersonal => 'Personal';
+
+  @override
+  String checklistDoneOf(int done, int total) {
+    return '$done of $total';
+  }
+
+  @override
+  String checklistProgress(int done, int total, int percent) {
+    return '$done of $total · $percent%';
+  }
+
+  @override
+  String get checklistImport => 'Import the packing list';
+
+  @override
+  String checklistImportText(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Shopping still has $count items of the old packing list: import them here as a checklist.',
+      one: 'Shopping still has 1 item of the old packing list: import it here as a checklist.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get checklistImported => 'Packing list imported into the checklists.';
+
+  @override
+  String get checklistQuantityHint => 'no.';
+
+  @override
+  String get checklistDeleteEntry => 'Delete the item?';
+
+  @override
+  String get checklistEntry => 'Item';
+
+  @override
+  String get checklistAssignee => 'Assigned to';
+
+  @override
+  String get checklistAddEntry => 'Add an item';
+
+  @override
+  String get checklistAddCategory => 'Add a category';
+
+  @override
+  String get checklistTodo => 'To do';
+
+  @override
+  String get checklistDone => 'Done';
+
+  @override
+  String get checklistReset => 'Clear the ticks';
+
+  @override
+  String get checklistDuplicate => 'Duplicate the list';
+
+  @override
+  String get checklistDuplicated => 'List duplicated.';
+
+  @override
+  String checklistCopyOf(String title) {
+    return '$title (copy)';
+  }
+
+  @override
+  String get checklistPrint => 'Print';
+
+  @override
+  String get checklistExport => 'Export CSV';
+
+  @override
+  String get checklistCsvColumns => 'Category|Item|Quantity|Person|Done';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

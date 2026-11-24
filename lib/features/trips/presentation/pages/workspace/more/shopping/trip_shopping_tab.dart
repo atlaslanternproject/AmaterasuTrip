@@ -21,10 +21,9 @@ import 'editor/trip_shopping_editors.dart';
 import 'widgets/trip_shopping_entries.dart';
 
 class TripShoppingTab extends ConsumerStatefulWidget {
-  const TripShoppingTab({super.key, required this.tripId, required this.tabs});
+  const TripShoppingTab({super.key, required this.tripId});
 
   final String tripId;
-  final Widget tabs;
 
   @override
   ConsumerState<TripShoppingTab> createState() => _TripShoppingTabState();
@@ -86,7 +85,6 @@ class _TripShoppingTabState extends ConsumerState<TripShoppingTab>
       title: l10n.tripShoppingTitle,
       addLabel: l10n.shoppingAdd,
       onAdd: _edit,
-      top: widget.tabs,
       items: ref.watch(tripShoppingProvider(tripId)),
       emptyIcon: Icons.shopping_bag_rounded,
       emptyText: l10n.shoppingEmpty,
