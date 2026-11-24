@@ -8027,6 +8027,18 @@ abstract class AppLocalizations {
   /// **'No'**
   String get restaurantFilterNo;
 
+  /// No description provided for @placesPhotoOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the photos'**
+  String get placesPhotoOpen;
+
+  /// No description provided for @placesGoogleMark.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Maps'**
+  String get placesGoogleMark;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

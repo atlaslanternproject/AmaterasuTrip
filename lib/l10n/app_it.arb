@@ -1437,6 +1437,8 @@
   "restaurantFilterAllergens": "Allergeni da segnalare",
   "restaurantFilterYes": "Sì",
   "restaurantFilterNo": "No",
+  "placesPhotoOpen": "Apri le foto",
+  "placesGoogleMark": "Google Maps",
   "staysExpenseCreate": "Crea spesa",
   "staysExpenseLinkExisting": "Collega spesa esistente",
   "staysExpenseLinkedTitle": "Spesa collegata: {title}",

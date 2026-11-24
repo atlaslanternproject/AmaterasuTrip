@@ -4192,6 +4192,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get restaurantFilterNo => 'No';
 
   @override
+  String get placesPhotoOpen => 'Apri le foto';
+
+  @override
+  String get placesGoogleMark => 'Google Maps';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

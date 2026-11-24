@@ -1510,6 +1510,8 @@
   "restaurantFilterAllergens": "Allergens to tell",
   "restaurantFilterYes": "Yes",
   "restaurantFilterNo": "No",
+  "placesPhotoOpen": "Open the photos",
+  "placesGoogleMark": "Google Maps",
   "staysExpenseCreate": "Create expense",
   "staysExpenseLinkExisting": "Link an existing expense",
   "staysExpenseLinkedTitle": "Linked expense: {title}",
