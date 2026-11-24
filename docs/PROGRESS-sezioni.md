@@ -18,9 +18,9 @@ riprende dalla prima tappa non finita.
 | 5. Luoghi salvati | fatta, pubblicata 1.19.0 il 23/11/2026 | feature/luoghi-salvati | 1.19.0+23 |
 | 6. Note | fatta, pubblicata 1.20.0 il 23/11/2026 | feature/note | 1.20.0+24 |
 | 7. Shopping e valigia | fatta, pubblicata 1.21.0 il 23/11/2026 | feature/shopping | 1.21.0+25 |
-| 8. Ricordi | fatta (pubblicazione: vedi tappa 9) | feature/ricordi | 1.22.0+26 |
-| 9. Spese, esportazione CSV/PDF | fatta (pubblicazione: vedi tappa 10) | feature/esporta-spese | 1.23.0+27 |
-| 10. Analisi Drive e budget per categoria | da fare | - | - |
+| 8. Ricordi | fatta, pubblicata 1.22.0 il 24/11/2026 | feature/ricordi | 1.22.0+26 |
+| 9. Spese, esportazione CSV/PDF | fatta, pubblicata 1.23.0 il 24/11/2026 | feature/esporta-spese | 1.23.0+27 |
+| 10. Analisi Drive e budget per categoria | fatta (solo analisi) | docs/analisi-drive-budget | - |
 
 ## Tappa 0 - Modulo Luogo condiviso
 
@@ -252,3 +252,42 @@ Prove da fare sul sito:
 4. Se il browser blocca i pop-up compare il messaggio: consenti i
    pop-up e riprova.
 5. In inglese le colonne e gli stati sono in inglese.
+
+## Tappa 10 - Analisi (solo lettura, nessuna modifica)
+
+### a) Archivio Google Drive del viaggio
+- Di chi è: del viaggiatore che crea il viaggio. Alla creazione
+  sceglie una cartella del SUO Drive e l'app crea dentro una
+  sottocartella col nome del viaggio
+  (GoogleDriveArchiveService.createTripArchive).
+- Permessi: l'app chiede solo lo scope drive.file (vede solo i file
+  e le cartelle che crea lei). Non condivide la cartella con gli
+  altri membri: nel codice non c'è nessuna chiamata ai permessi di
+  Drive. Gli altri membri oggi NON possono aprire né scriverci.
+- Metadati: nel documento del viaggio, campo cloudArchive
+  (provider, folderId, folderName, folderUrl, accountEmail), scritto
+  alla creazione e permesso da firestore.rules; nessun file su
+  Firebase Storage.
+- Limiti per le ricevute: (1) solo il creatore ha il token Drive, gli
+  altri dovrebbero passare dal suo account o la cartella andrebbe
+  condivisa (scrittura a ogni membro: serve la sua email Google e lo
+  scope drive.file non basta per vedere file creati da altri);
+  (2) ogni accesso chiede l'autorizzazione Google nel browser;
+  (3) le spese private non devono finire in una cartella condivisa.
+- Proposta: ricevute come LINK (già possibile col campo link) e, per
+  chi vuole, "Allega" che carica nella PROPRIA cartella Drive di chi
+  allega (non quella del viaggio), salvando nella spesa solo il link;
+  per le spese private la cartella resta personale. Da decidere con
+  BUDGET-2 (punto K del prompt v2).
+
+### b) Budget previsto per categoria
+- Esiste solo un budget personale complessivo e privato
+  (budgetPrivateOwners/{uid}/settings/personalBudget: amountMinor e
+  currency), con il calcolo dello speso
+  (personal_budget_spending_calculator.dart). Non esiste un budget
+  per categoria né di gruppo.
+- Manca: importi per categoria (mappa categoria -> importo) nello
+  stesso documento privato o in uno di gruppo, regole Firestore per i
+  nuovi campi, confronto previsto/speso per categoria nella
+  dashboard e avviso al superamento. Tocca regole e schermate del
+  budget (approvato): si fa solo dopo l'ok, nell'analisi BUDGET-2.
