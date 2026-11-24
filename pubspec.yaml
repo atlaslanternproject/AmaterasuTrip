@@ -1,7 +1,7 @@
 name: amaterasutrip
 description: "Amaterasu Trip - organizzazione e gestione dei viaggi"
 publish_to: 'none'
-version: 1.23.0+27
+version: 1.24.0+28
 environment:
   sdk: ^3.12.2
 dependencies:
