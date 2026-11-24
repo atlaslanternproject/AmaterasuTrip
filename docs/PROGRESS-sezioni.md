@@ -17,7 +17,7 @@ riprende dalla prima tappa non finita.
 | 4. Ristoranti | fatta, pubblicata 1.18.0 il 23/11/2026 | feature/ristoranti | 1.18.0+22 |
 | 5. Luoghi salvati | fatta, pubblicata 1.19.0 il 23/11/2026 | feature/luoghi-salvati | 1.19.0+23 |
 | 6. Note | fatta, pubblicata 1.20.0 il 23/11/2026 | feature/note | 1.20.0+24 |
-| 7. Shopping e valigia | fatta (pubblicazione: vedi tappa 8) | feature/shopping | 1.21.0+25 |
+| 7. Shopping e valigia | fatta, pubblicata 1.21.0 il 23/11/2026 | feature/shopping | 1.21.0+25 |
 | 8. Ricordi | da fare | - | - |
 | 9. Spese, esportazione CSV/PDF | da fare | - | - |
 | 10. Analisi Drive e budget per categoria | da fare | - | - |
@@ -195,7 +195,7 @@ Prove da fare sul sito:
 Commit:
 - e222ae3 docs: tappa 6 pubblicata.
 - c1c7b12 dati e regole (blocchi shoppingItems e packingItems).
-- pagina Shopping con schede Acquisti e Valigia (commit seguente).
+- cf9d283 pagina Shopping con schede Acquisti e Valigia.
 
 Prove da fare sul sito:
 1. Acquisti: aggiungi un regalo per un altro viaggiatore con
