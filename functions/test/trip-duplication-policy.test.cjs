@@ -16,7 +16,7 @@ test("Hotel/Alloggi (stays) are never copied", () => {
 test("trip sections (transports, bookings, ...) are never copied", () => {
   for (const id of [
     "transports", "reservations", "restaurants", "savedPlaces", "notes",
-    "shoppingItems", "packingItems", "memories",
+    "shoppingItems", "packingItems", "memories", "checklists",
   ]) {
     assert.equal(shouldCopyTripSubcollection(id), false, id);
   }

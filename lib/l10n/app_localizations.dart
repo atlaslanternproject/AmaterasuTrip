@@ -8039,6 +8039,192 @@ abstract class AppLocalizations {
   /// **'Google Maps'**
   String get placesGoogleMark;
 
+  /// No description provided for @tripMoreChecklists.
+  ///
+  /// In en, this message translates to:
+  /// **'Checklists'**
+  String get tripMoreChecklists;
+
+  /// No description provided for @tripMoreChecklistsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Packing, documents and things not to forget'**
+  String get tripMoreChecklistsSubtitle;
+
+  /// No description provided for @checklistTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Checklists'**
+  String get checklistTitle;
+
+  /// No description provided for @checklistAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'New checklist'**
+  String get checklistAdd;
+
+  /// No description provided for @checklistEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No checklists yet: start from a ready template like Packing.'**
+  String get checklistEmpty;
+
+  /// No description provided for @checklistTplPacking.
+  ///
+  /// In en, this message translates to:
+  /// **'Packing'**
+  String get checklistTplPacking;
+
+  /// No description provided for @checklistTplDocuments.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get checklistTplDocuments;
+
+  /// No description provided for @checklistTplBeforeTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Before leaving'**
+  String get checklistTplBeforeTrip;
+
+  /// No description provided for @checklistTplLeavingHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Before leaving home'**
+  String get checklistTplLeavingHome;
+
+  /// No description provided for @checklistTplHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicines and hygiene'**
+  String get checklistTplHealth;
+
+  /// No description provided for @checklistTplElectronics.
+  ///
+  /// In en, this message translates to:
+  /// **'Electronics'**
+  String get checklistTplElectronics;
+
+  /// No description provided for @checklistTplEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty'**
+  String get checklistTplEmpty;
+
+  /// No description provided for @checklistCatClothes.
+  ///
+  /// In en, this message translates to:
+  /// **'Clothes'**
+  String get checklistCatClothes;
+
+  /// No description provided for @checklistCatBathroom.
+  ///
+  /// In en, this message translates to:
+  /// **'Bathroom'**
+  String get checklistCatBathroom;
+
+  /// No description provided for @checklistCatAccessories.
+  ///
+  /// In en, this message translates to:
+  /// **'Accessories'**
+  String get checklistCatAccessories;
+
+  /// No description provided for @checklistCatDocuments.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents'**
+  String get checklistCatDocuments;
+
+  /// No description provided for @checklistCatTodo.
+  ///
+  /// In en, this message translates to:
+  /// **'To do'**
+  String get checklistCatTodo;
+
+  /// No description provided for @checklistCatHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get checklistCatHome;
+
+  /// No description provided for @checklistCatMedicines.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicines'**
+  String get checklistCatMedicines;
+
+  /// No description provided for @checklistCatHygiene.
+  ///
+  /// In en, this message translates to:
+  /// **'Hygiene'**
+  String get checklistCatHygiene;
+
+  /// No description provided for @checklistCatElectronics.
+  ///
+  /// In en, this message translates to:
+  /// **'Electronics'**
+  String get checklistCatElectronics;
+
+  /// No description provided for @checklistCatGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get checklistCatGeneral;
+
+  /// No description provided for @checklistItemsClothes.
+  ///
+  /// In en, this message translates to:
+  /// **'T-shirts|Trousers|Underwear|Socks|Pyjamas|Sweater|Jacket|Comfortable shoes'**
+  String get checklistItemsClothes;
+
+  /// No description provided for @checklistItemsBathroom.
+  ///
+  /// In en, this message translates to:
+  /// **'Toothbrush and toothpaste|Deodorant|Shampoo|Sunscreen|Comb'**
+  String get checklistItemsBathroom;
+
+  /// No description provided for @checklistItemsAccessories.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunglasses|Water bottle|Day backpack|Umbrella'**
+  String get checklistItemsAccessories;
+
+  /// No description provided for @checklistItemsDocuments.
+  ///
+  /// In en, this message translates to:
+  /// **'ID card or passport|Driving licence|Health card|Tickets|Bookings|Travel insurance|Payment cards|Cash'**
+  String get checklistItemsDocuments;
+
+  /// No description provided for @checklistItemsBeforeTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Online check-in|Check document expiry dates|Tell the bank|Download maps|Change some currency|Pack the suitcase|Save the bookings'**
+  String get checklistItemsBeforeTrip;
+
+  /// No description provided for @checklistItemsLeavingHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off the gas|Switch off the lights|Unplug devices|Close the windows|Take out the rubbish|Water the plants|Lock the door'**
+  String get checklistItemsLeavingHome;
+
+  /// No description provided for @checklistItemsMedicines.
+  ///
+  /// In en, this message translates to:
+  /// **'Usual medicines|Painkiller|Plasters|Disinfectant|Antihistamine'**
+  String get checklistItemsMedicines;
+
+  /// No description provided for @checklistItemsHygiene.
+  ///
+  /// In en, this message translates to:
+  /// **'Hand sanitiser|Tissues|Sanitary pads'**
+  String get checklistItemsHygiene;
+
+  /// No description provided for @checklistItemsElectronics.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone charger|Power bank|Plug adapter|Headphones|Cables|Camera'**
+  String get checklistItemsElectronics;
+
   /// No description provided for @staysExpenseCreate.
   ///
   /// In en, this message translates to:

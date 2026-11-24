@@ -4198,6 +4198,99 @@ class AppLocalizationsIt extends AppLocalizations {
   String get placesGoogleMark => 'Google Maps';
 
   @override
+  String get tripMoreChecklists => 'Checklist';
+
+  @override
+  String get tripMoreChecklistsSubtitle => 'Valigia, documenti e cose da non dimenticare';
+
+  @override
+  String get checklistTitle => 'Checklist';
+
+  @override
+  String get checklistAdd => 'Nuova checklist';
+
+  @override
+  String get checklistEmpty => 'Nessuna checklist: parti da un modello pronto come la Valigia.';
+
+  @override
+  String get checklistTplPacking => 'Valigia';
+
+  @override
+  String get checklistTplDocuments => 'Documenti';
+
+  @override
+  String get checklistTplBeforeTrip => 'Prima di partire';
+
+  @override
+  String get checklistTplLeavingHome => 'Prima di uscire di casa';
+
+  @override
+  String get checklistTplHealth => 'Farmaci e igiene';
+
+  @override
+  String get checklistTplElectronics => 'Elettronica';
+
+  @override
+  String get checklistTplEmpty => 'Vuota';
+
+  @override
+  String get checklistCatClothes => 'Vestiti';
+
+  @override
+  String get checklistCatBathroom => 'Bagno';
+
+  @override
+  String get checklistCatAccessories => 'Accessori';
+
+  @override
+  String get checklistCatDocuments => 'Documenti';
+
+  @override
+  String get checklistCatTodo => 'Da fare';
+
+  @override
+  String get checklistCatHome => 'Casa';
+
+  @override
+  String get checklistCatMedicines => 'Farmaci';
+
+  @override
+  String get checklistCatHygiene => 'Igiene';
+
+  @override
+  String get checklistCatElectronics => 'Elettronica';
+
+  @override
+  String get checklistCatGeneral => 'Generale';
+
+  @override
+  String get checklistItemsClothes => 'Magliette|Pantaloni|Intimo|Calze|Pigiama|Felpa o maglione|Giacca|Scarpe comode';
+
+  @override
+  String get checklistItemsBathroom => 'Spazzolino e dentifricio|Deodorante|Shampoo|Crema solare|Pettine';
+
+  @override
+  String get checklistItemsAccessories => 'Occhiali da sole|Borraccia|Zaino da giorno|Ombrello';
+
+  @override
+  String get checklistItemsDocuments => 'Carta d\'identità o passaporto|Patente|Tessera sanitaria|Biglietti|Prenotazioni|Assicurazione di viaggio|Carte di pagamento|Contanti';
+
+  @override
+  String get checklistItemsBeforeTrip => 'Check-in online|Controllare la scadenza dei documenti|Avvisare la banca|Scaricare le mappe|Cambiare un po\' di valuta|Preparare la valigia|Salvare le prenotazioni';
+
+  @override
+  String get checklistItemsLeavingHome => 'Chiudere il gas|Spegnere le luci|Staccare le prese|Chiudere le finestre|Buttare la spazzatura|Annaffiare le piante|Chiudere a chiave';
+
+  @override
+  String get checklistItemsMedicines => 'Farmaci abituali|Antidolorifico|Cerotti|Disinfettante|Antistaminico';
+
+  @override
+  String get checklistItemsHygiene => 'Gel per le mani|Fazzoletti|Assorbenti';
+
+  @override
+  String get checklistItemsElectronics => 'Caricatore del telefono|Power bank|Adattatore per le prese|Cuffie|Cavi|Fotocamera';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

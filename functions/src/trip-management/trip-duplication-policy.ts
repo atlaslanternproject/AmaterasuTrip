@@ -29,6 +29,8 @@ const excludedSubcollections = new Set<string>([
   "shoppingItems",
   "packingItems",
   "memories",
+  // Checklists (v1.26.0), including personal ones.
+  "checklists",
 ]);
 
 const excludedExternalReferenceFields =
