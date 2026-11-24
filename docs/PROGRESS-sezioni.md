@@ -303,8 +303,9 @@ Mappa/Itinerario).
 |---|---|---|---|
 | Passo 0 - regole fisse in CLAUDE.md | fatta | docs/v2-regole-analisi | - |
 | Passo 1 - INVENTARIO-UI, COSTI, API-ESTERNE, DIRETTIVE-UI | fatta | docs/v2-regole-analisi | - |
-| U1 - componenti condivisi delle direttive | fatta (pubblicazione: vedi 1b) | feature/ui-componenti | 1.24.0+28 |
-| 1b - correzioni di stile (filtri, valuta, nomi, allergeni, checklist, foto) | da fare | - | - |
+| U1 - componenti condivisi delle direttive | fatta, pubblicata 1.24.0 il 24/11/2026 | feature/ui-componenti | 1.24.0+28 |
+| 1b parte 1 - filtri, valuta, nomi, allergeni, luoghi, foto | fatta (pubblicazione: vedi 1b parte 2) | feature/stile-1b | 1.25.0+29 |
+| 1b parte 2 - sezione Checklist | da fare | - | - |
 | Sezioni - aggiunte v2 | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
@@ -343,3 +344,44 @@ Prove da fare sul sito:
 4. Salva e Annulla dell'editor hanno lo stesso aspetto in tutte le
    sezioni nuove.
 
+## 1b - Correzioni di stile (parte 1: punti 1, 2, 3, 4, 5, 7)
+Valutazioni (regola 1):
+- Nomi: (a) il budget usa già lo username (BudgetApi.travelers); (b)
+  funzione condivisa tripMemberShownName; (c) cambia il provider dei nomi
+  di alloggi e sezioni; test del nome. Le impostazioni del viaggio
+  (approvate) mostrano ancora il nome completo: in COERENZA.
+- Filtri: (a) componente degli alloggi; (b) estratto in
+  lib/core/widgets/filters con chiavi e testi identici; (c) alloggi (77
+  test invariati) e tutte le sezioni nuove; test aggiornati.
+- Valuta: (a) pulsante e pannello del budget, copiati in 3 file; (b)
+  budget_currency_choice.dart usato dal dialogo spese (272 test del
+  budget invariati), da alloggi e sezioni; toolbar e budget personale
+  hanno ancora la loro copia (TODO(audit) C7); (c) nessun calcolo
+  toccato.
+- Allergeni/diete: nuovi campi dei ristoranti; regole del blocco
+  restaurants ampliate (solo campi nuovi), test regole e widget.
+- Luoghi salvati: contatti (telefono, sito) da Google; regole del blocco
+  savedPlaces ampliate, test.
+- Foto: carosello condiviso: nella card solo la prima foto, conteggio e
+  "Google Maps"; visore al tocco con fino a 5 foto e autori; test.
+
+Commit: f33b7cd nomi, da3cbdb filtri, fb828ce valuta, 5cbb8ec allergeni
+e diete, 0e59d21 contatti dei luoghi salvati, 00b524f foto.
+
+Impatto su firestore.rules: solo campi facoltativi nuovi nei blocchi
+restaurants (allergens, allergenNotes, diets) e savedPlaces (phone,
+website); permessi invariati.
+
+Prove da fare sul sito:
+1. In Trasporti un solo pulsante "Filtri": apre il pannello, il numero
+   dei filtri attivi compare sul pulsante, "Azzera filtri" li toglie.
+2. Negli alloggi i filtri funzionano come prima.
+3. Costo previsto (alloggi, trasporti, ristoranti, shopping): il
+   pulsante "Valuta: EUR" apre lo stesso pannello di ricerca del budget.
+4. Nelle sezioni nuove passeggeri, ospiti e autori mostrano lo username.
+5. Ristorante: spunta Glutine e Arachidi e "Vegano": la card mostra
+   "Da segnalare: …" e l'etichetta; filtro Allergeni sì/no.
+6. Luogo salvato cercato su Google: telefono e sito compilati;
+   "Contatta" funziona.
+7. Card con foto: si vede una sola foto con "Google Maps" e il numero
+   di foto; toccandola si apre il visore con frecce e autori.
