@@ -334,4 +334,5 @@ A fine programmazione:
 - Audit finale di coerenza tra i moduli.
 - Spese collegate a ristoranti e prenotazioni (per gli
   alloggi è già fatto).
-- Esportazione del riepilogo spese in PDF o CSV.
+- Esportazione del riepilogo spese in PDF o CSV: fatta nella
+  1.23.0 (pulsante nella pagina spese, solo lettura).
