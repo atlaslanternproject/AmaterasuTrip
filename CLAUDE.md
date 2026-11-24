@@ -286,7 +286,7 @@ Finito:
 - Prenotazioni (lib/features/trips/reservations e
   pages/workspace/more/bookings): nome, categoria (biglietto,
   ingresso, tour, escursione, altro), stato, data e ora,
-  luogo Google con foto, codice,   partecipanti, regole
+  luogo Google con foto, codice, link, partecipanti, regole
   di cancellazione, scadenza "da prenotare entro il" (rossa
   negli ultimi 3 giorni), intestatario, numero di biglietti,
   biglietto a schermo intero come QR da un testo (qr_flutter,
