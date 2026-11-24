@@ -10,12 +10,10 @@ import '../calculations/budget_money_formatter.dart';
 import 'budget_api.dart';
 import 'budget_category_picker.dart';
 import 'budget_money_input.dart';
-import 'budget_currency.dart';
+import 'budget_currency_choice.dart';
 import 'budget_payment_methods_editor.dart';
 import '../models/budget_payment_allocation.dart';
 import '../models/budget_payment_plan.dart';
-import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
-import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
@@ -293,12 +291,10 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                   icon: Icons.currency_exchange_rounded,
                   accent: true,
                   children: [
-                    OutlinedButton.icon(
+                    BudgetCurrencyButton(
+                      currency: _selectedCurrency,
+                      label: budgetL10n(it).btCurrencyLabel,
                       onPressed: _saving ? null : _pickCurrency,
-                      icon: const Icon(Icons.currency_exchange_rounded),
-                      label: Text(
-                        '${budgetL10n(it).btCurrencyLabel}: $_selectedCurrency',
-                      ),
                     ),
                     const SizedBox(height: 12),
                     TextField(

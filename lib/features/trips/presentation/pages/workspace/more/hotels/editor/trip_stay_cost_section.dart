@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
-import 'package:amaterasutrip/features/trips/budget/calculations/currency_minor_units.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_currency_choice.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_stay_draft.dart';
 import 'trip_stay_editor_section.dart';
@@ -37,53 +37,38 @@ class TripStayCostSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final format = MaterialLocalizations.of(context).formatMediumDate;
-    final codes = {
-      ...CurrencyMinorUnits.supportedCodes,
-      draft.costCurrency,
-    }.toList()..sort();
     final until = draft.freeCancellationUntil;
     return TripStayEditorSection(
       title: l10n.staysSectionCost,
       icon: Icons.payments_outlined,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: TextField(
-                key: const Key('stay-cost'),
-                controller: draft.cost,
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true,
-                ),
-                onChanged: (_) => onChanged(),
-                decoration: InputDecoration(
-                  labelText: l10n.staysCost,
-                  helperText: l10n.staysCostHint,
-                  helperMaxLines: 2,
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            SizedBox(
-              width: 110,
-              child: DropdownButtonFormField<String>(
-                key: const Key('stay-cost-currency'),
-                initialValue: draft.costCurrency,
-                menuMaxHeight: 320,
-                decoration: InputDecoration(labelText: l10n.staysCostCurrency),
-                items: [
-                  for (final code in codes)
-                    DropdownMenuItem(value: code, child: Text(code)),
-                ],
-                onChanged: (code) {
-                  if (code == null) return;
-                  draft.costCurrency = code;
-                  onChanged();
-                },
-              ),
-            ),
-          ],
+        BudgetCurrencyButton(
+          key: const Key('stay-cost-currency'),
+          currency: draft.costCurrency,
+          label: l10n.staysCostCurrency,
+          onPressed: () async {
+            final code = await pickBudgetCurrency(
+              context,
+              selected: draft.costCurrency,
+              title: l10n.staysCostCurrency,
+            );
+            if (code == null) return;
+            draft.costCurrency = code;
+            onChanged();
+          },
+        ),
+        const SizedBox(height: 12),
+        TextField(
+          key: const Key('stay-cost'),
+          controller: draft.cost,
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          onChanged: (_) => onChanged(),
+          decoration: InputDecoration(
+            labelText: l10n.staysCost,
+            suffixText: draft.costCurrency,
+            helperText: l10n.staysCostHint,
+            helperMaxLines: 2,
+          ),
         ),
         const SizedBox(height: 12),
         Wrap(

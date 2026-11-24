@@ -1,10 +1,10 @@
-// Costo previsto negli editor delle sezioni: importo e valuta (stesso
-// formato degli importi del budget). Diventa il valore di partenza di
+// Costo previsto negli editor delle sezioni: valuta con lo stesso pulsante
+// e pannello del budget, e importo nello stesso formato. Diventa il valore di partenza di
 // "Crea spesa"; vuoto = nessun costo.
 
 import 'package:flutter/material.dart';
 
-import 'package:amaterasutrip/features/trips/budget/calculations/currency_minor_units.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_currency_choice.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_money_input.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
@@ -61,43 +61,35 @@ class TripSectionCostField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final codes = {
-      ...CurrencyMinorUnits.supportedCodes,
-      draft.currency,
-    }.toList()..sort();
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: TextField(
-            key: Key('$keyPrefix-cost'),
-            controller: draft.text,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            onChanged: (_) => onChanged(),
-            decoration: InputDecoration(
-              labelText: label ?? l10n.sectionsCost,
-              helperText: l10n.sectionsCostHint,
-              helperMaxLines: 2,
-            ),
-          ),
+        BudgetCurrencyButton(
+          key: Key('$keyPrefix-cost-currency'),
+          currency: draft.currency,
+          label: l10n.sectionsCostCurrency,
+          onPressed: () async {
+            final code = await pickBudgetCurrency(
+              context,
+              selected: draft.currency,
+              title: l10n.sectionsCostCurrency,
+            );
+            if (code == null) return;
+            draft.currency = code;
+            onChanged();
+          },
         ),
-        const SizedBox(width: 12),
-        SizedBox(
-          width: 110,
-          child: DropdownButtonFormField<String>(
-            key: Key('$keyPrefix-cost-currency'),
-            initialValue: draft.currency,
-            menuMaxHeight: 320,
-            decoration: InputDecoration(labelText: l10n.sectionsCostCurrency),
-            items: [
-              for (final code in codes)
-                DropdownMenuItem(value: code, child: Text(code)),
-            ],
-            onChanged: (code) {
-              if (code == null) return;
-              draft.currency = code;
-              onChanged();
-            },
+        const SizedBox(height: 12),
+        TextField(
+          key: Key('$keyPrefix-cost'),
+          controller: draft.text,
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          onChanged: (_) => onChanged(),
+          decoration: InputDecoration(
+            labelText: label ?? l10n.sectionsCost,
+            suffixText: draft.currency,
+            helperText: l10n.sectionsCostHint,
+            helperMaxLines: 2,
           ),
         ),
       ],
