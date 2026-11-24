@@ -3953,6 +3953,59 @@ class AppLocalizationsIt extends AppLocalizations {
   String get packingErrQuantity => 'Quantità: scrivi un numero da 1 a 99.';
 
   @override
+  String get memoryAdd => 'Nuovo ricordo';
+
+  @override
+  String get memoryEmpty => 'Nessun ricordo ancora: scrivi il diario di ogni giorno o collega l\'album delle foto.';
+
+  @override
+  String get memoryEditorNewTitle => 'Nuovo ricordo';
+
+  @override
+  String get memoryEditorEditTitle => 'Modifica ricordo';
+
+  @override
+  String get memoryBlockKind => 'Tipo di ricordo';
+
+  @override
+  String get memoryDiary => 'Diario del giorno';
+
+  @override
+  String get memoryAlbum => 'Album';
+
+  @override
+  String get memoryDay => 'Giorno';
+
+  @override
+  String get memoryRating => 'Com\'è andata la giornata';
+
+  @override
+  String get memoryMoment => 'Il momento del giorno (una frase)';
+
+  @override
+  String get memoryText => 'Diario';
+
+  @override
+  String get memoryAlbumName => 'Nome dell\'album';
+
+  @override
+  String get memoryAlbumLink => 'Link all\'album';
+
+  @override
+  String get memoryAlbumHint => 'Le foto restano nel tuo servizio (Google Foto, iCloud…): qui si salva solo il link.';
+
+  @override
+  String get memoryOpenAlbum => 'Apri l\'album';
+
+  @override
+  String memoryWrittenBy(String name) {
+    return 'Scritto da $name';
+  }
+
+  @override
+  String get memoryErrDate => 'Scegli il giorno del diario.';
+
+  @override
   String get staysExpenseCreate => 'Crea spesa';
 
   @override

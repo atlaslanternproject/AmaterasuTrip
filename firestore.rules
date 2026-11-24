@@ -1088,6 +1088,39 @@ service cloud.firestore {
         allow delete: if sectionDeleteOk();
       }
 
+      // RICORDI (memories, v1.22.0): diario per giorno o link a un album
+      // esterno. Nessuna foto su Firebase.
+      function validMemory(data) {
+        return sectionBase(data, ['kind'], [
+          'kind', 'date', 'text', 'rating', 'moment', 'title', 'url'
+        ])
+          && data.kind in ['day', 'album']
+          && sectionDay(data, 'date')
+          && sectionText(data, 'text', 10000)
+          && sectionText(data, 'moment', 300)
+          && sectionText(data, 'title', 200)
+          && sectionLink(data, 'url')
+          && (
+            data.get('rating', null) == null
+            || (data.rating is int && data.rating >= 1 && data.rating <= 5)
+          )
+          && (
+            (data.kind == 'day' && data.get('date', null) != null)
+            || (data.kind == 'album'
+              && data.get('url', null) != null
+              && data.get('title', null) != null)
+          );
+      }
+
+      match /memories/{itemId} {
+        allow get, list: if sectionMember();
+        allow create: if validMemory(request.resource.data)
+          && sectionCreateOk(request.resource.data);
+        allow update: if validMemory(request.resource.data)
+          && sectionUpdateOk(request.resource.data);
+        allow delete: if sectionDeleteOk();
+      }
+
       match /members/{memberUid} {
         allow read: if false;
 

@@ -3953,6 +3953,59 @@ class AppLocalizationsEn extends AppLocalizations {
   String get packingErrQuantity => 'Quantity: enter a number from 1 to 99.';
 
   @override
+  String get memoryAdd => 'New memory';
+
+  @override
+  String get memoryEmpty => 'No memories yet: write the diary of each day or link the photo album.';
+
+  @override
+  String get memoryEditorNewTitle => 'New memory';
+
+  @override
+  String get memoryEditorEditTitle => 'Edit memory';
+
+  @override
+  String get memoryBlockKind => 'Kind of memory';
+
+  @override
+  String get memoryDiary => 'Day diary';
+
+  @override
+  String get memoryAlbum => 'Album';
+
+  @override
+  String get memoryDay => 'Day';
+
+  @override
+  String get memoryRating => 'How the day went';
+
+  @override
+  String get memoryMoment => 'The moment of the day (one sentence)';
+
+  @override
+  String get memoryText => 'Diary';
+
+  @override
+  String get memoryAlbumName => 'Album name';
+
+  @override
+  String get memoryAlbumLink => 'Album link';
+
+  @override
+  String get memoryAlbumHint => 'Photos stay in your service (Google Photos, iCloud…): only the link is saved here.';
+
+  @override
+  String get memoryOpenAlbum => 'Open the album';
+
+  @override
+  String memoryWrittenBy(String name) {
+    return 'Written by $name';
+  }
+
+  @override
+  String get memoryErrDate => 'Choose the day of the diary.';
+
+  @override
   String get staysExpenseCreate => 'Create expense';
 
   @override

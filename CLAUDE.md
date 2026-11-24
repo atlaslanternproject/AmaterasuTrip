@@ -273,6 +273,12 @@ Finito:
   dal budget) e Valigia (voce, per persona o per tutti,
   quantità, in valigia); spunta dalla card, filtri, tre viste.
   Dati in trips/{tripId}/shoppingItems e packingItems.
+- Ricordi (lib/features/trips/memories e
+  pages/workspace/more/memories): diario per giorno (data,
+  valutazione 1-5 stelle, il momento del giorno, testo, autore)
+  e link agli album esterni con il modulo link; nessuna foto su
+  Firebase; filtro diario/album, tre viste. Dati in
+  trips/{tripId}/memories.
 - Tolti di proposito: notifiche (ottobre 2026) e cifratura
   E2EE dei dati sanitari, sostituita dai profili
   organizzativi.
@@ -294,7 +300,6 @@ Da sviluppare (oggi sono solo pagine segnaposto):
 - Itinerario
 - Mappa
 - Viaggiatori (pagina del workspace)
-- Ricordi
 
 Documentazione: README.md (avvio, struttura, test,
 pubblicazione); docs/ contiene privacy.html, la checklist
