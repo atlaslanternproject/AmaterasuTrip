@@ -111,7 +111,10 @@ TripSectionEntry tripRestaurantEntry(
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),
     ],
-    links: [if (item.website case final site?) (l10n.restaurantWebsite, site)],
+    links: [
+      if (item.website case final site?) (l10n.restaurantWebsite, site),
+      ...TripSectionLabels.usefulLinks(item.usefulLinks, l10n),
+    ],
     photoPlaceId: item.place.placeId,
     maps: item.place.maps,
     phone: item.phone,

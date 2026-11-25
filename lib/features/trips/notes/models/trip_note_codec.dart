@@ -4,6 +4,7 @@
 
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'trip_note.dart';
 
@@ -24,6 +25,7 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
     'linkSection',
     'linkId',
     'linkName',
+    'usefulLinks',
   ];
 
   @override
@@ -44,6 +46,7 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
       'linkId': link.id,
       'linkName': link.name.trim(),
     },
+    ...TripSectionLinks.toMap(item.usefulLinks),
   };
 
   @override
@@ -86,6 +89,7 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
               linkName != null
           ? TripNoteLink(section: section!, id: linkId, name: linkName)
           : null,
+      usefulLinks: TripSectionLinks.read(data),
     );
   }
 
@@ -108,6 +112,11 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
         'checklistItem',
         max: itemMax,
       );
+    c.check(
+      TripSectionLinks.invalid(item.usefulLinks),
+      TripSectionProblemKind.link,
+      'usefulLinks',
+    );
     return c.found;
   }
 }

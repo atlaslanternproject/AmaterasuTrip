@@ -9,6 +9,7 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/notes/models/trip_note.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_chip.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_entry.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 abstract final class TripNoteLabels {
@@ -73,6 +74,7 @@ TripSectionEntry tripNoteEntry(BuildContext context, TripNote note) {
       if (note.body case final body?)
         TripSectionLine(Icons.notes_outlined, body, formatted: true),
     ],
+    links: TripSectionLabels.usefulLinks(note.usefulLinks, l10n),
   );
 }
 

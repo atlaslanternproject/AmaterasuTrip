@@ -4,6 +4,7 @@
 
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'trip_checklist.dart';
 
@@ -23,6 +24,9 @@ class TripChecklistCodec implements TripSectionCodec<TripChecklist> {
   @override
   List<String> get optionalKeys => const ['template', 'categories', 'items'];
 
+  /// Useful links of one entry: few, the list document stays small.
+  static const entryLinksMax = 3;
+
   static Map<String, dynamic> entryMap(TripChecklistEntry e) => {
     'text': e.text.trim(),
     'category': e.category.trim(),
@@ -30,6 +34,7 @@ class TripChecklistCodec implements TripSectionCodec<TripChecklist> {
     'order': e.order,
     'quantity': ?e.quantity,
     'assigneeUid': ?TripSectionFields.clean(e.assigneeUid),
+    ...TripSectionLinks.toMap(e.usefulLinks),
   };
 
   @override
@@ -78,6 +83,9 @@ class TripChecklistCodec implements TripSectionCodec<TripChecklist> {
               : null,
           done: value['done'] == true,
           order: value['order'] is int ? value['order'] as int : 0,
+          usefulLinks: TripSectionLinks.read({
+            TripSectionLinks.key: value[TripSectionLinks.key],
+          }),
         );
       }
     }
@@ -109,6 +117,12 @@ class TripChecklistCodec implements TripSectionCodec<TripChecklist> {
         quantity != null && (quantity < 1 || quantity > quantityMax),
         TripSectionProblemKind.other,
         'quantity',
+      )
+      ..check(
+        e.usefulLinks.length > entryLinksMax ||
+            TripSectionLinks.invalid(e.usefulLinks),
+        TripSectionProblemKind.link,
+        'usefulLinks',
       );
     return c.found;
   }

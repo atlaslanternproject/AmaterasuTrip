@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
+
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_cost_field.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_place_field.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
@@ -69,6 +71,9 @@ class TripTransportDraft {
   final TripTransportExtrasDraft extras;
   final TripSectionCostDraft cost;
 
+  /// Useful links, as in the bucket list.
+  late final links = AmaterasuLinksDraft(_initial?.usefulLinks ?? const []);
+
   bool get isNew => _initial == null;
 
   TripTransport toItem({required String tripId, required String authorUid}) {
@@ -100,10 +105,12 @@ class TripTransportDraft {
       estimatedCostMinorUnits: cost.minorUnits,
       estimatedCostCurrency: cost.savedCurrency,
       expenseId: initial?.expenseId,
+      usefulLinks: links.links,
     );
   }
 
   void dispose() {
+    links.dispose();
     for (final c in [
       carrier,
       number,

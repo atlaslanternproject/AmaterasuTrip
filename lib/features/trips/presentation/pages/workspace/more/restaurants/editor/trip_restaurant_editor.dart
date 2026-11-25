@@ -3,6 +3,8 @@
 // contatti, costo e note.
 
 import 'package:flutter/material.dart';
+
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_stars.dart';
 
 import 'package:amaterasutrip/core/places/amaterasu_contacts_autofill.dart';
@@ -175,6 +177,11 @@ class _TripRestaurantEditorState extends State<TripRestaurantEditor>
           children: [
             _text('notes', d.notes, l10n.sectionsNotes, max: 10000, lines: 2),
           ],
+        ),
+        TripSectionLinksBlock(
+          keyPrefix: 'restaurant',
+          draft: _draft.links,
+          onChanged: _changed,
         ),
       ],
     );

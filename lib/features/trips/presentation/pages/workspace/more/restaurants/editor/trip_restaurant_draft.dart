@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
+
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant.dart';
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant_food.dart';
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant_status.dart';
@@ -62,6 +64,9 @@ class TripRestaurantDraft {
   final Set<String> diets;
   final TripSectionCostDraft cost;
 
+  /// Useful links, as in the bucket list.
+  late final links = AmaterasuLinksDraft(_initial?.usefulLinks ?? const []);
+
   bool get isNew => _initial == null;
 
   TripRestaurant toItem({required String tripId, required String authorUid}) {
@@ -99,10 +104,12 @@ class TripRestaurantDraft {
       estimatedCostMinorUnits: cost.minorUnits,
       estimatedCostCurrency: cost.savedCurrency,
       expenseId: initial?.expenseId,
+      usefulLinks: links.links,
     );
   }
 
   void dispose() {
+    links.dispose();
     for (final c in [
       phone,
       website,

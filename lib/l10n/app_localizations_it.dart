@@ -2788,6 +2788,23 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonLinkOpenFailed => 'Impossibile aprire il link. Puoi copiarlo e aprirlo nel browser.';
 
   @override
+  String get commonUsefulLinks => 'Link utili';
+
+  @override
+  String commonLinkNumber(int number) {
+    return 'Link $number';
+  }
+
+  @override
+  String get commonLinkRemove => 'Rimuovi link';
+
+  @override
+  String get commonLinkAdd => 'Aggiungi un link';
+
+  @override
+  String get commonLinksInvalid => 'Link utili: scrivi indirizzi che iniziano con http:// o https:// (al massimo 10).';
+
+  @override
   String get commonLinkCopy => 'Copia link';
 
   @override

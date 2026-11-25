@@ -8,6 +8,7 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_chip.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_entry.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/features/trips/shopping/models/trip_packing_item.dart';
 import 'package:amaterasutrip/features/trips/shopping/models/trip_shopping_item.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -74,6 +75,7 @@ TripSectionEntry tripShoppingEntry(
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),
     ],
+    links: TripSectionLabels.usefulLinks(item.usefulLinks, l10n),
   );
 }
 

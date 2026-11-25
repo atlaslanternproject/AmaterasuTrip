@@ -5,6 +5,7 @@
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_priority.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'trip_packing_item.dart';
 import 'trip_shopping_item.dart';
@@ -37,6 +38,7 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
     'actualCostCurrency',
     'notes',
     'expenseId',
+    'usefulLinks',
   ];
 
   @override
@@ -66,6 +68,7 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
       },
       'notes': ?text(item.notes),
       'expenseId': ?text(item.expenseId),
+      ...TripSectionLinks.toMap(item.usefulLinks),
     };
   }
 
@@ -100,6 +103,7 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
       actualCostCurrency: hasActual ? actualCurrency : null,
       notes: text('notes'),
       expenseId: text('expenseId'),
+      usefulLinks: TripSectionLinks.read(data),
     );
   }
 
@@ -133,6 +137,11 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
         TripSectionProblemKind.expense,
         'expenseId',
       );
+    c.check(
+      TripSectionLinks.invalid(item.usefulLinks),
+      TripSectionProblemKind.link,
+      'usefulLinks',
+    );
     return c.found;
   }
 }

@@ -14,6 +14,7 @@ class TripChecklistEntry {
     this.assigneeUid,
     this.done = false,
     this.order = 0,
+    this.usefulLinks = const [],
   });
 
   /// Key of the entry inside the list (letters, digits, - and _).
@@ -25,6 +26,9 @@ class TripChecklistEntry {
   final bool done;
   final int order;
 
+  /// Useful links of the entry (at most 3).
+  final List<String> usefulLinks;
+
   TripChecklistEntry copyWith({
     String? text,
     String? category,
@@ -34,6 +38,7 @@ class TripChecklistEntry {
     bool clearAssignee = false,
     bool? done,
     int? order,
+    List<String>? usefulLinks,
   }) => TripChecklistEntry(
     id: id,
     text: text ?? this.text,
@@ -42,6 +47,7 @@ class TripChecklistEntry {
     assigneeUid: clearAssignee ? null : (assigneeUid ?? this.assigneeUid),
     done: done ?? this.done,
     order: order ?? this.order,
+    usefulLinks: usefulLinks ?? this.usefulLinks,
   );
 }
 

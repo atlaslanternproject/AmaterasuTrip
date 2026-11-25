@@ -4,6 +4,10 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
+
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
+
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_stars.dart';
 
 import 'package:amaterasutrip/features/trips/memories/models/trip_memory.dart';
@@ -47,9 +51,13 @@ class _TripMemoryEditorState extends State<TripMemoryEditor>
   late final _text = TextEditingController(text: _i?.text);
   late final _title = TextEditingController(text: _i?.title);
   late final _url = TextEditingController(text: _i?.url);
+  late final _links = AmaterasuLinksDraft(
+    widget.initial?.usefulLinks ?? const [],
+  );
 
   @override
   void dispose() {
+    _links.dispose();
     for (final c in [_moment, _text, _title, _url]) {
       c.dispose();
     }
@@ -71,6 +79,7 @@ class _TripMemoryEditorState extends State<TripMemoryEditor>
       text: album ? null : clean(_text),
       title: album ? clean(_title) : null,
       url: album ? clean(_url) : null,
+      usefulLinks: _links.links,
     );
     return saveWith(
       problems: [
@@ -167,6 +176,11 @@ class _TripMemoryEditorState extends State<TripMemoryEditor>
               _field('text', _text, l10n.memoryText, 10000, lines: 4),
             ],
           ),
+        TripSectionLinksBlock(
+          keyPrefix: 'memory',
+          draft: _links,
+          onChanged: () => setState(() {}),
+        ),
       ],
     );
   }

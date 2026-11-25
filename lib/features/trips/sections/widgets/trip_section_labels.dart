@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_web_link.dart';
+
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -45,6 +47,15 @@ abstract final class TripSectionLabels {
       : l10n.sectionsCostEstimated(
           BudgetMoneyFormatter.format(minor, currency),
         );
+
+  /// "Useful links" as (site name, link) for the card chips.
+  static List<(String, String)> usefulLinks(
+    List<String> links,
+    AppLocalizations l10n,
+  ) => [
+    for (final link in links)
+      (AmaterasuWebLink.label(link, l10n.commonLinkOpen), link),
+  ];
 
   /// Message for [problem]; [fieldLabel] names the field, [other] gives
   /// the text of section-specific problems.

@@ -5,6 +5,7 @@ import 'package:amaterasutrip/core/places/amaterasu_contact_validator.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_priority.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
@@ -32,6 +33,7 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
     'plannedDay',
     'estimatedCostMinorUnits',
     'estimatedCostCurrency',
+    'usefulLinks',
   ];
 
   static const priorities = TripSectionPriority.levels;
@@ -59,6 +61,7 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
       item.entryPriceMinorUnits,
       item.entryPriceCurrency,
     ),
+    ...TripSectionLinks.toMap(item.usefulLinks),
   };
 
   @override
@@ -95,6 +98,7 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
       plannedDay: TripStayDates.parse(data['plannedDay']),
       entryPriceMinorUnits: cost,
       entryPriceCurrency: currency,
+      usefulLinks: TripSectionLinks.read(data),
     );
   }
 
@@ -141,6 +145,11 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
         TripSectionProblemKind.link,
         'website',
       );
+    c.check(
+      TripSectionLinks.invalid(item.usefulLinks),
+      TripSectionProblemKind.link,
+      'usefulLinks',
+    );
     return c.found;
   }
 }

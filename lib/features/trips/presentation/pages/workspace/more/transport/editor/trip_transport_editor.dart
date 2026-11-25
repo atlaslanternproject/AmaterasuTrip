@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
+
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_block.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_chips.dart';
@@ -141,6 +143,11 @@ class _TripTransportEditorState extends State<TripTransportEditor>
               decoration: InputDecoration(labelText: l10n.sectionsNotes),
             ),
           ],
+        ),
+        TripSectionLinksBlock(
+          keyPrefix: 'transport',
+          draft: _draft.links,
+          onChanged: _changed,
         ),
       ],
     );
