@@ -36,6 +36,8 @@ final docs = [
   doc(TripSearchSection.transports, 't1', 'Volo Roma Tokyo', ['AZ784']),
   doc(TripSearchSection.notes, 'n1', 'Frasi utili', ['Arigatō = grazie']),
   doc(TripSearchSection.checklists, 'c1', 'Valigia', ['Passaporto']),
+  doc(TripSearchSection.expenses, 'e1', 'Cena sushi', ['Ginza']),
+  doc(TripSearchSection.bucketList, 'b1', 'Fushimi Inari'),
   for (var i = 0; i < 25; i++)
     doc(TripSearchSection.savedPlaces, 'p$i', 'Tempio $i', ['Kyoto']),
 ];
@@ -51,6 +53,10 @@ Future<void> open(WidgetTester tester, {double width = 1000}) async {
       GoRoute(
         path: '/trips/:tripId/more/search',
         builder: (_, s) => TripSearchPage(tripId: s.pathParameters['tripId']!),
+      ),
+      GoRoute(
+        path: '/trips/:tripId/bucket-list',
+        builder: (_, s) => const Text('bucket list'),
       ),
       GoRoute(
         path: '/trips/:tripId/more/:page',
@@ -208,6 +214,23 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('page transport'), findsOneWidget);
     expect(focusOf(tester, 'page transport'), 't1');
+  });
+
+  testWidgets('expense and bucket list open their pages, no highlight', (
+    tester,
+  ) async {
+    await open(tester);
+    await type(tester, 'ginza');
+    await tester.tap(find.byKey(const Key('search-result-expenses-e1')));
+    await tester.pumpAndSettle();
+    expect(find.text('page expenses'), findsOneWidget);
+    expect(focusOf(tester, 'page expenses'), isNull);
+    await open(tester);
+    await type(tester, 'fushimi');
+    await tester.tap(find.byKey(const Key('search-result-bucketList-b1')));
+    await tester.pumpAndSettle();
+    expect(find.text('bucket list'), findsOneWidget);
+    expect(focusOf(tester, 'bucket list'), isNull);
   });
 
   testWidgets('checklist opens its list; recent search is kept', (

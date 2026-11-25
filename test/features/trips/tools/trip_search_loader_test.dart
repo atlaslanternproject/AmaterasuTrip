@@ -1,6 +1,7 @@
 // Test della lettura di "Cerca" (nuova tappa 2a): usa gli stessi store
 // delle sezioni e prende solo ciò che restituiscono (le note private degli
-// altri lo store non le legge, quindi non compaiono mai), alloggi compresi.
+// altri lo store non le legge, quindi non compaiono mai), alloggi, spese
+// (condivise con me e mie private) e bucket list compresi.
 
 import 'package:amaterasutrip/features/trips/checklists/models/trip_checklist.dart';
 import 'package:amaterasutrip/features/trips/checklists/providers/trip_checklists_provider.dart';
@@ -18,6 +19,8 @@ import 'package:amaterasutrip/features/trips/shopping/models/trip_shopping_item.
 import 'package:amaterasutrip/features/trips/shopping/providers/trip_shopping_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider.dart';
+import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
+import 'package:amaterasutrip/features/trips/tools/search/trip_search_approved.dart';
 import 'package:amaterasutrip/features/trips/tools/search/trip_search_sources.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport.dart';
 import 'package:amaterasutrip/features/trips/transports/providers/trip_transports_provider.dart';
@@ -72,14 +75,50 @@ void main() {
         tripMemoriesStoreProvider.overrideWithValue(
           FakeSectionStore<TripMemory>(),
         ),
+        // Expenses: what the expenses page reads (shared with me, my own).
+        tripStaysBudgetApiProvider('t1').overrideWithValue(
+          FakeBudgetApi(
+            shared: [
+              FakeDoc('e1', {'title': 'Cena sushi', 'notes': 'Ginza'}),
+            ],
+            private: [
+              FakeDoc('e2', {
+                'title': 'Souvenir',
+                'participantUids': ['A'],
+              }),
+            ],
+          ),
+        ),
+        tripSearchBucketLoaderProvider.overrideWithValue(
+          (id) async => const [
+            TripSearchDoc(
+              section: TripSearchSection.bucketList,
+              id: 'b1',
+              title: 'Fushimi Inari',
+              texts: ['Fushimi Inari', 'Kyoto'],
+            ),
+          ],
+        ),
       ],
     );
     addTearDown(container.dispose);
     final docs = await container.read(tripSearchDocsProvider('t1').future);
     expect(
       [for (final d in docs) '${d.section.name}:${d.id}'],
-      ['stays:s1', 'notes:n1', 'notes:n2'],
+      [
+        'stays:s1',
+        'notes:n1',
+        'notes:n2',
+        'expenses:e1',
+        'expenses:e2',
+        'bucketList:b1',
+      ],
     );
     expect(docs.first.texts, contains('Hotel Kyoto'));
+    final dinner = docs.firstWhere((d) => d.id == 'e1');
+    expect(dinner.title, 'Cena sushi');
+    expect(dinner.texts, ['Cena sushi', 'Ginza']);
+    // Identifiers are never searchable.
+    expect(docs.firstWhere((d) => d.id == 'e2').texts, ['Souvenir']);
   });
 }

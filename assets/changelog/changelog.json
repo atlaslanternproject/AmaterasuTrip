@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.54.0",
+      "date": "2026-11-25",
+      "it": ["Cerca trova anche le spese (quelle che vedi già: condivise con te e le tue private) e le attività della bucket list."],
+      "en": ["Search now also finds expenses (the ones you already see: shared with you and your private ones) and bucket list activities."]
+    },
+    {
       "version": "1.53.0",
       "date": "2026-11-25",
       "it": ["Cerca: toccando un risultato la sezione si apre sull'elemento trovato e lo mette in risalto per qualche secondo; se i filtri lo nascondono te lo dice."],

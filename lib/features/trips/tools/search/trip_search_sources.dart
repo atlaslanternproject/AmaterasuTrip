@@ -23,10 +23,12 @@ import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.d
 import 'package:amaterasutrip/features/trips/shopping/models/trip_shopping_codecs.dart';
 import 'package:amaterasutrip/features/trips/shopping/providers/trip_shopping_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_codec.dart';
+import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_provider.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport_codec.dart';
 import 'package:amaterasutrip/features/trips/transports/providers/trip_transports_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'trip_search_approved.dart';
 import 'trip_search_text.dart';
 
 enum TripSearchSection {
@@ -38,7 +40,9 @@ enum TripSearchSection {
   notes('notes', Icons.notes_rounded),
   shopping('shopping', Icons.shopping_bag_rounded),
   checklists('checklists', Icons.checklist_rounded),
-  memories('memories', Icons.photo_library_rounded);
+  memories('memories', Icons.photo_library_rounded),
+  expenses('expenses', Icons.receipt_long_outlined),
+  bucketList('bucket-list', Icons.favorite_rounded);
 
   const TripSearchSection(this.page, this.icon);
 
@@ -46,13 +50,20 @@ enum TripSearchSection {
   final String page;
   final IconData icon;
 
-  /// Whether the section list highlights the tapped item.
-  bool get highlights => this != stays && this != checklists;
+  /// Whether the section list highlights the tapped item (not in the
+  /// approved modules: stays, expenses, bucket list; a checklist opens).
+  bool get highlights =>
+      this != stays &&
+      this != checklists &&
+      this != expenses &&
+      this != bucketList;
 
   /// Where a tap on a result goes (a checklist opens its list).
-  String route(String tripId, String id) => this == checklists
-      ? '/trips/$tripId/more/checklists/$id'
-      : '/trips/$tripId/more/$page';
+  String route(String tripId, String id) => switch (this) {
+    checklists => '/trips/$tripId/more/checklists/$id',
+    bucketList => '/trips/$tripId/bucket-list',
+    _ => '/trips/$tripId/more/$page',
+  };
 
   String label(AppLocalizations l10n) => switch (this) {
     stays => l10n.tripMoreHotels,
@@ -64,6 +75,8 @@ enum TripSearchSection {
     shopping => l10n.tripMoreShopping,
     checklists => l10n.tripMoreChecklists,
     memories => l10n.tripMoreMemories,
+    expenses => l10n.tripExpensesTitle,
+    bucketList => l10n.tripNavBucketList,
   };
 }
 
@@ -165,6 +178,8 @@ final tripSearchLoaderProvider = Provider<TripSearchLoader>((ref) {
         ref.read(tripMemoriesStoreProvider),
         const TripMemoryCodec().toMap,
       ),
+      tripSearchExpenses(ref.read(tripStaysBudgetApiProvider(tripId))),
+      ref.read(tripSearchBucketLoaderProvider)(tripId),
     ]);
     return [for (final list in lists) ...list];
   };
