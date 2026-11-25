@@ -1413,3 +1413,21 @@ Prove da fare sul sito:
 1. Altro > Esporta > Scarica calendario: il file si apre in Google
    Calendar con il volo all'ora giusta nel fuso di partenza e d'arrivo.
 2. Togli "Hotel e alloggi": gli alloggi non ci sono.
+
+### Passo 3b - fermo in attesa di una scelta (25/11/2026)
+Valutazione (regola 1) per le spese delle Statistiche: (a) i totali per
+categoria nella valuta del viaggio esistono solo dentro il cruscotto del
+budget (budget_category_dashboard_summary.dart, metodo _summary di circa
+320 righe con TODO(audit), più i cambi in
+budget_category_dashboard_rates.dart), privati della schermata; (b) per
+riusarli identici vanno estratti in un modulo condiviso del budget senza
+cambiare il comportamento, con i test del budget prima e dopo; (c) tocca
+un modulo approvato: serve il tuo ok.
+Scelte proposte:
+- A: estrarre il calcolo dei totali (categoria e persona, stessi tassi e
+  stessa logica) in un modulo condiviso del budget e usarlo nelle
+  Statistiche e nel cruscotto, che resta identico.
+- B: le Statistiche mostrano notti, paesi e città, trasporti per tipo,
+  ristoranti provati, luoghi; per le spese solo il totale già mostrato
+  dal budget e il pulsante "Apri il cruscotto spese".
+Resto della tappa 3 (3c PDF del viaggio) indipendente: si può fare prima.
