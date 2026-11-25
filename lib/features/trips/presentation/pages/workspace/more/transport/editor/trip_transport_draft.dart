@@ -4,6 +4,9 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/time_zones/amaterasu_zone_clock.dart';
+import 'package:amaterasutrip/core/time_zones/amaterasu_zone_field.dart';
+
 import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
 
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_cost_field.dart';
@@ -74,6 +77,25 @@ class TripTransportDraft {
   /// Useful links, as in the bucket list.
   late final links = AmaterasuLinksDraft(_initial?.usefulLinks ?? const []);
 
+  /// Time zones chosen by city; when set they give the offsets (Extra C).
+  late AmaterasuZoneValue? departureZone = _zone(
+    _initial?.extras.departureZone,
+    _initial?.extras.departureCity,
+  );
+  late AmaterasuZoneValue? arrivalZone = _zone(
+    _initial?.extras.arrivalZone,
+    _initial?.extras.arrivalCity,
+  );
+
+  static AmaterasuZoneValue? _zone(String? zone, String? city) =>
+      zone == null ? null : AmaterasuZoneValue(zone: zone, city: city);
+
+  /// Offset of the zone on [day]; without a zone the saved offset stays.
+  static String? _offset(AmaterasuZoneValue? zone, DateTime? day, String? old) {
+    if (zone == null || day == null) return old;
+    return AmaterasuZoneClock.offsetOn(zone.zone, day) ?? old;
+  }
+
   bool get isNew => _initial == null;
 
   TripTransport toItem({required String tripId, required String authorUid}) {
@@ -89,10 +111,14 @@ class TripTransportDraft {
       to: to.toPlace(),
       departureDate: departureDate,
       departureTime: departureTime,
-      departureOffset: departureOffset,
+      departureOffset: _offset(departureZone, departureDate, departureOffset),
       arrivalDate: arrivalDate,
       arrivalTime: arrivalTime,
-      arrivalOffset: arrivalOffset,
+      arrivalOffset: _offset(
+        arrivalZone,
+        arrivalDate ?? departureDate,
+        arrivalOffset,
+      ),
       carrier: text(carrier),
       number: text(number),
       bookingCode: text(bookingCode),
@@ -101,7 +127,14 @@ class TripTransportDraft {
       bookedVia: text(bookedVia),
       bookingUrl: text(bookingUrl),
       notes: text(notes),
-      extras: extras.toExtras(passengers),
+      extras: extras
+          .toExtras(passengers)
+          .withZones(
+            departureZone: departureZone?.zone,
+            departureCity: departureZone?.city,
+            arrivalZone: arrivalZone?.zone,
+            arrivalCity: arrivalZone?.city,
+          ),
       estimatedCostMinorUnits: cost.minorUnits,
       estimatedCostCurrency: cost.savedCurrency,
       expenseId: initial?.expenseId,

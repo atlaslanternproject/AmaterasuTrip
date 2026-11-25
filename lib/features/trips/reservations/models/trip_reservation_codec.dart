@@ -19,6 +19,8 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
   static const ticketCodeMax = 500;
   static const ticketsMax = 99;
 
+  static final _zone = RegExp(r'^[A-Za-z0-9_+/-]{1,64}$');
+
   @override
   String get collection => 'reservations';
 
@@ -40,6 +42,8 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
     'estimatedCostCurrency',
     'expenseId',
     'usefulLinks',
+    'zone',
+    'zoneCity',
   ];
 
   @override
@@ -70,6 +74,8 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
         item.estimatedCostCurrency,
       ),
       'expenseId': ?text(item.expenseId),
+      'zone': ?TripSectionFields.clean(item.zone),
+      'zoneCity': ?TripSectionFields.clean(item.zoneCity),
       ...TripSectionLinks.toMap(item.usefulLinks),
     };
   }
@@ -115,6 +121,8 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       estimatedCostCurrency: currency,
       expenseId: text('expenseId'),
       usefulLinks: TripSectionLinks.read(data),
+      zone: TripSectionFields.readText(data, 'zone'),
+      zoneCity: TripSectionFields.readText(data, 'zoneCity'),
     );
   }
 
@@ -162,6 +170,12 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       TripSectionFields.badExpenseId(item.expenseId),
       TripSectionProblemKind.expense,
       'expenseId',
+    );
+    c.check(
+      (item.zone != null && !_zone.hasMatch(item.zone!)) ||
+          (item.zoneCity?.trim().length ?? 0) > TripSectionFields.shortMax,
+      TripSectionProblemKind.other,
+      'zone',
     );
     c.check(
       TripSectionLinks.invalid(item.usefulLinks),

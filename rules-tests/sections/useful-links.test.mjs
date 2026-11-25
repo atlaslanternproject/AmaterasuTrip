@@ -72,6 +72,8 @@ test('transports: every optional field and 10 links together', async () => {
       checkInHoursBefore: 24, checkInUrl: 'https://www.ita.com/check-in',
       airportMinutesBefore: 120, fuelPolicy: 'Pieno-pieno',
       deductible: '800 EUR',
+      departureZone: 'Europe/Rome', departureCity: 'Roma',
+      arrivalZone: 'Asia/Tokyo', arrivalCity: 'Tokyo',
     },
     usefulLinks: ten,
   })));

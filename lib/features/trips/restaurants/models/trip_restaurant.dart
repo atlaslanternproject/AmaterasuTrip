@@ -33,6 +33,8 @@ class TripRestaurant implements TripSectionItem {
     this.estimatedCostCurrency,
     this.expenseId,
     this.usefulLinks = const [],
+    this.zone,
+    this.zoneCity,
   });
 
   @override
@@ -75,6 +77,10 @@ class TripRestaurant implements TripSectionItem {
   final String? estimatedCostCurrency;
   @override
   final String? expenseId;
+
+  /// Time zone chosen by city (IANA) and the city shown (Extra C).
+  final String? zone;
+  final String? zoneCity;
 
   /// Useful links (TripSectionLinks), as in the bucket list.
   final List<String> usefulLinks;

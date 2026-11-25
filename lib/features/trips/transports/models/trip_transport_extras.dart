@@ -26,6 +26,10 @@ class TripTransportExtras {
     this.airportMinutesBefore,
     this.fuelPolicy,
     this.deductible,
+    this.departureZone,
+    this.departureCity,
+    this.arrivalZone,
+    this.arrivalCity,
   });
 
   static const textMax = 60;
@@ -47,6 +51,33 @@ class TripTransportExtras {
   final String? fuelPolicy;
   final String? deductible;
 
+  /// Time zones chosen by city (IANA, e.g. Europe/Rome) and the city shown;
+  /// the offsets of the transport are computed from them (Extra C).
+  final String? departureZone;
+  final String? departureCity;
+  final String? arrivalZone;
+  final String? arrivalCity;
+
+  static final zonePattern = RegExp(r'^[A-Za-z0-9_+/-]{1,64}$');
+
+  TripTransportExtras withZones({
+    required String? departureZone,
+    required String? departureCity,
+    required String? arrivalZone,
+    required String? arrivalCity,
+  }) => TripTransportExtras(
+    seats: seats,
+    checkInHoursBefore: checkInHoursBefore,
+    checkInUrl: checkInUrl,
+    airportMinutesBefore: airportMinutesBefore,
+    fuelPolicy: fuelPolicy,
+    deductible: deductible,
+    departureZone: departureZone,
+    departureCity: departureCity,
+    arrivalZone: arrivalZone,
+    arrivalCity: arrivalCity,
+  );
+
   /// Saved together in the "extras" map of the transport document.
   static const keys = ['extras'];
 
@@ -67,6 +98,10 @@ class TripTransportExtras {
       'airportMinutesBefore': ?airportMinutesBefore,
       'fuelPolicy': ?clean(fuelPolicy),
       'deductible': ?clean(deductible),
+      'departureZone': ?clean(departureZone),
+      'departureCity': ?clean(departureCity),
+      'arrivalZone': ?clean(arrivalZone),
+      'arrivalCity': ?clean(arrivalCity),
     };
     return map.isEmpty ? const {} : {'extras': map};
   }
@@ -98,6 +133,10 @@ class TripTransportExtras {
       airportMinutesBefore: number('airportMinutesBefore'),
       fuelPolicy: text('fuelPolicy'),
       deductible: text('deductible'),
+      departureZone: text('departureZone'),
+      departureCity: text('departureCity'),
+      arrivalZone: text('arrivalZone'),
+      arrivalCity: text('arrivalCity'),
     );
   }
 
@@ -108,6 +147,16 @@ class TripTransportExtras {
     c
       ..maxLength(fuelPolicy, textMax, 'fuelPolicy')
       ..maxLength(deductible, textMax, 'deductible')
+      ..maxLength(departureCity, TripSectionFields.shortMax, 'departureCity')
+      ..maxLength(arrivalCity, TripSectionFields.shortMax, 'arrivalCity')
+      ..check(
+        [
+          departureZone,
+          arrivalZone,
+        ].any((z) => z != null && !zonePattern.hasMatch(z)),
+        other,
+        'zone',
+      )
       ..check(
         seats.length > TripSectionFields.uidsMax ||
             seats.values.any(

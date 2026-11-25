@@ -53,28 +53,25 @@ extension _TripTransportEditorBlocks on _TripTransportEditorState {
     ],
   );
 
-  Widget _offset(String key, String? value, ValueChanged<String?> onChanged) {
-    final l10n = AppLocalizations.of(context)!;
-    return SizedBox(
-      width: 220,
-      child: DropdownButtonFormField<String?>(
-        key: Key(key),
-        initialValue: value,
-        isExpanded: true,
-        menuMaxHeight: 320,
-        decoration: InputDecoration(labelText: l10n.transportTimeZone),
-        items: [
-          DropdownMenuItem(child: Text(l10n.transportTimeZoneNone)),
-          for (final offset in {...TripTransportLabels.offsets, ?value})
-            DropdownMenuItem(
-              value: offset,
-              child: Text(TripTransportLabels.offset(offset)),
-            ),
-        ],
-        onChanged: (v) => setState(() => onChanged(v)),
-      ),
-    );
-  }
+  /// Time zone by city ("Roma, ora locale 14:32"); an older offset
+  /// without a city is shown as "UTC+01:00" until a city is chosen.
+  Widget _zone(
+    String key,
+    AmaterasuZoneValue? value,
+    String? oldOffset,
+    ValueChanged<AmaterasuZoneValue?> onChanged,
+  ) => Padding(
+    padding: const EdgeInsets.only(top: 4),
+    child: AmaterasuZoneField(
+      keyPrefix: key,
+      label: AppLocalizations.of(context)!.zoneLabel,
+      value: value,
+      fallback: oldOffset == null
+          ? null
+          : TripTransportLabels.offset(oldOffset),
+      onChanged: (v) => setState(() => onChanged(v)),
+    ),
+  );
 
   Widget _timesBlock(AppLocalizations l10n) => TripSectionBlock(
     title: l10n.transportBlockTimes,
@@ -92,10 +89,11 @@ extension _TripTransportEditorBlocks on _TripTransportEditorState {
         value: _draft.departureTime,
         onChanged: (t) => setState(() => _draft.departureTime = t),
       ),
-      _offset(
-        'transport-departure-offset',
+      _zone(
+        'transport-departure',
+        _draft.departureZone,
         _draft.departureOffset,
-        (v) => _draft.departureOffset = v,
+        (v) => _draft.departureZone = v,
       ),
       const SizedBox(height: 12),
       TripSectionDayButton(
@@ -112,10 +110,11 @@ extension _TripTransportEditorBlocks on _TripTransportEditorState {
         value: _draft.arrivalTime,
         onChanged: (t) => setState(() => _draft.arrivalTime = t),
       ),
-      _offset(
-        'transport-arrival-offset',
+      _zone(
+        'transport-arrival',
+        _draft.arrivalZone,
         _draft.arrivalOffset,
-        (v) => _draft.arrivalOffset = v,
+        (v) => _draft.arrivalZone = v,
       ),
     ],
   );

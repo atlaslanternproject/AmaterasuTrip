@@ -68,6 +68,18 @@ possono cambiare: ricontrollare prima di ogni nuova funzione.
 - Fonti: [Place Details (New) fields](https://developers.google.com/maps/documentation/places/web-service/place-details),
   [usage and billing](https://developers.google.com/maps/documentation/places/web-service/usage-and-billing).
 
+### Open-Meteo Geocoding (fuso orario per città, in uso dalla 1.38.0)
+- Gratuita, senza chiave, uso non commerciale (stessi termini di
+  Open-Meteo sopra); restituisce città, regione, paese e fuso IANA.
+- Chiamata dall'app solo quando si preme "Cerca" nel selettore del fuso
+  (8 risultati), con le risposte in memoria per la sessione: nessuna
+  chiamata per card né in ciclo.
+- Lo scarto da UTC e l'ora locale si calcolano nel browser (Intl), senza
+  altre API.
+- Se il servizio non risponde: "Ricerca non disponibile ora" e restano
+  l'ora e l'offset già salvati (funzione limitata, non bloccata).
+- Fonte: [geocoding API](https://open-meteo.com/en/docs/geocoding-api).
+
 ### Frankfurter (cambi)
 - Gratuita, senza chiave, open source (dati BCE). Il sito ufficiale non
   indica limiti; directory terze parlano di limiti "di buon uso" non

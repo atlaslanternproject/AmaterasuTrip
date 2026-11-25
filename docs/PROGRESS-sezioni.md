@@ -317,8 +317,9 @@ Mappa/Itinerario).
 | Crea spesa dalle sezioni (+ link delle spese) | fatta, pubblicata 1.35.0 il 25/11/2026 | feature/crea-spesa | 1.35.0+39 |
 | Chiusure: link nel testo delle note, test valuta trasporti, test selezione multipla | fatta, pubblicata 1.35.1 il 25/11/2026 | fix/chiusure-v2 | 1.35.1+40 |
 | Extra A - Novità e versioni | fatta, pubblicata 1.36.0 il 25/11/2026 | feature/novita | 1.36.0+41 |
-| Extra B - Sito installabile (PWA) | fatta (pubblicazione: vedi tappa seguente) | feature/pwa | 1.37.0+42 |
-| Extra C-H | da fare | - | - |
+| Extra B - Sito installabile (PWA) | fatta, pubblicata 1.37.0 il 25/11/2026 | feature/pwa | 1.37.0+42 |
+| Extra C - Fuso orario per città (migrazione in attesa di ok) | fatta (pubblicazione: vedi tappa seguente) | feature/fuso-citta | 1.38.0+43 |
+| Extra D-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -743,3 +744,41 @@ Prove da fare sul sito:
 2. iPhone, Safari: Condividi > "Aggiungi alla schermata Home"; si apre a
    tutto schermo.
 3. Computer, Chrome: icona "Installa" nella barra degli indirizzi.
+
+## Extra C - Fuso orario per città
+Valutazione (regola 1): (a) solo i trasporti avevano un fuso, scelto da
+un elenco di scarti "UTC+1/+9"; prenotazioni e ristoranti solo l'ora
+locale; (b) nuovo modulo comune lib/core/time_zones (ricerca della città
+con Open-Meteo, ora e scarto con Intl del browser, pulsante con lo stesso
+aspetto del selettore valuta) usato identico in trasporti, prenotazioni
+e ristoranti; (c) tocca le regole dei tre blocchi (extras dei trasporti;
+zone e zoneCity di prenotazioni e ristoranti), con test.
+
+Come funziona: scegli la città, l'app salva il fuso (es. Europe/Rome) e la
+città, e per i trasporti ricalcola l'offset del giorno del viaggio (ora
+legale compresa). L'ora scritta non cambia mai. Senza città tutto resta
+come prima: i trasporti vecchi mostrano ancora "(UTC+01:00)".
+
+Migrazione dei dati (NON applicata, aspetta il tuo ok):
+- Script di sola lettura functions/scripts/migrate-transport-zones-dry-run.cjs
+  (piano in transport-zone-plan.cjs, con test). Aggiunge solo il nome del
+  fuso equivalente all'offset salvato (es. +01:00 -> Etc/GMT-1), verificato
+  data per data; non cambia offset, date né orari.
+- Risultato sul progetto vero (25/11/2026): trasporti 1 letto, 1 da
+  aggiornare, 0 saltati; prenotazioni 0; ristoranti 0 (non hanno fusi
+  salvati: nulla da migrare).
+- Esempio trasporto: prima departureOffset "+01:00" (13/08/2027 15:35),
+  arrivalOffset "+09:00" (14/08/2027 17:35), extras senza fusi; dopo
+  uguale + extras.departureZone "Etc/GMT-1", extras.arrivalZone "Etc/GMT-9".
+  Visibile: identico ("15:35 (UTC+01:00)").
+- Nota: il 13 agosto in Italia c'è l'ora legale (+02:00). Se il trasporto
+  parte dall'Italia, l'offset salvato +01:00 era probabilmente da
+  correggere: dopo il tuo ok basta riaprirlo e scegliere la città.
+
+Prove da fare sul sito:
+1. Trasporto: tocca "Fuso orario", scrivi "venezia", Cerca, scegli: il
+   pulsante mostra "Venezia, ora locale …"; salvato, la card mostra
+   "(Venezia, UTC+01:00)" o "+02:00" d'estate.
+2. Prenotazione e ristorante: stesso selettore vicino all'ora; la card
+   mostra la città tra parentesi.
+3. Il trasporto già salvato appare come prima.

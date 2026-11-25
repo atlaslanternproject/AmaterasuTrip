@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/time_zones/amaterasu_zone_field.dart';
+
 import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
 
 import 'package:amaterasutrip/features/trips/reservations/models/trip_reservation.dart';
@@ -63,6 +65,11 @@ class TripReservationDraft {
   final Set<String> participants;
   final TripSectionCostDraft cost;
 
+  /// Time zone by city (Extra C).
+  late AmaterasuZoneValue? zone = _initial?.zone == null
+      ? null
+      : AmaterasuZoneValue(zone: _initial!.zone!, city: _initial.zoneCity);
+
   /// Useful links, as in the bucket list.
   late final links = AmaterasuLinksDraft(_initial?.usefulLinks ?? const []);
 
@@ -95,6 +102,8 @@ class TripReservationDraft {
       estimatedCostCurrency: cost.savedCurrency,
       expenseId: initial?.expenseId,
       usefulLinks: links.links,
+      zone: zone?.zone,
+      zoneCity: zone?.city,
     );
   }
 

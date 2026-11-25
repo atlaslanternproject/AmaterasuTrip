@@ -2847,6 +2847,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonLinkAdd => 'Add a link';
 
   @override
+  String get zoneLabel => 'Time zone';
+
+  @override
+  String get zoneNone => 'choose the city';
+
+  @override
+  String get zoneRemove => 'Remove the time zone';
+
+  @override
+  String get zoneSheetTitle => 'Time zone of the city';
+
+  @override
+  String get zoneSearchHint => 'Write a city, e.g. venice';
+
+  @override
+  String get zoneSearch => 'Search';
+
+  @override
+  String get zoneNoResults => 'No city found.';
+
+  @override
+  String get zoneSearchError => 'Search not available now. Try again later.';
+
+  @override
+  String zoneLocalTime(String place, String time) {
+    return '$place, local time $time';
+  }
+
+  @override
   String whatsNewTitle(String version) {
     return 'What\'s new in version $version';
   }
