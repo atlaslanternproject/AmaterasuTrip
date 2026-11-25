@@ -1477,3 +1477,19 @@ Prove da fare sul sito:
 Prove da fare sul sito:
 1. Altro > Esporta > Apri il PDF: si apre la stampa con il riepilogo;
    "Salva come PDF" crea il file con i link cliccabili.
+
+## Tappa 4, K, L, COERENZA, HOME-VIAGGIO - documenti (25/11/2026)
+Solo documenti, nessun codice, nessun rilascio:
+- docs/audit/AUDIT-TRAIL.md: cosa esiste (createdByUid sì, updatedByUid
+  no; budget con registri dal server e listBudgetHistory), tre opzioni
+  A/B/C con regole, costi, privacy; proposta B + budget in sola lettura.
+- docs/audit/BUDGET-2.md: 9 punti con cosa tocca, rischi sui soldi,
+  lavoro e ordine; scontrini nel Drive di chi allega, solo il link nella
+  spesa.
+- docs/design/MAPPA-ITINERARIO.md: dati, tre viste, zone senza chiamate
+  in più, mappa, ordine di costruzione.
+- docs/audit/COERENZA.md: tabella dei moduli approvati a gruppi (A spese,
+  B home globale, C home del viaggio, D alloggi, E bucket list, F
+  impostazioni, G componenti).
+- docs/design/HOME-VIAGGIO.md: piano tecnico per fase.
+FERMO: attendo il tuo ok su ciascun documento prima di costruire.
