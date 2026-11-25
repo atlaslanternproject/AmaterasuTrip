@@ -1586,3 +1586,6 @@ cartella Drive; "Il mio Drive" resta perché è salvato con l'archivio);
 cestino apre subito la conferma).
 - Resta per i passi seguenti di G: G3 selettore valuta comune, G4 stampa
   comune; G2 (pannello unico) si applica modulo per modulo nei gruppi F-A.
+
+## COERENZA gruppo G - passo G3 (1.59.1)
+Valutazione (regola 1): (a) il pannello comune pickBudgetCurrency esisteva (dialogo spese); barra delle spese e budget personale avevano copie con lo stesso elenco di valute, lo stesso codice lingua e lo stesso risultato (normalize = maiuscolo per i codici supportati); unica differenza useRootNavigator; (b) opzione facoltativa useRootNavigator nel modulo comune, le due copie lo chiamano; (c) budget (modulo approvato, gruppo G approvato): 281 test Flutter del budget prima e dopo, suite con emulatori identiche al confronto riga per riga. TODO(audit) C7 risolta.

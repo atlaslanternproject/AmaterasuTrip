@@ -3,10 +3,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../calculations/currency_minor_units.dart';
-import '../../presentation/pages/create_trip/currency/trip_currency_picker_sheet.dart';
-import '../../presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'budget_category_picker.dart';
+import 'budget_currency_choice.dart';
 import 'budget_expense_filters.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
@@ -28,57 +26,17 @@ abstract final class BudgetExpensesToolbar {
   static const _orange = AmaterasuColors.accentOrange;
   static const _gold = AmaterasuColors.accentGold;
 
-  // TODO(audit): C7 scelta valuta simile in 3 file: valutare un dialogo condiviso.
+  // Shared currency sheet of the budget (COERENZA G3, was a copy).
   static Future<String?> _pickCurrency(
     BuildContext context,
     String selected,
     bool it,
-  ) async {
-    final supported = CurrencyMinorUnits.supportedCodes.toSet();
-    List<TripCurrency> currencies;
-
-    try {
-      final fetched = await const DestinationPlacesService().getCurrencies(
-        languageCode: budgetL10n(it).btToolbarEn,
-      );
-      currencies = fetched
-          .where((item) => supported.contains(item.code.toUpperCase()))
-          .toList();
-      final present = currencies.map((item) => item.code.toUpperCase()).toSet();
-      currencies.addAll(
-        supported
-            .difference(present)
-            .map((code) => TripCurrency(code: code, name: code, symbol: code)),
-      );
-    } catch (_) {
-      currencies = supported
-          .map((code) => TripCurrency(code: code, name: code, symbol: code))
-          .toList();
-    }
-
-    currencies.sort((a, b) => a.code.compareTo(b.code));
-
-    if (!context.mounted) return null;
-
-    final picked = await showModalBottomSheet<TripCurrency>(
-      context: context,
-      useRootNavigator: true,
-      isScrollControlled: true,
-      backgroundColor: AmaterasuColors.surfaceCard,
-      builder: (pickerContext) => SafeArea(
-        top: false,
-        child: TripCurrencyPickerSheet(
-          currencies: currencies,
-          selectedCurrency: selected,
-          title: budgetL10n(it).btToolbarDisplayCurrency,
-          searchHint: budgetL10n(it).btSearchCurrencies,
-          noResultsText: budgetL10n(it).btNoCurrenciesFound,
-        ),
-      ),
-    );
-
-    return picked?.code.toUpperCase();
-  }
+  ) => pickBudgetCurrency(
+    context,
+    selected: selected,
+    title: budgetL10n(it).btToolbarDisplayCurrency,
+    useRootNavigator: true,
+  );
 
   static Future<BudgetDisplayChoice?> chooseFilters(
     BuildContext context, {

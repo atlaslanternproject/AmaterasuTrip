@@ -5,7 +5,6 @@
 part of 'budget_create_dialog.dart';
 
 extension _BudgetCreateDialogStateCurrency on _BudgetCreateDialogState {
-  // TODO(audit): C7 il dialogo spese usa budget_currency_choice.dart; toolbar e budget personale hanno ancora la loro copia.
   Future<void> _pickCurrency() async {
     if (_saving) return;
 
