@@ -1713,3 +1713,31 @@ Prove da fare sul sito:
 2. Filtro per giorno: i pin del giorno pieni, quelli senza giorno attenuati.
 3. Tocco su un pin: "Apri la sezione" porta alla sezione giusta; "Apri su Maps" apre Google Maps.
 4. Rotazione con due dita e "Nord in alto".
+
+## Punto di ripresa (25/11/2026, dopo la 1.62.0)
+Fatto: Mappa con i dati veri (1.62.0+71). Prossimo: ITINERARIO con i dati
+veri, a passi come in docs/design/MAPPA-ITINERARIO.md (sezione 7) con le
+11 decisioni (sezione 8), il principio fisso (sezione 9) e "Aggiungi
+all'itinerario" (sezione 10):
+1. Raccolta trips/{tripId}/itinerary: FirestoreTripItineraryRepository
+   (stessa interfaccia TripItineraryRepository; togliere
+   trip_itinerary_demo*.dart e l'etichetta "Bozza"); campi del documento
+   (day, time, endTime, order, kind, ref, title, note, place con zona,
+   actual {text?, ref?}, createdByUid, createdAt, updatedAt, updatedByUid);
+   regole con sectionBase e firma; elimina solo autore o OWNER; test in
+   rules-tests/sections/itinerary.test.mjs; raccolta in auditSections
+   (functions/src/audit/audit-changes.ts) e nell'elenco delle sezioni
+   dell'Audit Trail; "itinerary" in trip-duplication-policy (non copiato);
+   deleteTrip la cancella già con le sottoraccolte; informativa: nessuna
+   voce nuova di dati personali (stessi dati delle sezioni). Stato vuoto
+   comune con invito ad aggiungere. Info del viaggio vere (giorni dal
+   viaggio, nomi con tripStaysMemberNamesProvider, catalogo dagli elementi
+   delle sezioni come la Mappa).
+2. Giorno per giorno, zone, riordino solo delle voci senza ora, avvisi
+   (sovrapposizioni con endTime quando c'è).
+3. "Aggiungi nuovo" dall'itinerario: solo ristoranti e luoghi salvati.
+4. Previsto/fatto (testo o elemento), condividi il giorno.
+5. Vista mappa dell'itinerario; pulsante "Aggiungi all'itinerario" sulle
+   card delle sezioni nuove (giorno e ora facoltativa).
+Poi: COERENZA dal gruppo F (F2 dialoghi e username, F3 token, data/ora,
+130 %), E, D, B, C con la home, A per ultimo.
