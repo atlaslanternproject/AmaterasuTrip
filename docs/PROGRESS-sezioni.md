@@ -1563,3 +1563,12 @@ Prove da fare sul sito:
    modificato" con il campo prima → dopo.
 2. Una nota privata modificata non compare.
 3. Filtro per persona e sezione.
+
+## Punto di ripresa (25/11/2026, dopo la 1.58.0)
+Fatto: Audit Trail (B), pubblicato 1.58.0+64 (34 funzioni, 3 indici).
+Prossimo passo: COERENZA gruppo G (componenti comuni: pulsanti
+principale/secondario/terziario, pannello dal basso o finestra unica,
+selettore valuta, stampa comune, testi it/en, cestino al posto di "⋮"
+quando contiene solo "Elimina"), poi F (con la pagina Aspetto sul modello
+della Privacy e le card a tutta larghezza su schermo largo), E, D, B, C
+con la home, A per ultimo. Poi Budget 2, Itinerario, Mappa.
