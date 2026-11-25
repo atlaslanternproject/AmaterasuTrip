@@ -7271,6 +7271,132 @@ abstract class AppLocalizations {
   /// **'Other'**
   String get savedPlaceCategoryOther;
 
+  /// No description provided for @savedPlaceBlockVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit'**
+  String get savedPlaceBlockVisit;
+
+  /// No description provided for @savedPlacePriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get savedPlacePriority;
+
+  /// No description provided for @savedPlaceVisited.
+  ///
+  /// In en, this message translates to:
+  /// **'Visited'**
+  String get savedPlaceVisited;
+
+  /// No description provided for @savedPlaceDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned day'**
+  String get savedPlaceDay;
+
+  /// No description provided for @savedPlaceArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get savedPlaceArea;
+
+  /// No description provided for @savedPlaceAreaHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Neighbourhood or area, to group places close to each other.'**
+  String get savedPlaceAreaHint;
+
+  /// No description provided for @savedPlaceMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit time (minutes)'**
+  String get savedPlaceMinutes;
+
+  /// No description provided for @savedPlaceEntryPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry price per person'**
+  String get savedPlaceEntryPrice;
+
+  /// No description provided for @savedPlaceTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Tickets link'**
+  String get savedPlaceTickets;
+
+  /// No description provided for @savedPlaceErrMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit time: from 1 to 1440 minutes.'**
+  String get savedPlaceErrMinutes;
+
+  /// No description provided for @savedPlaceNoArea.
+  ///
+  /// In en, this message translates to:
+  /// **'No area'**
+  String get savedPlaceNoArea;
+
+  /// No description provided for @savedPlaceNoDay.
+  ///
+  /// In en, this message translates to:
+  /// **'No day'**
+  String get savedPlaceNoDay;
+
+  /// No description provided for @savedPlaceFilterTodo.
+  ///
+  /// In en, this message translates to:
+  /// **'To visit'**
+  String get savedPlaceFilterTodo;
+
+  /// No description provided for @savedPlaceFilterDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Visited'**
+  String get savedPlaceFilterDone;
+
+  /// No description provided for @savedPlaceSortPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get savedPlaceSortPriority;
+
+  /// No description provided for @savedPlaceGroupArea.
+  ///
+  /// In en, this message translates to:
+  /// **'By area'**
+  String get savedPlaceGroupArea;
+
+  /// No description provided for @savedPlaceGroupDay.
+  ///
+  /// In en, this message translates to:
+  /// **'By day'**
+  String get savedPlaceGroupDay;
+
+  /// No description provided for @savedPlaceMinutesValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit: {value}'**
+  String savedPlaceMinutesValue(String value);
+
+  /// No description provided for @savedPlaceEntryPriceValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry: {value} per person'**
+  String savedPlaceEntryPriceValue(String value);
+
+  /// No description provided for @savedPlaceMinutesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} min'**
+  String savedPlaceMinutesShort(int count);
+
+  /// No description provided for @savedPlaceHoursShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} h'**
+  String savedPlaceHoursShort(int count);
+
   /// No description provided for @noteAdd.
   ///
   /// In en, this message translates to:
@@ -8045,53 +8171,53 @@ abstract class AppLocalizations {
   /// **'Rating: from 1 to 5 stars.'**
   String get restaurantErrRating;
 
-  /// No description provided for @restaurantHours.
+  /// No description provided for @sectionsHours.
   ///
   /// In en, this message translates to:
   /// **'Hours and prices'**
-  String get restaurantHours;
+  String get sectionsHours;
 
-  /// No description provided for @restaurantHoursNone.
+  /// No description provided for @sectionsHoursNone.
   ///
   /// In en, this message translates to:
   /// **'Google has no opening hours for this place.'**
-  String get restaurantHoursNone;
+  String get sectionsHoursNone;
 
-  /// No description provided for @restaurantHoursError.
+  /// No description provided for @sectionsHoursError.
   ///
   /// In en, this message translates to:
   /// **'Can\'t read the opening hours now. Try again later.'**
-  String get restaurantHoursError;
+  String get sectionsHoursError;
 
-  /// No description provided for @restaurantHoursSource.
+  /// No description provided for @sectionsHoursSource.
   ///
   /// In en, this message translates to:
   /// **'Google hours and prices, read now and not saved: check them on the place\'s website.'**
-  String get restaurantHoursSource;
+  String get sectionsHoursSource;
 
-  /// No description provided for @restaurantClosedDay.
+  /// No description provided for @sectionsClosedDay.
   ///
   /// In en, this message translates to:
   /// **'Warning: it looks closed on {date}.'**
-  String restaurantClosedDay(String date);
+  String sectionsClosedDay(String date);
 
-  /// No description provided for @restaurantClosedTime.
+  /// No description provided for @sectionsClosedTime.
   ///
   /// In en, this message translates to:
   /// **'Warning: it looks closed on {date} at {time}.'**
-  String restaurantClosedTime(String date, String time);
+  String sectionsClosedTime(String date, String time);
 
-  /// No description provided for @restaurantGooglePrice.
+  /// No description provided for @sectionsGooglePrice.
   ///
   /// In en, this message translates to:
-  /// **'Indicative price per person on Google: {range}'**
-  String restaurantGooglePrice(String range);
+  /// **'Indicative price on Google: {range}'**
+  String sectionsGooglePrice(String range);
 
-  /// No description provided for @restaurantGooglePriceConverted.
+  /// No description provided for @sectionsGooglePriceConverted.
   ///
   /// In en, this message translates to:
   /// **'About {range} at today\'s rate'**
-  String restaurantGooglePriceConverted(String range);
+  String sectionsGooglePriceConverted(String range);
 
   /// No description provided for @placesPhotoOpen.
   ///

@@ -2,6 +2,7 @@
 // (trips/{tripId}/savedPlaces) e controlli con i limiti di firestore.rules.
 
 import 'package:amaterasutrip/core/places/amaterasu_contact_validator.dart';
+import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
@@ -22,7 +23,18 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
     'notes',
     'phone',
     'website',
+    'priority',
+    'visited',
+    'visitMinutes',
+    'ticketsUrl',
+    'area',
+    'plannedDay',
+    'estimatedCostMinorUnits',
+    'estimatedCostCurrency',
   ];
+
+  static const priorities = ['SS', 'S', 'A', 'B'];
+  static const visitMax = 1440;
 
   @override
   Map<String, dynamic> toMap(TripSavedPlace item) => {
@@ -35,6 +47,17 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
     'notes': ?TripSectionFields.clean(item.notes),
     'phone': ?TripSectionFields.clean(item.phone),
     'website': ?TripSectionFields.clean(item.website),
+    'priority': ?item.priority,
+    if (item.visited) 'visited': true,
+    'visitMinutes': ?item.visitMinutes,
+    'ticketsUrl': ?TripSectionFields.clean(item.ticketsUrl),
+    'area': ?TripSectionFields.clean(item.area),
+    if (item.plannedDay case final day?)
+      'plannedDay': TripStayDates.format(day),
+    ...TripSectionFields.costMap(
+      item.entryPriceMinorUnits,
+      item.entryPriceCurrency,
+    ),
   };
 
   @override
@@ -47,6 +70,7 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
     if (name == null || category == null || tripId == null || author == null) {
       throw FormatException('Invalid saved place $id.');
     }
+    final (cost, currency) = TripSectionFields.readCost(data);
     return TripSavedPlace(
       id: id,
       tripId: tripId,
@@ -58,6 +82,18 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
       notes: text('notes'),
       phone: text('phone'),
       website: text('website'),
+      priority: priorities.contains(data['priority'])
+          ? data['priority'] as String
+          : null,
+      visited: data['visited'] == true,
+      visitMinutes: data['visitMinutes'] is int
+          ? data['visitMinutes'] as int
+          : null,
+      ticketsUrl: text('ticketsUrl'),
+      area: text('area'),
+      plannedDay: TripStayDates.parse(data['plannedDay']),
+      entryPriceMinorUnits: cost,
+      entryPriceCurrency: currency,
     );
   }
 
@@ -66,9 +102,29 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
     final c = TripSectionChecks()
       ..required(item.name, 'name')
       ..maxLength(item.name.trim(), TripSectionFields.nameMax, 'name')
-      ..maxLength(item.notes, TripSectionFields.notesMax, 'notes');
+      ..maxLength(item.notes, TripSectionFields.notesMax, 'notes')
+      ..maxLength(item.area, TripSectionFields.shortMax, 'area');
+    final minutes = item.visitMinutes;
     c
       ..check(item.place.invalid, TripSectionProblemKind.place, 'place')
+      ..check(
+        TripSectionFields.badLink(item.ticketsUrl),
+        TripSectionProblemKind.link,
+        'ticketsUrl',
+      )
+      ..check(
+        minutes != null && (minutes < 1 || minutes > visitMax),
+        TripSectionProblemKind.other,
+        'visit',
+      )
+      ..check(
+        TripSectionFields.badCost(
+          item.entryPriceMinorUnits,
+          item.entryPriceCurrency,
+        ),
+        TripSectionProblemKind.cost,
+        'cost',
+      )
       ..check(
         TripSectionFields.badLink(item.mapsUrl),
         TripSectionProblemKind.link,

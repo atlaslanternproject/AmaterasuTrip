@@ -308,7 +308,8 @@ Mappa/Itinerario).
 | 1b parte 2 - sezione Checklist | fatta, pubblicata 1.26.0 il 25/11/2026 | feature/checklist | 1.26.0+30 |
 | Sezioni v2 - Trasporti | fatta, pubblicata 1.27.0 il 25/11/2026 | feature/trasporti-v2 | 1.27.0+31 |
 | Sezioni v2 - Prenotazioni | fatta, pubblicata 1.28.0 il 25/11/2026 | feature/prenotazioni-v2 | 1.28.0+32 |
-| Sezioni v2 - Ristoranti | fatta (pubblicazione: vedi tappa seguente) | feature/ristoranti-v2 | 1.29.0+33 |
+| Sezioni v2 - Ristoranti | fatta, pubblicata 1.29.0 il 25/11/2026 | feature/ristoranti-v2 | 1.29.0+33 |
+| Sezioni v2 - Luoghi salvati | fatta (pubblicazione: vedi tappa seguente) | feature/luoghi-v2 | 1.30.0+34 |
 | Sezioni v2 - Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
@@ -492,3 +493,28 @@ Prove da fare sul sito:
 4. Stato "provato": nell'editor compaiono stelle e "Com'è stato"; la
    card mostra le stelle e la nota.
 5. Nei Ricordi le stelle si vedono come prima.
+
+## Sezioni v2 - Luoghi salvati
+Valutazione (regola 1): (a) esistevano luogo Google, contatti, categoria
+e il pannello "Orari e prezzi" dei ristoranti; (b) il pannello e il suo
+pulsante sono stati spostati nel modulo comune delle sezioni
+(TripSectionHoursButton, stesso comportamento nei ristoranti) e riusati
+identici; il prezzo d'ingresso usa i campi e il selettore di valuta del
+costo comune; l'elenco comune ha ora i titoli di gruppo (groupOf); (c)
+tocca il blocco savedPlaces delle regole; test di regole, dati, ordine,
+gruppi, filtro ed editor.
+
+Commit: ead63cc, 885aa4e.
+
+Categorie personalizzate: rinviate al componente D (tappe extra), così
+si fanno una volta sola per tutte le sezioni.
+
+Prove da fare sul sito:
+1. Nell'editor, blocco "Visita": priorità SS/S/A/B, Visitato, giorno,
+   zona, tempo, prezzo d'ingresso con valuta e link dei biglietti.
+2. L'elenco parte ordinato per priorità (SS in alto).
+3. Filtri > Ordina "Per zona" e "Per giorno": compaiono i titoli dei
+   gruppi; i luoghi senza zona o giorno sono in fondo.
+4. Filtro "Da visitare" nasconde i visitati; i visitati appaiono attenuati.
+5. "Orari e prezzi" sui luoghi Google; con il giorno previsto in un
+   giorno di chiusura compare l'avviso.

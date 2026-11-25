@@ -1,6 +1,7 @@
 // Luoghi salvati nelle viste: nome e icona della categoria e come appare un
-// luogo (foto Google, indirizzo, categoria, chi l'ha aggiunto, note, link
-// di Google Maps e mappa).
+// luogo (foto Google, indirizzo, categoria, priorità, visitato, chi l'ha
+// aggiunto, giorno e zona, tempo di visita, prezzo d'ingresso, note, link
+// di Google Maps e dei biglietti, mappa).
 
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_plac
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place_category.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_chip.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_entry.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 abstract final class TripSavedPlaceLabels {
@@ -30,6 +32,15 @@ abstract final class TripSavedPlaceLabels {
     TripSavedPlaceCategory.nightlife => Icons.nightlife_outlined,
     TripSavedPlaceCategory.other => Icons.bookmark_outline_rounded,
   };
+
+  /// "1 h 30 min" or "45 min".
+  static String duration(int minutes, AppLocalizations l10n) {
+    final h = minutes ~/ 60;
+    final m = minutes % 60;
+    if (h == 0) return l10n.savedPlaceMinutesShort(m);
+    if (m == 0) return l10n.savedPlaceHoursShort(h);
+    return '${l10n.savedPlaceHoursShort(h)} ${l10n.savedPlaceMinutesShort(m)}';
+  }
 }
 
 TripSectionEntry tripSavedPlaceEntry(
@@ -39,6 +50,10 @@ TripSectionEntry tripSavedPlaceEntry(
 ) {
   final l10n = AppLocalizations.of(context)!;
   final link = item.mapsUrl;
+  final price = TripSectionLabels.money(
+    item.entryPriceMinorUnits,
+    item.entryPriceCurrency,
+  );
   return TripSectionEntry(
     id: item.id,
     icon: TripSavedPlaceLabels.icon(item.category),
@@ -51,12 +66,51 @@ TripSectionEntry tripSavedPlaceEntry(
         color: AmaterasuColors.accentGold,
         icon: TripSavedPlaceLabels.icon(item.category),
       ),
+      if (item.priority case final priority?)
+        TripSectionChip(
+          key: Key('saved-place-priority-${item.id}'),
+          label: priority,
+          color: AmaterasuColors.accentFlame,
+        ),
+      if (item.visited)
+        TripSectionChip(
+          key: Key('saved-place-visited-${item.id}'),
+          label: l10n.savedPlaceVisited,
+          color: AmaterasuColors.success,
+          icon: Icons.check_rounded,
+        ),
     ],
+    inactive: item.visited,
     lines: [
+      if (item.plannedDay != null || item.area != null)
+        TripSectionLine(
+          Icons.event_outlined,
+          [
+            if (item.plannedDay case final day?)
+              MaterialLocalizations.of(context).formatMediumDate(day),
+            ?item.area,
+          ].join(' · '),
+        ),
+      if (item.visitMinutes case final minutes?)
+        TripSectionLine(
+          Icons.timelapse_rounded,
+          l10n.savedPlaceMinutesValue(
+            TripSavedPlaceLabels.duration(minutes, l10n),
+          ),
+        ),
+      if (price != null)
+        TripSectionLine(
+          Icons.confirmation_number_outlined,
+          l10n.savedPlaceEntryPriceValue(price),
+        ),
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),
     ],
-    links: [if (link != null) (l10n.savedPlaceMapsLink, link)],
+    links: [
+      if (link != null) (l10n.savedPlaceMapsLink, link),
+      if (item.ticketsUrl case final tickets?)
+        (l10n.savedPlaceTickets, tickets),
+    ],
     photoPlaceId: item.place.placeId,
     phone: item.phone,
     website: item.website,

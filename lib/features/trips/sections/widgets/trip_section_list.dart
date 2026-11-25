@@ -1,11 +1,13 @@
 // Elenco degli elementi di una sezione (già filtrati e ordinati), centrato e
-// largo al massimo 820 punti, con eventuali avvisi in cima. Ogni elemento
-// appare come card, card compatta o riga secondo la vista scelta; le card
-// si costruiscono solo quando stanno per apparire.
+// largo al massimo 820 punti, con eventuali avvisi in cima e titoli di
+// gruppo facoltativi (es. zona o giorno). Ogni elemento appare come card,
+// card compatta o riga secondo la vista scelta; le card si costruiscono
+// solo quando stanno per apparire.
 
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
+import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import '../models/trip_section_item.dart';
 import '../models/trip_section_view.dart';
@@ -34,6 +36,7 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
     this.extraOf,
     this.launch,
     this.onOpen,
+    this.groupOf,
   });
 
   final String keyPrefix;
@@ -61,6 +64,10 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
   /// Opens the item when its card or row is tapped (e.g. a checklist).
   final void Function(T item)? onOpen;
 
+  /// Group title of an item (items already sorted by group); a title is
+  /// shown above the first item of each group.
+  final String Function(T item)? groupOf;
+
   @override
   Widget build(BuildContext context) => Align(
     alignment: Alignment.topCenter,
@@ -77,13 +84,36 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
           if (index == 0) return Column(children: header);
           final item = items[index - 1];
           final open = onOpen;
-          final child = _item(item);
-          if (open == null) return child;
-          return GestureDetector(
-            key: Key('$keyPrefix-open-${item.id}'),
-            behavior: HitTestBehavior.opaque,
-            onTap: () => open(item),
-            child: child,
+          final child = open == null
+              ? _item(item)
+              : GestureDetector(
+                  key: Key('$keyPrefix-open-${item.id}'),
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => open(item),
+                  child: _item(item),
+                );
+          final group = groupOf?.call(item);
+          if (group == null ||
+              (index > 1 && groupOf!(items[index - 2]) == group)) {
+            return child;
+          }
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 8),
+                child: Text(
+                  group,
+                  key: Key('$keyPrefix-group-$group'),
+                  style: const TextStyle(
+                    color: AmaterasuColors.accentGold,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              child,
+            ],
           );
         },
       ),
