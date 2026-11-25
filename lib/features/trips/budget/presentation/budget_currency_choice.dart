@@ -47,12 +47,14 @@ Future<String?> pickBudgetCurrency(
   BuildContext context, {
   required String? selected,
   required String title,
+  bool useRootNavigator = false,
 }) async {
   final it = Localizations.localeOf(context).languageCode == 'it';
   final currencies = await budgetCurrencyChoices(it);
   if (!context.mounted) return null;
   final chosen = await showModalBottomSheet<TripCurrency>(
     context: context,
+    useRootNavigator: useRootNavigator,
     isScrollControlled: true,
     backgroundColor: AmaterasuColors.surfaceCard,
     builder: (sheetContext) => SafeArea(

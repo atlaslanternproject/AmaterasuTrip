@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.59.1",
+      "date": "2026-11-25",
+      "it": ["Budget: la scelta della valuta usa lo stesso pannello in tutte le schermate (barra delle spese, budget personale, nuova spesa). Nessun cambiamento a importi e calcoli."],
+      "en": ["Budget: choosing a currency uses the same sheet on every screen (expenses bar, personal budget, new expense). No change to amounts and calculations."]
+    },
+    {
       "version": "1.59.0",
       "date": "2026-11-25",
       "it": ["Pulsanti uguali in tutte le sezioni nuove (principale, secondario, testo) e cestino al posto del menu «⋮» quando c'era solo «Elimina» (la doppia conferma resta).", "Accesso con Google, logout e scelta della cartella Drive ora anche in inglese."],
