@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'trip_section_entry.dart';
+import 'trip_section_rich_text.dart';
 
 class TripSectionCardBadge extends StatelessWidget {
   const TripSectionCardBadge({super.key, required this.icon});
@@ -24,6 +25,11 @@ class TripSectionCardBadge extends StatelessWidget {
   );
 }
 
+const _lineStyle = TextStyle(
+  color: AmaterasuColors.textSecondary,
+  fontSize: 13,
+);
+
 class TripSectionCardLine extends StatelessWidget {
   const TripSectionCardLine(this.line, {super.key});
 
@@ -39,13 +45,9 @@ class TripSectionCardLine extends StatelessWidget {
         Icon(line.icon, size: 16, color: AmaterasuColors.textSecondary),
         const SizedBox(width: AmaterasuSpacing.sm),
         Expanded(
-          child: Text(
-            line.text,
-            style: const TextStyle(
-              color: AmaterasuColors.textSecondary,
-              fontSize: 13,
-            ),
-          ),
+          child: line.formatted
+              ? Text.rich(tripSectionRichText(line.text, _lineStyle))
+              : Text(line.text, style: _lineStyle),
         ),
       ],
     ),

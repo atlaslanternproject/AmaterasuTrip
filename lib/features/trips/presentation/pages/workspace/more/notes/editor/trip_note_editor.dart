@@ -1,6 +1,7 @@
-// Editor di una nota nella cornice comune delle sezioni: titolo, testo,
-// privata (solo l'autore può cambiarlo), fissata in alto, checklist con
-// voci da aggiungere e togliere, modello "Info utili" per le note nuove.
+// Editor di una nota nella cornice comune delle sezioni: titolo, testo con
+// formattazione di base, privata (solo l'autore può cambiarlo), fissata in
+// alto, collegamento a un elemento del viaggio, checklist, modelli pronti
+// (Info utili, Frasi utili, Contatti) per le note nuove.
 
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,8 @@ import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_note_checklist_editor.dart';
+import 'trip_note_link_field.dart';
+import 'trip_note_text_tools.dart';
 
 class TripNoteEditor extends StatefulWidget {
   const TripNoteEditor({
@@ -39,6 +42,7 @@ class _TripNoteEditorState extends State<TripNoteEditor>
   late var _private = widget.initial?.isPrivate ?? false;
   late var _pinned = widget.initial?.pinned ?? false;
   late final _items = TripNoteChecklistDraft(widget.initial?.checklist);
+  late TripNoteLink? _link = widget.initial?.link;
 
   /// Only the author may change who can read the note.
   bool get _canChangePrivacy =>
@@ -53,9 +57,9 @@ class _TripNoteEditorState extends State<TripNoteEditor>
     super.dispose();
   }
 
-  void _useTemplate(AppLocalizations l10n) => setState(() {
-    _title.text = l10n.noteTemplateUsefulTitle;
-    _body.text = l10n.noteTemplateUsefulBody;
+  void _useTemplate(String title, String body) => setState(() {
+    _title.text = title;
+    _body.text = body;
     _pinned = true;
   });
 
@@ -71,6 +75,7 @@ class _TripNoteEditorState extends State<TripNoteEditor>
       isPrivate: _private,
       pinned: _pinned,
       checklist: _items.items(),
+      link: _link,
     );
     return saveWith(
       problems: [
@@ -102,22 +107,14 @@ class _TripNoteEditorState extends State<TripNoteEditor>
           title: l10n.noteBlockText,
           icon: Icons.sticky_note_2_outlined,
           children: [
-            if (widget.initial == null)
-              Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton.icon(
-                  key: const Key('note-template-useful'),
-                  onPressed: () => _useTemplate(l10n),
-                  icon: const Icon(Icons.wifi_rounded, size: 18),
-                  label: Text(l10n.noteTemplateUseful),
-                ),
-              ),
+            if (widget.initial == null) TripNoteTemplates(onPick: _useTemplate),
             TextField(
               key: const Key('note-title'),
               controller: _title,
               maxLength: TripSectionFields.nameMax,
               decoration: InputDecoration(labelText: l10n.noteTitle),
             ),
+            TripNoteFormatBar(controller: _body),
             TextField(
               key: const Key('note-body'),
               controller: _body,
@@ -150,6 +147,17 @@ class _TripNoteEditorState extends State<TripNoteEditor>
                 onChanged: (v) => setState(() => _pinned = v),
                 title: Text(l10n.notePinnedSwitch),
               ),
+            ),
+          ],
+        ),
+        TripSectionBlock(
+          title: l10n.noteBlockLink,
+          icon: Icons.link_rounded,
+          children: [
+            TripNoteLinkField(
+              tripId: widget.tripId,
+              link: _link,
+              onChanged: (link) => setState(() => _link = link),
             ),
           ],
         ),

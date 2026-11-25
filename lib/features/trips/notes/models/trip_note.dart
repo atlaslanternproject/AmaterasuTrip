@@ -1,6 +1,8 @@
 // Una nota del viaggio: titolo, testo, condivisa o privata (la privata la
 // legge solo chi l'ha scritta), fissata in alto, checklist con voci da
-// spuntare. Le "Info utili" sono una nota creata da un modello.
+// spuntare, collegamento facoltativo a un elemento del viaggio (alloggio,
+// trasporto, prenotazione, ristorante o luogo). I modelli (Info utili,
+// Frasi utili, Contatti) sono note già scritte.
 
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 
@@ -13,6 +15,28 @@ class TripChecklistItem {
   TripChecklistItem toggled() => TripChecklistItem(text, done: !done);
 }
 
+/// Element of another section the note talks about (name kept as shown
+/// when it was linked).
+class TripNoteLink {
+  const TripNoteLink({
+    required this.section,
+    required this.id,
+    required this.name,
+  });
+
+  static const sections = [
+    'stays',
+    'transports',
+    'reservations',
+    'restaurants',
+    'savedPlaces',
+  ];
+
+  final String section;
+  final String id;
+  final String name;
+}
+
 class TripNote implements TripSectionItem {
   const TripNote({
     this.id = '',
@@ -23,6 +47,7 @@ class TripNote implements TripSectionItem {
     this.isPrivate = false,
     this.pinned = false,
     this.checklist = const [],
+    this.link,
   });
 
   @override
@@ -38,6 +63,7 @@ class TripNote implements TripSectionItem {
   final bool isPrivate;
   final bool pinned;
   final List<TripChecklistItem> checklist;
+  final TripNoteLink? link;
 
   int get doneCount => checklist.where((item) => item.done).length;
 
@@ -56,5 +82,6 @@ class TripNote implements TripSectionItem {
     isPrivate: isPrivate,
     pinned: pinned,
     checklist: items,
+    link: link,
   );
 }

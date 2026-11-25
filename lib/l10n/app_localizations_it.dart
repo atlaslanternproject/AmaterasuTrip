@@ -3997,6 +3997,53 @@ class AppLocalizationsIt extends AppLocalizations {
   String get noteErrChecklist => 'La checklist può avere al massimo 100 voci.';
 
   @override
+  String get noteTemplatePhrases => 'Usa il modello «Frasi utili»';
+
+  @override
+  String get noteTemplatePhrasesTitle => 'Frasi utili';
+
+  @override
+  String get noteTemplatePhrasesBody => '# Frasi utili\n- Ciao / Buongiorno: \n- Grazie: \n- Scusi: \n- Quanto costa?: \n- Dov\'è il bagno?: \n- Il conto, per favore: \n- Sono allergico a: \n- Aiuto!: ';
+
+  @override
+  String get noteTemplateContacts => 'Usa il modello «Contatti»';
+
+  @override
+  String get noteTemplateContactsTitle => 'Contatti';
+
+  @override
+  String get noteTemplateContactsBody => '# Contatti\n- Emergenze: 112\n- Ambasciata o consolato: \n- Alloggio: \n- Assicurazione di viaggio: \n- Compagnia aerea: \n- Taxi: \n- Contatto a casa: ';
+
+  @override
+  String get noteFormatTitle => 'Titolo (riga che inizia con #)';
+
+  @override
+  String get noteFormatList => 'Elenco puntato';
+
+  @override
+  String get noteFormatBold => 'Grassetto';
+
+  @override
+  String get noteBlockLink => 'Collegata a';
+
+  @override
+  String get noteLinkNone => 'Nessun elemento collegato';
+
+  @override
+  String get noteLinkPick => 'Collega';
+
+  @override
+  String get noteLinkRemove => 'Togli il collegamento';
+
+  @override
+  String get noteLinkEmpty => 'Nessun alloggio, trasporto, prenotazione, ristorante o luogo nel viaggio.';
+
+  @override
+  String noteLinkedTo(String name, String section) {
+    return 'Collegata a $name ($section)';
+  }
+
+  @override
   String get shoppingTabItems => 'Acquisti';
 
   @override
