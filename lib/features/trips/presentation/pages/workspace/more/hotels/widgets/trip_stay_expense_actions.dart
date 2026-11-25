@@ -3,6 +3,7 @@
 // valuta del costo previsto se c'è) e poi la
 // collega; "Collega spesa esistente" sceglie tra le spese condivise.
 
+import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -49,7 +50,11 @@ Future<void> createExpenseForStay(
   final cost = stay.estimatedCostMinorUnits;
   final costCurrency = stay.estimatedCostCurrency;
   final hasCost = cost != null && costCurrency != null;
-  final currency = hasCost ? costCurrency : await api.tripCurrency();
+  // With a cost its currency stays; otherwise Appearance, then the trip.
+  final preferred = amaterasuDefaultEntryCurrency(context);
+  final currency = hasCost
+      ? costCurrency
+      : (preferred ?? await api.tripCurrency());
   if (!context.mounted) return;
   String? createdId;
   await showDialog<bool>(

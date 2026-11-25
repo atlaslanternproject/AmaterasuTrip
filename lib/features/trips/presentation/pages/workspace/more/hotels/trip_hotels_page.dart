@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -63,7 +64,8 @@ class TripHotelsPage extends ConsumerWidget {
         places: ref.read(amaterasuPlaceSearchProvider),
         placeInfo: ref.read(amaterasuPlaceInfoProvider),
         initial: initial,
-        defaultCurrency: trip?.currency ?? 'EUR',
+        defaultCurrency:
+            amaterasuDefaultEntryCurrency(context) ?? trip?.currency ?? 'EUR',
         onSave: (stay) =>
             initial == null ? repository.create(stay) : repository.update(stay),
       );

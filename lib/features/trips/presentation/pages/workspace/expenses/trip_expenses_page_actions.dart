@@ -80,7 +80,11 @@ extension _TripExpensesPageStateActions on _TripExpensesPageState {
             brightness: Brightness.dark,
           ),
         ),
-        child: BudgetCreateDialog(api: _api, currency: currency),
+        // Starting currency: the one of Settings > Appearance, if chosen.
+        child: BudgetCreateDialog(
+          api: _api,
+          currency: amaterasuDefaultEntryCurrency(context) ?? currency,
+        ),
       ),
     );
   }

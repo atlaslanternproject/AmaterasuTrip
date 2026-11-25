@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_editor_frame.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_filter.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_priority.dart';
@@ -54,6 +55,7 @@ class _TripShoppingTabState extends ConsumerState<TripShoppingTab>
         authorUid: uid,
         memberNames: ref.read(tripStaysMemberNamesProvider(widget.tripId)),
         defaultCurrency:
+            amaterasuDefaultEntryCurrency(context) ??
             ref.read(tripStaysTripInfoProvider(widget.tripId))?.currency ??
             'EUR',
         initial: initial,
