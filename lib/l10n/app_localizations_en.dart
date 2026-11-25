@@ -2568,6 +2568,51 @@ class AppLocalizationsEn extends AppLocalizations {
   String get btCreatePersonal => 'Personal';
 
   @override
+  String get btCreateKindAll => 'With everyone';
+
+  @override
+  String get btCreateKindSome => 'With some people';
+
+  @override
+  String get btCreateKindAdvance => 'Paid for others';
+
+  @override
+  String get btCreateTotalToSplit => 'Total to split';
+
+  @override
+  String get btCreatePerPerson => 'Per person';
+
+  @override
+  String get btCreatePricePerPerson => 'Price per person';
+
+  @override
+  String get btCreateAllTravelers => 'Everyone';
+
+  @override
+  String get btCreateLinkOptional => 'Link (optional)';
+
+  @override
+  String get btCreateLinkInvalid => 'The link must start with http:// or https://.';
+
+  @override
+  String get btDetailsSourceLinks => 'Source and link';
+
+  @override
+  String get btGoToStay => 'Go to the stay';
+
+  @override
+  String get btGoToTransport => 'Go to the transport';
+
+  @override
+  String get btGoToReservation => 'Go to the booking';
+
+  @override
+  String get btGoToRestaurant => 'Go to the restaurant';
+
+  @override
+  String get btGoToShopping => 'Go to shopping';
+
+  @override
   String get btCreatePaymentsRecordedInThis => 'Payments recorded in this version must have been made by you.';
 
   @override

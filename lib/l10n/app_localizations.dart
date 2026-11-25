@@ -5057,6 +5057,96 @@ abstract class AppLocalizations {
   /// **'Personal'**
   String get btCreatePersonal;
 
+  /// No description provided for @btCreateKindAll.
+  ///
+  /// In en, this message translates to:
+  /// **'With everyone'**
+  String get btCreateKindAll;
+
+  /// No description provided for @btCreateKindSome.
+  ///
+  /// In en, this message translates to:
+  /// **'With some people'**
+  String get btCreateKindSome;
+
+  /// No description provided for @btCreateKindAdvance.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid for others'**
+  String get btCreateKindAdvance;
+
+  /// No description provided for @btCreateTotalToSplit.
+  ///
+  /// In en, this message translates to:
+  /// **'Total to split'**
+  String get btCreateTotalToSplit;
+
+  /// No description provided for @btCreatePerPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Per person'**
+  String get btCreatePerPerson;
+
+  /// No description provided for @btCreatePricePerPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Price per person'**
+  String get btCreatePricePerPerson;
+
+  /// No description provided for @btCreateAllTravelers.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone'**
+  String get btCreateAllTravelers;
+
+  /// No description provided for @btCreateLinkOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Link (optional)'**
+  String get btCreateLinkOptional;
+
+  /// No description provided for @btCreateLinkInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The link must start with http:// or https://.'**
+  String get btCreateLinkInvalid;
+
+  /// No description provided for @btDetailsSourceLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Source and link'**
+  String get btDetailsSourceLinks;
+
+  /// No description provided for @btGoToStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to the stay'**
+  String get btGoToStay;
+
+  /// No description provided for @btGoToTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to the transport'**
+  String get btGoToTransport;
+
+  /// No description provided for @btGoToReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to the booking'**
+  String get btGoToReservation;
+
+  /// No description provided for @btGoToRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to the restaurant'**
+  String get btGoToRestaurant;
+
+  /// No description provided for @btGoToShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to shopping'**
+  String get btGoToShopping;
+
   /// No description provided for @btCreatePaymentsRecordedInThis.
   ///
   /// In en, this message translates to:

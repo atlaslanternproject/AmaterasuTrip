@@ -70,6 +70,7 @@ Future<void> createExpenseForStay(
         initialDate: stay.checkInDate,
         initialMinorUnits: hasCost ? cost : null,
         sharedOnly: true,
+        source: ('stays', stay.id),
         onCreated: (id) => createdId = id,
       ),
     ),

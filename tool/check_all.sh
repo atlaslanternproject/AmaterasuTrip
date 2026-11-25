@@ -50,7 +50,8 @@ node_tests() {
     functions/test/budget-history.test.cjs \
     functions/test/delete-trip-storage.test.cjs \
     functions/test/trip-duplication-policy.test.cjs \
-    functions/test/budget-declared-payment.test.cjs || return 1
+    functions/test/budget-declared-payment.test.cjs \
+    functions/test/budget-expense-source.test.cjs || return 1
   # Questi test ricevono il percorso del file compilato come argomento.
   node functions/test/account-deletion-cleanup-orchestrator.test.cjs \
     "$lib/account-deletion-cleanup-orchestrator.js" || return 1

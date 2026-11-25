@@ -341,6 +341,12 @@ class BudgetApi {
     required List<String> participants,
     Map<String, int>? customShares,
     BudgetPaymentPlan? paymentPlan,
+
+    /// Section that generated the expense (section, id): no effect on amounts.
+    (String, String)? source,
+
+    /// Optional web link of the expense.
+    String? link,
   }) async {
     if (title.trim().isEmpty || title.trim().length > 100) {
       throw ArgumentError('Titolo obbligatorio (max 100 caratteri).');
@@ -472,6 +478,8 @@ class BudgetApi {
       'category': category,
       'notes': notes.trim(),
       if (paymentPlan != null) 'paymentMethods': paymentPlan.toPayload(),
+      if (source != null) 'source': {'section': source.$1, 'id': source.$2},
+      if (link != null && link.trim().isNotEmpty) 'link': link.trim(),
       'snapshot': {
         'total': {'currency': currency, 'minorUnits': minorUnits},
         'status': status,

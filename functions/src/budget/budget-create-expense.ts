@@ -4,6 +4,7 @@ import {checkBudgetMembership} from "./budget-access";
 import {loadDisplayNames} from "./budget-names";
 import {validId, validateSnapshot} from "./budget-validation";
 import {validatePaymentMethods} from "./budget-payment-methods";
+import {validateExpenseExtras} from "./budget-expense-source";
 import {requireVerifiedUid} from "../shared/require-verified-uid";
 
 const db = getFirestore();
@@ -88,6 +89,12 @@ export const createBudgetExpense = onCall(
       throw new HttpsError("invalid-argument", "Invalid expense notes.");
     }
 
+    // Section that generated the expense and a web link (no effect on
+    // the amounts).
+    const extras = validateExpenseExtras(
+      request.data?.source, request.data?.link,
+    );
+
     const title = typeof rawTitle === "string" ?
       rawTitle.trim() : "Spesa";
     const category = typeof rawCategory === "string" ?
@@ -168,6 +175,7 @@ export const createBudgetExpense = onCall(
         title,
         category,
         notes,
+        ...extras,
         createdByUid: uid,
         visibility,
         snapshot,

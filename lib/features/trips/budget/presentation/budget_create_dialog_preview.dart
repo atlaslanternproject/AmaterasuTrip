@@ -9,7 +9,7 @@ extension _BudgetCreateDialogStatePreview on _BudgetCreateDialogState {
     final muted = AmaterasuColors.textSecondary;
 
     try {
-      final total = BudgetMoneyInput.parse(_amount.text, _selectedCurrency);
+      final total = _totalMinor();
 
       final participants = _shared
           ? _selected.toList()
