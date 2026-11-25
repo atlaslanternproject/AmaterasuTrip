@@ -199,7 +199,8 @@ Componenti riutilizzabili:
   TripSectionCompactCard / TripSectionDetailsRow costruite da
   un TripSectionEntry, TripSectionList, TripSectionScaffold,
   TripSectionToolbar (filtri e vista ricordata con
-  TripSectionViewMemory), spesa collegata
+  TripSectionViewMemory), titoli di gruppo (groupOf),
+  "Orari e prezzi" (TripSectionHoursButton), spesa collegata
   (TripSectionExpenseTarget, footer e pulsante), conferma di
   eliminazione, editor (TripSectionEditorFrame, blocchi,
   giorno/ora, scelte, viaggiatori, costo, luogo). Nelle regole
@@ -312,8 +313,11 @@ Finito:
   (con foto) oppure link di Google Maps incollato (da cui si
   ricavano nome e coordinate se presenti), categoria (da
   vedere, mangiare, shopping, natura, vita notturna, altro),
-  note, "aggiunto da"; filtro per categoria, ordine per nome,
-  tre viste. Nessuna spesa. Dati in trips/{tripId}/savedPlaces.
+  note, "aggiunto da", priorità SS/S/A/B, visitato, giorno
+  previsto, zona, tempo di visita, prezzo d'ingresso (campi del
+  costo comune), link dei biglietti, "Orari e prezzi" su
+  richiesta; filtri per categoria e visitato, ordine per
+  priorità o nome, gruppi per zona o giorno, tre viste. Nessuna spesa. Dati in trips/{tripId}/savedPlaces.
 - Note (lib/features/trips/notes e pages/workspace/more/notes):
   titolo, testo, condivise o private (le private le leggono,
   modificano ed eliminano solo gli autori: regole e test; l'app
