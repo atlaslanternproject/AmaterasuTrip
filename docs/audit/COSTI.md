@@ -60,7 +60,7 @@ Per restare nei livelli gratuiti anche se la chiave venisse abusata:
 | Maps JavaScript API (Map loads) | 300 al giorno | ~9.000 al mese < 10.000 gratuite |
 | Places API (New): Autocomplete | 300 sessioni al giorno | < 10.000 al mese |
 | Places API (New): Place Details Essentials | 300 al giorno | < 10.000 al mese |
-| Places API (New): Place Details Enterprise (telefono, sito) | 30 al giorno | < 1.000 al mese |
+| Places API (New): Place Details Enterprise (telefono, sito, orari e prezzo dalla 1.29.0) | 30 al giorno | < 1.000 al mese; "Orari e prezzi" usa la stessa richiesta dei contatti (solo al tocco, in cache per la sessione) |
 | Places API (New): Place Photos | 300 al giorno | < 10.000 al mese (se la soglia foto è 1.000 al mese: 30 al giorno) |
 | Geocoding API | 100 al giorno | uso raro |
 | Weather API (se mai attivata) | 0 finché non approvata | |
