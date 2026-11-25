@@ -22,43 +22,11 @@ extension _BudgetCategoryDashboardStateRates on _BudgetCategoryDashboardState {
     return budgetExpenseDay(data);
   }
 
-  Future<BudgetFxQuote?> _quoteFor(
-    QueryDocumentSnapshot<Map<String, dynamic>> doc,
-    String target,
-  ) async {
-    final data = doc.data();
-    final source = _map(
-      _map(data['snapshot'])['total'],
-    )['currency']?.toString();
-    if (source == null || source == target) {
-      return null;
-    }
-    try {
-      final locked = BudgetFxQuote.fromLocked(data['fxHistorical']);
-      if (locked != null && locked.base == source && locked.quote == target) {
-        return locked;
-      }
-      final created = _createdAt(data);
-      if (created == null) {
-        return null;
-      }
-      return await _fx.historical(source, target, created);
-    } catch (_) {
-      return null;
-    }
-  }
-
+  // Same rate rule as before, from the shared module (tappa 3b).
   Future<Map<String, BudgetFxQuote?>> _resolveQuotes(
     List<QueryDocumentSnapshot<Map<String, dynamic>>> docs,
     String target,
-  ) async {
-    final entries = await Future.wait(
-      docs.map((doc) async {
-        return MapEntry(doc.id, await _quoteFor(doc, target));
-      }),
-    );
-    return Map<String, BudgetFxQuote?>.fromEntries(entries);
-  }
+  ) => budgetCategoryQuotes(docs, target, _fx);
 
   Future<Map<String, BudgetFxQuote?>> _quoteFuture(
     List<QueryDocumentSnapshot<Map<String, dynamic>>> docs,

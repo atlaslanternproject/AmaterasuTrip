@@ -10,6 +10,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../data/budget_fx_service.dart';
 import 'budget_api.dart';
 import 'budget_category_picker.dart';
+import 'budget_category_totals.dart';
 import 'budget_charts.dart';
 import 'budget_expense_filters.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';

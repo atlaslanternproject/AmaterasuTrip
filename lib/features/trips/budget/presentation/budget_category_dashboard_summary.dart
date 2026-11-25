@@ -15,100 +15,25 @@ extension _BudgetCategoryDashboardStateSummary
     AppLocalizations l10n,
     bool it,
   ) {
-    final totals = <String, int>{};
-    final excluded = <String, int>{};
-    final observations = <String, String>{};
-    var total = 0;
-    var paid = 0;
-    var converted = 0;
-    var excludedCount = 0;
-    var myShare = 0;
-    var myAdvances = 0;
-    final people = <String>{};
-    final daily = <DateTime, int>{};
-    String? mostRecentTitle;
-    DateTime? mostRecentDate;
-    for (final doc in docs) {
-      final data = doc.data();
-      final financial = _map(data['snapshot']);
-      final amountMap = _map(financial['total']);
-      final source = amountMap['currency']?.toString();
-      final amount = amountMap['minorUnits'];
-      if (source == null ||
-          !BudgetFxService.validCurrency(source) ||
-          amount is! int ||
-          amount < 0) {
-        continue;
-      }
-      final fx = quotes[doc.id];
-      final value = BudgetFxService.convertMinor(amount, source, target, fx);
-      if (value == null) {
-        excludedCount++;
-        excluded[source] = (excluded[source] ?? 0) + amount;
-        continue;
-      }
-      converted++;
-      final members = _map(financial['shares']);
-      people.addAll(members.keys);
-      final own = _map(members[widget.api.currentUid]);
-      if (own['currency'] == source && own['minorUnits'] is int) {
-        final convertedOwn = BudgetFxService.convertMinor(
-          own['minorUnits'] as int,
-          source,
-          target,
-          fx,
-        );
-        if (convertedOwn != null) {
-          myShare += convertedOwn;
-        }
-      }
-      final expenseTime = _createdAt(data);
-      if (expenseTime != null &&
-          (mostRecentDate == null || expenseTime.isAfter(mostRecentDate))) {
-        mostRecentDate = expenseTime;
-        mostRecentTitle = data['title']?.toString() ?? '';
-      }
-      if (expenseTime != null) {
-        final day = DateUtils.dateOnly(expenseTime);
-        daily[day] = (daily[day] ?? 0) + value;
-      }
-      final category = data['category']?.toString() ?? 'other';
-      totals[category] = (totals[category] ?? 0) + value;
-      total += value;
-      var advanceTotal = 0;
-      for (final item in _map(financial['advances']).values) {
-        final advance = _map(item);
-        if (advance['currency'] == source && advance['minorUnits'] is int) {
-          advanceTotal += advance['minorUnits'] as int;
-        }
-      }
-      final ownAdvance = _map(
-        _map(financial['advances'])[widget.api.currentUid],
-      );
-      if (ownAdvance['currency'] == source && ownAdvance['minorUnits'] is int) {
-        myAdvances +=
-            BudgetFxService.convertMinor(
-              ownAdvance['minorUnits'] as int,
-              source,
-              target,
-              fx,
-            ) ??
-            0;
-      }
-      final convertedPaid = BudgetFxService.convertMinor(
-        advanceTotal,
-        source,
-        target,
-        fx,
-      );
-      if (convertedPaid != null) {
-        paid += convertedPaid;
-      }
-      if (fx != null) {
-        observations['$source/$target'] =
-            '${fx.source} ${fx.observedIso}${fx.manual ? ' · Manual' : ''}';
-      }
-    }
+    // Same totals as before, from the shared module (tappa 3b).
+    final r = BudgetCategoryTotals.compute(
+      docs,
+      target,
+      quotes,
+      widget.api.currentUid,
+    );
+    final totals = r.totals;
+    final excluded = r.excluded;
+    final observations = r.observations;
+    final total = r.total;
+    final paid = r.paid;
+    final converted = r.converted;
+    final excludedCount = r.excludedCount;
+    final myShare = r.myShare;
+    final myAdvances = r.myAdvances;
+    final people = r.people;
+    final daily = r.daily;
+    final mostRecentTitle = r.mostRecentTitle;
     final ordered = totals.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
     final partial = excludedCount > 0;
