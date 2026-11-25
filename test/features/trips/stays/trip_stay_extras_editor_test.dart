@@ -49,7 +49,8 @@ void main() {
       final repo = FakeTripStaysRepository();
       await open(tester, repo);
       await tester.enterText(find.byKey(const Key('stay-name')), 'Ryokan');
-      expect(find.text('JPY'), findsOneWidget);
+      // Cost and city tax both start in the trip currency.
+      expect(find.text('JPY'), findsNWidgets(2));
       await tester.enterText(find.byKey(const Key('stay-cost')), '32000');
       await tapKey(tester, 'stay-amenity-breakfast');
       await tapKey(tester, 'stay-amenity-wifi');

@@ -32,6 +32,7 @@ enum TripStayProblem {
   expenseIdInvalid,
   costInvalid,
   directionsTooLong,
+  extrasInvalid,
 }
 
 abstract final class TripStayValidator {
@@ -130,6 +131,7 @@ abstract final class TripStayValidator {
       longer(stay.directions, directionsMax),
       TripStayProblem.directionsTooLong,
     );
+    check(stay.extras.invalid, TripStayProblem.extrasInvalid);
     return found;
   }
 }

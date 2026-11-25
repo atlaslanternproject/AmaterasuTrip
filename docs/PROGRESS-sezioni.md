@@ -309,7 +309,8 @@ Mappa/Itinerario).
 | Sezioni v2 - Trasporti | fatta, pubblicata 1.27.0 il 25/11/2026 | feature/trasporti-v2 | 1.27.0+31 |
 | Sezioni v2 - Prenotazioni | fatta, pubblicata 1.28.0 il 25/11/2026 | feature/prenotazioni-v2 | 1.28.0+32 |
 | Sezioni v2 - Ristoranti | fatta, pubblicata 1.29.0 il 25/11/2026 | feature/ristoranti-v2 | 1.29.0+33 |
-| Sezioni v2 - Luoghi salvati | fatta (pubblicazione: vedi tappa seguente) | feature/luoghi-v2 | 1.30.0+34 |
+| Sezioni v2 - Luoghi salvati | fatta, pubblicata 1.30.0 il 25/11/2026 | feature/luoghi-v2 | 1.30.0+34 |
+| Sezioni v2 - Alloggi (aggiunte facoltative) | fatta (pubblicazione: vedi tappa seguente) | feature/alloggi-v2 | 1.31.0+35 |
 | Sezioni v2 - Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
@@ -518,3 +519,29 @@ Prove da fare sul sito:
 4. Filtro "Da visitare" nasconde i visitati; i visitati appaiono attenuati.
 5. "Orari e prezzi" sui luoghi Google; con il giorno previsto in un
    giorno di chiusura compare l'avviso.
+
+## Sezioni v2 - Alloggi (solo aggiunte facoltative)
+Valutazione (regola 1): (a) esistevano servizi, "come arrivare", costo
+previsto e il selettore di valuta comune; (b) le aggiunte sono raccolte
+in un campo "extras" (come nei trasporti) con una sezione nuova
+dell'editor e righe nuove nella card che compaiono solo se compilate; il
+resto del modulo approvato non cambia; (c) tocca il blocco stays delle
+regole (chiave extras e funzione validStayExtras); test di regole, dati,
+card ed editor.
+
+Commit: 0a094bb.
+
+Impatto sulle regole: un alloggio può avere in più il campo "extras"
+(codice porta, Wi-Fi, istruzioni, orario di arrivo tardivo, contatto
+reception, tassa di soggiorno con valuta e persone); tutto il resto è
+controllato come prima. Con tutti i campi insieme si superava il limite di
+1000 operazioni di Firestore: ogni testo di "extras" ha un solo controllo
+(che verifica anche che sia un testo).
+
+Prove da fare sul sito:
+1. Nell'editor di un alloggio c'è la sezione "Arrivo, accesso e tassa".
+2. Codice porta e Wi-Fi compaiono nella card solo se compilati.
+3. Arrivo tardivo e reception: "Arrivo alle 23:30 · Reception: …".
+4. Tassa a persona per notte: la card mostra il totale (notti × persone;
+   se "persone" è vuoto si usano gli ospiti).
+5. Un alloggio già salvato senza queste aggiunte appare come prima.

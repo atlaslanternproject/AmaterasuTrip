@@ -40,4 +40,5 @@ String tripStayProblemText(TripStayProblem problem, AppLocalizations l10n) =>
       TripStayProblem.directionsTooLong => l10n.staysErrTooLong(
         TripStayValidator.directionsMax,
       ),
+      TripStayProblem.extrasInvalid => l10n.staysErrExtras,
     };

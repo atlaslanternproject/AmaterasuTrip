@@ -6,6 +6,7 @@ import 'trip_stay.dart';
 import 'trip_stay_amenity.dart';
 import 'trip_stay_booking_platform.dart';
 import 'trip_stay_dates.dart';
+import 'trip_stay_extras.dart';
 import 'trip_stay_status.dart';
 import 'trip_stay_type.dart';
 
@@ -63,6 +64,8 @@ abstract final class TripStayCodec {
             if (stay.amenities.contains(a)) a.code,
         ],
       'directions': ?text(stay.directions),
+      if (stay.extras.toMap() case final extras when extras.isNotEmpty)
+        'extras': extras,
     };
   }
 
@@ -144,6 +147,7 @@ abstract final class TripStayCodec {
       freeCancellationUntil: TripStayDates.parse(data['freeCancellationUntil']),
       amenities: TripStayAmenity.fromCodes(data['amenities']),
       directions: text('directions'),
+      extras: TripStayExtras.fromMap(data['extras']),
     );
   }
 }

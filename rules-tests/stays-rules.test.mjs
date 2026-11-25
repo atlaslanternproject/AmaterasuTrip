@@ -218,6 +218,60 @@ test('cost, free cancellation, services and directions: optional and checked', a
   }));
 });
 
+test('access, late arrival and city tax (extras): optional and checked', async () => {
+  const extras = {
+    doorCode: '1234#',
+    wifiName: 'Ryokan-Guest',
+    wifiPassword: 'sakura2027',
+    accessNotes: 'Chiavi nella cassetta a sinistra',
+    lateArrivalTime: '23:30',
+    receptionContact: '+81 75 123 4567 (Kenji)',
+    taxMinorUnits: 200,
+    taxCurrency: 'JPY',
+    taxPersons: 2,
+  };
+  // Every field together, with the other optional fields of v1.15.0.
+  await assertSucceeds(setDoc(stayRef(MEMBER, 'extras'), stay(MEMBER, {
+    checkInTime: '15:00', checkOutTime: '10:30', address: 'Shijo-dori 1',
+    city: 'Kyoto', country: 'Japan', googlePlaceId: 'ChIJ-test',
+    latitude: 35.01, longitude: 135.76, bookedVia: 'other',
+    bookedViaOther: 'Expedia', bookingUrl: 'https://example.com/b/1',
+    propertyUrl: 'https://hotel.example.jp', confirmationCode: 'ABC123',
+    notes: 'Note', guestUids: [OWNER, MEMBER], expenseId: 'expense_1',
+    type: 'hotel', phone: '+39 06 1234 5678', email: 'info@hotel.example.jp',
+    estimatedCostMinorUnits: 45000, estimatedCostCurrency: 'EUR',
+    freeCancellationUntil: '2027-04-01', amenities: ['wifi'],
+    directions: 'Bus 100', extras,
+  })));
+  const bad = [
+    {extras: 'codice'},
+    {extras: {pool: true}},
+    {extras: {doorCode: 'x'.repeat(101)}},
+    {extras: {doorCode: 5}},
+    {extras: {wifiName: ['a']}},
+    {extras: {accessNotes: 'x'.repeat(1001)}},
+    {extras: {receptionContact: 'x'.repeat(201)}},
+    {extras: {lateArrivalTime: '24:10'}},
+    {extras: {taxMinorUnits: 200}},
+    {extras: {taxCurrency: 'JPY'}},
+    {extras: {taxMinorUnits: 0, taxCurrency: 'JPY'}},
+    {extras: {taxMinorUnits: 1.5, taxCurrency: 'JPY'}},
+    {extras: {taxMinorUnits: 200, taxCurrency: 'yen'}},
+    {extras: {taxPersons: 0}},
+    {extras: {taxPersons: 51}},
+  ];
+  for (const extra of bad) {
+    await assertFails(setDoc(stayRef(MEMBER, 'bad'), stay(MEMBER, extra)));
+  }
+  await seedStay(MEMBER, 'edit-extras');
+  await assertSucceeds(updateDoc(stayRef(OTHER_MEMBER, 'edit-extras'), {
+    extras: {doorCode: '0000'}, updatedAt: serverTimestamp(),
+  }));
+  await assertSucceeds(updateDoc(stayRef(OTHER_MEMBER, 'edit-extras'), {
+    extras: deleteField(), updatedAt: serverTimestamp(),
+  }));
+});
+
 test('outsiders cannot create, and nobody can create for someone else', async () => {
   await assertFails(setDoc(stayRef(OUTSIDER), stay(OUTSIDER)));
   await assertFails(setDoc(stayRef(null), stay('anyone')));

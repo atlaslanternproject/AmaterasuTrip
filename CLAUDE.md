@@ -258,7 +258,10 @@ Finito:
   delle notti del viaggio senza alloggio; cancellazione
   gratuita con data ben visibile (colore di avviso negli
   ultimi 3 giorni), servizi inclusi (colazione, parcheggio,
-  Wi-Fi, cucina), "come arrivare" e costo previsto; editor
+  Wi-Fi, cucina), "come arrivare" e costo previsto; aggiunte
+  facoltative v2 in "extras" (codice porta, Wi-Fi, istruzioni,
+  arrivo tardivo con reception, tassa di soggiorno a persona per
+  notte con totale); editor
   a sezioni (luogo Google che compila anche telefono e sito,
   tipo, contatti, date e orari, stato, prenotazione, costo e
   cancellazione, servizi e come arrivare, ospiti, note);

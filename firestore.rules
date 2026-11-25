@@ -590,7 +590,7 @@ service cloud.firestore {
             'confirmationCode', 'notes', 'guestUids', 'expenseId',
             'type', 'phone', 'email',
             'estimatedCostMinorUnits', 'estimatedCostCurrency',
-            'freeCancellationUntil', 'amenities', 'directions'
+            'freeCancellationUntil', 'amenities', 'directions', 'extras'
           ])
           && data.tripId == tripId
           && data.name is string
@@ -686,7 +686,33 @@ service cloud.firestore {
                 'breakfast', 'parking', 'wifi', 'kitchen'
               ]))
           )
-          && validStayText(data, 'directions', 2000);
+          && validStayText(data, 'directions', 2000)
+          // Access, late arrival and city tax, grouped (v1.31.0).
+          && (!('extras' in data) || validStayExtras(data.extras));
+      }
+
+      // One cheap check per field: matches() also requires a string.
+      function validStayExtras(e) {
+        return e is map
+          && e.keys().hasOnly([
+            'doorCode', 'wifiName', 'wifiPassword', 'accessNotes',
+            'lateArrivalTime', 'receptionContact',
+            'taxMinorUnits', 'taxCurrency', 'taxPersons'
+          ])
+          && e.get('doorCode', '').matches('^.{0,100}$')
+          && e.get('wifiName', '').matches('^.{0,100}$')
+          && e.get('wifiPassword', '').matches('^.{0,100}$')
+          && e.get('accessNotes', '').matches('(?s)^.{0,1000}$')
+          && e.get('receptionContact', '').matches('^.{0,200}$')
+          && e.get('lateArrivalTime', '00:00')
+            .matches('^([01][0-9]|2[0-3]):[0-5][0-9]$')
+          && e.get('taxCurrency', 'EUR').matches('^[A-Z]{3}$')
+          && (('taxMinorUnits' in e) == ('taxCurrency' in e))
+          && (!('taxMinorUnits' in e)
+            || (e.taxMinorUnits is int
+              && e.taxMinorUnits > 0 && e.taxMinorUnits <= 100000000))
+          && (!('taxPersons' in e)
+            || (e.taxPersons is int && e.taxPersons >= 1 && e.taxPersons <= 50));
       }
 
       match /stays/{stayId} {

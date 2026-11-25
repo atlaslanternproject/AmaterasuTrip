@@ -6197,6 +6197,108 @@ abstract class AppLocalizations {
   /// **'Invalid expected cost: enter an amount above zero in the currency format.'**
   String get staysErrCost;
 
+  /// No description provided for @staysErrExtras.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival, access or tax: check the data (time, amount, people from 1 to 50).'**
+  String get staysErrExtras;
+
+  /// No description provided for @staysSectionArrival.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival, access and tax'**
+  String get staysSectionArrival;
+
+  /// No description provided for @staysLateArrival.
+  ///
+  /// In en, this message translates to:
+  /// **'Late arrival (time)'**
+  String get staysLateArrival;
+
+  /// No description provided for @staysReception.
+  ///
+  /// In en, this message translates to:
+  /// **'Reception contact'**
+  String get staysReception;
+
+  /// No description provided for @staysDoorCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Door code'**
+  String get staysDoorCode;
+
+  /// No description provided for @staysWifiName.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi name'**
+  String get staysWifiName;
+
+  /// No description provided for @staysWifiPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi password'**
+  String get staysWifiPassword;
+
+  /// No description provided for @staysAccessNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Access instructions'**
+  String get staysAccessNotes;
+
+  /// No description provided for @staysCityTax.
+  ///
+  /// In en, this message translates to:
+  /// **'City tax per person per night'**
+  String get staysCityTax;
+
+  /// No description provided for @staysCityTaxPersons.
+  ///
+  /// In en, this message translates to:
+  /// **'People paying the tax'**
+  String get staysCityTaxPersons;
+
+  /// No description provided for @staysCityTaxPersonsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When empty, the guests of the stay are used.'**
+  String get staysCityTaxPersonsHint;
+
+  /// No description provided for @staysLateArrivalValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival at {time}'**
+  String staysLateArrivalValue(String time);
+
+  /// No description provided for @staysReceptionValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Reception: {contact}'**
+  String staysReceptionValue(String contact);
+
+  /// No description provided for @staysDoorCodeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Door code: {code}'**
+  String staysDoorCodeValue(String code);
+
+  /// No description provided for @staysWifiValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi-Fi: {value}'**
+  String staysWifiValue(String value);
+
+  /// No description provided for @staysCityTaxEach.
+  ///
+  /// In en, this message translates to:
+  /// **'City tax: {amount} per person per night'**
+  String staysCityTaxEach(String amount);
+
+  /// No description provided for @staysCityTaxValue.
+  ///
+  /// In en, this message translates to:
+  /// **'City tax: {total} ({amount} × {nights} nights × {persons} people)'**
+  String staysCityTaxValue(String total, String amount, int nights, int persons);
+
   /// No description provided for @staysSectionCost.
   ///
   /// In en, this message translates to:
