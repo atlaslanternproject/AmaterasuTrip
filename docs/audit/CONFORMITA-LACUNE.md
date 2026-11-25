@@ -23,10 +23,9 @@ segna come lacuna o "da verificare". Da far rivedere a un professionista
 1. Termini d'uso: da scrivere e pubblicare (oggi c'è solo l'informativa).
 2. Portabilità (GDPR art. 20): manca l'esportazione dei propri dati in un
    file (oggi c'è solo l'esportazione delle spese del viaggio).
-3. Segnalazioni e idee (raccolta feedback): restano dopo la cancellazione
-   dell'account; andrebbero cancellate insieme (tocca la funzione di
-   cancellazione, modulo approvato: serve il tuo ok). Aggiornare anche
-   l'informativa privacy con questa raccolta.
+3. RISOLTA (1.49.1): le segnalazioni e le idee si cancellano insieme al
+   profilo quando l'utente cancella l'account; l'informativa privacy le
+   descrive (sezione "Segnalazioni e idee").
 4. reCAPTCHA Enterprise (App Check): verificare se i suoi cookie sono
    "tecnici" ai sensi delle linee guida del Garante e se serve un avviso o
    un banner; citarlo nell'informativa.

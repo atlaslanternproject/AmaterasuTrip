@@ -88,8 +88,8 @@
       "ref": "",
       "applies": "yes",
       "how": {
-        "it": "Si salvano solo il testo scritto, il tipo, la versione e la lingua, al massimo 5 al giorno; nessun registro automatico degli errori e nessuna statistica d'uso. Oggi restano anche dopo la cancellazione dell'account: è una lacuna.",
-        "en": "Only the written text, the type, the version and the language are saved, at most 5 a day; no automatic error log and no usage statistics. Today they remain after the account is deleted: it is a gap."
+        "it": "Si salvano solo il testo scritto, il tipo, la versione e la lingua, al massimo 5 al giorno; nessun registro automatico degli errori e nessuna statistica d'uso. Si cancellano insieme al profilo quando l'utente cancella l'account.",
+        "en": "Only the written text, the type, the version and the language are saved, at most 5 a day; no automatic error log and no usage statistics. They are deleted together with the profile when the user deletes the account."
       }
     },
     {
