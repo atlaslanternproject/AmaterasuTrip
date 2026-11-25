@@ -41,7 +41,9 @@ TripSectionEntry tripReservationEntry(
   DateTime? today,
 }) {
   final l10n = AppLocalizations.of(context)!;
-  final when = tripSectionWhen(context, item.date, item.time);
+  final day = tripSectionWhen(context, item.date, item.time);
+  final city = item.zoneCity;
+  final when = city == null || day.isEmpty ? day : '$day ($city)';
   final cost = TripSectionLabels.cost(
     item.estimatedCostMinorUnits,
     item.estimatedCostCurrency,

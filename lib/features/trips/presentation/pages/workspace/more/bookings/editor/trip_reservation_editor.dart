@@ -14,14 +14,13 @@ import 'package:amaterasutrip/features/trips/sections/editor/trip_section_block.
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_chips.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_cost_field.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_editor_frame.dart';
-import 'package:amaterasutrip/features/trips/sections/editor/trip_section_pickers.dart';
-import 'package:amaterasutrip/features/trips/sections/editor/trip_section_place_field.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../widgets/trip_reservation_entry.dart';
 import 'trip_reservation_draft.dart';
 import 'trip_reservation_tickets_block.dart';
+import 'trip_reservation_when_block.dart';
 
 class TripReservationEditor extends StatefulWidget {
   const TripReservationEditor({
@@ -124,32 +123,10 @@ class _TripReservationEditorState extends State<TripReservationEditor>
             ),
           ],
         ),
-        TripSectionBlock(
-          title: l10n.reservationBlockWhenWhere,
-          icon: Icons.event_outlined,
-          children: [
-            TripSectionDayButton(
-              fieldKey: 'reservation-day',
-              label: l10n.reservationDay,
-              value: d.date,
-              onChanged: (v) => setState(() => d.date = v),
-              onClear: () => setState(() => d.date = null),
-            ),
-            TripSectionTimeButton(
-              fieldKey: 'reservation-time',
-              label: l10n.reservationTime,
-              value: d.time,
-              onChanged: (v) => setState(() => d.time = v),
-            ),
-            const SizedBox(height: 8),
-            TripSectionPlaceField(
-              keyPrefix: 'reservation-place',
-              label: l10n.reservationPlace,
-              draft: d.place,
-              places: widget.places,
-              onChanged: _changed,
-            ),
-          ],
+        TripReservationWhenBlock(
+          draft: d,
+          places: widget.places,
+          onChanged: _changed,
         ),
         TripSectionBlock(
           title: l10n.reservationBlockBooking,

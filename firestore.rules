@@ -918,7 +918,8 @@ service cloud.firestore {
         return extras is map
           && extras.keys().hasOnly([
             'seatsByPassenger', 'checkInHoursBefore', 'checkInUrl',
-            'airportMinutesBefore', 'fuelPolicy', 'deductible'
+            'airportMinutesBefore', 'fuelPolicy', 'deductible',
+            'departureZone', 'departureCity', 'arrivalZone', 'arrivalCity'
           ])
           && (!('seatsByPassenger' in extras)
             || (extras.seatsByPassenger is map
@@ -927,7 +928,12 @@ service cloud.firestore {
           && sectionLink(extras, 'checkInUrl')
           && sectionInt(extras, 'airportMinutesBefore', 600)
           && sectionText(extras, 'fuelPolicy', 60)
-          && sectionText(extras, 'deductible', 60);
+          && sectionText(extras, 'deductible', 60)
+          // Time zone chosen by city (v1.38.0): one matches() each.
+          && extras.get('departureZone', 'UTC').matches('^[A-Za-z0-9_+/-]{1,64}$')
+          && extras.get('arrivalZone', 'UTC').matches('^[A-Za-z0-9_+/-]{1,64}$')
+          && extras.get('departureCity', '').matches('(?s)^.{0,120}$')
+          && extras.get('arrivalCity', '').matches('(?s)^.{0,120}$');
       }
 
       function sectionOffset(data, key) {
@@ -952,7 +958,7 @@ service cloud.firestore {
           'bookingCode', 'bookingUrl', 'participantUids',
           'cancellationPolicy', 'notes',
           'bookBy', 'holder', 'ticketCount', 'ticketCode',
-          'usefulLinks'
+          'usefulLinks', 'zone', 'zoneCity'
         ])
           && sectionLinks(data)
           && sectionName(data, 'name', 200)
@@ -972,6 +978,9 @@ service cloud.firestore {
             || (data.ticketCount is int
               && data.ticketCount >= 1 && data.ticketCount <= 99))
           && sectionText(data, 'ticketCode', 500)
+          // Time zone chosen by city (v1.38.0).
+          && data.get('zone', 'UTC').matches('^[A-Za-z0-9_+/-]{1,64}$')
+          && data.get('zoneCity', '').matches('(?s)^.{0,120}$')
           && sectionText(data, 'notes', 10000);
       }
 
@@ -995,7 +1004,7 @@ service cloud.firestore {
           'reservationDate', 'reservationTime', 'partySize',
           'notes', 'votes', 'allergens', 'allergenNotes', 'diets',
           'triedRating', 'triedNote',
-          'usefulLinks'
+          'usefulLinks', 'zone', 'zoneCity'
         ])
           && sectionLinks(data)
           && sectionName(data, 'name', 200)
@@ -1005,6 +1014,9 @@ service cloud.firestore {
             || (data.triedRating is int
               && data.triedRating >= 1 && data.triedRating <= 5))
           && sectionText(data, 'triedNote', 1000)
+          // Time zone chosen by city (v1.38.0).
+          && data.get('zone', 'UTC').matches('^[A-Za-z0-9_+/-]{1,64}$')
+          && data.get('zoneCity', '').matches('(?s)^.{0,120}$')
           // EU allergens to tell the restaurant and diet labels (v1.25.0).
           && (
             data.get('allergens', null) == null

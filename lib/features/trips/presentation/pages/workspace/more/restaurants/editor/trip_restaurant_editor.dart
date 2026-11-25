@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/time_zones/amaterasu_zone_field.dart';
+
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_stars.dart';
 
@@ -150,6 +152,12 @@ class _TripRestaurantEditorState extends State<TripRestaurantEditor>
               label: l10n.reservationTime,
               value: d.reservationTime,
               onChanged: (v) => setState(() => d.reservationTime = v),
+            ),
+            AmaterasuZoneField(
+              keyPrefix: 'restaurant',
+              label: l10n.zoneLabel,
+              value: d.zone,
+              onChanged: (v) => setState(() => d.zone = v),
             ),
             _text(
               'party',

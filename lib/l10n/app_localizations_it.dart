@@ -2847,6 +2847,35 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonLinkAdd => 'Aggiungi un link';
 
   @override
+  String get zoneLabel => 'Fuso orario';
+
+  @override
+  String get zoneNone => 'scegli la città';
+
+  @override
+  String get zoneRemove => 'Togli il fuso orario';
+
+  @override
+  String get zoneSheetTitle => 'Fuso orario della città';
+
+  @override
+  String get zoneSearchHint => 'Scrivi una città, es. venezia';
+
+  @override
+  String get zoneSearch => 'Cerca';
+
+  @override
+  String get zoneNoResults => 'Nessuna città trovata.';
+
+  @override
+  String get zoneSearchError => 'Ricerca non disponibile ora. Riprova più tardi.';
+
+  @override
+  String zoneLocalTime(String place, String time) {
+    return '$place, ora locale $time';
+  }
+
+  @override
   String whatsNewTitle(String version) {
     return 'Novità della versione $version';
   }

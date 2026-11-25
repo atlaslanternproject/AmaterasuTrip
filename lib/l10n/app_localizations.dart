@@ -5567,6 +5567,60 @@ abstract class AppLocalizations {
   /// **'Add a link'**
   String get commonLinkAdd;
 
+  /// No description provided for @zoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Time zone'**
+  String get zoneLabel;
+
+  /// No description provided for @zoneNone.
+  ///
+  /// In en, this message translates to:
+  /// **'choose the city'**
+  String get zoneNone;
+
+  /// No description provided for @zoneRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove the time zone'**
+  String get zoneRemove;
+
+  /// No description provided for @zoneSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time zone of the city'**
+  String get zoneSheetTitle;
+
+  /// No description provided for @zoneSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a city, e.g. venice'**
+  String get zoneSearchHint;
+
+  /// No description provided for @zoneSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get zoneSearch;
+
+  /// No description provided for @zoneNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No city found.'**
+  String get zoneNoResults;
+
+  /// No description provided for @zoneSearchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Search not available now. Try again later.'**
+  String get zoneSearchError;
+
+  /// No description provided for @zoneLocalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'{place}, local time {time}'**
+  String zoneLocalTime(String place, String time);
+
   /// No description provided for @whatsNewTitle.
   ///
   /// In en, this message translates to:

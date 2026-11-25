@@ -53,6 +53,8 @@ const {ref} = sectionCommonTests('transports', 'transports', transport, [
   {extras: {checkInUrl: 'check-in'}},
   {extras: {airportMinutesBefore: 700}},
   {extras: {fuelPolicy: 'x'.repeat(61)}},
+  {extras: {departureZone: 'Europe/Rome; x'}},
+  {extras: {arrivalCity: 'x'.repeat(121)}},
   {extras: {other: 1}},
 ], {status: 'cancelled', carrier: 'Trenitalia'});
 

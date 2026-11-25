@@ -22,23 +22,26 @@ TripSectionEntry tripTransportEntry(
   TripTransportLayover? layover,
 }) {
   final l10n = AppLocalizations.of(context)!;
-  String when(DateTime? day, String? time, String? offset) {
+  // Without a city (older transports) the text is the same as before.
+  String when(DateTime? day, String? time, String? offset, String? city) {
     final text = tripSectionWhen(context, day, time);
-    return offset == null || time == null
-        ? text
-        : '$text (${TripTransportLabels.offset(offset)})';
+    if (offset == null || time == null) return text;
+    final zone = TripTransportLabels.offset(offset);
+    return '$text (${city == null ? zone : '$city, $zone'})';
   }
 
   final departure = when(
     item.departureDate,
     item.departureTime,
     item.departureOffset,
+    item.extras.departureCity,
   );
   final hasArrival = item.arrivalDate != null || item.arrivalTime != null;
   final arrival = when(
     item.arrivalDate ?? item.departureDate,
     item.arrivalTime,
     item.arrivalOffset,
+    item.extras.arrivalCity,
   );
   final minutes = TripTransportTimeline.durationMinutes(item);
   final cost = TripSectionLabels.cost(

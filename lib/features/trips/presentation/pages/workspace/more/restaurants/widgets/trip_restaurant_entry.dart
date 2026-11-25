@@ -46,7 +46,8 @@ TripSectionEntry tripRestaurantEntry(
   );
   final party = item.partySize;
   final highlight = [
-    if (when.isNotEmpty) when,
+    if (when.isNotEmpty)
+      item.zoneCity == null ? when : '$when (${item.zoneCity})',
     if (party != null) l10n.restaurantPartyValue(party),
   ].join(' · ');
   final cost = TripSectionLabels.cost(
