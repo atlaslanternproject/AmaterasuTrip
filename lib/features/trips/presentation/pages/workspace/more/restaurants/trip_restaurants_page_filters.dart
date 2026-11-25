@@ -13,6 +13,7 @@ extension _TripRestaurantsFilters on _TripRestaurantsPageState {
       timeOf: (r) => r.reservationTime,
       statusOf: (r) => r.status.code,
       kindOf: (r) => '${r.priceLevel ?? 0}',
+      categoriesOf: (r) => r.customCategories,
     );
     shown.removeWhere(
       (r) =>
@@ -34,7 +35,10 @@ extension _TripRestaurantsFilters on _TripRestaurantsPageState {
     );
   }
 
-  List<TripSectionFilterGroup> _groups(AppLocalizations l10n) => [
+  List<TripSectionFilterGroup> _groups(
+    AppLocalizations l10n,
+    List<TripRestaurant> items,
+  ) => [
     ...tripSectionFilterGroups(
       l10n,
       _filter,
@@ -47,6 +51,10 @@ extension _TripRestaurantsFilters on _TripRestaurantsPageState {
         for (final p in [1, 2, 3, 4]) ('$p', TripRestaurantLabels.price(p)),
       ],
       dated: false,
+      customCategories: tripSectionUsedCategories(
+        items,
+        (r) => r.customCategories,
+      ),
       kindTitle: l10n.restaurantFilterPrice,
     ),
     TripSectionFilterGroup(

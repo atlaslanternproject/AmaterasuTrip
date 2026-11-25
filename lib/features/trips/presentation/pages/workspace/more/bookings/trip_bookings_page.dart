@@ -109,6 +109,7 @@ class _TripBookingsPageState extends ConsumerState<TripBookingsPage>
           timeOf: (r) => r.time,
           statusOf: (r) => r.status.code,
           kindOf: (r) => r.category.code,
+          categoriesOf: (r) => r.customCategories,
         );
         return Column(
           children: [
@@ -129,6 +130,10 @@ class _TripBookingsPageState extends ConsumerState<TripBookingsPage>
                   for (final c in TripReservationCategory.values)
                     (c.code, TripReservationLabels.category(c, l10n)),
                 ],
+                customCategories: tripSectionUsedCategories(
+                  items,
+                  (r) => r.customCategories,
+                ),
               ),
               view: view,
               onView: changeView,

@@ -12,6 +12,7 @@ extension _TripSavedPlacesFilters on _TripSavedPlacesPageState {
       today: DateTime.now(),
       dayOf: (_) => null,
       kindOf: (p) => p.category.code,
+      categoriesOf: (p) => p.customCategories,
     );
     shown.removeWhere(
       (p) =>
@@ -59,7 +60,10 @@ extension _TripSavedPlacesFilters on _TripSavedPlacesPageState {
     };
   }
 
-  List<TripSectionFilterGroup> _groups(AppLocalizations l10n) => [
+  List<TripSectionFilterGroup> _groups(
+    AppLocalizations l10n,
+    List<TripSavedPlace> items,
+  ) => [
     ...tripSectionFilterGroups(
       l10n,
       _filter,
@@ -69,6 +73,10 @@ extension _TripSavedPlacesFilters on _TripSavedPlacesPageState {
           (c.code, TripSavedPlaceLabels.category(c, l10n)),
       ],
       dated: false,
+      customCategories: tripSectionUsedCategories(
+        items,
+        (p) => p.customCategories,
+      ),
     ),
     TripSectionFilterGroup(
       id: 'visited',

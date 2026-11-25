@@ -13,6 +13,7 @@ List<TripSectionFilterGroup> tripSectionFilterGroups(
   List<(String, String)>? kinds,
   String? kindTitle,
   bool dated = true,
+  List<String> customCategories = const [],
 }) => [
   if (statuses != null)
     TripSectionFilterGroup(
@@ -54,4 +55,28 @@ List<TripSectionFilterGroup> tripSectionFilterGroups(
       onSelected: (v) => onChanged(filter.copyWith(latestFirst: v == 'last')),
     ),
   ],
+  // Custom categories used by the items (Extra D), only when there are.
+  if (customCategories.isNotEmpty)
+    TripSectionFilterGroup(
+      id: 'custom-category',
+      title: l10n.sectionsFilterCustomCategory,
+      options: [
+        ('all', l10n.sectionsAll),
+        for (final label in customCategories) (label, label),
+      ],
+      selected: customCategories.contains(filter.custom)
+          ? filter.custom
+          : 'all',
+      onSelected: (v) => onChanged(filter.copyWith(custom: v)),
+    ),
 ];
+
+/// Custom categories used by [items], sorted, without repeats.
+List<String> tripSectionUsedCategories<T>(
+  Iterable<T> items,
+  List<String> Function(T item) of,
+) {
+  final labels = {for (final item in items) ...of(item)}.toList();
+  labels.sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
+  return labels;
+}

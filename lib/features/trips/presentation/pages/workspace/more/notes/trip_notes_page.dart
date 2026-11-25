@@ -96,6 +96,7 @@ class _TripNotesPageState extends ConsumerState<TripNotesPage>
               today: DateTime.now(),
               dayOf: (_) => null,
               kindOf: (n) => n.isPrivate ? 'private' : 'shared',
+              categoriesOf: (n) => n.customCategories,
             )..sort((a, b) {
               if (a.pinned != b.pinned) return a.pinned ? -1 : 1;
               return a.title.toLowerCase().compareTo(b.title.toLowerCase());
@@ -117,6 +118,10 @@ class _TripNotesPageState extends ConsumerState<TripNotesPage>
                 ],
                 dated: false,
                 kindTitle: l10n.noteFilterVisibility,
+                customCategories: tripSectionUsedCategories(
+                  items,
+                  (n) => n.customCategories,
+                ),
               ),
               view: view,
               onView: changeView,
