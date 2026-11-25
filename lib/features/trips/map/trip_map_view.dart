@@ -1,26 +1,32 @@
 // Vista mappa comune a Mappa e Itinerario: la mappa (o quella finta dei
-// test), il numero dei luoghi mostrati e il riquadro del luogo toccato.
-// Le linee tratteggiate uniscono le voci di ogni giorno in ordine.
+// test), il numero dei luoghi mostrati (e di quelli senza posizione) e il
+// riquadro del luogo toccato. Linee tratteggiate per giorno, in ordine.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
-import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_item.dart';
 import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_logic.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_map_canvas.dart';
 import 'trip_map_panel.dart';
 import 'trip_map_point.dart';
 
-/// Itinerary items with a position, one route per day in order.
-List<List<TripItineraryItem>> tripMapRoutes(List<TripItineraryItem> items) {
-  final days = {for (final i in items) TripItineraryLogic.dateOnly(i.day)};
+int _minutes(String? t) => t == null || t.length < 5
+    ? 24 * 60
+    : int.parse(t.substring(0, 2)) * 60 + int.parse(t.substring(3, 5));
+
+/// One route per day: the points of that day by time (two or more).
+List<List<TripMapPoint>> tripMapRoutes(List<TripMapPoint> points) {
+  final byDay = <DateTime, List<TripMapPoint>>{};
+  for (final p in points) {
+    if (p.day == null) continue;
+    byDay.putIfAbsent(TripItineraryLogic.dateOnly(p.day!), () => []).add(p);
+  }
   return [
-    for (final d in days.toList()..sort())
-      if (tripMapPoints(TripItineraryLogic.ofDay(items, d)) case final r
-          when r.length > 1)
-        r,
+    for (final d in byDay.keys.toList()..sort())
+      if (byDay[d]!.length > 1)
+        byDay[d]!..sort((a, b) => _minutes(a.time).compareTo(_minutes(b.time))),
   ];
 }
 
@@ -30,22 +36,26 @@ class TripMapView extends ConsumerStatefulWidget {
     required this.tripId,
     required this.points,
     required this.routes,
-    this.unscheduled = const {},
+    this.dimmed = const {},
+    this.withoutPosition = 0,
   });
 
   final String tripId;
-  final List<TripItineraryItem> points;
-  final List<List<TripItineraryItem>> routes;
+  final List<TripMapPoint> points;
+  final List<List<TripMapPoint>> routes;
 
-  /// IDs of elements not in the itinerary (no day in the panel).
-  final Set<String> unscheduled;
+  /// Points shown faded (not on the chosen day).
+  final Set<String> dimmed;
+
+  /// Elements with no position (not on the map, only counted).
+  final int withoutPosition;
 
   @override
   ConsumerState<TripMapView> createState() => _TripMapViewState();
 }
 
 class _TripMapViewState extends ConsumerState<TripMapView> {
-  TripItineraryItem? _selected;
+  TripMapPoint? _selected;
 
   @override
   Widget build(BuildContext context) {
@@ -58,24 +68,33 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
           child: canvas(
             widget.points,
             widget.routes,
-            (i) => setState(() => _selected = i),
+            (p) => setState(() => _selected = p),
+            widget.dimmed,
           ),
         ),
         Positioned(
           top: 8,
           left: 12,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-              color: AmaterasuColors.surfaceCard,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Text(
-              l10n.mapPlaces(widget.points.length),
-              key: const Key('map-count'),
-              style: const TextStyle(
-                color: AmaterasuColors.textPrimary,
-                fontSize: 12,
+          right: 64,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: AmaterasuColors.surfaceCard,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                [
+                  l10n.mapPlaces(widget.points.length),
+                  if (widget.withoutPosition > 0)
+                    l10n.mapWithoutPosition(widget.withoutPosition),
+                ].join(' · '),
+                key: const Key('map-count'),
+                style: const TextStyle(
+                  color: AmaterasuColors.textPrimary,
+                  fontSize: 12,
+                ),
               ),
             ),
           ),
@@ -90,8 +109,7 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
                 constraints: const BoxConstraints(maxWidth: 560),
                 child: TripMapPanel(
                   tripId: widget.tripId,
-                  item: selected,
-                  scheduled: !widget.unscheduled.contains(selected.id),
+                  point: selected,
                   onClose: () => setState(() => _selected = null),
                 ),
               ),

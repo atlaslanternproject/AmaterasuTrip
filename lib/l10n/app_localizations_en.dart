@@ -3784,6 +3784,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapNorth => 'North up';
 
   @override
+  String mapWithoutPosition(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count without a position',
+      one: '1 without a position',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mapError => 'Map not available now.';
+
+  @override
+  String get mapRetry => 'Try again';
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

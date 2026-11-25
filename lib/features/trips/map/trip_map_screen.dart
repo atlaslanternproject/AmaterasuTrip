@@ -1,20 +1,21 @@
-// Pagina Mappa (bozza): TUTTE le cose con posizione di ogni sezione, non
-// solo l'itinerario (nella bozza: voci di esempio più elementi non in
-// programma), filtri condivisi (sezione, giorno, stato, persona), linee
-// tratteggiate per giorno e riquadro al tocco. Nulla si salva.
+// Pagina Mappa (solo lettura): TUTTI gli elementi con posizione di ogni
+// sezione del viaggio, letti una volta all'apertura ("Aggiorna" rilegge);
+// filtri condivisi (sezione, giorno, stato, persona): con un giorno scelto
+// gli elementi senza giorno restano visibili ma attenuati.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
-import 'package:amaterasutrip/features/trips/itinerary/data/trip_itinerary_repository.dart';
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
+import 'package:amaterasutrip/core/widgets/filters/amaterasu_filter_icon_button.dart';
 import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_logic.dart';
 import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_itinerary_filters.dart';
-import 'package:amaterasutrip/core/widgets/filters/amaterasu_filter_icon_button.dart';
-import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_draft_label.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
+import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import 'trip_map_point.dart';
+import 'trip_map_sources.dart';
 import 'trip_map_view.dart';
 
 class TripMapScreen extends ConsumerStatefulWidget {
@@ -38,21 +39,13 @@ class _TripMapScreenState extends ConsumerState<TripMapScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final repo = ref.watch(tripItineraryRepositoryProvider);
-    final info = repo.info(widget.tripId);
-    final days = TripItineraryLogic.days(info.start, info.end);
-    final items =
-        ref.watch(tripItineraryItemsProvider(widget.tripId)).asData?.value ??
-        const [];
+    final data = ref.watch(tripMapDataProvider(widget.tripId));
+    final trip = ref.watch(tripProvider(widget.tripId)).asData?.value;
+    final days = trip == null
+        ? const <DateTime>[]
+        : TripItineraryLogic.days(trip.startDate, trip.endDate);
+    final names = ref.watch(tripStaysMemberNamesProvider(widget.tripId));
     final f = _filters.value;
-    final planned = {for (final i in items) i.refId};
-    // Elements not in the itinerary have no day: hidden by a day filter.
-    final others = [
-      for (final c in info.catalog)
-        if (!planned.contains(c.refId) && f.day == null) c,
-    ];
-    final shown = items.where(f.matches).toList();
-    final points = tripMapPoints([...shown, ...others.where(f.matches)]);
     return Scaffold(
       backgroundColor: AmaterasuColors.surfaceDeep,
       body: SafeArea(
@@ -61,7 +54,6 @@ class _TripMapScreenState extends ConsumerState<TripMapScreen> {
             TripSectionHeader(
               tripId: widget.tripId,
               title: l10n.tripMapTitle,
-              subtitle: const TripDraftLabel(),
               actions: [
                 IconButton(
                   key: const Key('map-refresh'),
@@ -71,7 +63,7 @@ class _TripMapScreenState extends ConsumerState<TripMapScreen> {
                     color: AmaterasuColors.textPrimary,
                   ),
                   onPressed: () =>
-                      ref.invalidate(tripItineraryItemsProvider(widget.tripId)),
+                      ref.invalidate(tripMapDataProvider(widget.tripId)),
                 ),
                 AmaterasuFilterIconButton(
                   keyPrefix: 'itinerary',
@@ -79,7 +71,7 @@ class _TripMapScreenState extends ConsumerState<TripMapScreen> {
                   onPressed: () => showTripItineraryFilters(
                     context,
                     filters: _filters,
-                    names: info.names,
+                    names: names,
                     days: days,
                     onChanged: (v) => setState(() => _filters.value = v),
                   ),
@@ -87,11 +79,33 @@ class _TripMapScreenState extends ConsumerState<TripMapScreen> {
               ],
             ),
             Expanded(
-              child: TripMapView(
-                tripId: widget.tripId,
-                points: points,
-                routes: tripMapRoutes(shown),
-                unscheduled: {for (final o in others) o.id},
+              child: data.when(
+                loading: () => const Center(child: AmaterasuLoader()),
+                error: (_, _) => Center(
+                  child: TextButton(
+                    key: const Key('map-retry'),
+                    onPressed: () =>
+                        ref.invalidate(tripMapDataProvider(widget.tripId)),
+                    child: Text('${l10n.mapError} ${l10n.mapRetry}'),
+                  ),
+                ),
+                data: (d) {
+                  final shown = [
+                    for (final p in d.points)
+                      if (f.matchesPoint(p)) p,
+                  ];
+                  return TripMapView(
+                    tripId: widget.tripId,
+                    points: shown,
+                    routes: tripMapRoutes(shown),
+                    dimmed: {
+                      if (f.day != null)
+                        for (final p in shown)
+                          if (p.day == null) p.id,
+                    },
+                    withoutPosition: d.withoutPosition,
+                  );
+                },
               ),
             ),
           ],

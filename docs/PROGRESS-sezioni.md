@@ -1701,3 +1701,15 @@ Punti sistemati (file, numero di indicatori):
 
 ## COERENZA gruppo F - passo F1 (1.61.0)
 Valutazione (regola 1): (a) la pagina Privacy usa frase introduttiva + AmaterasuSettingsCard espandibili; Aspetto aveva titoli e chip in fila; (b) Aspetto usa gli stessi componenti identici (card con icona, titolo e scelta attuale come descrizione; dentro le stesse scelte e le stesse chiavi), file diviso con un part; (c) nessun dato o calcolo: le scelte si salvano come prima. Card a tutta larghezza su schermo largo: nel codice delle Impostazioni non c'è nessun limite di larghezza; verificato con un test a 1400 punti (card oltre 1300). Test: impostazioni 17 (nuovi: frase, schermo largo, 130 % su telefono con tutte le card aperte).
+
+## Mappa con i dati veri (1.62.0), prima della Coerenza F2
+Valutazione (regola 1): (a) ogni sezione ha già la posizione (alloggi e bucket list: latitude/longitude; le altre: TripSectionPlace; trasporti: from e to) e uno store o repository di lettura; (b) lettura unica all'apertura con quegli store (alloggi con il loro repository, bucket list con la lettura a pagine estratta da Cerca in sections/data/trip_bucket_reader.dart, usata da Cerca e Mappa); nuovo modello TripMapPoint (gli elementi delle sezioni non hanno sempre un giorno), mappa, riquadro e gruppi riusati dalla bozza; (c) nessuna regola, funzione o API; alloggi e bucket list solo letti. Etichetta "Bozza" tolta dalla Mappa; l'Itinerario resta bozza fino al passo 2 (dati veri), dove si toglie l'implementazione demo.
+- Trasporti: due punti (partenza e arrivo); annullati esclusi; elementi senza posizione contati ("N luoghi · M senza posizione").
+- Filtro per giorno: gli elementi senza giorno restano visibili ma attenuati (decisione 8); linee tratteggiate per giorno in ordine di ora.
+- Zone: città o area già salvate (nessun dato Google in più).
+
+Prove da fare sul sito:
+1. Altro > Mappa in un viaggio vero: compaiono alloggi, trasporti (due pin), prenotazioni, ristoranti, luoghi, bucket list; il contatore dice quanti non hanno posizione.
+2. Filtro per giorno: i pin del giorno pieni, quelli senza giorno attenuati.
+3. Tocco su un pin: "Apri la sezione" porta alla sezione giusta; "Apri su Maps" apre Google Maps.
+4. Rotazione con due dita e "Nord in alto".

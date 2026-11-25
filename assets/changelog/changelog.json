@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.62.0",
+      "date": "2026-11-25",
+      "it": ["Mappa con i dati veri: tutti i luoghi del viaggio (alloggi, trasporti con partenza e arrivo, prenotazioni, ristoranti, luoghi salvati e bucket list), con filtri, gruppi che si aprono avvicinandosi, riquadro con «Apri la sezione» e «Apri su Maps», e quanti elementi non hanno una posizione."],
+      "en": ["Map with real data: every place of the trip (stays, transport with departure and arrival, bookings, restaurants, saved places and bucket list), with filters, groups that open when zooming in, a panel with «Open the section» and «Open in Maps», and how many items have no position."]
+    },
+    {
       "version": "1.61.0",
       "date": "2026-11-25",
       "it": ["Impostazioni > Aspetto rifatta come la pagina Privacy: una frase introduttiva e card con icona, titolo e scelta attuale (Testo, Unità, Data e ora, Valute)."],

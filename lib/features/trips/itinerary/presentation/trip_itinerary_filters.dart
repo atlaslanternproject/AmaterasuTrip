@@ -11,6 +11,7 @@ import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/features/trips/tools/search/trip_search_sources.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/features/trips/map/trip_map_point.dart';
 import '../models/trip_itinerary_item.dart';
 import '../models/trip_itinerary_logic.dart';
 
@@ -37,6 +38,17 @@ class TripItineraryFilters {
       (status == null || i.status == status) &&
       (day == null ||
           TripItineraryLogic.dateOnly(i.day) ==
+              TripItineraryLogic.dateOnly(day!));
+
+  /// Map points: section, person and status as above; with a day, the
+  /// points of other days go away and those without a day stay (dimmed).
+  bool matchesPoint(TripMapPoint p) =>
+      (section == null || (p.section?.name ?? 'free') == section) &&
+      (person == null || p.personUid == person) &&
+      (status == null || p.status == status) &&
+      (day == null ||
+          p.day == null ||
+          TripItineraryLogic.dateOnly(p.day!) ==
               TripItineraryLogic.dateOnly(day!));
 
   TripItineraryFilters copy({
