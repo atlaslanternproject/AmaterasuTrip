@@ -123,3 +123,28 @@ Moduli approvati: alloggi e bucket list vengono solo **letti** (i
 riferimenti non li cambiano); "aggiungi nuovo" crea solo ristoranti e
 luoghi (sezioni nuove). Nessuna nuova API, nessuna nuova funzione sul
 server.
+
+## 8. Decisioni dopo la bozza 1.60.0 (25/11/2026)
+La bozza (dati di esempio in memoria) resta com'è; i dati veri si
+costruiscono dopo Coerenza, Home e Budget 2.
+1. Riordino: si riordinano solo le voci senza ora; per spostare una voce
+   con ora si cambia l'ora.
+2. Ora di fine facoltativa nel modello (`endTime`); le sovrapposizioni
+   useranno inizio e fine quando c'è.
+3. Permessi: tutti i membri modificano; elimina solo l'autore o il
+   proprietario (regole).
+4. Filtro persona = chi ha aggiunto la voce (`createdByUid`).
+5. "Fatto invece": testo libero oppure riferimento a un elemento di una
+   sezione (`actual: {text?, ref?}`).
+6. Vista iniziale: automatica per fase la prima volta (linea del tempo
+   prima del viaggio, giorno per giorno durante), poi si ricorda la scelta
+   dell'utente.
+7. Trasporti sulla mappa: due punti, partenza e arrivo.
+8. Filtro per giorno sulla mappa: i luoghi fuori programma restano
+   visibili ma attenuati.
+9. Miniature: nessuna richiesta di foto nuova dall'itinerario; si usa la
+   foto già caricata dalla sezione (cache di sessione), altrimenti
+   l'icona.
+10. Zone da Google solo dopo aver verificato che il campo del quartiere
+    non cambi il prezzo della richiesta; altrimenti solo la città.
+11. "Aggiungi nuovo" dall'itinerario: solo ristoranti e luoghi salvati.

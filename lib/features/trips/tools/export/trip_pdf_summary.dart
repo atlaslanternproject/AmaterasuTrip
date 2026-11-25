@@ -3,8 +3,7 @@
 // ristoranti prenotati in ordine di data (annullati esclusi) e i link dei
 // ricordi (cartella del viaggio e album). Solo testo HTML, nessun dato salvato.
 
-import 'dart:convert';
-
+import 'package:amaterasutrip/core/files/amaterasu_print_page.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/transport/widgets/trip_transport_labels.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
@@ -29,16 +28,7 @@ class TripPdfTrip {
 }
 
 abstract final class TripPdfSummary {
-  static const _esc = HtmlEscape(HtmlEscapeMode.attribute);
-
-  // TODO(audit): stesso stile delle stampe del budget e delle checklist;
-  // unificarle in un modulo comune nel giro finale (budget approvato).
-  static const _style =
-      'body{font-family:sans-serif;font-size:11px;margin:16px}'
-      'h1{font-size:18px;margin-bottom:2px}h2{font-size:14px;margin:18px 0 6px}'
-      'table{border-collapse:collapse;width:100%;margin-bottom:12px}'
-      'th,td{border:1px solid #999;padding:4px;text-align:left;'
-      'vertical-align:top}th{background:#eee}.muted{color:#555}';
+  static const _esc = _Escape();
 
   static String _link(String url, String label) {
     final ok = url.startsWith('https://') || url.startsWith('http://');
@@ -61,17 +51,8 @@ abstract final class TripPdfSummary {
     final out = StringBuffer();
     void table(String title, List<String> header, List<List<String>> rows) {
       if (rows.isEmpty) return;
-      out.write('<h2>${_esc.convert(title)}</h2><table><thead><tr>');
-      for (final h in header) {
-        out.write('<th>${_esc.convert(h)}</th>');
-      }
-      out.write('</tr></thead><tbody>');
-      for (final row in rows) {
-        out.write(
-          '<tr>${row.map((c) => '<td>${_esc.convert(c)}</td>').join()}</tr>',
-        );
-      }
-      out.write('</tbody></table>');
+      out.write('<h2>${_esc.convert(title)}</h2>');
+      out.write(amaterasuPrintTable(header, rows));
     }
 
     final stays =
@@ -180,12 +161,19 @@ abstract final class TripPdfSummary {
       }
       out.write('</ul>');
     }
-    final title = _esc.convert(trip.name);
-    return '<!doctype html><html><head><meta charset="utf-8">'
-        '<title>$title</title><style>$_style</style></head><body>'
-        '<h1>$title</h1><div class="muted">'
-        '${_esc.convert('${trip.destination} · ${dayOf(trip.start)} - ${dayOf(trip.end)}')}'
-        '<br>${_esc.convert(l10n.exportPdfGenerated(dayOf(now)))}</div>'
-        '$out</body></html>';
+    return amaterasuPrintPage(
+      title: trip.name,
+      subtitle:
+          '${trip.destination} · ${dayOf(trip.start)} - ${dayOf(trip.end)}\n'
+          '${l10n.exportPdfGenerated(dayOf(now))}',
+      body: out.toString(),
+    );
   }
+}
+
+/// Escapes with the shared print module.
+class _Escape {
+  const _Escape();
+
+  String convert(String value) => amaterasuPrintEscape(value);
 }

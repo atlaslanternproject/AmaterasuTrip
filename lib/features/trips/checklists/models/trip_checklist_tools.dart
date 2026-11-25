@@ -2,6 +2,7 @@
 // copia della lista con le spunte azzerate, testo da stampare (HTML) e CSV
 // per Excel.
 
+import 'package:amaterasutrip/core/files/amaterasu_print_page.dart';
 import 'dart:math';
 
 import 'trip_checklist.dart';
@@ -31,10 +32,7 @@ abstract final class TripChecklistTools {
     },
   );
 
-  static String _esc(String value) => value
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;');
+  static String _esc(String value) => amaterasuPrintEscape(value);
 
   /// Printable page: one table per category with boxes to tick on paper.
   static String html(TripChecklist list, String? Function(String?) nameOf) {
@@ -51,11 +49,7 @@ abstract final class TripChecklistTools {
       }
       body.write('</ul>');
     }
-    return '<!doctype html><html><head><meta charset="utf-8"><title>'
-        '${_esc(list.title)}</title><style>body{font-family:sans-serif;'
-        'margin:16px}h1{font-size:18px}h2{font-size:14px;margin:14px 0 4px}'
-        'ul{list-style:none;padding:0}li{padding:2px 0;font-size:13px}'
-        '</style></head><body><h1>${_esc(list.title)}</h1>$body</body></html>';
+    return amaterasuPrintPage(title: list.title, body: body.toString());
   }
 
   /// CSV for Excel: category; entry; quantity; person; done.

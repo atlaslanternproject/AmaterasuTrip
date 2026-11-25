@@ -1638,3 +1638,6 @@ Prove da fare sul sito:
    conferme), aggiungi una voce libera; ricaricando torna l'esempio.
 3. Altro > Mappa: 16 luoghi, gruppi che si aprono avvicinandosi, riquadro
    con "Apri su Maps".
+
+## COERENZA gruppo G - passo G4 (1.60.1)
+Valutazione (regola 1): (a) tre stampe con tre copie di pagina, stile e protezione dei testi (budget_export_writer, trip_checklist_tools, trip_pdf_summary); (b) modulo comune lib/core/files/amaterasu_print_page.dart (pagina, stile unico, protezione & < > ", tabella) usato da tutte e tre; nella stampa delle spese cambiano solo titolo 16 -> 18 e spazio sotto le tabelle 18 -> 14; (c) budget (approvato, gruppo G approvato): 281 test prima e dopo, suite con emulatori identiche. TODO(audit) del PDF risolto. Registrate anche le 11 decisioni sulla bozza in docs/design/MAPPA-ITINERARIO.md (sezione 8).

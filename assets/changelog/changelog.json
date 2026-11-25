@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.60.1",
+      "date": "2026-11-25",
+      "it": ["Le stampe e i PDF (riepilogo spese, checklist, PDF del viaggio) hanno ora lo stesso aspetto. Nessun cambiamento ai dati."],
+      "en": ["Prints and PDFs (expense summary, checklists, trip PDF) now look the same. No change to the data."]
+    },
+    {
       "version": "1.60.0",
       "date": "2026-11-25",
       "it": ["Bozza di Itinerario e Mappa con un viaggio di esempio a Kyoto: linea del tempo, giorno per giorno e mappa, gruppi per zona, distanza tra le tappe, riordino e condivisione del giorno. È solo una bozza: i dati sono di esempio e non si salvano."],
