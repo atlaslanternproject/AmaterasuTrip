@@ -3298,6 +3298,86 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get tripMoreStats => 'Statistics';
+
+  @override
+  String get tripMoreStatsSubtitle => 'Nights, places, expenses, transport and restaurants';
+
+  @override
+  String get statsTitle => 'Statistics';
+
+  @override
+  String get statsNights => 'Nights';
+
+  @override
+  String get statsCities => 'Cities';
+
+  @override
+  String get statsSpent => 'Shared expenses';
+
+  @override
+  String get statsByCategory => 'Expenses by category';
+
+  @override
+  String get statsByPerson => 'Expenses by person';
+
+  @override
+  String get statsExpensesNote => 'Shared expenses you take part in, in the trip currency, with the same rates and totals as the expenses dashboard; cancelled expenses do not count.';
+
+  @override
+  String statsPartial(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count expenses without a rate are not in the totals.',
+      one: '1 expense without a rate is not in the totals.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statsNoExpenses => 'No shared expenses.';
+
+  @override
+  String get statsExpensesUnavailable => 'Expenses not available now: open the page again later.';
+
+  @override
+  String get statsPlaces => 'Countries and cities';
+
+  @override
+  String get statsPlacesNote => 'From the trip stays.';
+
+  @override
+  String get statsNone => 'None';
+
+  @override
+  String get statsTransports => 'Transport by type';
+
+  @override
+  String get statsFoodAndPlaces => 'Restaurants and places';
+
+  @override
+  String statsTried(int tried, int total) {
+    return 'Restaurants tried: $tried of $total';
+  }
+
+  @override
+  String statsRating(String value) {
+    return 'Average rating: $value stars';
+  }
+
+  @override
+  String statsVisited(int visited, int total) {
+    return 'Places visited: $visited of $total';
+  }
+
+  @override
+  String get statsError => 'Statistics not available now.';
+
+  @override
+  String get statsRetry => 'Try again';
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

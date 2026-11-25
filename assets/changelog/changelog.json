@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.56.0",
+      "date": "2026-11-25",
+      "it": ["Nuovo in Altro: Statistiche. Notti, città e paesi degli alloggi, spese condivise per categoria (con la ciambella) e per persona con gli stessi totali del cruscotto spese, trasporti per tipo, ristoranti provati e luoghi visitati."],
+      "en": ["New in More: Statistics. Nights, cities and countries of the stays, shared expenses by category (with the donut) and by person with the same totals as the expenses dashboard, transport by type, restaurants tried and places visited."]
+    },
+    {
       "version": "1.55.0",
       "date": "2026-11-25",
       "it": ["Nuovo in Altro: Esporta. Scarica il calendario del viaggio (.ics) scegliendo alloggi, trasporti, prenotazioni e ristoranti, con gli orari nel fuso giusto, da aprire con Google Calendar, Apple Calendario o Outlook.", "Il bottone principale manda a capo un testo lungo invece di tagliarlo."],
