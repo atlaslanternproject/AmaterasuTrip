@@ -307,8 +307,9 @@ Mappa/Itinerario).
 | 1b parte 1 - filtri, valuta, nomi, allergeni, luoghi, foto | fatta, pubblicata 1.25.0 il 24/11/2026 | feature/stile-1b | 1.25.0+29 |
 | 1b parte 2 - sezione Checklist | fatta, pubblicata 1.26.0 il 25/11/2026 | feature/checklist | 1.26.0+30 |
 | Sezioni v2 - Trasporti | fatta, pubblicata 1.27.0 il 25/11/2026 | feature/trasporti-v2 | 1.27.0+31 |
-| Sezioni v2 - Prenotazioni | fatta (pubblicazione: vedi tappa seguente) | feature/prenotazioni-v2 | 1.28.0+32 |
-| Sezioni v2 - Ristoranti, Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
+| Sezioni v2 - Prenotazioni | fatta, pubblicata 1.28.0 il 25/11/2026 | feature/prenotazioni-v2 | 1.28.0+32 |
+| Sezioni v2 - Ristoranti | fatta (pubblicazione: vedi tappa seguente) | feature/ristoranti-v2 | 1.29.0+33 |
+| Sezioni v2 - Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
@@ -465,3 +466,29 @@ Prove da fare sul sito:
 4. Con il codice del biglietto compare "Mostra biglietto": si apre a
    schermo intero con il QR e il codice sotto; "Chiudi" torna all'elenco.
 5. Il QR si legge con la fotocamera di un telefono.
+
+## Sezioni v2 - Ristoranti
+Valutazione (regola 1): (a) esistevano dieta e allergeni, fascia di
+prezzo €-€€€€ scritta a mano, stato "provato" e contatti Google nel
+modulo Luogo; (b) orari e prezzo aggiunti alla stessa richiesta Google
+dei contatti nel modulo condiviso lib/core/places (nessun costo in più),
+cambio con il servizio Frankfurter già usato dal budget (solo lettura),
+stelle spostate in un modulo comune (tripSectionStars, usato anche dai
+Ricordi); (c) tocca il blocco restaurants delle regole (triedRating,
+triedNote); test di regole, orari, pannello ed editor.
+
+Commit: a568221.
+
+Dieta: già fatta nella 1.25.0. Gli orari non si salvano: si leggono solo
+toccando "Orari e prezzi".
+
+Prove da fare sul sito:
+1. Ristorante con luogo Google: nella card compare "Orari e prezzi";
+   toccandolo si vedono gli orari della settimana.
+2. Con una prenotazione in un giorno di chiusura compare l'avviso rosso
+   "risulta chiuso" (solo informativo).
+3. Se Google ha la fascia di prezzo, compare "Prezzo indicativo…" e, se
+   la valuta è diversa da quella del viaggio, "Circa … al cambio di oggi".
+4. Stato "provato": nell'editor compaiono stelle e "Com'è stato"; la
+   card mostra le stelle e la nota.
+5. Nei Ricordi le stelle si vedono come prima.
