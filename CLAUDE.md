@@ -326,7 +326,10 @@ Finito:
   modificano ed eliminano solo gli autori: regole e test; l'app
   legge con due richieste, condivise + proprie private), fissate
   in alto, checklist con voci spuntabili anche dalla card,
-  modello "Info utili" (Wi-Fi, numeri di emergenza…); filtro
+  modelli "Info utili", "Frasi utili" e "Contatti", formattazione
+  di base (# titolo, - elenco, **grassetto**, modulo comune
+  tripSectionRichText), collegamento a un elemento del viaggio
+  (letto solo aprendo "Collega"); filtro
   condivise/private, tre viste. Dati in trips/{tripId}/notes.
 - Shopping (lib/features/trips/shopping e
   pages/workspace/more/shopping): Acquisti (cosa,
