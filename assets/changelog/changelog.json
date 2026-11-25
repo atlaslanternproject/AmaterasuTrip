@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.50.0",
+      "date": "2026-11-25",
+      "it": ["Nuovo in Altro: Meteo. Previsioni per 16 giorni e ora per ora della destinazione, alba e tramonto, pioggia, qualità dell'aria e pollini, clima tipico del periodo, cosa mettere in valigia e il pulsante «Apri su 3B Meteo»."],
+      "en": ["New in More: Weather. 16-day and hourly forecast of the destination, sunrise and sunset, rain, air quality and pollen, typical climate of the period, what to wear and the «Open on 3B Meteo» button."]
+    },
+    {
       "version": "1.49.1",
       "date": "2026-11-25",
       "it": ["Quando cancelli l'account vengono cancellate anche le segnalazioni e le idee che hai inviato. Informativa privacy aggiornata."],

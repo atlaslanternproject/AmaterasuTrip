@@ -70,8 +70,8 @@
       "ref": "https://open-meteo.com/en/terms",
       "applies": "yes",
       "how": {
-        "it": "Usato solo per cercare il fuso orario di una città, gratis e senza chiave, uso non commerciale. La fonte è indicata nel pannello di ricerca della città.",
-        "en": "Used only to look up a city's time zone, free and without a key, non-commercial use. The source is shown in the city search panel."
+        "it": "Usato per cercare il fuso orario di una città e per il Meteo del viaggio (chiamato dal server con una cache condivisa per viaggio), gratis e senza chiave, uso non commerciale. La fonte è indicata nel pannello di ricerca della città e in fondo alla pagina Meteo.",
+        "en": "Used to look up a city's time zone and for the trip Weather (called by the server with a shared cache per trip), free and without a key, non-commercial use. The source is shown in the city search panel and at the bottom of the Weather page."
       }
     },
     {

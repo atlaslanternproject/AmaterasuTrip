@@ -31,6 +31,8 @@ const excludedSubcollections = new Set<string>([
   "memories",
   // Checklists (v1.26.0), including personal ones.
   "checklists",
+  // Weather cache (v1.50.0): rebuilt by the server for each trip.
+  "weatherCache",
 ]);
 
 const excludedExternalReferenceFields =
