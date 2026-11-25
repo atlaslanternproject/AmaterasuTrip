@@ -5567,6 +5567,30 @@ abstract class AppLocalizations {
   /// **'Add a link'**
   String get commonLinkAdd;
 
+  /// No description provided for @whatsNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s new in version {version}'**
+  String whatsNewTitle(String version);
+
+  /// No description provided for @whatsNewOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get whatsNewOk;
+
+  /// No description provided for @versionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All versions'**
+  String get versionsTitle;
+
+  /// No description provided for @versionsOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to see all versions'**
+  String get versionsOpen;
+
   /// No description provided for @commonLinksInvalid.
   ///
   /// In en, this message translates to:

@@ -50,6 +50,7 @@ flutter:
     - assets/icons/google.png
     - assets/branding/
     - assets/images/profile/
+    - assets/changelog/
 flutter_launcher_icons:
   android: true
   ios: true

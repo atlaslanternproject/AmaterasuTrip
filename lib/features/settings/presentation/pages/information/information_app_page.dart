@@ -1,7 +1,10 @@
-// Informazioni sull'app: versione e build.
+// Informazioni sull'app: versione e build; toccando la versione si apre
+// l'elenco di tutte le versioni con le novità.
 
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+import 'package:amaterasutrip/core/changelog/amaterasu_whats_new.dart';
 import 'information_licenses_page.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -51,7 +54,8 @@ class _InformationAppPageState extends State<InformationAppPage> {
           icon: Icons.new_releases_outlined,
           title: l10n.informationVersion,
           subtitle: _packageInfo?.version ?? '—',
-          onTap: () {},
+          // Opens every past version with its news (Extra A).
+          onTap: () => AmaterasuWhatsNew.showAll(context),
         ),
         _InformationSubItem(
           icon: Icons.tag_outlined,
