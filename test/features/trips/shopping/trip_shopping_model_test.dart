@@ -27,7 +27,7 @@ void main() {
     );
     final map = codec.toMap(item);
     expect(codec.toMap(codec.fromMap('x', map)), map);
-    expect(codec.toMap(item.toggled())['bought'], isFalse);
+    expect(codec.toMap(item.toggled('anna'))['bought'], isFalse);
     expect(codec.problems(item), isEmpty);
     const bad = TripShoppingItem(
       tripId: 't',

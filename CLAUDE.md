@@ -333,7 +333,9 @@ Finito:
   condivise/private, tre viste. Dati in trips/{tripId}/notes.
 - Shopping (lib/features/trips/shopping e
   pages/workspace/more/shopping): Acquisti (cosa,
-  per chi, dove, budget stimato, comprato, prezzo reale, note,
+  per chi: viaggiatore e/o destinatario scritto liberamente,
+  priorità SS/S/A/B (modulo comune TripSectionPriority),
+  "comprato da", dove, budget stimato, comprato, prezzo reale, note,
   spesa collegata categoria shopping che parte dal prezzo reale o
   dal budget); spunta dalla card, filtri, tre viste. Dati in
   trips/{tripId}/shoppingItems. La vecchia Valigia (packingItems)

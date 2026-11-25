@@ -4076,6 +4076,20 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get shoppingForText => 'For whom (written by you)';
+
+  @override
+  String get shoppingForTextHint => 'Also someone who is not travelling, e.g. «Grandma».';
+
+  @override
+  String get shoppingPriority => 'Priority';
+
+  @override
+  String shoppingBoughtBy(String name) {
+    return 'Bought by $name';
+  }
+
+  @override
   String get shoppingWhere => 'Where (shop or area)';
 
   @override

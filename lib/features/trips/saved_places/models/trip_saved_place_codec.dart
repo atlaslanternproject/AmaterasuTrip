@@ -6,6 +6,7 @@ import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_priority.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'trip_saved_place.dart';
 import 'trip_saved_place_category.dart';
@@ -33,7 +34,7 @@ class TripSavedPlaceCodec implements TripSectionCodec<TripSavedPlace> {
     'estimatedCostCurrency',
   ];
 
-  static const priorities = ['SS', 'S', 'A', 'B'];
+  static const priorities = TripSectionPriority.levels;
   static const visitMax = 1440;
 
   @override

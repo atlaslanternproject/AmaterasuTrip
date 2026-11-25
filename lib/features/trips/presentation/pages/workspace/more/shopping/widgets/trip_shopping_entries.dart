@@ -28,12 +28,17 @@ TripSectionEntry tripShoppingEntry(
   );
   final price = money(item.actualCostMinorUnits, item.actualCostCurrency);
   final forUid = item.forUid;
+  final recipients = [
+    if (forUid != null) nameOf(forUid),
+    ?item.forText,
+  ].join(', ');
+  final boughtBy = item.boughtByUid;
   return TripSectionEntry(
     id: item.id,
     icon: Icons.shopping_bag_outlined,
     title: item.name,
     subtitle: item.where,
-    highlight: forUid == null ? null : l10n.shoppingForValue(nameOf(forUid)),
+    highlight: recipients.isEmpty ? null : l10n.shoppingForValue(recipients),
     inactive: item.bought,
     chips: [
       TripSectionChip(
@@ -42,8 +47,20 @@ TripSectionEntry tripShoppingEntry(
             ? AmaterasuColors.success
             : AmaterasuColors.accentGold,
       ),
+      if (item.priority case final priority?)
+        TripSectionChip(
+          key: Key('shopping-priority-${item.id}'),
+          label: priority,
+          color: AmaterasuColors.accentFlame,
+        ),
     ],
     lines: [
+      if (item.bought && boughtBy != null)
+        TripSectionLine(
+          Icons.how_to_reg_outlined,
+          l10n.shoppingBoughtBy(nameOf(boughtBy)),
+          key: Key('shopping-bought-by-${item.id}'),
+        ),
       if (budget != null)
         TripSectionLine(
           Icons.savings_outlined,

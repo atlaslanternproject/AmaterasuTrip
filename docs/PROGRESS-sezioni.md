@@ -311,7 +311,8 @@ Mappa/Itinerario).
 | Sezioni v2 - Ristoranti | fatta, pubblicata 1.29.0 il 25/11/2026 | feature/ristoranti-v2 | 1.29.0+33 |
 | Sezioni v2 - Luoghi salvati | fatta, pubblicata 1.30.0 il 25/11/2026 | feature/luoghi-v2 | 1.30.0+34 |
 | Sezioni v2 - Alloggi (aggiunte facoltative) | fatta, pubblicata 1.31.0 il 25/11/2026 | feature/alloggi-v2 | 1.31.0+35 |
-| Sezioni v2 - Note | fatta (pubblicazione: vedi tappa seguente) | feature/note-v2 | 1.32.0+36 |
+| Sezioni v2 - Note | fatta, pubblicata 1.32.0 il 25/11/2026 | feature/note-v2 | 1.32.0+36 |
+| Sezioni v2 - Shopping | fatta (pubblicazione: vedi tappa seguente) | feature/shopping-v2 | 1.33.0+37 |
 | Sezioni v2 - Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
@@ -568,3 +569,21 @@ Prove da fare sul sito:
 3. "Collegata a" > Collega: compaiono alloggi, trasporti, prenotazioni,
    ristoranti e luoghi del viaggio; la card mostra "Collegata a …".
 4. Il collegamento si toglie con l'icona accanto.
+
+## Sezioni v2 - Shopping
+Valutazione (regola 1): (a) esistevano "per chi" (un viaggiatore),
+comprato e la spunta dalla card; le priorità SS/S/A/B esistevano nei
+luoghi salvati; (b) la priorità è ora un modulo comune
+(TripSectionPriority, usato da luoghi salvati e shopping); l'editor usa
+uno stato a parte (trip_shopping_draft.dart) come le prenotazioni; (c)
+tocca il blocco shoppingItems delle regole (forText, priority,
+boughtByUid); test di regole, card ed editor.
+
+Commit: df35f7f.
+
+Prove da fare sul sito:
+1. Editor: "Per chi (scritto da te)" accetta anche chi non viaggia
+   (es. Nonna), insieme al viaggiatore scelto.
+2. Priorità SS/S/A/B: la lista mette in alto le SS.
+3. Spuntando "comprato" dalla card compare "Comprato da <username>".
+4. Togliendo la spunta "Comprato da" sparisce.

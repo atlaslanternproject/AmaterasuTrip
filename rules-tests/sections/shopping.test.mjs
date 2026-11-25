@@ -31,6 +31,9 @@ const shop = sectionCommonTests('shoppingItems', 'shoppingItems', shopping, [
   {actualCostMinorUnits: 100},
   {actualCostMinorUnits: 0, actualCostCurrency: 'JPY'},
   {actualCostMinorUnits: 100, actualCostCurrency: 'yen'},
+  {forText: 'x'.repeat(121)},
+  {priority: 'C'},
+  {boughtByUid: 7},
 ], {bought: true, actualCostMinorUnits: 1200, actualCostCurrency: 'JPY'});
 
 const pack = sectionCommonTests('packingItems', 'packingItems', packing, [
@@ -53,6 +56,9 @@ test('shopping and packing: every optional field', async () => {
     actualCostCurrency: 'JPY',
     notes: 'Per la nonna',
     expenseId: 'e1',
+    forText: 'Nonna',
+    priority: 'SS',
+    boughtByUid: MEMBER,
   })));
   await assertSucceeds(setDoc(pack.ref(MEMBER, 'full'), packing(MEMBER, {
     personUid: MEMBER, quantity: 2, packed: true,

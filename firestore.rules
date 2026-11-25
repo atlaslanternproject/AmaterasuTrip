@@ -1165,11 +1165,16 @@ service cloud.firestore {
       function validShoppingItem(data) {
         return sectionBase(data, ['name', 'bought'], [
           'name', 'bought', 'forUid', 'where',
-          'actualCostMinorUnits', 'actualCostCurrency', 'notes'
+          'actualCostMinorUnits', 'actualCostCurrency', 'notes',
+          'forText', 'priority', 'boughtByUid'
         ])
           && sectionName(data, 'name', 200)
           && data.bought is bool
           && sectionText(data, 'forUid', 128)
+          // Free recipient, priority and who bought it (v1.33.0).
+          && sectionText(data, 'forText', 120)
+          && (!('priority' in data) || data.priority in ['SS', 'S', 'A', 'B'])
+          && sectionText(data, 'boughtByUid', 128)
           && sectionText(data, 'where', 200)
           && sectionText(data, 'notes', 10000)
           && (
