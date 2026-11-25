@@ -338,6 +338,7 @@ Mappa/Itinerario).
 | Nuova tappa 1c - Info paese | fatta | feature/info-paese | 1.51.0+57 |
 | Nuova tappa 2a - Cerca nelle sezioni | fatta | feature/cerca-globale | 1.52.0+58 |
 | Nuova tappa 2b - Risalto del risultato | fatta | feature/cerca-evidenzia | 1.53.0+59 |
+| Nuova tappa 2c - Cerca in spese e bucket list | fatta | feature/cerca-spese-bucket | 1.54.0+60 |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1151,7 +1152,7 @@ tappa, versione e prove; il resto ha una tappa qui sotto.
 | Extra F assistenza e privacy | fatto; lacune in CONFORMITA-LACUNE.md | 1.47.0 |
 | Extra G caricamento | fatto | 1.48.0 |
 | Nuova tappa 1 Converti, Meteo, Info paese | fatto | 1.49.0, 1.50.0, 1.51.0 |
-| Nuova tappa 2 Cerca globale | in corso (2a, 2b, 2c) | - |
+| Nuova tappa 2 Cerca globale | fatto (2a, 2b, 2c) | 1.52.0, 1.53.0, 1.54.0 |
 | Nuova tappa 3 Calendario .ics, Statistiche, PDF del viaggio | da fare | - |
 | Nuova tappa 4 Audit Trail (analisi, poi costruzione se non tocca moduli approvati) | da fare | - |
 | K BUDGET-2 (solo analisi) | da fare | - |
@@ -1340,3 +1341,24 @@ Prove da fare sul sito:
 1. Cerca un luogo salvato in fondo all'elenco: la pagina scorre fino a lui
    e lo mostra con il bordo.
 2. Con un filtro attivo che lo nasconde compare l'avviso.
+
+### Passo 2c - fatto (1.54.0)
+Valutazione (regola 1): (a) spese e bucket list (moduli approvati) hanno
+già le loro letture: BudgetApi.sharedExpenses (solo le spese condivise in
+cui partecipo) e privateExpenses (solo le mie), BucketActivityRepository
+.fetchPage (a pagine, al massimo 50); (b) Cerca le chiama così come sono,
+in sola lettura, nel nuovo file trip_search_approved.dart; nessun file di
+quei moduli cambia; (c) test della lettura con il budget finto e della
+navigazione.
+
+- Spese: titolo e note (stesso elenco fisso dei campi). Il tocco apre la
+  pagina spese, senza risalto (modulo approvato).
+- Bucket list: nome, città, paese, note, categoria personalizzata,
+  indirizzo; letta a pagine da 50 (al massimo 40 pagine). Il tocco apre la
+  bucket list, senza risalto.
+- Costi: come per 2a, una lettura per sessione solo dopo la prima ricerca.
+
+Prove da fare sul sito:
+1. Cerca il titolo di una spesa: apre la pagina spese.
+2. Una spesa privata di un altro non compare mai.
+3. Cerca un'attività della bucket list: apre la bucket list.
