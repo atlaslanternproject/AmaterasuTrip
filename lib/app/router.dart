@@ -54,6 +54,7 @@ import '../features/settings/presentation/pages/language/language_page.dart';
 import '../features/settings/presentation/pages/appearance/appearance_page.dart';
 import '../features/support/presentation/compliance_page.dart';
 import '../features/support/presentation/support_page.dart';
+import '../features/trips/tools/convert/trip_convert_page.dart';
 import '../features/settings/presentation/pages/account/account_page.dart';
 import '../features/settings/presentation/pages/account/account_security_recovery_page.dart';
 import '../features/settings/presentation/pages/privacy/privacy_page.dart';
@@ -432,6 +433,12 @@ final amaterasuRouter = GoRouter(
         // ------------------------------------------------------
         // ALTRO > CHECKLIST (elenco e singola lista)
         // ------------------------------------------------------
+        // ALTRO > CONVERTI (nuova tappa 1)
+        GoRoute(
+          path: '/trips/:tripId/more/convert',
+          builder: (context, state) =>
+              TripConvertPage(tripId: state.pathParameters['tripId']!),
+        ),
         GoRoute(
           path: '/trips/:tripId/more/checklists',
           builder: (context, state) =>

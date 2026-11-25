@@ -2847,6 +2847,70 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonLinkAdd => 'Add a link';
 
   @override
+  String get tripMoreConvert => 'Convert';
+
+  @override
+  String get tripMoreConvertSubtitle => 'Currencies, units, sizes and tip';
+
+  @override
+  String get convertTitle => 'Convert';
+
+  @override
+  String get convertCurrencies => 'Currencies';
+
+  @override
+  String get convertAmount => 'Amount';
+
+  @override
+  String get convertFrom => 'From';
+
+  @override
+  String get convertTo => 'To';
+
+  @override
+  String get convertSwap => 'Swap';
+
+  @override
+  String get convertUnavailable => 'Rate not available now';
+
+  @override
+  String convertRateSource(String source, String date) {
+    return 'Rate $source of $date (the same as the budget)';
+  }
+
+  @override
+  String get convertUnits => 'Units';
+
+  @override
+  String get convertValue => 'Value';
+
+  @override
+  String get convertShoeSizes => 'Shoe sizes';
+
+  @override
+  String get convertUsMen => 'US men';
+
+  @override
+  String get convertUsWomen => 'US women';
+
+  @override
+  String get convertSizesNote => 'Indicative table: sizes change between brands, always try them on.';
+
+  @override
+  String get convertTip => 'Tip';
+
+  @override
+  String get convertTipBill => 'Bill';
+
+  @override
+  String get convertTipPeople => 'People';
+
+  @override
+  String convertTipResult(String tip, String total, String each) {
+    return 'Tip $tip · total $total · $each each';
+  }
+
+  @override
   String get zoneSource => 'City data: Open-Meteo.com (CC BY 4.0)';
 
   @override

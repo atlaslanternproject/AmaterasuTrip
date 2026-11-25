@@ -5567,6 +5567,126 @@ abstract class AppLocalizations {
   /// **'Add a link'**
   String get commonLinkAdd;
 
+  /// No description provided for @tripMoreConvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Convert'**
+  String get tripMoreConvert;
+
+  /// No description provided for @tripMoreConvertSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Currencies, units, sizes and tip'**
+  String get tripMoreConvertSubtitle;
+
+  /// No description provided for @convertTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Convert'**
+  String get convertTitle;
+
+  /// No description provided for @convertCurrencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Currencies'**
+  String get convertCurrencies;
+
+  /// No description provided for @convertAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get convertAmount;
+
+  /// No description provided for @convertFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get convertFrom;
+
+  /// No description provided for @convertTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get convertTo;
+
+  /// No description provided for @convertSwap.
+  ///
+  /// In en, this message translates to:
+  /// **'Swap'**
+  String get convertSwap;
+
+  /// No description provided for @convertUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate not available now'**
+  String get convertUnavailable;
+
+  /// No description provided for @convertRateSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate {source} of {date} (the same as the budget)'**
+  String convertRateSource(String source, String date);
+
+  /// No description provided for @convertUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Units'**
+  String get convertUnits;
+
+  /// No description provided for @convertValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Value'**
+  String get convertValue;
+
+  /// No description provided for @convertShoeSizes.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoe sizes'**
+  String get convertShoeSizes;
+
+  /// No description provided for @convertUsMen.
+  ///
+  /// In en, this message translates to:
+  /// **'US men'**
+  String get convertUsMen;
+
+  /// No description provided for @convertUsWomen.
+  ///
+  /// In en, this message translates to:
+  /// **'US women'**
+  String get convertUsWomen;
+
+  /// No description provided for @convertSizesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicative table: sizes change between brands, always try them on.'**
+  String get convertSizesNote;
+
+  /// No description provided for @convertTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip'**
+  String get convertTip;
+
+  /// No description provided for @convertTipBill.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill'**
+  String get convertTipBill;
+
+  /// No description provided for @convertTipPeople.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get convertTipPeople;
+
+  /// No description provided for @convertTipResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip {tip} · total {total} · {each} each'**
+  String convertTipResult(String tip, String total, String each);
+
   /// No description provided for @zoneSource.
   ///
   /// In en, this message translates to:

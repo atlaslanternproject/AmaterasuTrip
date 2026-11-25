@@ -98,6 +98,12 @@ class TripMorePage extends StatelessWidget {
         route: '/trips/$tripId/more/notes',
       ),
       _TripMoreItem(
+        title: l10n.tripMoreConvert,
+        subtitle: l10n.tripMoreConvertSubtitle,
+        icon: Icons.currency_exchange_rounded,
+        route: '/trips/$tripId/more/convert',
+      ),
+      _TripMoreItem(
         title: l10n.tripMoreSettings,
         subtitle: l10n.tripMoreSettingsSubtitle,
         icon: Icons.settings_rounded,
