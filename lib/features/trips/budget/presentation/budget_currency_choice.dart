@@ -10,14 +10,20 @@ import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/dest
 import 'budget_currency.dart';
 import 'budget_l10n.dart';
 
+/// Loads the currency names from Google; tests replace it with a fixed
+/// list (the app always uses the default).
+@visibleForTesting
+Future<List<TripCurrency>> Function(String languageCode) budgetCurrencyFetch =
+    (languageCode) => const DestinationPlacesService().getCurrencies(
+      languageCode: languageCode,
+    );
+
 /// Supported currencies with their names (codes only when offline).
 Future<List<TripCurrency>> budgetCurrencyChoices(bool it) async {
   final codes = BudgetCurrency.supported.toSet();
   List<TripCurrency> currencies;
   try {
-    final fetched = await const DestinationPlacesService().getCurrencies(
-      languageCode: budgetL10n(it).btCreateEn,
-    );
+    final fetched = await budgetCurrencyFetch(budgetL10n(it).btCreateEn);
     currencies = fetched
         .where((item) => codes.contains(item.code.toUpperCase()))
         .toList();

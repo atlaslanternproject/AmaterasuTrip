@@ -4,6 +4,7 @@
 // Casi, ad esempio: "a new flight with places, times and cost", "tight connection notice".
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_dialog.dart';
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_traveler_tile.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/transport/trip_transport_page.dart';
 import 'package:amaterasutrip/features/trips/sections/data/trip_section_view_preferences.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
@@ -183,6 +184,26 @@ void main() {
     expect(dialog.initialCategory, 'transport');
     expect(dialog.initialDate, DateTime(2027, 4, 12));
     expect(dialog.sharedOnly, isTrue);
+  });
+
+  testWidgets('Crea spesa from the card: several travelers can be chosen', (
+    tester,
+  ) async {
+    await open(tester, items: [transport('a')]);
+    await tapKey(tester, 'transport-expense-create-a');
+    final next = find.byType(FilledButton).last;
+    await tester.ensureVisible(next);
+    await tester.tap(next);
+    await tester.pumpAndSettle();
+    final tiles = find.byType(BudgetTravelerTile);
+    expect(tiles, findsAtLeastNWidgets(2));
+    await tester.ensureVisible(tiles.at(1));
+    await tester.tap(tiles.at(1));
+    await tester.pumpAndSettle();
+    final selected = tester
+        .widgetList<BudgetTravelerTile>(tiles)
+        .where((t) => t.selected);
+    expect(selected.length, 2);
   });
 
   testWidgets('only the creator or the owner can delete, with confirmation', (

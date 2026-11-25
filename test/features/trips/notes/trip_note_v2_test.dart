@@ -53,6 +53,43 @@ void main() {
     expect(bold.map((s) => s.text), ['Check-in', '1234']);
   });
 
+  test('web addresses in the text become links', () {
+    final opened = <String>[];
+    final span = tripSectionRichText(
+      'Biglietti su https://ghibli-museum.jp/tickets. Grazie',
+      const TextStyle(),
+      onLink: opened.add,
+    );
+    final link = span.children!.whereType<WidgetSpan>().single;
+    final tap = (link.child as InkWell).onTap!;
+    tap();
+    expect(opened, ['https://ghibli-museum.jp/tickets']);
+    expect(span.toPlainText(), contains('. Grazie'));
+    // Without onLink the text stays plain.
+    expect(
+      tripSectionRichText('https://a.it', const TextStyle()).toPlainText(),
+      'https://a.it',
+    );
+  });
+
+  testWidgets('a link in the note body is tappable in the card', (
+    tester,
+  ) async {
+    await open(tester, [
+      const TripNote(
+        id: 'n2',
+        tripId: 't1',
+        createdByUid: 'anna',
+        title: 'Museo',
+        body: 'Sito: https://ghibli-museum.jp',
+      ),
+    ]);
+    expect(
+      find.byKey(const Key('rich-link-https://ghibli-museum.jp')),
+      findsOneWidget,
+    );
+  });
+
   test('the link is saved with the note', () {
     const codec = TripNoteCodec();
     const note = TripNote(
