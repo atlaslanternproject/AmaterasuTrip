@@ -6,17 +6,22 @@ import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_ite
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
 import 'package:amaterasutrip/features/trips/tools/search/trip_search_sources.dart';
+import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_ref.dart';
 import 'trip_map_point.dart';
 
-/// Collects points and counts the elements without a position.
+/// Collects points, counts the elements without a position and keeps the
+/// catalog of every element (with the first position, if any).
 class TripMapPoints {
   final points = <TripMapPoint>[];
+  final catalog = <TripItineraryRef>[];
   var missing = 0;
 
-  /// Adds the element if at least one of [places] has a position.
-  void add(List<TripMapPoint?> places) {
+  /// Adds the element: its points with a position, and [ref] to the
+  /// catalog.
+  void add(List<TripMapPoint?> places, TripItineraryRef ref) {
     final found = places.whereType<TripMapPoint>().toList();
     found.isEmpty ? missing++ : points.addAll(found);
+    catalog.add(ref.at(found.firstOrNull?.place));
   }
 }
 

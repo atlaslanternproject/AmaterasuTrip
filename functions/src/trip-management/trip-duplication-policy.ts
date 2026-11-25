@@ -35,6 +35,8 @@ const excludedSubcollections = new Set<string>([
   "weatherCache",
   // Audit Trail (v1.58.0): belongs to the original trip.
   "auditTrail",
+  // Itinerary (v1.63.0): days and choices of the original trip.
+  "itinerary",
 ]);
 
 const excludedExternalReferenceFields =

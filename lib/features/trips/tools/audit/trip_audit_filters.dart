@@ -21,6 +21,7 @@ const tripAuditSections = [
   'shoppingItems',
   'checklists',
   'memories',
+  'itinerary',
 ];
 
 int tripAuditActiveCount(TripAuditFilters f) =>
@@ -66,7 +67,7 @@ Future<void> showTripAuditFilters(
         [
           (null, l10n.auditAll),
           for (final s in tripAuditSections)
-            (s, tripAuditSection(s)!.label(l10n)),
+            (s, tripAuditSectionLabel(l10n, s)),
         ],
         (v) => f.copy(section: () => v),
         update,

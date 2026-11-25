@@ -1,51 +1,68 @@
-// Dati dell'Itinerario dietro un'interfaccia: la bozza usa la versione
-// demo in memoria (trip_itinerary_demo.dart, non si salva); la versione
-// vera su Firestore la sostituirà senza cambiare le schermate.
+// Dati dell'Itinerario dietro un'interfaccia: la versione Firestore usa lo
+// store comune delle sezioni (trips/{tripId}/itinerary, scritture firmate
+// con updatedByUid, regole e test). Le schermate non sanno da dove vengono.
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:amaterasutrip/features/trips/sections/data/firestore_trip_section_store.dart';
+import 'package:amaterasutrip/features/trips/sections/data/trip_section_store.dart';
 import '../models/trip_itinerary_item.dart';
-import 'trip_itinerary_demo.dart';
-
-/// Trip facts the screens need besides the items.
-class TripItineraryInfo {
-  const TripItineraryInfo({
-    required this.start,
-    required this.end,
-    required this.names,
-    required this.catalog,
-  });
-
-  final DateTime start, end;
-
-  /// Traveler uid -> username.
-  final Map<String, String> names;
-
-  /// Existing section elements with a position (map and "add from an
-  /// existing element"), also those not in the itinerary.
-  final List<TripItineraryItem> catalog;
-}
+import 'trip_itinerary_codec.dart';
 
 abstract interface class TripItineraryRepository {
-  /// True for the in-memory draft.
-  bool get isDemo;
-
-  TripItineraryInfo info(String tripId);
-
   Stream<List<TripItineraryItem>> watch(String tripId);
 
-  /// Adds or replaces an item.
-  Future<void> save(String tripId, TripItineraryItem item);
+  /// Adds (empty id) or replaces an item.
+  Future<void> save(TripItineraryItem item);
 
-  Future<void> delete(String tripId, String itemId);
+  /// Allowed by the rules only to the author or the trip owner.
+  Future<void> delete(TripItineraryItem item);
 
-  /// New manual order of the items of one day.
-  Future<void> reorder(String tripId, List<String> itemIds);
+  /// New manual order of items without a time (decision 1).
+  Future<void> reorder(List<TripItineraryItem> ordered);
 }
 
-/// The draft: example data in memory, lost on reload.
+class StoreTripItineraryRepository implements TripItineraryRepository {
+  StoreTripItineraryRepository(this._store);
+
+  final TripSectionStore<TripItineraryItem> _store;
+
+  @override
+  Stream<List<TripItineraryItem>> watch(String tripId) => _store.watch(tripId);
+
+  @override
+  Future<void> save(TripItineraryItem item) async {
+    if (item.id.isEmpty) {
+      await _store.create(item);
+    } else {
+      await _store.update(item);
+    }
+  }
+
+  @override
+  Future<void> delete(TripItineraryItem item) => _store.delete(item);
+
+  @override
+  Future<void> reorder(List<TripItineraryItem> ordered) async {
+    for (final (n, item) in ordered.indexed) {
+      if (item.order != n) await _store.update(item.copyWith(order: n));
+    }
+  }
+}
+
+final tripItineraryStoreProvider =
+    Provider<TripSectionStore<TripItineraryItem>>(
+      (ref) => FirestoreTripSectionStore(
+        FirebaseFirestore.instance,
+        FirebaseAuth.instance,
+        const TripItineraryCodec(),
+      ),
+    );
+
 final tripItineraryRepositoryProvider = Provider<TripItineraryRepository>(
-  (ref) => DemoTripItineraryRepository(),
+  (ref) => StoreTripItineraryRepository(ref.watch(tripItineraryStoreProvider)),
 );
 
 final tripItineraryItemsProvider = StreamProvider.autoDispose

@@ -138,9 +138,7 @@ class _TripAuditPageState extends ConsumerState<TripAuditPage> {
                       if (_loading)
                         const Padding(
                           padding: EdgeInsets.all(16),
-                          child: Center(
-                            child: AmaterasuLoader(),
-                          ),
+                          child: Center(child: AmaterasuLoader()),
                         )
                       else if (_failed)
                         AmaterasuButton.tertiary(

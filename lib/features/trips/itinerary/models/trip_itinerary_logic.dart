@@ -11,6 +11,24 @@ abstract final class TripItineraryLogic {
   static DateTime dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
 
   /// Every day from [start] to [end] included.
+  /// The trip has no dates (saved without them: epoch 0) or wrong ones.
+  static bool undated(DateTime start, DateTime end) =>
+      start.year <= 1970 || end.isBefore(start);
+
+  /// Items whose day is outside the trip days (the dates changed), by day
+  /// and time.
+  static List<TripItineraryItem> outside(
+    List<TripItineraryItem> items,
+    List<DateTime> days,
+  ) {
+    final inside = days.map(dateOnly).toSet();
+    return items.where((i) => !inside.contains(dateOnly(i.day))).toList()
+      ..sort((a, b) {
+        final d = dateOnly(a.day).compareTo(dateOnly(b.day));
+        return d != 0 ? d : compare(a, b);
+      });
+  }
+
   static List<DateTime> days(DateTime start, DateTime end) {
     final out = <DateTime>[];
     for (var d = dateOnly(start); !d.isAfter(dateOnly(end));) {
@@ -59,15 +77,18 @@ abstract final class TripItineraryLogic {
     return list;
   }
 
-  /// Pairs of timed items of the same day whose times are equal or that
-  /// start less than an hour apart (no end times in the draft).
+  /// Pairs of timed items of the same day that overlap: the next one
+  /// starts before the end of the previous (its end time, or one hour
+  /// after its start when there is no end).
   static List<(TripItineraryItem, TripItineraryItem)> overlaps(
     List<TripItineraryItem> dayItems,
   ) {
     final timed = dayItems.where((i) => i.time != null).toList()..sort(compare);
+    int end(TripItineraryItem i) =>
+        i.endTime != null ? _minutes(i.endTime) : _minutes(i.time) + 60;
     return [
       for (var i = 0; i + 1 < timed.length; i++)
-        if (_minutes(timed[i + 1].time) - _minutes(timed[i].time) < 60)
+        if (_minutes(timed[i + 1].time) < end(timed[i]))
           (timed[i], timed[i + 1]),
     ];
   }

@@ -1234,6 +1234,48 @@ service cloud.firestore {
         allow delete: if sectionDeleteOk();
       }
 
+      // ITINERARIO (itinerary, v1.63.0): voci scelte dall'utente (riferimento
+      // a un elemento, voce libera o giornata libera). Tutti i membri
+      // modificano (firmando); elimina solo l'autore o il proprietario.
+      function validItinerary(data) {
+        return sectionBase(data, ['day', 'kind', 'title', 'order'], [
+          'day', 'kind', 'title', 'order', 'time', 'endTime',
+          'refSection', 'refId', 'note', 'zone',
+          'placeName', 'placeAddress', 'placePlaceId', 'placeLatitude',
+          'placeLongitude', 'actualText', 'actualSection', 'actualRefId'
+        ])
+          && data.kind in ['ref', 'free', 'freeDay']
+          && data.order is int && data.order >= 0 && data.order <= 10000
+          && sectionName(data, 'title', 200)
+          && sectionDay(data, 'day')
+          && sectionTime(data, 'time')
+          && sectionTime(data, 'endTime')
+          && data.get('refId', 'x').matches('^[A-Za-z0-9_-]{1,128}$')
+          && data.get('actualRefId', 'x').matches('^[A-Za-z0-9_-]{1,128}$')
+          && sectionIn(data, 'refSection', [
+            'stays', 'transports', 'reservations', 'restaurants',
+            'savedPlaces', 'bucketList'
+          ])
+          && sectionIn(data, 'actualSection', [
+            'stays', 'transports', 'reservations', 'restaurants',
+            'savedPlaces', 'bucketList'
+          ])
+          && (data.kind != 'ref' || ('refSection' in data && 'refId' in data))
+          && sectionText(data, 'note', 2000)
+          && sectionText(data, 'zone', 80)
+          && sectionText(data, 'actualText', 500)
+          && sectionPlace(data, 'place');
+      }
+
+      match /itinerary/{itemId} {
+        allow get, list: if sectionMember();
+        allow create: if sectionCreateOk(request.resource.data)
+          && validItinerary(request.resource.data);
+        allow update: if sectionUpdateOk(request.resource.data)
+          && validItinerary(request.resource.data);
+        allow delete: if sectionDeleteOk();
+      }
+
       // NOTE (notes, v1.20.0). Le note private (visibility 'private') le
       // leggono, modificano ed eliminano solo i loro autori.
       function validNote(data) {

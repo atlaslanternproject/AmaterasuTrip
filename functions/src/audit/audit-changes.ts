@@ -8,7 +8,7 @@ import {DocumentData} from "firebase-admin/firestore";
 /** Trip subcollections recorded in the Audit Trail. */
 export const auditSections = new Set<string>([
   "transports", "reservations", "restaurants", "savedPlaces", "notes",
-  "shoppingItems", "checklists", "memories",
+  "shoppingItems", "checklists", "memories", "itinerary",
 ]);
 
 /** Fields that are not changes of the content. */
