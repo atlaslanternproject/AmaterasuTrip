@@ -1,6 +1,7 @@
 // Opzioni di sincronizzazione: attivazione, stato, ultima
 // sincronizzazione e comando "sincronizza ora".
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -63,7 +64,7 @@ class _DataSyncSettingsPageState extends State<DataSyncSettingsPage> {
     if (_loading) {
       return const Padding(
         padding: EdgeInsets.symmetric(vertical: 16),
-        child: Center(child: CircularProgressIndicator(color: _accentColor)),
+        child: Center(child: AmaterasuLoader()),
       );
     }
 

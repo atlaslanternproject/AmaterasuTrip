@@ -1,5 +1,6 @@
 // Dialogo per cambiare lo username, con controllo di disponibilità.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -181,10 +182,7 @@ class _ProfileUsernameDialogState extends ConsumerState<ProfileUsernameDialog> {
                     const SizedBox(
                       width: 16,
                       height: 16,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: AmaterasuColors.surfaceDeep,
-                      ),
+                      child: AmaterasuLoader(),
                     ),
                     const SizedBox(width: AmaterasuSpacing.sm),
                     Text(l10n.profileUsernameChanging),

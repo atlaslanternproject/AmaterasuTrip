@@ -1,5 +1,6 @@
 // Navigazione tra le cartelle di Google Drive per scegliere l'archivio.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -404,7 +405,7 @@ class _GoogleDriveFolderBrowserPageState
   Widget _buildFolderList() {
     if (_loading) {
       return const Center(
-        child: CircularProgressIndicator(color: _accentColor),
+        child: AmaterasuLoader(),
       );
     }
 
@@ -523,10 +524,7 @@ class _GoogleDriveFolderBrowserPageState
                 ? const SizedBox(
                     width: 18,
                     height: 18,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: _accentColor,
-                    ),
+                    child: AmaterasuLoader(),
                   )
                 : const Icon(Icons.create_new_folder_outlined),
             label: Text(_l10n.driveBrowserNewFolder),
@@ -574,10 +572,7 @@ class _GoogleDriveFolderBrowserPageState
                 ? const SizedBox(
                     width: 19,
                     height: 19,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2.2,
-                      color: Colors.white,
-                    ),
+                    child: AmaterasuLoader(),
                   )
                 : const Icon(Icons.create_new_folder_rounded),
             label: Text(

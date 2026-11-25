@@ -1,6 +1,7 @@
 // Primo controllo all'avvio: in base allo stato dell'utente mostra
 // il login, la verifica email, la scelta dello username o la home.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:amaterasutrip/core/web/amaterasu_app_ready.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _AuthGateState extends ConsumerState<AuthGate> {
 
     return authState.when(
       loading: () {
-        return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        return const Scaffold(body: Center(child: AmaterasuLoader()));
       },
       error: (error, stack) {
         return Scaffold(body: Center(child: Text(error.toString())));
@@ -60,7 +61,7 @@ class _AuthGateState extends ConsumerState<AuthGate> {
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return const Scaffold(
-                body: Center(child: CircularProgressIndicator()),
+                body: Center(child: AmaterasuLoader()),
               );
             }
 
@@ -140,7 +141,7 @@ class _AuthGateState extends ConsumerState<AuthGate> {
             }
 
             return const Scaffold(
-              body: Center(child: CircularProgressIndicator()),
+              body: Center(child: AmaterasuLoader()),
             );
           },
         );

@@ -1,6 +1,7 @@
 // Sezione Email delle impostazioni account: email attuale,
 // stato di verifica e cambio email.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _AccountEmailPageState extends ConsumerState<AccountEmailPage>
         if (_loading)
           const Padding(
             padding: EdgeInsets.only(top: 8),
-            child: LinearProgressIndicator(minHeight: 2),
+            child: AmaterasuLoader(),
           ),
       ],
     );

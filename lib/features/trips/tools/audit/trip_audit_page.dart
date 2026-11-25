@@ -3,6 +3,7 @@
 // (sezione, persona, azione, periodo) e voci a pagine da 30, lette solo
 // all'apertura, al cambio dei filtri o con "Mostra altre". Sola lettura.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -138,9 +139,7 @@ class _TripAuditPageState extends ConsumerState<TripAuditPage> {
                         const Padding(
                           padding: EdgeInsets.all(16),
                           child: Center(
-                            child: CircularProgressIndicator(
-                              color: AmaterasuColors.primary,
-                            ),
+                            child: AmaterasuLoader(),
                           ),
                         )
                       else if (_failed)

@@ -4,6 +4,7 @@
 // sessione, mai salvati), prezzo convertito nella valuta del viaggio e
 // avviso se il giorno o l'ora previsti risultano chiusi.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -90,7 +91,7 @@ class _HoursSheetState extends ConsumerState<_HoursSheet> {
               ),
               const SizedBox(height: 12),
               if (snap.connectionState != ConnectionState.done)
-                const Center(child: CircularProgressIndicator())
+                const Center(child: AmaterasuLoader())
               else if (snap.hasError)
                 Text(l10n.sectionsHoursError)
               else ...[

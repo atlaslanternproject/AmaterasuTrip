@@ -2,6 +2,7 @@
 // conferme, rifiuti, pagamenti registrati dal creditore
 // ("segna come pagato") e chiusura dei debiti.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
         }
 
         if (!namesSnapshot.hasData) {
-          return const LinearProgressIndicator();
+          return const AmaterasuLoader();
         }
 
         final names = namesSnapshot.data!;
@@ -108,7 +109,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
             }
 
             if (!refundsSnapshot.hasData) {
-              return const LinearProgressIndicator();
+              return const AmaterasuLoader();
             }
 
             final docs = refundsSnapshot.data!.docs;
@@ -468,7 +469,7 @@ class _BudgetReimbursementsPanelState extends State<BudgetReimbursementsPanel> {
                   ],
                 ],
 
-                if (_busy) const LinearProgressIndicator(),
+                if (_busy) const AmaterasuLoader(),
                 if (_message != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 8),

@@ -1,6 +1,7 @@
 // Pannello delle revisioni di una spesa: proposte di modifica
 // e approvazione da parte dei viaggiatori.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'budget_money_input.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -73,7 +74,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
         }
 
         if (!proposalResult.hasData) {
-          return const LinearProgressIndicator();
+          return const AmaterasuLoader();
         }
 
         final pending = proposalResult.data!.docs
@@ -88,7 +89,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
             }
 
             if (!reimbursementResult.hasData) {
-              return const LinearProgressIndicator();
+              return const AmaterasuLoader();
             }
 
             final hasReimbursements = reimbursementResult.data!.docs.isNotEmpty;
@@ -103,7 +104,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                 }
 
                 if (!namesResult.hasData) {
-                  return const LinearProgressIndicator();
+                  return const AmaterasuLoader();
                 }
 
                 final names = namesResult.data!;
@@ -203,7 +204,7 @@ class _BudgetRevisionPanelState extends State<BudgetRevisionPanel> {
                       ),
                     ],
 
-                    if (_busy) const LinearProgressIndicator(),
+                    if (_busy) const AmaterasuLoader(),
 
                     if (_feedback != null)
                       Padding(

@@ -1,6 +1,7 @@
 // Pagina Spese del workspace: schede condivise e personali,
 // lista, dashboard, rimborsi e budget personale.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -137,7 +138,7 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
           }
 
           if (!result.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: AmaterasuLoader());
           }
 
           final currency = result.data!;

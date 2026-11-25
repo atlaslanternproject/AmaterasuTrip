@@ -1,5 +1,6 @@
 // Pagina per scegliere l'archivio cloud del viaggio (Google Drive).
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -435,10 +436,7 @@ class _ProviderCard extends StatelessWidget {
                       ? const SizedBox(
                           width: 22,
                           height: 22,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2.2,
-                            color: _accentColor,
-                          ),
+                          child: AmaterasuLoader(),
                         )
                       : Icon(
                           icon,

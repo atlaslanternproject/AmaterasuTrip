@@ -1,11 +1,13 @@
 // Mappa del mondo per la destinazione, con gesti a due dita e bottoni.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:amaterasutrip/core/maps/amaterasu_map_style.dart';
+import 'package:amaterasutrip/core/maps/amaterasu_two_finger_gesture.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
@@ -154,8 +156,8 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
                   zoomControlsEnabled: false,
 
                   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                    Factory<_TwoFingerMapGestureRecognizer>(
-                      _TwoFingerMapGestureRecognizer.new,
+                    Factory<AmaterasuTwoFingerMapGestureRecognizer>(
+                      AmaterasuTwoFingerMapGestureRecognizer.new,
                     ),
                   },
 
@@ -200,10 +202,7 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
                           const SizedBox(
                             width: 12,
                             height: 12,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: _accentColor,
-                            ),
+                            child: AmaterasuLoader(),
                           ),
                           const SizedBox(width: AmaterasuSpacing.sm),
                         ] else if (_navigationEnabled) ...[
@@ -353,51 +352,6 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
       ),
     );
   }
-}
-
-class _TwoFingerMapGestureRecognizer extends OneSequenceGestureRecognizer {
-  final Set<int> _pointers = <int>{};
-  final Set<int> _trackedPointers = <int>{};
-
-  bool _accepted = false;
-
-  @override
-  void addAllowedPointer(PointerDownEvent event) {
-    startTrackingPointer(event.pointer);
-
-    _pointers.add(event.pointer);
-    _trackedPointers.add(event.pointer);
-
-    if (_pointers.length >= 2 && !_accepted) {
-      _accepted = true;
-      resolve(GestureDisposition.accepted);
-    }
-  }
-
-  @override
-  void handleEvent(PointerEvent event) {
-    if (event is PointerUpEvent || event is PointerCancelEvent) {
-      _pointers.remove(event.pointer);
-
-      if (_trackedPointers.remove(event.pointer)) {
-        stopTrackingPointer(event.pointer);
-      }
-    }
-  }
-
-  @override
-  void didStopTrackingLastPointer(int pointer) {
-    if (!_accepted) {
-      resolve(GestureDisposition.rejected);
-    }
-
-    _pointers.clear();
-    _trackedPointers.clear();
-    _accepted = false;
-  }
-
-  @override
-  String get debugDescription => 'twoFingerMapGesture';
 }
 
 class _MapButton extends StatelessWidget {

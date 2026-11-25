@@ -2,6 +2,7 @@
 // punti (margini ridotti su telefono), titolo, blocchi scorrevoli, messaggi
 // dei problemi trovati e pulsanti Annulla / Salva.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -80,7 +81,7 @@ class TripSectionEditorFrame extends StatelessWidget {
               ),
             ),
           ),
-        if (saving) const LinearProgressIndicator(),
+        if (saving) const AmaterasuLoader(),
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
           child: Row(

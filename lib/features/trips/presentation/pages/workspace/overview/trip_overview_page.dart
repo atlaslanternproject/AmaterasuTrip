@@ -1,6 +1,7 @@
 // Panoramica del viaggio: copertina, stato, date e accesso rapido
 // alle sezioni.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +23,6 @@ class TripOverviewPage extends ConsumerWidget {
   final String tripId;
 
   static const Color _backgroundColor = AmaterasuColors.surfaceDeep;
-  static const Color _accentColor = AmaterasuColors.accentOrangeBright;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,7 +33,7 @@ class TripOverviewPage extends ConsumerWidget {
       backgroundColor: _backgroundColor,
       body: tripAsync.when(
         loading: () =>
-            const Center(child: CircularProgressIndicator(color: _accentColor)),
+            const Center(child: AmaterasuLoader()),
         error: (error, stackTrace) => _TripOverviewMessage(
           icon: Icons.error_outline,
           message: l10n.tripOverviewError,

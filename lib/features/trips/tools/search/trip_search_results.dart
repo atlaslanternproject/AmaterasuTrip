@@ -2,6 +2,7 @@
 // sezioni), numero di risultati e righe trovate, a pagine da 20; stati di
 // caricamento ed errore con "Riprova".
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -46,7 +47,7 @@ class _TripSearchResultsState extends ConsumerState<TripSearchResults> {
     final docs = ref.watch(tripSearchDocsProvider(widget.tripId));
     return docs.when(
       loading: () => const Center(
-        child: CircularProgressIndicator(color: AmaterasuColors.primary),
+        child: AmaterasuLoader(),
       ),
       error: (_, _) => Center(
         child: Column(

@@ -3,6 +3,7 @@
 // valuta del costo previsto se c'è) e poi la
 // collega; "Collega spesa esistente" sceglie tra le spese condivise.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:flutter/material.dart';
 
@@ -106,7 +107,7 @@ Future<void> linkExistingExpenseToStay(
           stream: api.sharedExpenses(),
           builder: (context, snapshot) {
             if (snapshot.hasError) return Text(l10n.staysExpenseLoadError);
-            if (!snapshot.hasData) return const LinearProgressIndicator();
+            if (!snapshot.hasData) return const AmaterasuLoader();
             final docs = snapshot.data!.docs
                 .where((doc) => doc.data()['lifecycle'] != 'cancelled')
                 .toList();

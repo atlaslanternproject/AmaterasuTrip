@@ -3,6 +3,7 @@
 // file assets/compliance/compliance.json (it/en). Principi che applichiamo,
 // non una certificazione né consulenza legale, con la data di verifica.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class CompliancePage extends StatelessWidget {
         builder: (context, snap) {
           final data = snap.data;
           if (data == null) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: AmaterasuLoader());
           }
           final rows = (data['rows'] as List).cast<Map<String, dynamic>>();
           final checked = DateTime.tryParse('${data['checkedOn']}');

@@ -3,6 +3,7 @@
 // pannello dal basso con ricerca della città (al tocco di "Cerca") e
 // l'elenco dei risultati con il loro fuso. Si può anche togliere.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -164,7 +165,7 @@ class _ZoneSheetState extends ConsumerState<_ZoneSheet> {
                   if (snap.connectionState != ConnectionState.done) {
                     return const Padding(
                       padding: EdgeInsets.all(16),
-                      child: Center(child: CircularProgressIndicator()),
+                      child: Center(child: AmaterasuLoader()),
                     );
                   }
                   final list = snap.data ?? const [];

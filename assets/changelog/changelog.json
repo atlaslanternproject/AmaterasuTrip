@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.60.2",
+      "date": "2026-11-25",
+      "it": ["Itinerario e Mappa (bozza): intestazione più compatta con Aggiorna, Filtri e «+», viste in un solo controllo, rotazione della mappa con due dita, pulsante «Nord in alto» e inquadratura di tutti i luoghi.", "Il sole di caricamento ora compare ovunque al posto dei vecchi indicatori."],
+      "en": ["Itinerary and Map (draft): more compact header with Refresh, Filters and «+», views in one control, two-finger map rotation, «North up» button and framing of all places.", "The loading sun now appears everywhere instead of the old indicators."]
+    },
+    {
       "version": "1.60.1",
       "date": "2026-11-25",
       "it": ["Le stampe e i PDF (riepilogo spese, checklist, PDF del viaggio) hanno ora lo stesso aspetto. Nessun cambiamento ai dati."],

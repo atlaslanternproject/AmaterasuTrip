@@ -10,7 +10,8 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/itinerary/data/trip_itinerary_repository.dart';
 import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_logic.dart';
 import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_itinerary_filters.dart';
-import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_itinerary_top.dart';
+import 'package:amaterasutrip/core/widgets/filters/amaterasu_filter_icon_button.dart';
+import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_draft_label.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_map_point.dart';
@@ -57,20 +58,33 @@ class _TripMapScreenState extends ConsumerState<TripMapScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            TripSectionHeader(tripId: widget.tripId, title: l10n.tripMapTitle),
-            TripItineraryTop(
-              view: null,
-              onView: null,
-              activeFilters: f.count,
-              onFilters: () => showTripItineraryFilters(
-                context,
-                filters: _filters,
-                names: info.names,
-                days: days,
-                onChanged: (v) => setState(() => _filters.value = v),
-              ),
-              onClear: () =>
-                  setState(() => _filters.value = const TripItineraryFilters()),
+            TripSectionHeader(
+              tripId: widget.tripId,
+              title: l10n.tripMapTitle,
+              subtitle: const TripDraftLabel(),
+              actions: [
+                IconButton(
+                  key: const Key('map-refresh'),
+                  tooltip: l10n.searchRefresh,
+                  icon: const Icon(
+                    Icons.refresh,
+                    color: AmaterasuColors.textPrimary,
+                  ),
+                  onPressed: () =>
+                      ref.invalidate(tripItineraryItemsProvider(widget.tripId)),
+                ),
+                AmaterasuFilterIconButton(
+                  keyPrefix: 'itinerary',
+                  activeCount: f.count,
+                  onPressed: () => showTripItineraryFilters(
+                    context,
+                    filters: _filters,
+                    names: info.names,
+                    days: days,
+                    onChanged: (v) => setState(() => _filters.value = v),
+                  ),
+                ),
+              ],
             ),
             Expanded(
               child: TripMapView(

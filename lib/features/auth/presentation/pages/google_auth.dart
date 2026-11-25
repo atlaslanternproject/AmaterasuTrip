@@ -1,5 +1,6 @@
 // Schermata che esegue l'accesso con Google e gestisce gli errori.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -83,7 +84,7 @@ class _GoogleAuthState extends ConsumerState<GoogleAuth> {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CircularProgressIndicator(),
+                  const AmaterasuLoader(),
                   const SizedBox(height: AmaterasuSpacing.lg),
                   Text(
                     l10n.authGoogleSigningIn,

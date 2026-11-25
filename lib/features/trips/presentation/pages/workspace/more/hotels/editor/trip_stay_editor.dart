@@ -3,6 +3,7 @@
 // contatti, date, stato, prenotazione, costo e cancellazione, servizi,
 // ospiti e note; al salvataggio mostra i problemi trovati con messaggi chiari.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -158,7 +159,7 @@ class _TripStayEditorState extends State<TripStayEditor> {
               ),
             ),
           ),
-        if (_saving) const LinearProgressIndicator(),
+        if (_saving) const AmaterasuLoader(),
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
           child: Row(

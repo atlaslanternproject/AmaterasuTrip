@@ -2,6 +2,7 @@
 // dalla funzione getTripWeather (cache condivisa per viaggio), con stati
 // di caricamento ed errore ("Riprova"). Nessun dato salvato dall'app.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -35,9 +36,7 @@ class TripWeatherPage extends ConsumerWidget {
                   child: weather.when(
                     data: (w) => TripWeatherBody(weather: w),
                     loading: () => const Center(
-                      child: CircularProgressIndicator(
-                        color: AmaterasuColors.primary,
-                      ),
+                      child: AmaterasuLoader(),
                     ),
                     error: (error, _) => _TripWeatherError(
                       error: tripWeatherErrorOf(error),

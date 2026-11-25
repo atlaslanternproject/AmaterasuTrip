@@ -1,5 +1,6 @@
 // Lista delle spese raggruppate per giorno, con stato, categoria e importi.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class BudgetExpenseList extends StatelessWidget {
         if (!snapshot.hasData) {
           return const Padding(
             padding: EdgeInsets.all(AmaterasuSpacing.lg),
-            child: Center(child: CircularProgressIndicator()),
+            child: Center(child: AmaterasuLoader()),
           );
         }
 

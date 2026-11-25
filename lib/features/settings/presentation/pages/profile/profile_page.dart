@@ -1,5 +1,6 @@
 // Pagina Profilo: mostra e modifica nome, cognome, bio, username e foto.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/media/web_media_consent_dialog.dart';
@@ -484,10 +485,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ? const SizedBox(
                             width: 20,
                             height: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: _accentColor,
-                            ),
+                            child: AmaterasuLoader(),
                           )
                         : const Icon(Icons.check, color: _accentColor),
                   );
@@ -507,7 +505,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         ),
         body: profileAsync.when(
           loading: () => const Center(
-            child: CircularProgressIndicator(color: _accentColor),
+            child: AmaterasuLoader(),
           ),
           error: (_, _) => Center(
             child: Padding(

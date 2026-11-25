@@ -1,6 +1,7 @@
 // Bottone principale dell'app (alto 56), con stato di caricamento; un testo
 // lungo va a capo (al massimo 2 righe) invece di uscire dal bottone.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import '../../theme/amaterasu_colors.dart';
 import '../../theme/amaterasu_radius.dart';
@@ -35,10 +36,7 @@ class AmaterasuPrimaryButton extends StatelessWidget {
             ? const SizedBox(
                 width: 22,
                 height: 22,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: Colors.white,
-                ),
+                child: AmaterasuLoader(),
               )
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
