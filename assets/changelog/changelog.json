@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.61.0",
+      "date": "2026-11-25",
+      "it": ["Impostazioni > Aspetto rifatta come la pagina Privacy: una frase introduttiva e card con icona, titolo e scelta attuale (Testo, Unità, Data e ora, Valute)."],
+      "en": ["Settings > Appearance redone like the Privacy page: an intro sentence and cards with icon, title and current choice (Text, Units, Date and time, Currencies)."]
+    },
+    {
       "version": "1.60.2",
       "date": "2026-11-25",
       "it": ["Itinerario e Mappa (bozza): intestazione più compatta con Aggiorna, Filtri e «+», viste in un solo controllo, rotazione della mappa con due dita, pulsante «Nord in alto» e inquadratura di tutti i luoghi.", "Il sole di caricamento ora compare ovunque al posto dei vecchi indicatori."],

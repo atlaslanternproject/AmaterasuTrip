@@ -3908,6 +3908,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appearanceCurrencies => 'Currencies';
 
   @override
+  String get appearanceIntro => 'Choose how the app shows texts, units, dates, times and amounts. The choices apply on this device and in your profile; saved amounts do not change.';
+
+  @override
+  String get appearanceDateTime => 'Date and time';
+
+  @override
+  String appearanceCurrenciesSummary(String entry, String shown) {
+    return 'New items: $entry · Display: $shown';
+  }
+
+  @override
   String get appearanceDefaultCurrency => 'Currency for new entries';
 
   @override
