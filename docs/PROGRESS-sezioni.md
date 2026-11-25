@@ -1770,3 +1770,18 @@ Prove da fare sul sito:
 5. Cambia le date del viaggio accorciandole: le voci rimaste fuori finiscono in "Fuori dalle date"; aprile e scegli un giorno.
 6. Registro attività: aggiunta, modifica e eliminazione di voci dell'itinerario, con il filtro "Itinerario".
 7. Duplica il viaggio: l'itinerario non viene copiato.
+
+## Punto di ripresa (26/11/2026, dopo la 1.63.0)
+Fatto: Itinerario passo 1 con i dati veri (1.63.0+72), decisioni 12 e 13
+registrate (MAPPA-ITINERARIO sezione 8bis). Prossimo:
+2. Giorno per giorno, zone, riordino delle sole voci senza ora, avvisi:
+   già presenti dalla bozza e collegati ai dati veri nel passo 1; resta da
+   rifinire con i dati veri (zona: area scritta dall'utente, poi città
+   dell'elemento) e provare sul sito.
+3. "Nuovo" dal "+" per ogni sezione (decisione 13): verificare per ogni
+   sezione se l'editor si chiama senza modificarlo; alloggi e bucket list
+   solo "Cerca" se servirebbe toccare un loro file (dirlo al proprietario).
+4. Previsto/fatto (testo o elemento), condividi il giorno.
+5. Vista mappa dell'itinerario; "Aggiungi all'itinerario" sulle card delle
+   sezioni nuove.
+Poi: COERENZA da F2, F3, E, D, B, C con la home, A per ultimo; Budget 2.
