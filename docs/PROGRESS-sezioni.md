@@ -328,8 +328,8 @@ Mappa/Itinerario).
 | Extra E4 - Formato di data e ora nelle sezioni nuove | fatta, pubblicata 1.44.0 il 25/11/2026 | feature/aspetto-e4 | 1.44.0+49 |
 | Extra E5 - Unità km/miglia | nulla da pubblicare: la scelta è salvata (E1), la useranno Mappa, Itinerario e Converti | - | - |
 | Extra E6 - Valuta per le nuove voci | fatta, pubblicata 1.45.0 il 25/11/2026 | feature/aspetto-e6 | 1.45.0+50 |
-| Extra E7 - Valuta di visualizzazione | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e7 | 1.46.0+51 |
-| Extra E8 - TEMA-CHIARO.md | da fare | - | - |
+| Extra E7 - Valuta di visualizzazione | fatta, pubblicata 1.46.0 il 25/11/2026 | feature/aspetto-e7 | 1.46.0+51 |
+| Extra E8 - TEMA-CHIARO.md | fatta (solo documento, nessun rilascio) | docs/tema-chiaro | - |
 | Extra F-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -1066,3 +1066,10 @@ Prove da fare sul sito:
    riparte da USD. Aspetto resta USD.
 3. Una spesa in EUR vista in EUR: nessuna riga "Originale".
 4. Totali e quote del budget uguali a prima.
+
+## Extra E8 - Tema chiaro (solo analisi)
+Scritto docs/audit/TEMA-CHIARO.md: oggi 51 token fissi pensati per il
+scuro, 150 colori scritti a mano fuori dal tema e 40 usi di bianco/nero;
+servirebbero token a due valori, la pulizia dei colori a mano (nei
+moduli approvati dopo COERENZA.md), controlli di contrasto e una scelta
+in Aspetto. Nessun codice scritto. Con E8 la Extra E è chiusa.
