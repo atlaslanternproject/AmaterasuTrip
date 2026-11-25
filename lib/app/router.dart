@@ -57,6 +57,7 @@ import '../features/support/presentation/support_page.dart';
 import '../features/trips/tools/convert/trip_convert_page.dart';
 import '../features/trips/tools/country_info/trip_country_info_page.dart';
 import '../features/trips/tools/weather/trip_weather_page.dart';
+import '../features/trips/tools/audit/trip_audit_page.dart';
 import '../features/trips/tools/export/trip_export_page.dart';
 import '../features/trips/tools/search/trip_search_page.dart';
 import '../features/trips/tools/stats/trip_stats_page.dart';
@@ -473,6 +474,12 @@ final amaterasuRouter = GoRouter(
           path: '/trips/:tripId/more/stats',
           builder: (context, state) =>
               TripStatsPage(tripId: state.pathParameters['tripId']!),
+        ),
+        // ALTRO > AUDIT TRAIL (v1.58.0)
+        GoRoute(
+          path: '/trips/:tripId/more/audit',
+          builder: (context, state) =>
+              TripAuditPage(tripId: state.pathParameters['tripId']!),
         ),
         GoRoute(
           path: '/trips/:tripId/more/checklists',

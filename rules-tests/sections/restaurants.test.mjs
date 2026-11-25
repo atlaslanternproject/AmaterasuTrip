@@ -86,19 +86,24 @@ test('restaurants: every optional field and the own vote on create', async () =>
 test('restaurants: each member changes only the own vote', async () => {
   await seed(MEMBER);
   await assertSucceeds(updateDoc(ref(OTHER_MEMBER), {
+    updatedByUid: OTHER_MEMBER,
     [`votes.${OTHER_MEMBER}`]: 'S', updatedAt: serverTimestamp(),
   }));
   await assertSucceeds(updateDoc(ref(MEMBER), {
+    updatedByUid: MEMBER,
     [`votes.${MEMBER}`]: 'A', updatedAt: serverTimestamp(),
   }));
   await assertFails(updateDoc(ref(MEMBER), {
+    updatedByUid: MEMBER,
     [`votes.${OTHER_MEMBER}`]: 'B', updatedAt: serverTimestamp(),
   }));
   await assertSucceeds(updateDoc(ref(OTHER_MEMBER), {
+    updatedByUid: OTHER_MEMBER,
     [`votes.${OTHER_MEMBER}`]: deleteField(), updatedAt: serverTimestamp(),
   }));
   // An edit that keeps the votes is fine.
   await assertSucceeds(updateDoc(ref(OTHER_MEMBER), {
+    updatedByUid: OTHER_MEMBER,
     cuisine: 'Tonkotsu', updatedAt: serverTimestamp(),
   }));
 });

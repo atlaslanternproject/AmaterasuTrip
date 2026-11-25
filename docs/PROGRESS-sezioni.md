@@ -1493,3 +1493,73 @@ Solo documenti, nessun codice, nessun rilascio:
   impostazioni, G componenti).
 - docs/design/HOME-VIAGGIO.md: piano tecnico per fase.
 FERMO: attendo il tuo ok su ciascun documento prima di costruire.
+
+## Decisioni del proprietario (25/11/2026) e ordine
+- Audit Trail: opzione B (registro dal server per le sezioni nuove; spese
+  con lo Storico del budget esistente; note e checklist private mai nel
+  registro; "Utente eliminato"; informativa nello stesso rilascio).
+- COERENZA: tutti i gruppi approvati; ordine G, F, E, D, B, C (con la
+  home), A per ultimo con test del budget prima e dopo ogni passo; A4:
+  verificare il significato dei totali prima di rinominare; E1: "+" in
+  alto a destra. Aggiunte: F - pagina Aspetto rifatta sul modello della
+  pagina Privacy (frase introduttiva, card con icona, titolo e
+  descrizione); G - cestino al posto del menu "⋮" quando contiene solo
+  "Elimina" (doppia conferma invariata); Impostazioni - card a tutta
+  larghezza su schermo largo.
+- HOME-VIAGGIO: approvata com'è.
+- BUDGET-2: approvati 1-3, 2, 4, 5, 7, 8; rimandati alla 2.x i punti 6 e
+  9; budget di gruppo impostato solo dal proprietario.
+- MAPPA-ITINERARIO: approvata; zone da Google solo se non cambia la
+  categoria di prezzo (verificare prima, altrimenti solo la città);
+  itinerario NON copiato quando si duplica il viaggio.
+- Ordine generale: Audit Trail (B) → Coerenza → Home → Budget 2 →
+  Itinerario → Mappa. Un rilascio per passo, controlli completi prima.
+
+## Audit Trail (B) - valutazione (regola 1)
+(a) Esistono: createdByUid e updatedAt (ora del server) obbligati dalle
+regole nel modulo comune delle sezioni (sectionBase); tutte le scritture
+dall'app passano da FirestoreTripSectionStore tranne due (voci delle
+checklist: trip_checklist_entries.dart; voti dei ristoranti:
+trip_restaurant_vote_service.dart); nessun file degli indici (online: 0
+indici composti); firebase-functions 7 con trigger Firestore v2. I trigger
+non danno in modo affidabile l'utente dell'app (tipi: service_account,
+api_key, system, unauthenticated, unknown): l'autore viene da
+updatedByUid obbligato dalle regole.
+(b) Si aggiunge updatedByUid nel modulo comune (store, regola
+sectionBase) e nelle due scritture dirette; un trigger unico
+recordTripAudit (europe-west1) per le raccolte delle sezioni nuove; regola
+auditTrail di sola lettura per i membri; 3 indici composti; pagina in
+Altro. Eliminazione: lo store scrive prima updatedByUid e poi cancella,
+così il registro sa chi ha eliminato. Scritture del server (deleteTrip,
+duplicazione) ignorate dal trigger. Nomi: membro senza profilo = "Utente
+eliminato", non più membro = "Ex viaggiatore".
+(c) Tocca: modulo comune delle sezioni, regole delle sezioni (test in
+rules-tests/sections da aggiornare con updatedByUid), funzioni (34),
+indici, duplicazione (auditTrail escluso), informativa privacy. Alloggi,
+bucket list e budget non cambiano.
+
+### Audit Trail (B) - fatto (1.58.0)
+- Regole: sectionBase chiede updatedByUid uguale a chi scrive (creazione
+  e modifica); auditTrail in sola lettura per i membri, nessuna scrittura
+  per nessuno. Test: 75 delle sezioni (aggiornati con la firma) + 2 nuovi
+  del registro.
+- App: lo store comune, le voci delle checklist e i voti dei ristoranti
+  firmano ogni scrittura; l'eliminazione firma e poi cancella.
+- Server: recordTripAudit (trigger, europe-west1) per le 8 raccolte delle
+  sezioni nuove; ignora privati, scritture del server, modifiche senza
+  cambiamenti, viaggi eliminati; campi sensibili solo "•", testi a 200
+  caratteri. 34 funzioni. Indici: 3 (sezione, persona, azione + data) in
+  firestore.indexes.json. Registro escluso dalla copia del viaggio,
+  cancellato con il viaggio.
+- Pagina Altro > Audit Trail: filtri con il pannello condiviso, pagine da
+  30, nomi con lo username, "Utente eliminato" (membro senza profilo) ed
+  "Ex viaggiatore"; spese: rimando allo Storico del budget (invariato).
+- Informativa privacy: sezione 7.2.
+- Limite noto: l'autore di un'eliminazione è chi ha firmato per ultimo
+  (l'app firma subito prima di eliminare).
+
+Prove da fare sul sito:
+1. Modifica un trasporto: in Altro > Audit Trail compare "<tu> ha
+   modificato" con il campo prima → dopo.
+2. Una nota privata modificata non compare.
+3. Filtro per persona e sezione.

@@ -1,7 +1,8 @@
 // Versione Firestore del TripSectionStore: scrive direttamente dall'app in
 // trips/{tripId}/{collection}, con createdAt e updatedAt dell'ora del
 // server come chiedono le regole. I documenti illeggibili si saltano.
-// Con [queries] legge solo ciò che le regole permettono (es. note private).
+// Con [queries] legge solo ciò che le regole permettono (es. note private);
+// ogni scrittura è firmata con updatedByUid (Audit Trail).
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -74,6 +75,7 @@ class FirestoreTripSectionStore<T extends TripSectionItem>
       ...codec.toMap(item),
       'createdAt': FieldValue.serverTimestamp(),
       'updatedAt': FieldValue.serverTimestamp(),
+      'updatedByUid': uid,
     });
     return ref.id;
   }
@@ -89,17 +91,39 @@ class FirestoreTripSectionStore<T extends TripSectionItem>
           if (!data.containsKey(key)) key: FieldValue.delete(),
         'createdByUid': item.createdByUid,
         'updatedAt': FieldValue.serverTimestamp(),
+        'updatedByUid': _signer(),
       }..remove('createdAt'),
     );
   }
 
   @override
-  Future<void> linkExpense(T item, String expenseId) => _doc(
-    item,
-  ).update({'expenseId': expenseId, 'updatedAt': FieldValue.serverTimestamp()});
+  Future<void> linkExpense(T item, String expenseId) => _doc(item).update({
+    'expenseId': expenseId,
+    'updatedAt': FieldValue.serverTimestamp(),
+    'updatedByUid': _signer(),
+  });
 
+  /// Signs the item first, so the Audit Trail knows who deleted it; an old
+  /// item that no longer passes the checks is deleted all the same.
   @override
-  Future<void> delete(T item) => _doc(item).delete();
+  Future<void> delete(T item) async {
+    try {
+      await _doc(item).update({
+        'updatedAt': FieldValue.serverTimestamp(),
+        'updatedByUid': _signer(),
+      });
+    } on FirebaseException {
+      // The deletion below still follows the rules.
+    }
+    await _doc(item).delete();
+  }
+
+  /// The signed-in user, who signs every change (Audit Trail, v1.58.0).
+  String _signer() {
+    final uid = currentUid;
+    if (uid == null) throw StateError('No signed-in user.');
+    return uid;
+  }
 
   void _validate(T item) {
     final problems = codec.problems(item);

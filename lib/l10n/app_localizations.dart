@@ -6575,6 +6575,258 @@ abstract class AppLocalizations {
   /// **'Created on {date} with Amaterasu Trip'**
   String exportPdfGenerated(String date);
 
+  /// No description provided for @tripMoreAudit.
+  ///
+  /// In en, this message translates to:
+  /// **'Audit Trail'**
+  String get tripMoreAudit;
+
+  /// No description provided for @tripMoreAuditSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who changed what and when'**
+  String get tripMoreAuditSubtitle;
+
+  /// No description provided for @auditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Audit Trail'**
+  String get auditTitle;
+
+  /// No description provided for @auditIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Register of the changes to the trip sections: who, what and when, with the value before and after. Only the server writes it and nobody can change or delete it. Private notes and checklists are never in it.'**
+  String get auditIntro;
+
+  /// No description provided for @auditExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes to expenses are in the budget History.'**
+  String get auditExpenses;
+
+  /// No description provided for @auditOpenExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Open expenses'**
+  String get auditOpenExpenses;
+
+  /// No description provided for @auditEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No change recorded with these filters.'**
+  String get auditEmpty;
+
+  /// No description provided for @auditMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get auditMore;
+
+  /// No description provided for @auditError.
+  ///
+  /// In en, this message translates to:
+  /// **'Register not available now.'**
+  String get auditError;
+
+  /// No description provided for @auditRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get auditRetry;
+
+  /// No description provided for @auditCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} created'**
+  String auditCreate(String name);
+
+  /// No description provided for @auditUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} changed'**
+  String auditUpdate(String name);
+
+  /// No description provided for @auditDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} deleted'**
+  String auditDelete(String name);
+
+  /// No description provided for @auditFilterSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Section'**
+  String get auditFilterSection;
+
+  /// No description provided for @auditFilterPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Person'**
+  String get auditFilterPerson;
+
+  /// No description provided for @auditFilterAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get auditFilterAction;
+
+  /// No description provided for @auditFilterPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Period'**
+  String get auditFilterPeriod;
+
+  /// No description provided for @auditAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get auditAll;
+
+  /// No description provided for @auditActionCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation'**
+  String get auditActionCreate;
+
+  /// No description provided for @auditActionUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get auditActionUpdate;
+
+  /// No description provided for @auditActionDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion'**
+  String get auditActionDelete;
+
+  /// No description provided for @auditLast7.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 7 days'**
+  String get auditLast7;
+
+  /// No description provided for @auditLast30.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 30 days'**
+  String get auditLast30;
+
+  /// No description provided for @auditDeletedUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleted user'**
+  String get auditDeletedUser;
+
+  /// No description provided for @auditFormerTraveler.
+  ///
+  /// In en, this message translates to:
+  /// **'Former traveler'**
+  String get auditFormerTraveler;
+
+  /// No description provided for @auditUnknownPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get auditUnknownPerson;
+
+  /// No description provided for @auditEmptyValue.
+  ///
+  /// In en, this message translates to:
+  /// **'(empty)'**
+  String get auditEmptyValue;
+
+  /// No description provided for @auditUntitled.
+  ///
+  /// In en, this message translates to:
+  /// **'(untitled)'**
+  String get auditUntitled;
+
+  /// No description provided for @auditFieldName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get auditFieldName;
+
+  /// No description provided for @auditFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get auditFieldTitle;
+
+  /// No description provided for @auditFieldText.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get auditFieldText;
+
+  /// No description provided for @auditFieldStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get auditFieldStatus;
+
+  /// No description provided for @auditFieldDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get auditFieldDate;
+
+  /// No description provided for @auditFieldTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get auditFieldTime;
+
+  /// No description provided for @auditFieldNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get auditFieldNotes;
+
+  /// No description provided for @auditFieldExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked expense'**
+  String get auditFieldExpense;
+
+  /// No description provided for @auditFieldItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get auditFieldItems;
+
+  /// No description provided for @auditFieldVotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Votes'**
+  String get auditFieldVotes;
+
+  /// No description provided for @auditFieldBookingCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking code'**
+  String get auditFieldBookingCode;
+
+  /// No description provided for @auditFieldDeparture.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure'**
+  String get auditFieldDeparture;
+
+  /// No description provided for @auditFieldArrival.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival'**
+  String get auditFieldArrival;
+
+  /// No description provided for @auditFieldCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected cost'**
+  String get auditFieldCost;
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:

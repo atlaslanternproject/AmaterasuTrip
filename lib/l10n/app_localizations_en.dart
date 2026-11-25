@@ -3419,6 +3419,138 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get tripMoreAudit => 'Audit Trail';
+
+  @override
+  String get tripMoreAuditSubtitle => 'Who changed what and when';
+
+  @override
+  String get auditTitle => 'Audit Trail';
+
+  @override
+  String get auditIntro => 'Register of the changes to the trip sections: who, what and when, with the value before and after. Only the server writes it and nobody can change or delete it. Private notes and checklists are never in it.';
+
+  @override
+  String get auditExpenses => 'Changes to expenses are in the budget History.';
+
+  @override
+  String get auditOpenExpenses => 'Open expenses';
+
+  @override
+  String get auditEmpty => 'No change recorded with these filters.';
+
+  @override
+  String get auditMore => 'Show more';
+
+  @override
+  String get auditError => 'Register not available now.';
+
+  @override
+  String get auditRetry => 'Try again';
+
+  @override
+  String auditCreate(String name) {
+    return '$name created';
+  }
+
+  @override
+  String auditUpdate(String name) {
+    return '$name changed';
+  }
+
+  @override
+  String auditDelete(String name) {
+    return '$name deleted';
+  }
+
+  @override
+  String get auditFilterSection => 'Section';
+
+  @override
+  String get auditFilterPerson => 'Person';
+
+  @override
+  String get auditFilterAction => 'Action';
+
+  @override
+  String get auditFilterPeriod => 'Period';
+
+  @override
+  String get auditAll => 'All';
+
+  @override
+  String get auditActionCreate => 'Creation';
+
+  @override
+  String get auditActionUpdate => 'Change';
+
+  @override
+  String get auditActionDelete => 'Deletion';
+
+  @override
+  String get auditLast7 => 'Last 7 days';
+
+  @override
+  String get auditLast30 => 'Last 30 days';
+
+  @override
+  String get auditDeletedUser => 'Deleted user';
+
+  @override
+  String get auditFormerTraveler => 'Former traveler';
+
+  @override
+  String get auditUnknownPerson => 'Unknown';
+
+  @override
+  String get auditEmptyValue => '(empty)';
+
+  @override
+  String get auditUntitled => '(untitled)';
+
+  @override
+  String get auditFieldName => 'Name';
+
+  @override
+  String get auditFieldTitle => 'Title';
+
+  @override
+  String get auditFieldText => 'Text';
+
+  @override
+  String get auditFieldStatus => 'Status';
+
+  @override
+  String get auditFieldDate => 'Date';
+
+  @override
+  String get auditFieldTime => 'Time';
+
+  @override
+  String get auditFieldNotes => 'Notes';
+
+  @override
+  String get auditFieldExpense => 'Linked expense';
+
+  @override
+  String get auditFieldItems => 'Items';
+
+  @override
+  String get auditFieldVotes => 'Votes';
+
+  @override
+  String get auditFieldBookingCode => 'Booking code';
+
+  @override
+  String get auditFieldDeparture => 'Departure';
+
+  @override
+  String get auditFieldArrival => 'Arrival';
+
+  @override
+  String get auditFieldCost => 'Expected cost';
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

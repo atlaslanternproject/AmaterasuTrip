@@ -79,3 +79,6 @@ export {
 
 // Weather of the trip destination (v1.50.0), shared cache per trip.
 export {getTripWeather} from "./weather/get-trip-weather";
+
+// Audit Trail (v1.58.0): register written only by the server.
+export {recordTripAudit} from "./audit/record-trip-audit";

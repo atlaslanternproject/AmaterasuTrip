@@ -53,7 +53,8 @@ node_tests() {
     functions/test/budget-declared-payment.test.cjs \
     functions/test/budget-expense-source.test.cjs \
     functions/test/transport-zone-plan.test.cjs \
-    functions/test/trip-weather.test.cjs || return 1
+    functions/test/trip-weather.test.cjs \
+    functions/test/audit-changes.test.cjs || return 1
   # Questi test ricevono il percorso del file compilato come argomento.
   node functions/test/account-deletion-cleanup-orchestrator.test.cjs \
     "$lib/account-deletion-cleanup-orchestrator.js" || return 1

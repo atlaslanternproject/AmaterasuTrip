@@ -1,0 +1,29 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "auditTrail",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "section", "order": "ASCENDING"},
+        {"fieldPath": "at", "order": "DESCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "auditTrail",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "actorUid", "order": "ASCENDING"},
+        {"fieldPath": "at", "order": "DESCENDING"}
+      ]
+    },
+    {
+      "collectionGroup": "auditTrail",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {"fieldPath": "action", "order": "ASCENDING"},
+        {"fieldPath": "at", "order": "DESCENDING"}
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

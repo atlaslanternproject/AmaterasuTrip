@@ -35,5 +35,7 @@ class FirestoreTripRestaurantVoteService implements TripRestaurantVoteService {
       .update({
         FieldPath(['votes', uid]): level ?? FieldValue.delete(),
         'updatedAt': FieldValue.serverTimestamp(),
+        // The voter signs the change (Audit Trail, v1.58.0).
+        'updatedByUid': uid,
       });
 }

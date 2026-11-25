@@ -134,6 +134,12 @@ class TripMorePage extends StatelessWidget {
         route: '/trips/$tripId/more/stats',
       ),
       _TripMoreItem(
+        title: l10n.tripMoreAudit,
+        subtitle: l10n.tripMoreAuditSubtitle,
+        icon: Icons.history_rounded,
+        route: '/trips/$tripId/more/audit',
+      ),
+      _TripMoreItem(
         title: l10n.tripMoreSettings,
         subtitle: l10n.tripMoreSettingsSubtitle,
         icon: Icons.settings_rounded,

@@ -409,6 +409,13 @@ service cloud.firestore {
           );
       }
 
+      // Audit Trail (v1.58.0): written only by the server (recordTripAudit);
+      // members read it, nobody (not even the OWNER) changes or deletes it.
+      match /auditTrail/{entryId} {
+        allow get, list: if sectionMember();
+        allow create, update, delete: if false;
+      }
+
       // Trip categories of the new sections, like bucketCategories (v1.39.0).
       match /sectionCategories/{categoryId} {
         allow get, list: if sectionMember();
@@ -830,17 +837,20 @@ service cloud.firestore {
 
       function sectionBase(data, required, allowed) {
         return data.keys().hasAll(
-          ['tripId', 'createdByUid', 'createdAt', 'updatedAt'].concat(required)
+          ['tripId', 'createdByUid', 'createdAt', 'updatedAt', 'updatedByUid']
+            .concat(required)
         )
           && data.keys().hasOnly(
             ['tripId', 'createdByUid', 'createdAt', 'updatedAt',
-              'expenseId', 'estimatedCostMinorUnits',
+              'updatedByUid', 'expenseId', 'estimatedCostMinorUnits',
               'estimatedCostCurrency'].concat(allowed)
           )
           && data.tripId == tripId
           && data.createdByUid is string
           && data.createdByUid.size() > 0
           && data.updatedAt == request.time
+          // Who wrote last (Audit Trail, v1.58.0): always the writer.
+          && data.updatedByUid == request.auth.uid
           && (
             data.get('expenseId', null) == null
             || (data.expenseId is string
