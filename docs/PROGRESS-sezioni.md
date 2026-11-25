@@ -1698,3 +1698,6 @@ Punti sistemati (file, numero di indicatori):
   - features/trips/tools/search/trip_search_results.dart (1)
   - features/trips/tools/stats/trip_stats_page.dart (1)
   - features/trips/tools/weather/trip_weather_page.dart (1)
+
+## COERENZA gruppo F - passo F1 (1.61.0)
+Valutazione (regola 1): (a) la pagina Privacy usa frase introduttiva + AmaterasuSettingsCard espandibili; Aspetto aveva titoli e chip in fila; (b) Aspetto usa gli stessi componenti identici (card con icona, titolo e scelta attuale come descrizione; dentro le stesse scelte e le stesse chiavi), file diviso con un part; (c) nessun dato o calcolo: le scelte si salvano come prima. Card a tutta larghezza su schermo largo: nel codice delle Impostazioni non c'è nessun limite di larghezza; verificato con un test a 1400 punti (card oltre 1300). Test: impostazioni 17 (nuovi: frase, schermo largo, 130 % su telefono con tutte le card aperte).

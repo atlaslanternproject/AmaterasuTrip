@@ -1,7 +1,7 @@
-// Pagina "Aspetto" delle Impostazioni globali (Extra E2): dimensione del
-// testo, unità, formato data e ora, valuta predefinita per le nuove voci e
-// valuta di visualizzazione. Ogni scelta si salva subito (dispositivo e
-// profilo); gli importi originali non cambiano mai.
+// Pagina "Aspetto" delle Impostazioni globali sul modello della pagina
+// Privacy (COERENZA F): frase introduttiva e card espandibili con icona,
+// titolo e scelta attuale (Testo, Unità, Data e ora, Valute). Ogni scelta
+// si salva subito (dispositivo e profilo); gli importi non cambiano mai.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,18 +9,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/core/appearance/amaterasu_appearance.dart';
 import 'package:amaterasutrip/core/appearance/amaterasu_appearance_provider.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_chips.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'appearance_currency_row.dart';
 
-class AppearancePage extends ConsumerWidget {
+part 'appearance_page_cards.dart';
+
+class AppearancePage extends ConsumerStatefulWidget {
   const AppearancePage({super.key});
 
-  Future<void> _set(
-    BuildContext context,
-    WidgetRef ref,
-    AmaterasuAppearance value,
-  ) async {
+  @override
+  ConsumerState<AppearancePage> createState() => _AppearancePageState();
+}
+
+class _AppearancePageState extends ConsumerState<AppearancePage> {
+  final _open = <String>{};
+
+  Future<void> _set(AmaterasuAppearance value) async {
     final messenger = ScaffoldMessenger.of(context);
     final failed = AppLocalizations.of(context)!.appearanceSaveFailed;
     final ok = await ref
@@ -29,40 +35,30 @@ class AppearancePage extends ConsumerWidget {
     if (!ok) messenger.showSnackBar(SnackBar(content: Text(failed)));
   }
 
-  Widget _title(String text) => Padding(
-    padding: const EdgeInsets.only(top: 20, bottom: 8),
-    child: Text(
-      text,
-      style: const TextStyle(
-        color: AmaterasuColors.textPrimary,
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-      ),
+  Widget _card(
+    String id,
+    IconData icon,
+    String title,
+    String subtitle,
+    List<Widget> children,
+  ) => Padding(
+    padding: const EdgeInsets.only(bottom: 10),
+    child: AmaterasuSettingsCard(
+      key: Key('appearance-card-$id'),
+      icon: icon,
+      title: title,
+      subtitle: subtitle,
+      isExpanded: _open.contains(id),
+      onTap: () =>
+          setState(() => _open.contains(id) ? _open.remove(id) : _open.add(id)),
+      children: children,
     ),
   );
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final a = ref.watch(amaterasuAppearanceProvider);
-    void set(AmaterasuAppearance v) => _set(context, ref, v);
-    Widget choices<T extends Object>(
-      String key,
-      List<T> values,
-      String Function(T) label,
-      T selected,
-      AmaterasuAppearance Function(T) apply,
-    ) => TripSectionChoices<T>(
-      keyPrefix: 'appearance-$key',
-      values: values,
-      codeOf: (v) => '$v',
-      labelOf: label,
-      selected: selected,
-      onChanged: (v) {
-        if (v != null) set(apply(v));
-      },
-    );
-
     return Scaffold(
       backgroundColor: AmaterasuColors.surfaceDeep,
       appBar: AppBar(
@@ -79,77 +75,50 @@ class AppearancePage extends ConsumerWidget {
       ),
       body: ListView(
         key: const Key('appearance-page'),
-        padding: const EdgeInsets.fromLTRB(20, 4, 20, 32),
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
         children: [
-          _title(l10n.appearanceTextSize),
-          choices<int>(
-            'text',
-            AmaterasuAppearance.textScales,
-            (v) => '$v%',
-            a.textScale,
-            (v) => a.copyWith(textScale: v),
-          ),
-          _title(l10n.appearanceUnits),
-          choices<String>(
-            'units',
-            AmaterasuAppearance.unitsValues,
-            (v) => v == 'km' ? l10n.appearanceUnitsKm : l10n.appearanceUnitsMi,
-            a.units,
-            (v) => a.copyWith(units: v),
-          ),
-          _title(l10n.appearanceDateFormat),
-          choices<String>(
-            'date',
-            AmaterasuAppearance.dateFormats,
-            (v) => switch (v) {
-              'dmy' => l10n.appearanceDateDmy,
-              'ymd' => l10n.appearanceDateYmd,
-              _ => l10n.appearanceDateLocale,
-            },
-            a.dateFormat,
-            (v) => a.copyWith(dateFormat: v),
-          ),
-          _title(l10n.appearanceTimeFormat),
-          choices<String>(
-            'time',
-            AmaterasuAppearance.timeFormats,
-            (v) => v == '24' ? l10n.appearanceTime24 : l10n.appearanceTime12,
-            a.timeFormat,
-            (v) => a.copyWith(timeFormat: v),
-          ),
-          _title(l10n.appearanceCurrencies),
-          AppearanceCurrencyRow(
-            keyPrefix: 'appearance-default-currency',
-            label: l10n.appearanceDefaultCurrency,
-            value: a.defaultCurrency,
-            emptyText: l10n.appearanceCurrencyTrip,
-            onChanged: (c) => set(
-              c == null
-                  ? a.copyWith(clearDefaultCurrency: true)
-                  : a.copyWith(defaultCurrency: c),
-            ),
-          ),
-          const SizedBox(height: 10),
-          AppearanceCurrencyRow(
-            keyPrefix: 'appearance-display-currency',
-            label: l10n.appearanceDisplayCurrency,
-            value: a.displayCurrency,
-            emptyText: a.defaultCurrency == null
-                ? l10n.appearanceDisplayOriginal
-                : l10n.appearanceDisplayFollows(a.defaultCurrency!),
-            onChanged: (c) => set(
-              c == null
-                  ? a.copyWith(clearDisplayCurrency: true)
-                  : a.copyWith(displayCurrency: c),
-            ),
-          ),
-          const SizedBox(height: 10),
           Text(
-            l10n.appearanceOriginalsUnchanged,
+            l10n.appearanceIntro,
             style: const TextStyle(
               color: AmaterasuColors.textMuted,
-              fontSize: 13,
+              fontSize: 14,
+              height: 1.5,
             ),
+          ),
+          const SizedBox(height: 20),
+          _card(
+            'text',
+            Icons.format_size_rounded,
+            l10n.appearanceTextSize,
+            '${a.textScale}%',
+            [_textChoices(l10n, a)],
+          ),
+          _card(
+            'units',
+            Icons.straighten_rounded,
+            l10n.appearanceUnits,
+            _unitLabel(l10n, a.units),
+            [_unitChoices(l10n, a)],
+          ),
+          _card(
+            'datetime',
+            Icons.schedule_rounded,
+            l10n.appearanceDateTime,
+            '${_dateLabel(l10n, a.dateFormat)} · '
+                '${_timeLabel(l10n, a.timeFormat)}',
+            _dateTimeChoices(l10n, a),
+          ),
+          _card(
+            'currencies',
+            Icons.currency_exchange_rounded,
+            l10n.appearanceCurrencies,
+            l10n.appearanceCurrenciesSummary(
+              a.defaultCurrency ?? l10n.appearanceCurrencyTrip,
+              a.displayCurrency ??
+                  a.defaultCurrency ??
+                  l10n.appearanceDisplayOriginal,
+            ),
+            _currencyRows(l10n, a),
           ),
         ],
       ),

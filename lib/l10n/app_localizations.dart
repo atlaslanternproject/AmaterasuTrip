@@ -7469,6 +7469,24 @@ abstract class AppLocalizations {
   /// **'Currencies'**
   String get appearanceCurrencies;
 
+  /// No description provided for @appearanceIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how the app shows texts, units, dates, times and amounts. The choices apply on this device and in your profile; saved amounts do not change.'**
+  String get appearanceIntro;
+
+  /// No description provided for @appearanceDateTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Date and time'**
+  String get appearanceDateTime;
+
+  /// No description provided for @appearanceCurrenciesSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'New items: {entry} · Display: {shown}'**
+  String appearanceCurrenciesSummary(String entry, String shown);
+
   /// No description provided for @appearanceDefaultCurrency.
   ///
   /// In en, this message translates to:

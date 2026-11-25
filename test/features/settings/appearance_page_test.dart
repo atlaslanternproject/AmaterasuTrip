@@ -1,7 +1,8 @@
 // Test automatici della pagina "Aspetto" (Extra E2): ogni scelta si salva
 // subito nel profilo (archivio finto), la valuta di visualizzazione mostra
 // quella predefinita quando non è scelta e si torna al valore automatico
-// con la ×; la frase sugli importi originali è sempre visibile.
+// con la ×; frase introduttiva e card come Privacy (COERENZA F), a tutta
+// larghezza su schermo largo e senza errori di spazio al 130 % su telefono.
 // Casi, ad esempio: "choices are saved at once", "display currency follows the default".
 
 import 'package:amaterasutrip/core/appearance/amaterasu_appearance.dart';
@@ -20,8 +21,9 @@ import '../../core/appearance/amaterasu_appearance_test.dart'
 Future<FakeAppearanceStore> open(
   WidgetTester tester, [
   AmaterasuAppearance? remote,
+  double width = 900,
 ]) async {
-  tester.view.physicalSize = const Size(900, 1600);
+  tester.view.physicalSize = Size(width, 1600);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
   SharedPreferences.setMockInitialValues({});
@@ -55,8 +57,12 @@ Future<void> tap(WidgetTester tester, String key) async {
 void main() {
   testWidgets('choices are saved at once', (tester) async {
     final store = await open(tester);
+    expect(find.textContaining('Scegli come'), findsOneWidget);
+    await tap(tester, 'appearance-card-text');
     await tap(tester, 'appearance-text-120');
+    await tap(tester, 'appearance-card-units');
     await tap(tester, 'appearance-units-mi');
+    await tap(tester, 'appearance-card-datetime');
     await tap(tester, 'appearance-date-ymd');
     await tap(tester, 'appearance-time-12');
     expect(store.saved.last.toMap(), {
@@ -65,6 +71,9 @@ void main() {
       'dateFormat': 'ymd',
       'timeFormat': '12',
     });
+    // The card shows the current choice as its description.
+    expect(find.text('120%'), findsWidgets);
+    await tap(tester, 'appearance-card-currencies');
     expect(find.textContaining('Gli importi originali'), findsOneWidget);
   });
 
@@ -75,6 +84,7 @@ void main() {
       tester,
       const AmaterasuAppearance(defaultCurrency: 'EUR'),
     );
+    await tap(tester, 'appearance-card-currencies');
     expect(
       find.text('Valuta di visualizzazione: come le nuove voci (EUR)'),
       findsOneWidget,
@@ -85,5 +95,21 @@ void main() {
       find.text('Valuta di visualizzazione: quella originale'),
       findsOneWidget,
     );
+  });
+
+  testWidgets('wide screen: cards as wide as the page', (tester) async {
+    await open(tester, null, 1400);
+    final card = tester.getSize(find.byKey(const Key('appearance-card-text')));
+    expect(card.width, greaterThan(1300));
+  });
+
+  testWidgets('phone at 130% without overflow, every card open', (
+    tester,
+  ) async {
+    await open(tester, const AmaterasuAppearance(textScale: 130), 390);
+    for (final id in ['text', 'units', 'datetime', 'currencies']) {
+      await tap(tester, 'appearance-card-$id');
+    }
+    expect(tester.takeException(), isNull);
   });
 }

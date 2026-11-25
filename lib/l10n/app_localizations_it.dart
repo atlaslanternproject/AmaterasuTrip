@@ -3908,6 +3908,17 @@ class AppLocalizationsIt extends AppLocalizations {
   String get appearanceCurrencies => 'Valute';
 
   @override
+  String get appearanceIntro => 'Scegli come l\'app mostra testi, unità, date, ore e importi. Le scelte valgono su questo dispositivo e nel tuo profilo; gli importi salvati non cambiano.';
+
+  @override
+  String get appearanceDateTime => 'Data e ora';
+
+  @override
+  String appearanceCurrenciesSummary(String entry, String shown) {
+    return 'Nuove voci: $entry · Visualizzazione: $shown';
+  }
+
+  @override
   String get appearanceDefaultCurrency => 'Valuta per le nuove voci';
 
   @override
