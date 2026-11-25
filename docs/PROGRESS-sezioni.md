@@ -313,9 +313,9 @@ Mappa/Itinerario).
 | Sezioni v2 - Alloggi (aggiunte facoltative) | fatta, pubblicata 1.31.0 il 25/11/2026 | feature/alloggi-v2 | 1.31.0+35 |
 | Sezioni v2 - Note | fatta, pubblicata 1.32.0 il 25/11/2026 | feature/note-v2 | 1.32.0+36 |
 | Sezioni v2 - Shopping | fatta, pubblicata 1.33.0 il 25/11/2026 | feature/shopping-v2 | 1.33.0+37 |
-| Sezioni v2 - Link utili ovunque (senza Spese) | fatta (pubblicazione: vedi tappa seguente) | feature/link-utili | 1.34.0+38 |
+| Sezioni v2 - Link utili ovunque (senza Spese) | fatta, pubblicata 1.34.0 il 25/11/2026 | feature/link-utili | 1.34.0+38 |
+| Crea spesa dalle sezioni (+ link delle spese) | fatta (pubblicazione: vedi tappa seguente) | feature/crea-spesa | 1.35.0+39 |
 | Sezioni v2 - Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
-| Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -629,3 +629,39 @@ Prove da fare sul sito:
 3. Nella Checklist apri una voce, aggiungi un link: compare sotto la voce.
 4. Un trasporto con molti campi compilati, costo e spesa collegata si
    salva senza errori.
+
+## Crea spesa dalle sezioni
+Valutazione (regola 1): (a) le sezioni aprivano già il dialogo spese del
+budget con valori iniziali; nessun secondo dialogo; (b) le correzioni sono
+fatte nel dialogo del budget (nuovo file part budget_create_dialog_kind.dart)
+e valgono ovunque; i nomi erano già gli username (listTripMembers); (c)
+tocca la Cloud Function createBudgetExpense solo per due campi facoltativi
+validati (source e link, modulo budget-expense-source.ts con test), nessun
+cambiamento ai calcoli; test di regressione del budget prima e dopo (270
+test Flutter + 3 suite con emulatori, tutti verdi).
+
+Commit: b3e28a2.
+
+Cosa cambia nel dialogo spese:
+1. Tipo: "Con tutti", "Con alcune persone", "Anticipata per altri" (chi
+   crea non partecipa) e "Personale" (non dalle sezioni, come prima).
+2. "Totale da dividere / Per persona": per persona il totale è prezzo ×
+   partecipanti, calcolato prima dell'invio e mostrato nel riepilogo.
+3. Pulsante "Tutti" sopra i viaggiatori.
+4. Link facoltativo (validato http/https).
+5. Dalle sezioni e dagli alloggi la spesa ricorda la sezione di origine;
+   nel dettaglio della spesa il riquadro "Origine e link" ha "Vai al
+   trasporto / all'alloggio / …" e il link.
+
+Selezione di più persone: con i test automatici il dialogo seleziona
+correttamente più viaggiatori (anche a larghezza telefono e dalle
+sezioni). Non ho trovato la causa del problema segnalato: servono i passi
+esatti (da quale schermata, con quanti viaggiatori, telefono o computer).
+
+Prove da fare sul sito:
+1. Da un trasporto: "Crea spesa" > "Con tutti" > tutti selezionati.
+2. "Per persona" 12 € con 3 persone: il riepilogo mostra 36 €.
+3. "Anticipata per altri": tu non sei tra i partecipanti.
+4. Nel dettaglio della spesa creata: "Origine e link" > "Vai al trasporto".
+5. Una spesa creata dalla pagina spese senza link: nessun riquadro nuovo.
+6. Prova a selezionare due persone e dimmi se il problema c'è ancora.
