@@ -2847,6 +2847,74 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonLinkAdd => 'Add a link';
 
   @override
+  String get settingsAppearance => 'Appearance';
+
+  @override
+  String get settingsAppearanceSubtitle => 'Text, units, dates and currencies';
+
+  @override
+  String get appearanceTextSize => 'Text size';
+
+  @override
+  String get appearanceUnits => 'Units';
+
+  @override
+  String get appearanceUnitsKm => 'Kilometres';
+
+  @override
+  String get appearanceUnitsMi => 'Miles';
+
+  @override
+  String get appearanceDateFormat => 'Date format';
+
+  @override
+  String get appearanceDateLocale => 'Like the language';
+
+  @override
+  String get appearanceDateDmy => 'dd/mm/yyyy';
+
+  @override
+  String get appearanceDateYmd => 'yyyy-mm-dd';
+
+  @override
+  String get appearanceTimeFormat => 'Time format';
+
+  @override
+  String get appearanceTime24 => '24 hours';
+
+  @override
+  String get appearanceTime12 => '12 hours (AM/PM)';
+
+  @override
+  String get appearanceCurrencies => 'Currencies';
+
+  @override
+  String get appearanceDefaultCurrency => 'Currency for new entries';
+
+  @override
+  String get appearanceDisplayCurrency => 'Display currency';
+
+  @override
+  String get appearanceCurrencyTrip => 'the trip\'s';
+
+  @override
+  String get appearanceDisplayOriginal => 'the original one';
+
+  @override
+  String appearanceDisplayFollows(String currency) {
+    return 'like new entries ($currency)';
+  }
+
+  @override
+  String get appearanceCurrencyAuto => 'Back to the automatic value';
+
+  @override
+  String get appearanceOriginalsUnchanged => 'Original amounts stay unchanged: the display currency only changes how you see them.';
+
+  @override
+  String get appearanceSaveFailed => 'Choice saved on this device, but not in the profile. Try again later.';
+
+  @override
   String get sectionsCategories => 'Custom categories';
 
   @override

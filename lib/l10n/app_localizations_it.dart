@@ -2847,6 +2847,74 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonLinkAdd => 'Aggiungi un link';
 
   @override
+  String get settingsAppearance => 'Aspetto';
+
+  @override
+  String get settingsAppearanceSubtitle => 'Testo, unità, date e valute';
+
+  @override
+  String get appearanceTextSize => 'Dimensione del testo';
+
+  @override
+  String get appearanceUnits => 'Unità di misura';
+
+  @override
+  String get appearanceUnitsKm => 'Chilometri';
+
+  @override
+  String get appearanceUnitsMi => 'Miglia';
+
+  @override
+  String get appearanceDateFormat => 'Formato della data';
+
+  @override
+  String get appearanceDateLocale => 'Come la lingua';
+
+  @override
+  String get appearanceDateDmy => 'gg/mm/aaaa';
+
+  @override
+  String get appearanceDateYmd => 'aaaa-mm-gg';
+
+  @override
+  String get appearanceTimeFormat => 'Formato dell\'ora';
+
+  @override
+  String get appearanceTime24 => '24 ore';
+
+  @override
+  String get appearanceTime12 => '12 ore (AM/PM)';
+
+  @override
+  String get appearanceCurrencies => 'Valute';
+
+  @override
+  String get appearanceDefaultCurrency => 'Valuta per le nuove voci';
+
+  @override
+  String get appearanceDisplayCurrency => 'Valuta di visualizzazione';
+
+  @override
+  String get appearanceCurrencyTrip => 'quella del viaggio';
+
+  @override
+  String get appearanceDisplayOriginal => 'quella originale';
+
+  @override
+  String appearanceDisplayFollows(String currency) {
+    return 'come le nuove voci ($currency)';
+  }
+
+  @override
+  String get appearanceCurrencyAuto => 'Torna al valore automatico';
+
+  @override
+  String get appearanceOriginalsUnchanged => 'Gli importi originali rimangono invariati: la valuta di visualizzazione cambia solo come li vedi.';
+
+  @override
+  String get appearanceSaveFailed => 'Scelta salvata su questo dispositivo, ma non nel profilo. Riprova più tardi.';
+
+  @override
   String get sectionsCategories => 'Categorie personalizzate';
 
   @override

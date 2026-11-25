@@ -322,7 +322,8 @@ Mappa/Itinerario).
 | Extra D - Categorie personalizzate | fatta, pubblicata 1.39.0 il 25/11/2026 | feature/categorie | 1.39.0+44 |
 | Extra D - Filtro per categoria personalizzata | fatta, pubblicata 1.40.0 il 25/11/2026 | feature/filtro-categorie | 1.40.0+45 |
 | Extra E - Aspetto: piano | approvato il 25/11/2026 | - | - |
-| Extra E1 - Preferenze Aspetto (modello e salvataggio) | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e1 | 1.41.0+46 |
+| Extra E1 - Preferenze Aspetto (modello e salvataggio) | fatta, pubblicata 1.41.0 il 25/11/2026 | feature/aspetto-e1 | 1.41.0+46 |
+| Extra E2 - Pagina Impostazioni > Aspetto | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e2 | 1.42.0+47 |
 | Extra F-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -938,3 +939,16 @@ ammessi (test). Nient'altro del profilo cambia; la cancellazione
 dell'account lo elimina con il profilo.
 
 Prove da fare sul sito: nessuna (nessun cambiamento visibile).
+
+## Extra E2 - Pagina Impostazioni > Aspetto
+Nuova card "Aspetto" dopo "Lingua" (le card esistenti non cambiano) che
+apre una pagina con lo stesso stile della pagina Lingua. Scelte a
+pulsanti (lo stesso componente delle sezioni), valute con il pulsante e
+il pannello comuni del budget, × per tornare al valore automatico, frase
+"Gli importi originali rimangono invariati". Ogni scelta si salva subito;
+se il profilo non risponde resta sul dispositivo e compare un avviso.
+Gli effetti arrivano nei passi E3 (testo), E4 (date), E6 e E7 (valute).
+
+Prove da fare sul sito:
+1. Impostazioni > Aspetto: cambia le scelte, esci e rientra: restano.
+2. Da un altro dispositivo con lo stesso account le scelte si ritrovano.

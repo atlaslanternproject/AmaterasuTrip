@@ -74,6 +74,14 @@ class SettingsPage extends StatelessWidget {
               context.push('/settings/language');
             },
           ),
+          AmaterasuSettingsCard(
+            icon: Icons.text_fields_rounded,
+            title: l10n.settingsAppearance,
+            subtitle: l10n.settingsAppearanceSubtitle,
+            onTap: () {
+              context.push('/settings/appearance');
+            },
+          ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
             icon: Icons.cloud_outlined,

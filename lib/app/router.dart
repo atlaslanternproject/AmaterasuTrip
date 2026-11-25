@@ -51,6 +51,7 @@ import '../features/trips/presentation/pages/workspace/settings/management/trip_
 import '../features/settings/presentation/pages/settings_page.dart';
 import '../features/settings/presentation/pages/profile/profile_page.dart';
 import '../features/settings/presentation/pages/language/language_page.dart';
+import '../features/settings/presentation/pages/appearance/appearance_page.dart';
 import '../features/settings/presentation/pages/account/account_page.dart';
 import '../features/settings/presentation/pages/account/account_security_recovery_page.dart';
 import '../features/settings/presentation/pages/privacy/privacy_page.dart';
@@ -218,6 +219,12 @@ final amaterasuRouter = GoRouter(
                   path: 'language',
                   builder: (context, state) {
                     return const LanguagePage();
+                  },
+                ),
+                GoRoute(
+                  path: 'appearance',
+                  builder: (context, state) {
+                    return const AppearancePage();
                   },
                 ),
                 GoRoute(

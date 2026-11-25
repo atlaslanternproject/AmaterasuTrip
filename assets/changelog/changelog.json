@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.42.0",
+      "date": "2026-11-25",
+      "it": ["Nuova pagina Impostazioni > Aspetto: dimensione del testo, unità, formato di data e ora, valuta per le nuove voci e valuta di visualizzazione. Le scelte si salvano subito; i loro effetti arrivano nelle prossime versioni."],
+      "en": ["New page Settings > Appearance: text size, units, date and time format, currency for new entries and display currency. Choices are saved at once; their effects arrive in the next versions."]
+    },
+    {
       "version": "1.41.0",
       "date": "2026-11-25",
       "it": ["Preparazione delle nuove impostazioni «Aspetto» (dimensione del testo, formati, valute): nessun cambiamento visibile per ora."],
