@@ -27,10 +27,15 @@ extension _BudgetCreateDialogStateSave on _BudgetCreateDialogState {
         _error = null;
       });
 
-      final minorUnits = BudgetMoneyInput.parse(
-        _amount.text,
-        _selectedCurrency,
-      );
+      final minorUnits = _totalMinor();
+      final link = _link.text.trim();
+      if (link.isNotEmpty && !AmaterasuWebLink.isValid(link)) {
+        throw FormatException(
+          budgetL10n(
+            Localizations.localeOf(context).languageCode == 'it',
+          ).btCreateLinkInvalid,
+        );
+      }
 
       if (_shared && _selected.isEmpty) {
         throw FormatException(
@@ -96,6 +101,8 @@ extension _BudgetCreateDialogStateSave on _BudgetCreateDialogState {
         minorUnits: minorUnits,
         status: _status,
         participants: _shared ? _selected.toList() : [widget.api.currentUid],
+        source: widget.source,
+        link: link.isEmpty ? null : link,
       );
       widget.onCreated?.call(expenseId);
 

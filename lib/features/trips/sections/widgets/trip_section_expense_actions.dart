@@ -28,6 +28,14 @@ class TripSectionExpenseTarget {
 
   final String keyPrefix;
   final String id;
+
+  /// Firestore collection of the item, saved in the expense to go back.
+  String get section => switch (keyPrefix) {
+    'transport' => 'transports',
+    'reservation' => 'reservations',
+    'restaurant' => 'restaurants',
+    _ => 'shoppingItems',
+  };
   final String title;
 
   /// Budget category, e.g. 'transport', 'food', 'activities'.
@@ -92,6 +100,7 @@ Future<void> createTripSectionExpense(
         initialDate: target.date,
         initialMinorUnits: hasCost ? target.minorUnits : null,
         sharedOnly: true,
+        source: (target.section, target.id),
         onCreated: (id) => createdId = id,
       ),
     ),

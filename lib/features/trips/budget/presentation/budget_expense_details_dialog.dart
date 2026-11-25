@@ -5,6 +5,7 @@ import '../calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'budget_dialog_chrome.dart';
+import 'budget_expense_source_links.dart';
 import 'budget_expense_day.dart';
 import 'budget_expense_history.dart';
 import 'budget_fx_manual_dialog.dart';
@@ -206,6 +207,10 @@ class BudgetExpenseDetailsDialog extends StatelessWidget {
                             ),
                           ],
                         ),
+                      BudgetExpenseSourceLinks(
+                        tripId: api.tripId,
+                        expense: expense,
+                      ),
                       BudgetDialogChrome.section(
                         title: budgetL10n(it).btDetailsManageExpense,
                         icon: Icons.settings_outlined,

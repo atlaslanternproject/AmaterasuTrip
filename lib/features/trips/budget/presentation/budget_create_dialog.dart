@@ -1,5 +1,7 @@
-// Dialogo per creare una spesa: titolo, importo, valuta, data,
-// partecipanti, pagatori, categoria e metodi di pagamento.
+// Dialogo per creare una spesa: tipo (con tutti, con alcune persone,
+// personale, anticipata per altri), titolo, importo totale o a persona,
+// valuta, data, partecipanti con "Tutti", pagatori, categoria, metodi di
+// pagamento, link facoltativo e sezione di origine (aperto dalle sezioni).
 
 import 'package:flutter/material.dart';
 import 'budget_dialog_chrome.dart';
@@ -14,11 +16,13 @@ import 'budget_currency_choice.dart';
 import 'budget_payment_methods_editor.dart';
 import '../models/budget_payment_allocation.dart';
 import '../models/budget_payment_plan.dart';
+import 'package:amaterasutrip/core/links/amaterasu_web_link.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dart';
 
 part 'budget_create_dialog_currency.dart';
+part 'budget_create_dialog_kind.dart';
 part 'budget_create_dialog_preview.dart';
 part 'budget_create_dialog_save.dart';
 
@@ -33,6 +37,7 @@ class BudgetCreateDialog extends StatefulWidget {
     this.initialMinorUnits,
     this.sharedOnly = false,
     this.onCreated,
+    this.source,
   });
 
   final BudgetApi api;
@@ -50,6 +55,9 @@ class BudgetCreateDialog extends StatefulWidget {
   /// Called with the ID of the created expense, before the dialog closes.
   final void Function(String expenseId)? onCreated;
 
+  /// Section and item that open the dialog ("Go to the transport").
+  final (String, String)? source;
+
   @override
   State<BudgetCreateDialog> createState() => _BudgetCreateDialogState();
 }
@@ -60,6 +68,9 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
   );
   late final _title = TextEditingController(text: widget.initialTitle ?? '');
   final _notes = TextEditingController();
+  final _link = TextEditingController();
+  String _kind = 'some';
+  bool _perPerson = false;
   late String _category = widget.initialCategory ?? 'other';
 
   late final _amount = TextEditingController(
@@ -92,6 +103,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
   void dispose() {
     _title.dispose();
     _notes.dispose();
+    _link.dispose();
     _amount.dispose();
     for (final controller in _shareInputs.values) {
       controller.dispose();
@@ -204,27 +216,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                   title: budgetL10n(it).btCreateExpenseType,
                   icon: Icons.account_balance_wallet_outlined,
                   subtitle: budgetL10n(it).btCreateChooseWhoCanSee,
-                  children: [
-                    Row(
-                      children: [
-                        modeButton(
-                          label: budgetL10n(it).btCreateShared,
-                          icon: Icons.groups_outlined,
-                          selected: _shared,
-                          onTap: () => setState(() => _shared = true),
-                        ),
-                        if (!widget.sharedOnly) ...[
-                          const SizedBox(width: AmaterasuSpacing.sm),
-                          modeButton(
-                            label: budgetL10n(it).btCreatePersonal,
-                            icon: Icons.lock_outline_rounded,
-                            selected: !_shared,
-                            onTap: () => setState(() => _shared = false),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ],
+                  children: [_kindSelector(it, modeButton)],
                 ),
                 BudgetCreateSection(
                   title: budgetL10n(it).btCreateExpenseDetails,
@@ -283,6 +275,8 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                         border: const OutlineInputBorder(),
                       ),
                     ),
+                    const SizedBox(height: AmaterasuSpacing.sm),
+                    _linkField(it),
                   ],
                 ),
               ] else ...[
@@ -310,7 +304,9 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                         fontWeight: FontWeight.w700,
                       ),
                       decoration: InputDecoration(
-                        labelText: budgetL10n(it).btCreateTotalAmount,
+                        labelText: _shared && _perPerson
+                            ? budgetL10n(it).btCreatePricePerPerson
+                            : budgetL10n(it).btCreateTotalAmount,
                         suffixText: _selectedCurrency,
                         prefixIcon: const Icon(Icons.payments_outlined),
                         border: const OutlineInputBorder(),
@@ -352,24 +348,27 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
                     title: budgetL10n(it).btCreateSplitBetweenTravelers,
                     icon: Icons.groups_outlined,
                     children: [
-                      Row(
-                        children: [
-                          modeButton(
-                            label: budgetL10n(it).btCreateEqualShares,
-                            icon: Icons.balance_outlined,
-                            selected: !_customSplit,
-                            onTap: () => setState(() => _customSplit = false),
-                          ),
-                          const SizedBox(width: AmaterasuSpacing.sm),
-                          modeButton(
-                            label: budgetL10n(it).btCreateCustomShares,
-                            icon: Icons.tune_rounded,
-                            selected: _customSplit,
-                            onTap: () => setState(() => _customSplit = true),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 14),
+                      _perPersonSelector(it, modeButton),
+                      const SizedBox(height: AmaterasuSpacing.sm),
+                      if (!_perPerson)
+                        Row(
+                          children: [
+                            modeButton(
+                              label: budgetL10n(it).btCreateEqualShares,
+                              icon: Icons.balance_outlined,
+                              selected: !_customSplit,
+                              onTap: () => setState(() => _customSplit = false),
+                            ),
+                            const SizedBox(width: AmaterasuSpacing.sm),
+                            modeButton(
+                              label: budgetL10n(it).btCreateCustomShares,
+                              icon: Icons.tune_rounded,
+                              selected: _customSplit,
+                              onTap: () => setState(() => _customSplit = true),
+                            ),
+                          ],
+                        ),
+                      _allButton(it),
                       for (final person in _travelers) ...[
                         BudgetTravelerTile(
                           name: person['name'] ?? '',

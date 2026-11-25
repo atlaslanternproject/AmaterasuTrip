@@ -50,7 +50,7 @@ void main() {
     );
     expect(find.text('Alloggio: Hotel Kyoto'), findsOneWidget);
     expect(find.text('Personale'), findsNothing);
-    expect(find.text('Condivisa'), findsOneWidget);
+    expect(find.text('Con alcune persone'), findsOneWidget);
 
     // The amount is on the second step; the title lets the user go on.
     final next = find.byType(FilledButton).last;
@@ -65,7 +65,7 @@ void main() {
   ) async {
     await pump(tester, BudgetCreateDialog(api: api, currency: 'EUR'));
     expect(find.text('Personale'), findsOneWidget);
-    expect(find.text('Condivisa'), findsOneWidget);
+    expect(find.text('Con alcune persone'), findsOneWidget);
     expect(find.text('120.00'), findsNothing);
   });
 

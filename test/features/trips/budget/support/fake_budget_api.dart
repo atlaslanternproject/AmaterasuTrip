@@ -186,8 +186,13 @@ class FakeBudgetApi extends BudgetApi {
     required List<String> participants,
     Map<String, int>? customShares,
     BudgetPaymentPlan? paymentPlan,
+    (String, String)? source,
+    String? link,
   }) async {
     createdExpenses.add({
+      'source': source,
+      'link': link,
+      'customShares': customShares,
       'title': title,
       'expenseDate': expenseDate,
       'category': category,
