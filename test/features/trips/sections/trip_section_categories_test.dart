@@ -12,6 +12,11 @@ import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_plac
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place_category.dart';
 import 'package:amaterasutrip/features/trips/saved_places/providers/trip_saved_places_provider.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_categories.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_filter.dart';
+import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/bookings/trip_bookings_page.dart';
+import 'package:amaterasutrip/features/trips/reservations/models/trip_reservation.dart';
+import 'package:amaterasutrip/features/trips/reservations/models/trip_reservation_category.dart';
+import 'package:amaterasutrip/features/trips/reservations/providers/trip_reservations_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -114,5 +119,101 @@ void main() {
     expect(find.text('Al massimo 5 categorie'), findsOneWidget);
     await tapKey(tester, 'note-save');
     expect(store.created.single.customCategories, hasLength(5));
+  });
+
+  test('shared filter: custom category, cleared with the others', () {
+    const filter = TripSectionFilter(custom: 'Romantico');
+    final shown = filter.apply(
+      const [
+        ['Romantico'],
+        ['Altro'],
+        <String>[],
+      ],
+      today: DateTime(2027),
+      dayOf: (_) => null,
+      categoriesOf: (labels) => labels,
+    );
+    expect(shown, [
+      ['Romantico'],
+    ]);
+    expect(filter.cleared().custom, 'all');
+  });
+
+  TripSavedPlace place(String id, List<String> labels) => TripSavedPlace(
+    id: id,
+    tripId: 't1',
+    createdByUid: 'anna',
+    name: 'Luogo $id',
+    category: TripSavedPlaceCategory.sight,
+    customCategories: labels,
+  );
+
+  testWidgets('saved places: filter by custom category', (tester) async {
+    bigWindow(tester);
+    await tester.pumpWidget(
+      sectionsTestApp(
+        const TripSavedPlacesPage(tripId: 't1'),
+        overrides: [
+          tripSavedPlacesStoreProvider.overrideWithValue(
+            FakeSectionStore<TripSavedPlace>(
+              items: [
+                place('a', const ['Romantico']),
+                place('b', const []),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+    await tester.pumpAndSettle();
+    await pickFilter(
+      tester,
+      'saved-place',
+      'saved-place-filter-custom-category-Romantico',
+    );
+    expect(find.text('Luogo a'), findsOneWidget);
+    expect(find.text('Luogo b'), findsNothing);
+  });
+
+  testWidgets('bookings: the filter appears only with categories', (
+    tester,
+  ) async {
+    bigWindow(tester);
+    await tester.pumpWidget(
+      sectionsTestApp(
+        TripBookingsPage(tripId: 't1', today: DateTime(2027, 4, 1)),
+        overrides: [
+          tripReservationsStoreProvider.overrideWithValue(
+            FakeSectionStore<TripReservation>(
+              items: const [
+                TripReservation(
+                  id: 'r1',
+                  tripId: 't1',
+                  createdByUid: 'anna',
+                  name: 'Museo',
+                  category: TripReservationCategory.entry,
+                  customCategories: ['Con i bambini'],
+                ),
+                TripReservation(
+                  id: 'r2',
+                  tripId: 't1',
+                  createdByUid: 'anna',
+                  name: 'Tour',
+                  category: TripReservationCategory.tour,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+    await tester.pumpAndSettle();
+    await pickFilter(
+      tester,
+      'reservation',
+      'reservation-filter-custom-category-Con i bambini',
+    );
+    expect(find.text('Museo'), findsOneWidget);
+    expect(find.text('Tour'), findsNothing);
   });
 }

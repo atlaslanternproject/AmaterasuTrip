@@ -97,6 +97,7 @@ class _TripShoppingTabState extends ConsumerState<TripShoppingTab>
               dayOf: (_) => null,
               statusOf: (i) => i.bought ? 'done' : 'todo',
               kindOf: (i) => i.forUid ?? '',
+              categoriesOf: (i) => i.customCategories,
             )..sort((a, b) {
               final rank = TripSectionPriority.rank(
                 a.priority,
@@ -123,6 +124,10 @@ class _TripShoppingTabState extends ConsumerState<TripShoppingTab>
                 kinds: [for (final e in names.entries) (e.key, e.value)],
                 dated: false,
                 kindTitle: l10n.shoppingFor,
+                customCategories: tripSectionUsedCategories(
+                  items,
+                  (i) => i.customCategories,
+                ),
               ),
               view: view,
               onView: changeView,

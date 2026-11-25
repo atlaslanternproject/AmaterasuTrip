@@ -110,7 +110,7 @@ class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
               }),
               shown: shown.length,
               total: items.length,
-              groups: _groups(l10n),
+              groups: _groups(l10n, items),
               view: view,
               onView: changeView,
             ),

@@ -318,8 +318,9 @@ Mappa/Itinerario).
 | Chiusure: link nel testo delle note, test valuta trasporti, test selezione multipla | fatta, pubblicata 1.35.1 il 25/11/2026 | fix/chiusure-v2 | 1.35.1+40 |
 | Extra A - Novità e versioni | fatta, pubblicata 1.36.0 il 25/11/2026 | feature/novita | 1.36.0+41 |
 | Extra B - Sito installabile (PWA) | fatta, pubblicata 1.37.0 il 25/11/2026 | feature/pwa | 1.37.0+42 |
-| Extra C - Fuso orario per città (migrazione in attesa di ok) | fatta, pubblicata 1.38.0 il 25/11/2026 | feature/fuso-citta | 1.38.0+43 |
-| Extra D - Categorie personalizzate | fatta (pubblicazione: vedi tappa seguente) | feature/categorie | 1.39.0+44 |
+| Extra C - Fuso orario per città (migrazione non necessaria) | fatta, pubblicata 1.38.0 il 25/11/2026 | feature/fuso-citta | 1.38.0+43 |
+| Extra D - Categorie personalizzate | fatta, pubblicata 1.39.0 il 25/11/2026 | feature/categorie | 1.39.0+44 |
+| Extra D - Filtro per categoria personalizzata | fatta (pubblicazione: vedi tappa seguente) | feature/filtro-categorie | 1.40.0+45 |
 | Extra E-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -760,7 +761,10 @@ città, e per i trasporti ricalcola l'offset del giorno del viaggio (ora
 legale compresa). L'ora scritta non cambia mai. Senza città tutto resta
 come prima: i trasporti vecchi mostrano ancora "(UTC+01:00)".
 
-Migrazione dei dati (NON applicata, aspetta il tuo ok):
+Migrazione dei dati: NON NECESSARIA (decisione del 25/11/2026). C'era un
+solo trasporto di prova, che correggi a mano scegliendo la città. Lo
+script che scrive non è stato scritto; resta solo il rapporto in sola
+lettura qui sotto, come documentazione.
 - Script di sola lettura functions/scripts/migrate-transport-zones-dry-run.cjs
   (piano in transport-zone-plan.cjs, con test). Aggiunge solo il nome del
   fuso equivalente all'offset salvato (es. +01:00 -> Etc/GMT-1), verificato
@@ -811,3 +815,19 @@ Prove da fare sul sito:
    usate nel viaggio".
 3. Dopo 5 categorie il campo dice "Al massimo 5 categorie".
 4. La card mostra le categorie come etichette grigie.
+
+## Extra D - Filtro per categoria personalizzata
+Valutazione (regola 1): (a) le barre dei filtri delle sezioni usano già il
+componente comune (TripSectionFilter + tripSectionFilterGroups +
+TripSectionToolbar); (b) la categoria personalizzata è un campo in più del
+filtro comune (custom) e un gruppo in più dei gruppi comuni, così "Azzera"
+e il conteggio dei filtri attivi funzionano da soli; il gruppo compare solo
+se almeno un elemento ha una categoria; (c) tocca le 5 pagine (luoghi,
+prenotazioni, ristoranti, note, shopping) solo per passare le categorie;
+test del filtro e di due pagine.
+
+Prove da fare sul sito:
+1. Con almeno un luogo con la categoria "Romantico": Filtri > "Categoria
+   personalizzata" > Romantico: restano solo quei luoghi.
+2. "Azzera" toglie anche questo filtro.
+3. In una sezione senza categorie il gruppo non compare.

@@ -114,7 +114,7 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
               }),
               shown: shown.length,
               total: items.length,
-              groups: _groups(l10n),
+              groups: _groups(l10n, items),
               view: view,
               onView: changeView,
             ),
