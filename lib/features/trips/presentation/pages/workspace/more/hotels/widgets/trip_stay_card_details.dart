@@ -1,6 +1,7 @@
 // Dettagli nella card di un soggiorno, sotto le date: "prenotato su" con
-// il codice di conferma, costo previsto, servizi inclusi, come arrivare e
-// ospiti, come righe con icona.
+// il codice di conferma, costo previsto, servizi inclusi, come arrivare,
+// arrivo tardivo, accesso, tassa di soggiorno e ospiti, come righe con
+// icona.
 
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/budget_money_formatter.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'trip_stay_extras_lines.dart';
 import 'trip_stay_labels.dart';
 
 class TripStayCardDetails extends StatelessWidget {
@@ -62,6 +64,8 @@ class TripStayCardDetails extends StatelessWidget {
             '${l10n.staysDirections}: $directions',
             key: const Key('stay-directions-line'),
           ),
+        for (final (icon, text, key) in tripStayExtrasLines(stay, l10n))
+          _line(icon, text, key: key),
         if (guestNames.isNotEmpty)
           _line(Icons.people_outline, l10n.staysGuests(guestNames.join(', '))),
       ],

@@ -3187,6 +3187,69 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysErrCost => 'Invalid expected cost: enter an amount above zero in the currency format.';
 
   @override
+  String get staysErrExtras => 'Arrival, access or tax: check the data (time, amount, people from 1 to 50).';
+
+  @override
+  String get staysSectionArrival => 'Arrival, access and tax';
+
+  @override
+  String get staysLateArrival => 'Late arrival (time)';
+
+  @override
+  String get staysReception => 'Reception contact';
+
+  @override
+  String get staysDoorCode => 'Door code';
+
+  @override
+  String get staysWifiName => 'Wi-Fi name';
+
+  @override
+  String get staysWifiPassword => 'Wi-Fi password';
+
+  @override
+  String get staysAccessNotes => 'Access instructions';
+
+  @override
+  String get staysCityTax => 'City tax per person per night';
+
+  @override
+  String get staysCityTaxPersons => 'People paying the tax';
+
+  @override
+  String get staysCityTaxPersonsHint => 'When empty, the guests of the stay are used.';
+
+  @override
+  String staysLateArrivalValue(String time) {
+    return 'Arrival at $time';
+  }
+
+  @override
+  String staysReceptionValue(String contact) {
+    return 'Reception: $contact';
+  }
+
+  @override
+  String staysDoorCodeValue(String code) {
+    return 'Door code: $code';
+  }
+
+  @override
+  String staysWifiValue(String value) {
+    return 'Wi-Fi: $value';
+  }
+
+  @override
+  String staysCityTaxEach(String amount) {
+    return 'City tax: $amount per person per night';
+  }
+
+  @override
+  String staysCityTaxValue(String total, String amount, int nights, int persons) {
+    return 'City tax: $total ($amount × $nights nights × $persons people)';
+  }
+
+  @override
   String get staysSectionCost => 'Cost and cancellation';
 
   @override

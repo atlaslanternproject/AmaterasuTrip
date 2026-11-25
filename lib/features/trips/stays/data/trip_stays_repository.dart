@@ -82,6 +82,7 @@ class TripStaysRepository {
       'freeCancellationUntil',
       'amenities',
       'directions',
+      'extras',
     ];
     await _firestore
         .doc(TripStaysPaths.stay(stay.tripId, stay.id))

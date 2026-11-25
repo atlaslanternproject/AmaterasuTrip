@@ -1,6 +1,7 @@
 // Stato modificabile dell'editor di un soggiorno: campi di testo, date,
 // orari, stato, tipo, contatti, piattaforma, luogo Google, ospiti, costo
-// previsto, cancellazione gratuita e servizi. Si crea da un soggiorno
+// previsto, cancellazione gratuita, servizi, accesso, arrivo tardivo e
+// tassa di soggiorno. Si crea da un soggiorno
 // esistente (o vuoto) e si trasforma in TripStay per salvarlo.
 
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:amaterasutrip/features/trips/stays/models/trip_stay_amenity.dart
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_booking_platform.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_status.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_type.dart';
+import 'trip_stay_arrival_section.dart';
 
 class TripStayDraft {
   TripStayDraft({
@@ -23,6 +25,7 @@ class TripStayDraft {
        directions = TextEditingController(text: initial?.directions ?? ''),
        freeCancellationUntil = initial?.freeCancellationUntil,
        amenities = {...?initial?.amenities},
+       extras = TripStayExtrasDraft(initial?.extras, defaultCurrency),
        name = TextEditingController(text: initial?.name ?? ''),
        address = TextEditingController(text: initial?.address ?? ''),
        city = TextEditingController(text: initial?.city ?? ''),
@@ -81,6 +84,7 @@ class TripStayDraft {
   String costCurrency;
   DateTime? freeCancellationUntil;
   final Set<TripStayAmenity> amenities;
+  final TripStayExtrasDraft extras;
 
   static String _costText(TripStay? stay) {
     final minor = stay?.estimatedCostMinorUnits;
@@ -153,6 +157,7 @@ class TripStayDraft {
           if (amenities.contains(a)) a,
       ],
       directions: text(directions),
+      extras: extras.toExtras(),
     );
   }
 
@@ -174,5 +179,6 @@ class TripStayDraft {
     ]) {
       controller.dispose();
     }
+    extras.dispose();
   }
 }

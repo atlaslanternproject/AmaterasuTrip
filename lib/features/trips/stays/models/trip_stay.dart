@@ -6,6 +6,7 @@
 import 'trip_stay_amenity.dart';
 import 'trip_stay_booking_platform.dart';
 import 'trip_stay_dates.dart';
+import 'trip_stay_extras.dart';
 import 'trip_stay_status.dart';
 import 'trip_stay_type.dart';
 
@@ -44,6 +45,7 @@ class TripStay {
     this.freeCancellationUntil,
     this.amenities = const [],
     this.directions,
+    this.extras = const TripStayExtras(),
   });
 
   /// Firestore document ID; empty before the first save.
@@ -106,6 +108,9 @@ class TripStay {
   /// "How to get there", free text.
   final String? directions;
 
+  /// Optional v2 details: access, late arrival and city tax.
+  final TripStayExtras extras;
+
   int get nights => TripStayDates.nights(checkInDate, checkOutDate);
 
   bool get isActive => status.isActive;
@@ -157,5 +162,6 @@ class TripStay {
         freeCancellationUntil: freeCancellationUntil,
         amenities: amenities,
         directions: directions,
+        extras: extras,
       );
 }

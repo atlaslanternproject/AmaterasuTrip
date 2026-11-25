@@ -11,6 +11,7 @@ import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_validator.dart';
 import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'trip_stay_arrival_section.dart';
 import 'trip_stay_booking_section.dart';
 import 'trip_stay_contacts_section.dart';
 import 'trip_stay_cost_section.dart';
@@ -134,6 +135,7 @@ class _TripStayEditorState extends State<TripStayEditor> {
                 TripStayBookingSection(draft: _draft, onChanged: _changed),
                 TripStayCostSection(draft: _draft, onChanged: _changed),
                 TripStayServicesSection(draft: _draft, onChanged: _changed),
+                TripStayArrivalSection(draft: _draft, onChanged: _changed),
                 TripStayGuestsSection(
                   draft: _draft,
                   memberNames: widget.memberNames,
