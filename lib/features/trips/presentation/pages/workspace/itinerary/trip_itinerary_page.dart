@@ -1,9 +1,9 @@
-// Pagina Itinerario del viaggio (segnaposto, da sviluppare).
+// Pagina Itinerario del viaggio: bozza funzionante con dati di esempio in
+// memoria (TripItineraryScreen); nulla si salva su Firestore.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:amaterasutrip/features/trips/presentation/pages/workspace/widgets/trip_placeholder_page.dart';
-import 'package:amaterasutrip/l10n/app_localizations.dart';
+
+import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_itinerary_screen.dart';
 
 class TripItineraryPage extends StatelessWidget {
   const TripItineraryPage({super.key, required this.tripId});
@@ -11,14 +11,5 @@ class TripItineraryPage extends StatelessWidget {
   final String tripId;
 
   @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
-    return TripPlaceholderPage(
-      title: l10n.tripNavItinerary,
-      icon: Icons.map_rounded,
-      tripId: tripId,
-      onBack: () => context.go('/trips/$tripId'),
-    );
-  }
+  Widget build(BuildContext context) => TripItineraryScreen(tripId: tripId);
 }

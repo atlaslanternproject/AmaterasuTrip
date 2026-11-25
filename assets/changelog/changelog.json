@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.60.0",
+      "date": "2026-11-25",
+      "it": ["Bozza di Itinerario e Mappa con un viaggio di esempio a Kyoto: linea del tempo, giorno per giorno e mappa, gruppi per zona, distanza tra le tappe, riordino e condivisione del giorno. È solo una bozza: i dati sono di esempio e non si salvano."],
+      "en": ["Draft of Itinerary and Map with an example trip to Kyoto: timeline, day by day and map, groups by zone, distance between stops, reordering and sharing the day. It is only a draft: the data are examples and are not saved."]
+    },
+    {
       "version": "1.59.1",
       "date": "2026-11-25",
       "it": ["Budget: la scelta della valuta usa lo stesso pannello in tutte le schermate (barra delle spese, budget personale, nuova spesa). Nessun cambiamento a importi e calcoli."],

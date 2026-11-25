@@ -1589,3 +1589,52 @@ cestino apre subito la conferma).
 
 ## COERENZA gruppo G - passo G3 (1.59.1)
 Valutazione (regola 1): (a) il pannello comune pickBudgetCurrency esisteva (dialogo spese); barra delle spese e budget personale avevano copie con lo stesso elenco di valute, lo stesso codice lingua e lo stesso risultato (normalize = maiuscolo per i codici supportati); unica differenza useRootNavigator; (b) opzione facoltativa useRootNavigator nel modulo comune, le due copie lo chiamano; (c) budget (modulo approvato, gruppo G approvato): 281 test Flutter del budget prima e dopo, suite con emulatori identiche al confronto riga per riga. TODO(audit) C7 risolta.
+
+## Bozza funzionante di Itinerario e Mappa (1.60.0, prima del gruppo G)
+Valutazione (regola 1), riuso in una riga: interfaccia
+TripItineraryRepository con implementazione demo in memoria;
+TripSearchSection (icona, nome, percorso), TripSectionChip +
+TripSectionLabels.status, AmaterasuFilterBar/showAmaterasuFilterSheet,
+AmaterasuFoldSection/TripSectionBlock, showAmaterasuSheet, AmaterasuButton,
+AmaterasuEditButton, confirmAmaterasuAction (doppia conferma),
+AmaterasuLinkOpener.openMaps + AmaterasuWebLink.googleMaps, km/miglia di
+Aspetto, AmaterasuDates, share_plus, google_maps_flutter con lo stile
+scuro (spostato identico in lib/core/maps), TripSectionHeader (+ indirizzo
+di ritorno facoltativo), schema della memoria della vista.
+
+Reale: schermate, filtri, gruppi per zona, avvisi, distanze, link a
+Google Maps, condivisione, editor, mappa Google con pin raggruppati e
+linee tratteggiate, preferenza della vista. Solo demo: i dati (Kyoto, 4
+giorni da oggi, 14 voci, 3 elementi fuori programma, Yato e Leo), il
+salvataggio (in memoria, si perde ricaricando), le miniature (solo
+icone), "Apri la sezione" (apre la sezione vera, dove gli elementi di
+esempio non esistono). Nessuna scrittura su Firestore, nessuna raccolta,
+regola, funzione o API nuova.
+
+Decisioni aperte (da decidere tu):
+1. Riordino e orari: nella bozza una voce trascinata perde l'ora; in
+   alternativa si riordinano solo le voci senza ora.
+2. Durata delle voci: senza ora di fine la sovrapposizione è "meno di
+   un'ora tra due inizi"; serve un'ora di fine (facoltativa)?
+3. Chi modifica ed elimina le voci: tutti i membri o autore e OWNER?
+4. Il filtro "persona": chi ha aggiunto la voce o chi se ne occupa?
+5. "Fatto invece": testo libero (bozza) o anche un elemento di una
+   sezione?
+6. Vista predefinita: ricordata (bozza) o automatica (linea del tempo
+   prima del viaggio, giorno per giorno durante) come nel documento?
+7. Trasporti sulla mappa: solo partenza (bozza) o partenza e arrivo?
+8. Mappa: gli elementi non in programma spariscono con il filtro giorno
+   (bozza); va bene?
+9. Miniature con le foto di Google: quando chiederle (costo per foto)?
+10. Zone da Google: verificare che il campo quartiere non cambi la
+    categoria di prezzo della richiesta; altrimenti solo la città.
+11. "Aggiungi nuovo dall'itinerario" che crea l'elemento nella sezione:
+    solo ristoranti e luoghi come nel documento?
+
+Prove da fare sul sito:
+1. Itinerario: le tre viste, i gruppi per zona apribili, l'avviso del
+   giorno 2, "Fatto invece" barrato, "Apri a piedi su Google Maps".
+2. Giorno per giorno: Riordina, Condividi il giorno, elimina (due
+   conferme), aggiungi una voce libera; ricaricando torna l'esempio.
+3. Altro > Mappa: 16 luoghi, gruppi che si aprono avvicinandosi, riquadro
+   con "Apri su Maps".

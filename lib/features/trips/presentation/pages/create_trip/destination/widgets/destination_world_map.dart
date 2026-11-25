@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:amaterasutrip/core/maps/amaterasu_map_style.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
@@ -41,82 +42,7 @@ class _DestinationWorldMapState extends State<DestinationWorldMap> {
 
   bool _navigationEnabled = false;
 
-  static const String _darkMapStyle = '''
-[
-  {
-    "elementType": "geometry",
-    "stylers": [{"color": "#17120f"}]
-  },
-  {
-    "elementType": "labels.text.fill",
-    "stylers": [{"color": "#b7a99b"}]
-  },
-  {
-    "elementType": "labels.text.stroke",
-    "stylers": [{"color": "#100c0a"}]
-  },
-  {
-    "featureType": "administrative",
-    "elementType": "geometry.stroke",
-    "stylers": [{"color": "#4a3329"}]
-  },
-  {
-    "featureType": "administrative.country",
-    "elementType": "geometry.stroke",
-    "stylers": [{"color": "#6b4536"}]
-  },
-  {
-    "featureType": "landscape",
-    "elementType": "geometry",
-    "stylers": [{"color": "#18120f"}]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "geometry",
-    "stylers": [{"color": "#211713"}]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "labels.text.fill",
-    "stylers": [{"color": "#9c7c68"}]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry",
-    "stylers": [{"color": "#33231d"}]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry.stroke",
-    "stylers": [{"color": "#241915"}]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "geometry",
-    "stylers": [{"color": "#5a3427"}]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "geometry.stroke",
-    "stylers": [{"color": "#7d4430"}]
-  },
-  {
-    "featureType": "transit",
-    "elementType": "geometry",
-    "stylers": [{"color": "#2a1d18"}]
-  },
-  {
-    "featureType": "water",
-    "elementType": "geometry",
-    "stylers": [{"color": "#090b0d"}]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text.fill",
-    "stylers": [{"color": "#66584f"}]
-  }
-]
-''';
+  static const String _darkMapStyle = amaterasuDarkMapStyle;
 
   bool get _hasDestination =>
       widget.latitude != null && widget.longitude != null;

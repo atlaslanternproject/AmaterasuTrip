@@ -6923,6 +6923,306 @@ abstract class AppLocalizations {
   /// **'Create the folder here'**
   String get driveBrowserCreateHere;
 
+  /// No description provided for @itineraryDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft: example data, not saved'**
+  String get itineraryDraft;
+
+  /// No description provided for @itineraryViewTimeline.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get itineraryViewTimeline;
+
+  /// No description provided for @itineraryViewDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day by day'**
+  String get itineraryViewDay;
+
+  /// No description provided for @itineraryViewMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get itineraryViewMap;
+
+  /// No description provided for @itineraryDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {number} · {date}'**
+  String itineraryDayTitle(int number, String date);
+
+  /// No description provided for @itineraryNoZone.
+  ///
+  /// In en, this message translates to:
+  /// **'No zone'**
+  String get itineraryNoZone;
+
+  /// No description provided for @itineraryZoneSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 item} other{{count} items}}'**
+  String itineraryZoneSummary(int count);
+
+  /// No description provided for @itineraryFreeDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Free day'**
+  String get itineraryFreeDay;
+
+  /// No description provided for @itineraryFreeItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Free item'**
+  String get itineraryFreeItem;
+
+  /// No description provided for @itineraryActual.
+  ///
+  /// In en, this message translates to:
+  /// **'Done instead: {text}'**
+  String itineraryActual(String text);
+
+  /// No description provided for @itineraryOverlap.
+  ///
+  /// In en, this message translates to:
+  /// **'«{first}» and «{second}» are less than an hour apart.'**
+  String itineraryOverlap(String first, String second);
+
+  /// No description provided for @itineraryEmptyDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Days without items: {days}.'**
+  String itineraryEmptyDays(String days);
+
+  /// No description provided for @itineraryLeg.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} as the crow flies to «{name}»'**
+  String itineraryLeg(String distance, String name);
+
+  /// No description provided for @itineraryWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'Open walking route on Google Maps'**
+  String get itineraryWalk;
+
+  /// No description provided for @itineraryMapsFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open Google Maps.'**
+  String get itineraryMapsFailed;
+
+  /// No description provided for @itineraryAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get itineraryAdd;
+
+  /// No description provided for @itineraryAddFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free item'**
+  String get itineraryAddFree;
+
+  /// No description provided for @itineraryAddFreeDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Free day'**
+  String get itineraryAddFreeDay;
+
+  /// No description provided for @itineraryAddExisting.
+  ///
+  /// In en, this message translates to:
+  /// **'From an existing element'**
+  String get itineraryAddExisting;
+
+  /// No description provided for @itineraryEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Itinerary item'**
+  String get itineraryEditTitle;
+
+  /// No description provided for @itineraryBlockWhat.
+  ///
+  /// In en, this message translates to:
+  /// **'What'**
+  String get itineraryBlockWhat;
+
+  /// No description provided for @itineraryBlockWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get itineraryBlockWhen;
+
+  /// No description provided for @itineraryBlockWhere.
+  ///
+  /// In en, this message translates to:
+  /// **'Where'**
+  String get itineraryBlockWhere;
+
+  /// No description provided for @itineraryBlockActual.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned / done'**
+  String get itineraryBlockActual;
+
+  /// No description provided for @itineraryFieldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get itineraryFieldTitle;
+
+  /// No description provided for @itineraryFieldTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time (HH:MM, optional)'**
+  String get itineraryFieldTime;
+
+  /// No description provided for @itineraryFieldZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Zone'**
+  String get itineraryFieldZone;
+
+  /// No description provided for @itineraryFieldNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get itineraryFieldNote;
+
+  /// No description provided for @itineraryFieldActual.
+  ///
+  /// In en, this message translates to:
+  /// **'Done instead (if it went differently)'**
+  String get itineraryFieldActual;
+
+  /// No description provided for @itinerarySave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get itinerarySave;
+
+  /// No description provided for @itineraryCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get itineraryCancel;
+
+  /// No description provided for @itineraryDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get itineraryDelete;
+
+  /// No description provided for @itineraryDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete the item?'**
+  String get itineraryDeleteTitle;
+
+  /// No description provided for @itineraryDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'«{name}» leaves the itinerary; the section element stays.'**
+  String itineraryDeleteBody(String name);
+
+  /// No description provided for @itineraryReorder.
+  ///
+  /// In en, this message translates to:
+  /// **'Reorder'**
+  String get itineraryReorder;
+
+  /// No description provided for @itineraryReorderDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get itineraryReorderDone;
+
+  /// No description provided for @itineraryReorderHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the items of the day. Moved items lose their time and follow the manual order.'**
+  String get itineraryReorderHint;
+
+  /// No description provided for @itineraryReorderFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove the filters to reorder.'**
+  String get itineraryReorderFilters;
+
+  /// No description provided for @itineraryShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the day'**
+  String get itineraryShare;
+
+  /// No description provided for @itineraryShareHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan for {date}'**
+  String itineraryShareHeader(String date);
+
+  /// No description provided for @itineraryFilterSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Section'**
+  String get itineraryFilterSection;
+
+  /// No description provided for @itineraryFilterPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Person'**
+  String get itineraryFilterPerson;
+
+  /// No description provided for @itineraryFilterStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get itineraryFilterStatus;
+
+  /// No description provided for @itineraryFilterDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get itineraryFilterDay;
+
+  /// No description provided for @itineraryAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get itineraryAll;
+
+  /// No description provided for @itineraryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No item with these filters.'**
+  String get itineraryEmpty;
+
+  /// No description provided for @itineraryToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get itineraryToday;
+
+  /// No description provided for @mapOpenSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the section'**
+  String get mapOpenSection;
+
+  /// No description provided for @mapOpenMaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in Maps'**
+  String get mapOpenMaps;
+
+  /// No description provided for @mapPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 place} other{{count} places}}'**
+  String mapPlaces(int count);
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:
