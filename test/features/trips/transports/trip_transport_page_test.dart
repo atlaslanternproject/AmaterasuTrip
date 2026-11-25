@@ -219,8 +219,6 @@ void main() {
     );
     expect(find.byKey(const Key('transport-menu-a')), findsNothing);
     await tapKey(tester, 'transport-menu-b');
-    await tester.tap(find.byKey(const Key('transport-delete-b')));
-    await tester.pumpAndSettle();
     // Two steps: destructive actions are confirmed twice.
     await tapKey(tester, 'transport-delete-ok');
     expect(

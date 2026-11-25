@@ -20,8 +20,9 @@ class AccountLogoutPage extends ConsumerWidget {
       if (!context.mounted) return;
 
       ScaffoldMessenger.of(context).showSnackBar(
-        // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
-        const SnackBar(content: Text('Logout non riuscito. Riprova.')),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.accountLogoutFailed),
+        ),
       );
     }
   }

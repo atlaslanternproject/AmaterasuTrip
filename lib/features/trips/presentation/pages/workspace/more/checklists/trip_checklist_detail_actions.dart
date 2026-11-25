@@ -65,15 +65,15 @@ extension _TripChecklistDetailActions on _TripChecklistDetailPageState {
           maxLength: 60,
         ),
         actions: [
-          TextButton(
+          AmaterasuButton.tertiary(
             onPressed: () => Navigator.pop(dialogContext),
-            child: Text(l10n.sectionsCancel),
+            label: l10n.sectionsCancel,
           ),
-          FilledButton(
+          AmaterasuButton.primary(
             key: const Key('checklist-category-save'),
             onPressed: () =>
                 Navigator.pop(dialogContext, controller.text.trim()),
-            child: Text(l10n.sectionsSave),
+            label: l10n.sectionsSave,
           ),
         ],
       ),

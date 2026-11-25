@@ -12,6 +12,7 @@ import 'package:amaterasutrip/features/trips/budget/presentation/budget_create_d
 import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/hotels/widgets/trip_stay_expense_actions.dart'
     show tripStayExpenseAmount;
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 
 /// What the expense of an item starts from, and how to link it.
 class TripSectionExpenseTarget {
@@ -156,9 +157,9 @@ Future<void> linkExistingTripSectionExpense(
         ),
       ),
       actions: [
-        TextButton(
+        AmaterasuButton.tertiary(
           onPressed: () => Navigator.pop(dialogContext),
-          child: Text(l10n.sectionsCancel),
+          label: l10n.sectionsCancel,
         ),
       ],
     ),

@@ -1,5 +1,6 @@
-// Menu "⋮" di un elemento di una sezione con la voce Elimina, mostrato
-// solo a chi può eliminare (creatore o proprietario del viaggio).
+// Cestino di un elemento di una sezione, mostrato solo a chi può eliminare
+// (creatore o proprietario del viaggio). Prima era un menu "⋮" con la sola
+// voce Elimina (COERENZA G): il tocco apre la stessa doppia conferma.
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class TripSectionMenu extends StatelessWidget {
   final String keyPrefix;
   final String id;
 
-  /// Null when the user may not delete: then the menu is not shown.
+  /// Null when the user may not delete: then the button is not shown.
   final VoidCallback? onDelete;
 
   /// Smaller button for the Elenco and Dettagli views.
@@ -29,24 +30,14 @@ class TripSectionMenu extends StatelessWidget {
     final onDelete = this.onDelete;
     if (onDelete == null) return const SizedBox.shrink();
     final l10n = AppLocalizations.of(context)!;
-    return PopupMenuButton<int>(
+    return IconButton(
       key: Key('$keyPrefix-menu-$id'),
-      tooltip: l10n.sectionsMore,
+      tooltip: l10n.sectionsDelete,
       padding: dense ? EdgeInsets.zero : const EdgeInsets.all(8),
       iconSize: dense ? 20 : 24,
-      iconColor: AmaterasuColors.textSecondary,
-      color: AmaterasuColors.surfaceCard,
-      onSelected: (_) => onDelete(),
-      itemBuilder: (_) => [
-        PopupMenuItem(
-          key: Key('$keyPrefix-delete-$id'),
-          value: 0,
-          child: Text(
-            l10n.sectionsDelete,
-            style: const TextStyle(color: AmaterasuColors.accentErrorSoft),
-          ),
-        ),
-      ],
+      color: AmaterasuColors.accentErrorSoft,
+      icon: const Icon(Icons.delete_outline_rounded),
+      onPressed: onDelete,
     );
   }
 }

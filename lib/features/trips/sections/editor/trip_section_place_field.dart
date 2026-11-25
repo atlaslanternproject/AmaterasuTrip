@@ -9,6 +9,7 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/models/trip_destination.dart';
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import '../models/trip_section_fields.dart';
 import '../models/trip_section_place.dart';
 
@@ -109,13 +110,13 @@ class TripSectionPlaceField extends StatelessWidget {
                   style: const TextStyle(fontSize: 13),
                 ),
               ),
-              TextButton(
+              AmaterasuButton.tertiary(
                 key: Key('$keyPrefix-unlink'),
                 onPressed: () {
                   draft.unlink();
                   onChanged();
                 },
-                child: Text(l10n.placesUnlink),
+                label: l10n.placesUnlink,
               ),
             ],
           ),

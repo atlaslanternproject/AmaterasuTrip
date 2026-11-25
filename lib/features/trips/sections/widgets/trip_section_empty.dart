@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 
 class TripSectionEmpty extends StatelessWidget {
   const TripSectionEmpty({
@@ -50,13 +51,10 @@ class TripSectionEmpty extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            FilledButton.icon(
-              style: FilledButton.styleFrom(
-                backgroundColor: AmaterasuColors.accentBudget,
-              ),
+            AmaterasuButton.primary(
               onPressed: onAdd,
-              icon: const Icon(Icons.add),
-              label: Text(addLabel),
+              icon: Icons.add,
+              label: addLabel,
             ),
           ],
         ),

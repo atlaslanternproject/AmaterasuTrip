@@ -3551,6 +3551,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String get auditFieldCost => 'Expected cost';
 
   @override
+  String authGoogleErrorCode(String code) {
+    return 'Google error: $code';
+  }
+
+  @override
+  String get authGoogleFailed => 'Unable to sign in with Google.';
+
+  @override
+  String get accountLogoutFailed => 'Logout failed. Try again.';
+
+  @override
+  String get driveBrowserLoadError => 'Unable to load the Google Drive folders.';
+
+  @override
+  String get driveBrowserNewFolder => 'New folder';
+
+  @override
+  String get driveBrowserFolderName => 'Folder name';
+
+  @override
+  String get driveBrowserCancel => 'Cancel';
+
+  @override
+  String get driveBrowserCreate => 'Create';
+
+  @override
+  String get driveBrowserCreateError => 'Unable to create the folder.';
+
+  @override
+  String get driveBrowserTripFolderError => 'Unable to create the trip folder.';
+
+  @override
+  String get driveBrowserTitle => 'Choose where to save';
+
+  @override
+  String get driveBrowserEmpty => 'This folder is empty';
+
+  @override
+  String get driveBrowserEmptyHint => 'You can create the trip folder here or add a new folder.';
+
+  @override
+  String get driveBrowserTripFolder => 'Trip folder';
+
+  @override
+  String get driveBrowserCreating => 'Creating...';
+
+  @override
+  String get driveBrowserCreateHere => 'Create the folder here';
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

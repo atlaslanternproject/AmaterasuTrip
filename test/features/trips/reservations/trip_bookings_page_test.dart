@@ -152,8 +152,6 @@ void main() {
     );
     expect(find.byKey(const Key('reservation-menu-a')), findsNothing);
     await tapKey(tester, 'reservation-menu-b');
-    await tester.tap(find.byKey(const Key('reservation-delete-b')));
-    await tester.pumpAndSettle();
     // Two steps: destructive actions are confirmed twice.
     await tapKey(tester, 'reservation-delete-ok');
     expect(

@@ -12,6 +12,7 @@ import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/t
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_block.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'trip_stats.dart';
 import 'trip_stats_data.dart';
 import 'trip_stats_expenses.dart';
@@ -159,11 +160,11 @@ class TripStatsPage extends ConsumerWidget {
                       ),
                     ),
                     error: (_, _) => Center(
-                      child: TextButton(
+                      child: AmaterasuButton.tertiary(
                         key: const Key('stats-retry'),
                         onPressed: () =>
                             ref.invalidate(tripStatsProvider(tripId)),
-                        child: Text('${l10n.statsError} ${l10n.statsRetry}'),
+                        label: '${l10n.statsError} ${l10n.statsRetry}',
                       ),
                     ),
                   ),

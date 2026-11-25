@@ -11,6 +11,7 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/widgets/filters/amaterasu_filter_bar.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'trip_audit_data.dart';
 import 'trip_audit_filters.dart';
 import 'trip_audit_names.dart';
@@ -104,12 +105,12 @@ class _TripAuditPageState extends ConsumerState<TripAuditPage> {
                           Expanded(
                             child: Text(l10n.auditExpenses, style: muted),
                           ),
-                          TextButton(
+                          AmaterasuButton.tertiary(
                             key: const Key('audit-expenses'),
                             onPressed: () => context.go(
                               '/trips/${widget.tripId}/more/expenses',
                             ),
-                            child: Text(l10n.auditOpenExpenses),
+                            label: l10n.auditOpenExpenses,
                           ),
                         ],
                       ),
@@ -143,10 +144,10 @@ class _TripAuditPageState extends ConsumerState<TripAuditPage> {
                           ),
                         )
                       else if (_failed)
-                        TextButton(
+                        AmaterasuButton.tertiary(
                           key: const Key('audit-retry'),
                           onPressed: () => _load(reset: _entries.isEmpty),
-                          child: Text('${l10n.auditError} ${l10n.auditRetry}'),
+                          label: '${l10n.auditError} ${l10n.auditRetry}',
                         )
                       else if (_entries.isEmpty)
                         Text(
@@ -155,10 +156,10 @@ class _TripAuditPageState extends ConsumerState<TripAuditPage> {
                           style: muted,
                         )
                       else if (!_done)
-                        TextButton(
+                        AmaterasuButton.tertiary(
                           key: const Key('audit-more'),
                           onPressed: () => _load(reset: false),
-                          child: Text(l10n.auditMore),
+                          label: l10n.auditMore,
                         ),
                     ],
                   ),

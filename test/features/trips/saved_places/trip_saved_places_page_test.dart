@@ -112,8 +112,6 @@ void main() {
   ) async {
     final store = await open(tester, items: [place('a', createdBy: 'bruno')]);
     await tapKey(tester, 'saved-place-menu-a');
-    await tester.tap(find.byKey(const Key('saved-place-delete-a')));
-    await tester.pumpAndSettle();
     // Two steps: destructive actions are confirmed twice.
     await tapKey(tester, 'saved-place-delete-ok');
     expect(
