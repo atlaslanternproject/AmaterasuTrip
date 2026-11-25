@@ -2,6 +2,7 @@
 // virgola decimale in italiano, UTF-8 con BOM) e in una pagina HTML da
 // stampare o salvare come PDF dal browser.
 
+import 'package:amaterasutrip/core/files/amaterasu_print_page.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_money_input.dart';
 import 'budget_export_model.dart';
 
@@ -130,30 +131,11 @@ class BudgetExportWriter {
     return '﻿${lines.join('\r\n')}';
   }
 
-  String html() {
-    String esc(String value) => value
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;');
-    final body = StringBuffer();
-    for (final (_, header, rows) in tables) {
-      body.write('<table><thead><tr>');
-      for (final h in header) {
-        body.write('<th>${esc(h)}</th>');
-      }
-      body.write('</tr></thead><tbody>');
-      for (final row in rows) {
-        body.write('<tr>${row.map((c) => '<td>${esc(c)}</td>').join()}</tr>');
-      }
-      body.write('</tbody></table>');
-    }
-    return '<!doctype html><html><head><meta charset="utf-8">'
-        '<title>${esc(texts.title)}</title><style>'
-        'body{font-family:sans-serif;font-size:11px;margin:16px}'
-        'h1{font-size:16px}table{border-collapse:collapse;width:100%;'
-        'margin-bottom:18px}th,td{border:1px solid #999;padding:4px;'
-        'text-align:left;vertical-align:top}th{background:#eee}'
-        '</style></head><body><h1>${esc(texts.title)}</h1>$body</body></html>';
-  }
+  /// Printable page with the shared print module (COERENZA G4).
+  String html() => amaterasuPrintPage(
+    title: texts.title,
+    body: [
+      for (final (_, header, rows) in tables) amaterasuPrintTable(header, rows),
+    ].join(),
+  );
 }
