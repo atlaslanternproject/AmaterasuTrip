@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.37.0",
+      "date": "2026-11-25",
+      "it": ["Puoi installare Amaterasu Trip come app: «Installa app» su Android (Chrome) e «Aggiungi alla schermata Home» su iPhone (Safari). Si apre a tutto schermo, senza la barra del browser."],
+      "en": ["You can install Amaterasu Trip as an app: «Install app» on Android (Chrome) and «Add to Home Screen» on iPhone (Safari). It opens full screen, without the browser bar."]
+    },
+    {
       "version": "1.36.0",
       "date": "2026-11-25",
       "it": ["Novità all'avvio: dopo un aggiornamento vedi una volta sola cosa è cambiato.", "In Impostazioni > Informazioni app, tocca la versione per vedere tutte le versioni passate."],

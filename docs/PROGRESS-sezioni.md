@@ -316,8 +316,9 @@ Mappa/Itinerario).
 | Sezioni v2 - Link utili ovunque (senza Spese) | fatta, pubblicata 1.34.0 il 25/11/2026 | feature/link-utili | 1.34.0+38 |
 | Crea spesa dalle sezioni (+ link delle spese) | fatta, pubblicata 1.35.0 il 25/11/2026 | feature/crea-spesa | 1.35.0+39 |
 | Chiusure: link nel testo delle note, test valuta trasporti, test selezione multipla | fatta, pubblicata 1.35.1 il 25/11/2026 | fix/chiusure-v2 | 1.35.1+40 |
-| Extra A - Novità e versioni | fatta (pubblicazione: vedi tappa seguente) | feature/novita | 1.36.0+41 |
-| Extra B-H | da fare | - | - |
+| Extra A - Novità e versioni | fatta, pubblicata 1.36.0 il 25/11/2026 | feature/novita | 1.36.0+41 |
+| Extra B - Sito installabile (PWA) | fatta (pubblicazione: vedi tappa seguente) | feature/pwa | 1.37.0+42 |
+| Extra C-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -721,3 +722,24 @@ Prove da fare sul sito:
 2. Impostazioni > Informazioni app > tocca "Versione": elenco a tendina.
 3. Lascia una scheda aperta, alla prossima pubblicazione ricaricala: vedi
    la versione nuova senza svuotare la cache.
+
+## Extra B - Sito installabile come app (PWA)
+Valutazione (regola 1): (a) il manifest era già quasi pronto (nome,
+standalone, icone 192/512 anche maskable, tutte esistenti) ma nessun
+service worker veniva registrato: il caricatore di Flutter lo registra solo
+se richiesto (ed è deprecato); (b) aggiunto un service worker minimo
+(web/amaterasu_sw.js) senza cache né offline, registrato da index.html;
+manifest con id, start_url e scope "/"; meta per iPhone; (c) tocca solo
+web/; test sui file e verifica dopo la pubblicazione (service worker e
+manifest standalone sul sito vero).
+
+Perché l'icona apriva Chrome: senza un service worker registrato Android
+creava un semplice collegamento al sito invece di installare l'app.
+
+Prove da fare sul sito:
+1. Android, Chrome: menu ⋮ > "Installa app" (o il banner); l'icona apre
+   l'app a tutto schermo, senza barra degli indirizzi. Se c'era il vecchio
+   collegamento, toglilo e installa di nuovo.
+2. iPhone, Safari: Condividi > "Aggiungi alla schermata Home"; si apre a
+   tutto schermo.
+3. Computer, Chrome: icona "Installa" nella barra degli indirizzi.
