@@ -5,6 +5,7 @@
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_categories.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
@@ -44,6 +45,7 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
     'usefulLinks',
     'zone',
     'zoneCity',
+    'customCategories',
   ];
 
   @override
@@ -76,6 +78,7 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       'expenseId': ?text(item.expenseId),
       'zone': ?TripSectionFields.clean(item.zone),
       'zoneCity': ?TripSectionFields.clean(item.zoneCity),
+      ...TripSectionCategories.toMap(item.customCategories),
       ...TripSectionLinks.toMap(item.usefulLinks),
     };
   }
@@ -120,6 +123,7 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
       expenseId: text('expenseId'),
+      customCategories: TripSectionCategories.read(data),
       usefulLinks: TripSectionLinks.read(data),
       zone: TripSectionFields.readText(data, 'zone'),
       zoneCity: TripSectionFields.readText(data, 'zoneCity'),
@@ -176,6 +180,11 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
           (item.zoneCity?.trim().length ?? 0) > TripSectionFields.shortMax,
       TripSectionProblemKind.other,
       'zone',
+    );
+    c.check(
+      TripSectionCategories.invalid(item.customCategories),
+      TripSectionProblemKind.other,
+      'customCategories',
     );
     c.check(
       TripSectionLinks.invalid(item.usefulLinks),

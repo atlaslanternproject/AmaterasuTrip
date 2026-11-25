@@ -70,6 +70,13 @@ test('restaurants: every optional field and the own vote on create', async () =>
     triedNote: 'Il miglior ramen del viaggio',
     diets: ['vegetarian', 'glutenFree'],
     votes: {[MEMBER]: 'SS'},
+    // Later optional fields together (v1.34-1.39): links, zone, categories.
+    usefulLinks: Array.from({length: 10}, (_, i) => `https://ex.com/${i}`),
+    zone: 'Asia/Tokyo',
+    zoneCity: 'Kyoto',
+    customCategories: ['Romantico', 'Da non perdere', 'C3', 'C4', 'C5'],
+    estimatedCostMinorUnits: 8000,
+    estimatedCostCurrency: 'JPY',
   })));
   await assertFails(setDoc(ref(MEMBER, 'other-vote'), restaurant(MEMBER, {
     votes: {[OTHER_MEMBER]: 'S'},

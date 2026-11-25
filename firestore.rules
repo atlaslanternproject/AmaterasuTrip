@@ -349,6 +349,21 @@ service cloud.firestore {
           );
       }
 
+      // Trip categories of the new sections, like bucketCategories (v1.39.0).
+      match /sectionCategories/{categoryId} {
+        allow get, list: if sectionMember();
+        allow create: if sectionMember()
+          && categoryId.matches('^[a-z0-9-]{1,80}$')
+          && request.resource.data.keys().hasOnly(['label', 'createdByUid', 'createdAt'])
+          && request.resource.data.keys().hasAll(['label', 'createdByUid', 'createdAt'])
+          && request.resource.data.label is string
+          && request.resource.data.label.size() > 0
+          && request.resource.data.label.size() <= 60
+          && request.resource.data.createdByUid == request.auth.uid
+          && request.resource.data.createdAt == request.time;
+        allow update, delete: if false;
+      }
+
       match /bucketCategories/{categoryId} {
         allow get, list: if bucketMember();
         allow create: if bucketMember()
@@ -819,6 +834,24 @@ service cloud.firestore {
               '^https?://[^ ]+( https?://[^ ]+){0,9}$'));
       }
 
+      // Custom categories (v1.39.0, Extra D): up to 5 labels of 1-60
+      // characters, checked together with one pattern.
+      function sectionCategories(data) {
+        return !('customCategories' in data)
+          || (data.customCategories is list
+            && data.customCategories.size() <= 5
+            && data.customCategories.join('|')
+              .matches('^[^|]{1,60}([|][^|]{1,60}){0,4}$')
+            // Every label is a text without '|': the parts must match the list.
+            && data.customCategories.join('|').split('[|]').size()
+              == data.customCategories.size()
+            && (data.customCategories.size() < 1 || data.customCategories[0] is string)
+            && (data.customCategories.size() < 2 || data.customCategories[1] is string)
+            && (data.customCategories.size() < 3 || data.customCategories[2] is string)
+            && (data.customCategories.size() < 4 || data.customCategories[3] is string)
+            && (data.customCategories.size() < 5 || data.customCategories[4] is string));
+      }
+
       function sectionUids(data, key) {
         return !(key in data)
           || (data[key] is list && data[key].size() <= 50);
@@ -958,9 +991,10 @@ service cloud.firestore {
           'bookingCode', 'bookingUrl', 'participantUids',
           'cancellationPolicy', 'notes',
           'bookBy', 'holder', 'ticketCount', 'ticketCode',
-          'usefulLinks', 'zone', 'zoneCity'
+          'usefulLinks', 'zone', 'zoneCity', 'customCategories'
         ])
           && sectionLinks(data)
+          && sectionCategories(data)
           && sectionName(data, 'name', 200)
           && data.category in ['ticket', 'entry', 'tour', 'excursion', 'other']
           && data.status in ['toBook', 'booked', 'cancelled']
@@ -1004,9 +1038,10 @@ service cloud.firestore {
           'reservationDate', 'reservationTime', 'partySize',
           'notes', 'votes', 'allergens', 'allergenNotes', 'diets',
           'triedRating', 'triedNote',
-          'usefulLinks', 'zone', 'zoneCity'
+          'usefulLinks', 'zone', 'zoneCity', 'customCategories'
         ])
           && sectionLinks(data)
+          && sectionCategories(data)
           && sectionName(data, 'name', 200)
           && data.status in ['toTry', 'booked', 'tried']
           // Stars and note once tried (v1.29.0).
@@ -1090,9 +1125,10 @@ service cloud.firestore {
           'mapsUrl', 'notes', 'phone', 'website',
           'priority', 'visited', 'visitMinutes', 'ticketsUrl', 'area',
           'plannedDay',
-          'usefulLinks'
+          'usefulLinks', 'customCategories'
         ])
           && sectionLinks(data)
+          && sectionCategories(data)
           && sectionName(data, 'name', 200)
           && data.category in [
             'sight', 'food', 'shopping', 'nature', 'nightlife', 'other'
@@ -1134,9 +1170,10 @@ service cloud.firestore {
         return sectionBase(data, ['title', 'visibility'], [
           'title', 'visibility', 'body', 'pinned', 'checklist',
           'linkSection', 'linkId', 'linkName',
-          'usefulLinks'
+          'usefulLinks', 'customCategories'
         ])
           && sectionLinks(data)
+          && sectionCategories(data)
           && sectionName(data, 'title', 200)
           // Element of another section the note talks about (v1.32.0).
           && (!('linkSection' in data)
@@ -1184,9 +1221,10 @@ service cloud.firestore {
           'name', 'bought', 'forUid', 'where',
           'actualCostMinorUnits', 'actualCostCurrency', 'notes',
           'forText', 'priority', 'boughtByUid',
-          'usefulLinks'
+          'usefulLinks', 'customCategories'
         ])
           && sectionLinks(data)
+          && sectionCategories(data)
           && sectionName(data, 'name', 200)
           && data.bought is bool
           && sectionText(data, 'forUid', 128)

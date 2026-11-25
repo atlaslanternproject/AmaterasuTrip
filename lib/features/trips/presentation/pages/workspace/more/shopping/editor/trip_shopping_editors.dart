@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_categories_block.dart';
+
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
 
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_block.dart';
@@ -166,6 +168,12 @@ class _TripShoppingEditorState extends State<TripShoppingEditor>
               decoration: InputDecoration(labelText: l10n.sectionsNotes),
             ),
           ],
+        ),
+        TripSectionCategoriesBlock(
+          keyPrefix: 'shopping',
+          tripId: widget.tripId,
+          draft: _d.categories,
+          onChanged: changed,
         ),
         TripSectionLinksBlock(
           keyPrefix: 'shopping',

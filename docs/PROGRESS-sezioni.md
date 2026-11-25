@@ -318,8 +318,9 @@ Mappa/Itinerario).
 | Chiusure: link nel testo delle note, test valuta trasporti, test selezione multipla | fatta, pubblicata 1.35.1 il 25/11/2026 | fix/chiusure-v2 | 1.35.1+40 |
 | Extra A - Novità e versioni | fatta, pubblicata 1.36.0 il 25/11/2026 | feature/novita | 1.36.0+41 |
 | Extra B - Sito installabile (PWA) | fatta, pubblicata 1.37.0 il 25/11/2026 | feature/pwa | 1.37.0+42 |
-| Extra C - Fuso orario per città (migrazione in attesa di ok) | fatta (pubblicazione: vedi tappa seguente) | feature/fuso-citta | 1.38.0+43 |
-| Extra D-H | da fare | - | - |
+| Extra C - Fuso orario per città (migrazione in attesa di ok) | fatta, pubblicata 1.38.0 il 25/11/2026 | feature/fuso-citta | 1.38.0+43 |
+| Extra D - Categorie personalizzate | fatta (pubblicazione: vedi tappa seguente) | feature/categorie | 1.39.0+44 |
+| Extra E-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -782,3 +783,31 @@ Prove da fare sul sito:
 2. Prenotazione e ristorante: stesso selettore vicino all'ora; la card
    mostra la città tra parentesi.
 3. Il trasporto già salvato appare come prima.
+
+## Extra D - Categorie personalizzate
+Valutazione (regola 1): (a) la bucket list ha la categoria "Altro": un
+testo scritto a mano più i suggerimenti presi dalle categorie già usate
+nel viaggio (raccolta bucketCategories, solo creazione); il codice sta
+dentro il suo editor approvato; (b) stesso meccanismo come modulo comune
+delle sezioni (TripSectionCategories, TripSectionCategoriesBlock, archivio
+trips/{tripId}/sectionCategories con le stesse regole di bucketCategories),
+con selezione multipla fino a 5; la bucket list NON è cambiata (79 test
+uguali prima e dopo); (c) tocca le regole: nuova raccolta
+sectionCategories e campo customCategories in 5 blocchi; test di regole
+(anche un ristorante con tutti i campi, 10 link, fuso e 5 categorie
+sotto il limite delle 1000 operazioni), modello, editor e card.
+
+Dove: luoghi salvati, prenotazioni, ristoranti, note, shopping (blocco
+"Categorie personalizzate" nell'editor, chip grigie nella card). Spese:
+solo analisi nel documento K. Le categorie del viaggio si leggono una
+volta all'apertura dell'editor. Il filtro per categoria personalizzata
+nelle barre dei filtri non c'è ancora (si può aggiungere dopo l'ok).
+duplicateTrip copia la raccolta sectionCategories come già fa con
+bucketCategories (sono solo etichette, senza dati personali).
+
+Prove da fare sul sito:
+1. Luogo salvato: "Categorie personalizzate", scrivi "Romantico", +; salva.
+2. In un'altra sezione, stesso viaggio: "Romantico" compare tra "Già
+   usate nel viaggio".
+3. Dopo 5 categorie il campo dice "Al massimo 5 categorie".
+4. La card mostra le categorie come etichette grigie.

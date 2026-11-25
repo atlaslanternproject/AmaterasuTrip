@@ -60,6 +60,12 @@ TripSectionEntry tripNoteEntry(BuildContext context, TripNote note) {
           color: AmaterasuColors.accentBudget,
           icon: Icons.push_pin_outlined,
         ),
+      for (final label in note.customCategories)
+        TripSectionChip(
+          label: label,
+          color: AmaterasuColors.textSecondary,
+          icon: Icons.label_outline_rounded,
+        ),
     ],
     lines: [
       if (note.link case final link?)

@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_categories_block.dart';
+
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
 
 import 'package:amaterasutrip/features/trips/presentation/pages/create_trip/destination/services/destination_places_service.dart';
@@ -164,6 +166,12 @@ class _TripReservationEditorState extends State<TripReservationEditor>
           children: [
             _text('notes', d.notes, l10n.sectionsNotes, 10000, lines: 2),
           ],
+        ),
+        TripSectionCategoriesBlock(
+          keyPrefix: 'reservation',
+          tripId: widget.tripId,
+          draft: _draft.categories,
+          onChanged: _changed,
         ),
         TripSectionLinksBlock(
           keyPrefix: 'reservation',

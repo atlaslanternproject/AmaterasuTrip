@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_categories_block.dart';
+
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
 
 import 'package:amaterasutrip/core/places/amaterasu_contacts_autofill.dart';
@@ -171,6 +173,12 @@ class _TripSavedPlaceEditorState extends State<TripSavedPlaceEditor>
           ],
         ),
         TripSavedPlaceVisitBlock(draft: d, onChanged: _changed),
+        TripSectionCategoriesBlock(
+          keyPrefix: 'saved-place',
+          tripId: widget.tripId,
+          draft: _draft.categories,
+          onChanged: _changed,
+        ),
         TripSectionLinksBlock(
           keyPrefix: 'saved-place',
           draft: _draft.links,

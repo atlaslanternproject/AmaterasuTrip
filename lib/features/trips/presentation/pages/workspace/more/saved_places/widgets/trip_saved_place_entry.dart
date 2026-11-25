@@ -79,6 +79,12 @@ TripSectionEntry tripSavedPlaceEntry(
           color: AmaterasuColors.success,
           icon: Icons.check_rounded,
         ),
+      for (final label in item.customCategories)
+        TripSectionChip(
+          label: label,
+          color: AmaterasuColors.textSecondary,
+          icon: Icons.label_outline_rounded,
+        ),
     ],
     inactive: item.visited,
     lines: [

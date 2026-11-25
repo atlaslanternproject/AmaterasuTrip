@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.39.0",
+      "date": "2026-11-25",
+      "it": ["Categorie personalizzate (fino a 5) in luoghi salvati, prenotazioni, ristoranti, note e shopping, con i suggerimenti di quelle già usate nel viaggio."],
+      "en": ["Custom categories (up to 5) in saved places, bookings, restaurants, notes and shopping, with suggestions from the ones already used in the trip."]
+    },
+    {
       "version": "1.38.0",
       "date": "2026-11-25",
       "it": ["Fuso orario per città in trasporti, prenotazioni e ristoranti: scrivi «venezia» e vedi «Venezia, ora locale 14:32». L'ora legale si calcola da sola."],

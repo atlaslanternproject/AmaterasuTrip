@@ -90,6 +90,12 @@ TripSectionEntry tripRestaurantEntry(
           color: AmaterasuColors.success,
           icon: Icons.eco_outlined,
         ),
+      for (final label in item.customCategories)
+        TripSectionChip(
+          label: label,
+          color: AmaterasuColors.textSecondary,
+          icon: Icons.label_outline_rounded,
+        ),
     ],
     lines: [
       if (item.allergens.isNotEmpty || item.allergenNotes != null)

@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_categories_block.dart';
+
 import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
 
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_maps_link.dart';
@@ -55,6 +57,11 @@ class TripSavedPlaceDraft {
   DateTime? plannedDay;
   final TripSectionCostDraft price;
 
+  /// Custom categories (Extra D).
+  late final categories = TripSectionCategoriesDraft(
+    _initial?.customCategories ?? const [],
+  );
+
   /// Useful links, as in the bucket list.
   late final links = AmaterasuLinksDraft(_initial?.usefulLinks ?? const []);
 
@@ -97,11 +104,13 @@ class TripSavedPlaceDraft {
       entryPriceMinorUnits: price.minorUnits,
       entryPriceCurrency: price.savedCurrency,
       usefulLinks: links.links,
+      customCategories: List.of(categories.labels),
     );
   }
 
   void dispose() {
     links.dispose();
+    categories.dispose();
     for (final c in [link, notes, phone, website, minutes, tickets, area]) {
       c.dispose();
     }

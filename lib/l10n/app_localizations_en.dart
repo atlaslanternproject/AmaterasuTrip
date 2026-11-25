@@ -2847,6 +2847,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonLinkAdd => 'Add a link';
 
   @override
+  String get sectionsCategories => 'Custom categories';
+
+  @override
+  String get sectionsCategoryNew => 'New category';
+
+  @override
+  String get sectionsCategoryAdd => 'Add the category';
+
+  @override
+  String get sectionsCategoriesFull => 'At most 5 categories';
+
+  @override
+  String get sectionsCategoriesUsed => 'Already used in the trip';
+
+  @override
+  String get sectionsFilterCustomCategory => 'Custom category';
+
+  @override
   String get zoneLabel => 'Time zone';
 
   @override
