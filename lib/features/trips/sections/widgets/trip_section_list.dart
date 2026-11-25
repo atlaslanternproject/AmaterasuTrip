@@ -2,13 +2,16 @@
 // largo al massimo 820 punti, con eventuali avvisi in cima e titoli di
 // gruppo facoltativi (es. zona o giorno). Ogni elemento appare come card,
 // card compatta o riga secondo la vista scelta; le card si costruiscono
-// solo quando stanno per apparire.
+// solo quando stanno per apparire. L'elemento segnato da "Cerca" viene
+// raggiunto e messo in risalto per qualche secondo (tappa 2b).
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../models/trip_section_item.dart';
 import '../models/trip_section_view.dart';
 import 'trip_section_card.dart';
@@ -16,10 +19,14 @@ import 'trip_section_compact.dart';
 import 'trip_section_entry.dart';
 import 'trip_section_expense_actions.dart';
 import 'trip_section_expense_widgets.dart';
+import 'trip_section_focus.dart';
 import 'trip_section_menu.dart';
 import 'trip_section_quick_actions.dart';
 
-class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
+part 'trip_section_list_item.dart';
+
+class TripSectionList<T extends TripSectionItem>
+    extends ConsumerStatefulWidget {
   const TripSectionList({
     super.key,
     required this.keyPrefix,
@@ -69,12 +76,84 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
   final String Function(T item)? groupOf;
 
   @override
-  Widget build(BuildContext context) => Align(
+  ConsumerState<TripSectionList<T>> createState() => _TripSectionListState<T>();
+}
+
+class _TripSectionListState<T extends TripSectionItem>
+    extends ConsumerState<TripSectionList<T>> {
+  final _scroll = ScrollController();
+  final _focusKey = GlobalKey();
+  String? _lit;
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
+
+  /// Highlights the item marked by Cerca, or says that a filter hides it.
+  Future<void> _reveal(String id) async {
+    ref.read(tripSectionFocusProvider.notifier).set(null);
+    if (!widget.items.any((item) => item.id == id)) {
+      final l10n = AppLocalizations.of(context)!;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.tripSectionFocusHidden)));
+      return;
+    }
+    setState(() => _lit = id);
+    await WidgetsBinding.instance.endOfFrame;
+    await tripSectionReveal(_scroll, _focusKey);
+    await Future<void>.delayed(const Duration(seconds: 3));
+    if (mounted && _lit == id) setState(() => _lit = null);
+  }
+
+  /// The item, with an accent border while it is highlighted.
+  Widget _marked(T item, Widget child) => item.id != _lit
+      ? child
+      : DecoratedBox(
+          key: _focusKey,
+          position: DecorationPosition.foreground,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: AmaterasuColors.primary, width: 2),
+          ),
+          child: child,
+        );
+
+  @override
+  Widget build(BuildContext context) {
+    final focus = ref.watch(tripSectionFocusProvider);
+    if (focus != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && ref.read(tripSectionFocusProvider) == focus) {
+          _reveal(focus);
+        }
+      });
+    }
+    final keyPrefix = widget.keyPrefix;
+    final items = widget.items;
+    final view = widget.view;
+    final header = widget.header;
+    final onOpen = widget.onOpen;
+    final groupOf = widget.groupOf;
+    return _list(keyPrefix, items, view, header, onOpen, groupOf);
+  }
+
+  Widget _list(
+    String keyPrefix,
+    List<T> items,
+    TripSectionView view,
+    List<Widget> header,
+    void Function(T item)? onOpen,
+    String Function(T item)? groupOf,
+  ) => Align(
     alignment: Alignment.topCenter,
     child: ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 820),
       child: ListView.separated(
         key: Key('$keyPrefix-list'),
+        controller: _scroll,
         padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
         itemCount: items.length + 1,
         separatorBuilder: (_, index) => SizedBox(
@@ -84,14 +163,17 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
           if (index == 0) return Column(children: header);
           final item = items[index - 1];
           final open = onOpen;
-          final child = open == null
-              ? _item(item)
-              : GestureDetector(
-                  key: Key('$keyPrefix-open-${item.id}'),
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () => open(item),
-                  child: _item(item),
-                );
+          final child = _marked(
+            item,
+            open == null
+                ? _item(item)
+                : GestureDetector(
+                    key: Key('$keyPrefix-open-${item.id}'),
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => open(item),
+                    child: _item(item),
+                  ),
+          );
           final group = groupOf?.call(item);
           if (group == null ||
               (index > 1 && groupOf!(items[index - 2]) == group)) {
@@ -119,55 +201,4 @@ class TripSectionList<T extends TripSectionItem> extends StatelessWidget {
       ),
     ),
   );
-
-  Widget _item(T item) {
-    final entry = entryOf(item);
-    final target = expenseOf?.call(item);
-    final api = this.api;
-    final remove = canDelete(item) ? () => onDelete(item) : null;
-    final compact = view != TripSectionView.cards;
-    final actions = TripSectionQuickActions(
-      keyPrefix: keyPrefix,
-      entry: entry,
-      expense: compact && target != null && api != null
-          ? TripSectionExpenseButton(target: target, api: api)
-          : null,
-      onEdit: compact ? () => onEdit(item) : null,
-      launch: launch,
-      menu: TripSectionMenu(
-        keyPrefix: keyPrefix,
-        id: item.id,
-        onDelete: remove,
-        dense: compact,
-      ),
-    );
-    return switch (view) {
-      TripSectionView.list => TripSectionCompactCard(
-        keyPrefix: keyPrefix,
-        entry: entry,
-        actions: actions,
-      ),
-      TripSectionView.details => TripSectionDetailsRow(
-        keyPrefix: keyPrefix,
-        entry: entry,
-        actions: actions,
-        status: statusOf?.call(item),
-      ),
-      TripSectionView.cards => TripSectionCard(
-        keyPrefix: keyPrefix,
-        entry: entry,
-        actions: actions,
-        launch: launch,
-        onEdit: () => onEdit(item),
-        footer: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ?extraOf?.call(item),
-            if (target != null && api != null)
-              TripSectionExpenseFooter(target: target, api: api),
-          ],
-        ),
-      ),
-    };
-  }
 }

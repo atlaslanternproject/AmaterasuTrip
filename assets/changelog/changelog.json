@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.53.0",
+      "date": "2026-11-25",
+      "it": ["Cerca: toccando un risultato la sezione si apre sull'elemento trovato e lo mette in risalto per qualche secondo; se i filtri lo nascondono te lo dice."],
+      "en": ["Search: tapping a result opens the section on the item found and highlights it for a few seconds; if the filters hide it, you are told."]
+    },
+    {
       "version": "1.52.0",
       "date": "2026-11-25",
       "it": ["Nuovo in Altro: Cerca. Una ricerca in alloggi, trasporti, prenotazioni, ristoranti, luoghi, note, shopping, checklist e ricordi, con filtro per sezione e ricerche recenti; il tocco su un risultato apre la sua sezione."],

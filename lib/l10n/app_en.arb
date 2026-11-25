@@ -1194,6 +1194,7 @@
   "searchRetry": "Try again",
   "searchSectionCount": "{section} ({count})",
   "@searchSectionCount": {"placeholders":{"section":{"type":"String"},"count":{"type":"int"}}},
+  "tripSectionFocusHidden": "The item you searched for is hidden by the active filters: change the filters to see it.",
   "settingsSupport": "Help and privacy",
   "settingsSupportSubtitle": "Reports, ideas, app status and rules",
   "supportTitle": "Help and privacy",

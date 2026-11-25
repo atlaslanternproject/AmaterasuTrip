@@ -46,6 +46,9 @@ enum TripSearchSection {
   final String page;
   final IconData icon;
 
+  /// Whether the section list highlights the tapped item.
+  bool get highlights => this != stays && this != checklists;
+
   /// Where a tap on a result goes (a checklist opens its list).
   String route(String tripId, String id) => this == checklists
       ? '/trips/$tripId/more/checklists/$id'
