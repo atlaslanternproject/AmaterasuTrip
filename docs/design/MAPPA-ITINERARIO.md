@@ -148,3 +148,21 @@ costruiscono dopo Coerenza, Home e Budget 2.
 10. Zone da Google solo dopo aver verificato che il campo del quartiere
     non cambi il prezzo della richiesta; altrimenti solo la città.
 11. "Aggiungi nuovo" dall'itinerario: solo ristoranti e luoghi salvati.
+
+## 9. Principio fisso: l'itinerario lo costruisce l'utente
+L'utente sceglie cosa inserire nell'itinerario. L'app non riempie, non
+riordina e non propone da sola: nessuna voce aggiunta automaticamente,
+nessun ordine cambiato senza un gesto dell'utente. Il "proponi di
+sistemare per zona" resta solo un'idea futura (vedi sezione 2), da
+decidere più avanti.
+
+## 10. Funzione "Aggiungi all'itinerario" (da costruire con i dati veri)
+- Pulsante "Aggiungi all'itinerario" sulle card delle sezioni nuove:
+  trasporti, prenotazioni, ristoranti, luoghi salvati, note, shopping.
+- Chiede solo il giorno (tra i giorni del viaggio) e l'ora facoltativa,
+  poi crea la voce di riferimento (`kind: ref`, `ref: {section, id}`),
+  con l'autore (`createdByUid`) di chi la aggiunge.
+- Alloggi e bucket list (moduli approvati): solo l'aggiunta
+  dall'itinerario ("Aggiungi voce" > "Da un elemento esistente"), finché
+  non c'è l'ok su COERENZA per mettere il pulsante anche sulle loro card.
+- Non costruito ora: solo documento.

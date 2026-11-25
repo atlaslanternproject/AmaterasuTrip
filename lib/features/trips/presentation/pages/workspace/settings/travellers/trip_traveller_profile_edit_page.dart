@@ -1,5 +1,6 @@
 // Modifica del proprio profilo organizzativo nel viaggio.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -255,7 +256,7 @@ class _TripTravellerProfileEditPageState
         ),
         body: members.when(
           loading: () =>
-              const Center(child: CircularProgressIndicator(color: _gold)),
+              const Center(child: AmaterasuLoader()),
           error: (error, stack) => Center(
             child: Padding(
               padding: const EdgeInsets.all(AmaterasuSpacing.lg),
@@ -388,9 +389,7 @@ class _TripTravellerProfileEditPageState
                               ? const SizedBox(
                                   width: 18,
                                   height: 18,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                  ),
+                                  child: AmaterasuLoader(),
                                 )
                               : const Icon(Icons.save_outlined),
                           label: Text(

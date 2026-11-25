@@ -3,6 +3,7 @@
 // destinazione), voci pratiche con fonte e schede ufficiali. Solo lettura
 // di un file dell'app: nessuna API, nessun dato salvato.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,9 +51,7 @@ class _TripCountryInfoPageState extends ConsumerState<TripCountryInfoPage> {
                   constraints: const BoxConstraints(maxWidth: 820),
                   child: book == null
                       ? const Center(
-                          child: CircularProgressIndicator(
-                            color: AmaterasuColors.primary,
-                          ),
+                          child: AmaterasuLoader(),
                         )
                       : ListView(
                           key: const Key('country-info-page'),

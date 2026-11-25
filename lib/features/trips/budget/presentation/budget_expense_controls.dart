@@ -1,6 +1,7 @@
 // Comandi di gestione di una spesa: richiesta di annullamento,
 // decisione e annullamento delle spese personali.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'budget_api.dart';
@@ -205,7 +206,7 @@ class _BudgetExpenseControlsState extends State<BudgetExpenseControls> {
             expense: widget.expense,
             displayCurrency: widget.displayCurrency,
           ),
-        if (_busy) const LinearProgressIndicator(),
+        if (_busy) const AmaterasuLoader(),
         if (_message != null)
           Padding(
             padding: const EdgeInsets.only(top: 8),

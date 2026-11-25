@@ -1,6 +1,7 @@
 // Impostazioni del viaggio - Gestione: stato, archivio, duplicazione
 // e cancellazione.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -601,9 +602,7 @@ class _TripManagementSettingsPageState
             Expanded(
               child: tripAsync.when(
                 loading: () => const Center(
-                  child: CircularProgressIndicator(
-                    color: TripManagementSettingsPage._accentColor,
-                  ),
+                  child: AmaterasuLoader(),
                 ),
                 error: (_, _) =>
                     _CenteredMessage(text: l10n.tripManagementLoadError),

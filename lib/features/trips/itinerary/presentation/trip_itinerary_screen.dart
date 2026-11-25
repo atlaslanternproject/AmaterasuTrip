@@ -7,7 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/core/appearance/amaterasu_appearance_provider.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/core/widgets/filters/amaterasu_filter_icon_button.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_segments.dart';
 import 'package:amaterasutrip/features/trips/tools/search/trip_search_recent.dart';
 import 'package:amaterasutrip/features/trips/map/trip_map_point.dart';
 import 'package:amaterasutrip/features/trips/map/trip_map_view.dart';
@@ -20,7 +22,7 @@ import 'trip_itinerary_day_view.dart';
 import 'trip_itinerary_editor.dart';
 import 'trip_itinerary_filters.dart';
 import 'trip_itinerary_timeline.dart';
-import 'trip_itinerary_top.dart';
+import 'trip_draft_label.dart';
 import 'trip_itinerary_view.dart';
 
 class TripItineraryScreen extends ConsumerStatefulWidget {
@@ -91,44 +93,60 @@ class _State extends ConsumerState<TripItineraryScreen> {
               tripId: widget.tripId,
               title: l10n.tripNavItinerary,
               backRoute: '/trips/${widget.tripId}',
-              action: IconButton(
-                key: const Key('itinerary-add'),
-                tooltip: l10n.itineraryAdd,
-                icon: const Icon(
-                  Icons.add_rounded,
-                  color: AmaterasuColors.textPrimary,
+              subtitle: const TripDraftLabel(),
+              actions: [
+                IconButton(
+                  key: const Key('itinerary-refresh'),
+                  tooltip: l10n.searchRefresh,
+                  icon: const Icon(
+                    Icons.refresh,
+                    color: AmaterasuColors.textPrimary,
+                  ),
+                  onPressed: () =>
+                      ref.invalidate(tripItineraryItemsProvider(widget.tripId)),
                 ),
-                onPressed: () async {
-                  final item = await addTripItineraryItem(
-                    context,
-                    day: f.day ?? days.first,
-                    days: days,
-                    catalog: info.catalog,
-                    personUid: _uid,
-                  );
-                  if (item != null) await repo.save(widget.tripId, item);
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 820),
-                child: TripItineraryTop(
-                  view: _view,
-                  onView: _setView,
-                  activeFilters: f.count,
-                  onFilters: () => showTripItineraryFilters(
+                AmaterasuFilterIconButton(
+                  keyPrefix: 'itinerary',
+                  activeCount: f.count,
+                  onPressed: () => showTripItineraryFilters(
                     context,
                     filters: _filters,
                     names: info.names,
                     days: _view == TripItineraryView.map ? days : const [],
                     onChanged: (v) => setState(() => _filters.value = v),
                   ),
-                  onClear: () => setState(
-                    () => _filters.value = const TripItineraryFilters(),
-                  ),
                 ),
+                IconButton(
+                  key: const Key('itinerary-add'),
+                  tooltip: l10n.itineraryAdd,
+                  icon: const Icon(
+                    Icons.add_circle_outline,
+                    color: AmaterasuColors.accentOrange,
+                  ),
+                  onPressed: () async {
+                    final item = await addTripItineraryItem(
+                      context,
+                      day: f.day ?? days.first,
+                      days: days,
+                      catalog: info.catalog,
+                      personUid: _uid,
+                    );
+                    if (item != null) await repo.save(widget.tripId, item);
+                  },
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: TripSectionSegments<TripItineraryView>(
+                keyPrefix: 'itinerary',
+                values: TripItineraryView.values,
+                codeOf: (v) => v.name,
+                labelOf: (v) => v.label(l10n),
+                iconOf: (v) => v.icon,
+                selected: _view,
+                onChanged: _setView,
+                compact: true,
               ),
             ),
             Expanded(

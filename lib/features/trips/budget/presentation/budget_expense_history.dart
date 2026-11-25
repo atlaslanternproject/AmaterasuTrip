@@ -1,5 +1,6 @@
 // Storico delle operazioni di una spesa nel dialogo dei dettagli.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -82,7 +83,7 @@ class BudgetExpenseHistory extends StatelessWidget {
                         return Text(budgetL10n(it).btHistHistoryUnavailable);
                       }
                       if (!result.hasData) {
-                        return const LinearProgressIndicator();
+                        return const AmaterasuLoader();
                       }
                       return Column(
                         children: [

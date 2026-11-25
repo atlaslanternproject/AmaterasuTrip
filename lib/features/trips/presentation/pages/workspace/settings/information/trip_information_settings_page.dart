@@ -1,6 +1,7 @@
 // Impostazioni del viaggio - Informazioni: nome, destinazione, date,
 // valuta e copertina.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/features/trips/presentation/utils/trip_date_formatter.dart';
@@ -66,7 +67,7 @@ class _TripInformationSettingsPageState
       body: SafeArea(
         child: tripAsync.when(
           loading: () => const Center(
-            child: CircularProgressIndicator(color: _accentColor),
+            child: AmaterasuLoader(),
           ),
           error: (error, stackTrace) => Center(
             child: Text(
@@ -686,7 +687,7 @@ class _TripInformationSettingsPageState
                     const ColoredBox(
                       color: Color(0x99000000),
                       child: Center(
-                        child: CircularProgressIndicator(color: _accentColor),
+                        child: AmaterasuLoader(),
                       ),
                     ),
                 ],

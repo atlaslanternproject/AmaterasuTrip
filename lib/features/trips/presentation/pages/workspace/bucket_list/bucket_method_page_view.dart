@@ -554,7 +554,7 @@ extension _BucketMethodPageView on _TripBucketListPageState {
                           ),
                         if (_loading)
                           const Center(
-                            child: CircularProgressIndicator(color: orange),
+                            child: AmaterasuLoader(),
                           )
                         else ...[
                           if (_error != null)

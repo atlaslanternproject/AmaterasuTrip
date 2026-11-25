@@ -1,6 +1,7 @@
 // Dashboard delle categorie: totali per categoria e andamento nel tempo,
 // solo per le spese a cui l'utente partecipa.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'budget_expense_day.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -90,7 +91,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
           return Text(l10n.b6LoadingError);
         }
         if (!shared.hasData) {
-          return const LinearProgressIndicator();
+          return const AmaterasuLoader();
         }
         return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: _private,
@@ -99,7 +100,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
               return Text(l10n.b6LoadingError);
             }
             if (!personal.hasData) {
-              return const LinearProgressIndicator();
+              return const AmaterasuLoader();
             }
             return StreamBuilder<Map<String, String>>(
               stream: _categories,
@@ -164,7 +165,7 @@ class _BudgetCategoryDashboardState extends State<BudgetCategoryDashboard> {
                           future: _quoteFuture(docs, target),
                           builder: (context, rates) {
                             if (!rates.hasData) {
-                              return const LinearProgressIndicator();
+                              return const AmaterasuLoader();
                             }
                             return _summary(
                               context,

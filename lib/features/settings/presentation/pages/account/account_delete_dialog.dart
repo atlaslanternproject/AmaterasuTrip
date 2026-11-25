@@ -1,6 +1,7 @@
 // Dialogo di conferma della cancellazione dell'account
 // (con nuovo accesso se serve).
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -236,7 +237,7 @@ class _AccountDeleteDialogState extends ConsumerState<AccountDeleteDialog> {
                 Center(
                   child: Column(
                     children: [
-                      const CircularProgressIndicator(color: _dangerColor),
+                      const AmaterasuLoader(),
                       const SizedBox(height: 12),
                       Text(
                         l10n.accountDeleteLoading,

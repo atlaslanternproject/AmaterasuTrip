@@ -3781,6 +3781,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get mapNorth => 'North up';
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

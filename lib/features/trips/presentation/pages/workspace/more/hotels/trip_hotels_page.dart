@@ -3,6 +3,7 @@
 // sovrapposizioni ed eliminazione
 // (solo creatore o proprietario del viaggio).
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -115,7 +116,7 @@ class TripHotelsPage extends ConsumerWidget {
             ),
             Expanded(
               child: stays.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const Center(child: AmaterasuLoader()),
                 error: (_, _) => Center(
                   child: Text(
                     l10n.staysLoadError,

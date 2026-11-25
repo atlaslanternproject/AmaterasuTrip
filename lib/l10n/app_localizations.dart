@@ -7223,6 +7223,12 @@ abstract class AppLocalizations {
   /// **'{count, plural, =1{1 place} other{{count} places}}'**
   String mapPlaces(int count);
 
+  /// No description provided for @mapNorth.
+  ///
+  /// In en, this message translates to:
+  /// **'North up'**
+  String get mapNorth;
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:

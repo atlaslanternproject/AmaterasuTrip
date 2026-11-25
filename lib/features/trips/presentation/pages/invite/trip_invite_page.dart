@@ -1,5 +1,6 @@
 // Pagina di un invito ricevuto: controlla il link e permette di unirsi.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_functions/cloud_functions.dart';
@@ -45,7 +46,7 @@ class _TripInvitePageState extends ConsumerState<TripInvitePage> {
           future: _inviteFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: AmaterasuLoader());
             }
 
             if (snapshot.hasError) {

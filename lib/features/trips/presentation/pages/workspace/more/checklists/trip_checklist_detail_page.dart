@@ -3,6 +3,7 @@
 // tendina con voci in linea e azioni (azzera spunte, duplica, stampa,
 // esporta, nuova categoria). Le azioni stanno nel file part.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -97,7 +98,7 @@ class _TripChecklistDetailPageState
               child: list == null
                   ? Center(
                       child: lists.isLoading
-                          ? const CircularProgressIndicator()
+                          ? const AmaterasuLoader()
                           : Text(l10n.sectionsLoadError),
                     )
                   : _body(list, l10n, names, nameOf),

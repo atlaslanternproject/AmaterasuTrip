@@ -1,5 +1,6 @@
 // Pagina Viaggi: elenco dei viaggi dell'utente e creazione di un nuovo viaggio.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -62,7 +63,7 @@ class TripsPage extends ConsumerWidget {
       },
       loading: () => const Scaffold(
         backgroundColor: _backgroundColor,
-        body: Center(child: CircularProgressIndicator(color: _accentColor)),
+        body: Center(child: AmaterasuLoader()),
       ),
       error: (error, stackTrace) => Scaffold(
         backgroundColor: _backgroundColor,

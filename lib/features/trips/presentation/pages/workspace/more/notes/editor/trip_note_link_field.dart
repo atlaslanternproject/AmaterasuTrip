@@ -2,6 +2,7 @@
 // collegamento scelto (con l'icona della sezione) e apre un pannello con
 // gli elementi del viaggio letti su richiesta. Si può anche togliere.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -87,7 +88,7 @@ class _TargetsSheet extends ConsumerWidget {
     return SizedBox(
       height: 420,
       child: targets.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: AmaterasuLoader()),
         error: (_, _) => Center(child: Text(l10n.sectionsLoadError)),
         data: (list) => list.isEmpty
             ? Center(child: Text(l10n.noteLinkEmpty))

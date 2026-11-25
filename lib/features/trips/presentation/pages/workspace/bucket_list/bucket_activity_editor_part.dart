@@ -308,9 +308,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                                   ? const SizedBox(
                                       width: 18,
                                       height: 18,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                      ),
+                                      child: AmaterasuLoader(),
                                     )
                                   : const Icon(Icons.search),
                             ),
@@ -343,7 +341,7 @@ extension _BucketActivityEditor on _TripBucketListPageState {
                               },
                             ),
                           ),
-                        if (selecting) const LinearProgressIndicator(),
+                        if (selecting) const AmaterasuLoader(),
                         if (placeId != null) ...[
                           const SizedBox(height: 10),
                           BucketPlacePhoto(

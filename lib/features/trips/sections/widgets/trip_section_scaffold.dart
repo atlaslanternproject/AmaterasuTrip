@@ -3,6 +3,7 @@
 // corpo con caricamento, errore, stato vuoto oppure il contenuto; si
 // ridisegna quando cambiano le scelte di Aspetto (formati di data e ora).
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -66,7 +67,7 @@ class TripSectionScaffold<T> extends ConsumerWidget {
             ?top,
             Expanded(
               child: items.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const Center(child: AmaterasuLoader()),
                 error: (_, _) => Center(
                   child: Text(
                     l10n.sectionsLoadError,

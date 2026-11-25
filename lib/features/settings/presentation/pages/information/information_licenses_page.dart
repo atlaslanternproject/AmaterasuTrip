@@ -1,5 +1,6 @@
 // Licenze dei pacchetti usati dall'app.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +71,7 @@ class _InformationLicensesPageState extends State<InformationLicensesPage> {
         ),
       ),
       body: _loading
-          ? const Center(child: CircularProgressIndicator(color: _accentColor))
+          ? const Center(child: AmaterasuLoader())
           : ListView.separated(
               padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
               itemCount: _licenses.length,

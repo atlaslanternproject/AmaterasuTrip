@@ -92,6 +92,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('itinerary-item-i9')), findsOneWidget);
     expect(find.byKey(const Key('itinerary-item-i2')), findsNothing);
+    // The filters icon shows how many filters are on; no separate bar.
+    expect(find.byKey(const Key('itinerary-filters-count')), findsOneWidget);
+    expect(find.text('1'), findsWidgets);
   });
 
   testWidgets('day by day: strip, reorder, delete twice confirmed', (
@@ -133,6 +136,12 @@ void main() {
       tester.platformDispatcher.textScaleFactorTestValue = 1.3;
       addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
       await open(tester, const TripItineraryScreen(tripId: 't1'), width: width);
+      // One row of views: on a phone at 130% only the icons.
+      expect(
+        find.text('Giorno per giorno'),
+        width < 600 ? findsNothing : findsOneWidget,
+      );
+      expect(find.byKey(const Key('itinerary-view-day')), findsOneWidget);
       await tapKey(tester, 'itinerary-view-day');
       await open(tester, const TripMapScreen(tripId: 't1'), width: width);
       await tapKey(tester, 'pin-i2');

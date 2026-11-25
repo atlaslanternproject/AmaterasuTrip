@@ -1,5 +1,6 @@
 // Pagina di scelta della destinazione: ricerca e mappa del mondo.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'dart:async';
 
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -284,7 +285,7 @@ class _TripDestinationPageState extends State<TripDestinationPage> {
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 18),
                       child: Center(
-                        child: CircularProgressIndicator(color: _accentColor),
+                        child: AmaterasuLoader(),
                       ),
                     ),
 

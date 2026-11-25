@@ -3,6 +3,7 @@
 // valuta, data, partecipanti con "Tutti", pagatori, categoria, metodi di
 // pagamento, link facoltativo e sezione di origine (aperto dalle sezioni).
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'budget_dialog_chrome.dart';
 import 'budget_create_section.dart';
@@ -458,7 +459,7 @@ class _BudgetCreateDialogState extends State<BudgetCreateDialog> {
 
               if (_saving) ...[
                 const SizedBox(height: 12),
-                const LinearProgressIndicator(color: orange),
+                const AmaterasuLoader(),
               ],
               const SizedBox(height: AmaterasuSpacing.xs),
             ],

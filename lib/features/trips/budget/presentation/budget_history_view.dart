@@ -1,6 +1,7 @@
 // Lista delle operazioni di una spesa o dell'intero viaggio,
 // letta dalla Cloud Function listBudgetHistory.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
@@ -83,7 +84,7 @@ class _BudgetHistoryListState extends State<BudgetHistoryList> {
             ),
           );
         }
-        if (!result.hasData) return const LinearProgressIndicator();
+        if (!result.hasData) return const AmaterasuLoader();
         final (data, live) = result.data!;
         if (data.events.isEmpty) {
           return Padding(

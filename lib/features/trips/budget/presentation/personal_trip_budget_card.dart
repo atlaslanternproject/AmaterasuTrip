@@ -1,6 +1,7 @@
 // Card del budget personale privato: importo, valuta, speso
 // e disponibile.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'budget_expense_day.dart';
 import '../calculations/budget_money_formatter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -95,7 +96,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
         }
 
         if (state.connectionState == ConnectionState.waiting) {
-          return const LinearProgressIndicator();
+          return const AmaterasuLoader();
         }
 
         final budget = state.data;
@@ -142,7 +143,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
             }
 
             if (!shared.hasData) {
-              return const LinearProgressIndicator();
+              return const AmaterasuLoader();
             }
 
             return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -158,7 +159,7 @@ class _PersonalTripBudgetCardState extends State<PersonalTripBudgetCard> {
                 }
 
                 if (!personal.hasData) {
-                  return const LinearProgressIndicator();
+                  return const AmaterasuLoader();
                 }
 
                 return FutureBuilder<_SpendingResult>(

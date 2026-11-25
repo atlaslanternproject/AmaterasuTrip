@@ -1,6 +1,7 @@
 // Sezione Password dell'account: cambio password e recupero,
 // o avviso se l'account usa solo Google.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -186,7 +187,7 @@ class _AccountPasswordPageState extends State<AccountPasswordPage> {
         if (_loading)
           const Padding(
             padding: EdgeInsets.only(top: 8),
-            child: LinearProgressIndicator(minHeight: 2),
+            child: AmaterasuLoader(),
           ),
       ],
     );

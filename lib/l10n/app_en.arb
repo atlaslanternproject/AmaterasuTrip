@@ -1373,6 +1373,7 @@
   "mapOpenMaps": "Open in Maps",
   "mapPlaces": "{count, plural, =1{1 place} other{{count} places}}",
   "@mapPlaces": {"placeholders":{"count":{"type":"int"}}},
+  "mapNorth": "North up",
   "settingsSupport": "Help and privacy",
   "settingsSupportSubtitle": "Reports, ideas, app status and rules",
   "supportTitle": "Help and privacy",

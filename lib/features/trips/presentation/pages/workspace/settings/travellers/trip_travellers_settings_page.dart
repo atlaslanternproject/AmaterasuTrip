@@ -1,6 +1,7 @@
 // Impostazioni del viaggio - Viaggiatori: elenco, inviti, profili
 // e rimozione.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -482,7 +483,7 @@ class _TripTravellersSettingsPageState
                     membersAsync.when(
                       loading: () => const Padding(
                         padding: EdgeInsets.symmetric(vertical: 32),
-                        child: Center(child: CircularProgressIndicator()),
+                        child: Center(child: AmaterasuLoader()),
                       ),
                       error: (error, stackTrace) => _MessageCard(
                         icon: Icons.error_outline_rounded,
@@ -643,9 +644,7 @@ class _InviteCard extends StatelessWidget {
                         child: busy
                             ? const Padding(
                                 padding: EdgeInsets.all(12),
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                ),
+                                child: AmaterasuLoader(),
                               )
                             : const Icon(
                                 Icons.person_add_alt_1_rounded,
@@ -871,7 +870,7 @@ class _MemberCard extends StatelessWidget {
                   ? const SizedBox(
                       width: 22,
                       height: 22,
-                      child: CircularProgressIndicator(strokeWidth: 2),
+                      child: AmaterasuLoader(),
                     )
                   : const Icon(
                       Icons.chevron_right_rounded,

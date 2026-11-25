@@ -1,6 +1,7 @@
 // Riepilogo personale dei conti: quanto devi, quanto ti devono
 // e i movimenti tra viaggiatori.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -105,7 +106,7 @@ class _BudgetUserSettlementSummaryState
     if (_loading || !_expenses.keys.every(_loadedRefundIds.contains)) {
       return const Padding(
         padding: EdgeInsets.all(14),
-        child: LinearProgressIndicator(),
+        child: AmaterasuLoader(),
       );
     }
 
@@ -120,7 +121,7 @@ class _BudgetUserSettlementSummaryState
         }
 
         if (!namesResult.hasData) {
-          return const LinearProgressIndicator();
+          return const AmaterasuLoader();
         }
 
         final names = namesResult.data!;

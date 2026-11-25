@@ -2,6 +2,7 @@
 // di ricerca, pulsante, risultati e messaggi. Scegliendo un risultato carica
 // i dettagli e li passa a [onPicked], che compila i campi della sezione.
 
+import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -105,7 +106,7 @@ class _SearchFieldState extends State<AmaterasuPlaceSearchField> {
             ),
           ],
         ),
-        if (_busy) const LinearProgressIndicator(),
+        if (_busy) const AmaterasuLoader(),
         if (_error != null)
           Text(
             _error!,
