@@ -122,6 +122,12 @@ class TripMorePage extends StatelessWidget {
         route: '/trips/$tripId/more/country-info',
       ),
       _TripMoreItem(
+        title: l10n.tripMoreExport,
+        subtitle: l10n.tripMoreExportSubtitle,
+        icon: Icons.ios_share_rounded,
+        route: '/trips/$tripId/more/export',
+      ),
+      _TripMoreItem(
         title: l10n.tripMoreSettings,
         subtitle: l10n.tripMoreSettingsSubtitle,
         icon: Icons.settings_rounded,

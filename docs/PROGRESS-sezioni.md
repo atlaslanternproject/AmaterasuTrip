@@ -339,6 +339,7 @@ Mappa/Itinerario).
 | Nuova tappa 2a - Cerca nelle sezioni | fatta | feature/cerca-globale | 1.52.0+58 |
 | Nuova tappa 2b - Risalto del risultato | fatta | feature/cerca-evidenzia | 1.53.0+59 |
 | Nuova tappa 2c - Cerca in spese e bucket list | fatta | feature/cerca-spese-bucket | 1.54.0+60 |
+| Nuova tappa 3a - Calendario .ics | fatta | feature/calendario-ics | 1.55.0+61 |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1153,7 +1154,7 @@ tappa, versione e prove; il resto ha una tappa qui sotto.
 | Extra G caricamento | fatto | 1.48.0 |
 | Nuova tappa 1 Converti, Meteo, Info paese | fatto | 1.49.0, 1.50.0, 1.51.0 |
 | Nuova tappa 2 Cerca globale | fatto (2a, 2b, 2c) | 1.52.0, 1.53.0, 1.54.0 |
-| Nuova tappa 3 Calendario .ics, Statistiche, PDF del viaggio | da fare | - |
+| Nuova tappa 3 Calendario .ics, Statistiche, PDF del viaggio | in corso (3a, 3b, 3c) | - |
 | Nuova tappa 4 Audit Trail (analisi, poi costruzione se non tocca moduli approvati) | da fare | - |
 | K BUDGET-2 (solo analisi) | da fare | - |
 | L MAPPA-ITINERARIO (solo documento) | da fare | - |
@@ -1362,3 +1363,53 @@ Prove da fare sul sito:
 1. Cerca il titolo di una spesa: apre la pagina spese.
 2. Una spesa privata di un altro non compare mai.
 3. Cerca un'attività della bucket list: apre la bucket list.
+
+## Nuova tappa 3 - Calendario, Statistiche, PDF
+Valutazione (regola 1):
+(a) Esistono: il modulo comune lib/core/files (scarica un testo, apre una
+pagina da stampare o salvare come PDF; usato da spese e checklist), gli
+store delle sezioni e la lettura su richiesta di Cerca, AmaterasuZoneClock
+(scarto UTC di un fuso IANA in un giorno, ora legale compresa), le
+etichette dei trasporti (TripTransportLabels.title), i chip comuni e i
+calcoli del budget (per le statistiche delle spese, 3b).
+(b) Si riusano identici: download e stampa da lib/core/files, store delle
+sezioni in sola lettura, scarto dei fusi da AmaterasuZoneClock e dagli
+scarti già salvati nei trasporti. Nuovo modulo
+lib/features/trips/tools/export. Nessun modulo approvato cambia (alloggi
+e budget solo letti).
+(c) Nessuna regola, nessuna funzione, nessuna API. Test: scrittura del
+.ics (righe CRLF, testi protetti, righe lunghe spezzate), orari con
+scarto (UTC), con fuso (UTC) e senza (ora locale), giornate intere,
+annullati esclusi, scelta delle categorie, pagina, 130 %.
+
+Piano a passi (un rilascio ciascuno):
+- 3a: Altro > Esporta: calendario .ics con scelta di alloggi, trasporti,
+  prenotazioni, ristoranti; alloggi come giornate intere dal check-in al
+  check-out; trasporti con lo scarto salvato; prenotazioni e ristoranti
+  con il fuso della città, altrimenti ora locale; senza ora: giornata
+  intera; annullati esclusi.
+- 3b: Altro > Statistiche (notti, paesi e città, spese per categoria e per
+  persona leggendo il budget, trasporti per tipo, ristoranti provati,
+  luoghi; tre numeri e una ciambella).
+- 3c: PDF del viaggio in Esporta (riepilogo e link alla cartella dei
+  ricordi) con la stampa del browser.
+
+### Passo 3a - fatto (1.55.0)
+- lib/features/trips/tools/export: scrittura del .ics (RFC 5545: CRLF,
+  testi protetti, righe spezzate a 75 byte, UID stabile per elemento così
+  un nuovo import aggiorna invece di duplicare in molti calendari),
+  eventi dalle sezioni, dati letti solo premendo "Scarica", pagina
+  Altro > Esporta con la scelta delle 4 categorie.
+- Orari: trasporti con lo scarto salvato, prenotazioni e ristoranti con il
+  fuso della città (AmaterasuZoneClock, ora legale compresa), tutti in
+  UTC; senza fuso ora locale; senza ora giornata intera; alloggi come
+  giornate dal check-in al check-out; fine mancante: un'ora dopo.
+- Bottone comune AmaterasuPrimaryButton: il testo ora è Flexible (va a
+  capo, al massimo 2 righe) perché al 130 % su telefono usciva dal
+  bottone; quando il testo ci sta l'aspetto è identico. Tutti i test
+  passano.
+
+Prove da fare sul sito:
+1. Altro > Esporta > Scarica calendario: il file si apre in Google
+   Calendar con il volo all'ora giusta nel fuso di partenza e d'arrivo.
+2. Togli "Hotel e alloggi": gli alloggi non ci sono.
