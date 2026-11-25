@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.44.0",
+      "date": "2026-11-25",
+      "it": ["Il formato di data e ora scelto in Impostazioni > Aspetto (gg/mm/aaaa, aaaa-mm-gg, 12 o 24 ore) vale in trasporti, prenotazioni, ristoranti, luoghi, note, shopping, checklist e ricordi."],
+      "en": ["The date and time format chosen in Settings > Appearance (dd/mm/yyyy, yyyy-mm-dd, 12 or 24 hours) applies to transports, bookings, restaurants, places, notes, shopping, checklists and memories."]
+    },
+    {
       "version": "1.43.0",
       "date": "2026-11-25",
       "it": ["La dimensione del testo scelta in Impostazioni > Aspetto (fino al 130%) vale in tutta l'app."],

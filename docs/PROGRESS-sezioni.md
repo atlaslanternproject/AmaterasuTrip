@@ -324,7 +324,8 @@ Mappa/Itinerario).
 | Extra E - Aspetto: piano | approvato il 25/11/2026 | - | - |
 | Extra E1 - Preferenze Aspetto (modello e salvataggio) | fatta, pubblicata 1.41.0 il 25/11/2026 | feature/aspetto-e1 | 1.41.0+46 |
 | Extra E2 - Pagina Impostazioni > Aspetto | fatta, pubblicata 1.42.0 il 25/11/2026 | feature/aspetto-e2 | 1.42.0+47 |
-| Extra E3 - Dimensione del testo in tutta l'app | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e3 | 1.43.0+48 |
+| Extra E3 - Dimensione del testo in tutta l'app | fatta, pubblicata 1.43.0 il 25/11/2026 | feature/aspetto-e3 | 1.43.0+48 |
+| Extra E4 - Formato di data e ora nelle sezioni nuove | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e4 | 1.44.0+49 |
 | Extra F-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -978,3 +979,24 @@ Prove da fare sul sito:
 2. Al 130 % sul telefono le sezioni nuove si leggono senza tagli.
 3. Editor degli alloggi al 130 %: vedrai i titoli delle sezioni tagliati
    (segnalato, si corregge dopo l'ok su COERENZA.md).
+
+## Extra E4 - Formato di data e ora
+Modulo comune AmaterasuDates (lib/core/appearance/amaterasu_dates.dart):
+"come la lingua" è esattamente il formato di prima (Material), poi
+gg/mm/aaaa, aaaa-mm-gg, ore a 24 o 12 ore (AM/PM). Usato da
+tripSectionWhen, dai pulsanti giorno/ora degli editor, dal pannello
+"Orari e prezzi" e dalle date delle card di prenotazioni, luoghi e
+ricordi. La struttura comune delle pagine delle sezioni si ridisegna
+quando cambiano le scelte. Gli orari salvati non cambiano (restano
+"HH:mm"): cambia solo come si vedono.
+
+Non ancora applicato (moduli approvati, dopo l'ok su COERENZA.md):
+budget, alloggi, bucket list, impostazioni. Restano anche alcune ore
+scritte nelle frasi dei trasporti (es. "Arriva in aeroporto entro le
+08:00"): sono sezioni nuove, le porto al nuovo formato insieme alla
+prossima revisione dei trasporti.
+
+Prove da fare sul sito:
+1. Aspetto > aaaa-mm-gg e 12 ore: una prenotazione mostra
+   "2027-04-14 · 2:05 PM".
+2. "Come la lingua" e 24 ore: tutto come prima.

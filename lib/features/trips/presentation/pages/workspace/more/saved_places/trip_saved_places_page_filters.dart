@@ -49,13 +49,12 @@ extension _TripSavedPlacesFilters on _TripSavedPlacesPageState {
   /// Group titles when grouping by area or by day.
   String Function(TripSavedPlace)? _groupOf(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final dates = MaterialLocalizations.of(context);
     return switch (_sort) {
       'area' => (p) => p.area ?? l10n.savedPlaceNoArea,
       'day' =>
         (p) => p.plannedDay == null
             ? l10n.savedPlaceNoDay
-            : dates.formatFullDate(p.plannedDay!),
+            : AmaterasuDates.day(context, p.plannedDay!, full: true),
       _ => null,
     };
   }

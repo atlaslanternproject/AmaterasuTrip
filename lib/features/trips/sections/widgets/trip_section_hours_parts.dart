@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_dates.dart';
+
 import 'package:amaterasutrip/core/places/amaterasu_place_hours.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/budget/data/budget_fx_service.dart';
@@ -19,7 +21,7 @@ List<Widget> tripSectionClosedWarning(
   final day = target.day;
   if (day == null || hours == null) return const [];
   final l10n = AppLocalizations.of(context)!;
-  final date = MaterialLocalizations.of(context).formatMediumDate(day);
+  final date = AmaterasuDates.day(context, day);
   final time = target.time;
   final String? text;
   if (hours.closedOn(day) == true) {
