@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.41.0",
+      "date": "2026-11-25",
+      "it": ["Preparazione delle nuove impostazioni «Aspetto» (dimensione del testo, formati, valute): nessun cambiamento visibile per ora."],
+      "en": ["Groundwork for the new «Appearance» settings (text size, formats, currencies): no visible change for now."]
+    },
+    {
       "version": "1.40.0",
       "date": "2026-11-25",
       "it": ["Filtri: in luoghi salvati, prenotazioni, ristoranti, note e shopping puoi filtrare anche per categoria personalizzata."],

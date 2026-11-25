@@ -193,6 +193,30 @@ test('authenticated user cannot read another user profile', async () => {
   );
 });
 
+test('appearance preferences: own profile only, valid values', async () => {
+  await seedProfile('alice');
+  await seedProfile('bob');
+  const db = authenticatedDb('alice');
+  const ref = doc(db, 'viaggiatori', 'alice');
+  await assertSucceeds(updateDoc(ref, {
+    appearance: {
+      textScale: 120, units: 'mi', dateFormat: 'dmy', timeFormat: '12',
+      defaultCurrency: 'EUR', displayCurrency: 'JPY',
+    },
+  }));
+  await assertSucceeds(updateDoc(ref, {appearance: {textScale: 100}}));
+  for (const bad of [
+    {textScale: 150}, {units: 'leghe'}, {dateFormat: 'mdy'},
+    {timeFormat: '13'}, {defaultCurrency: 'euro'}, {displayCurrency: 5},
+    {theme: 'light'}, 'grande',
+  ]) {
+    await assertFails(updateDoc(ref, {appearance: bad}));
+  }
+  await assertFails(updateDoc(doc(db, 'viaggiatori', 'bob'), {
+    appearance: {textScale: 110},
+  }));
+});
+
 test('username and matching profile can be created atomically', async () => {
   const db = authenticatedDb('alice', {
     verified: false,
