@@ -331,8 +331,8 @@ Mappa/Itinerario).
 | Extra E7 - Valuta di visualizzazione | fatta, pubblicata 1.46.0 il 25/11/2026 | feature/aspetto-e7 | 1.46.0+51 |
 | Extra E8 - TEMA-CHIARO.md | fatta (solo documento, nessun rilascio) | docs/tema-chiaro | - |
 | Extra F - Assistenza e privacy | fatta, pubblicata 1.47.0 il 25/11/2026 | feature/assistenza | 1.47.0+52 |
-| Extra G - Caricamento con il sole | fatta (pubblicazione: vedi tappa seguente) | feature/caricamento | 1.48.0+53 |
-| Extra H - Verifica finale | da fare | - | - |
+| Extra G - Caricamento con il sole | fatta, pubblicata 1.48.0 il 25/11/2026 | feature/caricamento | 1.48.0+53 |
+| Extra H - Verifica finale | fatta (vedi sotto) | docs/verifica-finale | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1123,3 +1123,45 @@ Prove da fare sul sito:
 1. Apri il sito: vedi il sole, poi direttamente la home (o l'accesso),
    senza rotelline in mezzo.
 2. Apri un link di un viaggio: il sole resta fino al viaggio.
+
+## Extra H - Verifica finale (25/11/2026)
+Ogni voce del prompt unico v2 confrontata con questo file. Fatto = con
+tappa, versione e prove; il resto ha una tappa qui sotto.
+
+| Voce del prompt | Stato | Dove |
+|---|---|---|
+| Passo 0 (regole fisse) e Passo 1 (INVENTARIO-UI, COSTI, API-ESTERNE, DIRETTIVE-UI) | fatto | docs/ |
+| U1 componenti condivisi | fatto | 1.24.0 |
+| 1b (filtri, valuta, nomi, allergeni, luoghi, foto, checklist) | fatto | 1.25.0-1.26.0 |
+| Trasporti, Prenotazioni, Ristoranti, Luoghi, Alloggi, Note, Shopping | fatto | 1.27.0-1.33.0 |
+| Ricordi, esportazione CSV/PDF spese | fatto (piano precedente) | 1.22.0, 1.23.0 |
+| Link ovunque (sezioni, voci checklist, spese) | fatto | 1.34.0, 1.35.0 |
+| URL nel testo delle note cliccabili | fatto | 1.35.1 |
+| Crea spesa dalle sezioni (tipo, per persona, Tutti, origine) | fatto; selezione multipla non riprodotta, in attesa dei tuoi passi | 1.35.0 |
+| Extra A novità e versioni | fatto | 1.36.0 |
+| Extra B PWA | fatto | 1.37.0 |
+| Extra C fuso orario per città | fatto; migrazione non necessaria | 1.38.0 |
+| Extra D categorie personalizzate e filtro | fatto (spese: solo in K) | 1.39.0, 1.40.0 |
+| Extra E Aspetto (E1-E8) | fatto | 1.41.0-1.46.0, TEMA-CHIARO.md |
+| Extra F assistenza e privacy | fatto; lacune in CONFORMITA-LACUNE.md | 1.47.0 |
+| Extra G caricamento | fatto | 1.48.0 |
+| Nuova tappa 1 Converti, Meteo, Info paese | da fare | - |
+| Nuova tappa 2 Cerca globale | da fare | - |
+| Nuova tappa 3 Calendario .ics, Statistiche, PDF del viaggio | da fare | - |
+| Nuova tappa 4 Audit Trail (analisi, poi costruzione se non tocca moduli approvati) | da fare | - |
+| K BUDGET-2 (solo analisi) | da fare | - |
+| L MAPPA-ITINERARIO (solo documento) | da fare | - |
+| Tabella COERENZA.md, HOME-VIAGGIO.md | da fare, poi stop per il tuo ok | - |
+
+Voci rimaste aperte dentro tappe fatte (da riprendere):
+- Ore nelle frasi dei trasporti ("Arriva in aeroporto entro le 08:00")
+  ancora a 24 ore: prossima revisione dei trasporti.
+- Riga della tassa di soggiorno non convertita nella valuta di
+  visualizzazione (tre importi nella stessa frase).
+- Formato data/ora e controllo al 130 % nei moduli approvati (budget,
+  alloggi, bucket list, impostazioni): in COERENZA.md.
+- Editor degli alloggi al 130 %: titoli e tendina escono dallo spazio
+  (COERENZA.md).
+- Segnalazioni da cancellare insieme all'account (modulo approvato:
+  serve ok) e termini d'uso da scrivere (CONFORMITA-LACUNE.md).
+- Spese con categorie personalizzate multiple: analisi in K.
