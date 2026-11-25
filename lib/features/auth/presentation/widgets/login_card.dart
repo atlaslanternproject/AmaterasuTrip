@@ -200,8 +200,12 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 if (!mounted) return;
 
                 ScaffoldMessenger.of(this.context).showSnackBar(
-                  // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
-                  SnackBar(content: Text('Errore Google: ${e.code}')),
+                  SnackBar(
+                    content: Text(
+                      AppLocalizations.of(this.context)!
+                          .authGoogleErrorCode(e.code),
+                    ),
+                  ),
                 );
               } catch (e) {
                 debugPrint('AMATERASU_GOOGLE_AUTH_ERROR: $e');
@@ -209,9 +213,10 @@ class _LoginCardState extends ConsumerState<LoginCard> {
                 if (!mounted) return;
 
                 ScaffoldMessenger.of(this.context).showSnackBar(
-                  const SnackBar(
-                    // TODO(audit): L6 testo solo in italiano: spostarlo in lib/l10n con la traduzione inglese.
-                    content: Text('Impossibile accedere con Google.'),
+                  SnackBar(
+                    content: Text(
+                      AppLocalizations.of(this.context)!.authGoogleFailed,
+                    ),
                   ),
                 );
               }

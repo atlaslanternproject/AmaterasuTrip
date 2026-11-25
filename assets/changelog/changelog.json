@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.59.0",
+      "date": "2026-11-25",
+      "it": ["Pulsanti uguali in tutte le sezioni nuove (principale, secondario, testo) e cestino al posto del menu «⋮» quando c'era solo «Elimina» (la doppia conferma resta).", "Accesso con Google, logout e scelta della cartella Drive ora anche in inglese."],
+      "en": ["Same buttons in all the new sections (main, secondary, text) and a bin instead of the «⋮» menu when it only had «Delete» (the double confirmation stays).", "Google sign-in, logout and Drive folder choice now also in English."]
+    },
+    {
       "version": "1.58.0",
       "date": "2026-11-25",
       "it": ["Nuovo in Altro: Audit Trail. Il registro di chi ha cambiato cosa e quando nelle sezioni del viaggio, con il valore prima e dopo, filtri per sezione, persona, azione e periodo. Lo scrive solo il server e nessuno può modificarlo; note e checklist private non ci sono mai. Informativa privacy aggiornata."],

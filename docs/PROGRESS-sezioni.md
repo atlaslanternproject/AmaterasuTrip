@@ -1572,3 +1572,17 @@ selettore valuta, stampa comune, testi it/en, cestino al posto di "⋮"
 quando contiene solo "Elimina"), poi F (con la pagina Aspetto sul modello
 della Privacy e le card a tutta larghezza su schermo largo), E, D, B, C
 con la home, A per ultimo. Poi Budget 2, Itinerario, Mappa.
+
+## COERENZA gruppo G - passo G1 (1.59.0)
+Valutazione (regola 1): (a) i componenti esistono già nel core
+(AmaterasuButton con i quattro tipi, showAmaterasuSheet, confirmAmaterasuAction
+con doppia conferma) ma erano poco usati; (b) si usano identici al posto
+dei pulsanti scritti a mano nelle parti non approvate (sezioni nuove,
+strumenti, checklist, Link utili); il menu "⋮" delle sezioni con la sola
+voce Elimina diventa un cestino (stessa chiave, stessa doppia conferma);
+G5: testi scritti nel codice spostati in lib/l10n (accesso, logout,
+cartella Drive; "Il mio Drive" resta perché è salvato con l'archivio);
+(c) nessun calcolo, dato o regola; test delle sezioni aggiornati (il
+cestino apre subito la conferma).
+- Resta per i passi seguenti di G: G3 selettore valuta comune, G4 stampa
+  comune; G2 (pannello unico) si applica modulo per modulo nei gruppi F-A.

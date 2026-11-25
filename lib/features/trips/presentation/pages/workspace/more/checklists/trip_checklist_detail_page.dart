@@ -16,6 +16,7 @@ import 'package:amaterasutrip/features/trips/checklists/models/trip_checklist_to
 import 'package:amaterasutrip/features/trips/checklists/providers/trip_checklists_provider.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'widgets/trip_checklist_category.dart';
 import 'widgets/trip_checklist_entry_sheet.dart';
 import 'widgets/trip_checklist_progress.dart';

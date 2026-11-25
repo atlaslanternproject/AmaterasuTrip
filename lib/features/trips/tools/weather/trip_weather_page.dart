@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'trip_weather_body.dart';
 import 'trip_weather_provider.dart';
 
@@ -84,10 +85,10 @@ class _TripWeatherError extends StatelessWidget {
             ),
             if (!noPlace) ...[
               const SizedBox(height: 12),
-              OutlinedButton(
+              AmaterasuButton.secondary(
                 key: const Key('weather-retry'),
                 onPressed: onRetry,
-                child: Text(l10n.weatherRetry),
+                label: l10n.weatherRetry,
               ),
             ],
           ],

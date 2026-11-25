@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_chips.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'trip_search_parts.dart';
 import 'trip_search_sources.dart';
 import 'trip_search_text.dart';
@@ -55,11 +56,11 @@ class _TripSearchResultsState extends ConsumerState<TripSearchResults> {
               l10n.searchError,
               style: const TextStyle(color: AmaterasuColors.textSecondary),
             ),
-            TextButton(
+            AmaterasuButton.tertiary(
               key: const Key('search-retry'),
               onPressed: () =>
                   ref.invalidate(tripSearchDocsProvider(widget.tripId)),
-              child: Text(l10n.searchRetry),
+              label: l10n.searchRetry,
             ),
           ],
         ),
@@ -119,10 +120,10 @@ class _TripSearchResultsState extends ConsumerState<TripSearchResults> {
                 onTap: () => widget.onOpen(d),
               ),
             if (shown.length > _shown)
-              TextButton(
+              AmaterasuButton.tertiary(
                 key: const Key('search-more'),
                 onPressed: () => setState(() => _shown += _page),
-                child: Text(l10n.searchMore),
+                label: l10n.searchMore,
               ),
           ],
         );

@@ -3551,6 +3551,56 @@ class AppLocalizationsIt extends AppLocalizations {
   String get auditFieldCost => 'Costo previsto';
 
   @override
+  String authGoogleErrorCode(String code) {
+    return 'Errore Google: $code';
+  }
+
+  @override
+  String get authGoogleFailed => 'Impossibile accedere con Google.';
+
+  @override
+  String get accountLogoutFailed => 'Logout non riuscito. Riprova.';
+
+  @override
+  String get driveBrowserLoadError => 'Impossibile caricare le cartelle di Google Drive.';
+
+  @override
+  String get driveBrowserNewFolder => 'Nuova cartella';
+
+  @override
+  String get driveBrowserFolderName => 'Nome cartella';
+
+  @override
+  String get driveBrowserCancel => 'Annulla';
+
+  @override
+  String get driveBrowserCreate => 'Crea';
+
+  @override
+  String get driveBrowserCreateError => 'Impossibile creare la cartella.';
+
+  @override
+  String get driveBrowserTripFolderError => 'Impossibile creare la cartella del viaggio.';
+
+  @override
+  String get driveBrowserTitle => 'Scegli dove salvare';
+
+  @override
+  String get driveBrowserEmpty => 'Questa cartella è vuota';
+
+  @override
+  String get driveBrowserEmptyHint => 'Puoi creare qui la cartella del viaggio oppure aggiungere una nuova cartella.';
+
+  @override
+  String get driveBrowserTripFolder => 'Cartella del viaggio';
+
+  @override
+  String get driveBrowserCreating => 'Creazione in corso...';
+
+  @override
+  String get driveBrowserCreateHere => 'Crea la cartella qui';
+
+  @override
   String get settingsSupport => 'Assistenza e privacy';
 
   @override

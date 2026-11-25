@@ -6827,6 +6827,102 @@ abstract class AppLocalizations {
   /// **'Expected cost'**
   String get auditFieldCost;
 
+  /// No description provided for @authGoogleErrorCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Google error: {code}'**
+  String authGoogleErrorCode(String code);
+
+  /// No description provided for @authGoogleFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to sign in with Google.'**
+  String get authGoogleFailed;
+
+  /// No description provided for @accountLogoutFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout failed. Try again.'**
+  String get accountLogoutFailed;
+
+  /// No description provided for @driveBrowserLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the Google Drive folders.'**
+  String get driveBrowserLoadError;
+
+  /// No description provided for @driveBrowserNewFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'New folder'**
+  String get driveBrowserNewFolder;
+
+  /// No description provided for @driveBrowserFolderName.
+  ///
+  /// In en, this message translates to:
+  /// **'Folder name'**
+  String get driveBrowserFolderName;
+
+  /// No description provided for @driveBrowserCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get driveBrowserCancel;
+
+  /// No description provided for @driveBrowserCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get driveBrowserCreate;
+
+  /// No description provided for @driveBrowserCreateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to create the folder.'**
+  String get driveBrowserCreateError;
+
+  /// No description provided for @driveBrowserTripFolderError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to create the trip folder.'**
+  String get driveBrowserTripFolderError;
+
+  /// No description provided for @driveBrowserTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose where to save'**
+  String get driveBrowserTitle;
+
+  /// No description provided for @driveBrowserEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'This folder is empty'**
+  String get driveBrowserEmpty;
+
+  /// No description provided for @driveBrowserEmptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can create the trip folder here or add a new folder.'**
+  String get driveBrowserEmptyHint;
+
+  /// No description provided for @driveBrowserTripFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip folder'**
+  String get driveBrowserTripFolder;
+
+  /// No description provided for @driveBrowserCreating.
+  ///
+  /// In en, this message translates to:
+  /// **'Creating...'**
+  String get driveBrowserCreating;
+
+  /// No description provided for @driveBrowserCreateHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Create the folder here'**
+  String get driveBrowserCreateHere;
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:

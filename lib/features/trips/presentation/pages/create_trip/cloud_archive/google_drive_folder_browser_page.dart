@@ -8,6 +8,7 @@ import 'package:amaterasutrip/features/trips/data/services/google_drive_archive_
 import 'package:amaterasutrip/features/trips/providers/trip_cloud_archive_provider.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 // TODO(audit): C1 pagina non raggiungibile (nessuna rotta la apre): decidere se eliminarla o collegarla. Contiene anche testi solo in italiano (L6).
 class GoogleDriveFolderBrowserPage extends ConsumerStatefulWidget {
@@ -29,6 +30,8 @@ class _GoogleDriveFolderBrowserPageState
   static const Color _titleColor = AmaterasuColors.textPrimary;
   static const Color _secondaryTextColor = AmaterasuColors.textSecondary;
   static const Color _accentColor = AmaterasuColors.accentFlame;
+
+  AppLocalizations get _l10n => AppLocalizations.of(context)!;
 
   final List<_DrivePathEntry> _path = <_DrivePathEntry>[
     const _DrivePathEntry(id: 'root', name: 'Il mio Drive'),
@@ -75,7 +78,7 @@ class _GoogleDriveFolderBrowserPageState
         return;
       }
 
-      _showError('Impossibile caricare le cartelle di Google Drive.');
+      _showError(_l10n.driveBrowserLoadError);
     } finally {
       if (mounted) {
         setState(() {
@@ -130,8 +133,8 @@ class _GoogleDriveFolderBrowserPageState
         return AlertDialog(
           backgroundColor: _surfaceColor,
           surfaceTintColor: Colors.transparent,
-          title: const Text(
-            'Nuova cartella',
+          title: Text(
+            _l10n.driveBrowserNewFolder,
             style: TextStyle(color: _titleColor, fontWeight: FontWeight.w700),
           ),
           content: TextField(
@@ -139,8 +142,8 @@ class _GoogleDriveFolderBrowserPageState
             autofocus: true,
             style: const TextStyle(color: _titleColor),
             textCapitalization: TextCapitalization.sentences,
-            decoration: const InputDecoration(
-              labelText: 'Nome cartella',
+            decoration: InputDecoration(
+              labelText: _l10n.driveBrowserFolderName,
               labelStyle: TextStyle(color: _secondaryTextColor),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: _borderColor),
@@ -160,8 +163,8 @@ class _GoogleDriveFolderBrowserPageState
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(),
-              child: const Text(
-                'Annulla',
+              child: Text(
+                _l10n.driveBrowserCancel,
                 style: TextStyle(color: _secondaryTextColor),
               ),
             ),
@@ -177,7 +180,7 @@ class _GoogleDriveFolderBrowserPageState
                   Navigator.of(dialogContext).pop(trimmed);
                 }
               },
-              child: const Text('Crea'),
+              child: Text(_l10n.driveBrowserCreate),
             ),
           ],
         );
@@ -216,7 +219,7 @@ class _GoogleDriveFolderBrowserPageState
         return;
       }
 
-      _showError('Impossibile creare la cartella.');
+      _showError(_l10n.driveBrowserCreateError);
     } finally {
       if (mounted) {
         setState(() {
@@ -253,7 +256,7 @@ class _GoogleDriveFolderBrowserPageState
         return;
       }
 
-      _showError('Impossibile creare la cartella del viaggio.');
+      _showError(_l10n.driveBrowserTripFolderError);
     } finally {
       if (mounted) {
         setState(() {
@@ -285,8 +288,8 @@ class _GoogleDriveFolderBrowserPageState
           foregroundColor: _titleColor,
           surfaceTintColor: Colors.transparent,
           elevation: 0,
-          title: const Text(
-            'Scegli dove salvare',
+          title: Text(
+            _l10n.driveBrowserTitle,
             style: TextStyle(color: _titleColor, fontWeight: FontWeight.w700),
           ),
         ),
@@ -406,7 +409,7 @@ class _GoogleDriveFolderBrowserPageState
     }
 
     if (_folders.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
           padding: EdgeInsets.all(AmaterasuSpacing.xl),
           child: Column(
@@ -419,7 +422,7 @@ class _GoogleDriveFolderBrowserPageState
               ),
               SizedBox(height: 14),
               Text(
-                'Questa cartella è vuota',
+                _l10n.driveBrowserEmpty,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: _titleColor,
@@ -429,7 +432,7 @@ class _GoogleDriveFolderBrowserPageState
               ),
               SizedBox(height: 5),
               Text(
-                'Puoi creare qui la cartella del viaggio oppure aggiungere una nuova cartella.',
+                _l10n.driveBrowserEmptyHint,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: _secondaryTextColor,
@@ -526,7 +529,7 @@ class _GoogleDriveFolderBrowserPageState
                     ),
                   )
                 : const Icon(Icons.create_new_folder_outlined),
-            label: const Text('Nuova cartella'),
+            label: Text(_l10n.driveBrowserNewFolder),
           ),
           const SizedBox(height: 10),
           Container(
@@ -538,8 +541,8 @@ class _GoogleDriveFolderBrowserPageState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Cartella del viaggio',
+                Text(
+                  _l10n.driveBrowserTripFolder,
                   style: TextStyle(color: _secondaryTextColor, fontSize: 11.5),
                 ),
                 const SizedBox(height: AmaterasuSpacing.xs),
@@ -579,8 +582,8 @@ class _GoogleDriveFolderBrowserPageState
                 : const Icon(Icons.create_new_folder_rounded),
             label: Text(
               _creatingTripFolder
-                  ? 'Creazione in corso...'
-                  : 'Crea la cartella qui',
+                  ? _l10n.driveBrowserCreating
+                  : _l10n.driveBrowserCreateHere,
               style: const TextStyle(fontWeight: FontWeight.w700),
             ),
           ),

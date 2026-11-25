@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'trip_search_sources.dart';
 
 class TripSearchStart extends StatelessWidget {
@@ -43,10 +44,10 @@ class TripSearchStart extends StatelessWidget {
                   ),
                 ),
               ),
-              TextButton(
+              AmaterasuButton.tertiary(
                 key: const Key('search-recent-clear'),
                 onPressed: onClear,
-                child: Text(l10n.searchClearRecent),
+                label: l10n.searchClearRecent,
               ),
             ],
           ),

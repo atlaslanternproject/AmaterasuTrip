@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'amaterasu_web_link.dart';
 
 class AmaterasuLinksDraft {
@@ -94,7 +95,7 @@ class AmaterasuLinksField extends StatelessWidget {
           ),
           const SizedBox(height: AmaterasuSpacing.sm),
         ],
-        OutlinedButton.icon(
+        AmaterasuButton.secondary(
           key: Key('$keyPrefix-link-add'),
           onPressed: draft.rows.length >= draft.max
               ? null
@@ -102,8 +103,8 @@ class AmaterasuLinksField extends StatelessWidget {
                   draft.add();
                   onChanged();
                 },
-          icon: const Icon(Icons.add_link),
-          label: Text(l10n.commonLinkAdd),
+          icon: Icons.add_link,
+          label: l10n.commonLinkAdd,
         ),
       ],
     );
