@@ -3245,6 +3245,59 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripSectionFocusHidden => 'The item you searched for is hidden by the active filters: change the filters to see it.';
 
   @override
+  String get tripMoreExport => 'Export';
+
+  @override
+  String get tripMoreExportSubtitle => 'Trip calendar (.ics)';
+
+  @override
+  String get exportTitle => 'Export';
+
+  @override
+  String get exportIcs => 'Calendar (.ics)';
+
+  @override
+  String get exportIcsBody => 'Download a file to open with Google Calendar, Apple Calendar or Outlook. Times use the city time zone when you chose one, otherwise local time; stays fill the days from check-in to check-out; cancelled items are left out.';
+
+  @override
+  String get exportIcsPick => 'What to put in the calendar';
+
+  @override
+  String get exportIcsDownload => 'Download calendar';
+
+  @override
+  String exportIcsDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count events in the calendar',
+      one: '1 event in the calendar',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exportIcsEmpty => 'No item with a date in the chosen categories.';
+
+  @override
+  String get exportIcsFailed => 'Download failed: try again from the browser.';
+
+  @override
+  String exportIcsCode(String code) {
+    return 'Booking code: $code';
+  }
+
+  @override
+  String exportIcsCheckIn(String time) {
+    return 'Check-in $time';
+  }
+
+  @override
+  String exportIcsCheckOut(String time) {
+    return 'Check-out $time';
+  }
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.55.0",
+      "date": "2026-11-25",
+      "it": ["Nuovo in Altro: Esporta. Scarica il calendario del viaggio (.ics) scegliendo alloggi, trasporti, prenotazioni e ristoranti, con gli orari nel fuso giusto, da aprire con Google Calendar, Apple Calendario o Outlook.", "Il bottone principale manda a capo un testo lungo invece di tagliarlo."],
+      "en": ["New in More: Export. Download the trip calendar (.ics) choosing stays, transport, bookings and restaurants, with times in the right time zone, to open with Google Calendar, Apple Calendar or Outlook.", "The main button wraps a long label instead of cutting it."]
+    },
+    {
       "version": "1.54.0",
       "date": "2026-11-25",
       "it": ["Cerca trova anche le spese (quelle che vedi già: condivise con te e le tue private) e le attività della bucket list."],

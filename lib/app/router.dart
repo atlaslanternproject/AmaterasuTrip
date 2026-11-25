@@ -57,6 +57,7 @@ import '../features/support/presentation/support_page.dart';
 import '../features/trips/tools/convert/trip_convert_page.dart';
 import '../features/trips/tools/country_info/trip_country_info_page.dart';
 import '../features/trips/tools/weather/trip_weather_page.dart';
+import '../features/trips/tools/export/trip_export_page.dart';
 import '../features/trips/tools/search/trip_search_page.dart';
 import '../features/settings/presentation/pages/account/account_page.dart';
 import '../features/settings/presentation/pages/account/account_security_recovery_page.dart';
@@ -459,6 +460,12 @@ final amaterasuRouter = GoRouter(
           path: '/trips/:tripId/more/search',
           builder: (context, state) =>
               TripSearchPage(tripId: state.pathParameters['tripId']!),
+        ),
+        // ALTRO > ESPORTA (nuova tappa 3)
+        GoRoute(
+          path: '/trips/:tripId/more/export',
+          builder: (context, state) =>
+              TripExportPage(tripId: state.pathParameters['tripId']!),
         ),
         GoRoute(
           path: '/trips/:tripId/more/checklists',

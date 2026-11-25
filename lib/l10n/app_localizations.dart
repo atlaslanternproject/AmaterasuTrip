@@ -6287,6 +6287,84 @@ abstract class AppLocalizations {
   /// **'The item you searched for is hidden by the active filters: change the filters to see it.'**
   String get tripSectionFocusHidden;
 
+  /// No description provided for @tripMoreExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get tripMoreExport;
+
+  /// No description provided for @tripMoreExportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip calendar (.ics)'**
+  String get tripMoreExportSubtitle;
+
+  /// No description provided for @exportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get exportTitle;
+
+  /// No description provided for @exportIcs.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar (.ics)'**
+  String get exportIcs;
+
+  /// No description provided for @exportIcsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Download a file to open with Google Calendar, Apple Calendar or Outlook. Times use the city time zone when you chose one, otherwise local time; stays fill the days from check-in to check-out; cancelled items are left out.'**
+  String get exportIcsBody;
+
+  /// No description provided for @exportIcsPick.
+  ///
+  /// In en, this message translates to:
+  /// **'What to put in the calendar'**
+  String get exportIcsPick;
+
+  /// No description provided for @exportIcsDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Download calendar'**
+  String get exportIcsDownload;
+
+  /// No description provided for @exportIcsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 event in the calendar} other{{count} events in the calendar}}'**
+  String exportIcsDone(int count);
+
+  /// No description provided for @exportIcsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No item with a date in the chosen categories.'**
+  String get exportIcsEmpty;
+
+  /// No description provided for @exportIcsFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed: try again from the browser.'**
+  String get exportIcsFailed;
+
+  /// No description provided for @exportIcsCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking code: {code}'**
+  String exportIcsCode(String code);
+
+  /// No description provided for @exportIcsCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in {time}'**
+  String exportIcsCheckIn(String time);
+
+  /// No description provided for @exportIcsCheckOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-out {time}'**
+  String exportIcsCheckOut(String time);
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:

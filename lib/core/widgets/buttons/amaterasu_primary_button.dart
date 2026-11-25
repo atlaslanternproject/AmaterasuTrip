@@ -1,4 +1,5 @@
-// Bottone principale dell'app (alto 56), con stato di caricamento.
+// Bottone principale dell'app (alto 56), con stato di caricamento; un testo
+// lungo va a capo (al massimo 2 righe) invece di uscire dal bottone.
 
 import 'package:flutter/material.dart';
 import '../../theme/amaterasu_colors.dart';
@@ -44,11 +45,18 @@ class AmaterasuPrimaryButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (icon != null) ...[icon!, const SizedBox(width: 12)],
-                  Text(
-                    text,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                  // Flexible: a long label (or large text) wraps instead of
+                  // overflowing; when it fits nothing changes.
+                  Flexible(
+                    child: Text(
+                      text,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],

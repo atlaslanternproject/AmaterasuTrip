@@ -3245,6 +3245,59 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripSectionFocusHidden => 'L\'elemento cercato è nascosto dai filtri attivi: cambia i filtri per vederlo.';
 
   @override
+  String get tripMoreExport => 'Esporta';
+
+  @override
+  String get tripMoreExportSubtitle => 'Calendario .ics del viaggio';
+
+  @override
+  String get exportTitle => 'Esporta';
+
+  @override
+  String get exportIcs => 'Calendario (.ics)';
+
+  @override
+  String get exportIcsBody => 'Scarica un file da aprire con Google Calendar, Apple Calendario o Outlook. Gli orari usano il fuso della città quando lo hai scelto, altrimenti l\'ora locale; gli alloggi occupano le giornate dal check-in al check-out; gli elementi annullati non ci sono.';
+
+  @override
+  String get exportIcsPick => 'Cosa mettere nel calendario';
+
+  @override
+  String get exportIcsDownload => 'Scarica calendario';
+
+  @override
+  String exportIcsDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count eventi nel calendario',
+      one: '1 evento nel calendario',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exportIcsEmpty => 'Nessun elemento con una data nelle categorie scelte.';
+
+  @override
+  String get exportIcsFailed => 'Download non riuscito: riprova dal browser.';
+
+  @override
+  String exportIcsCode(String code) {
+    return 'Codice di prenotazione: $code';
+  }
+
+  @override
+  String exportIcsCheckIn(String time) {
+    return 'Check-in $time';
+  }
+
+  @override
+  String exportIcsCheckOut(String time) {
+    return 'Check-out $time';
+  }
+
+  @override
   String get settingsSupport => 'Assistenza e privacy';
 
   @override
