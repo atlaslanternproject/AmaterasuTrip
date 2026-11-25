@@ -314,8 +314,8 @@ Mappa/Itinerario).
 | Sezioni v2 - Note | fatta, pubblicata 1.32.0 il 25/11/2026 | feature/note-v2 | 1.32.0+36 |
 | Sezioni v2 - Shopping | fatta, pubblicata 1.33.0 il 25/11/2026 | feature/shopping-v2 | 1.33.0+37 |
 | Sezioni v2 - Link utili ovunque (senza Spese) | fatta, pubblicata 1.34.0 il 25/11/2026 | feature/link-utili | 1.34.0+38 |
-| Crea spesa dalle sezioni (+ link delle spese) | fatta (pubblicazione: vedi tappa seguente) | feature/crea-spesa | 1.35.0+39 |
-| Sezioni v2 - Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
+| Crea spesa dalle sezioni (+ link delle spese) | fatta, pubblicata 1.35.0 il 25/11/2026 | feature/crea-spesa | 1.35.0+39 |
+| Chiusure: link nel testo delle note, test valuta trasporti, test selezione multipla | fatta (pubblicazione: vedi tappa seguente) | fix/chiusure-v2 | 1.35.1+40 |
 | Extra A-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -665,3 +665,26 @@ Prove da fare sul sito:
 4. Nel dettaglio della spesa creata: "Origine e link" > "Vai al trasporto".
 5. Una spesa creata dalla pagina spese senza link: nessun riquadro nuovo.
 6. Prova a selezionare due persone e dimmi se il problema c'è ancora.
+
+## Chiusure dopo la 1.35.0
+1. Note: gli indirizzi web scritti nel testo (http/https) diventano link
+   da toccare e si aprono con AmaterasuLinkOpener (lib/core/links), come
+   i Link utili. Il punto o la virgola finale restano fuori dal link.
+   Modulo comune tripSectionRichText (parametro onLink).
+2. Test della valuta dei trasporti rimesso: budgetCurrencyChoices ha ora
+   un punto di sostituzione solo per i test (budgetCurrencyFetch); l'app
+   usa sempre Google come prima. Il test sceglie JPY da una lista finta.
+3. Selezione di più persone nel dialogo spese, percorsi provati con test:
+   - dialogo aperto da solo, finestra larga, tocco sul nome (3 persone);
+   - dialogo "solo condivisa" a larghezza telefono (390), tocco sulla
+     casella (3 persone);
+   - "Con tutti", togli una persona, pulsante "Tutti";
+   - dalla card di un trasporto ("Crea spesa"), tocco sul secondo
+     viaggiatore: selezionati in due.
+   Non provati (servono il sito vero o i tuoi passi): l'elenco dei membri
+   letto dal server (listTripMembers) con viaggiatori reali, il pannello
+   delle revisioni di una spesa già creata, il telefono vero (tocco).
+
+Prove da fare sul sito:
+1. Nota con "Sito: https://…" nel testo: il link si apre in una scheda.
+2. "Crea spesa" da un trasporto con due persone: selezionale entrambe.

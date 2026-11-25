@@ -3,7 +3,9 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'trip_section_entry.dart';
 import 'trip_section_rich_text.dart';
@@ -46,7 +48,22 @@ class TripSectionCardLine extends StatelessWidget {
         const SizedBox(width: AmaterasuSpacing.sm),
         Expanded(
           child: line.formatted
-              ? Text.rich(tripSectionRichText(line.text, _lineStyle))
+              ? Text.rich(
+                  tripSectionRichText(
+                    line.text,
+                    _lineStyle,
+                    onLink: (url) {
+                      final l10n = AppLocalizations.of(context)!;
+                      AmaterasuLinkOpener.openWebLink(
+                        context,
+                        url,
+                        invalidMessage: l10n.commonLinkInvalid,
+                        failedMessage: l10n.commonLinkOpenFailed,
+                        copyLabel: l10n.commonLinkCopy,
+                      );
+                    },
+                  ),
+                )
               : Text(line.text, style: _lineStyle),
         ),
       ],
