@@ -172,7 +172,8 @@ Componenti riutilizzabili:
 - lib/core/links/: AmaterasuWebLink (validazione link come
   la bucket list, indirizzo Google Maps), AmaterasuLinkOpener
   (nuova scheda, "Copia link" se non si apre, Google Maps con
-  errore), AmaterasuLinkChip. Da usare per ogni nuovo link;
+  errore), AmaterasuLinkChip, AmaterasuLinksField (campo
+  "Link utili" come la bucket list). Da usare per ogni nuovo link;
   la bucket list ha ancora la sua copia (TODO(audit)).
 - lib/core/places/ (modulo Luogo condiviso): ricerca
   Google (AmaterasuPlaceSearchField, amaterasuPlaceSearchProvider),
@@ -200,7 +201,9 @@ Componenti riutilizzabili:
   un TripSectionEntry, TripSectionList, TripSectionScaffold,
   TripSectionToolbar (filtri e vista ricordata con
   TripSectionViewMemory), titoli di gruppo (groupOf),
-  "Orari e prezzi" (TripSectionHoursButton), spesa collegata
+  "Orari e prezzi" (TripSectionHoursButton), "Link utili"
+  (TripSectionLinks, campo usefulLinks, TripSectionLinksBlock;
+  regola sectionLinks), spesa collegata
   (TripSectionExpenseTarget, footer e pulsante), conferma di
   eliminazione, editor (TripSectionEditorFrame, blocchi,
   giorno/ora, scelte, viaggiatori, costo, luogo). Nelle regole

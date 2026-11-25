@@ -312,7 +312,8 @@ Mappa/Itinerario).
 | Sezioni v2 - Luoghi salvati | fatta, pubblicata 1.30.0 il 25/11/2026 | feature/luoghi-v2 | 1.30.0+34 |
 | Sezioni v2 - Alloggi (aggiunte facoltative) | fatta, pubblicata 1.31.0 il 25/11/2026 | feature/alloggi-v2 | 1.31.0+35 |
 | Sezioni v2 - Note | fatta, pubblicata 1.32.0 il 25/11/2026 | feature/note-v2 | 1.32.0+36 |
-| Sezioni v2 - Shopping | fatta (pubblicazione: vedi tappa seguente) | feature/shopping-v2 | 1.33.0+37 |
+| Sezioni v2 - Shopping | fatta, pubblicata 1.33.0 il 25/11/2026 | feature/shopping-v2 | 1.33.0+37 |
+| Sezioni v2 - Link utili ovunque (senza Spese) | fatta (pubblicazione: vedi tappa seguente) | feature/link-utili | 1.34.0+38 |
 | Sezioni v2 - Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
@@ -587,3 +588,44 @@ Prove da fare sul sito:
 2. Priorità SS/S/A/B: la lista mette in alto le SS.
 3. Spuntando "comprato" dalla card compare "Comprato da <username>".
 4. Togliendo la spunta "Comprato da" sparisce.
+
+## Sezioni v2 - Link utili ovunque
+Valutazione (regola 1): (a) la bucket list ha il suo campo "Link utili"
+(elenco di indirizzi) e le card delle sezioni mostravano già i link come
+chip; (b) creato il campo comune AmaterasuLinksField in lib/core/links con
+lo stesso aspetto e comportamento di quello della bucket list (che resta
+com'è, approvata), il blocco TripSectionLinksBlock e TripSectionLinks
+(campo usefulLinks, al massimo 10); (c) tocca le regole delle sezioni
+nuove (funzione sectionLinks e chiave usefulLinks); test di regole, dati,
+editor e card.
+
+Commit: 4715b67.
+
+Dove: Trasporti, Prenotazioni, Ristoranti, Luoghi salvati, Note,
+Shopping, Ricordi (blocco "Link utili" in fondo all'editor, chip con il
+nome del sito nella card) e voci della Checklist (fino a 3 link nella
+scheda della voce, chip sotto la voce).
+
+Spese: NON fatto. La funzione del server che crea e modifica le spese
+(Cloud Function del modulo soldi, approvato) non ha un campo link:
+servirebbe cambiarla. Come chiesto dal prompt mi fermo qui e aspetto
+l'ok.
+
+Impatto sulle regole: (1) nelle sezioni nuove è ammesso il campo
+usefulLinks (fino a 10 indirizzi http/https senza spazi, controllati
+insieme con un solo confronto; il limite di 2048 caratteri per link resta
+nell'app). (2) Le funzioni comuni section* (luogo, giorno, ora, fuso) e i
+testi brevi dei trasporti ora usano un solo controllo per campo, con lo
+stesso significato: senza questo, un trasporto con tutti i campi più
+costo e spesa collegata superava già il limite di 1000 operazioni di
+Firestore (problema presente dalla 1.27.0, ora risolto e coperto da un
+test). Le regole degli alloggi, del budget e della bucket list non
+cambiano.
+
+Prove da fare sul sito:
+1. In ogni editor delle sezioni elencate c'è "Link utili" in fondo:
+   aggiungi due link, salva; nella card compaiono come chip col sito.
+2. Un link senza http:// o https:// non si salva e compare l'errore.
+3. Nella Checklist apri una voce, aggiungi un link: compare sotto la voce.
+4. Un trasporto con molti campi compilati, costo e spesa collegata si
+   salva senza errori.
