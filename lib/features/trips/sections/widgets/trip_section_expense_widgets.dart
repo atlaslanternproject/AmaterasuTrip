@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_shown_amount_text.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_details_dialog.dart';
@@ -112,13 +113,12 @@ class TripSectionExpenseFooter extends StatelessWidget {
               size: 18,
               color: AmaterasuColors.accentBudget,
             ),
-            Text(
-              '${l10n.sectionsExpenseLinkedTitle(data['title']?.toString() ?? '')}'
-              '${amount.isEmpty ? '' : ' · $amount'}',
-              style: const TextStyle(
-                color: AmaterasuColors.textPrimary,
-                fontSize: 13,
+            _ExpenseLine(
+              title: l10n.sectionsExpenseLinkedTitle(
+                data['title']?.toString() ?? '',
               ),
+              expense: data,
+              amount: amount,
             ),
             TextButton(
               key: Key('$p-expense-view-$id'),
@@ -183,6 +183,45 @@ class TripSectionExpenseButton extends StatelessWidget {
             ? null
             : () => _view(context, api, expenseId, data),
       ),
+    );
+  }
+}
+
+/// "Spesa collegata: title · amount", the amount in the display currency
+/// with the rate of the expense (same as the budget, Extra E7).
+class _ExpenseLine extends StatelessWidget {
+  const _ExpenseLine({
+    required this.title,
+    required this.expense,
+    required this.amount,
+  });
+
+  final String title;
+  final Map<String, dynamic> expense;
+
+  /// Original amount text ('' when unknown).
+  final String amount;
+
+  static const _style = TextStyle(
+    color: AmaterasuColors.textPrimary,
+    fontSize: 13,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    final snapshot = expense['snapshot'];
+    final total = snapshot is Map ? snapshot['total'] : null;
+    final minor = total is Map ? total['minorUnits'] : null;
+    final currency = total is Map ? total['currency'] : null;
+    if (minor is! int || currency is! String) {
+      return Text(amount.isEmpty ? title : '$title · $amount', style: _style);
+    }
+    return BudgetShownAmountText(
+      minorUnits: minor,
+      currency: currency,
+      expense: expense,
+      text: (a) => '$title · $a',
+      style: _style,
     );
   }
 }

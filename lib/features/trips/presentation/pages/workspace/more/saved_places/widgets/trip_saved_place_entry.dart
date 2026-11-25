@@ -110,6 +110,8 @@ TripSectionEntry tripSavedPlaceEntry(
         TripSectionLine(
           Icons.confirmation_number_outlined,
           l10n.savedPlaceEntryPriceValue(price),
+          money: (item.entryPriceMinorUnits!, item.entryPriceCurrency!),
+          moneyText: l10n.savedPlaceEntryPriceValue,
         ),
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),

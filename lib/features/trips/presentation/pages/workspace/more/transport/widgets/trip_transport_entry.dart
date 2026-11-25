@@ -91,6 +91,8 @@ TripSectionEntry tripTransportEntry(
           Icons.payments_outlined,
           cost,
           key: Key('transport-cost-${item.id}'),
+          money: (item.estimatedCostMinorUnits!, item.estimatedCostCurrency!),
+          moneyText: l10n.sectionsCostEstimated,
         ),
       ...tripTransportExtraLines(
         l10n,

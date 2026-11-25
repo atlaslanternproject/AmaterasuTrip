@@ -5,6 +5,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_shown_amount_text.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 import 'package:amaterasutrip/features/trips/budget/calculations/budget_money_formatter.dart';
@@ -22,6 +23,11 @@ class TripStayCardDetails extends StatelessWidget {
 
   final TripStay stay;
   final List<String> guestNames;
+
+  static const _style = TextStyle(
+    color: AmaterasuColors.textSecondary,
+    fontSize: 13,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +56,8 @@ class TripStayCardDetails extends StatelessWidget {
             l10n.staysCostEstimated(
               BudgetMoneyFormatter.format(cost, currency),
             ),
+            // In the display currency of Appearance (Extra E7).
+            money: (cost, currency, l10n.staysCostEstimated),
             key: const Key('stay-cost-line'),
           ),
         if (amenities.isNotEmpty)
@@ -72,7 +80,12 @@ class TripStayCardDetails extends StatelessWidget {
     );
   }
 
-  Widget _line(IconData icon, String text, {Key? key}) => Padding(
+  Widget _line(
+    IconData icon,
+    String text, {
+    Key? key,
+    (int, String, String Function(String))? money,
+  }) => Padding(
     key: key,
     padding: const EdgeInsets.only(top: 10),
     child: Row(
@@ -81,13 +94,14 @@ class TripStayCardDetails extends StatelessWidget {
         Icon(icon, size: 16, color: AmaterasuColors.textSecondary),
         const SizedBox(width: AmaterasuSpacing.sm),
         Expanded(
-          child: Text(
-            text,
-            style: const TextStyle(
-              color: AmaterasuColors.textSecondary,
-              fontSize: 13,
-            ),
-          ),
+          child: money == null
+              ? Text(text, style: _style)
+              : BudgetShownAmountText(
+                  minorUnits: money.$1,
+                  currency: money.$2,
+                  text: money.$3,
+                  style: _style,
+                ),
         ),
       ],
     ),

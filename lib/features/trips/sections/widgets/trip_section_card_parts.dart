@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_shown_amount_text.dart';
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -47,7 +48,14 @@ class TripSectionCardLine extends StatelessWidget {
         Icon(line.icon, size: 16, color: AmaterasuColors.textSecondary),
         const SizedBox(width: AmaterasuSpacing.sm),
         Expanded(
-          child: line.formatted
+          child: line.money != null && line.moneyText != null
+              ? BudgetShownAmountText(
+                  minorUnits: line.money!.$1,
+                  currency: line.money!.$2,
+                  text: line.moneyText!,
+                  style: _lineStyle,
+                )
+              : line.formatted
               ? Text.rich(
                   tripSectionRichText(
                     line.text,

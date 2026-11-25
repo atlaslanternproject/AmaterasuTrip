@@ -21,7 +21,8 @@ void main() {
     );
   }
 
-  testWidgets('same currency shows original in Italian', (tester) async {
+  // Extra E7 (decided 25/11/2026): no 'Original' line with the same currency.
+  testWidgets('same currency shows only the amount in Italian', (tester) async {
     await tester.pumpWidget(
       screen(
         const BudgetDisplayAmount(
@@ -33,10 +34,10 @@ void main() {
     );
 
     expect(find.text('12,50 EUR'), findsOneWidget);
-    expect(find.text('Originale: 12,50 EUR'), findsOneWidget);
+    expect(find.textContaining('Originale'), findsNothing);
   });
 
-  testWidgets('same currency shows original in English', (tester) async {
+  testWidgets('same currency shows only the amount in English', (tester) async {
     await tester.pumpWidget(
       screen(
         const BudgetDisplayAmount(
@@ -49,7 +50,7 @@ void main() {
     );
 
     expect(find.text('12,50 EUR'), findsOneWidget);
-    expect(find.text('Original: 12,50 EUR'), findsOneWidget);
+    expect(find.textContaining('Original'), findsNothing);
   });
 
   testWidgets('converted amount keeps original beneath', (tester) async {

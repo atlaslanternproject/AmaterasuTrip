@@ -4,7 +4,6 @@
 import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
@@ -46,13 +45,12 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
   BudgetExpenseFilters _filters = const BudgetExpenseFilters();
   String? _displayCurrency;
 
-  String get _displayPreferenceKey =>
-      'amaterasu.b6.summary.${_api.currentUid}.${widget.tripId}';
-
   @override
   void initState() {
     super.initState();
-    _restoreDisplayCurrency();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _restoreDisplayCurrency();
+    });
     // B8.6: keep traveler names inside shared expenses (best effort).
     _api.syncParticipantNames;
   }
