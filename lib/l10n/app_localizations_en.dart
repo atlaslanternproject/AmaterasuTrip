@@ -3601,6 +3601,186 @@ class AppLocalizationsEn extends AppLocalizations {
   String get driveBrowserCreateHere => 'Create the folder here';
 
   @override
+  String get itineraryDraft => 'Draft: example data, not saved';
+
+  @override
+  String get itineraryViewTimeline => 'Timeline';
+
+  @override
+  String get itineraryViewDay => 'Day by day';
+
+  @override
+  String get itineraryViewMap => 'Map';
+
+  @override
+  String itineraryDayTitle(int number, String date) {
+    return 'Day $number · $date';
+  }
+
+  @override
+  String get itineraryNoZone => 'No zone';
+
+  @override
+  String itineraryZoneSummary(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count items',
+      one: '1 item',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get itineraryFreeDay => 'Free day';
+
+  @override
+  String get itineraryFreeItem => 'Free item';
+
+  @override
+  String itineraryActual(String text) {
+    return 'Done instead: $text';
+  }
+
+  @override
+  String itineraryOverlap(String first, String second) {
+    return '«$first» and «$second» are less than an hour apart.';
+  }
+
+  @override
+  String itineraryEmptyDays(String days) {
+    return 'Days without items: $days.';
+  }
+
+  @override
+  String itineraryLeg(String distance, String name) {
+    return '$distance as the crow flies to «$name»';
+  }
+
+  @override
+  String get itineraryWalk => 'Open walking route on Google Maps';
+
+  @override
+  String get itineraryMapsFailed => 'Unable to open Google Maps.';
+
+  @override
+  String get itineraryAdd => 'Add item';
+
+  @override
+  String get itineraryAddFree => 'Free item';
+
+  @override
+  String get itineraryAddFreeDay => 'Free day';
+
+  @override
+  String get itineraryAddExisting => 'From an existing element';
+
+  @override
+  String get itineraryEditTitle => 'Itinerary item';
+
+  @override
+  String get itineraryBlockWhat => 'What';
+
+  @override
+  String get itineraryBlockWhen => 'When';
+
+  @override
+  String get itineraryBlockWhere => 'Where';
+
+  @override
+  String get itineraryBlockActual => 'Planned / done';
+
+  @override
+  String get itineraryFieldTitle => 'Title';
+
+  @override
+  String get itineraryFieldTime => 'Time (HH:MM, optional)';
+
+  @override
+  String get itineraryFieldZone => 'Zone';
+
+  @override
+  String get itineraryFieldNote => 'Note';
+
+  @override
+  String get itineraryFieldActual => 'Done instead (if it went differently)';
+
+  @override
+  String get itinerarySave => 'Save';
+
+  @override
+  String get itineraryCancel => 'Cancel';
+
+  @override
+  String get itineraryDelete => 'Delete';
+
+  @override
+  String get itineraryDeleteTitle => 'Delete the item?';
+
+  @override
+  String itineraryDeleteBody(String name) {
+    return '«$name» leaves the itinerary; the section element stays.';
+  }
+
+  @override
+  String get itineraryReorder => 'Reorder';
+
+  @override
+  String get itineraryReorderDone => 'Done';
+
+  @override
+  String get itineraryReorderHint => 'Drag the items of the day. Moved items lose their time and follow the manual order.';
+
+  @override
+  String get itineraryReorderFilters => 'Remove the filters to reorder.';
+
+  @override
+  String get itineraryShare => 'Share the day';
+
+  @override
+  String itineraryShareHeader(String date) {
+    return 'Plan for $date';
+  }
+
+  @override
+  String get itineraryFilterSection => 'Section';
+
+  @override
+  String get itineraryFilterPerson => 'Person';
+
+  @override
+  String get itineraryFilterStatus => 'Status';
+
+  @override
+  String get itineraryFilterDay => 'Day';
+
+  @override
+  String get itineraryAll => 'All';
+
+  @override
+  String get itineraryEmpty => 'No item with these filters.';
+
+  @override
+  String get itineraryToday => 'Today';
+
+  @override
+  String get mapOpenSection => 'Open the section';
+
+  @override
+  String get mapOpenMaps => 'Open in Maps';
+
+  @override
+  String mapPlaces(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count places',
+      one: '1 place',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

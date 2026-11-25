@@ -13,11 +13,15 @@ class TripSectionHeader extends StatelessWidget {
     required this.tripId,
     required this.title,
     this.action,
+    this.backRoute,
   });
 
   final String tripId;
   final String title;
   final Widget? action;
+
+  /// Where the arrow goes; Altro when null (Itinerario: the trip home).
+  final String? backRoute;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -25,7 +29,7 @@ class TripSectionHeader extends StatelessWidget {
     child: Row(
       children: [
         IconButton(
-          onPressed: () => context.go('/trips/$tripId/more'),
+          onPressed: () => context.go(backRoute ?? '/trips/$tripId/more'),
           icon: const Icon(
             Icons.arrow_back_rounded,
             color: AmaterasuColors.textPrimary,

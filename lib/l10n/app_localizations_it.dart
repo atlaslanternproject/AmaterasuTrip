@@ -3601,6 +3601,186 @@ class AppLocalizationsIt extends AppLocalizations {
   String get driveBrowserCreateHere => 'Crea la cartella qui';
 
   @override
+  String get itineraryDraft => 'Bozza: dati di esempio, non si salva';
+
+  @override
+  String get itineraryViewTimeline => 'Linea del tempo';
+
+  @override
+  String get itineraryViewDay => 'Giorno per giorno';
+
+  @override
+  String get itineraryViewMap => 'Mappa';
+
+  @override
+  String itineraryDayTitle(int number, String date) {
+    return 'Giorno $number · $date';
+  }
+
+  @override
+  String get itineraryNoZone => 'Senza zona';
+
+  @override
+  String itineraryZoneSummary(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count voci',
+      one: '1 voce',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get itineraryFreeDay => 'Giornata libera';
+
+  @override
+  String get itineraryFreeItem => 'Voce libera';
+
+  @override
+  String itineraryActual(String text) {
+    return 'Fatto invece: $text';
+  }
+
+  @override
+  String itineraryOverlap(String first, String second) {
+    return '«$first» e «$second» sono a meno di un\'ora di distanza.';
+  }
+
+  @override
+  String itineraryEmptyDays(String days) {
+    return 'Giorni senza voci: $days.';
+  }
+
+  @override
+  String itineraryLeg(String distance, String name) {
+    return '$distance in linea d\'aria fino a «$name»';
+  }
+
+  @override
+  String get itineraryWalk => 'Apri a piedi su Google Maps';
+
+  @override
+  String get itineraryMapsFailed => 'Impossibile aprire Google Maps.';
+
+  @override
+  String get itineraryAdd => 'Aggiungi voce';
+
+  @override
+  String get itineraryAddFree => 'Voce libera';
+
+  @override
+  String get itineraryAddFreeDay => 'Giornata libera';
+
+  @override
+  String get itineraryAddExisting => 'Da un elemento esistente';
+
+  @override
+  String get itineraryEditTitle => 'Voce dell\'itinerario';
+
+  @override
+  String get itineraryBlockWhat => 'Cosa';
+
+  @override
+  String get itineraryBlockWhen => 'Quando';
+
+  @override
+  String get itineraryBlockWhere => 'Dove';
+
+  @override
+  String get itineraryBlockActual => 'Previsto / fatto';
+
+  @override
+  String get itineraryFieldTitle => 'Titolo';
+
+  @override
+  String get itineraryFieldTime => 'Ora (HH:MM, facoltativa)';
+
+  @override
+  String get itineraryFieldZone => 'Zona';
+
+  @override
+  String get itineraryFieldNote => 'Nota';
+
+  @override
+  String get itineraryFieldActual => 'Fatto invece (se è andata diversamente)';
+
+  @override
+  String get itinerarySave => 'Salva';
+
+  @override
+  String get itineraryCancel => 'Annulla';
+
+  @override
+  String get itineraryDelete => 'Elimina';
+
+  @override
+  String get itineraryDeleteTitle => 'Eliminare la voce?';
+
+  @override
+  String itineraryDeleteBody(String name) {
+    return '«$name» esce dall\'itinerario; l\'elemento della sezione resta.';
+  }
+
+  @override
+  String get itineraryReorder => 'Riordina';
+
+  @override
+  String get itineraryReorderDone => 'Fine';
+
+  @override
+  String get itineraryReorderHint => 'Trascina le voci del giorno. Le voci spostate perdono l\'ora e seguono l\'ordine a mano.';
+
+  @override
+  String get itineraryReorderFilters => 'Togli i filtri per riordinare.';
+
+  @override
+  String get itineraryShare => 'Condividi il giorno';
+
+  @override
+  String itineraryShareHeader(String date) {
+    return 'Programma del $date';
+  }
+
+  @override
+  String get itineraryFilterSection => 'Sezione';
+
+  @override
+  String get itineraryFilterPerson => 'Persona';
+
+  @override
+  String get itineraryFilterStatus => 'Stato';
+
+  @override
+  String get itineraryFilterDay => 'Giorno';
+
+  @override
+  String get itineraryAll => 'Tutti';
+
+  @override
+  String get itineraryEmpty => 'Nessuna voce con questi filtri.';
+
+  @override
+  String get itineraryToday => 'Oggi';
+
+  @override
+  String get mapOpenSection => 'Apri la sezione';
+
+  @override
+  String get mapOpenMaps => 'Apri su Maps';
+
+  @override
+  String mapPlaces(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count luoghi',
+      one: '1 luogo',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get settingsSupport => 'Assistenza e privacy';
 
   @override
