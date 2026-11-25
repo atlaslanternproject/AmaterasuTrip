@@ -334,7 +334,8 @@ Mappa/Itinerario).
 | Extra G - Caricamento con il sole | fatta, pubblicata 1.48.0 il 25/11/2026 | feature/caricamento | 1.48.0+53 |
 | Extra H - Verifica finale | fatta (vedi sotto) | docs/verifica-finale | - |
 | Nuova tappa 1a - Converti | fatta (pubblicazione: vedi tappa seguente) | feature/converti | 1.49.0+54 |
-| Nuova tappa 1b - Meteo, 1c - Info paese | da fare | - | - |
+| Nuova tappa 1b - Meteo | fatta | feature/meteo | 1.50.0+56 |
+| Nuova tappa 1c - Info paese | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1207,3 +1208,30 @@ Prove da fare sul sito:
 1. Con un account di prova invia una segnalazione, poi cancella
    l'account: in console Firebase la raccolta feedback non ha più i
    suoi messaggi.
+
+## Nuova tappa 1b - Meteo
+Valutazione (regola 1): (a) non esisteva nulla di meteo; esistevano la
+funzione dei cambi con chiamata esterna dal server, i blocchi a tendina
+delle sezioni, TripSectionHeader e AmaterasuLinkChip; (b) si riusano
+identici; la nuova funzione getTripWeather segue lo schema delle altre
+(verifica dell'email, solo membri, europe-west1); (c) nessuna modifica a
+firestore.rules (la cache weatherCache è già negata ai client dalla regola
+finale "nega tutto"), una riga in trip-duplication-policy (cache non
+copiata, come le sezioni); deleteTrip la cancella già con le altre
+sottoraccolte. Test: funzioni (sintesi, periodi del clima, giorno del
+viaggio, duplicazione), app (regole, link, dati, pagina, errori, 130 %).
+
+- Pagina Altro > Meteo: aggiornamento, "Apri su 3B Meteo", previsioni per
+  16 giorni con la scritta "Viaggio" sui giorni del viaggio (si sceglie un
+  giorno), ora per ora con alba, tramonto, vento e UV, "Cosa mettere"
+  (regole fisse), "Aria e pollini", "Clima tipico del periodo", fonte.
+- Viaggio oltre i 16 giorni: avviso, meteo di questi giorni e clima.
+- Errori: senza destinazione sulla mappa un messaggio; servizio fermo
+  "Riprova" oppure i dati dell'ultimo aggiornamento con avviso.
+- Funzioni sul server: 33 (controllo della pubblicazione aggiornato).
+
+Prove da fare sul sito:
+1. Altro > Meteo in un viaggio a Roma: giorni con temperature, "Apri su
+   3B Meteo" apre la pagina di Roma.
+2. Riaprire la pagina nella stessa sessione non ricarica (nessuna rotella).
+3. Viaggio all'estero: "Apri su 3B Meteo" apre la home con la ricerca.

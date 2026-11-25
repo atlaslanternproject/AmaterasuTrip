@@ -2853,6 +2853,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripMoreConvertSubtitle => 'Valute, unità, taglie e mancia';
 
   @override
+  String get tripMoreWeather => 'Meteo';
+
+  @override
+  String get tripMoreWeatherSubtitle => 'Previsioni, clima, aria e cosa mettere';
+
+  @override
   String get convertTitle => 'Converti';
 
   @override
@@ -2912,6 +2918,204 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get zoneSource => 'Dati delle città: Open-Meteo.com (CC BY 4.0)';
+
+  @override
+  String get weatherTitle => 'Meteo';
+
+  @override
+  String get weatherForecast => 'Previsioni';
+
+  @override
+  String weatherForecastNote(String place) {
+    return 'Previsioni per 16 giorni a $place. I giorni del viaggio hanno la scritta «Viaggio».';
+  }
+
+  @override
+  String get weatherTripFar => 'Il viaggio è oltre i 16 giorni di previsione: intanto vedi il meteo di questi giorni a destinazione e il clima tipico del periodo.';
+
+  @override
+  String get weatherTripDay => 'Viaggio';
+
+  @override
+  String weatherHours(String day) {
+    return 'Ora per ora · $day';
+  }
+
+  @override
+  String weatherRainChance(String value) {
+    return '$value% pioggia';
+  }
+
+  @override
+  String weatherSun(String sunrise, String sunset) {
+    return 'Alba $sunrise · tramonto $sunset';
+  }
+
+  @override
+  String weatherWindUv(String wind, String uv) {
+    return 'Vento fino a $wind km/h · UV $uv';
+  }
+
+  @override
+  String get weatherClimate => 'Clima tipico del periodo';
+
+  @override
+  String weatherClimateBody(String years, String max, String min, String precip, String rainy) {
+    return 'Media degli stessi giorni negli anni $years: massime $max°, minime $min°, $precip mm di pioggia al giorno, giorni di pioggia $rainy%.';
+  }
+
+  @override
+  String get weatherClimateNone => 'Clima tipico non disponibile ora.';
+
+  @override
+  String get weatherAir => 'Aria e pollini';
+
+  @override
+  String weatherAirIndex(String level, String value) {
+    return 'Qualità dell\'aria: $level (indice europeo $value)';
+  }
+
+  @override
+  String get weatherAirNone => 'Qualità dell\'aria non disponibile per questo giorno.';
+
+  @override
+  String get weatherPollenNone => 'Pollini: nessun dato (solo in Europa e nella stagione dei pollini).';
+
+  @override
+  String weatherPollenLine(String kind, String level) {
+    return '$kind: $level';
+  }
+
+  @override
+  String get weatherWear => 'Cosa mettere';
+
+  @override
+  String get weatherWearNote => 'Consigli con regole fisse da temperatura, pioggia, neve, vento e raggi UV.';
+
+  @override
+  String get weatherUnavailable => 'Meteo non disponibile ora. Riprova più tardi.';
+
+  @override
+  String get weatherNoDestination => 'Il viaggio non ha una destinazione sulla mappa: aggiungila nelle impostazioni del viaggio.';
+
+  @override
+  String get weatherRetry => 'Riprova';
+
+  @override
+  String get weatherStale => 'Il servizio meteo non risponde: vedi i dati dell\'ultimo aggiornamento.';
+
+  @override
+  String weatherUpdated(String date, String time) {
+    return 'Aggiornato il $date alle $time';
+  }
+
+  @override
+  String get weatherOpen3b => 'Apri su 3B Meteo';
+
+  @override
+  String get weatherSource => 'Dati meteo: Open-Meteo.com (CC BY 4.0), riassunti per giorno.';
+
+  @override
+  String get weatherSkyClear => 'Sereno';
+
+  @override
+  String get weatherSkyPartly => 'Poco nuvoloso';
+
+  @override
+  String get weatherSkyCloudy => 'Nuvoloso';
+
+  @override
+  String get weatherSkyFog => 'Nebbia';
+
+  @override
+  String get weatherSkyDrizzle => 'Pioviggine';
+
+  @override
+  String get weatherSkyRain => 'Pioggia';
+
+  @override
+  String get weatherSkySnow => 'Neve';
+
+  @override
+  String get weatherSkyStorm => 'Temporale';
+
+  @override
+  String get weatherWearLight => 'Vestiti leggeri e traspiranti';
+
+  @override
+  String get weatherWearSunHat => 'Cappello e crema solare';
+
+  @override
+  String get weatherWearTshirt => 'Maglietta';
+
+  @override
+  String get weatherWearLightLayer => 'Uno strato leggero per la sera';
+
+  @override
+  String get weatherWearSweater => 'Felpa o giacca leggera';
+
+  @override
+  String get weatherWearWarmCoat => 'Giacca pesante';
+
+  @override
+  String get weatherWearHeavyCoat => 'Cappotto invernale';
+
+  @override
+  String get weatherWearHatGloves => 'Berretto, sciarpa e guanti';
+
+  @override
+  String get weatherWearUmbrella => 'Ombrello o impermeabile';
+
+  @override
+  String get weatherWearBoots => 'Scarpe impermeabili';
+
+  @override
+  String get weatherWearWindproof => 'Giacca antivento';
+
+  @override
+  String get weatherWearSunscreen => 'Crema solare';
+
+  @override
+  String get weatherAirGood => 'buona';
+
+  @override
+  String get weatherAirFair => 'discreta';
+
+  @override
+  String get weatherAirModerate => 'moderata';
+
+  @override
+  String get weatherAirPoor => 'scarsa';
+
+  @override
+  String get weatherAirVeryPoor => 'molto scarsa';
+
+  @override
+  String get weatherPollenLow => 'basso';
+
+  @override
+  String get weatherPollenMedium => 'medio';
+
+  @override
+  String get weatherPollenHigh => 'alto';
+
+  @override
+  String get weatherPollenAlder => 'Ontano';
+
+  @override
+  String get weatherPollenBirch => 'Betulla';
+
+  @override
+  String get weatherPollenGrass => 'Graminacee';
+
+  @override
+  String get weatherPollenMugwort => 'Artemisia';
+
+  @override
+  String get weatherPollenOlive => 'Olivo';
+
+  @override
+  String get weatherPollenRagweed => 'Ambrosia';
 
   @override
   String get settingsSupport => 'Assistenza e privacy';

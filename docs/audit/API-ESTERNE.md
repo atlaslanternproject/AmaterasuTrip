@@ -68,6 +68,35 @@ possono cambiare: ricontrollare prima di ogni nuova funzione.
 - Fonti: [Place Details (New) fields](https://developers.google.com/maps/documentation/places/web-service/place-details),
   [usage and billing](https://developers.google.com/maps/documentation/places/web-service/usage-and-billing).
 
+### Open-Meteo: Meteo del viaggio (in uso dalla 1.50.0)
+- Chiamate solo dalla funzione getTripWeather (server, europe-west1),
+  mai dall'app né per ogni card: previsione (16 giorni, giornaliera e
+  oraria), qualità dell'aria e pollini (5 giorni; pollini solo in Europa
+  e in stagione), storico degli stessi giorni dei 3 anni precedenti
+  (al massimo 14 giorni per anno) per il clima tipico.
+- Cache condivisa per viaggio in trips/{tripId}/weatherCache/current
+  (scritta solo dal server, negata ai client dalle regole): previsione e
+  aria per 3 ore, clima per 30 giorni; si rifà se cambiano destinazione o
+  date. L'app chiama la funzione una volta per viaggio e per sessione.
+- Conto delle chiamate: al massimo 3 ogni 3 ore per viaggio (la
+  previsione ha più di 10 variabili e Open-Meteo la conta come 2) più 3
+  al mese per il clima: molto sotto i 10.000 al giorno.
+- Se il servizio non risponde: dati dell'ultimo aggiornamento con un
+  avviso; senza dati salvati "Meteo non disponibile ora" con "Riprova";
+  aria e clima mancanti non bloccano la pagina (funzione limitata, non
+  bloccata).
+- Fonte citata nella pagina: "Dati meteo: Open-Meteo.com (CC BY 4.0),
+  riassunti per giorno" (indicazione delle modifiche).
+- Fonti: [forecast API](https://open-meteo.com/en/docs),
+  [air quality API](https://open-meteo.com/en/docs/air-quality-api),
+  [historical API](https://open-meteo.com/en/docs/historical-weather-api).
+
+### 3B Meteo (link, in uso dalla 1.50.0)
+- Solo il pulsante "Apri su 3B Meteo", nessun dato scaricato. Città
+  italiane: pagina /meteo/<città> (spazi con "+", senza accenti, provato
+  su roma, reggio+emilia, forli). Estero: il sito vuole un suo numero per
+  città che l'app non conosce, quindi si apre la home con la ricerca.
+
 ### Open-Meteo Geocoding (fuso orario per città, in uso dalla 1.38.0)
 - Gratuita, senza chiave, uso non commerciale (stessi termini di
   Open-Meteo sopra); restituisce città, regione, paese e fuso IANA.

@@ -76,3 +76,6 @@ export {
   declareBudgetPayment,
   voidBudgetPayment,
 } from "./budget/budget-functions";
+
+// Weather of the trip destination (v1.50.0), shared cache per trip.
+export {getTripWeather} from "./weather/get-trip-weather";

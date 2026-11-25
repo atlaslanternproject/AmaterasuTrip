@@ -5579,6 +5579,18 @@ abstract class AppLocalizations {
   /// **'Currencies, units, sizes and tip'**
   String get tripMoreConvertSubtitle;
 
+  /// No description provided for @tripMoreWeather.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get tripMoreWeather;
+
+  /// No description provided for @tripMoreWeatherSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forecast, climate, air and what to wear'**
+  String get tripMoreWeatherSubtitle;
+
   /// No description provided for @convertTitle.
   ///
   /// In en, this message translates to:
@@ -5692,6 +5704,366 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'City data: Open-Meteo.com (CC BY 4.0)'**
   String get zoneSource;
+
+  /// No description provided for @weatherTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get weatherTitle;
+
+  /// No description provided for @weatherForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'Forecast'**
+  String get weatherForecast;
+
+  /// No description provided for @weatherForecastNote.
+  ///
+  /// In en, this message translates to:
+  /// **'16-day forecast for {place}. Trip days are marked «Trip».'**
+  String weatherForecastNote(String place);
+
+  /// No description provided for @weatherTripFar.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip is beyond the 16 days of forecast: meanwhile see the weather of these days at the destination and the typical climate of the period.'**
+  String get weatherTripFar;
+
+  /// No description provided for @weatherTripDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip'**
+  String get weatherTripDay;
+
+  /// No description provided for @weatherHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Hour by hour · {day}'**
+  String weatherHours(String day);
+
+  /// No description provided for @weatherRainChance.
+  ///
+  /// In en, this message translates to:
+  /// **'{value}% rain'**
+  String weatherRainChance(String value);
+
+  /// No description provided for @weatherSun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise {sunrise} · sunset {sunset}'**
+  String weatherSun(String sunrise, String sunset);
+
+  /// No description provided for @weatherWindUv.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind up to {wind} km/h · UV {uv}'**
+  String weatherWindUv(String wind, String uv);
+
+  /// No description provided for @weatherClimate.
+  ///
+  /// In en, this message translates to:
+  /// **'Typical climate of the period'**
+  String get weatherClimate;
+
+  /// No description provided for @weatherClimateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Average of the same days in {years}: highs {max}°, lows {min}°, {precip} mm of rain a day, rainy days {rainy}%.'**
+  String weatherClimateBody(String years, String max, String min, String precip, String rainy);
+
+  /// No description provided for @weatherClimateNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Typical climate not available now.'**
+  String get weatherClimateNone;
+
+  /// No description provided for @weatherAir.
+  ///
+  /// In en, this message translates to:
+  /// **'Air and pollen'**
+  String get weatherAir;
+
+  /// No description provided for @weatherAirIndex.
+  ///
+  /// In en, this message translates to:
+  /// **'Air quality: {level} (European index {value})'**
+  String weatherAirIndex(String level, String value);
+
+  /// No description provided for @weatherAirNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Air quality not available for this day.'**
+  String get weatherAirNone;
+
+  /// No description provided for @weatherPollenNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Pollen: no data (only in Europe and in the pollen season).'**
+  String get weatherPollenNone;
+
+  /// No description provided for @weatherPollenLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{kind}: {level}'**
+  String weatherPollenLine(String kind, String level);
+
+  /// No description provided for @weatherWear.
+  ///
+  /// In en, this message translates to:
+  /// **'What to wear'**
+  String get weatherWear;
+
+  /// No description provided for @weatherWearNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Advice from fixed rules on temperature, rain, snow, wind and UV.'**
+  String get weatherWearNote;
+
+  /// No description provided for @weatherUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather not available now. Try again later.'**
+  String get weatherUnavailable;
+
+  /// No description provided for @weatherNoDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip has no destination on the map: add it in the trip settings.'**
+  String get weatherNoDestination;
+
+  /// No description provided for @weatherRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get weatherRetry;
+
+  /// No description provided for @weatherStale.
+  ///
+  /// In en, this message translates to:
+  /// **'The weather service does not answer: you see the data of the last update.'**
+  String get weatherStale;
+
+  /// No description provided for @weatherUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated on {date} at {time}'**
+  String weatherUpdated(String date, String time);
+
+  /// No description provided for @weatherOpen3b.
+  ///
+  /// In en, this message translates to:
+  /// **'Open on 3B Meteo'**
+  String get weatherOpen3b;
+
+  /// No description provided for @weatherSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather data: Open-Meteo.com (CC BY 4.0), summarised by day.'**
+  String get weatherSource;
+
+  /// No description provided for @weatherSkyClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get weatherSkyClear;
+
+  /// No description provided for @weatherSkyPartly.
+  ///
+  /// In en, this message translates to:
+  /// **'Partly cloudy'**
+  String get weatherSkyPartly;
+
+  /// No description provided for @weatherSkyCloudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloudy'**
+  String get weatherSkyCloudy;
+
+  /// No description provided for @weatherSkyFog.
+  ///
+  /// In en, this message translates to:
+  /// **'Fog'**
+  String get weatherSkyFog;
+
+  /// No description provided for @weatherSkyDrizzle.
+  ///
+  /// In en, this message translates to:
+  /// **'Drizzle'**
+  String get weatherSkyDrizzle;
+
+  /// No description provided for @weatherSkyRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain'**
+  String get weatherSkyRain;
+
+  /// No description provided for @weatherSkySnow.
+  ///
+  /// In en, this message translates to:
+  /// **'Snow'**
+  String get weatherSkySnow;
+
+  /// No description provided for @weatherSkyStorm.
+  ///
+  /// In en, this message translates to:
+  /// **'Thunderstorm'**
+  String get weatherSkyStorm;
+
+  /// No description provided for @weatherWearLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light, breathable clothes'**
+  String get weatherWearLight;
+
+  /// No description provided for @weatherWearSunHat.
+  ///
+  /// In en, this message translates to:
+  /// **'Hat and sunscreen'**
+  String get weatherWearSunHat;
+
+  /// No description provided for @weatherWearTshirt.
+  ///
+  /// In en, this message translates to:
+  /// **'T-shirt'**
+  String get weatherWearTshirt;
+
+  /// No description provided for @weatherWearLightLayer.
+  ///
+  /// In en, this message translates to:
+  /// **'A light layer for the evening'**
+  String get weatherWearLightLayer;
+
+  /// No description provided for @weatherWearSweater.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweatshirt or light jacket'**
+  String get weatherWearSweater;
+
+  /// No description provided for @weatherWearWarmCoat.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm jacket'**
+  String get weatherWearWarmCoat;
+
+  /// No description provided for @weatherWearHeavyCoat.
+  ///
+  /// In en, this message translates to:
+  /// **'Winter coat'**
+  String get weatherWearHeavyCoat;
+
+  /// No description provided for @weatherWearHatGloves.
+  ///
+  /// In en, this message translates to:
+  /// **'Beanie, scarf and gloves'**
+  String get weatherWearHatGloves;
+
+  /// No description provided for @weatherWearUmbrella.
+  ///
+  /// In en, this message translates to:
+  /// **'Umbrella or raincoat'**
+  String get weatherWearUmbrella;
+
+  /// No description provided for @weatherWearBoots.
+  ///
+  /// In en, this message translates to:
+  /// **'Waterproof shoes'**
+  String get weatherWearBoots;
+
+  /// No description provided for @weatherWearWindproof.
+  ///
+  /// In en, this message translates to:
+  /// **'Windproof jacket'**
+  String get weatherWearWindproof;
+
+  /// No description provided for @weatherWearSunscreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunscreen'**
+  String get weatherWearSunscreen;
+
+  /// No description provided for @weatherAirGood.
+  ///
+  /// In en, this message translates to:
+  /// **'good'**
+  String get weatherAirGood;
+
+  /// No description provided for @weatherAirFair.
+  ///
+  /// In en, this message translates to:
+  /// **'fair'**
+  String get weatherAirFair;
+
+  /// No description provided for @weatherAirModerate.
+  ///
+  /// In en, this message translates to:
+  /// **'moderate'**
+  String get weatherAirModerate;
+
+  /// No description provided for @weatherAirPoor.
+  ///
+  /// In en, this message translates to:
+  /// **'poor'**
+  String get weatherAirPoor;
+
+  /// No description provided for @weatherAirVeryPoor.
+  ///
+  /// In en, this message translates to:
+  /// **'very poor'**
+  String get weatherAirVeryPoor;
+
+  /// No description provided for @weatherPollenLow.
+  ///
+  /// In en, this message translates to:
+  /// **'low'**
+  String get weatherPollenLow;
+
+  /// No description provided for @weatherPollenMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'medium'**
+  String get weatherPollenMedium;
+
+  /// No description provided for @weatherPollenHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'high'**
+  String get weatherPollenHigh;
+
+  /// No description provided for @weatherPollenAlder.
+  ///
+  /// In en, this message translates to:
+  /// **'Alder'**
+  String get weatherPollenAlder;
+
+  /// No description provided for @weatherPollenBirch.
+  ///
+  /// In en, this message translates to:
+  /// **'Birch'**
+  String get weatherPollenBirch;
+
+  /// No description provided for @weatherPollenGrass.
+  ///
+  /// In en, this message translates to:
+  /// **'Grass'**
+  String get weatherPollenGrass;
+
+  /// No description provided for @weatherPollenMugwort.
+  ///
+  /// In en, this message translates to:
+  /// **'Mugwort'**
+  String get weatherPollenMugwort;
+
+  /// No description provided for @weatherPollenOlive.
+  ///
+  /// In en, this message translates to:
+  /// **'Olive'**
+  String get weatherPollenOlive;
+
+  /// No description provided for @weatherPollenRagweed.
+  ///
+  /// In en, this message translates to:
+  /// **'Ragweed'**
+  String get weatherPollenRagweed;
 
   /// No description provided for @settingsSupport.
   ///
