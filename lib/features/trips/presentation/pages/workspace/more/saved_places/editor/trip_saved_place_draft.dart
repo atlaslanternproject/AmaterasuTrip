@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
+
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_maps_link.dart';
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place.dart';
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place_category.dart';
@@ -53,6 +55,9 @@ class TripSavedPlaceDraft {
   DateTime? plannedDay;
   final TripSectionCostDraft price;
 
+  /// Useful links, as in the bucket list.
+  late final links = AmaterasuLinksDraft(_initial?.usefulLinks ?? const []);
+
   bool get isNew => _initial == null;
 
   /// A pasted Google Maps link fills the empty name and the coordinates.
@@ -91,10 +96,12 @@ class TripSavedPlaceDraft {
       plannedDay: plannedDay,
       entryPriceMinorUnits: price.minorUnits,
       entryPriceCurrency: price.savedCurrency,
+      usefulLinks: links.links,
     );
   }
 
   void dispose() {
+    links.dispose();
     for (final c in [link, notes, phone, website, minutes, tickets, area]) {
       c.dispose();
     }

@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
+
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_cost_field.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/shopping/models/trip_shopping_item.dart';
@@ -40,6 +42,9 @@ class TripShoppingDraft {
   final TripSectionCostDraft budget;
   final TripSectionCostDraft price;
 
+  /// Useful links, as in the bucket list.
+  late final links = AmaterasuLinksDraft(_initial?.usefulLinks ?? const []);
+
   bool get isNew => _initial == null;
 
   TripShoppingItem toItem({required String tripId, required String authorUid}) {
@@ -65,10 +70,12 @@ class TripShoppingDraft {
       actualCostCurrency: price.savedCurrency,
       notes: TripSectionFields.clean(notes.text),
       expenseId: initial?.expenseId,
+      usefulLinks: links.links,
     );
   }
 
   void dispose() {
+    links.dispose();
     for (final c in [name, where, notes, forText]) {
       c.dispose();
     }

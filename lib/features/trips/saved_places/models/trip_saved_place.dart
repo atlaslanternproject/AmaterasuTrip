@@ -27,6 +27,7 @@ class TripSavedPlace implements TripSectionItem {
     this.plannedDay,
     this.entryPriceMinorUnits,
     this.entryPriceCurrency,
+    this.usefulLinks = const [],
   });
 
   @override
@@ -67,6 +68,9 @@ class TripSavedPlace implements TripSectionItem {
 
   @override
   String? get expenseId => null;
+
+  /// Useful links (TripSectionLinks), as in the bucket list.
+  final List<String> usefulLinks;
 
   @override
   String get displayName => name;

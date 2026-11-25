@@ -793,20 +793,30 @@ service cloud.firestore {
           && data[key].size() <= maxSize;
       }
 
+      // One matches() per field (v1.34.0): it also requires a string; a
+      // missing field takes a valid default. Same meaning, fewer operations.
       function sectionDay(data, key) {
-        return !(key in data)
-          || (data[key] is string
-            && data[key].matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$'));
+        return data.get(key, '2000-01-01').matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
       }
 
       function sectionTime(data, key) {
-        return !(key in data)
-          || (data[key] is string
-            && data[key].matches('^([01][0-9]|2[0-3]):[0-5][0-9]$'));
+        return data.get(key, '00:00').matches('^([01][0-9]|2[0-3]):[0-5][0-9]$');
       }
 
       function sectionLink(data, key) {
         return !(key in data) || validBucketLink(data[key]);
+      }
+
+      // Useful links (v1.34.0): up to 10 web addresses (2048 characters
+      // each in the app), checked together with one pattern to stay far
+      // from the 1000-operation limit.
+      function sectionLinks(data) {
+        return !('usefulLinks' in data)
+          || (data.usefulLinks is list
+            && data.usefulLinks.size() <= 10
+            && data.usefulLinks.join(' ').size() <= 20489
+            && data.usefulLinks.join(' ').matches(
+              '^https?://[^ ]+( https?://[^ ]+){0,9}$'));
       }
 
       function sectionUids(data, key) {
@@ -829,21 +839,13 @@ service cloud.firestore {
       }
 
       function sectionPlace(data, prefix) {
-        let name = prefix + 'Name';
-        let address = prefix + 'Address';
-        let place = prefix + 'PlaceId';
-        let lat = prefix + 'Latitude';
-        let lng = prefix + 'Longitude';
-        return (!(name in data)
-            || (data[name] is string && data[name].size() <= 200))
-          && (!(address in data)
-            || (data[address] is string && data[address].size() <= 300))
-          && (!(place in data)
-            || (data[place] is string && data[place].size() <= 300))
-          && (!(lat in data)
-            || (data[lat] is number && data[lat] >= -90 && data[lat] <= 90))
-          && (!(lng in data)
-            || (data[lng] is number && data[lng] >= -180 && data[lng] <= 180));
+        let lat = data.get(prefix + 'Latitude', 0);
+        let lng = data.get(prefix + 'Longitude', 0);
+        return data.get(prefix + 'Name', '').matches('(?s)^.{0,200}$')
+          && data.get(prefix + 'Address', '').matches('(?s)^.{0,300}$')
+          && data.get(prefix + 'PlaceId', '').matches('(?s)^.{0,300}$')
+          && lat is number && lat >= -90 && lat <= 90
+          && lng is number && lng >= -180 && lng <= 180;
       }
 
       function sectionCreateOk(data) {
@@ -878,8 +880,10 @@ service cloud.firestore {
           'departureDate', 'departureTime', 'departureOffset',
           'arrivalDate', 'arrivalTime', 'arrivalOffset',
           'carrier', 'number', 'bookingCode', 'seats',
-          'passengerUids', 'bookedVia', 'bookingUrl', 'notes', 'extras'
+          'passengerUids', 'bookedVia', 'bookingUrl', 'notes', 'extras',
+          'usefulLinks'
         ])
+          && sectionLinks(data)
           && data.type in [
             'flight', 'train', 'bus', 'ferry', 'carRental', 'transfer',
             'other'
@@ -897,16 +901,11 @@ service cloud.firestore {
           && sectionTime(data, 'arrivalTime')
           && sectionOffset(data, 'departureOffset')
           && sectionOffset(data, 'arrivalOffset')
-          && data.get('carrier', '') is string
-          && data.get('carrier', '').size() <= 120
-          && data.get('number', '') is string
-          && data.get('number', '').size() <= 120
-          && data.get('bookingCode', '') is string
-          && data.get('bookingCode', '').size() <= 100
-          && data.get('seats', '') is string
-          && data.get('seats', '').size() <= 120
-          && data.get('bookedVia', '') is string
-          && data.get('bookedVia', '').size() <= 120
+          && data.get('carrier', '').matches('(?s)^.{0,120}$')
+          && data.get('number', '').matches('(?s)^.{0,120}$')
+          && data.get('bookingCode', '').matches('(?s)^.{0,100}$')
+          && data.get('seats', '').matches('(?s)^.{0,120}$')
+          && data.get('bookedVia', '').matches('(?s)^.{0,120}$')
           && data.get('notes', '') is string
           && data.get('notes', '').size() <= 10000
           && sectionUids(data, 'passengerUids')
@@ -932,9 +931,7 @@ service cloud.firestore {
       }
 
       function sectionOffset(data, key) {
-        return data.get(key, null) == null
-          || (data[key] is string
-            && data[key].matches('^[+-](0[0-9]|1[0-4]):(00|30|45)$'));
+        return data.get(key, '+00:00').matches('^[+-](0[0-9]|1[0-4]):(00|30|45)$');
       }
 
       match /transports/{itemId} {
@@ -954,8 +951,10 @@ service cloud.firestore {
           'placeLatitude', 'placeLongitude',
           'bookingCode', 'bookingUrl', 'participantUids',
           'cancellationPolicy', 'notes',
-          'bookBy', 'holder', 'ticketCount', 'ticketCode'
+          'bookBy', 'holder', 'ticketCount', 'ticketCode',
+          'usefulLinks'
         ])
+          && sectionLinks(data)
           && sectionName(data, 'name', 200)
           && data.category in ['ticket', 'entry', 'tour', 'excursion', 'other']
           && data.status in ['toBook', 'booked', 'cancelled']
@@ -995,8 +994,10 @@ service cloud.firestore {
           'phone', 'website', 'cuisine', 'priceLevel',
           'reservationDate', 'reservationTime', 'partySize',
           'notes', 'votes', 'allergens', 'allergenNotes', 'diets',
-          'triedRating', 'triedNote'
+          'triedRating', 'triedNote',
+          'usefulLinks'
         ])
+          && sectionLinks(data)
           && sectionName(data, 'name', 200)
           && data.status in ['toTry', 'booked', 'tried']
           // Stars and note once tried (v1.29.0).
@@ -1076,8 +1077,10 @@ service cloud.firestore {
           'placeLatitude', 'placeLongitude',
           'mapsUrl', 'notes', 'phone', 'website',
           'priority', 'visited', 'visitMinutes', 'ticketsUrl', 'area',
-          'plannedDay'
+          'plannedDay',
+          'usefulLinks'
         ])
+          && sectionLinks(data)
           && sectionName(data, 'name', 200)
           && data.category in [
             'sight', 'food', 'shopping', 'nature', 'nightlife', 'other'
@@ -1118,8 +1121,10 @@ service cloud.firestore {
       function validNote(data) {
         return sectionBase(data, ['title', 'visibility'], [
           'title', 'visibility', 'body', 'pinned', 'checklist',
-          'linkSection', 'linkId', 'linkName'
+          'linkSection', 'linkId', 'linkName',
+          'usefulLinks'
         ])
+          && sectionLinks(data)
           && sectionName(data, 'title', 200)
           // Element of another section the note talks about (v1.32.0).
           && (!('linkSection' in data)
@@ -1166,8 +1171,10 @@ service cloud.firestore {
         return sectionBase(data, ['name', 'bought'], [
           'name', 'bought', 'forUid', 'where',
           'actualCostMinorUnits', 'actualCostCurrency', 'notes',
-          'forText', 'priority', 'boughtByUid'
+          'forText', 'priority', 'boughtByUid',
+          'usefulLinks'
         ])
+          && sectionLinks(data)
           && sectionName(data, 'name', 200)
           && data.bought is bool
           && sectionText(data, 'forUid', 128)
@@ -1224,8 +1231,10 @@ service cloud.firestore {
       // esterno. Nessuna foto su Firebase.
       function validMemory(data) {
         return sectionBase(data, ['kind'], [
-          'kind', 'date', 'text', 'rating', 'moment', 'title', 'url'
+          'kind', 'date', 'text', 'rating', 'moment', 'title', 'url',
+          'usefulLinks'
         ])
+          && sectionLinks(data)
           && data.kind in ['day', 'album']
           && sectionDay(data, 'date')
           && sectionText(data, 'text', 10000)

@@ -31,6 +31,7 @@ class TripReservation implements TripSectionItem {
     this.estimatedCostMinorUnits,
     this.estimatedCostCurrency,
     this.expenseId,
+    this.usefulLinks = const [],
   });
 
   @override
@@ -70,6 +71,9 @@ class TripReservation implements TripSectionItem {
   final String? expenseId;
 
   bool get isActive => status.isActive;
+
+  /// Useful links (TripSectionLinks), as in the bucket list.
+  final List<String> usefulLinks;
 
   @override
   String get displayName => name;

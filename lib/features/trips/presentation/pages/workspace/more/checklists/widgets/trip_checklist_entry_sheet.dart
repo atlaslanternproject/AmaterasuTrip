@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
+
 import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'package:amaterasutrip/core/widgets/dialogs/amaterasu_confirm.dart';
 import 'package:amaterasutrip/core/widgets/dialogs/amaterasu_sheet.dart';
@@ -51,11 +53,16 @@ class _EntrySheetState extends State<_EntrySheet> {
   );
   late String _category = widget.entry.category;
   late String? _assignee = widget.entry.assigneeUid;
+  late final _links = AmaterasuLinksDraft(
+    widget.entry.usefulLinks,
+    max: TripChecklistCodec.entryLinksMax,
+  );
 
   @override
   void dispose() {
     _text.dispose();
     _quantity.dispose();
+    _links.dispose();
     super.dispose();
   }
 
@@ -68,6 +75,7 @@ class _EntrySheetState extends State<_EntrySheet> {
       clearQuantity: quantity == null,
       assigneeUid: _assignee,
       clearAssignee: _assignee == null,
+      usefulLinks: _links.links,
     );
     if (TripChecklistCodec.entryProblems(entry).isNotEmpty) return;
     Navigator.pop<TripChecklistEntryEdit>(context, (
@@ -136,6 +144,14 @@ class _EntrySheetState extends State<_EntrySheet> {
             selected: _assignee,
             allowNone: true,
             onChanged: (uid) => setState(() => _assignee = uid),
+          ),
+          const SizedBox(height: 12),
+          Text(l10n.commonUsefulLinks),
+          const SizedBox(height: 6),
+          AmaterasuLinksField(
+            keyPrefix: 'checklist-entry',
+            draft: _links,
+            onChanged: () => setState(() {}),
           ),
           const SizedBox(height: 20),
           Wrap(

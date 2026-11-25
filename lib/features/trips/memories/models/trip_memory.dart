@@ -18,6 +18,7 @@ class TripMemory implements TripSectionItem {
     this.moment,
     this.title,
     this.url,
+    this.usefulLinks = const [],
   });
 
   @override
@@ -46,6 +47,9 @@ class TripMemory implements TripSectionItem {
 
   @override
   String? get expenseId => null;
+
+  /// Useful links (TripSectionLinks), as in the bucket list.
+  final List<String> usefulLinks;
 
   @override
   String get displayName => title ?? moment ?? text ?? '';

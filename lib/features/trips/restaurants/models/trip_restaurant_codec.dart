@@ -6,6 +6,7 @@
 import 'package:amaterasutrip/core/places/amaterasu_contact_validator.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
@@ -42,6 +43,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
     'estimatedCostMinorUnits',
     'estimatedCostCurrency',
     'expenseId',
+    'usefulLinks',
   ];
 
   @override
@@ -72,6 +74,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
         item.estimatedCostCurrency,
       ),
       'expenseId': ?text(item.expenseId),
+      ...TripSectionLinks.toMap(item.usefulLinks),
     };
   }
 
@@ -114,6 +117,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
       expenseId: text('expenseId'),
+      usefulLinks: TripSectionLinks.read(data),
     );
   }
 
@@ -167,6 +171,11 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
         TripSectionProblemKind.expense,
         'expenseId',
       );
+    c.check(
+      TripSectionLinks.invalid(item.usefulLinks),
+      TripSectionProblemKind.link,
+      'usefulLinks',
+    );
     return c.found;
   }
 }

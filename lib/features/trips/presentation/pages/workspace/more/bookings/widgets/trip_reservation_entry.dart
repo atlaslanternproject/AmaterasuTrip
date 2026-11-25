@@ -114,7 +114,10 @@ TripSectionEntry tripReservationEntry(
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),
     ],
-    links: [if (url != null) (l10n.reservationLink, url)],
+    links: [
+      if (url != null) (l10n.reservationLink, url),
+      ...TripSectionLabels.usefulLinks(item.usefulLinks, l10n),
+    ],
     photoPlaceId: item.place.placeId,
     maps: item.place.maps,
   );

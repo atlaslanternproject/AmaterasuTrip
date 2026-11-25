@@ -5,6 +5,10 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
+
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
+
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/notes/models/trip_note.dart';
 import 'package:amaterasutrip/features/trips/notes/models/trip_note_codec.dart';
@@ -42,6 +46,9 @@ class _TripNoteEditorState extends State<TripNoteEditor>
   late var _private = widget.initial?.isPrivate ?? false;
   late var _pinned = widget.initial?.pinned ?? false;
   late final _items = TripNoteChecklistDraft(widget.initial?.checklist);
+  late final _links = AmaterasuLinksDraft(
+    widget.initial?.usefulLinks ?? const [],
+  );
   late TripNoteLink? _link = widget.initial?.link;
 
   /// Only the author may change who can read the note.
@@ -51,6 +58,7 @@ class _TripNoteEditorState extends State<TripNoteEditor>
 
   @override
   void dispose() {
+    _links.dispose();
     _title.dispose();
     _body.dispose();
     _items.dispose();
@@ -76,6 +84,7 @@ class _TripNoteEditorState extends State<TripNoteEditor>
       pinned: _pinned,
       checklist: _items.items(),
       link: _link,
+      usefulLinks: _links.links,
     );
     return saveWith(
       problems: [
@@ -170,6 +179,11 @@ class _TripNoteEditorState extends State<TripNoteEditor>
               onChanged: () => setState(() {}),
             ),
           ],
+        ),
+        TripSectionLinksBlock(
+          keyPrefix: 'note',
+          draft: _links,
+          onChanged: () => setState(() {}),
         ),
       ],
     );

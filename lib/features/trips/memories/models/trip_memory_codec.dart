@@ -4,6 +4,7 @@
 
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
 import 'trip_memory.dart';
@@ -24,6 +25,7 @@ class TripMemoryCodec implements TripSectionCodec<TripMemory> {
     'moment',
     'title',
     'url',
+    'usefulLinks',
   ];
 
   @override
@@ -40,6 +42,7 @@ class TripMemoryCodec implements TripSectionCodec<TripMemory> {
       'moment': ?text(item.moment),
       'title': ?text(item.title),
       'url': ?text(item.url),
+      ...TripSectionLinks.toMap(item.usefulLinks),
     };
   }
 
@@ -68,6 +71,7 @@ class TripMemoryCodec implements TripSectionCodec<TripMemory> {
       moment: text('moment'),
       title: text('title'),
       url: text('url'),
+      usefulLinks: TripSectionLinks.read(data),
     );
   }
 
@@ -99,6 +103,11 @@ class TripMemoryCodec implements TripSectionCodec<TripMemory> {
         TripSectionProblemKind.link,
         'url',
       );
+    c.check(
+      TripSectionLinks.invalid(item.usefulLinks),
+      TripSectionProblemKind.link,
+      'usefulLinks',
+    );
     return c.found;
   }
 }

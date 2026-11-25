@@ -5453,6 +5453,36 @@ abstract class AppLocalizations {
   /// **'Could not open the link. You can copy it and open it in your browser.'**
   String get commonLinkOpenFailed;
 
+  /// No description provided for @commonUsefulLinks.
+  ///
+  /// In en, this message translates to:
+  /// **'Useful links'**
+  String get commonUsefulLinks;
+
+  /// No description provided for @commonLinkNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Link {number}'**
+  String commonLinkNumber(int number);
+
+  /// No description provided for @commonLinkRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove link'**
+  String get commonLinkRemove;
+
+  /// No description provided for @commonLinkAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a link'**
+  String get commonLinkAdd;
+
+  /// No description provided for @commonLinksInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Useful links: write addresses starting with http:// or https:// (at most 10).'**
+  String get commonLinksInvalid;
+
   /// No description provided for @commonLinkCopy.
   ///
   /// In en, this message translates to:

@@ -48,6 +48,7 @@ class TripNote implements TripSectionItem {
     this.pinned = false,
     this.checklist = const [],
     this.link,
+    this.usefulLinks = const [],
   });
 
   @override
@@ -70,6 +71,9 @@ class TripNote implements TripSectionItem {
   @override
   String? get expenseId => null;
 
+  /// Useful links (TripSectionLinks), as in the bucket list.
+  final List<String> usefulLinks;
+
   @override
   String get displayName => title;
 
@@ -83,5 +87,6 @@ class TripNote implements TripSectionItem {
     pinned: pinned,
     checklist: items,
     link: link,
+    usefulLinks: usefulLinks,
   );
 }

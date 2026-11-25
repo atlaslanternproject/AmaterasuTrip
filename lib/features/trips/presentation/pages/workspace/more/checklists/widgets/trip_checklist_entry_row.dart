@@ -3,6 +3,8 @@
 // assegnatario (username).
 
 import 'package:flutter/material.dart';
+
+import 'package:amaterasutrip/core/links/amaterasu_link_chip.dart';
 import 'package:flutter/services.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -98,6 +100,14 @@ class _TripChecklistEntryRowState extends State<TripChecklistEntryRow> {
                         color: AmaterasuColors.accentGold,
                         fontSize: 12,
                       ),
+                    ),
+                  if (entry.usefulLinks.isNotEmpty)
+                    Wrap(
+                      spacing: 6,
+                      children: [
+                        for (final link in entry.usefulLinks)
+                          AmaterasuLinkChip(link: link),
+                      ],
                     ),
                 ],
               ),

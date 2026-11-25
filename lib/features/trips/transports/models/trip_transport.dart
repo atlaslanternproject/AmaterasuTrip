@@ -35,6 +35,7 @@ class TripTransport implements TripSectionItem {
     this.estimatedCostMinorUnits,
     this.estimatedCostCurrency,
     this.expenseId,
+    this.usefulLinks = const [],
   });
 
   @override
@@ -77,6 +78,9 @@ class TripTransport implements TripSectionItem {
 
   /// "Roma → Tokyo", or the company and number, or empty.
   String get route => [from.name, to.name].whereType<String>().join(' → ');
+
+  /// Useful links (TripSectionLinks), as in the bucket list.
+  final List<String> usefulLinks;
 
   @override
   String get displayName {

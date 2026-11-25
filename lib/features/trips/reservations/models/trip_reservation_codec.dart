@@ -5,6 +5,7 @@
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
@@ -38,6 +39,7 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
     'estimatedCostMinorUnits',
     'estimatedCostCurrency',
     'expenseId',
+    'usefulLinks',
   ];
 
   @override
@@ -68,6 +70,7 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
         item.estimatedCostCurrency,
       ),
       'expenseId': ?text(item.expenseId),
+      ...TripSectionLinks.toMap(item.usefulLinks),
     };
   }
 
@@ -111,6 +114,7 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
       expenseId: text('expenseId'),
+      usefulLinks: TripSectionLinks.read(data),
     );
   }
 
@@ -158,6 +162,11 @@ class TripReservationCodec implements TripSectionCodec<TripReservation> {
       TripSectionFields.badExpenseId(item.expenseId),
       TripSectionProblemKind.expense,
       'expenseId',
+    );
+    c.check(
+      TripSectionLinks.invalid(item.usefulLinks),
+      TripSectionProblemKind.link,
+      'usefulLinks',
     );
     return c.found;
   }

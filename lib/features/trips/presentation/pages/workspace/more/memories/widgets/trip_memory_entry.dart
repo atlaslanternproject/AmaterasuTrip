@@ -10,6 +10,7 @@ import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/memories/models/trip_memory.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_chip.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_entry.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 /// "★★★★☆" for 4 of 5.
@@ -34,7 +35,10 @@ TripSectionEntry tripMemoryEntry(
           icon: Icons.photo_library_outlined,
         ),
       ],
-      links: [if (item.url case final url?) (l10n.memoryOpenAlbum, url)],
+      links: [
+        if (item.url case final url?) (l10n.memoryOpenAlbum, url),
+        ...TripSectionLabels.usefulLinks(item.usefulLinks, l10n),
+      ],
     );
   }
   final date = item.date;

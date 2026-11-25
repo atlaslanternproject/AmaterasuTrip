@@ -110,6 +110,7 @@ TripSectionEntry tripSavedPlaceEntry(
       if (link != null) (l10n.savedPlaceMapsLink, link),
       if (item.ticketsUrl case final tickets?)
         (l10n.savedPlaceTickets, tickets),
+      ...TripSectionLabels.usefulLinks(item.usefulLinks, l10n),
     ],
     photoPlaceId: item.place.placeId,
     phone: item.phone,

@@ -102,6 +102,7 @@ TripSectionEntry tripTransportEntry(
     links: [
       if (url != null) (l10n.transportBookingLink, url),
       ...tripTransportExtraLinks(l10n, item),
+      ...TripSectionLabels.usefulLinks(item.usefulLinks, l10n),
     ],
     maps: item.from.maps ?? item.to.maps,
   );
