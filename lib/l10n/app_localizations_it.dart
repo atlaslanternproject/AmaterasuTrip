@@ -3798,6 +3798,77 @@ class AppLocalizationsIt extends AppLocalizations {
   String get savedPlaceCategoryOther => 'Altro';
 
   @override
+  String get savedPlaceBlockVisit => 'Visita';
+
+  @override
+  String get savedPlacePriority => 'Priorità';
+
+  @override
+  String get savedPlaceVisited => 'Visitato';
+
+  @override
+  String get savedPlaceDay => 'Giorno previsto';
+
+  @override
+  String get savedPlaceArea => 'Zona';
+
+  @override
+  String get savedPlaceAreaHint => 'Quartiere o zona, per raggruppare i luoghi vicini.';
+
+  @override
+  String get savedPlaceMinutes => 'Tempo di visita (minuti)';
+
+  @override
+  String get savedPlaceEntryPrice => 'Prezzo d\'ingresso a persona';
+
+  @override
+  String get savedPlaceTickets => 'Link dei biglietti';
+
+  @override
+  String get savedPlaceErrMinutes => 'Tempo di visita: da 1 a 1440 minuti.';
+
+  @override
+  String get savedPlaceNoArea => 'Senza zona';
+
+  @override
+  String get savedPlaceNoDay => 'Senza giorno';
+
+  @override
+  String get savedPlaceFilterTodo => 'Da visitare';
+
+  @override
+  String get savedPlaceFilterDone => 'Visitati';
+
+  @override
+  String get savedPlaceSortPriority => 'Priorità';
+
+  @override
+  String get savedPlaceGroupArea => 'Per zona';
+
+  @override
+  String get savedPlaceGroupDay => 'Per giorno';
+
+  @override
+  String savedPlaceMinutesValue(String value) {
+    return 'Visita: $value';
+  }
+
+  @override
+  String savedPlaceEntryPriceValue(String value) {
+    return 'Ingresso: $value a persona';
+  }
+
+  @override
+  String savedPlaceMinutesShort(int count) {
+    return '$count min';
+  }
+
+  @override
+  String savedPlaceHoursShort(int count) {
+    return '$count h';
+  }
+
+  @override
   String get noteAdd => 'Nuova nota';
 
   @override

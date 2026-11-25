@@ -1048,12 +1048,23 @@ service cloud.firestore {
           'name', 'category',
           'placeName', 'placeAddress', 'placePlaceId',
           'placeLatitude', 'placeLongitude',
-          'mapsUrl', 'notes', 'phone', 'website'
+          'mapsUrl', 'notes', 'phone', 'website',
+          'priority', 'visited', 'visitMinutes', 'ticketsUrl', 'area',
+          'plannedDay'
         ])
           && sectionName(data, 'name', 200)
           && data.category in [
             'sight', 'food', 'shopping', 'nature', 'nightlife', 'other'
           ]
+          // Priority, visited, visit time, tickets, area, day (v1.30.0).
+          && (!('priority' in data) || data.priority in ['SS', 'S', 'A', 'B'])
+          && (!('visited' in data) || data.visited is bool)
+          && (!('visitMinutes' in data)
+            || (data.visitMinutes is int
+              && data.visitMinutes >= 1 && data.visitMinutes <= 1440))
+          && sectionLink(data, 'ticketsUrl')
+          && sectionText(data, 'area', 120)
+          && sectionDay(data, 'plannedDay')
           // Contacts of the place (v1.25.0).
           && (
             data.get('phone', null) == null

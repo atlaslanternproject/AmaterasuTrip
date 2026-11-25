@@ -33,6 +33,12 @@ abstract final class TripSectionLabels {
       );
 
   /// "Costo previsto: € 45,00", or null without a cost.
+  /// Amount in its currency, e.g. "€ 12,50"; null without an amount.
+  static String? money(int? minor, String? currency) =>
+      minor == null || currency == null
+      ? null
+      : BudgetMoneyFormatter.format(minor, currency);
+
   static String? cost(int? minor, String? currency, AppLocalizations l10n) =>
       minor == null || currency == null
       ? null

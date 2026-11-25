@@ -1,6 +1,7 @@
-// Pagina Luoghi salvati del viaggio: luoghi cercati su Google o da link di
-// Google Maps, filtri per categoria, ordine per nome, tre viste ricordate,
-// chi l'ha aggiunto, editor ed eliminazione (creatore o proprietario).
+// Pagina Luoghi salvati del viaggio: filtri per categoria e visitato,
+// ordine per priorità o nome, raggruppamento per zona o giorno, tre viste
+// ricordate, "Orari e prezzi" di Google su richiesta, editor ed
+// eliminazione (creatore o OWNER). Nessuna spesa.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,11 +10,13 @@ import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place.dart';
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place_category.dart';
+import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place_codec.dart';
 import 'package:amaterasutrip/features/trips/saved_places/providers/trip_saved_places_provider.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_editor_frame.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_filter.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_delete.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_filter_groups.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_hours_sheet.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_list.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_scaffold.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_toolbar.dart';
@@ -21,6 +24,8 @@ import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'editor/trip_saved_place_editor.dart';
 import 'widgets/trip_saved_place_entry.dart';
+
+part 'trip_saved_places_page_filters.dart';
 
 class TripSavedPlacesPage extends ConsumerStatefulWidget {
   const TripSavedPlacesPage({super.key, required this.tripId, this.launch});
@@ -36,6 +41,8 @@ class TripSavedPlacesPage extends ConsumerStatefulWidget {
 class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
     with TripSectionViewMemory {
   var _filter = const TripSectionFilter();
+  var _visited = 'all';
+  var _sort = 'priority';
 
   @override
   String get viewSection => 'savedPlaces';
@@ -57,6 +64,9 @@ class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
         authorUid: uid,
         places: ref.read(amaterasuPlaceSearchProvider),
         placeInfo: ref.read(amaterasuPlaceInfoProvider),
+        currency:
+            ref.read(tripStaysTripInfoProvider(widget.tripId))?.currency ??
+            'EUR',
         initial: initial,
         onSave: (item) =>
             initial == null ? store.create(item) : store.update(item),
@@ -76,6 +86,8 @@ class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
     final ownerUid = ref.watch(tripStaysOwnerUidProvider(tripId));
     final names = ref.watch(tripStaysMemberNamesProvider(tripId));
     String nameOf(String id) => names[id] ?? l10n.sectionsFormerMember;
+    final currency =
+        ref.watch(tripStaysTripInfoProvider(tripId))?.currency ?? 'EUR';
 
     return TripSectionScaffold<TripSavedPlace>(
       tripId: tripId,
@@ -87,29 +99,18 @@ class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
       emptyIcon: Icons.bookmark_rounded,
       emptyText: l10n.savedPlaceEmpty,
       body: (items) {
-        final shown = _filter.apply(
-          items,
-          today: DateTime.now(),
-          dayOf: (_) => null,
-          kindOf: (p) => p.category.code,
-        )..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+        final shown = _sorted(items);
         return Column(
           children: [
             TripSectionToolbar(
               keyPrefix: 'saved-place',
-              onClear: () => setState(() => _filter = _filter.cleared()),
+              onClear: () => setState(() {
+                _filter = _filter.cleared();
+                _visited = 'all';
+              }),
               shown: shown.length,
               total: items.length,
-              groups: tripSectionFilterGroups(
-                l10n,
-                _filter,
-                (f) => setState(() => _filter = f),
-                kinds: [
-                  for (final c in TripSavedPlaceCategory.values)
-                    (c.code, TripSavedPlaceLabels.category(c, l10n)),
-                ],
-                dated: false,
-              ),
+              groups: _groups(l10n),
               view: view,
               onView: changeView,
             ),
@@ -120,6 +121,18 @@ class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
                 view: view,
                 header: [if (shown.isEmpty) Text(l10n.sectionsNoMatch)],
                 entryOf: (p) => tripSavedPlaceEntry(context, p, nameOf),
+                groupOf: _groupOf(context),
+                extraOf: (p) => p.place.placeId == null
+                    ? null
+                    : TripSectionHoursButton(
+                        target: TripSectionHoursTarget(
+                          keyPrefix: 'saved-place',
+                          id: p.id,
+                          placeId: p.place.placeId!,
+                          tripCurrency: currency,
+                          day: p.plannedDay,
+                        ),
+                      ),
                 onEdit: _edit,
                 canDelete: (p) =>
                     uid != null && (uid == p.createdByUid || uid == ownerUid),
