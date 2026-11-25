@@ -323,7 +323,8 @@ Mappa/Itinerario).
 | Extra D - Filtro per categoria personalizzata | fatta, pubblicata 1.40.0 il 25/11/2026 | feature/filtro-categorie | 1.40.0+45 |
 | Extra E - Aspetto: piano | approvato il 25/11/2026 | - | - |
 | Extra E1 - Preferenze Aspetto (modello e salvataggio) | fatta, pubblicata 1.41.0 il 25/11/2026 | feature/aspetto-e1 | 1.41.0+46 |
-| Extra E2 - Pagina Impostazioni > Aspetto | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e2 | 1.42.0+47 |
+| Extra E2 - Pagina Impostazioni > Aspetto | fatta, pubblicata 1.42.0 il 25/11/2026 | feature/aspetto-e2 | 1.42.0+47 |
+| Extra E3 - Dimensione del testo in tutta l'app | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e3 | 1.43.0+48 |
 | Extra F-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -952,3 +953,28 @@ Gli effetti arrivano nei passi E3 (testo), E4 (date), E6 e E7 (valute).
 Prove da fare sul sito:
 1. Impostazioni > Aspetto: cambia le scelte, esci e rientra: restano.
 2. Da un altro dispositivo con lo stesso account le scelte si ritrovano.
+
+## Extra E3 - Dimensione del testo
+L'app applica la dimensione scelta (100-130 %) a tutto il testo (builder
+di MaterialApp in lib/app/app.dart). Le altre impostazioni del sistema
+restano.
+
+Controllo del layout al 130 % su telefono (390 punti):
+- Sezioni nuove (trasporti, prenotazioni, ristoranti, luoghi, note,
+  shopping, checklist, ricordi), elenco con un elemento dal nome lungo ed
+  editor aperto: nessun errore di spazio (test automatico
+  trip_sections_text_scale_test.dart, fa parte dei controlli).
+- Pagina spese (budget): nessun errore di spazio.
+- Editor degli alloggi (modulo approvato, NON corretto): escono dallo
+  spazio le intestazioni delle sezioni a tendina
+  (trip_stay_editor_section.dart:34) e la tendina "Prenotato su"
+  (trip_stay_booking_section.dart:39). Da mettere in COERENZA.md.
+- Bucket list e impostazioni: non provate con il test automatico (servono
+  i loro dati di prova); da controllare a mano o in COERENZA.md.
+
+Prove da fare sul sito:
+1. Impostazioni > Aspetto > 130 %: tutto il testo dell'app diventa più
+   grande, anche dopo aver chiuso e riaperto.
+2. Al 130 % sul telefono le sezioni nuove si leggono senza tagli.
+3. Editor degli alloggi al 130 %: vedrai i titoli delle sezioni tagliati
+   (segnalato, si corregge dopo l'ok su COERENZA.md).

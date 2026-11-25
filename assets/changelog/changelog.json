@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.43.0",
+      "date": "2026-11-25",
+      "it": ["La dimensione del testo scelta in Impostazioni > Aspetto (fino al 130%) vale in tutta l'app."],
+      "en": ["The text size chosen in Settings > Appearance (up to 130%) applies to the whole app."]
+    },
+    {
       "version": "1.42.0",
       "date": "2026-11-25",
       "it": ["Nuova pagina Impostazioni > Aspetto: dimensione del testo, unità, formato di data e ora, valuta per le nuove voci e valuta di visualizzazione. Le scelte si salvano subito; i loro effetti arrivano nelle prossime versioni."],

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_appearance_provider.dart';
+
 import '../core/theme/app_theme.dart';
 import '../features/profile/providers/user_provider.dart';
 import '../features/settings/providers/language_provider.dart';
@@ -91,6 +93,9 @@ class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp>
   @override
   Widget build(BuildContext context) {
     final locale = ref.watch(languageProvider);
+    final textScale = ref.watch(
+      amaterasuAppearanceProvider.select((a) => a.textScale),
+    );
 
     return MaterialApp.router(
       title: 'Amaterasu Trip',
@@ -99,6 +104,13 @@ class _AmaterasuTripAppState extends ConsumerState<AmaterasuTripApp>
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      // Text size chosen in Settings > Appearance (100-130 %, Extra E3).
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(
+          context,
+        ).copyWith(textScaler: TextScaler.linear(textScale / 100)),
+        child: child ?? const SizedBox.shrink(),
+      ),
     );
   }
 }
