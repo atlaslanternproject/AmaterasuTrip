@@ -19,6 +19,7 @@ import 'package:amaterasutrip/features/trips/tools/export/trip_ics_writer.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport.dart';
 import 'package:amaterasutrip/features/trips/transports/models/trip_transport_type.dart';
 import 'package:amaterasutrip/l10n/app_localizations_it.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -193,7 +194,9 @@ void main() {
     }
     expect(
       tester
-          .widget<AmaterasuPrimaryButton>(find.byType(AmaterasuPrimaryButton))
+          .widget<AmaterasuPrimaryButton>(
+            find.byKey(const Key('export-ics-download')),
+          )
           .onPressed,
       isNull,
     );

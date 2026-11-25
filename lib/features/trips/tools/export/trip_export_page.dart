@@ -1,7 +1,7 @@
-// Pagina "Esporta" di Altro (tappa 3a): calendario .ics con la scelta di
-// alloggi, trasporti, prenotazioni e ristoranti; i dati si leggono solo
-// premendo "Scarica" e il file si scarica dal browser (lib/core/files).
-// Nessun dato salvato, nessuna API.
+// Pagina "Esporta" di Altro (tappa 3): calendario .ics con la scelta di
+// alloggi, trasporti, prenotazioni e ristoranti e PDF del viaggio (3c); i
+// dati si leggono solo premendo i pulsanti, file e stampa dal browser
+// (lib/core/files). Nessun dato salvato, nessuna API.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +14,7 @@ import 'package:amaterasutrip/features/trips/sections/editor/trip_section_block.
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_export_data.dart';
+import 'trip_export_pdf_block.dart';
 import 'trip_ics_events.dart';
 import 'trip_ics_writer.dart';
 
@@ -26,6 +27,7 @@ class TripExportPage extends ConsumerStatefulWidget {
     required this.tripId,
     this.download = amaterasuDownloadText,
     this.offsetOf,
+    this.print = amaterasuPrintHtml,
   });
 
   final String tripId;
@@ -33,6 +35,9 @@ class TripExportPage extends ConsumerStatefulWidget {
 
   /// Replaces the browser time zones in tests.
   final TripIcsOffsetOf? offsetOf;
+
+  /// Opens the PDF page; replaced in tests.
+  final bool Function(String html) print;
 
   @override
   ConsumerState<TripExportPage> createState() => _TripExportPageState();
@@ -162,6 +167,10 @@ class _TripExportPageState extends ConsumerState<TripExportPage> {
                                 : _downloadIcs,
                           ),
                         ],
+                      ),
+                      TripExportPdfBlock(
+                        tripId: widget.tripId,
+                        print: widget.print,
                       ),
                     ],
                   ),
