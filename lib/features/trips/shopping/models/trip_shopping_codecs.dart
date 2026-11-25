@@ -3,6 +3,7 @@
 // controlli dei limiti di firestore.rules.
 
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_priority.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'trip_packing_item.dart';
@@ -26,6 +27,9 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
   @override
   List<String> get optionalKeys => const [
     'forUid',
+    'forText',
+    'priority',
+    'boughtByUid',
     'where',
     'estimatedCostMinorUnits',
     'estimatedCostCurrency',
@@ -47,6 +51,10 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
       'name': item.name.trim(),
       'bought': item.bought,
       'forUid': ?text(item.forUid),
+      'forText': ?text(item.forText),
+      if (TripSectionPriority.levels.contains(item.priority))
+        'priority': item.priority,
+      if (item.bought) 'boughtByUid': ?text(item.boughtByUid),
       'where': ?text(item.where),
       ...TripSectionFields.costMap(
         item.estimatedCostMinorUnits,
@@ -80,6 +88,11 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
       name: name,
       bought: data['bought'] as bool,
       forUid: text('forUid'),
+      forText: text('forText'),
+      priority: TripSectionPriority.levels.contains(data['priority'])
+          ? data['priority'] as String
+          : null,
+      boughtByUid: text('boughtByUid'),
       where: text('where'),
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
@@ -96,6 +109,7 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
       ..required(item.name, 'name')
       ..maxLength(item.name.trim(), TripSectionFields.nameMax, 'name')
       ..maxLength(item.where, TripSectionFields.nameMax, 'where')
+      ..maxLength(item.forText, TripSectionFields.shortMax, 'forText')
       ..maxLength(item.notes, TripSectionFields.notesMax, 'notes');
     c
       ..check(

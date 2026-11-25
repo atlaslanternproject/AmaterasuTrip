@@ -1,5 +1,6 @@
-// Editor dello shopping (cosa, per chi, dove, comprato, budget stimato,
-// prezzo reale, note) nella cornice comune delle sezioni.
+// Editor dello shopping (cosa, per chi: viaggiatore e/o destinatario
+// libero, priorità, dove, comprato, budget stimato, prezzo reale, note)
+// nella cornice comune delle sezioni. Chi l'ha comprato si salva da solo.
 
 import 'package:flutter/material.dart';
 
@@ -8,26 +9,12 @@ import 'package:amaterasutrip/features/trips/sections/editor/trip_section_chips.
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_cost_field.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_editor_frame.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_priority.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/features/trips/shopping/models/trip_shopping_codecs.dart';
 import 'package:amaterasutrip/features/trips/shopping/models/trip_shopping_item.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-
-/// Traveler choice: tap again to remove it.
-Widget _personChoice(
-  String keyPrefix,
-  Map<String, String> names,
-  String? selected,
-  ValueChanged<String?> onChanged,
-) => TripSectionChoices<String>(
-  keyPrefix: keyPrefix,
-  values: names.keys.toList(),
-  codeOf: (uid) => uid,
-  labelOf: (uid) => names[uid] ?? uid,
-  selected: selected,
-  allowNone: true,
-  onChanged: onChanged,
-);
+import 'trip_shopping_draft.dart';
 
 class TripShoppingEditor extends StatefulWidget {
   const TripShoppingEditor({
@@ -53,50 +40,17 @@ class TripShoppingEditor extends StatefulWidget {
 
 class _TripShoppingEditorState extends State<TripShoppingEditor>
     with TripSectionEditorSave {
-  late final _i = widget.initial;
-  late final _name = TextEditingController(text: _i?.name);
-  late final _where = TextEditingController(text: _i?.where);
-  late final _notes = TextEditingController(text: _i?.notes);
-  late String? _forUid = _i?.forUid;
-  late bool _bought = _i?.bought ?? false;
-  late final _budget = TripSectionCostDraft(
-    minorUnits: _i?.estimatedCostMinorUnits,
-    currency: _i?.estimatedCostCurrency,
-    fallback: widget.defaultCurrency,
-  );
-  late final _price = TripSectionCostDraft(
-    minorUnits: _i?.actualCostMinorUnits,
-    currency: _i?.actualCostCurrency,
-    fallback: widget.defaultCurrency,
-  );
+  late final _d = TripShoppingDraft(widget.initial, widget.defaultCurrency);
 
   @override
   void dispose() {
-    for (final c in [_name, _where, _notes]) {
-      c.dispose();
-    }
-    _budget.dispose();
-    _price.dispose();
+    _d.dispose();
     super.dispose();
   }
 
   Future<void> _save() {
     final l10n = AppLocalizations.of(context)!;
-    final item = TripShoppingItem(
-      id: _i?.id ?? '',
-      tripId: widget.tripId,
-      createdByUid: _i?.createdByUid ?? widget.authorUid,
-      name: _name.text.trim(),
-      forUid: _forUid,
-      where: TripSectionFields.clean(_where.text),
-      bought: _bought,
-      estimatedCostMinorUnits: _budget.minorUnits,
-      estimatedCostCurrency: _budget.savedCurrency,
-      actualCostMinorUnits: _price.minorUnits,
-      actualCostCurrency: _price.savedCurrency,
-      notes: TripSectionFields.clean(_notes.text),
-      expenseId: _i?.expenseId,
-    );
+    final item = _d.toItem(tripId: widget.tripId, authorUid: widget.authorUid);
     return saveWith(
       problems: [
         for (final p in const TripShoppingItemCodec().problems(item))
@@ -113,10 +67,11 @@ class _TripShoppingEditorState extends State<TripShoppingEditor>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final d = _d;
     void changed() => setState(() {});
     return TripSectionEditorFrame(
       keyPrefix: 'shopping',
-      title: _i == null
+      title: d.isNew
           ? l10n.shoppingEditorNewTitle
           : l10n.shoppingEditorEditTitle,
       messages: messages,
@@ -129,21 +84,45 @@ class _TripShoppingEditorState extends State<TripShoppingEditor>
           children: [
             TextField(
               key: const Key('shopping-name'),
-              controller: _name,
+              controller: d.name,
               maxLength: TripSectionFields.nameMax,
               decoration: InputDecoration(labelText: l10n.shoppingName),
             ),
             Text(l10n.shoppingFor),
             const SizedBox(height: 6),
-            _personChoice(
-              'shopping-for',
-              widget.memberNames,
-              _forUid,
-              (v) => setState(() => _forUid = v),
+            // Traveler choice: tap again to remove it.
+            TripSectionChoices<String>(
+              keyPrefix: 'shopping-for',
+              values: widget.memberNames.keys.toList(),
+              codeOf: (uid) => uid,
+              labelOf: (uid) => widget.memberNames[uid] ?? uid,
+              selected: d.forUid,
+              allowNone: true,
+              onChanged: (v) => setState(() => d.forUid = v),
+            ),
+            TextField(
+              key: const Key('shopping-for-text'),
+              controller: d.forText,
+              maxLength: TripSectionFields.shortMax,
+              decoration: InputDecoration(
+                labelText: l10n.shoppingForText,
+                helperText: l10n.shoppingForTextHint,
+              ),
+            ),
+            Text(l10n.shoppingPriority),
+            const SizedBox(height: 6),
+            TripSectionChoices<String>(
+              keyPrefix: 'shopping-priority',
+              values: TripSectionPriority.levels,
+              codeOf: (p) => p,
+              labelOf: (p) => p,
+              selected: d.priority,
+              allowNone: true,
+              onChanged: (p) => setState(() => d.priority = p),
             ),
             TextField(
               key: const Key('shopping-where'),
-              controller: _where,
+              controller: d.where,
               maxLength: TripSectionFields.nameMax,
               decoration: InputDecoration(labelText: l10n.shoppingWhere),
             ),
@@ -152,8 +131,8 @@ class _TripShoppingEditorState extends State<TripShoppingEditor>
               child: SwitchListTile(
                 key: const Key('shopping-bought'),
                 contentPadding: EdgeInsets.zero,
-                value: _bought,
-                onChanged: (v) => setState(() => _bought = v),
+                value: d.bought,
+                onChanged: (v) => setState(() => d.bought = v),
                 title: Text(l10n.shoppingBought),
               ),
             ),
@@ -165,20 +144,20 @@ class _TripShoppingEditorState extends State<TripShoppingEditor>
           children: [
             TripSectionCostField(
               keyPrefix: 'shopping-budget',
-              draft: _budget,
+              draft: d.budget,
               onChanged: changed,
               label: l10n.shoppingBudget,
             ),
             const SizedBox(height: 8),
             TripSectionCostField(
               keyPrefix: 'shopping-price',
-              draft: _price,
+              draft: d.price,
               onChanged: changed,
               label: l10n.shoppingPrice,
             ),
             TextField(
               key: const Key('shopping-notes'),
-              controller: _notes,
+              controller: d.notes,
               minLines: 2,
               maxLines: 5,
               maxLength: TripSectionFields.notesMax,

@@ -1,6 +1,6 @@
-// Una voce dello shopping del viaggio: cosa, per chi (un viaggiatore),
-// dove, budget stimato, comprato sì/no, prezzo reale, note e spesa
-// collegata.
+// Una voce dello shopping del viaggio: cosa, per chi (un viaggiatore e/o
+// un destinatario scritto liberamente), priorità SS/S/A/B, dove, budget
+// stimato, comprato sì/no e da chi, prezzo reale, note e spesa collegata.
 
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 
@@ -11,8 +11,11 @@ class TripShoppingItem implements TripSectionItem {
     required this.createdByUid,
     required this.name,
     this.forUid,
+    this.forText,
+    this.priority,
     this.where,
     this.bought = false,
+    this.boughtByUid,
     this.estimatedCostMinorUnits,
     this.estimatedCostCurrency,
     this.actualCostMinorUnits,
@@ -32,9 +35,18 @@ class TripShoppingItem implements TripSectionItem {
   /// Traveler the item is for; null = for everyone / not set.
   final String? forUid;
 
+  /// Free recipient, e.g. "Grandma" (also someone outside the trip).
+  final String? forText;
+
+  /// SS, S, A or B (TripSectionPriority).
+  final String? priority;
+
   /// Shop or area, free text.
   final String? where;
   final bool bought;
+
+  /// Traveler who bought it (set when it is marked as bought).
+  final String? boughtByUid;
 
   /// Estimated budget.
   final int? estimatedCostMinorUnits;
@@ -50,14 +62,18 @@ class TripShoppingItem implements TripSectionItem {
   @override
   String get displayName => name;
 
-  TripShoppingItem toggled() => TripShoppingItem(
+  /// Marks as bought by [uid], or back to "to buy".
+  TripShoppingItem toggled(String? uid) => TripShoppingItem(
     id: id,
     tripId: tripId,
     createdByUid: createdByUid,
     name: name,
     forUid: forUid,
+    forText: forText,
+    priority: priority,
     where: where,
     bought: !bought,
+    boughtByUid: bought ? null : uid,
     estimatedCostMinorUnits: estimatedCostMinorUnits,
     estimatedCostCurrency: estimatedCostCurrency,
     actualCostMinorUnits: actualCostMinorUnits,

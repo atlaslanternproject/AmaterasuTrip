@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_editor_frame.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_filter.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_priority.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_delete.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_expense_actions.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_filter_groups.dart';
@@ -89,13 +90,21 @@ class _TripShoppingTabState extends ConsumerState<TripShoppingTab>
       emptyIcon: Icons.shopping_bag_rounded,
       emptyText: l10n.shoppingEmpty,
       body: (items) {
-        final shown = _filter.apply(
-          items,
-          today: DateTime.now(),
-          dayOf: (_) => null,
-          statusOf: (i) => i.bought ? 'done' : 'todo',
-          kindOf: (i) => i.forUid ?? '',
-        )..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+        final shown =
+            _filter.apply(
+              items,
+              today: DateTime.now(),
+              dayOf: (_) => null,
+              statusOf: (i) => i.bought ? 'done' : 'todo',
+              kindOf: (i) => i.forUid ?? '',
+            )..sort((a, b) {
+              final rank = TripSectionPriority.rank(
+                a.priority,
+              ).compareTo(TripSectionPriority.rank(b.priority));
+              return rank != 0
+                  ? rank
+                  : a.name.toLowerCase().compareTo(b.name.toLowerCase());
+            });
         return Column(
           children: [
             TripSectionToolbar(
@@ -130,7 +139,7 @@ class _TripShoppingTabState extends ConsumerState<TripShoppingTab>
                   label: l10n.shoppingBought,
                   value: i.bought,
                   onChanged: () => store
-                      .update(i.toggled())
+                      .update(i.toggled(uid))
                       .catchError((Object _) => _saveFailed()),
                 ),
                 onEdit: _edit,

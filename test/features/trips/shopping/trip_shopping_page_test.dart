@@ -103,4 +103,52 @@ void main() {
     await tapKey(tester, 'shopping-add');
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('free recipient, priority and who bought it', (tester) async {
+    final (shop, _) = await open(
+      tester,
+      shopping: [
+        const TripShoppingItem(
+          id: 'b',
+          tripId: 't1',
+          createdByUid: 'anna',
+          name: 'B item',
+          priority: 'B',
+        ),
+        const TripShoppingItem(
+          id: 'ss',
+          tripId: 't1',
+          createdByUid: 'anna',
+          name: 'Z item',
+          priority: 'SS',
+          forUid: 'bruno',
+          forText: 'Nonna',
+          bought: true,
+          boughtByUid: 'bruno',
+        ),
+      ],
+    );
+    // SS before B even if the name comes later.
+    expect(
+      tester.getTopLeft(find.text('Z item')).dy,
+      lessThan(tester.getTopLeft(find.text('B item')).dy),
+    );
+    expect(find.text('Per Bruno, Nonna'), findsOneWidget);
+    expect(find.text('Comprato da Bruno'), findsOneWidget);
+    await tapKey(tester, 'shopping-done-b');
+    expect(shop.updated.single.boughtByUid, 'anna');
+  });
+
+  testWidgets('editor saves recipient text and priority', (tester) async {
+    final (shop, _) = await open(tester);
+    await tapKey(tester, 'shopping-add');
+    await tester.enterText(find.byKey(const Key('shopping-name')), 'Ventaglio');
+    await tester.enterText(find.byKey(const Key('shopping-for-text')), 'Nonna');
+    await tapKey(tester, 'shopping-priority-S');
+    await tapKey(tester, 'shopping-bought');
+    await tapKey(tester, 'shopping-save');
+    final item = shop.created.single;
+    expect((item.forText, item.priority), ('Nonna', 'S'));
+    expect((item.bought, item.boughtByUid), (true, 'anna'));
+  });
 }

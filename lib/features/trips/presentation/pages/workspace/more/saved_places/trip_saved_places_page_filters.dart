@@ -6,11 +6,6 @@
 part of 'trip_saved_places_page.dart';
 
 extension _TripSavedPlacesFilters on _TripSavedPlacesPageState {
-  static int _rank(String? priority) {
-    final i = TripSavedPlaceCodec.priorities.indexOf(priority ?? '');
-    return i < 0 ? TripSavedPlaceCodec.priorities.length : i;
-  }
-
   List<TripSavedPlace> _sorted(List<TripSavedPlace> items) {
     final shown = _filter.apply(
       items,
@@ -26,7 +21,9 @@ extension _TripSavedPlacesFilters on _TripSavedPlacesPageState {
     int byName(TripSavedPlace a, TripSavedPlace b) =>
         a.name.toLowerCase().compareTo(b.name.toLowerCase());
     int byPriority(TripSavedPlace a, TripSavedPlace b) {
-      final rank = _rank(a.priority).compareTo(_rank(b.priority));
+      final rank = TripSectionPriority.rank(
+        a.priority,
+      ).compareTo(TripSectionPriority.rank(b.priority));
       return rank != 0 ? rank : byName(a, b);
     }
 

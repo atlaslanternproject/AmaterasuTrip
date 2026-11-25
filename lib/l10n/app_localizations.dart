@@ -7775,6 +7775,30 @@ abstract class AppLocalizations {
   /// **'For {name}'**
   String shoppingForValue(String name);
 
+  /// No description provided for @shoppingForText.
+  ///
+  /// In en, this message translates to:
+  /// **'For whom (written by you)'**
+  String get shoppingForText;
+
+  /// No description provided for @shoppingForTextHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Also someone who is not travelling, e.g. «Grandma».'**
+  String get shoppingForTextHint;
+
+  /// No description provided for @shoppingPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get shoppingPriority;
+
+  /// No description provided for @shoppingBoughtBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought by {name}'**
+  String shoppingBoughtBy(String name);
+
   /// No description provided for @shoppingWhere.
   ///
   /// In en, this message translates to:
