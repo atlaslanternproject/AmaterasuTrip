@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:js_interop';
 
 import 'amaterasu_place_info.dart';
+import 'amaterasu_place_hours_parse.dart';
 
 @JS('amaterasuPlaceInfoContacts')
 external JSPromise<JSString> _contacts(JSString placeId, JSString language);
@@ -30,6 +31,9 @@ Future<AmaterasuPlaceContacts?> loadPlaceContacts(
   return AmaterasuPlaceContacts(
     phone: _text(decoded['phone']),
     website: website != null && website.startsWith('http') ? website : null,
+    hours: parsePlaceHours(decoded['hours']),
+    priceLevel: parsePriceLevel(decoded['priceLevel']),
+    priceRange: parsePriceRange(decoded['priceRange']),
   );
 }
 

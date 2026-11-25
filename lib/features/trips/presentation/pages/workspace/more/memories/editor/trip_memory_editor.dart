@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_stars.dart';
+
 import 'package:amaterasutrip/features/trips/memories/models/trip_memory.dart';
 import 'package:amaterasutrip/features/trips/memories/models/trip_memory_codec.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_block.dart';
@@ -13,7 +15,6 @@ import 'package:amaterasutrip/features/trips/sections/editor/trip_section_picker
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_labels.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import '../widgets/trip_memory_entry.dart';
 
 class TripMemoryEditor extends StatefulWidget {
   const TripMemoryEditor({
@@ -157,7 +158,7 @@ class _TripMemoryEditorState extends State<TripMemoryEditor>
                 keyPrefix: 'memory-rating',
                 values: const [1, 2, 3, 4, 5],
                 codeOf: (r) => '$r',
-                labelOf: tripMemoryStars,
+                labelOf: tripSectionStars,
                 selected: _rating,
                 allowNone: true,
                 onChanged: (r) => setState(() => _rating = r),

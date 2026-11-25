@@ -3,6 +3,7 @@
 // contatti, costo e note.
 
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_stars.dart';
 
 import 'package:amaterasutrip/core/places/amaterasu_contacts_autofill.dart';
 import 'package:amaterasutrip/core/places/amaterasu_place_info.dart';
@@ -80,6 +81,7 @@ class _TripRestaurantEditorState extends State<TripRestaurantEditor>
             other: (p) => switch (p.field) {
               'phone' => l10n.restaurantErrPhone,
               'party' => l10n.restaurantErrParty,
+              'rating' => l10n.restaurantErrRating,
               _ => l10n.transportErrTime,
             },
           ),

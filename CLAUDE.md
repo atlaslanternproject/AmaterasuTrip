@@ -300,7 +300,11 @@ Finito:
   prenotazione (data, ora, persone), voti dei viaggiatori
   SS/S/A/B come nella bucket list ma senza toccarla (campo
   votes: ognuno cambia solo il proprio, garantito dalle
-  regole), note, costo previsto e spesa collegata (categoria
+  regole), voto a stelle e nota quando è "provato", "Orari e
+  prezzi" su richiesta (orari e fascia di prezzo di Google nella
+  stessa richiesta dei contatti, mai salvati, avviso se il giorno
+  o l'ora prenotati risultano chiusi, prezzo convertito con il
+  cambio del budget), note, costo previsto e spesa collegata (categoria
   food); filtri, ordine per voti/nome/prenotazione, tre viste.
   Dati in trips/{tripId}/restaurants.
 - Luoghi salvati (lib/features/trips/saved_places e

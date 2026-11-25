@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_stars.dart';
+
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant.dart';
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant_status.dart';
@@ -75,6 +77,12 @@ TripSectionEntry tripRestaurantEntry(
           label: TripRestaurantLabels.price(level),
           color: AmaterasuColors.accentGold,
         ),
+      if (item.triedRating case final stars?)
+        TripSectionChip(
+          key: Key('restaurant-stars-${item.id}'),
+          label: tripSectionStars(stars),
+          color: AmaterasuColors.accentGold,
+        ),
       for (final diet in item.diets)
         TripSectionChip(
           label: TripRestaurantFoodLabels.diet(diet, l10n),
@@ -97,6 +105,8 @@ TripSectionEntry tripRestaurantEntry(
           ].join(' · '),
           key: Key('restaurant-allergens-${item.id}'),
         ),
+      if (item.triedNote case final note?)
+        TripSectionLine(Icons.rate_review_outlined, note),
       if (cost != null) TripSectionLine(Icons.payments_outlined, cost),
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),

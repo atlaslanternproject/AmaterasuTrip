@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_stars.dart';
+
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/memories/models/trip_memory.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_chip.dart';
@@ -11,7 +13,6 @@ import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_entry
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 
 /// "★★★★☆" for 4 of 5.
-String tripMemoryStars(int rating) => '★' * rating + '☆' * (5 - rating);
 
 TripSectionEntry tripMemoryEntry(
   BuildContext context,
@@ -49,7 +50,7 @@ TripSectionEntry tripMemoryEntry(
     chips: [
       if (rating != null)
         TripSectionChip(
-          label: tripMemoryStars(rating),
+          label: tripSectionStars(rating),
           color: AmaterasuColors.accentGold,
         ),
     ],

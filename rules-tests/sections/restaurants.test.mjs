@@ -42,6 +42,10 @@ const {ref, seed} = sectionCommonTests('restaurants', 'restaurants',
     {allergens: ['pollen']},
     {allergens: 'gluten'},
     {allergenNotes: 'x'.repeat(501)},
+    {triedRating: 0},
+    {triedRating: 6},
+    {triedRating: 4.5},
+    {triedNote: 'x'.repeat(1001)},
     {diets: ['paleo']},
   ], {status: 'tried', cuisine: 'Ramen'});
 
@@ -62,6 +66,8 @@ test('restaurants: every optional field and the own vote on create', async () =>
     notes: 'Coda lunga',
     allergens: ['gluten', 'peanuts', 'molluscs'],
     allergenNotes: 'Senza arachidi per Bruno',
+    triedRating: 5,
+    triedNote: 'Il miglior ramen del viaggio',
     diets: ['vegetarian', 'glutenFree'],
     votes: {[MEMBER]: 'SS'},
   })));

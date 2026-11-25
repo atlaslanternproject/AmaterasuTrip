@@ -18,6 +18,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
   const TripRestaurantCodec();
 
   static const partyMax = 100;
+  static const triedNoteMax = 1000;
 
   @override
   String get collection => 'restaurants';
@@ -36,6 +37,8 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
     'allergens',
     'allergenNotes',
     'diets',
+    'triedRating',
+    'triedNote',
     'estimatedCostMinorUnits',
     'estimatedCostCurrency',
     'expenseId',
@@ -62,6 +65,8 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       if (item.allergens.isNotEmpty) 'allergens': List.of(item.allergens),
       'allergenNotes': ?text(item.allergenNotes),
       if (item.diets.isNotEmpty) 'diets': List.of(item.diets),
+      'triedRating': ?item.triedRating,
+      'triedNote': ?text(item.triedNote),
       ...TripSectionFields.costMap(
         item.estimatedCostMinorUnits,
         item.estimatedCostCurrency,
@@ -103,6 +108,8 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
         TripRestaurantFood.allergens,
       ),
       allergenNotes: text('allergenNotes'),
+      triedRating: number('triedRating'),
+      triedNote: text('triedNote'),
       diets: TripRestaurantFood.read(data['diets'], TripRestaurantFood.diets),
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
@@ -118,6 +125,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       ..maxLength(item.name.trim(), TripSectionFields.nameMax, 'name')
       ..maxLength(item.cuisine, TripSectionFields.shortMax, 'cuisine')
       ..maxLength(item.notes, TripSectionFields.notesMax, 'notes')
+      ..maxLength(item.triedNote, triedNoteMax, 'triedNote')
       ..maxLength(
         item.allergenNotes,
         TripRestaurantFood.notesMax,
@@ -125,6 +133,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       );
     final phone = item.phone;
     final party = item.partySize;
+    final stars = item.triedRating;
     c
       ..check(item.place.invalid, TripSectionProblemKind.place, 'place')
       ..check(
@@ -144,6 +153,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
         'time',
       )
       ..check(party != null && (party < 1 || party > partyMax), other, 'party')
+      ..check(stars != null && (stars < 1 || stars > 5), other, 'rating')
       ..check(
         TripSectionFields.badCost(
           item.estimatedCostMinorUnits,

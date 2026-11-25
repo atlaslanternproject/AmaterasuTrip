@@ -14,6 +14,7 @@ possono cambiare: ricontrollare prima di ogni nuova funzione.
 | Info paese | script in tool/ che rigenera un file dai dati aperti (es. REST Countries / Wikidata) con fonte, licenza e data | no | nessuna chiamata dall'app |
 | Stato volo | solo link a un sito pubblico (FlightAware / Flightradar24) dal numero volo | no | nessuna API |
 | 3B Meteo | solo link alla pagina della città | no | nessuna API |
+| Orari e prezzo dei ristoranti | Google Places (stessa richiesta dei contatti) | sì (già in uso) | app, solo su "Orari e prezzi" o scegliendo il luogo |
 
 ## Dettaglio
 ### Open-Meteo
@@ -53,11 +54,27 @@ possono cambiare: ricontrollare prima di ogni nuova funzione.
 - Nessuna API pubblica gratuita: solo pulsante "Apri su 3B Meteo" con
   il link alla pagina della città, nessun dato scaricato.
 
+### Google Places: orari e prezzo dei ristoranti (v1.29.0)
+- Nessuna nuova chiamata: orari (regularOpeningHours) e prezzo
+  (priceLevel, priceRange) sono chiesti nella stessa richiesta dei
+  contatti (telefono, sito), che è già uno SKU "Place Details
+  Enterprise". Stesso costo per richiesta.
+- La richiesta parte solo scegliendo il luogo nell'editor o toccando
+  "Orari e prezzi" nella card (mai per ogni card); resta in memoria per
+  la sessione e non si salva su Firestore.
+- Limite: quota gratuita mensile dello SKU Enterprise (vedi COSTI.md);
+  se finisce, il pannello mostra "riprova più tardi" (funzione limitata,
+  non bloccata).
+- Fonti: [Place Details (New) fields](https://developers.google.com/maps/documentation/places/web-service/place-details),
+  [usage and billing](https://developers.google.com/maps/documentation/places/web-service/usage-and-billing).
+
 ### Frankfurter (cambi)
 - Gratuita, senza chiave, open source (dati BCE). Il sito ufficiale non
   indica limiti; directory terze parlano di limiti "di buon uso" non
   pubblicati e il sito consiglia di tenere i dati in cache.
 - Già in cache nell'app e salvata nelle spese dal server: va bene così.
+- Ristoranti (v1.29.0): conversione del prezzo di Google nella valuta
+  del viaggio, chiesta solo aprendo "Orari e prezzi" (cache 30 minuti).
 - Fonti: [frankfurter.dev](https://frankfurter.dev/),
   [GitHub](https://github.com/lineofflight/frankfurter).
 
