@@ -340,6 +340,7 @@ Mappa/Itinerario).
 | Nuova tappa 2b - Risalto del risultato | fatta | feature/cerca-evidenzia | 1.53.0+59 |
 | Nuova tappa 2c - Cerca in spese e bucket list | fatta | feature/cerca-spese-bucket | 1.54.0+60 |
 | Nuova tappa 3a - Calendario .ics | fatta | feature/calendario-ics | 1.55.0+61 |
+| Nuova tappa 3b - Statistiche | fatta | feature/budget-totali-condivisi | 1.56.0+62 |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1431,3 +1432,31 @@ Scelte proposte:
   ristoranti provati, luoghi; per le spese solo il totale già mostrato
   dal budget e il pulsante "Apri il cruscotto spese".
 Resto della tappa 3 (3c PDF del viaggio) indipendente: si può fare prima.
+
+### Passo 3b - fatto (1.56.0), scelta A
+- Estrazione (modulo approvato, con il tuo ok): il calcolo dei totali del
+  cruscotto delle categorie (ciclo sulle spese, conversione, esclusioni,
+  quota mia, anticipi, giorni) e la scelta del tasso di ogni spesa
+  (bloccato sulla spesa, altrimenti storico del giorno) sono ora in
+  lib/features/trips/budget/presentation/budget_category_totals.dart; il
+  cruscotto li chiama. Codice spostato senza cambiamenti; in più il totale
+  per persona, calcolato con la stessa regola della quota mia (un test
+  controlla che per me coincidano).
+- Test del budget prima e dopo: 281 test Flutter del budget, 693 in
+  tutto e tutte le suite con emulatori (regole, privacy, integrazione
+  budget e le altre) con righe di risultato identiche al confronto.
+- Statistiche (Altro > Statistiche): tre numeri (notti, città, spese
+  condivise), ciambella per categoria con BudgetCategoryChart e i colori
+  del budget, spese per persona con lo username del budget, paesi e città
+  degli alloggi, trasporti per tipo, ristoranti provati con voto medio,
+  luoghi visitati. Spese: condivise in cui partecipo, filtri predefiniti
+  del cruscotto (annullate escluse), valuta del viaggio, stessi tassi;
+  senza budget leggibile le altre statistiche restano.
+- Risalto negli alloggi: non fatto, voce 1 di docs/audit/COERENZA.md
+  (creato con le voci già rimandate al giro finale).
+
+Prove da fare sul sito:
+1. Altro > Statistiche: il totale delle spese condivise è uguale a quello
+   del cruscotto spese (vista "Gruppo", senza filtri) nella valuta del
+   viaggio.
+2. Le spese per persona sommano le quote di ciascuno.

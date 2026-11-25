@@ -6365,6 +6365,138 @@ abstract class AppLocalizations {
   /// **'Check-out {time}'**
   String exportIcsCheckOut(String time);
 
+  /// No description provided for @tripMoreStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get tripMoreStats;
+
+  /// No description provided for @tripMoreStatsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nights, places, expenses, transport and restaurants'**
+  String get tripMoreStatsSubtitle;
+
+  /// No description provided for @statsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statsTitle;
+
+  /// No description provided for @statsNights.
+  ///
+  /// In en, this message translates to:
+  /// **'Nights'**
+  String get statsNights;
+
+  /// No description provided for @statsCities.
+  ///
+  /// In en, this message translates to:
+  /// **'Cities'**
+  String get statsCities;
+
+  /// No description provided for @statsSpent.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared expenses'**
+  String get statsSpent;
+
+  /// No description provided for @statsByCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses by category'**
+  String get statsByCategory;
+
+  /// No description provided for @statsByPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses by person'**
+  String get statsByPerson;
+
+  /// No description provided for @statsExpensesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared expenses you take part in, in the trip currency, with the same rates and totals as the expenses dashboard; cancelled expenses do not count.'**
+  String get statsExpensesNote;
+
+  /// No description provided for @statsPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 expense without a rate is not in the totals.} other{{count} expenses without a rate are not in the totals.}}'**
+  String statsPartial(int count);
+
+  /// No description provided for @statsNoExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'No shared expenses.'**
+  String get statsNoExpenses;
+
+  /// No description provided for @statsExpensesUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses not available now: open the page again later.'**
+  String get statsExpensesUnavailable;
+
+  /// No description provided for @statsPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Countries and cities'**
+  String get statsPlaces;
+
+  /// No description provided for @statsPlacesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'From the trip stays.'**
+  String get statsPlacesNote;
+
+  /// No description provided for @statsNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get statsNone;
+
+  /// No description provided for @statsTransports.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport by type'**
+  String get statsTransports;
+
+  /// No description provided for @statsFoodAndPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants and places'**
+  String get statsFoodAndPlaces;
+
+  /// No description provided for @statsTried.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants tried: {tried} of {total}'**
+  String statsTried(int tried, int total);
+
+  /// No description provided for @statsRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Average rating: {value} stars'**
+  String statsRating(String value);
+
+  /// No description provided for @statsVisited.
+  ///
+  /// In en, this message translates to:
+  /// **'Places visited: {visited} of {total}'**
+  String statsVisited(int visited, int total);
+
+  /// No description provided for @statsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics not available now.'**
+  String get statsError;
+
+  /// No description provided for @statsRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get statsRetry;
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:
