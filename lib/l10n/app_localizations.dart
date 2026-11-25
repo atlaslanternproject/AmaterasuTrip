@@ -7229,6 +7229,24 @@ abstract class AppLocalizations {
   /// **'North up'**
   String get mapNorth;
 
+  /// No description provided for @mapWithoutPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 without a position} other{{count} without a position}}'**
+  String mapWithoutPosition(int count);
+
+  /// No description provided for @mapError.
+  ///
+  /// In en, this message translates to:
+  /// **'Map not available now.'**
+  String get mapError;
+
+  /// No description provided for @mapRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get mapRetry;
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:

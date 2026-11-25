@@ -1,6 +1,6 @@
 // Riquadro in basso della Mappa al tocco di un pin: miniatura quadrata,
-// nome, sezione, giorno e ora; "Apri la sezione" (stessa pagina di Cerca)
-// e "Apri su Maps" (AmaterasuLinkOpener.openMaps). Chiudibile.
+// nome, sezione, giorno e ora se ci sono; "Apri la sezione" (stessa pagina
+// di Cerca) e "Apri su Maps" (AmaterasuLinkOpener.openMaps). Chiudibile.
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -10,37 +10,34 @@ import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/links/amaterasu_web_link.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
-import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_item.dart';
-import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_itinerary_tile.dart';
+import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_itinerary_thumb.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'trip_map_point.dart';
 
 class TripMapPanel extends StatelessWidget {
   const TripMapPanel({
     super.key,
     required this.tripId,
-    required this.item,
+    required this.point,
     required this.onClose,
-    this.scheduled = true,
     this.launch,
   });
 
   final String tripId;
-  final TripItineraryItem item;
+  final TripMapPoint point;
   final VoidCallback onClose;
-
-  /// False for elements not in the itinerary: no day is shown.
-  final bool scheduled;
   final AmaterasuLaunch? launch;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final i = item;
-    final place = i.place!;
-    final when = [
-      if (scheduled) AmaterasuDates.day(context, i.day),
-      if (i.time != null) AmaterasuDates.time(context, i.time!),
-    ].join(' · ');
+    final p = point;
+    final section = p.section;
+    final details = [
+      section?.label(l10n) ?? l10n.itineraryFreeItem,
+      if (p.day != null) AmaterasuDates.day(context, p.day!),
+      if (p.time != null) AmaterasuDates.time(context, p.time!),
+    ];
     return Container(
       key: const Key('map-panel'),
       margin: const EdgeInsets.all(12),
@@ -57,24 +54,21 @@ class TripMapPanel extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TripItineraryThumb(icon: tripItineraryIcon(i)),
+              TripItineraryThumb(icon: p.icon),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      i.title,
+                      p.title,
                       style: const TextStyle(
                         color: AmaterasuColors.textPrimary,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
-                      [
-                        tripItinerarySectionLabel(l10n, i),
-                        if (when.isNotEmpty) when,
-                      ].join(' · '),
+                      details.join(' · '),
                       style: const TextStyle(
                         color: AmaterasuColors.textMuted,
                         fontSize: 12,
@@ -96,13 +90,13 @@ class TripMapPanel extends StatelessWidget {
           Wrap(
             spacing: 8,
             children: [
-              if (i.section != null)
+              if (section != null)
                 AmaterasuButton.secondary(
                   key: const Key('map-open-section'),
-                  icon: i.section!.icon,
+                  icon: section.icon,
                   label: l10n.mapOpenSection,
                   onPressed: () =>
-                      context.go(i.section!.route(tripId, i.refId ?? '')),
+                      context.go(section.route(tripId, p.refId ?? '')),
                 ),
               AmaterasuButton.tertiary(
                 key: const Key('map-open-maps'),
@@ -111,9 +105,9 @@ class TripMapPanel extends StatelessWidget {
                 onPressed: () => AmaterasuLinkOpener.openMaps(
                   context,
                   AmaterasuWebLink.googleMaps(
-                    name: place.name,
-                    latitude: place.latitude,
-                    longitude: place.longitude,
+                    name: p.place.name,
+                    latitude: p.latitude,
+                    longitude: p.longitude,
                   )!,
                   failedMessage: l10n.itineraryMapsFailed,
                   launch: launch ?? AmaterasuLinkOpener.defaultLaunch,

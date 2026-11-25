@@ -175,8 +175,10 @@ class _State extends ConsumerState<TripItineraryScreen> {
                     ),
                     TripItineraryView.map => TripMapView(
                       tripId: widget.tripId,
-                      points: tripMapPoints(shown),
-                      routes: tripMapRoutes(shown),
+                      points: [for (final i in shown) ?TripMapPoint.ofItem(i)],
+                      routes: tripMapRoutes([
+                        for (final i in shown) ?TripMapPoint.ofItem(i),
+                      ]),
                     ),
                   },
                 ),

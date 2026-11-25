@@ -60,7 +60,7 @@ void main() {
   });
 
   test('pins: grouped far away, separate up close', () {
-    final points = tripMapPoints(items);
+    final points = [for (final i in items) ?TripMapPoint.ofItem(i)];
     expect(points, hasLength(13)); // the free day has no place
     expect(tripMapClusters(points, 9).length, lessThan(5));
     expect(tripMapClusters(points, 18).length, greaterThanOrEqualTo(12));

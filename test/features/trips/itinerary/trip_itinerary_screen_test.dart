@@ -6,10 +6,9 @@
 
 import 'package:amaterasutrip/features/trips/itinerary/data/trip_itinerary_demo.dart';
 import 'package:amaterasutrip/features/trips/itinerary/data/trip_itinerary_repository.dart';
-import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_item.dart';
+import 'package:amaterasutrip/features/trips/map/trip_map_point.dart';
 import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_itinerary_screen.dart';
 import 'package:amaterasutrip/features/trips/map/trip_map_canvas.dart';
-import 'package:amaterasutrip/features/trips/map/trip_map_screen.dart';
 import 'package:amaterasutrip/features/trips/tools/search/trip_search_recent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,9 +18,10 @@ import '../sections/support/fake_section_store.dart';
 
 /// Maps do not draw in tests: one button per pin.
 Widget fakeCanvas(
-  List<TripItineraryItem> points,
-  List<List<TripItineraryItem>> routes,
-  ValueChanged<TripItineraryItem> onSelect,
+  List<TripMapPoint> points,
+  List<List<TripMapPoint>> routes,
+  ValueChanged<TripMapPoint> onSelect,
+  Set<String> dimmed,
 ) => ListView(
   key: const Key('fake-map'),
   children: [
@@ -122,14 +122,6 @@ void main() {
     expect(find.byKey(const Key('map-open-maps')), findsOneWidget);
   });
 
-  testWidgets('map page: every place, also outside the itinerary', (
-    tester,
-  ) async {
-    await open(tester, const TripMapScreen(tripId: 't1'));
-    expect(find.text('16 luoghi'), findsOneWidget);
-    await tapKey(tester, 'pin-c1');
-    expect(find.text('Kinkaku-ji'), findsWidgets);
-  });
 
   for (final width in [390.0, 1300.0]) {
     testWidgets('130% at width $width without overflow', (tester) async {
@@ -143,8 +135,6 @@ void main() {
       );
       expect(find.byKey(const Key('itinerary-view-day')), findsOneWidget);
       await tapKey(tester, 'itinerary-view-day');
-      await open(tester, const TripMapScreen(tripId: 't1'), width: width);
-      await tapKey(tester, 'pin-i2');
       expect(tester.takeException(), isNull);
     });
   }

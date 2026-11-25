@@ -13,26 +13,26 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:amaterasutrip/core/maps/amaterasu_map_style.dart';
 import 'package:amaterasutrip/core/maps/amaterasu_two_finger_gesture.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
-import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_item.dart';
-import 'package:amaterasutrip/features/trips/itinerary/presentation/trip_itinerary_tile.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_map_markers.dart';
 import 'trip_map_point.dart';
 
 typedef TripMapCanvasBuilder =
     Widget Function(
-      List<TripItineraryItem> points,
-      List<List<TripItineraryItem>> routes,
-      ValueChanged<TripItineraryItem> onSelect,
+      List<TripMapPoint> points,
+      List<List<TripMapPoint>> routes,
+      ValueChanged<TripMapPoint> onSelect,
+      Set<String> dimmed,
     );
 
 /// The real Google map; tests replace it (maps do not draw in tests).
 final tripMapCanvasProvider = Provider<TripMapCanvasBuilder>(
   (ref) =>
-      (points, routes, onSelect) => GoogleTripMapCanvas(
+      (points, routes, onSelect, dimmed) => GoogleTripMapCanvas(
         points: points,
         routes: routes,
         onSelect: onSelect,
+        dimmed: dimmed,
       ),
 );
 
@@ -42,11 +42,15 @@ class GoogleTripMapCanvas extends StatefulWidget {
     required this.points,
     required this.routes,
     required this.onSelect,
+    this.dimmed = const {},
   });
 
-  final List<TripItineraryItem> points;
-  final List<List<TripItineraryItem>> routes;
-  final ValueChanged<TripItineraryItem> onSelect;
+  final List<TripMapPoint> points;
+  final List<List<TripMapPoint>> routes;
+  final ValueChanged<TripMapPoint> onSelect;
+
+  /// Points shown faded (outside the chosen day).
+  final Set<String> dimmed;
 
   @override
   State<GoogleTripMapCanvas> createState() => _GoogleTripMapCanvasState();
@@ -58,8 +62,7 @@ class _GoogleTripMapCanvasState extends State<GoogleTripMapCanvas> {
   CameraPosition _camera = const CameraPosition(target: LatLng(0, 0));
   Set<Marker> _markers = {};
 
-  LatLng _at(TripItineraryItem i) =>
-      LatLng(i.place!.latitude!, i.place!.longitude!);
+  LatLng _at(TripMapPoint p) => LatLng(p.latitude, p.longitude);
 
   @override
   void didUpdateWidget(GoogleTripMapCanvas old) {
@@ -73,14 +76,15 @@ class _GoogleTripMapCanvasState extends State<GoogleTripMapCanvas> {
   Future<void> _rebuild() async {
     final markers = <Marker>{};
     for (final c in tripMapClusters(widget.points, _zoom)) {
-      final first = c.items.first;
+      final first = c.points.first;
       markers.add(
         Marker(
-          markerId: MarkerId(c.items.map((i) => i.id).join('+')),
+          markerId: MarkerId(c.points.map((i) => i.id).join('+')),
           position: c.single ? _at(first) : LatLng(c.latitude, c.longitude),
           icon: c.single
-              ? await TripMapMarkers.icon(tripItineraryIcon(first))
-              : await TripMapMarkers.count(c.items.length),
+              ? await TripMapMarkers.icon(first.icon)
+              : await TripMapMarkers.count(c.points.length),
+          alpha: c.points.every((p) => widget.dimmed.contains(p.id)) ? 0.4 : 1,
           onTap: () => c.single || _zoom >= 18
               ? widget.onSelect(first)
               : _controller?.animateCamera(
@@ -99,8 +103,8 @@ class _GoogleTripMapCanvasState extends State<GoogleTripMapCanvas> {
   void _fit() {
     final c = _controller;
     if (c == null || widget.points.isEmpty) return;
-    final lats = widget.points.map((i) => i.place!.latitude!);
-    final lngs = widget.points.map((i) => i.place!.longitude!);
+    final lats = widget.points.map((p) => p.latitude);
+    final lngs = widget.points.map((p) => p.longitude);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.points.length == 1) {
         c.animateCamera(
