@@ -48,6 +48,39 @@ service cloud.firestore {
     // =========================================================
     // USER PROFILE
     // =========================================================
+    // Problem reports and ideas (v1.47.0, Extra F). Write-only from the
+    // app: at most 5 a day per user (ids uid_YYYY-MM-DD_1..5, UTC day of
+    // the server, no overwrite); read only from the Firebase console.
+    function feedbackDay() {
+      let t = request.time;
+      return string(t.year()) + '-'
+        + (t.month() < 10 ? '0' : '') + string(t.month()) + '-'
+        + (t.day() < 10 ? '0' : '') + string(t.day());
+    }
+
+    match /feedback/{feedbackId} {
+      allow read, update, delete: if false;
+      allow create: if request.auth != null
+        && feedbackId.matches(
+          '^' + request.auth.uid + '_' + feedbackDay() + '_[1-5]$'
+        )
+        && request.resource.data.keys().hasAll(
+          ['kind', 'text', 'createdByUid', 'createdAt']
+        )
+        && request.resource.data.keys().hasOnly(
+          ['kind', 'text', 'appVersion', 'language', 'createdByUid', 'createdAt']
+        )
+        && request.resource.data.kind in ['bug', 'idea']
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 2000
+        && request.resource.data.get('appVersion', '1.0.0')
+          .matches('^[0-9.]{1,20}$')
+        && request.resource.data.get('language', 'it') in ['it', 'en']
+        && request.resource.data.createdByUid == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+    }
+
     // Appearance preferences of the user (v1.41.0, Extra E): text size,
     // units, date and time format, default and display currency. Only
     // display choices: no amount or calculation depends on them.

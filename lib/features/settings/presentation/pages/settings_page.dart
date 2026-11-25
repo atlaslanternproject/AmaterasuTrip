@@ -100,6 +100,14 @@ class SettingsPage extends StatelessWidget {
               context.push('/settings/information');
             },
           ),
+          AmaterasuSettingsCard(
+            icon: Icons.support_agent_rounded,
+            title: l10n.settingsSupport,
+            subtitle: l10n.settingsSupportSubtitle,
+            onTap: () {
+              context.push('/settings/support');
+            },
+          ),
           const SizedBox(height: 10),
           const AccountLogoutPage(),
         ],

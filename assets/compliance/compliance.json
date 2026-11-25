@@ -1,0 +1,105 @@
+{
+  "_comment": "Tabella della pagina Conformità e normative (Extra F). Solo fatti verificati nel codice e nella configurazione; ciò che non è verificabile è scritto come da verificare. Da far rivedere a un professionista prima dell'uscita pubblica.",
+  "checkedOn": "2026-11-25",
+  "rows": [
+    {
+      "norm": {"it": "GDPR (Regolamento UE 2016/679)", "en": "GDPR (EU Regulation 2016/679)"},
+      "ref": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "applies": "yes",
+      "how": {
+        "it": "I dati del viaggio stanno in Firestore nella regione eur3 (Unione Europea) e le funzioni del server in europe-west1 (Belgio). Si salvano solo i dati che l'utente scrive. L'account si cancella dall'app (Impostazioni > Account) insieme al profilo e alla foto. Base giuridica, accordo sul trattamento dei dati con Google e registro dei trattamenti: da verificare.",
+        "en": "Trip data is in Firestore in the eur3 region (European Union) and server functions in europe-west1 (Belgium). Only data written by the user is saved. The account is deleted from the app (Settings > Account) together with the profile and photo. Legal basis, data processing agreement with Google and records of processing: to be verified."
+      }
+    },
+    {
+      "norm": {"it": "Diritti dell'interessato (GDPR, art. 15-22)", "en": "Data subject rights (GDPR, art. 15-22)"},
+      "ref": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "applies": "partial",
+      "how": {
+        "it": "Accesso, rettifica e cancellazione sono possibili dall'app. Non c'è ancora l'esportazione dei propri dati in un file (portabilità, art. 20): è una lacuna.",
+        "en": "Access, correction and deletion are possible from the app. Exporting one's own data to a file (portability, art. 20) is not available yet: it is a gap."
+      }
+    },
+    {
+      "norm": {"it": "Codice Privacy italiano (D.Lgs. 196/2003, modificato dal D.Lgs. 101/2018)", "en": "Italian Privacy Code (Legislative Decree 196/2003, amended by Legislative Decree 101/2018)"},
+      "ref": "https://www.garanteprivacy.it/codice",
+      "applies": "yes",
+      "how": {
+        "it": "Si applica insieme al GDPR. Per i servizi online il consenso dei minori vale dai 14 anni (art. 2-quinquies): l'app non chiede l'età, da verificare se serve.",
+        "en": "It applies together with the GDPR. For online services minors can consent from 14 (art. 2-quinquies): the app does not ask for the age, to be verified whether it is needed."
+      }
+    },
+    {
+      "norm": {"it": "Cookie e memoria del browser (ePrivacy, art. 122 Codice Privacy, linee guida del Garante 10/06/2021)", "en": "Cookies and browser storage (ePrivacy, art. 122 Privacy Code, Garante guidelines 10/06/2021)"},
+      "ref": "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9677876",
+      "applies": "partial",
+      "how": {
+        "it": "Nessun cookie di profilazione o statistica. Nel browser l'app salva solo preferenze tecniche (lingua, aspetto, viste, novità viste, ricordami) e l'accesso di Firebase. La protezione App Check usa reCAPTCHA Enterprise di Google: se i suoi cookie siano solo tecnici e se serva un avviso è da verificare.",
+        "en": "No profiling or statistics cookies. In the browser the app saves only technical preferences (language, appearance, views, seen news, remember me) and the Firebase sign-in. App Check protection uses Google reCAPTCHA Enterprise: whether its cookies are only technical and whether a notice is needed is to be verified."
+      }
+    },
+    {
+      "norm": {"it": "Termini di Google Maps Platform", "en": "Google Maps Platform Terms"},
+      "ref": "https://cloud.google.com/maps-platform/terms",
+      "applies": "partial",
+      "how": {
+        "it": "Le foto dei luoghi si mostrano con il marchio Google Maps e gli autori e non si salvano mai; gli orari e i prezzi si leggono solo al tocco e non si salvano. Telefono e sito proposti da Google vengono però copiati nei campi dell'utente e salvati: da verificare rispetto ai limiti di conservazione dei contenuti.",
+        "en": "Place photos are shown with the Google Maps mark and the authors and are never saved; hours and prices are read only on tap and not saved. Phone and website suggested by Google are however copied into the user's fields and saved: to be verified against the content storage limits."
+      }
+    },
+    {
+      "norm": {"it": "Termini di Firebase e Google Cloud", "en": "Firebase and Google Cloud Terms"},
+      "ref": "https://firebase.google.com/terms",
+      "applies": "yes",
+      "how": {
+        "it": "Accesso con regole di sicurezza provate da test, App Check attivo, regioni nell'Unione Europea. Accettazione dei termini sul trattamento dei dati nella console: da verificare.",
+        "en": "Access through security rules covered by tests, App Check on, regions in the European Union. Acceptance of the data processing terms in the console: to be verified."
+      }
+    },
+    {
+      "norm": {"it": "Google Drive API (accesso limitato ai file dell'app)", "en": "Google Drive API (access limited to the app's files)"},
+      "ref": "https://developers.google.com/terms/api-services-user-data-policy",
+      "applies": "yes",
+      "how": {
+        "it": "L'app chiede solo l'accesso ai file che crea lei (drive.file) per l'archivio del viaggio. La verifica dell'app da parte di Google per l'uso pubblico: da verificare.",
+        "en": "The app asks only for access to the files it creates (drive.file) for the trip archive. Google's verification of the app for public use: to be verified."
+      }
+    },
+    {
+      "norm": {"it": "Termini di Open-Meteo (licenza CC BY 4.0)", "en": "Open-Meteo Terms (CC BY 4.0 licence)"},
+      "ref": "https://open-meteo.com/en/terms",
+      "applies": "yes",
+      "how": {
+        "it": "Usato solo per cercare il fuso orario di una città, gratis e senza chiave, uso non commerciale. La fonte è indicata nel pannello di ricerca della città.",
+        "en": "Used only to look up a city's time zone, free and without a key, non-commercial use. The source is shown in the city search panel."
+      }
+    },
+    {
+      "norm": {"it": "Frankfurter (cambi della Banca Centrale Europea)", "en": "Frankfurter (European Central Bank rates)"},
+      "ref": "https://frankfurter.dev/",
+      "applies": "yes",
+      "how": {
+        "it": "Servizio gratuito senza chiave; i cambi si usano solo per mostrare gli importi e si conservano solo nelle spese, con fonte e data.",
+        "en": "Free service without a key; rates are used only to show amounts and are kept only in expenses, with source and date."
+      }
+    },
+    {
+      "norm": {"it": "Segnalazioni e idee inviate dall'app", "en": "Reports and ideas sent from the app"},
+      "ref": "",
+      "applies": "yes",
+      "how": {
+        "it": "Si salvano solo il testo scritto, il tipo, la versione e la lingua, al massimo 5 al giorno; nessun registro automatico degli errori e nessuna statistica d'uso. Oggi restano anche dopo la cancellazione dell'account: è una lacuna.",
+        "en": "Only the written text, the type, the version and the language are saved, at most 5 a day; no automatic error log and no usage statistics. Today they remain after the account is deleted: it is a gap."
+      }
+    },
+    {
+      "norm": {"it": "21 CFR Part 11 (FDA, registri elettronici)", "en": "21 CFR Part 11 (FDA, electronic records)"},
+      "ref": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11",
+      "applies": "no",
+      "how": {
+        "it": "Non applicabile come conformità: è solo l'ispirazione per il futuro Audit Trail (registro delle modifiche scritto dal server). L'Audit Trail non è ancora costruito.",
+        "en": "Not applicable as compliance: it is only the inspiration for the future Audit Trail (change log written by the server). The Audit Trail is not built yet."
+      }
+    }
+  ]
+}

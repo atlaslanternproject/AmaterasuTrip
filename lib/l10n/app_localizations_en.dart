@@ -2847,6 +2847,91 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonLinkAdd => 'Add a link';
 
   @override
+  String get zoneSource => 'City data: Open-Meteo.com (CC BY 4.0)';
+
+  @override
+  String get settingsSupport => 'Help and privacy';
+
+  @override
+  String get settingsSupportSubtitle => 'Reports, ideas, app status and rules';
+
+  @override
+  String get supportTitle => 'Help and privacy';
+
+  @override
+  String get supportReportProblem => 'Report a problem';
+
+  @override
+  String get supportReportProblemSubtitle => 'Write what does not work';
+
+  @override
+  String get supportSuggestIdea => 'Suggest an idea';
+
+  @override
+  String get supportSuggestIdeaSubtitle => 'What you would like in the app';
+
+  @override
+  String get supportAppStatus => 'App status';
+
+  @override
+  String supportAppStatusValue(String version, String date) {
+    return 'Version $version · updated on $date';
+  }
+
+  @override
+  String get supportPrivacy => 'Privacy policy';
+
+  @override
+  String get supportPrivacySubtitle => 'Opens the online page';
+
+  @override
+  String get supportCompliance => 'Compliance and rules';
+
+  @override
+  String get supportComplianceSubtitle => 'The rules we follow and how';
+
+  @override
+  String get supportNoTracking => 'No automatic error log and no usage statistics: only what you write reaches us.';
+
+  @override
+  String get supportFeedbackBugHint => 'What you were doing, what you expected and what happened. Do not write passwords or sensitive data.';
+
+  @override
+  String get supportFeedbackIdeaHint => 'Describe the idea in a few lines. Do not write passwords or sensitive data.';
+
+  @override
+  String get supportFeedbackSend => 'Send';
+
+  @override
+  String get supportFeedbackEmpty => 'Write something before sending.';
+
+  @override
+  String get supportFeedbackSent => 'Thank you! Message sent.';
+
+  @override
+  String get supportFeedbackLimit => 'You already sent 5 messages today: try again tomorrow.';
+
+  @override
+  String get supportFeedbackFailed => 'Sending failed. Try again later.';
+
+  @override
+  String get supportComplianceApplies => 'Applies to us';
+
+  @override
+  String get supportComplianceYes => 'Yes';
+
+  @override
+  String get supportComplianceNo => 'No';
+
+  @override
+  String get supportCompliancePartial => 'Partly';
+
+  @override
+  String supportComplianceDisclaimer(String date) {
+    return 'Principles we apply, not a certification nor legal advice. Last check: $date. Points «to be verified» have not been confirmed.';
+  }
+
+  @override
   String get settingsAppearance => 'Appearance';
 
   @override
