@@ -3188,6 +3188,60 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripMoreCountryInfoSubtitle => 'Emergencies, plugs, driving, time zones and official pages';
 
   @override
+  String get tripMoreSearch => 'Search';
+
+  @override
+  String get tripMoreSearchSubtitle => 'Find an item in all the sections of the trip';
+
+  @override
+  String get searchTitle => 'Search';
+
+  @override
+  String get searchHint => 'Search stays, transport, notes…';
+
+  @override
+  String get searchStart => 'Write one or more words: I search names, texts, notes, addresses and booking codes in the trip sections. Other people\'s private notes and checklists never appear.';
+
+  @override
+  String get searchRecent => 'Recent searches';
+
+  @override
+  String get searchClearRecent => 'Clear';
+
+  @override
+  String searchEmpty(String query) {
+    return 'No results for «$query».';
+  }
+
+  @override
+  String searchCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count results',
+      one: '1 result',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get searchMore => 'Show more';
+
+  @override
+  String get searchRefresh => 'Refresh';
+
+  @override
+  String get searchError => 'Search not available now.';
+
+  @override
+  String get searchRetry => 'Try again';
+
+  @override
+  String searchSectionCount(String section, int count) {
+    return '$section ($count)';
+  }
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

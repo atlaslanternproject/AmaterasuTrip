@@ -6197,6 +6197,90 @@ abstract class AppLocalizations {
   /// **'Emergencies, plugs, driving, time zones and official pages'**
   String get tripMoreCountryInfoSubtitle;
 
+  /// No description provided for @tripMoreSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get tripMoreSearch;
+
+  /// No description provided for @tripMoreSearchSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find an item in all the sections of the trip'**
+  String get tripMoreSearchSubtitle;
+
+  /// No description provided for @searchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get searchTitle;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search stays, transport, notes…'**
+  String get searchHint;
+
+  /// No description provided for @searchStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Write one or more words: I search names, texts, notes, addresses and booking codes in the trip sections. Other people\'s private notes and checklists never appear.'**
+  String get searchStart;
+
+  /// No description provided for @searchRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent searches'**
+  String get searchRecent;
+
+  /// No description provided for @searchClearRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get searchClearRecent;
+
+  /// No description provided for @searchEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No results for «{query}».'**
+  String searchEmpty(String query);
+
+  /// No description provided for @searchCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 result} other{{count} results}}'**
+  String searchCount(int count);
+
+  /// No description provided for @searchMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Show more'**
+  String get searchMore;
+
+  /// No description provided for @searchRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get searchRefresh;
+
+  /// No description provided for @searchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Search not available now.'**
+  String get searchError;
+
+  /// No description provided for @searchRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get searchRetry;
+
+  /// No description provided for @searchSectionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{section} ({count})'**
+  String searchSectionCount(String section, int count);
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:

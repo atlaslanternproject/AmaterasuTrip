@@ -336,6 +336,7 @@ Mappa/Itinerario).
 | Nuova tappa 1a - Converti | fatta (pubblicazione: vedi tappa seguente) | feature/converti | 1.49.0+54 |
 | Nuova tappa 1b - Meteo | fatta | feature/meteo | 1.50.0+56 |
 | Nuova tappa 1c - Info paese | fatta | feature/info-paese | 1.51.0+57 |
+| Nuova tappa 2a - Cerca nelle sezioni | fatta | feature/cerca-globale | 1.52.0+58 |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1148,8 +1149,8 @@ tappa, versione e prove; il resto ha una tappa qui sotto.
 | Extra E Aspetto (E1-E8) | fatto | 1.41.0-1.46.0, TEMA-CHIARO.md |
 | Extra F assistenza e privacy | fatto; lacune in CONFORMITA-LACUNE.md | 1.47.0 |
 | Extra G caricamento | fatto | 1.48.0 |
-| Nuova tappa 1 Converti, Meteo, Info paese | da fare | - |
-| Nuova tappa 2 Cerca globale | da fare | - |
+| Nuova tappa 1 Converti, Meteo, Info paese | fatto | 1.49.0, 1.50.0, 1.51.0 |
+| Nuova tappa 2 Cerca globale | in corso (2a, 2b, 2c) | - |
 | Nuova tappa 3 Calendario .ics, Statistiche, PDF del viaggio | da fare | - |
 | Nuova tappa 4 Audit Trail (analisi, poi costruzione se non tocca moduli approvati) | da fare | - |
 | K BUDGET-2 (solo analisi) | da fare | - |
@@ -1261,3 +1262,58 @@ Prove da fare sul sito:
 1. Altro > Info paese in un viaggio in Giappone: +81, prese tipo A e B,
    100 V, guida a sinistra; "Viaggiare Sicuri" apre la scheda del paese.
 2. Cambiare paese dalla tendina: le voci cambiano.
+
+## Nuova tappa 2 - Cerca globale
+Valutazione (regola 1):
+(a) Esiste già: "Collega a un elemento" delle Note
+(tripNoteLinkTargetsProvider) legge una volta sola, su richiesta, gli
+elementi di alloggi, trasporti, prenotazioni, ristoranti e luoghi con gli
+stessi store delle sezioni; gli store di note e checklist leggono solo le
+condivise più le proprie private (due richieste, regole e test). Esistono
+anche TripSectionHeader, i chip di scelta delle sezioni, le preferenze
+locali (SharedPreferences) e i percorsi di ogni sezione.
+(b) Si riusano gli stessi store identici (stessa lettura che l'utente fa
+aprendo la sezione: nessuna copia dei dati altrove, nessun indice salvato,
+nessuna API); un nuovo modulo lib/features/trips/tools/search con l'elenco
+fisso dei campi di testo in cui cercare (nomi, titoli, testi, note,
+indirizzi, città, compagnia, codici di prenotazione, voci delle
+checklist); esclusi codice porta, Wi-Fi, telefono, email, link e
+identificativi.
+(c) Tocca solo file nuovi più la voce di Altro e il percorso; nessuna
+regola, nessuna funzione. Test: estrazione del testo, ricerca senza
+accenti, filtro per sezione, ricerche recenti, privacy (note private di
+altri mai presenti perché lo store non le legge), tocco che porta alla
+sezione, 130 %.
+
+Piano a passi (un rilascio ciascuno):
+- 2a: Altro > Cerca: alloggi (solo lettura, modulo approvato non
+  toccato), trasporti, prenotazioni, ristoranti, luoghi, note, shopping,
+  checklist, ricordi; dati letti alla prima ricerca e tenuti per la
+  sessione (pulsante "Aggiorna"), risultati a pagine da 20, filtro per
+  sezione, ricerche recenti sul dispositivo; il tocco apre la sezione (la
+  checklist apre la lista).
+- 2b: evidenziare l'elemento toccato nelle sezioni nuove (elenco comune
+  TripSectionList); negli alloggi solo dopo il tuo ok (modulo approvato).
+- 2c: spese e bucket list in sola lettura con le letture già esistenti,
+  senza cambiare quei moduli (le spese private solo le proprie).
+
+### Passo 2a - fatto (1.52.0)
+- lib/features/trips/tools/search: testo cercabile (elenco fisso dei
+  campi; anche le voci delle checklist, salvate per identificativo),
+  confronto senza maiuscole né accenti e con tutte le parole, sorgenti
+  (stessi store delle sezioni, alloggi con il loro repository in sola
+  lettura), ricerche recenti (8, per utente e viaggio, sul dispositivo),
+  pagina con filtro per sezione, pagine da 20, "Aggiorna".
+- Costi: nessuna lettura finché non si scrive; poi una lettura di ogni
+  sezione per sessione (la stessa che farebbe aprire la sezione), nessun
+  ascolto attivo, nessuna API. Firestore non permette di cercare nel
+  testo: le letture a pagine riguardano la vista dei risultati.
+- Test: testo e privacy dei campi (codice porta, Wi-Fi, telefono, link,
+  identificativi), confronto, recenti, lettura con gli store (solo ciò che
+  restituiscono), pagina, apertura della sezione e della checklist, 130 %.
+
+Prove da fare sul sito:
+1. Altro > Cerca, scrivi il nome di un hotel o un codice di prenotazione:
+   il risultato apre la sezione giusta.
+2. Una nota privata di un altro viaggiatore non compare mai.
+3. Le ricerche recenti restano dopo aver riaperto la pagina.

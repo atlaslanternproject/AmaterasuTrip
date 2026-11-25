@@ -26,6 +26,12 @@ class TripMorePage extends StatelessWidget {
 
     final items = [
       _TripMoreItem(
+        title: l10n.tripMoreSearch,
+        subtitle: l10n.tripMoreSearchSubtitle,
+        icon: Icons.search_rounded,
+        route: '/trips/$tripId/more/search',
+      ),
+      _TripMoreItem(
         title: l10n.tripMapTitle,
         subtitle: l10n.tripMapSubtitle,
         icon: Icons.map_outlined,
