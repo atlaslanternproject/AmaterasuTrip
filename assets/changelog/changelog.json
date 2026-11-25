@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.57.0",
+      "date": "2026-11-25",
+      "it": ["Esporta: nuovo PDF del viaggio, un riepilogo di alloggi, trasporti, prenotazioni e ristoranti prenotati in ordine di data, con i link della cartella del viaggio e degli album dei ricordi, da stampare o salvare come PDF."],
+      "en": ["Export: new trip PDF, a summary of stays, transport, bookings and booked restaurants by date, with the links of the trip folder and of the memory albums, to print or save as PDF."]
+    },
+    {
       "version": "1.56.0",
       "date": "2026-11-25",
       "it": ["Nuovo in Altro: Statistiche. Notti, città e paesi degli alloggi, spese condivise per categoria (con la ciambella) e per persona con gli stessi totali del cruscotto spese, trasporti per tipo, ristoranti provati e luoghi visitati."],

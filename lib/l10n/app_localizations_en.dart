@@ -3248,7 +3248,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripMoreExport => 'Export';
 
   @override
-  String get tripMoreExportSubtitle => 'Trip calendar (.ics)';
+  String get tripMoreExportSubtitle => 'Trip calendar (.ics) and PDF';
 
   @override
   String get exportTitle => 'Export';
@@ -3376,6 +3376,47 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statsRetry => 'Try again';
+
+  @override
+  String get exportPdf => 'Trip PDF';
+
+  @override
+  String get exportPdfBody => 'A summary to print or save as PDF: stays, transport, bookings and booked restaurants by date, with the links of the trip folder and of the memory albums. It opens in a new tab: choose «Save as PDF» when printing.';
+
+  @override
+  String get exportPdfButton => 'Open the PDF';
+
+  @override
+  String get exportPdfBlocked => 'The browser blocked the new tab: allow pop-ups for this site and try again.';
+
+  @override
+  String get exportPdfName => 'Name';
+
+  @override
+  String get exportPdfWhen => 'When';
+
+  @override
+  String get exportPdfPlace => 'Place';
+
+  @override
+  String get exportPdfCode => 'Code';
+
+  @override
+  String get exportPdfRoute => 'Route';
+
+  @override
+  String get exportPdfDeparture => 'Departure';
+
+  @override
+  String get exportPdfArrival => 'Arrival';
+
+  @override
+  String get exportPdfFolder => 'Trip folder';
+
+  @override
+  String exportPdfGenerated(String date) {
+    return 'Created on $date with Amaterasu Trip';
+  }
 
   @override
   String get settingsSupport => 'Help and privacy';

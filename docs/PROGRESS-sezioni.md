@@ -341,6 +341,7 @@ Mappa/Itinerario).
 | Nuova tappa 2c - Cerca in spese e bucket list | fatta | feature/cerca-spese-bucket | 1.54.0+60 |
 | Nuova tappa 3a - Calendario .ics | fatta | feature/calendario-ics | 1.55.0+61 |
 | Nuova tappa 3b - Statistiche | fatta | feature/budget-totali-condivisi | 1.56.0+62 |
+| Nuova tappa 3c - PDF del viaggio | fatta | feature/pdf-viaggio | 1.57.0+63 |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1155,7 +1156,7 @@ tappa, versione e prove; il resto ha una tappa qui sotto.
 | Extra G caricamento | fatto | 1.48.0 |
 | Nuova tappa 1 Converti, Meteo, Info paese | fatto | 1.49.0, 1.50.0, 1.51.0 |
 | Nuova tappa 2 Cerca globale | fatto (2a, 2b, 2c) | 1.52.0, 1.53.0, 1.54.0 |
-| Nuova tappa 3 Calendario .ics, Statistiche, PDF del viaggio | in corso (3a, 3b, 3c) | - |
+| Nuova tappa 3 Calendario .ics, Statistiche, PDF del viaggio | fatto (3a, 3b, 3c) | 1.55.0, 1.56.0, 1.57.0 |
 | Nuova tappa 4 Audit Trail (analisi, poi costruzione se non tocca moduli approvati) | da fare | - |
 | K BUDGET-2 (solo analisi) | da fare | - |
 | L MAPPA-ITINERARIO (solo documento) | da fare | - |
@@ -1460,3 +1461,19 @@ Prove da fare sul sito:
    del cruscotto spese (vista "Gruppo", senza filtri) nella valuta del
    viaggio.
 2. Le spese per persona sommano le quote di ciascuno.
+
+### Passo 3c - fatto (1.57.0)
+- Esporta > PDF del viaggio: pagina HTML aperta in una nuova scheda con
+  la stampa del browser ("Salva come PDF"), come i PDF del budget e delle
+  checklist (lib/core/files). Titolo, destinazione e date, tabelle di
+  alloggi, trasporti, prenotazioni e ristoranti prenotati in ordine di
+  data (annullati esclusi), date e ore nel formato di Aspetto; Ricordi:
+  link della cartella Google Drive del viaggio e degli album (solo
+  indirizzi http/https diventano link). Dati letti solo premendo.
+- Avviso se il browser blocca la nuova scheda.
+- TODO(audit) nel file: lo stile di stampa è lo stesso del budget e delle
+  checklist, da unificare in un modulo comune nel giro finale.
+
+Prove da fare sul sito:
+1. Altro > Esporta > Apri il PDF: si apre la stampa con il riepilogo;
+   "Salva come PDF" crea il file con i link cliccabili.

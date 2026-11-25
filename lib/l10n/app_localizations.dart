@@ -6296,7 +6296,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripMoreExportSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Trip calendar (.ics)'**
+  /// **'Trip calendar (.ics) and PDF'**
   String get tripMoreExportSubtitle;
 
   /// No description provided for @exportTitle.
@@ -6496,6 +6496,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get statsRetry;
+
+  /// No description provided for @exportPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip PDF'**
+  String get exportPdf;
+
+  /// No description provided for @exportPdfBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A summary to print or save as PDF: stays, transport, bookings and booked restaurants by date, with the links of the trip folder and of the memory albums. It opens in a new tab: choose «Save as PDF» when printing.'**
+  String get exportPdfBody;
+
+  /// No description provided for @exportPdfButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the PDF'**
+  String get exportPdfButton;
+
+  /// No description provided for @exportPdfBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'The browser blocked the new tab: allow pop-ups for this site and try again.'**
+  String get exportPdfBlocked;
+
+  /// No description provided for @exportPdfName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get exportPdfName;
+
+  /// No description provided for @exportPdfWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get exportPdfWhen;
+
+  /// No description provided for @exportPdfPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Place'**
+  String get exportPdfPlace;
+
+  /// No description provided for @exportPdfCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get exportPdfCode;
+
+  /// No description provided for @exportPdfRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Route'**
+  String get exportPdfRoute;
+
+  /// No description provided for @exportPdfDeparture.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure'**
+  String get exportPdfDeparture;
+
+  /// No description provided for @exportPdfArrival.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrival'**
+  String get exportPdfArrival;
+
+  /// No description provided for @exportPdfFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip folder'**
+  String get exportPdfFolder;
+
+  /// No description provided for @exportPdfGenerated.
+  ///
+  /// In en, this message translates to:
+  /// **'Created on {date} with Amaterasu Trip'**
+  String exportPdfGenerated(String date);
 
   /// No description provided for @settingsSupport.
   ///
