@@ -48,9 +48,10 @@ service cloud.firestore {
     // =========================================================
     // USER PROFILE
     // =========================================================
-    // Problem reports and ideas (v1.47.0, Extra F). Write-only from the
-    // app: at most 5 a day per user (ids uid_YYYY-MM-DD_1..5, UTC day of
-    // the server, no overwrite); read only from the Firebase console.
+    // Problem reports and ideas (v1.47.0, Extra F). At most 5 a day per user
+    // (ids uid_YYYY-MM-DD_1..5, UTC day of the server, no overwrite); read
+    // from the Firebase console; the author lists and deletes their own
+    // when deleting the account.
     function feedbackDay() {
       let t = request.time;
       return string(t.year()) + '-'
@@ -59,7 +60,11 @@ service cloud.firestore {
     }
 
     match /feedback/{feedbackId} {
-      allow read, update, delete: if false;
+      // The author may list and delete only their own messages: used when
+      // the account is deleted (v1.49.1). Nobody else reads them.
+      allow get, update: if false;
+      allow list, delete: if request.auth != null
+        && resource.data.createdByUid == request.auth.uid;
       allow create: if request.auth != null
         && feedbackId.matches(
           '^' + request.auth.uid + '_' + feedbackDay() + '_[1-5]$'

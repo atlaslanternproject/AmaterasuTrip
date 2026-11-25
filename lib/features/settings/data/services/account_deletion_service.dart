@@ -206,6 +206,18 @@ class AccountDeletionService {
         batch.delete(usernameRef);
       }
 
+      // Problem reports and ideas of the user go with the profile (v1.49.1).
+      final feedback = await firestore
+          .collection('feedback')
+          .where('createdByUid', isEqualTo: uid)
+          .get();
+      for (final doc in feedback.docs) {
+        batch.delete(doc.reference);
+      }
+      if (kDebugMode) {
+        debugPrint('[4] Queue DELETE: ${feedback.docs.length} feedback');
+      }
+
       if (kDebugMode) debugPrint('[4] Queue DELETE: viaggiatori/$uid');
 
       batch.delete(profileRef);

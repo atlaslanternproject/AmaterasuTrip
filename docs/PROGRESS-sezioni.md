@@ -1164,8 +1164,8 @@ Voci rimaste aperte dentro tappe fatte (da riprendere):
   alloggi, bucket list, impostazioni): in COERENZA.md.
 - Editor degli alloggi al 130 %: titoli e tendina escono dallo spazio
   (COERENZA.md).
-- Segnalazioni da cancellare insieme all'account (modulo approvato:
-  serve ok) e termini d'uso da scrivere (CONFORMITA-LACUNE.md).
+- Termini d'uso da scrivere (CONFORMITA-LACUNE.md). Le segnalazioni si
+  cancellano con l'account dalla 1.49.1.
 - Spese con categorie personalizzate multiple: analisi in K.
 
 ## Nuova tappa 1a - Converti
@@ -1187,3 +1187,23 @@ Prove da fare sul sito:
 1. Altro > Converti: 100 nella valuta del viaggio mostra il cambio e
    "Cambio Frankfurter del …".
 2. Unità: 10 km = 6.21 mi. Mancia: 60 al 10 % in 3 = 22 a testa.
+
+## Passo 1.49.1 - Segnalazioni cancellate con l'account
+Valutazione (regola 1): (a) ogni segnalazione ha già il campo createdByUid
+(controllato dalle regole) e l'id inizia con l'uid: nessun cambio di
+formato; (b) si aggiunge la cancellazione nella stessa operazione unica
+(batch) che toglie il profilo, con ok esplicito sul modulo approvato;
+(c) tocca account_deletion_service.dart (12 righe) e la regola di
+feedback; test: impostazioni, regole, budget prima e dopo.
+
+- Regole: l'autore può elencare (solo con il filtro sul proprio uid) e
+  cancellare i propri messaggi; nessun altro li legge o li cancella;
+  la lettura singola e la modifica restano vietate.
+- Informativa privacy: nuova sezione 7.1 "Segnalazioni e idee" (it/en),
+  data aggiornata. Conformità: riga "Segnalazioni" aggiornata, lacuna 3
+  risolta.
+
+Prove da fare sul sito:
+1. Con un account di prova invia una segnalazione, poi cancella
+   l'account: in console Firebase la raccolta feedback non ha più i
+   suoi messaggi.

@@ -1,9 +1,11 @@
 // Test delle regole di "Segnala un problema / Suggerisci un'idea"
-// (feedback, Extra F): solo creazione, al massimo 5 al giorno per utente
-// (id uid_giorno_1..5 con il giorno del server), nessuna lettura né
-// modifica dall'app, campi controllati.
+// (feedback, Extra F): al massimo 5 al giorno per utente (id
+// uid_giorno_1..5 con il giorno del server), nessuna modifica, campi
+// controllati; l'autore elenca e cancella solo i propri (cancellazione
+// dell'account), nessun altro li legge.
 
 import {readFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
 import {after, before, beforeEach, test} from 'node:test';
 import {fileURLToPath} from 'node:url';
 
@@ -12,7 +14,10 @@ import {
   assertSucceeds,
   initializeTestEnvironment,
 } from '@firebase/rules-unit-testing';
-import {doc, getDoc, serverTimestamp, setDoc} from 'firebase/firestore';
+import {
+  collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, setDoc,
+  where, writeBatch,
+} from 'firebase/firestore';
 
 const rulesPath = fileURLToPath(new URL('../firestore.rules', import.meta.url));
 let env;
@@ -53,4 +58,23 @@ test('wrong day, other user, bad fields are refused', async () => {
     await assertFails(setDoc(doc(db('alice'), 'feedback', `alice_${today}_2`), item('alice', bad)));
   }
   await assertSucceeds(setDoc(doc(db('alice'), 'feedback', `alice_${today}_2`), item('alice', {kind: 'idea'})));
+});
+
+test('the author lists and deletes own messages, like account deletion', async () => {
+  await setDoc(doc(db('alice'), 'feedback', `alice_${today}_1`), item('alice'));
+  await setDoc(doc(db('alice'), 'feedback', `alice_${today}_2`), item('alice', {kind: 'idea'}));
+  await setDoc(doc(db('bob'), 'feedback', `bob_${today}_1`), item('bob'));
+  const alice = db('alice');
+  const own = query(collection(alice, 'feedback'), where('createdByUid', '==', 'alice'));
+  const snap = await assertSucceeds(getDocs(own));
+  assert.equal(snap.size, 2);
+  // Others cannot list or delete them, and a query without the filter fails.
+  await assertFails(getDocs(query(collection(db('bob'), 'feedback'), where('createdByUid', '==', 'alice'))));
+  await assertFails(getDocs(collection(db('alice'), 'feedback')));
+  await assertFails(deleteDoc(doc(db('bob'), 'feedback', `alice_${today}_1`)));
+  // Same operation as the app: one batch deleting every own message.
+  const batch = writeBatch(alice);
+  for (const d of snap.docs) batch.delete(d.ref);
+  await assertSucceeds(batch.commit());
+  assert.equal((await getDocs(own)).size, 0);
 });

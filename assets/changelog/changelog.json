@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.49.1",
+      "date": "2026-11-25",
+      "it": ["Quando cancelli l'account vengono cancellate anche le segnalazioni e le idee che hai inviato. Informativa privacy aggiornata."],
+      "en": ["When you delete your account, the reports and ideas you sent are deleted too. Privacy policy updated."]
+    },
+    {
       "version": "1.49.0",
       "date": "2026-11-25",
       "it": ["Nuovo in Altro: Converti. Valute con gli stessi cambi del budget, temperatura, distanze e pesi, taglie delle scarpe e calcolo della mancia."],
