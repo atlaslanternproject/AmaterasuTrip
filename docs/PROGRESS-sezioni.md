@@ -333,6 +333,8 @@ Mappa/Itinerario).
 | Extra F - Assistenza e privacy | fatta, pubblicata 1.47.0 il 25/11/2026 | feature/assistenza | 1.47.0+52 |
 | Extra G - Caricamento con il sole | fatta, pubblicata 1.48.0 il 25/11/2026 | feature/caricamento | 1.48.0+53 |
 | Extra H - Verifica finale | fatta (vedi sotto) | docs/verifica-finale | - |
+| Nuova tappa 1a - Converti | fatta (pubblicazione: vedi tappa seguente) | feature/converti | 1.49.0+54 |
+| Nuova tappa 1b - Meteo, 1c - Info paese | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1165,3 +1167,23 @@ Voci rimaste aperte dentro tappe fatte (da riprendere):
 - Segnalazioni da cancellare insieme all'account (modulo approvato:
   serve ok) e termini d'uso da scrivere (CONFORMITA-LACUNE.md).
 - Spese con categorie personalizzate multiple: analisi in K.
+
+## Nuova tappa 1a - Converti
+Valutazione (regola 1): (a) esistevano il selettore valuta e la logica dei
+tassi del budget (budgetDisplayQuote, una cache); (b) Converti li riusa
+identici; l'intestazione delle pagine di Altro è stata estratta senza
+cambiamenti da TripSectionScaffold (TripSectionHeader) e i blocchi a
+tendina sono quelli delle sezioni; (c) nessuna regola, nessuna API nuova,
+nessun dato salvato.
+
+- Valute: dalla valuta del viaggio a quella di visualizzazione di Aspetto
+  (o EUR/USD), inversione, risultato con fonte e data del cambio.
+- Unità: °C/°F, km/miglia, kg/libbre in entrambi i versi.
+- Taglie delle scarpe EU/UK/US uomo/donna, tabella indicativa.
+- Mancia: conto, 0-20 %, persone: mancia, totale e quota a testa.
+- Provata al 130 % su telefono senza errori di spazio.
+
+Prove da fare sul sito:
+1. Altro > Converti: 100 nella valuta del viaggio mostra il cambio e
+   "Cambio Frankfurter del …".
+2. Unità: 10 km = 6.21 mi. Mancia: 60 al 10 % in 3 = 22 a testa.

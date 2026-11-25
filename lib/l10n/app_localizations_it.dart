@@ -2847,6 +2847,70 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonLinkAdd => 'Aggiungi un link';
 
   @override
+  String get tripMoreConvert => 'Converti';
+
+  @override
+  String get tripMoreConvertSubtitle => 'Valute, unità, taglie e mancia';
+
+  @override
+  String get convertTitle => 'Converti';
+
+  @override
+  String get convertCurrencies => 'Valute';
+
+  @override
+  String get convertAmount => 'Importo';
+
+  @override
+  String get convertFrom => 'Da';
+
+  @override
+  String get convertTo => 'A';
+
+  @override
+  String get convertSwap => 'Inverti';
+
+  @override
+  String get convertUnavailable => 'Cambio non disponibile ora';
+
+  @override
+  String convertRateSource(String source, String date) {
+    return 'Cambio $source del $date (lo stesso del budget)';
+  }
+
+  @override
+  String get convertUnits => 'Unità di misura';
+
+  @override
+  String get convertValue => 'Valore';
+
+  @override
+  String get convertShoeSizes => 'Taglie delle scarpe';
+
+  @override
+  String get convertUsMen => 'US uomo';
+
+  @override
+  String get convertUsWomen => 'US donna';
+
+  @override
+  String get convertSizesNote => 'Tabella indicativa: le taglie cambiano tra le marche, prova sempre.';
+
+  @override
+  String get convertTip => 'Mancia';
+
+  @override
+  String get convertTipBill => 'Conto';
+
+  @override
+  String get convertTipPeople => 'Persone';
+
+  @override
+  String convertTipResult(String tip, String total, String each) {
+    return 'Mancia $tip · totale $total · $each a testa';
+  }
+
+  @override
   String get zoneSource => 'Dati delle città: Open-Meteo.com (CC BY 4.0)';
 
   @override
