@@ -327,7 +327,9 @@ Mappa/Itinerario).
 | Extra E3 - Dimensione del testo in tutta l'app | fatta, pubblicata 1.43.0 il 25/11/2026 | feature/aspetto-e3 | 1.43.0+48 |
 | Extra E4 - Formato di data e ora nelle sezioni nuove | fatta, pubblicata 1.44.0 il 25/11/2026 | feature/aspetto-e4 | 1.44.0+49 |
 | Extra E5 - Unità km/miglia | nulla da pubblicare: la scelta è salvata (E1), la useranno Mappa, Itinerario e Converti | - | - |
-| Extra E6 - Valuta per le nuove voci | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e6 | 1.45.0+50 |
+| Extra E6 - Valuta per le nuove voci | fatta, pubblicata 1.45.0 il 25/11/2026 | feature/aspetto-e6 | 1.45.0+50 |
+| Extra E7 - Valuta di visualizzazione | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e7 | 1.46.0+51 |
+| Extra E8 - TEMA-CHIARO.md | da fare | - | - |
 | Extra F-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -1025,3 +1027,42 @@ Prove da fare sul sito:
 2. "Crea spesa" su un ristorante senza costo: il dialogo parte in USD;
    su un trasporto con costo in JPY parte in JPY con quell'importo.
 3. Senza scelta in Aspetto tutto come prima (valuta del viaggio).
+
+## Extra E7 - Valuta di visualizzazione
+Stessi tassi, stessa logica del budget: la scelta del tasso di
+BudgetDisplayAmount (tasso bloccato della spesa, poi storico del suo
+giorno, poi ultimo) è stata spostata, identica, nella funzione pubblica
+budgetDisplayQuote con un solo servizio dei cambi (una cache). Il nuovo
+testo comune BudgetShownAmountText la usa per mostrare un importo nella
+valuta di Aspetto con "Originale: X" accanto. Nessun totale viene
+ricalcolato: si convertono solo gli importi mostrati, uno per uno, come
+fa già il budget; calcoli, importi salvati, CSV e PDF invariati.
+
+Dove:
+- Budget: la pagina spese parte dalla valuta di visualizzazione di Aspetto
+  (se non scelta: quella del viaggio, come prima); il selettore vale solo
+  finché resti nella pagina e non modifica Aspetto (prima la scelta
+  restava salvata nel dispositivo per viaggio). "Originale: X" non
+  compare più a parità di valuta (BudgetDisplayAmount).
+- Sezioni: costo previsto di trasporti, prenotazioni e ristoranti, prezzo
+  d'ingresso dei luoghi, budget e prezzo reale dello shopping, spesa
+  collegata (con il tasso della spesa, come nel budget).
+- Alloggi: costo previsto nella card e spesa collegata (solo
+  visualizzazione).
+- Non convertiti: la riga della tassa di soggiorno (tre importi nella
+  stessa frase) e il prezzo di Google del pannello "Orari e prezzi" (già
+  convertito nella valuta del viaggio dalla 1.29.0).
+- Home e Statistiche non esistono ancora: useranno lo stesso testo.
+
+Test del budget prima e dopo: 277 su 277 in entrambi; i due test che
+verificavano "Originale" a parità di valuta sono stati aggiornati alla
+decisione del 25/11/2026 (ora verificano che non compaia). Più 4 test
+nuovi dell'importo mostrato.
+
+Prove da fare sul sito:
+1. Aspetto > Valuta di visualizzazione = USD: un trasporto con costo in
+   EUR mostra "Costo previsto: $ … · Originale: € …".
+2. Pagina spese: parte in USD; se la cambi in JPY e torni alla pagina,
+   riparte da USD. Aspetto resta USD.
+3. Una spesa in EUR vista in EUR: nessuna riga "Originale".
+4. Totali e quote del budget uguali a prima.

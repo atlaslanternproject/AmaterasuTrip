@@ -72,11 +72,15 @@ TripSectionEntry tripShoppingEntry(
         TripSectionLine(
           Icons.savings_outlined,
           l10n.shoppingBudgetValue(budget),
+          money: (item.estimatedCostMinorUnits!, item.estimatedCostCurrency!),
+          moneyText: l10n.shoppingBudgetValue,
         ),
       if (price != null)
         TripSectionLine(
           Icons.payments_outlined,
           l10n.shoppingPriceValue(price),
+          money: (item.actualCostMinorUnits!, item.actualCostCurrency!),
+          moneyText: l10n.shoppingPriceValue,
         ),
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),

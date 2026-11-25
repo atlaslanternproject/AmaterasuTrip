@@ -1,5 +1,7 @@
 // Mostra un importo nella valuta scelta per la visualizzazione,
-// senza mai modificare la spesa originale.
+// senza mai modificare la spesa originale. La scelta del tasso (tasso
+// bloccato della spesa, poi storico del giorno, poi ultimo) è anche una
+// funzione pubblica, usata uguale fuori dal budget (Extra E7).
 
 import 'budget_expense_day.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,34 @@ import 'package:amaterasutrip/features/trips/budget/presentation/budget_l10n.dar
 
 typedef BudgetQuoteLoader =
     Future<BudgetFxQuote> Function(String from, String to);
+
+/// One exchange service (and cache) for every displayed amount.
+final BudgetFxService budgetDisplayFx = BudgetFxService();
+
+/// Rate used to show [from] amounts in [to]: the rate locked in [expense],
+/// else the historical rate of its day, else (no expense) the latest one.
+/// Null when no rate is available. Never changes any amount.
+Future<BudgetFxQuote?> budgetDisplayQuote({
+  required String from,
+  required String to,
+  Map<String, dynamic>? expense,
+  BudgetQuoteLoader? loader,
+}) async {
+  try {
+    if (expense != null) {
+      final locked = BudgetFxQuote.fromLocked(expense['fxHistorical']);
+      if (locked?.base == from && locked?.quote == to) {
+        return locked;
+      }
+      final day = budgetExpenseDay(expense);
+      if (day == null) return null;
+      return await budgetDisplayFx.historical(from, to, day);
+    }
+    return await (loader ?? budgetDisplayFx.latest)(from, to);
+  } catch (_) {
+    return null;
+  }
+}
 
 /// Display-only amount. The original expense is never modified.
 class BudgetDisplayAmount extends StatefulWidget {
@@ -36,8 +66,6 @@ class BudgetDisplayAmount extends StatefulWidget {
 }
 
 class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
-  static final BudgetFxService _fx = BudgetFxService();
-
   Future<BudgetFxQuote?>? _quoteFuture;
 
   @override
@@ -66,30 +94,12 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
     }
   }
 
-  Future<BudgetFxQuote?> _loadQuote() async {
-    try {
-      final expense = widget.expense;
-      if (expense != null) {
-        final locked = BudgetFxQuote.fromLocked(expense['fxHistorical']);
-        if (locked?.base == widget.originalCurrency &&
-            locked?.quote == widget.displayCurrency) {
-          return locked;
-        }
-        final day = budgetExpenseDay(expense);
-        if (day == null) return null;
-        return await _fx.historical(
-          widget.originalCurrency,
-          widget.displayCurrency,
-          day,
-        );
-      }
-      final loader = widget.quoteLoader ?? _fx.latest;
-
-      return await loader(widget.originalCurrency, widget.displayCurrency);
-    } catch (_) {
-      return null;
-    }
-  }
+  Future<BudgetFxQuote?> _loadQuote() => budgetDisplayQuote(
+    from: widget.originalCurrency,
+    to: widget.displayCurrency,
+    expense: widget.expense,
+    loader: widget.quoteLoader,
+  );
 
   // TODO(audit): C8 _money ripetuto in 3 file con gestione errori diversa: decidere una sola regola.
   String _money(int minor, String currency) {
@@ -110,6 +120,7 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
       required String prominent,
       String? warning,
       String? source,
+      bool showOriginal = true,
     }) {
       return Column(
         mainAxisSize: MainAxisSize.min,
@@ -123,14 +134,15 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          const SizedBox(height: 3),
-          Text(
-            '${budgetL10n(it).btAmountOriginal}: $original',
-            style: const TextStyle(
-              color: AmaterasuColors.textSecondary,
-              fontSize: 11,
+          if (showOriginal) const SizedBox(height: 3),
+          if (showOriginal)
+            Text(
+              '${budgetL10n(it).btAmountOriginal}: $original',
+              style: const TextStyle(
+                color: AmaterasuColors.textSecondary,
+                fontSize: 11,
+              ),
             ),
-          ),
           if (warning != null)
             Text(
               warning,
@@ -154,8 +166,9 @@ class _BudgetDisplayAmountState extends State<BudgetDisplayAmount> {
       );
     }
 
+    // Same currency: only the amount (Extra E7), no "Original" line.
     if (widget.originalCurrency == widget.displayCurrency) {
-      return content(prominent: original);
+      return content(prominent: original, showOriginal: false);
     }
 
     return FutureBuilder<BudgetFxQuote?>(

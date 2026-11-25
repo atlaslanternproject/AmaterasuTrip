@@ -18,3 +18,16 @@ String? amaterasuDefaultEntryCurrency(BuildContext context) {
     return null;
   }
 }
+
+/// Display currency of Settings > Appearance (it follows the default one
+/// when not chosen); null = show the original currency.
+String? amaterasuShownCurrency(BuildContext context) {
+  try {
+    return ProviderScope.containerOf(
+      context,
+      listen: false,
+    ).read(amaterasuAppearanceProvider).shownCurrency;
+  } catch (_) {
+    return null;
+  }
+}

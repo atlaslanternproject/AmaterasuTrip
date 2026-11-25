@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/budget/presentation/budget_shown_amount_text.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_details_dialog.dart';
@@ -89,13 +90,10 @@ class TripStayExpenseFooter extends StatelessWidget {
                 size: 18,
                 color: AmaterasuColors.accentBudget,
               ),
-              Text(
-                '${l10n.staysExpenseLinkedTitle(data['title']?.toString() ?? '')}'
-                '${amount.isEmpty ? '' : ' · $amount'}',
-                style: const TextStyle(
-                  color: AmaterasuColors.textPrimary,
-                  fontSize: 13,
-                ),
+              _linkedLine(
+                l10n.staysExpenseLinkedTitle(data['title']?.toString() ?? ''),
+                data,
+                amount,
               ),
               TextButton(
                 key: Key('stay-expense-view-${stay.id}'),
@@ -116,4 +114,24 @@ class TripStayExpenseFooter extends StatelessWidget {
       },
     );
   }
+}
+
+/// The linked expense, its amount in the display currency with the rate of
+/// the expense, as in the budget (Extra E7).
+Widget _linkedLine(String title, Map<String, dynamic> expense, String amount) {
+  const style = TextStyle(color: AmaterasuColors.textPrimary, fontSize: 13);
+  final snapshot = expense['snapshot'];
+  final total = snapshot is Map ? snapshot['total'] : null;
+  final minor = total is Map ? total['minorUnits'] : null;
+  final currency = total is Map ? total['currency'] : null;
+  if (minor is! int || currency is! String) {
+    return Text(amount.isEmpty ? title : '$title · $amount', style: style);
+  }
+  return BudgetShownAmountText(
+    minorUnits: minor,
+    currency: currency,
+    expense: expense,
+    text: (a) => '$title · $a',
+    style: style,
+  );
 }

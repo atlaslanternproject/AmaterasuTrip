@@ -10,6 +10,8 @@ class TripSectionLine {
     this.text, {
     this.key,
     this.formatted = false,
+    this.money,
+    this.moneyText,
   });
 
   final IconData icon;
@@ -18,6 +20,11 @@ class TripSectionLine {
 
   /// Basic formatting of notes: "# " title, "- " list, **bold**.
   final bool formatted;
+
+  /// Amount of the line (minor units, currency) and the line for a
+  /// formatted amount: shown in the display currency of Appearance.
+  final (int, String)? money;
+  final String Function(String amount)? moneyText;
 }
 
 class TripSectionEntry {

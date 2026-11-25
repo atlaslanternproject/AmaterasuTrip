@@ -12,27 +12,16 @@ extension _TripExpensesPageStateActions on _TripExpensesPageState {
     });
   }
 
-  Future<void> _restoreDisplayCurrency() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final stored = prefs.getString(_displayPreferenceKey);
-      if (stored != null && stored.length == 3 && mounted) {
-        setState(() => _displayCurrency = stored);
-      }
-    } catch (_) {
-      // Preference unavailable: trip currency remains the default.
-    }
+  /// Starts from the display currency of Settings > Appearance (Extra
+  /// E7); without it the trip currency, as before.
+  void _restoreDisplayCurrency() {
+    final shown = amaterasuShownCurrency(context);
+    if (shown != null) setState(() => _displayCurrency = shown);
   }
 
-  Future<void> _setDisplayCurrency(String value) async {
-    setState(() => _displayCurrency = value);
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_displayPreferenceKey, value);
-    } catch (_) {
-      // Keep the selection active for this session.
-    }
-  }
+  /// Temporary choice for this page: Appearance is not changed.
+  void _setDisplayCurrency(String value) =>
+      setState(() => _displayCurrency = value);
 
   Future<void> _openExpenseFilters() async {
     Map<String, String> categories;
@@ -66,7 +55,7 @@ extension _TripExpensesPageStateActions on _TripExpensesPageState {
     setState(() => _filters = selected.filters);
 
     if (_displayCurrency != selected.currency) {
-      await _setDisplayCurrency(selected.currency);
+      _setDisplayCurrency(selected.currency);
     }
   }
 

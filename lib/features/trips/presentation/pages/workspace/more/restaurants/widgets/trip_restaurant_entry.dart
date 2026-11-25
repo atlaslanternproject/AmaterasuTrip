@@ -114,7 +114,13 @@ TripSectionEntry tripRestaurantEntry(
         ),
       if (item.triedNote case final note?)
         TripSectionLine(Icons.rate_review_outlined, note),
-      if (cost != null) TripSectionLine(Icons.payments_outlined, cost),
+      if (cost != null)
+        TripSectionLine(
+          Icons.payments_outlined,
+          cost,
+          money: (item.estimatedCostMinorUnits!, item.estimatedCostCurrency!),
+          moneyText: l10n.sectionsCostEstimated,
+        ),
       if (item.notes case final notes?)
         TripSectionLine(Icons.notes_outlined, notes),
     ],
