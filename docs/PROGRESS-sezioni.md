@@ -320,8 +320,9 @@ Mappa/Itinerario).
 | Extra B - Sito installabile (PWA) | fatta, pubblicata 1.37.0 il 25/11/2026 | feature/pwa | 1.37.0+42 |
 | Extra C - Fuso orario per città (migrazione non necessaria) | fatta, pubblicata 1.38.0 il 25/11/2026 | feature/fuso-citta | 1.38.0+43 |
 | Extra D - Categorie personalizzate | fatta, pubblicata 1.39.0 il 25/11/2026 | feature/categorie | 1.39.0+44 |
-| Extra D - Filtro per categoria personalizzata | fatta (pubblicazione: vedi tappa seguente) | feature/filtro-categorie | 1.40.0+45 |
-| Extra E-H | da fare | - | - |
+| Extra D - Filtro per categoria personalizzata | fatta, pubblicata 1.40.0 il 25/11/2026 | feature/filtro-categorie | 1.40.0+45 |
+| Extra E - Aspetto | piano scritto, in attesa di ok (tocca budget e impostazioni) | - | - |
+| Extra F-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -831,3 +832,85 @@ Prove da fare sul sito:
    personalizzata" > Romantico: restano solo quei luoghi.
 2. "Azzera" toglie anche questo filtro.
 3. In una sezione senza categorie il gruppo non compare.
+
+## Extra E - Aspetto: valutazione e piano (IN ATTESA DI OK)
+Nessun codice scritto. Tocca due moduli approvati (impostazioni e budget):
+si parte solo dopo l'ok su questo piano. Nessun cambio ai calcoli.
+
+Valutazione (regola 1):
+(a) Esiste già: impostazioni globali a card (AmaterasuSettingsCard) con
+    Lingua salvata nel dispositivo (languageProvider); profilo utente in
+    viaggiatori/{uid} con campi fissi (username, nome, bio, foto...).
+    Valuta di visualizzazione solo nella pagina spese: selettore
+    temporaneo salvato nel dispositivo per viaggio; BudgetDisplayAmount
+    converte con BudgetFxService (Frankfurter) ma ci sono più istanze del
+    servizio (cache non condivisa) e mostra "Originale: X" anche quando la
+    valuta è la stessa. Importi fuori dal budget: 5 punti (alloggi,
+    shopping, TripSectionLabels per le sezioni), solo valuta originale.
+    Date: 26 punti con i formati di Material (lingua dell'app). Distanze:
+    nessuna oggi (arriveranno con Mappa/Itinerario e Converti).
+(b) Conviene: un solo modello "Aspetto" con un solo provider; un modulo
+    comune di conversione per la visualizzazione (stessa istanza e cache
+    di BudgetFxService, un tasso per coppia di valute per sessione, mai
+    per card) usato identico da budget, alloggi e sezioni; il selettore
+    valuta resta BudgetCurrencyButton.
+(c) Tocca: impostazioni (nuova card "Aspetto", il resto invariato),
+    regole di viaggiatori/{uid} (un campo facoltativo "appearance"),
+    MaterialApp (dimensione del testo), budget solo nella visualizzazione
+    (valore iniziale del selettore e riga "Originale"), alloggi e sezioni
+    nella visualizzazione degli importi. Test: regole del profilo, modello,
+    impostazioni, layout con testo grande, e tutti i test del budget prima
+    e dopo (oggi 270 test Flutter + 3 suite con emulatori).
+
+Piano a passi (un commit e un rilascio per passo, controlli verdi):
+E1 Modello e salvataggio. AmaterasuAppearance: dimensione del testo
+   (4 livelli: 100%, 110%, 120%, 130%), unità (km/miglia), formato data
+   (come la lingua / gg/mm/aaaa / aaaa-mm-gg), formato ora (24 h / 12 h),
+   valuta predefinita, valuta di visualizzazione. Salvato in
+   viaggiatori/{uid}.appearance (regole: campo facoltativo con valori
+   ammessi, test) e copiato nel dispositivo per partire subito.
+   Impatto regole: il profilo accetta una mappa in più; nient'altro cambia.
+E2 Card "Aspetto" nelle Impostazioni globali, dopo quelle esistenti, con
+   il selettore valuta comune e la frase "Gli importi originali rimangono
+   invariati". Le card esistenti non cambiano.
+E3 Dimensione del testo per tutta l'app (MaterialApp, limite 130%) e
+   controllo del layout: test che aprono le pagine principali (sezioni,
+   spese, impostazioni, workspace) al 130% su telefono senza
+   sovrapposizioni né errori di spazio. Dove qualcosa si sovrappone lo
+   correggo solo nelle sezioni nuove; nei moduli approvati lo segno in
+   COERENZA.md.
+E4 Formato data e ora in un modulo comune usato dalle sezioni nuove
+   (tripSectionWhen e simili). Nei moduli approvati (budget, alloggi,
+   bucket list) lo applico solo dopo l'ok su COERENZA.md.
+E5 Unità km/miglia: salvata ora, usata quando arrivano Mappa, Itinerario
+   (distanza in linea d'aria) e Converti. Nessuna schermata la mostra oggi.
+E6 Valuta predefinita per le nuove voci: valore iniziale del costo in
+   sezioni e alloggi e della valuta nel dialogo "Crea spesa" del budget
+   (solo il valore di partenza del pulsante; importi e calcoli uguali).
+   Senza scelta resta la valuta del viaggio, come oggi.
+E7 Valuta di visualizzazione ovunque: modulo comune "importo mostrato"
+   (convertito + "Originale: X" solo se la valuta è diversa).
+   - Budget: il selettore della pagina spese parte dal valore di Aspetto;
+     cambiarlo lì vale solo per quella pagina e non modifica Aspetto.
+     DOMANDA: oggi la scelta del selettore resta salvata nel dispositivo
+     per ogni viaggio. Proposta: tenerla così (se l'hai cambiata in quel
+     viaggio resta la tua scelta, altrimenti parte da Aspetto). In
+     alternativa: ripartire sempre da Aspetto.
+   - Budget: "Originale: X" sparisce quando la valuta è la stessa (unico
+     cambio di aspetto del budget in questa tappa: è nell'elenco del
+     prompt per COERENZA).
+   - Alloggi (costo previsto, tassa) e sezioni (costo, prezzo
+     d'ingresso, shopping): importo convertito con l'originale sotto.
+   - Home e Statistiche non esistono ancora: useranno lo stesso modulo.
+     PDF/CSV delle spese: restano nella valuta originale (sono un
+     documento dei dati); proposta: aggiungere solo una colonna
+     "convertito" se lo vuoi.
+   - Stessi tassi Frankfurter e una sola cache: un tasso per coppia di
+     valute per sessione (30 minuti come oggi), nessuna chiamata per card.
+E8 docs/audit/TEMA-CHIARO.md: impatti di un tema chiaro futuro (token da
+   raddoppiare, colori scritti a mano, foto, grafici), senza implementarlo.
+
+Proposta su valuta predefinita e di visualizzazione: tenerle separate
+(una serve per scrivere, l'altra per leggere), ma con la valuta di
+visualizzazione che, se non scelta, segue quella predefinita: così chi ne
+imposta una sola ha già il comportamento atteso.
