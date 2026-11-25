@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.52.0",
+      "date": "2026-11-25",
+      "it": ["Nuovo in Altro: Cerca. Una ricerca in alloggi, trasporti, prenotazioni, ristoranti, luoghi, note, shopping, checklist e ricordi, con filtro per sezione e ricerche recenti; il tocco su un risultato apre la sua sezione."],
+      "en": ["New in More: Search. One search across stays, transport, bookings, restaurants, places, notes, shopping, checklists and memories, with a section filter and recent searches; tapping a result opens its section."]
+    },
+    {
       "version": "1.51.0",
       "date": "2026-11-25",
       "it": ["Nuovo in Altro: Info paese. Prefisso, numeri di emergenza, prese e tensione, lato di guida e fusi del paese del viaggio (o di un altro), con la fonte su ogni voce e i link a Viaggiare Sicuri e ai consolati."],

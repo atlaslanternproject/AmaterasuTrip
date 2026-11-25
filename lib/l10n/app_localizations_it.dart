@@ -3188,6 +3188,60 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripMoreCountryInfoSubtitle => 'Emergenze, prese, guida, fusi e schede ufficiali';
 
   @override
+  String get tripMoreSearch => 'Cerca';
+
+  @override
+  String get tripMoreSearchSubtitle => 'Trova un elemento in tutte le sezioni del viaggio';
+
+  @override
+  String get searchTitle => 'Cerca';
+
+  @override
+  String get searchHint => 'Cerca in alloggi, trasporti, note…';
+
+  @override
+  String get searchStart => 'Scrivi una o più parole: cerco nei nomi, nei testi, nelle note, negli indirizzi e nei codici di prenotazione delle sezioni del viaggio. Le note e le checklist private degli altri non compaiono mai.';
+
+  @override
+  String get searchRecent => 'Ricerche recenti';
+
+  @override
+  String get searchClearRecent => 'Cancella';
+
+  @override
+  String searchEmpty(String query) {
+    return 'Nessun risultato per «$query».';
+  }
+
+  @override
+  String searchCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count risultati',
+      one: '1 risultato',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get searchMore => 'Mostra altri';
+
+  @override
+  String get searchRefresh => 'Aggiorna';
+
+  @override
+  String get searchError => 'Ricerca non disponibile ora.';
+
+  @override
+  String get searchRetry => 'Riprova';
+
+  @override
+  String searchSectionCount(String section, int count) {
+    return '$section ($count)';
+  }
+
+  @override
   String get settingsSupport => 'Assistenza e privacy';
 
   @override
