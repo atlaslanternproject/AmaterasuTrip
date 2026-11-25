@@ -51,6 +51,7 @@ flutter:
     - assets/branding/
     - assets/images/profile/
     - assets/changelog/
+    - assets/compliance/
 flutter_launcher_icons:
   android: true
   ios: true

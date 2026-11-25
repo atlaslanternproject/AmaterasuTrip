@@ -95,7 +95,7 @@ emu_storage_rules() {
 emu_firestore_rules() {
   firebase emulators:exec --config "$EMU_CONFIG" \
     --project demo-amaterasu-rules --only firestore \
-    "node --test rules-tests/stays-rules.test.mjs && node --test rules-tests/firestore.rules.test.mjs && node rules-tests/b71-personal-budget-rules.cjs && node rules-tests/b752-payment-methods.cjs && node --test rules-tests/sections/*.test.mjs"
+    "node --test rules-tests/stays-rules.test.mjs && node --test rules-tests/firestore.rules.test.mjs && node --test rules-tests/feedback-rules.test.mjs && node rules-tests/b71-personal-budget-rules.cjs && node rules-tests/b752-payment-methods.cjs && node --test rules-tests/sections/*.test.mjs"
 }
 
 # "Segna come pagato": pagamenti dichiarati dal creditore e annullati.

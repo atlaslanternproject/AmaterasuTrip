@@ -2847,6 +2847,91 @@ class AppLocalizationsIt extends AppLocalizations {
   String get commonLinkAdd => 'Aggiungi un link';
 
   @override
+  String get zoneSource => 'Dati delle città: Open-Meteo.com (CC BY 4.0)';
+
+  @override
+  String get settingsSupport => 'Assistenza e privacy';
+
+  @override
+  String get settingsSupportSubtitle => 'Segnalazioni, idee, stato dell\'app e normative';
+
+  @override
+  String get supportTitle => 'Assistenza e privacy';
+
+  @override
+  String get supportReportProblem => 'Segnala un problema';
+
+  @override
+  String get supportReportProblemSubtitle => 'Scrivi cosa non funziona';
+
+  @override
+  String get supportSuggestIdea => 'Suggerisci un\'idea';
+
+  @override
+  String get supportSuggestIdeaSubtitle => 'Cosa ti piacerebbe nell\'app';
+
+  @override
+  String get supportAppStatus => 'Stato dell\'app';
+
+  @override
+  String supportAppStatusValue(String version, String date) {
+    return 'Versione $version · aggiornata il $date';
+  }
+
+  @override
+  String get supportPrivacy => 'Informativa privacy';
+
+  @override
+  String get supportPrivacySubtitle => 'Si apre la pagina online';
+
+  @override
+  String get supportCompliance => 'Conformità e normative';
+
+  @override
+  String get supportComplianceSubtitle => 'Le regole che seguiamo e come';
+
+  @override
+  String get supportNoTracking => 'Nessun registro automatico degli errori e nessuna statistica d\'uso: arriva solo ciò che scrivi tu.';
+
+  @override
+  String get supportFeedbackBugHint => 'Cosa stavi facendo, cosa ti aspettavi e cosa è successo. Non scrivere password o dati sensibili.';
+
+  @override
+  String get supportFeedbackIdeaHint => 'Descrivi l\'idea in poche righe. Non scrivere password o dati sensibili.';
+
+  @override
+  String get supportFeedbackSend => 'Invia';
+
+  @override
+  String get supportFeedbackEmpty => 'Scrivi qualcosa prima di inviare.';
+
+  @override
+  String get supportFeedbackSent => 'Grazie! Messaggio inviato.';
+
+  @override
+  String get supportFeedbackLimit => 'Hai già inviato 5 messaggi oggi: riprova domani.';
+
+  @override
+  String get supportFeedbackFailed => 'Invio non riuscito. Riprova più tardi.';
+
+  @override
+  String get supportComplianceApplies => 'Ci riguarda';
+
+  @override
+  String get supportComplianceYes => 'Sì';
+
+  @override
+  String get supportComplianceNo => 'No';
+
+  @override
+  String get supportCompliancePartial => 'Parziale';
+
+  @override
+  String supportComplianceDisclaimer(String date) {
+    return 'Principi che applichiamo, non una certificazione né consulenza legale. Ultima verifica: $date. I punti «da verificare» non sono stati confermati.';
+  }
+
+  @override
   String get settingsAppearance => 'Aspetto';
 
   @override

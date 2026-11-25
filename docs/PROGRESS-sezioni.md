@@ -330,7 +330,8 @@ Mappa/Itinerario).
 | Extra E6 - Valuta per le nuove voci | fatta, pubblicata 1.45.0 il 25/11/2026 | feature/aspetto-e6 | 1.45.0+50 |
 | Extra E7 - Valuta di visualizzazione | fatta, pubblicata 1.46.0 il 25/11/2026 | feature/aspetto-e7 | 1.46.0+51 |
 | Extra E8 - TEMA-CHIARO.md | fatta (solo documento, nessun rilascio) | docs/tema-chiaro | - |
-| Extra F-H | da fare | - | - |
+| Extra F - Assistenza e privacy | fatta (pubblicazione: vedi tappa seguente) | feature/assistenza | 1.47.0+52 |
+| Extra G-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1069,7 +1070,41 @@ Prove da fare sul sito:
 
 ## Extra E8 - Tema chiaro (solo analisi)
 Scritto docs/audit/TEMA-CHIARO.md: oggi 51 token fissi pensati per il
-scuro, 150 colori scritti a mano fuori dal tema e 40 usi di bianco/nero;
+tema scuro, 150 colori scritti a mano fuori dal tema e 40 usi di bianco/nero;
 servirebbero token a due valori, la pulizia dei colori a mano (nei
 moduli approvati dopo COERENZA.md), controlli di contrasto e una scelta
 in Aspetto. Nessun codice scritto. Con E8 la Extra E è chiusa.
+
+## Extra F - Assistenza e privacy
+Valutazione (regola 1): (a) c'erano Informazioni > Legale (link
+all'informativa) e nessun modo per scriverci; (b) nuova card "Assistenza e
+privacy" nelle Impostazioni (le card esistenti non cambiano), pagine nuove
+in lib/features/support con i componenti comuni (card delle impostazioni,
+pannello, pulsanti, modulo link); tabella della conformità in un file
+it/en come le novità; (c) regole: nuova raccolta feedback (solo
+creazione, al massimo 5 al giorno per utente, nessuna lettura dall'app),
+con test.
+
+- Segnala un problema / Suggerisci un'idea: solo il testo scritto, tipo,
+  versione e lingua. Nessun registro automatico degli errori, nessuna
+  statistica. Si leggono dalla console di Firebase (raccolta feedback).
+- Stato dell'app: versione e data dell'ultimo aggiornamento (dal file
+  delle novità).
+- Informativa privacy: la pagina già online. Termini: non esistono ancora
+  (lacuna 1).
+- Conformità e normative: tabella con norma, riferimento ufficiale, "Ci
+  riguarda?" e come la rispettiamo; solo fatti verificati, il resto "da
+  verificare"; frase "Principi che applichiamo, non una certificazione né
+  consulenza legale" con la data della verifica.
+- Corretta una lacuna trovata: il pannello di ricerca della città ora cita
+  la fonte dei dati (Open-Meteo, licenza CC BY 4.0).
+- Lacune per il professionista: docs/audit/CONFORMITA-LACUNE.md (10 punti).
+
+Impatto sulle regole: nuova raccolta feedback/{uid_giorno_n}; nessun'altra
+regola cambia.
+
+Prove da fare sul sito:
+1. Impostazioni > Assistenza e privacy > Segnala un problema: invia; nella
+   console di Firebase compare in feedback.
+2. Il sesto invio dello stesso giorno dice "Hai già inviato 5 messaggi".
+3. Conformità e normative: la tabella si legge in italiano e in inglese.

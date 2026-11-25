@@ -146,6 +146,14 @@ class _ZoneSheetState extends ConsumerState<_ZoneSheet> {
               ),
             ),
           ),
+          // Required by the CC BY 4.0 licence of the data.
+          Text(
+            l10n.zoneSource,
+            style: const TextStyle(
+              color: AmaterasuColors.textMuted,
+              fontSize: 12,
+            ),
+          ),
           const SizedBox(height: 8),
           if (_results != null)
             ConstrainedBox(

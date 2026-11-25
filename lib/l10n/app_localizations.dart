@@ -5567,6 +5567,168 @@ abstract class AppLocalizations {
   /// **'Add a link'**
   String get commonLinkAdd;
 
+  /// No description provided for @zoneSource.
+  ///
+  /// In en, this message translates to:
+  /// **'City data: Open-Meteo.com (CC BY 4.0)'**
+  String get zoneSource;
+
+  /// No description provided for @settingsSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help and privacy'**
+  String get settingsSupport;
+
+  /// No description provided for @settingsSupportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reports, ideas, app status and rules'**
+  String get settingsSupportSubtitle;
+
+  /// No description provided for @supportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help and privacy'**
+  String get supportTitle;
+
+  /// No description provided for @supportReportProblem.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a problem'**
+  String get supportReportProblem;
+
+  /// No description provided for @supportReportProblemSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Write what does not work'**
+  String get supportReportProblemSubtitle;
+
+  /// No description provided for @supportSuggestIdea.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest an idea'**
+  String get supportSuggestIdea;
+
+  /// No description provided for @supportSuggestIdeaSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What you would like in the app'**
+  String get supportSuggestIdeaSubtitle;
+
+  /// No description provided for @supportAppStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'App status'**
+  String get supportAppStatus;
+
+  /// No description provided for @supportAppStatusValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} · updated on {date}'**
+  String supportAppStatusValue(String version, String date);
+
+  /// No description provided for @supportPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy policy'**
+  String get supportPrivacy;
+
+  /// No description provided for @supportPrivacySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens the online page'**
+  String get supportPrivacySubtitle;
+
+  /// No description provided for @supportCompliance.
+  ///
+  /// In en, this message translates to:
+  /// **'Compliance and rules'**
+  String get supportCompliance;
+
+  /// No description provided for @supportComplianceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The rules we follow and how'**
+  String get supportComplianceSubtitle;
+
+  /// No description provided for @supportNoTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'No automatic error log and no usage statistics: only what you write reaches us.'**
+  String get supportNoTracking;
+
+  /// No description provided for @supportFeedbackBugHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What you were doing, what you expected and what happened. Do not write passwords or sensitive data.'**
+  String get supportFeedbackBugHint;
+
+  /// No description provided for @supportFeedbackIdeaHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the idea in a few lines. Do not write passwords or sensitive data.'**
+  String get supportFeedbackIdeaHint;
+
+  /// No description provided for @supportFeedbackSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get supportFeedbackSend;
+
+  /// No description provided for @supportFeedbackEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Write something before sending.'**
+  String get supportFeedbackEmpty;
+
+  /// No description provided for @supportFeedbackSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you! Message sent.'**
+  String get supportFeedbackSent;
+
+  /// No description provided for @supportFeedbackLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'You already sent 5 messages today: try again tomorrow.'**
+  String get supportFeedbackLimit;
+
+  /// No description provided for @supportFeedbackFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending failed. Try again later.'**
+  String get supportFeedbackFailed;
+
+  /// No description provided for @supportComplianceApplies.
+  ///
+  /// In en, this message translates to:
+  /// **'Applies to us'**
+  String get supportComplianceApplies;
+
+  /// No description provided for @supportComplianceYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get supportComplianceYes;
+
+  /// No description provided for @supportComplianceNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get supportComplianceNo;
+
+  /// No description provided for @supportCompliancePartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Partly'**
+  String get supportCompliancePartial;
+
+  /// No description provided for @supportComplianceDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Principles we apply, not a certification nor legal advice. Last check: {date}. Points «to be verified» have not been confirmed.'**
+  String supportComplianceDisclaimer(String date);
+
   /// No description provided for @settingsAppearance.
   ///
   /// In en, this message translates to:

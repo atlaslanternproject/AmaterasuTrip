@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.47.0",
+      "date": "2026-11-25",
+      "it": ["Nuova pagina Impostazioni > Assistenza e privacy: segnala un problema, suggerisci un'idea, stato dell'app, informativa privacy e la pagina «Conformità e normative»."],
+      "en": ["New page Settings > Help and privacy: report a problem, suggest an idea, app status, privacy policy and the «Compliance and rules» page."]
+    },
+    {
       "version": "1.46.0",
       "date": "2026-11-25",
       "it": ["Valuta di visualizzazione: costi di sezioni e alloggi e spese collegate si vedono nella valuta scelta in Impostazioni > Aspetto, con l'originale accanto. Nel budget il selettore parte da Aspetto e la scelta vale solo finché resti nella pagina.", "Budget: «Originale» non compare più quando la valuta è la stessa."],
