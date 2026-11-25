@@ -160,6 +160,18 @@ Il deploy si fa solo a mano, dopo i controlli.
   `storage.rules`, provate da `rules-tests/storage-rules.test.cjs`, che
   fa parte di `tool/check_all.sh`).
 
+Novità per gli utenti: prima di ogni rilascio si aggiunge in cima ad
+`assets/changelog/changelog.json` la voce della nuova versione (data e
+righe semplici in italiano e in inglese). `bash tool/check_changelog.sh X.Y.Z`
+controlla che ci sia ed è il primo passo del rilascio; un test di
+`flutter test` controlla che la versione di `pubspec.yaml` abbia la sua
+voce. L'app mostra le novità una volta sola dopo l'aggiornamento e tutte le
+versioni da Impostazioni > Informazioni app > Versione.
+
+Cache del sito: `firebase.json` manda `Cache-Control: no-cache` per
+tutte le pagine e i file (index.html, main.dart.js, version.json…):
+alla riapertura il browser chiede sempre la versione nuova (nessun avviso).
+
 Script una tantum: `functions/scripts/budget-backfill-participants.cjs`
 aggiorna le spese vecchie; parte in prova e scrive solo con `--apply`.
 

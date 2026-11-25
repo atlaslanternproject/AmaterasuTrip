@@ -2847,6 +2847,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonLinkAdd => 'Add a link';
 
   @override
+  String whatsNewTitle(String version) {
+    return 'What\'s new in version $version';
+  }
+
+  @override
+  String get whatsNewOk => 'Got it';
+
+  @override
+  String get versionsTitle => 'All versions';
+
+  @override
+  String get versionsOpen => 'Tap to see all versions';
+
+  @override
   String get commonLinksInvalid => 'Useful links: write addresses starting with http:// or https:// (at most 10).';
 
   @override

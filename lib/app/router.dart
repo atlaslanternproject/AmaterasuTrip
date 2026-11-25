@@ -6,6 +6,8 @@ import 'package:amaterasutrip/features/trips/presentation/pages/workspace/more/c
 import 'package:amaterasutrip/features/auth/presentation/pages/auth_gate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:amaterasutrip/core/changelog/amaterasu_whats_new_gate.dart';
 import '../core/navigation/invite_auth_return.dart';
 import '../core/navigation/auth_route_guard.dart';
 import 'package:amaterasutrip/features/home/presentation/pages/home_page.dart';
@@ -162,7 +164,10 @@ final amaterasuRouter = GoRouter(
     // ========================================================
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return AmaterasuGlobalShell(navigationShell: navigationShell);
+        // "What's new" once after an update (Extra A).
+        return AmaterasuWhatsNewGate(
+          child: AmaterasuGlobalShell(navigationShell: navigationShell),
+        );
       },
       branches: [
         StatefulShellBranch(

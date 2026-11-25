@@ -175,6 +175,11 @@ Componenti riutilizzabili:
   errore), AmaterasuLinkChip, AmaterasuLinksField (campo
   "Link utili" come la bucket list). Da usare per ogni nuovo link;
   la bucket list ha ancora la sua copia (TODO(audit)).
+- lib/core/changelog/: novità per versione dal file
+  assets/changelog/changelog.json (it/en), "Cosa c'è di nuovo" una
+  volta sola dopo un aggiornamento (AmaterasuWhatsNewGate sulla shell
+  globale), elenco versioni (AmaterasuWhatsNew.showAll). A ogni
+  rilascio: voce nuova in cima e bash tool/check_changelog.sh X.Y.Z.
 - lib/core/places/ (modulo Luogo condiviso): ricerca
   Google (AmaterasuPlaceSearchField, amaterasuPlaceSearchProvider),
   contatti e foto con cache di sessione (amaterasuPlaceInfoProvider,

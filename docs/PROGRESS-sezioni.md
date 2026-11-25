@@ -315,8 +315,9 @@ Mappa/Itinerario).
 | Sezioni v2 - Shopping | fatta, pubblicata 1.33.0 il 25/11/2026 | feature/shopping-v2 | 1.33.0+37 |
 | Sezioni v2 - Link utili ovunque (senza Spese) | fatta, pubblicata 1.34.0 il 25/11/2026 | feature/link-utili | 1.34.0+38 |
 | Crea spesa dalle sezioni (+ link delle spese) | fatta, pubblicata 1.35.0 il 25/11/2026 | feature/crea-spesa | 1.35.0+39 |
-| Chiusure: link nel testo delle note, test valuta trasporti, test selezione multipla | fatta (pubblicazione: vedi tappa seguente) | fix/chiusure-v2 | 1.35.1+40 |
-| Extra A-H | da fare | - | - |
+| Chiusure: link nel testo delle note, test valuta trasporti, test selezione multipla | fatta, pubblicata 1.35.1 il 25/11/2026 | fix/chiusure-v2 | 1.35.1+40 |
+| Extra A - Novità e versioni | fatta (pubblicazione: vedi tappa seguente) | feature/novita | 1.36.0+41 |
+| Extra B-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -688,3 +689,35 @@ Prove da fare sul sito:
 Prove da fare sul sito:
 1. Nota con "Sito: https://…" nel testo: il link si apre in una scheda.
 2. "Crea spesa" da un trasporto con due persone: selezionale entrambe.
+
+## Extra A - Novità e versioni
+Valutazione (regola 1): (a) esisteva solo la riga "Versione" nelle
+Impostazioni > Informazioni app (senza azione) e nessun file delle
+novità; (b) nuovo modulo comune lib/core/changelog (lettura del file,
+pannello "Cosa c'è di nuovo", elenco versioni) con il pannello comune
+AmaterasuSheet; nelle Impostazioni (approvate) cambia solo il tocco sulla
+versione, come chiesto dal prompt; (c) tocca router (avvolge la shell
+globale), firebase.json (cache), pubspec (asset); test del file, "una
+volta sola", pannello ed elenco.
+
+1. All'apertura, se la versione installata è diversa dall'ultima vista,
+   compare UNA volta "Novità della versione X" (solo quella versione, in
+   italiano o inglese). Alla prima installazione non compare nulla.
+2. Impostazioni > Informazioni app > Versione: tutte le versioni a
+   tendina, la più recente aperta in alto, con data e novità.
+3. File unico assets/changelog/changelog.json (it/en), ricostruito dai
+   tag dalla 1.10.0. Regola di rilascio: bash tool/check_changelog.sh
+   X.Y.Z è il primo passo del rilascio (si ferma se manca la voce) e un
+   test controlla la versione di pubspec. Scritto nel README.
+4. Aggiornamento automatico: il sito non aveva regole di cache, quindi il
+   browser poteva tenere la versione vecchia fino a un'ora. Ora tutte le
+   pagine e i file hanno "Cache-Control: no-cache" (firebase.json): alla
+   riapertura si carica la nuova versione, senza avvisi. La verifica
+   dopo la pubblicazione controlla l'intestazione sul sito vero.
+
+Prove da fare sul sito:
+1. Apri il sito dopo questa pubblicazione: compare "Novità della versione
+   1.36.0" una sola volta (riaprendo non ricompare).
+2. Impostazioni > Informazioni app > tocca "Versione": elenco a tendina.
+3. Lascia una scheda aperta, alla prossima pubblicazione ricaricala: vedi
+   la versione nuova senza svuotare la cache.
