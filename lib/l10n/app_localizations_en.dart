@@ -3644,7 +3644,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String itineraryOverlap(String first, String second) {
-    return '«$first» and «$second» are less than an hour apart.';
+    return '«$first» and «$second» overlap.';
   }
 
   @override
@@ -3673,7 +3673,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itineraryAddFreeDay => 'Free day';
 
   @override
-  String get itineraryAddExisting => 'From an existing element';
+  String get itineraryAddExisting => 'From a section';
 
   @override
   String get itineraryEditTitle => 'Itinerary item';
@@ -3729,7 +3729,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itineraryReorderDone => 'Done';
 
   @override
-  String get itineraryReorderHint => 'Drag the items of the day. Moved items lose their time and follow the manual order.';
+  String get itineraryReorderHint => 'Drag the items without a time. To move an item with a time, change its time.';
 
   @override
   String get itineraryReorderFilters => 'Remove the filters to reorder.';
@@ -3762,6 +3762,51 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get itineraryToday => 'Today';
+
+  @override
+  String get itineraryFieldEndTime => 'End (HH:MM, optional)';
+
+  @override
+  String get itineraryEmptyState => 'You build the itinerary: add the items you want, one at a time, from the button below or from the section cards.';
+
+  @override
+  String get itineraryKindStay => 'Stay';
+
+  @override
+  String get itineraryKindTransport => 'Transport';
+
+  @override
+  String get itineraryKindReservation => 'Booking';
+
+  @override
+  String get itineraryKindRestaurant => 'Restaurant';
+
+  @override
+  String get itineraryKindSavedPlace => 'Saved place';
+
+  @override
+  String get itineraryKindBucket => 'Bucket list';
+
+  @override
+  String get itinerarySearchHint => 'Search by name';
+
+  @override
+  String get itinerarySearchNone => 'No element found in this section.';
+
+  @override
+  String get itineraryAlreadyIn => 'Already in the itinerary';
+
+  @override
+  String get itineraryOutsideDates => 'Outside the dates';
+
+  @override
+  String get itineraryOutsideDatesHint => 'These items have a day outside the trip dates: open them and choose a day.';
+
+  @override
+  String get itineraryNoDates => 'The trip has no dates yet: set them to build the itinerary day by day.';
+
+  @override
+  String get itineraryNoDatesAction => 'Set the dates';
 
   @override
   String get mapOpenSection => 'Open the section';

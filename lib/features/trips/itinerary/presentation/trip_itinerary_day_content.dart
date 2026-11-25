@@ -20,11 +20,15 @@ class TripItineraryActions {
     required this.onEdit,
     required this.onDelete,
     required this.units,
+    required this.canDelete,
     this.launch,
   });
 
   final ValueChanged<TripItineraryItem> onEdit;
   final ValueChanged<TripItineraryItem> onDelete;
+
+  /// Author or trip owner (same as the rules).
+  final bool Function(TripItineraryItem item) canDelete;
 
   /// "km" or "mi" from Aspetto.
   final String units;
@@ -63,7 +67,7 @@ class TripItineraryDayContent extends StatelessWidget {
     Widget tile(TripItineraryItem i) => TripItineraryTile(
       item: i,
       onEdit: () => actions.onEdit(i),
-      onDelete: () => actions.onDelete(i),
+      onDelete: actions.canDelete(i) ? () => actions.onDelete(i) : null,
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

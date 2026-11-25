@@ -1,6 +1,7 @@
-// Pagina Itinerario (bozza): voci dal repository (demo in memoria), tre
-// viste con la scelta ricordata, filtri condivisi, "Aggiungi voce",
-// modifica ed eliminazione. Nulla si salva su Firestore.
+// Pagina Itinerario (dati veri, trips/{tripId}/itinerary): le voci scelte
+// dall'utente, con i dati aggiornati degli elementi collegati (catalogo
+// letto con la Mappa); viste ricordate (la prima volta secondo la fase del
+// viaggio), filtri, aggiungi, modifica; elimina solo autore o proprietario.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,21 +9,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:amaterasutrip/core/appearance/amaterasu_appearance_provider.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/widgets/filters/amaterasu_filter_icon_button.dart';
+import 'package:amaterasutrip/features/trips/map/trip_map_sources.dart';
+import 'package:amaterasutrip/features/trips/providers/trip_provider.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_segments.dart';
+import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
 import 'package:amaterasutrip/features/trips/tools/search/trip_search_recent.dart';
-import 'package:amaterasutrip/features/trips/map/trip_map_point.dart';
-import 'package:amaterasutrip/features/trips/map/trip_map_view.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../data/trip_itinerary_repository.dart';
+import '../models/trip_itinerary_item.dart';
 import '../models/trip_itinerary_logic.dart';
 import 'trip_itinerary_add.dart';
+import 'trip_itinerary_body.dart';
 import 'trip_itinerary_day_content.dart';
-import 'trip_itinerary_day_view.dart';
 import 'trip_itinerary_editor.dart';
 import 'trip_itinerary_filters.dart';
-import 'trip_itinerary_timeline.dart';
-import 'trip_draft_label.dart';
 import 'trip_itinerary_view.dart';
 
 class TripItineraryScreen extends ConsumerStatefulWidget {
@@ -36,7 +37,9 @@ class TripItineraryScreen extends ConsumerStatefulWidget {
 
 class _State extends ConsumerState<TripItineraryScreen> {
   final _filters = ValueNotifier(const TripItineraryFilters());
-  TripItineraryView _view = TripItineraryView.timeline;
+
+  /// Null until the user chooses (decision 6: then remembered).
+  TripItineraryView? _view;
   late final String? _uid = ref.read(tripSearchUidProvider);
 
   @override
@@ -61,28 +64,70 @@ class _State extends ConsumerState<TripItineraryScreen> {
     if (_uid != null) TripItineraryViewPreferences.save(_uid, widget.tripId, v);
   }
 
+  Future<void> _run(Future<void> Function() action) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final failed = AppLocalizations.of(context)!.sectionsSaveError;
+    try {
+      await action();
+    } catch (_) {
+      messenger.showSnackBar(SnackBar(content: Text(failed)));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final repo = ref.watch(tripItineraryRepositoryProvider);
-    final info = repo.info(widget.tripId);
-    final days = TripItineraryLogic.days(info.start, info.end);
-    final all =
-        ref.watch(tripItineraryItemsProvider(widget.tripId)).asData?.value ??
+    final trip = ref.watch(tripProvider(widget.tripId)).asData?.value;
+    // Only the trip days (decision 12): none while loading or undated.
+    final days =
+        trip == null || TripItineraryLogic.undated(trip.startDate, trip.endDate)
+        ? const <DateTime>[]
+        : TripItineraryLogic.days(trip.startDate, trip.endDate);
+    final names = ref.watch(tripStaysMemberNamesProvider(widget.tripId));
+    final catalog =
+        ref.watch(tripMapDataProvider(widget.tripId)).asData?.value.catalog ??
         const [];
+    final live = {for (final c in catalog) '${c.section.name}/${c.refId}': c};
+    final saved =
+        ref.watch(tripItineraryItemsProvider(widget.tripId)).asData?.value ??
+        const <TripItineraryItem>[];
+    // Linked items always show the current data of their element.
+    final all = [
+      for (final i in saved)
+        live['${i.section?.name}/${i.refId}']?.applyTo(i) ?? i,
+    ];
     final f = _filters.value;
-    final shown = all.where(f.matches).toList();
+    final today = TripItineraryLogic.dateOnly(DateTime.now());
+    final view =
+        _view ??
+        (days.contains(today)
+            ? TripItineraryView.day
+            : TripItineraryView.timeline);
+    Future<void> add() => _run(() async {
+      final item = await addTripItineraryItem(
+        context,
+        day: f.day ?? (days.contains(today) ? today : days.first),
+        days: days,
+        tripId: widget.tripId,
+        uid: _uid ?? '',
+        catalog: catalog,
+        linked: {for (final i in saved) '${i.section?.name}/${i.refId}'},
+      );
+      if (item != null) await repo.save(item);
+    });
     final actions = TripItineraryActions(
       units: ref.watch(amaterasuAppearanceProvider).units,
-      onEdit: (i) async {
+      canDelete: (i) => i.createdByUid == _uid || trip?.ownerUid == _uid,
+      onEdit: (i) => _run(() async {
         final changed = await editTripItineraryItem(
           context,
           item: i,
           days: days,
         );
-        if (changed != null) await repo.save(widget.tripId, changed);
-      },
-      onDelete: (i) => repo.delete(widget.tripId, i.id),
+        if (changed != null) await repo.save(changed);
+      }),
+      onDelete: (i) => _run(() => repo.delete(i)),
     );
     return Scaffold(
       backgroundColor: AmaterasuColors.surfaceDeep,
@@ -93,7 +138,6 @@ class _State extends ConsumerState<TripItineraryScreen> {
               tripId: widget.tripId,
               title: l10n.tripNavItinerary,
               backRoute: '/trips/${widget.tripId}',
-              subtitle: const TripDraftLabel(),
               actions: [
                 IconButton(
                   key: const Key('itinerary-refresh'),
@@ -103,7 +147,7 @@ class _State extends ConsumerState<TripItineraryScreen> {
                     color: AmaterasuColors.textPrimary,
                   ),
                   onPressed: () =>
-                      ref.invalidate(tripItineraryItemsProvider(widget.tripId)),
+                      ref.invalidate(tripMapDataProvider(widget.tripId)),
                 ),
                 AmaterasuFilterIconButton(
                   keyPrefix: 'itinerary',
@@ -111,8 +155,8 @@ class _State extends ConsumerState<TripItineraryScreen> {
                   onPressed: () => showTripItineraryFilters(
                     context,
                     filters: _filters,
-                    names: info.names,
-                    days: _view == TripItineraryView.map ? days : const [],
+                    names: names,
+                    days: view == TripItineraryView.map ? days : const [],
                     onChanged: (v) => setState(() => _filters.value = v),
                   ),
                 ),
@@ -123,16 +167,7 @@ class _State extends ConsumerState<TripItineraryScreen> {
                     Icons.add_circle_outline,
                     color: AmaterasuColors.accentOrange,
                   ),
-                  onPressed: () async {
-                    final item = await addTripItineraryItem(
-                      context,
-                      day: f.day ?? days.first,
-                      days: days,
-                      catalog: info.catalog,
-                      personUid: _uid,
-                    );
-                    if (item != null) await repo.save(widget.tripId, item);
-                  },
+                  onPressed: days.isEmpty ? null : add,
                 ),
               ],
             ),
@@ -144,44 +179,23 @@ class _State extends ConsumerState<TripItineraryScreen> {
                 codeOf: (v) => v.name,
                 labelOf: (v) => v.label(l10n),
                 iconOf: (v) => v.icon,
-                selected: _view,
+                selected: view,
                 onChanged: _setView,
                 compact: true,
               ),
             ),
             Expanded(
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: _view == TripItineraryView.map
-                        ? double.infinity
-                        : 820,
-                  ),
-                  child: switch (_view) {
-                    TripItineraryView.timeline => TripItineraryTimeline(
-                      all: all,
-                      shown: shown,
-                      days: days,
-                      actions: actions,
-                    ),
-                    TripItineraryView.day => TripItineraryDayView(
-                      all: all,
-                      shown: shown,
-                      days: days,
-                      actions: actions,
-                      filtered: f.count > 0,
-                      onReorder: (ids) => repo.reorder(widget.tripId, ids),
-                    ),
-                    TripItineraryView.map => TripMapView(
-                      tripId: widget.tripId,
-                      points: [for (final i in shown) ?TripMapPoint.ofItem(i)],
-                      routes: tripMapRoutes([
-                        for (final i in shown) ?TripMapPoint.ofItem(i),
-                      ]),
-                    ),
-                  },
-                ),
+              child: TripItineraryBody(
+                tripId: widget.tripId,
+                loading: trip == null,
+                view: view,
+                all: all,
+                shown: all.where(f.matches).toList(),
+                days: days,
+                actions: actions,
+                filtered: f.count > 0,
+                onAdd: add,
+                onReorder: (items) => _run(() => repo.reorder(items)),
               ),
             ),
           ],

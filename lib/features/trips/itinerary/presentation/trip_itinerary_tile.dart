@@ -27,7 +27,9 @@ class TripItineraryTile extends StatelessWidget {
 
   final TripItineraryItem item;
   final VoidCallback onEdit;
-  final VoidCallback onDelete;
+
+  /// Null when the user may not delete (only author or owner).
+  final VoidCallback? onDelete;
 
   Future<void> _confirmDelete(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
@@ -40,7 +42,7 @@ class TripItineraryTile extends StatelessWidget {
       icon: Icons.delete_outline_rounded,
       keyPrefix: 'itinerary-delete',
     );
-    if (ok) onDelete();
+    if (ok) onDelete?.call();
   }
 
   @override
@@ -109,13 +111,14 @@ class TripItineraryTile extends StatelessWidget {
             key: Key('itinerary-edit-${i.id}'),
             onPressed: onEdit,
           ),
-          IconButton(
-            key: Key('itinerary-delete-${i.id}'),
-            tooltip: l10n.itineraryDelete,
-            color: AmaterasuColors.accentErrorSoft,
-            icon: const Icon(Icons.delete_outline_rounded),
-            onPressed: () => _confirmDelete(context),
-          ),
+          if (onDelete != null)
+            IconButton(
+              key: Key('itinerary-delete-${i.id}'),
+              tooltip: l10n.itineraryDelete,
+              color: AmaterasuColors.accentErrorSoft,
+              icon: const Icon(Icons.delete_outline_rounded),
+              onPressed: () => _confirmDelete(context),
+            ),
         ],
       ),
     );

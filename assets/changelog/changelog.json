@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.63.0",
+      "date": "2026-11-26",
+      "it": ["Itinerario con i dati veri: parte vuoto e lo costruisci tu, voce per voce. Con «+» scegli una voce libera, una giornata libera o un elemento di una sezione (alloggio, trasporto, prenotazione, ristorante, luogo salvato, bucket list) da cercare per nome; poi giorno e ora facoltativa.", "I giorni sono quelli del viaggio; le voci rimaste fuori dalle date compaiono in «Fuori dalle date». Tutti i viaggiatori modificano, elimina solo chi ha aggiunto la voce o il proprietario. Le modifiche finiscono nel Registro attività."],
+      "en": ["Itinerary with real data: it starts empty and you build it, item by item. With «+» choose a free item, a free day or an element of a section (stay, transport, booking, restaurant, saved place, bucket list) to search by name; then the day and an optional time.", "The days are the trip days; items left outside the dates appear in «Outside the dates». Every traveler can edit, only who added the item or the owner can delete it. Changes go to the activity log."]
+    },
+    {
       "version": "1.62.0",
       "date": "2026-11-25",
       "it": ["Mappa con i dati veri: tutti i luoghi del viaggio (alloggi, trasporti con partenza e arrivo, prenotazioni, ristoranti, luoghi salvati e bucket list), con filtri, gruppi che si aprono avvicinandosi, riquadro con «Apri la sezione» e «Apri su Maps», e quanti elementi non hanno una posizione."],

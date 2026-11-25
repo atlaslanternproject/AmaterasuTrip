@@ -1,6 +1,6 @@
-// Riordino a mano delle voci di un giorno (trascina): elenco piatto senza
-// gruppi, l'ordine nuovo va al repository solo toccando "Fine" della
-// vista; nella bozza resta in memoria.
+// Riordino a mano delle voci senza ora di un giorno (trascina): per
+// spostare una voce con ora si cambia l'ora. Il nuovo ordine si salva
+// subito (campo order, scritture firmate).
 
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class TripItineraryReorderList extends StatefulWidget {
   });
 
   final List<TripItineraryItem> items;
-  final ValueChanged<List<String>> onDone;
+  final ValueChanged<List<TripItineraryItem>> onDone;
 
   @override
   State<TripItineraryReorderList> createState() =>
@@ -25,7 +25,11 @@ class TripItineraryReorderList extends StatefulWidget {
 }
 
 class _TripItineraryReorderListState extends State<TripItineraryReorderList> {
-  late final List<TripItineraryItem> _order = List.of(widget.items);
+  // Only items without a time are reordered (decision 1).
+  late final List<TripItineraryItem> _order = [
+    for (final i in widget.items)
+      if (i.time == null) i,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,7 @@ class _TripItineraryReorderListState extends State<TripItineraryReorderList> {
             // The new index already accounts for the removed item.
             onReorderItem: (from, to) {
               setState(() => _order.insert(to, _order.removeAt(from)));
-              widget.onDone([for (final i in _order) i.id]);
+              widget.onDone(List.of(_order));
             },
             children: [
               for (final i in _order)

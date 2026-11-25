@@ -114,14 +114,15 @@ cambiare a mano.
 1. Dati e regole dell'itinerario, linea del tempo con voci libere e
    riferimenti.
 2. Giorno per giorno, raggruppamento per zona, riordino, avvisi.
-3. "Aggiungi nuovo dall'itinerario" (crea anche nella sezione).
+3. "Nuovo" dal "+" dell'itinerario per ogni sezione (decisione 13: crea
+   nella sezione con il suo editor, poi la voce).
 4. Previsto/fatto, condividi il giorno.
 5. Pagina Mappa con filtri, gruppi e riquadro; vista Mappa
    dell'Itinerario; distanza e "Apri su Maps".
 
 Moduli approvati: alloggi e bucket list vengono solo **letti** (i
-riferimenti non li cambiano); "aggiungi nuovo" crea solo ristoranti e
-luoghi (sezioni nuove). Nessuna nuova API, nessuna nuova funzione sul
+riferimenti non li cambiano); "Nuovo" anche per loro solo se l'editor si
+può chiamare senza modificarlo (decisione 13). Nessuna nuova API, nessuna nuova funzione sul
 server.
 
 ## 8. Decisioni dopo la bozza 1.60.0 (25/11/2026)
@@ -147,7 +148,27 @@ costruiscono dopo Coerenza, Home e Budget 2.
    l'icona.
 10. Zone da Google solo dopo aver verificato che il campo del quartiere
     non cambi il prezzo della richiesta; altrimenti solo la città.
-11. "Aggiungi nuovo" dall'itinerario: solo ristoranti e luoghi salvati.
+11. ~~"Aggiungi nuovo" dall'itinerario: solo ristoranti e luoghi salvati.~~
+    Sostituita dalla decisione 13 (26/11/2026).
+
+## 8bis. Correzioni al piano (26/11/2026, valgono per i passi 1 e 3)
+12. Giorni: sono quelli del viaggio, dalla data di inizio a quella di
+    fine (niente "da oggi"). Le voci con un giorno fuori dall'intervallo
+    (se le date del viaggio cambiano) vanno nel gruppo "Fuori dalle
+    date". Viaggio senza date: invito a impostarle (Impostazioni del
+    viaggio > Informazioni).
+13. Nuovo flusso di "+": prima si sceglie cosa aggiungere (Voce libera,
+    Giornata libera, oppure una sezione: Alloggio, Trasporto,
+    Prenotazione, Ristorante, Luogo salvato, Bucket list). Scelta una
+    sezione, due strade: "Nuovo" (apre l'editor vero della sezione;
+    salvato l'elemento, nasce anche la voce dell'itinerario che lo
+    richiama) oppure "Cerca" (ricerca tra gli elementi esistenti di quella
+    sezione, quelli non ancora nell'itinerario per primi); poi giorno e
+    ora facoltativa. "Nuovo" vale per tutte le sezioni purché l'editor
+    esistente si possa chiamare senza modificarlo; per alloggi e bucket
+    list (moduli approvati), se servisse cambiare un loro file, resta solo
+    "Cerca" e va detto al proprietario. Passo 1: scelta e "Cerca"; passo
+    3: "Nuovo".
 
 ## 9. Principio fisso: l'itinerario lo costruisce l'utente
 L'utente sceglie cosa inserire nell'itinerario. L'app non riempie, non

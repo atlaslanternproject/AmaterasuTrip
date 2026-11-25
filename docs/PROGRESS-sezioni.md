@@ -1735,9 +1735,38 @@ all'itinerario" (sezione 10):
    delle sezioni come la Mappa).
 2. Giorno per giorno, zone, riordino solo delle voci senza ora, avvisi
    (sovrapposizioni con endTime quando c'è).
-3. "Aggiungi nuovo" dall'itinerario: solo ristoranti e luoghi salvati.
+3. "Nuovo" dal "+" per ogni sezione (decisione 13 del 26/11: editor vero
+   della sezione, poi la voce; alloggi e bucket list solo se l'editor si
+   chiama senza modificarlo, altrimenti solo "Cerca").
 4. Previsto/fatto (testo o elemento), condividi il giorno.
 5. Vista mappa dell'itinerario; pulsante "Aggiungi all'itinerario" sulle
    card delle sezioni nuove (giorno e ora facoltativa).
 Poi: COERENZA dal gruppo F (F2 dialoghi e username, F3 token, data/ora,
 130 %), E, D, B, C con la home, A per ultimo.
+
+## Correzioni al piano dell'Itinerario (26/11/2026)
+Registrate in docs/design/MAPPA-ITINERARIO.md (sezione 8bis):
+- Decisione 12: giorni = dal primo all'ultimo giorno del viaggio (niente
+  "da oggi"); voci fuori dalle date nel gruppo "Fuori dalle date";
+  viaggio senza date: invito a impostarle.
+- Decisione 13 (sostituisce la 11): "+" chiede prima cosa aggiungere
+  (Voce libera, Giornata libera o una sezione); per una sezione "Nuovo"
+  (editor vero della sezione, poi la voce) oppure "Cerca" (elementi non
+  ancora nell'itinerario per primi); poi giorno e ora facoltativa. Passo
+  1: scelta e "Cerca"; passo 3: "Nuovo".
+
+## Itinerario, passo 1: dati veri (1.63.0)
+Valutazione (regola 1): (a) il modulo comune delle sezioni (TripSectionStore, codec, controlli, firma updatedByUid, sectionBase nelle regole, TripSectionEmpty) copre già tutto; (b) l'Itinerario lo usa in modo identico: TripItineraryCodec e StoreTripItineraryRepository al posto della bozza in memoria (tolti trip_itinerary_demo*.dart e l'etichetta "Bozza"); catalogo degli elementi preso dalla lettura della Mappa (nessuna lettura in più); "Cerca" nuovo foglio, perché nessun componente esistente cerca dentro una sola sezione con l'avviso "Già nell'itinerario"; (c) tocca firestore.rules (nuovo blocco itinerary: impatto solo sulla nuova raccolta, elimina solo autore o OWNER), functions (Audit Trail e duplicazione), test regole (rules-tests/sections/itinerary.test.mjs) e Flutter (18 test).
+- Raccolta trips/{tripId}/itinerary; non copiata da duplicateTrip; deleteTrip la cancella con le altre sottoraccolte; registrata nell'Audit Trail con filtro e icona.
+- Decisione 12: giorni solo dalle date del viaggio; gruppo "Fuori dalle date" (Linea del tempo in fondo, Giorno per giorno come scelta in fondo alla striscia); viaggio senza date: invito "Imposta le date" (Impostazioni > Informazioni).
+- Decisione 13, prima parte: "+" chiede cosa aggiungere; per le sezioni "Cerca" (non ancora collegati per primi). "Nuovo" al passo 3.
+- Informativa: nessuna voce nuova (stessi dati delle sezioni).
+
+Prove da fare sul sito:
+1. Itinerario di un viaggio senza voci: stato vuoto con invito, nessuna "Bozza".
+2. "+" > Voce libera: il titolo è obbligatorio; salvata compare nel giorno scelto.
+3. "+" > Prenotazione (o un'altra sezione) > cerca per nome > scegli > giorno e ora: la voce mostra nome e stato aggiornati dell'elemento; quelli già nell'itinerario hanno la scritta "Già nell'itinerario".
+4. Con un secondo account viaggiatore: modifica una voce altrui (si può), il cestino compare solo sulle proprie (o per il proprietario).
+5. Cambia le date del viaggio accorciandole: le voci rimaste fuori finiscono in "Fuori dalle date"; aprile e scegli un giorno.
+6. Registro attività: aggiunta, modifica e eliminazione di voci dell'itinerario, con il filtro "Itinerario".
+7. Duplica il viaggio: l'itinerario non viene copiato.

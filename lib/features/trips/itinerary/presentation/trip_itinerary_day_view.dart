@@ -12,6 +12,7 @@ import '../models/trip_itinerary_item.dart';
 import '../models/trip_itinerary_logic.dart';
 import 'trip_itinerary_day_content.dart';
 import 'trip_itinerary_reorder.dart';
+import 'trip_itinerary_outside.dart';
 import 'trip_itinerary_share.dart';
 import 'trip_itinerary_timeline.dart';
 
@@ -38,7 +39,7 @@ class TripItineraryDayView extends StatefulWidget {
 
   /// Filters are active: reordering is off.
   final bool filtered;
-  final ValueChanged<List<String>> onReorder;
+  final ValueChanged<List<TripItineraryItem>> onReorder;
 
   @override
   State<TripItineraryDayView> createState() => _TripItineraryDayViewState();
@@ -48,10 +49,17 @@ class _TripItineraryDayViewState extends State<TripItineraryDayView> {
   late DateTime _day = tripItineraryStartDay(widget.days, DateTime.now());
   bool _reordering = false;
 
+  /// The "Fuori dalle date" group is shown instead of a day.
+  bool _outside = false;
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final items = TripItineraryLogic.ofDay(widget.shown, _day);
+    final outside = TripItineraryLogic.outside(widget.shown, widget.days);
+    final showOutside = _outside && outside.isNotEmpty;
+    final items = showOutside
+        ? const <TripItineraryItem>[]
+        : TripItineraryLogic.ofDay(widget.shown, _day);
     return Column(
       children: [
         SizedBox(
@@ -67,15 +75,29 @@ class _TripItineraryDayViewState extends State<TripItineraryDayView> {
                   child: ChoiceChip(
                     key: Key('itinerary-strip-${n + 1}'),
                     label: Text(AmaterasuDates.day(context, d)),
-                    selected: d == _day,
+                    selected: !showOutside && d == _day,
                     selectedColor: AmaterasuColors.accentBudget.withValues(
                       alpha: 0.25,
                     ),
                     onSelected: (_) => setState(() {
                       _day = d;
+                      _outside = false;
                       _reordering = false;
                     }),
                   ),
+                ),
+              if (outside.isNotEmpty)
+                ChoiceChip(
+                  key: const Key('itinerary-strip-outside'),
+                  label: Text(l10n.itineraryOutsideDates),
+                  selected: showOutside,
+                  selectedColor: AmaterasuColors.accentBudget.withValues(
+                    alpha: 0.25,
+                  ),
+                  onSelected: (_) => setState(() {
+                    _outside = true;
+                    _reordering = false;
+                  }),
                 ),
             ],
           ),
@@ -87,7 +109,9 @@ class _TripItineraryDayViewState extends State<TripItineraryDayView> {
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Text(
-                tripItineraryDayTitle(context, widget.days, _day),
+                showOutside
+                    ? l10n.itineraryOutsideDates
+                    : tripItineraryDayTitle(context, widget.days, _day),
                 style: const TextStyle(
                   color: AmaterasuColors.accentGold,
                   fontSize: 16,
@@ -100,7 +124,9 @@ class _TripItineraryDayViewState extends State<TripItineraryDayView> {
                 label: _reordering
                     ? l10n.itineraryReorderDone
                     : l10n.itineraryReorder,
-                onPressed: widget.filtered || items.length < 2
+                onPressed:
+                    widget.filtered ||
+                        items.where((i) => i.time == null).length < 2
                     ? null
                     : () => setState(() => _reordering = !_reordering),
               ),
@@ -131,7 +157,12 @@ class _TripItineraryDayViewState extends State<TripItineraryDayView> {
                   padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
                   children: [
                     TripItineraryEmptyDays(all: widget.all, days: widget.days),
-                    if (items.isEmpty)
+                    if (showOutside)
+                      TripItineraryOutside(
+                        items: outside,
+                        actions: widget.actions,
+                      )
+                    else if (items.isEmpty)
                       Text(
                         l10n.itineraryEmpty,
                         style: const TextStyle(

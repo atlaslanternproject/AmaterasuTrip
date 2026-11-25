@@ -1,6 +1,7 @@
 // Vista "Linea del tempo" dell'Itinerario: tutti i giorni del viaggio in
 // una lista unica, intestazione per giorno ("Giorno 2 · 12 apr", "Oggi") e
-// dentro i gruppi per zona; avviso dei giorni senza voci in cima.
+// dentro i gruppi per zona; avviso dei giorni senza voci in cima e, in
+// fondo, il gruppo "Fuori dalle date".
 
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ import 'package:amaterasutrip/l10n/app_localizations.dart';
 import '../models/trip_itinerary_item.dart';
 import '../models/trip_itinerary_logic.dart';
 import 'trip_itinerary_day_content.dart';
+import 'trip_itinerary_outside.dart';
 
 String tripItineraryDayTitle(
   BuildContext context,
@@ -74,12 +76,13 @@ class TripItineraryTimeline extends StatelessWidget {
       for (final d in days)
         if (TripItineraryLogic.ofDay(shown, d).isNotEmpty) d,
     ];
+    final outside = TripItineraryLogic.outside(shown, days);
     return ListView(
       key: const Key('itinerary-timeline'),
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
       children: [
         TripItineraryEmptyDays(all: all, days: days),
-        if (withItems.isEmpty)
+        if (withItems.isEmpty && outside.isEmpty)
           Text(
             l10n.itineraryEmpty,
             style: const TextStyle(color: AmaterasuColors.textSecondary),
@@ -102,6 +105,7 @@ class TripItineraryTimeline extends StatelessWidget {
             actions: actions,
           ),
         ],
+        TripItineraryOutside(items: outside, actions: actions),
       ],
     );
   }

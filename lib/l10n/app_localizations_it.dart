@@ -3644,7 +3644,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String itineraryOverlap(String first, String second) {
-    return '«$first» e «$second» sono a meno di un\'ora di distanza.';
+    return '«$first» e «$second» si sovrappongono.';
   }
 
   @override
@@ -3673,7 +3673,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get itineraryAddFreeDay => 'Giornata libera';
 
   @override
-  String get itineraryAddExisting => 'Da un elemento esistente';
+  String get itineraryAddExisting => 'Da una sezione';
 
   @override
   String get itineraryEditTitle => 'Voce dell\'itinerario';
@@ -3729,7 +3729,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get itineraryReorderDone => 'Fine';
 
   @override
-  String get itineraryReorderHint => 'Trascina le voci del giorno. Le voci spostate perdono l\'ora e seguono l\'ordine a mano.';
+  String get itineraryReorderHint => 'Trascina le voci senza ora. Per spostare una voce con ora cambia la sua ora.';
 
   @override
   String get itineraryReorderFilters => 'Togli i filtri per riordinare.';
@@ -3762,6 +3762,51 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get itineraryToday => 'Oggi';
+
+  @override
+  String get itineraryFieldEndTime => 'Fine (HH:MM, facoltativa)';
+
+  @override
+  String get itineraryEmptyState => 'L\'itinerario lo costruisci tu: aggiungi le voci che vuoi, una alla volta, dal pulsante qui sotto o dalle card delle sezioni.';
+
+  @override
+  String get itineraryKindStay => 'Alloggio';
+
+  @override
+  String get itineraryKindTransport => 'Trasporto';
+
+  @override
+  String get itineraryKindReservation => 'Prenotazione';
+
+  @override
+  String get itineraryKindRestaurant => 'Ristorante';
+
+  @override
+  String get itineraryKindSavedPlace => 'Luogo salvato';
+
+  @override
+  String get itineraryKindBucket => 'Bucket list';
+
+  @override
+  String get itinerarySearchHint => 'Cerca per nome';
+
+  @override
+  String get itinerarySearchNone => 'Nessun elemento trovato in questa sezione.';
+
+  @override
+  String get itineraryAlreadyIn => 'Già nell\'itinerario';
+
+  @override
+  String get itineraryOutsideDates => 'Fuori dalle date';
+
+  @override
+  String get itineraryOutsideDatesHint => 'Queste voci hanno un giorno fuori dalle date del viaggio: aprile e scegli un giorno.';
+
+  @override
+  String get itineraryNoDates => 'Il viaggio non ha ancora le date: impostale per costruire l\'itinerario giorno per giorno.';
+
+  @override
+  String get itineraryNoDatesAction => 'Imposta le date';
 
   @override
   String get mapOpenSection => 'Apri la sezione';

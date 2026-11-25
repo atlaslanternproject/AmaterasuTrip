@@ -16,6 +16,16 @@ TripSearchSection? tripAuditSection(String collection) =>
     ? TripSearchSection.shopping
     : TripSearchSection.values.where((s) => s.name == collection).firstOrNull;
 
+/// Name of a register collection (the itinerary is not a Cerca section).
+String tripAuditSectionLabel(AppLocalizations l10n, String collection) =>
+    tripAuditSection(collection)?.label(l10n) ??
+    (collection == 'itinerary' ? l10n.tripNavItinerary : collection);
+
+/// Icon of a register collection.
+IconData tripAuditSectionIcon(String collection) =>
+    tripAuditSection(collection)?.icon ??
+    (collection == 'itinerary' ? Icons.route_rounded : Icons.history_rounded);
+
 String tripAuditField(AppLocalizations l10n, String field) => switch (field) {
   'name' => l10n.auditFieldName,
   'title' => l10n.auditFieldTitle,
@@ -47,7 +57,6 @@ class TripAuditTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final section = tripAuditSection(entry.section);
     final at = entry.at;
     final when = at == null
         ? ''
@@ -73,7 +82,7 @@ class TripAuditTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
-            section?.icon ?? Icons.history_rounded,
+            tripAuditSectionIcon(entry.section),
             color: AmaterasuColors.accentBudget,
           ),
           const SizedBox(width: 12),
@@ -88,7 +97,13 @@ class TripAuditTile extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text([?section?.label(l10n), when].join(' · '), style: small),
+                Text(
+                  [
+                    tripAuditSectionLabel(l10n, entry.section),
+                    when,
+                  ].join(' · '),
+                  style: small,
+                ),
                 for (final c in entry.changes)
                   Padding(
                     padding: const EdgeInsets.only(top: 4),

@@ -1,7 +1,7 @@
 // Editor di una voce dell'Itinerario nel pannello comune (dal basso sul
 // telefono, finestra su schermo largo): blocchi a tendina Cosa, Quando,
 // Dove, Previsto/fatto; "Salva" arancio e "Annulla" testuale. Restituisce
-// la voce cambiata (nella bozza resta in memoria).
+// la voce cambiata; "Salva" resta spento finché manca il titolo.
 
 import 'package:flutter/material.dart';
 
@@ -35,6 +35,7 @@ class _Editor extends StatefulWidget {
 class _EditorState extends State<_Editor> {
   late final _title = TextEditingController(text: widget.item.title);
   late final _time = TextEditingController(text: widget.item.time ?? '');
+  late final _end = TextEditingController(text: widget.item.endTime ?? '');
   late final _zone = TextEditingController(text: widget.item.zone ?? '');
   late final _note = TextEditingController(text: widget.item.note ?? '');
   late final _actual = TextEditingController(text: widget.item.actual ?? '');
@@ -44,7 +45,7 @@ class _EditorState extends State<_Editor> {
 
   @override
   void dispose() {
-    for (final c in [_title, _time, _zone, _note, _actual]) {
+    for (final c in [_title, _time, _end, _zone, _note, _actual]) {
       c.dispose();
     }
     super.dispose();
@@ -64,6 +65,8 @@ class _EditorState extends State<_Editor> {
         day: _day,
         time: () =>
             _hhmm.hasMatch(_time.text.trim()) ? _time.text.trim() : null,
+        endTime: () =>
+            _hhmm.hasMatch(_end.text.trim()) ? _end.text.trim() : null,
         note: () => _text(_note),
         actual: () => _text(_actual),
         place: () => place == null && zone == null
@@ -96,6 +99,7 @@ class _EditorState extends State<_Editor> {
                 TextField(
                   key: const Key('itinerary-edit-title'),
                   controller: _title,
+                  onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
                     labelText: l10n.itineraryFieldTitle,
                   ),
@@ -127,6 +131,14 @@ class _EditorState extends State<_Editor> {
                     controller: _time,
                     decoration: InputDecoration(
                       labelText: l10n.itineraryFieldTime,
+                    ),
+                  ),
+                if (!freeDay)
+                  TextField(
+                    key: const Key('itinerary-edit-end'),
+                    controller: _end,
+                    decoration: InputDecoration(
+                      labelText: l10n.itineraryFieldEndTime,
                     ),
                   ),
               ],
@@ -172,7 +184,8 @@ class _EditorState extends State<_Editor> {
                 AmaterasuButton.primary(
                   key: const Key('itinerary-edit-save'),
                   label: l10n.itinerarySave,
-                  onPressed: _save,
+                  // The title is required (rules).
+                  onPressed: _title.text.trim().isEmpty ? null : _save,
                 ),
               ],
             ),

@@ -14,7 +14,8 @@ const {shouldCopyTripSubcollection} =
   require("../lib/trip-management/trip-duplication-policy.js");
 
 test("only the new sections are recorded, never budget or stays", () => {
-  for (const s of ["transports", "notes", "checklists", "memories"]) {
+  for (const s of ["transports", "notes", "checklists", "memories",
+    "itinerary"]) {
     assert.ok(a.auditSections.has(s), s);
   }
   for (const s of ["stays", "bucketList", "budgetSharedExpenses",
@@ -65,4 +66,5 @@ test("action and item name", () => {
 
 test("the register is never copied by trip duplication", () => {
   assert.equal(shouldCopyTripSubcollection("auditTrail"), false);
+  assert.equal(shouldCopyTripSubcollection("itinerary"), false);
 });

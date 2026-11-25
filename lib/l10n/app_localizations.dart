@@ -6986,7 +6986,7 @@ abstract class AppLocalizations {
   /// No description provided for @itineraryOverlap.
   ///
   /// In en, this message translates to:
-  /// **'«{first}» and «{second}» are less than an hour apart.'**
+  /// **'«{first}» and «{second}» overlap.'**
   String itineraryOverlap(String first, String second);
 
   /// No description provided for @itineraryEmptyDays.
@@ -7034,7 +7034,7 @@ abstract class AppLocalizations {
   /// No description provided for @itineraryAddExisting.
   ///
   /// In en, this message translates to:
-  /// **'From an existing element'**
+  /// **'From a section'**
   String get itineraryAddExisting;
 
   /// No description provided for @itineraryEditTitle.
@@ -7142,7 +7142,7 @@ abstract class AppLocalizations {
   /// No description provided for @itineraryReorderHint.
   ///
   /// In en, this message translates to:
-  /// **'Drag the items of the day. Moved items lose their time and follow the manual order.'**
+  /// **'Drag the items without a time. To move an item with a time, change its time.'**
   String get itineraryReorderHint;
 
   /// No description provided for @itineraryReorderFilters.
@@ -7204,6 +7204,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Today'**
   String get itineraryToday;
+
+  /// No description provided for @itineraryFieldEndTime.
+  ///
+  /// In en, this message translates to:
+  /// **'End (HH:MM, optional)'**
+  String get itineraryFieldEndTime;
+
+  /// No description provided for @itineraryEmptyState.
+  ///
+  /// In en, this message translates to:
+  /// **'You build the itinerary: add the items you want, one at a time, from the button below or from the section cards.'**
+  String get itineraryEmptyState;
+
+  /// No description provided for @itineraryKindStay.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay'**
+  String get itineraryKindStay;
+
+  /// No description provided for @itineraryKindTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get itineraryKindTransport;
+
+  /// No description provided for @itineraryKindReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking'**
+  String get itineraryKindReservation;
+
+  /// No description provided for @itineraryKindRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant'**
+  String get itineraryKindRestaurant;
+
+  /// No description provided for @itineraryKindSavedPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved place'**
+  String get itineraryKindSavedPlace;
+
+  /// No description provided for @itineraryKindBucket.
+  ///
+  /// In en, this message translates to:
+  /// **'Bucket list'**
+  String get itineraryKindBucket;
+
+  /// No description provided for @itinerarySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name'**
+  String get itinerarySearchHint;
+
+  /// No description provided for @itinerarySearchNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No element found in this section.'**
+  String get itinerarySearchNone;
+
+  /// No description provided for @itineraryAlreadyIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Already in the itinerary'**
+  String get itineraryAlreadyIn;
+
+  /// No description provided for @itineraryOutsideDates.
+  ///
+  /// In en, this message translates to:
+  /// **'Outside the dates'**
+  String get itineraryOutsideDates;
+
+  /// No description provided for @itineraryOutsideDatesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'These items have a day outside the trip dates: open them and choose a day.'**
+  String get itineraryOutsideDatesHint;
+
+  /// No description provided for @itineraryNoDates.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip has no dates yet: set them to build the itinerary day by day.'**
+  String get itineraryNoDates;
+
+  /// No description provided for @itineraryNoDatesAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the dates'**
+  String get itineraryNoDatesAction;
 
   /// No description provided for @mapOpenSection.
   ///
