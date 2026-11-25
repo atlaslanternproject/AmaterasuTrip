@@ -5567,6 +5567,42 @@ abstract class AppLocalizations {
   /// **'Add a link'**
   String get commonLinkAdd;
 
+  /// No description provided for @sectionsCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom categories'**
+  String get sectionsCategories;
+
+  /// No description provided for @sectionsCategoryNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New category'**
+  String get sectionsCategoryNew;
+
+  /// No description provided for @sectionsCategoryAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the category'**
+  String get sectionsCategoryAdd;
+
+  /// No description provided for @sectionsCategoriesFull.
+  ///
+  /// In en, this message translates to:
+  /// **'At most 5 categories'**
+  String get sectionsCategoriesFull;
+
+  /// No description provided for @sectionsCategoriesUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Already used in the trip'**
+  String get sectionsCategoriesUsed;
+
+  /// No description provided for @sectionsFilterCustomCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom category'**
+  String get sectionsFilterCustomCategory;
+
   /// No description provided for @zoneLabel.
   ///
   /// In en, this message translates to:

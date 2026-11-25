@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_categories_block.dart';
+
 import 'package:amaterasutrip/core/time_zones/amaterasu_zone_field.dart';
 
 import 'package:amaterasutrip/core/links/amaterasu_links_field.dart';
@@ -70,6 +72,11 @@ class TripReservationDraft {
       ? null
       : AmaterasuZoneValue(zone: _initial!.zone!, city: _initial.zoneCity);
 
+  /// Custom categories (Extra D).
+  late final categories = TripSectionCategoriesDraft(
+    _initial?.customCategories ?? const [],
+  );
+
   /// Useful links, as in the bucket list.
   late final links = AmaterasuLinksDraft(_initial?.usefulLinks ?? const []);
 
@@ -102,6 +109,7 @@ class TripReservationDraft {
       estimatedCostCurrency: cost.savedCurrency,
       expenseId: initial?.expenseId,
       usefulLinks: links.links,
+      customCategories: List.of(categories.labels),
       zone: zone?.zone,
       zoneCity: zone?.city,
     );
@@ -109,6 +117,7 @@ class TripReservationDraft {
 
   void dispose() {
     links.dispose();
+    categories.dispose();
     for (final c in [
       name,
       bookingCode,

@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/features/trips/sections/editor/trip_section_categories_block.dart';
+
 import 'package:amaterasutrip/core/time_zones/amaterasu_zone_field.dart';
 
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_links_block.dart';
@@ -185,6 +187,12 @@ class _TripRestaurantEditorState extends State<TripRestaurantEditor>
           children: [
             _text('notes', d.notes, l10n.sectionsNotes, max: 10000, lines: 2),
           ],
+        ),
+        TripSectionCategoriesBlock(
+          keyPrefix: 'restaurant',
+          tripId: widget.tripId,
+          draft: _draft.categories,
+          onChanged: _changed,
         ),
         TripSectionLinksBlock(
           keyPrefix: 'restaurant',

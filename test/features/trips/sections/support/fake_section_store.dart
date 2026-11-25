@@ -5,6 +5,7 @@
 import 'dart:async';
 
 import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
+import 'package:amaterasutrip/features/trips/sections/data/trip_section_categories_store.dart';
 import 'package:amaterasutrip/features/trips/sections/data/trip_section_store.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
 import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_provider.dart';
@@ -76,6 +77,7 @@ Widget sectionsTestApp(
   String locale = 'it',
   FakeBudgetApi? budget,
   FakePlaceInfo? placeInfo,
+  FakeCategoriesStore? categories,
 }) => ProviderScope(
   overrides: [
     tripStaysOwnerUidProvider('t1').overrideWith((ref) => ownerUid),
@@ -102,6 +104,9 @@ Widget sectionsTestApp(
     ),
     amaterasuPlaceSearchProvider.overrideWithValue(FakePlaces()),
     amaterasuPlaceInfoProvider.overrideWithValue(placeInfo ?? FakePlaceInfo()),
+    tripSectionCategoriesStoreProvider.overrideWithValue(
+      categories ?? FakeCategoriesStore(const ['Da non perdere']),
+    ),
     ...overrides,
   ],
   child: MaterialApp(
@@ -135,4 +140,19 @@ Future<void> pickFilter(WidgetTester tester, String prefix, String key) async {
   await tapKey(tester, '$prefix-filters');
   await tapKey(tester, key);
   await tapKey(tester, '$prefix-sheet-done');
+}
+
+/// Trip categories kept in memory instead of Firestore.
+class FakeCategoriesStore implements TripSectionCategoriesStore {
+  FakeCategoriesStore([List<String> initial = const []]) : saved = [...initial];
+
+  final List<String> saved;
+
+  @override
+  Future<List<String>> labels(String tripId) async => List.of(saved);
+
+  @override
+  Future<void> add(String tripId, String label) async {
+    if (!saved.contains(label)) saved.add(label);
+  }
 }

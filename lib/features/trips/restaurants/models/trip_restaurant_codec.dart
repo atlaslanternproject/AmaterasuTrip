@@ -6,6 +6,7 @@
 import 'package:amaterasutrip/core/places/amaterasu_contact_validator.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_categories.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
@@ -48,6 +49,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
     'usefulLinks',
     'zone',
     'zoneCity',
+    'customCategories',
   ];
 
   @override
@@ -80,6 +82,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       'expenseId': ?text(item.expenseId),
       'zone': ?TripSectionFields.clean(item.zone),
       'zoneCity': ?TripSectionFields.clean(item.zoneCity),
+      ...TripSectionCategories.toMap(item.customCategories),
       ...TripSectionLinks.toMap(item.usefulLinks),
     };
   }
@@ -123,6 +126,7 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
       estimatedCostMinorUnits: cost,
       estimatedCostCurrency: currency,
       expenseId: text('expenseId'),
+      customCategories: TripSectionCategories.read(data),
       usefulLinks: TripSectionLinks.read(data),
       zone: TripSectionFields.readText(data, 'zone'),
       zoneCity: TripSectionFields.readText(data, 'zoneCity'),
@@ -184,6 +188,11 @@ class TripRestaurantCodec implements TripSectionCodec<TripRestaurant> {
           (item.zoneCity?.trim().length ?? 0) > TripSectionFields.shortMax,
       TripSectionProblemKind.other,
       'zone',
+    );
+    c.check(
+      TripSectionCategories.invalid(item.customCategories),
+      TripSectionProblemKind.other,
+      'customCategories',
     );
     c.check(
       TripSectionLinks.invalid(item.usefulLinks),

@@ -54,6 +54,12 @@ TripSectionEntry tripShoppingEntry(
           label: priority,
           color: AmaterasuColors.accentFlame,
         ),
+      for (final label in item.customCategories)
+        TripSectionChip(
+          label: label,
+          color: AmaterasuColors.textSecondary,
+          icon: Icons.label_outline_rounded,
+        ),
     ],
     lines: [
       if (item.bought && boughtBy != null)

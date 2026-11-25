@@ -49,6 +49,7 @@ class TripNote implements TripSectionItem {
     this.checklist = const [],
     this.link,
     this.usefulLinks = const [],
+    this.customCategories = const [],
   });
 
   @override
@@ -71,6 +72,9 @@ class TripNote implements TripSectionItem {
   @override
   String? get expenseId => null;
 
+  /// Custom categories of the trip (TripSectionCategories), up to 5.
+  final List<String> customCategories;
+
   /// Useful links (TripSectionLinks), as in the bucket list.
   final List<String> usefulLinks;
 
@@ -88,5 +92,6 @@ class TripNote implements TripSectionItem {
     checklist: items,
     link: link,
     usefulLinks: usefulLinks,
+    customCategories: customCategories,
   );
 }

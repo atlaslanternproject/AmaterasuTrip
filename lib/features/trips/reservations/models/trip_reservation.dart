@@ -34,6 +34,7 @@ class TripReservation implements TripSectionItem {
     this.usefulLinks = const [],
     this.zone,
     this.zoneCity,
+    this.customCategories = const [],
   });
 
   @override
@@ -77,6 +78,9 @@ class TripReservation implements TripSectionItem {
   /// Time zone chosen by city (IANA) and the city shown (Extra C).
   final String? zone;
   final String? zoneCity;
+
+  /// Custom categories of the trip (TripSectionCategories), up to 5.
+  final List<String> customCategories;
 
   /// Useful links (TripSectionLinks), as in the bucket list.
   final List<String> usefulLinks;

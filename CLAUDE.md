@@ -208,7 +208,9 @@ Componenti riutilizzabili:
   TripSectionViewMemory), titoli di gruppo (groupOf),
   "Orari e prezzi" (TripSectionHoursButton), "Link utili"
   (TripSectionLinks, campo usefulLinks, TripSectionLinksBlock;
-  regola sectionLinks), spesa collegata
+  regola sectionLinks), categorie personalizzate
+  (TripSectionCategories, TripSectionCategoriesBlock, raccolta
+  sectionCategories; regola sectionCategories), spesa collegata
   (TripSectionExpenseTarget, footer e pulsante), conferma di
   eliminazione, editor (TripSectionEditorFrame, blocchi,
   giorno/ora, scelte, viaggiatori, costo, luogo). Nelle regole

@@ -83,6 +83,12 @@ TripSectionEntry tripReservationEntry(
               : AmaterasuColors.accentGold,
           icon: Icons.alarm_rounded,
         ),
+      for (final label in item.customCategories)
+        TripSectionChip(
+          label: label,
+          color: AmaterasuColors.textSecondary,
+          icon: Icons.label_outline_rounded,
+        ),
     ],
     lines: [
       if (item.bookingCode case final code?)

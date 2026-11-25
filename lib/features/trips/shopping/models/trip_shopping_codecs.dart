@@ -5,6 +5,7 @@
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_fields.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_priority.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_item.dart';
+import 'package:amaterasutrip/features/trips/sections/models/trip_section_categories.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_links.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_problem.dart';
 import 'trip_packing_item.dart';
@@ -39,6 +40,7 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
     'notes',
     'expenseId',
     'usefulLinks',
+    'customCategories',
   ];
 
   @override
@@ -68,6 +70,7 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
       },
       'notes': ?text(item.notes),
       'expenseId': ?text(item.expenseId),
+      ...TripSectionCategories.toMap(item.customCategories),
       ...TripSectionLinks.toMap(item.usefulLinks),
     };
   }
@@ -103,6 +106,7 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
       actualCostCurrency: hasActual ? actualCurrency : null,
       notes: text('notes'),
       expenseId: text('expenseId'),
+      customCategories: TripSectionCategories.read(data),
       usefulLinks: TripSectionLinks.read(data),
     );
   }
@@ -137,6 +141,11 @@ class TripShoppingItemCodec implements TripSectionCodec<TripShoppingItem> {
         TripSectionProblemKind.expense,
         'expenseId',
       );
+    c.check(
+      TripSectionCategories.invalid(item.customCategories),
+      TripSectionProblemKind.other,
+      'customCategories',
+    );
     c.check(
       TripSectionLinks.invalid(item.usefulLinks),
       TripSectionProblemKind.link,
