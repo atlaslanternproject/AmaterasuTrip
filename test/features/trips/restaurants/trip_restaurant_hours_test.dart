@@ -12,6 +12,7 @@ import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant_
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant_status.dart';
 import 'package:amaterasutrip/features/trips/restaurants/providers/trip_restaurants_provider.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_section_place.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_hours_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -122,7 +123,7 @@ void main() {
           tripRestaurantsStoreProvider.overrideWithValue(
             FakeSectionStore<TripRestaurant>(items: [booked()]),
           ),
-          tripRestaurantFxProvider.overrideWithValue(fx),
+          tripSectionFxProvider.overrideWithValue(fx),
           tripRestaurantVotesProvider.overrideWithValue(FakeVotes()),
         ],
       ),
@@ -135,7 +136,7 @@ void main() {
     expect(find.byKey(const Key('restaurant-closed-r1')), findsOneWidget);
     expect(find.text('lunedì: Chiuso'), findsOneWidget);
     expect(
-      find.text('Prezzo indicativo a persona su Google: 1000–2000 JPY'),
+      find.text('Prezzo indicativo su Google: 1000–2000 JPY'),
       findsOneWidget,
     );
     expect(find.text('Circa 6–12 EUR al cambio di oggi'), findsOneWidget);

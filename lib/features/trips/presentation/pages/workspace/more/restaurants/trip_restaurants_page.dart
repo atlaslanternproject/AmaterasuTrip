@@ -17,6 +17,7 @@ import 'package:amaterasutrip/features/trips/sections/models/trip_section_filter
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_delete.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_expense_actions.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_filter_groups.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_hours_sheet.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_list.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_scaffold.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_toolbar.dart';
@@ -24,8 +25,6 @@ import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'editor/trip_restaurant_editor.dart';
 import 'widgets/trip_restaurant_entry.dart';
-import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
-import 'widgets/trip_restaurant_hours_sheet.dart';
 import 'widgets/trip_restaurant_votes_bar.dart';
 
 part 'trip_restaurants_page_filters.dart';
@@ -91,6 +90,8 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
     final uid = store.currentUid;
     final ownerUid = ref.watch(tripStaysOwnerUidProvider(tripId));
     final messenger = ScaffoldMessenger.of(context);
+    final currency =
+        ref.watch(tripStaysTripInfoProvider(tripId))?.currency ?? 'EUR';
 
     return TripSectionScaffold<TripRestaurant>(
       tripId: tripId,
@@ -132,17 +133,14 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (r.place.placeId != null)
-                      AmaterasuButton.tertiary(
-                        key: Key('restaurant-hours-${r.id}'),
-                        icon: Icons.schedule_rounded,
-                        label: l10n.restaurantHours,
-                        onPressed: () => showTripRestaurantHours(
-                          context,
-                          r,
-                          ref
-                                  .read(tripStaysTripInfoProvider(tripId))
-                                  ?.currency ??
-                              'EUR',
+                      TripSectionHoursButton(
+                        target: TripSectionHoursTarget(
+                          keyPrefix: 'restaurant',
+                          id: r.id,
+                          placeId: r.place.placeId!,
+                          tripCurrency: currency,
+                          day: r.reservationDate,
+                          time: r.reservationTime,
                         ),
                       ),
                     TripRestaurantVotesBar(

@@ -8045,53 +8045,53 @@ abstract class AppLocalizations {
   /// **'Rating: from 1 to 5 stars.'**
   String get restaurantErrRating;
 
-  /// No description provided for @restaurantHours.
+  /// No description provided for @sectionsHours.
   ///
   /// In en, this message translates to:
   /// **'Hours and prices'**
-  String get restaurantHours;
+  String get sectionsHours;
 
-  /// No description provided for @restaurantHoursNone.
+  /// No description provided for @sectionsHoursNone.
   ///
   /// In en, this message translates to:
   /// **'Google has no opening hours for this place.'**
-  String get restaurantHoursNone;
+  String get sectionsHoursNone;
 
-  /// No description provided for @restaurantHoursError.
+  /// No description provided for @sectionsHoursError.
   ///
   /// In en, this message translates to:
   /// **'Can\'t read the opening hours now. Try again later.'**
-  String get restaurantHoursError;
+  String get sectionsHoursError;
 
-  /// No description provided for @restaurantHoursSource.
+  /// No description provided for @sectionsHoursSource.
   ///
   /// In en, this message translates to:
   /// **'Google hours and prices, read now and not saved: check them on the place\'s website.'**
-  String get restaurantHoursSource;
+  String get sectionsHoursSource;
 
-  /// No description provided for @restaurantClosedDay.
+  /// No description provided for @sectionsClosedDay.
   ///
   /// In en, this message translates to:
   /// **'Warning: it looks closed on {date}.'**
-  String restaurantClosedDay(String date);
+  String sectionsClosedDay(String date);
 
-  /// No description provided for @restaurantClosedTime.
+  /// No description provided for @sectionsClosedTime.
   ///
   /// In en, this message translates to:
   /// **'Warning: it looks closed on {date} at {time}.'**
-  String restaurantClosedTime(String date, String time);
+  String sectionsClosedTime(String date, String time);
 
-  /// No description provided for @restaurantGooglePrice.
+  /// No description provided for @sectionsGooglePrice.
   ///
   /// In en, this message translates to:
-  /// **'Indicative price per person on Google: {range}'**
-  String restaurantGooglePrice(String range);
+  /// **'Indicative price on Google: {range}'**
+  String sectionsGooglePrice(String range);
 
-  /// No description provided for @restaurantGooglePriceConverted.
+  /// No description provided for @sectionsGooglePriceConverted.
   ///
   /// In en, this message translates to:
   /// **'About {range} at today\'s rate'**
-  String restaurantGooglePriceConverted(String range);
+  String sectionsGooglePriceConverted(String range);
 
   /// No description provided for @placesPhotoOpen.
   ///

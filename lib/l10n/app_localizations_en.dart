@@ -4201,34 +4201,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get restaurantErrRating => 'Rating: from 1 to 5 stars.';
 
   @override
-  String get restaurantHours => 'Hours and prices';
+  String get sectionsHours => 'Hours and prices';
 
   @override
-  String get restaurantHoursNone => 'Google has no opening hours for this place.';
+  String get sectionsHoursNone => 'Google has no opening hours for this place.';
 
   @override
-  String get restaurantHoursError => 'Can\'t read the opening hours now. Try again later.';
+  String get sectionsHoursError => 'Can\'t read the opening hours now. Try again later.';
 
   @override
-  String get restaurantHoursSource => 'Google hours and prices, read now and not saved: check them on the place\'s website.';
+  String get sectionsHoursSource => 'Google hours and prices, read now and not saved: check them on the place\'s website.';
 
   @override
-  String restaurantClosedDay(String date) {
+  String sectionsClosedDay(String date) {
     return 'Warning: it looks closed on $date.';
   }
 
   @override
-  String restaurantClosedTime(String date, String time) {
+  String sectionsClosedTime(String date, String time) {
     return 'Warning: it looks closed on $date at $time.';
   }
 
   @override
-  String restaurantGooglePrice(String range) {
-    return 'Indicative price per person on Google: $range';
+  String sectionsGooglePrice(String range) {
+    return 'Indicative price on Google: $range';
   }
 
   @override
-  String restaurantGooglePriceConverted(String range) {
+  String sectionsGooglePriceConverted(String range) {
     return 'About $range at today\'s rate';
   }
 
