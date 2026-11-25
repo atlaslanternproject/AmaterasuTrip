@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_dates.dart';
+
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_stars.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -48,7 +50,7 @@ TripSectionEntry tripMemoryEntry(
     icon: Icons.auto_stories_outlined,
     title: date == null
         ? l10n.memoryDiary
-        : MaterialLocalizations.of(context).formatFullDate(date),
+        : AmaterasuDates.day(context, date, full: true),
     subtitle: item.moment,
     highlight: author,
     chips: [

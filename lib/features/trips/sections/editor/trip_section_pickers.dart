@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_dates.dart';
+
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_dates.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
@@ -34,7 +36,7 @@ class TripSectionDayButton extends StatelessWidget {
     final day = value;
     final text = day == null
         ? l10n.sectionsDateNone
-        : MaterialLocalizations.of(context).formatMediumDate(day);
+        : AmaterasuDates.day(context, day);
     return _Picker(
       button: OutlinedButton.icon(
         key: Key(fieldKey),
@@ -94,7 +96,9 @@ class TripSectionTimeButton extends StatelessWidget {
           );
         },
         icon: const Icon(Icons.schedule, size: 18),
-        label: Text('$label: ${time ?? l10n.sectionsTimeNone}'),
+        label: Text(
+          '$label: ${time == null ? l10n.sectionsTimeNone : AmaterasuDates.time(context, time)}',
+        ),
       ),
       onClear: time == null ? null : () => onChanged(null),
       clearKey: '$fieldKey-clear',
@@ -131,9 +135,11 @@ class _Picker extends StatelessWidget {
 
 /// "Wed 12 Apr 2027 · 14:30" style text for a day and optional time.
 String tripSectionWhen(BuildContext context, DateTime? day, String? time) {
-  if (day == null) return time ?? '';
-  final date = MaterialLocalizations.of(context).formatMediumDate(day);
-  return time == null ? date : '$date · $time';
+  if (day == null) {
+    return time == null ? '' : AmaterasuDates.time(context, time);
+  }
+  final date = AmaterasuDates.day(context, day);
+  return time == null ? date : '$date · ${AmaterasuDates.time(context, time)}';
 }
 
 /// Same calendar day text as saved in Firestore (YYYY-MM-DD).

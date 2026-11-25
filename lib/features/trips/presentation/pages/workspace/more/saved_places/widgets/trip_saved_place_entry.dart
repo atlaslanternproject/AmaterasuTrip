@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_dates.dart';
+
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place.dart';
 import 'package:amaterasutrip/features/trips/saved_places/models/trip_saved_place_category.dart';
@@ -93,7 +95,7 @@ TripSectionEntry tripSavedPlaceEntry(
           Icons.event_outlined,
           [
             if (item.plannedDay case final day?)
-              MaterialLocalizations.of(context).formatMediumDate(day),
+              AmaterasuDates.day(context, day),
             ?item.area,
           ].join(' · '),
         ),

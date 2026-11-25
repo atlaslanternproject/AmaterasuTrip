@@ -1,16 +1,18 @@
 // Impalcatura comune delle pagine delle sezioni del viaggio: intestazione
 // con indietro, titolo e "+" (come Hotel e alloggi), eventuali schede e
-// corpo con caricamento, errore, stato vuoto oppure il contenuto.
+// corpo con caricamento, errore, stato vuoto oppure il contenuto; si
+// ridisegna quando cambiano le scelte di Aspetto (formati di data e ora).
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_appearance_provider.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_section_empty.dart';
 
-class TripSectionScaffold<T> extends StatelessWidget {
+class TripSectionScaffold<T> extends ConsumerWidget {
   const TripSectionScaffold({
     super.key,
     required this.tripId,
@@ -39,8 +41,10 @@ class TripSectionScaffold<T> extends StatelessWidget {
   final Widget? top;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    // Redraw when the appearance choices change (date and time formats).
+    ref.watch(amaterasuAppearanceProvider);
     return Scaffold(
       backgroundColor: AmaterasuColors.surfaceDeep,
       body: SafeArea(

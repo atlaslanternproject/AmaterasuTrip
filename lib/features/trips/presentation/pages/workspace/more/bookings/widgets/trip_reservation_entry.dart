@@ -5,6 +5,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_dates.dart';
+
 import 'package:amaterasutrip/features/trips/reservations/models/trip_reservation.dart';
 import 'package:amaterasutrip/features/trips/reservations/models/trip_reservation_category.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_pickers.dart';
@@ -75,7 +77,7 @@ TripSectionEntry tripReservationEntry(
         TripSectionChip(
           key: Key('reservation-book-by-${item.id}'),
           label: l10n.reservationBookByValue(
-            MaterialLocalizations.of(context).formatMediumDate(bookBy),
+            AmaterasuDates.day(context, bookBy),
           ),
           // Warning color in the last 3 days (or when the day has passed).
           color: daysLeft!.inDays <= 3
