@@ -3118,6 +3118,76 @@ class AppLocalizationsIt extends AppLocalizations {
   String get weatherPollenRagweed => 'Ambrosia';
 
   @override
+  String get countryInfoTitle => 'Info paese';
+
+  @override
+  String get countryInfoVerify => 'Verifica sempre su fonti ufficiali prima di partire: questi dati vengono da fonti aperte e possono essere incompleti o non aggiornati.';
+
+  @override
+  String get countryInfoCountry => 'Paese';
+
+  @override
+  String get countryInfoPick => 'Scegli un paese per vedere le sue informazioni.';
+
+  @override
+  String get countryInfoPractical => 'Informazioni pratiche';
+
+  @override
+  String get countryInfoCallingCode => 'Prefisso telefonico';
+
+  @override
+  String get countryInfoEmergency => 'Numeri di emergenza';
+
+  @override
+  String get countryInfoPlugs => 'Prese elettriche';
+
+  @override
+  String countryInfoPlugType(String letters) {
+    return 'Tipo $letters';
+  }
+
+  @override
+  String get countryInfoVoltage => 'Tensione';
+
+  @override
+  String get countryInfoDriving => 'Lato di guida';
+
+  @override
+  String get countryInfoDrivingLeft => 'Si guida a sinistra';
+
+  @override
+  String get countryInfoDrivingRight => 'Si guida a destra';
+
+  @override
+  String get countryInfoTimeZones => 'Fusi orari';
+
+  @override
+  String countryInfoSource(String source, String licence, String date) {
+    return 'Fonte: $source ($licence) · dati del $date';
+  }
+
+  @override
+  String get countryInfoOfficial => 'Schede ufficiali';
+
+  @override
+  String get countryInfoOfficialBody => 'Acqua potabile, salute, documenti, visti e requisiti d\'ingresso: non abbiamo una fonte aperta affidabile, quindi non li mostriamo. Leggili nella scheda ufficiale.';
+
+  @override
+  String get countryInfoViaggiareSicuri => 'Viaggiare Sicuri (Farnesina)';
+
+  @override
+  String get countryInfoConsulate => 'Trova il consolato (Farnesina)';
+
+  @override
+  String get countryInfoWikidata => 'Scheda su Wikidata';
+
+  @override
+  String get tripMoreCountryInfo => 'Info paese';
+
+  @override
+  String get tripMoreCountryInfoSubtitle => 'Emergenze, prese, guida, fusi e schede ufficiali';
+
+  @override
   String get settingsSupport => 'Assistenza e privacy';
 
   @override

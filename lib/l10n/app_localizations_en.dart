@@ -3118,6 +3118,76 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weatherPollenRagweed => 'Ragweed';
 
   @override
+  String get countryInfoTitle => 'Country info';
+
+  @override
+  String get countryInfoVerify => 'Always check official sources before leaving: this data comes from open sources and may be incomplete or out of date.';
+
+  @override
+  String get countryInfoCountry => 'Country';
+
+  @override
+  String get countryInfoPick => 'Choose a country to see its information.';
+
+  @override
+  String get countryInfoPractical => 'Practical information';
+
+  @override
+  String get countryInfoCallingCode => 'Calling code';
+
+  @override
+  String get countryInfoEmergency => 'Emergency numbers';
+
+  @override
+  String get countryInfoPlugs => 'Power plugs';
+
+  @override
+  String countryInfoPlugType(String letters) {
+    return 'Type $letters';
+  }
+
+  @override
+  String get countryInfoVoltage => 'Voltage';
+
+  @override
+  String get countryInfoDriving => 'Driving side';
+
+  @override
+  String get countryInfoDrivingLeft => 'Drive on the left';
+
+  @override
+  String get countryInfoDrivingRight => 'Drive on the right';
+
+  @override
+  String get countryInfoTimeZones => 'Time zones';
+
+  @override
+  String countryInfoSource(String source, String licence, String date) {
+    return 'Source: $source ($licence) · data of $date';
+  }
+
+  @override
+  String get countryInfoOfficial => 'Official pages';
+
+  @override
+  String get countryInfoOfficialBody => 'Drinking water, health, documents, visas and entry requirements: we have no reliable open source, so we do not show them. Read them on the official page.';
+
+  @override
+  String get countryInfoViaggiareSicuri => 'Viaggiare Sicuri (Italian Foreign Ministry)';
+
+  @override
+  String get countryInfoConsulate => 'Find the consulate (Italian Foreign Ministry)';
+
+  @override
+  String get countryInfoWikidata => 'Page on Wikidata';
+
+  @override
+  String get tripMoreCountryInfo => 'Country info';
+
+  @override
+  String get tripMoreCountryInfoSubtitle => 'Emergencies, plugs, driving, time zones and official pages';
+
+  @override
   String get settingsSupport => 'Help and privacy';
 
   @override

@@ -55,6 +55,7 @@ import '../features/settings/presentation/pages/appearance/appearance_page.dart'
 import '../features/support/presentation/compliance_page.dart';
 import '../features/support/presentation/support_page.dart';
 import '../features/trips/tools/convert/trip_convert_page.dart';
+import '../features/trips/tools/country_info/trip_country_info_page.dart';
 import '../features/trips/tools/weather/trip_weather_page.dart';
 import '../features/settings/presentation/pages/account/account_page.dart';
 import '../features/settings/presentation/pages/account/account_security_recovery_page.dart';
@@ -445,6 +446,12 @@ final amaterasuRouter = GoRouter(
           path: '/trips/:tripId/more/weather',
           builder: (context, state) =>
               TripWeatherPage(tripId: state.pathParameters['tripId']!),
+        ),
+        // ALTRO > INFO PAESE (nuova tappa 1c)
+        GoRoute(
+          path: '/trips/:tripId/more/country-info',
+          builder: (context, state) =>
+              TripCountryInfoPage(tripId: state.pathParameters['tripId']!),
         ),
         GoRoute(
           path: '/trips/:tripId/more/checklists',

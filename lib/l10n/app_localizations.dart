@@ -6065,6 +6065,138 @@ abstract class AppLocalizations {
   /// **'Ragweed'**
   String get weatherPollenRagweed;
 
+  /// No description provided for @countryInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Country info'**
+  String get countryInfoTitle;
+
+  /// No description provided for @countryInfoVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Always check official sources before leaving: this data comes from open sources and may be incomplete or out of date.'**
+  String get countryInfoVerify;
+
+  /// No description provided for @countryInfoCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get countryInfoCountry;
+
+  /// No description provided for @countryInfoPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a country to see its information.'**
+  String get countryInfoPick;
+
+  /// No description provided for @countryInfoPractical.
+  ///
+  /// In en, this message translates to:
+  /// **'Practical information'**
+  String get countryInfoPractical;
+
+  /// No description provided for @countryInfoCallingCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Calling code'**
+  String get countryInfoCallingCode;
+
+  /// No description provided for @countryInfoEmergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency numbers'**
+  String get countryInfoEmergency;
+
+  /// No description provided for @countryInfoPlugs.
+  ///
+  /// In en, this message translates to:
+  /// **'Power plugs'**
+  String get countryInfoPlugs;
+
+  /// No description provided for @countryInfoPlugType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type {letters}'**
+  String countryInfoPlugType(String letters);
+
+  /// No description provided for @countryInfoVoltage.
+  ///
+  /// In en, this message translates to:
+  /// **'Voltage'**
+  String get countryInfoVoltage;
+
+  /// No description provided for @countryInfoDriving.
+  ///
+  /// In en, this message translates to:
+  /// **'Driving side'**
+  String get countryInfoDriving;
+
+  /// No description provided for @countryInfoDrivingLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Drive on the left'**
+  String get countryInfoDrivingLeft;
+
+  /// No description provided for @countryInfoDrivingRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Drive on the right'**
+  String get countryInfoDrivingRight;
+
+  /// No description provided for @countryInfoTimeZones.
+  ///
+  /// In en, this message translates to:
+  /// **'Time zones'**
+  String get countryInfoTimeZones;
+
+  /// No description provided for @countryInfoSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source: {source} ({licence}) · data of {date}'**
+  String countryInfoSource(String source, String licence, String date);
+
+  /// No description provided for @countryInfoOfficial.
+  ///
+  /// In en, this message translates to:
+  /// **'Official pages'**
+  String get countryInfoOfficial;
+
+  /// No description provided for @countryInfoOfficialBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Drinking water, health, documents, visas and entry requirements: we have no reliable open source, so we do not show them. Read them on the official page.'**
+  String get countryInfoOfficialBody;
+
+  /// No description provided for @countryInfoViaggiareSicuri.
+  ///
+  /// In en, this message translates to:
+  /// **'Viaggiare Sicuri (Italian Foreign Ministry)'**
+  String get countryInfoViaggiareSicuri;
+
+  /// No description provided for @countryInfoConsulate.
+  ///
+  /// In en, this message translates to:
+  /// **'Find the consulate (Italian Foreign Ministry)'**
+  String get countryInfoConsulate;
+
+  /// No description provided for @countryInfoWikidata.
+  ///
+  /// In en, this message translates to:
+  /// **'Page on Wikidata'**
+  String get countryInfoWikidata;
+
+  /// No description provided for @tripMoreCountryInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Country info'**
+  String get tripMoreCountryInfo;
+
+  /// No description provided for @tripMoreCountryInfoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergencies, plugs, driving, time zones and official pages'**
+  String get tripMoreCountryInfoSubtitle;
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:

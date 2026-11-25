@@ -1,0 +1,6643 @@
+{
+ "_comment": "Generato da tool/build_country_info.mjs: non modificare a mano.",
+ "source": {
+  "name": "Wikidata",
+  "licence": "CC0 1.0",
+  "url": "https://www.wikidata.org"
+ },
+ "generated": "2026-11-25",
+ "countries": {
+  "AC": {
+   "iso3": "ASC",
+   "wikidata": "Q31890709",
+   "name": {
+    "it": "Ascension",
+    "en": "Ascension"
+   },
+   "callingCode": [
+    "+247"
+   ],
+   "driving": "left"
+  },
+  "AD": {
+   "iso3": "AND",
+   "wikidata": "Q228",
+   "name": {
+    "it": "Andorra",
+    "en": "Andorra"
+   },
+   "callingCode": [
+    "+376"
+   ],
+   "emergency": [
+    "110",
+    "112",
+    "116",
+    "118"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Andorra",
+    "UTC+01:00"
+   ]
+  },
+  "AE": {
+   "iso3": "ARE",
+   "wikidata": "Q878",
+   "name": {
+    "it": "Emirati Arabi Uniti",
+    "en": "United Arab Emirates"
+   },
+   "callingCode": [
+    "+971"
+   ],
+   "emergency": [
+    "112",
+    "997",
+    "998",
+    "999"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Dubai",
+    "UTC+04:00"
+   ]
+  },
+  "AF": {
+   "iso3": "AFG",
+   "wikidata": "Q889",
+   "name": {
+    "it": "Afghanistan",
+    "en": "Afghanistan"
+   },
+   "callingCode": [
+    "+93"
+   ],
+   "emergency": [
+    "100",
+    "101",
+    "102",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "F"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Kabul",
+    "UTC+04:30"
+   ]
+  },
+  "AG": {
+   "iso3": "ATG",
+   "wikidata": "Q781",
+   "name": {
+    "it": "Antigua e Barbuda",
+    "en": "Antigua and Barbuda"
+   },
+   "callingCode": [
+    "+1268"
+   ],
+   "emergency": [
+    "911",
+    "999"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Antigua",
+    "UTC-04:00"
+   ]
+  },
+  "AI": {
+   "iso3": "AIA",
+   "wikidata": "Q25228",
+   "name": {
+    "it": "Anguilla",
+    "en": "Anguilla"
+   },
+   "callingCode": [
+    "+1264"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "AL": {
+   "iso3": "ALB",
+   "wikidata": "Q222",
+   "name": {
+    "it": "Albania",
+    "en": "Albania"
+   },
+   "callingCode": [
+    "+355"
+   ],
+   "emergency": [
+    "112",
+    "127",
+    "128",
+    "129"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "AM": {
+   "iso3": "ARM",
+   "wikidata": "Q399",
+   "name": {
+    "it": "Armenia",
+    "en": "Armenia"
+   },
+   "callingCode": [
+    "+374"
+   ],
+   "emergency": [
+    "101",
+    "102",
+    "103",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+04:00"
+   ]
+  },
+  "AO": {
+   "iso3": "AGO",
+   "wikidata": "Q916",
+   "name": {
+    "it": "Angola",
+    "en": "Angola"
+   },
+   "callingCode": [
+    "+244"
+   ],
+   "emergency": [
+    "113",
+    "115",
+    "116"
+   ],
+   "plugs": [
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Luanda",
+    "UTC+01:00"
+   ]
+  },
+  "AQ": {
+   "iso3": "ATA",
+   "wikidata": "Q51",
+   "name": {
+    "it": "Antartide",
+    "en": "Antarctica"
+   },
+   "callingCode": [
+    "+672"
+   ],
+   "timeZones": [
+    "UTC-04:00",
+    "UTC-03:00",
+    "UTC+00:00",
+    "UTC+03:00",
+    "UTC+05:00",
+    "UTC+06:00",
+    "UTC+07:00",
+    "UTC+08:00"
+   ]
+  },
+  "AR": {
+   "iso3": "ARG",
+   "wikidata": "Q414",
+   "name": {
+    "it": "Argentina",
+    "en": "Argentina"
+   },
+   "callingCode": [
+    "+54"
+   ],
+   "emergency": [
+    "100",
+    "101",
+    "117",
+    "911"
+   ],
+   "plugs": [
+    "C",
+    "I"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "timeZones": [
+    "UTC-03:00"
+   ]
+  },
+  "AS": {
+   "iso3": "ASM",
+   "wikidata": "Q16641",
+   "name": {
+    "it": "Samoa Americane",
+    "en": "American Samoa"
+   },
+   "callingCode": [
+    "+1684"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "F",
+    "I"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Pacific/Pago_Pago",
+    "UTC-11:00"
+   ]
+  },
+  "AT": {
+   "iso3": "AUT",
+   "wikidata": "Q40",
+   "name": {
+    "it": "Austria",
+    "en": "Austria"
+   },
+   "callingCode": [
+    "+43"
+   ],
+   "emergency": [
+    "112",
+    "120",
+    "122",
+    "123",
+    "133",
+    "140",
+    "144"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "AU": {
+   "iso3": "AUS",
+   "wikidata": "Q408",
+   "name": {
+    "it": "Australia",
+    "en": "Australia"
+   },
+   "callingCode": [
+    "+61"
+   ],
+   "emergency": [
+    "000"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC+10:00"
+   ]
+  },
+  "AW": {
+   "iso3": "ABW",
+   "wikidata": "Q21203",
+   "name": {
+    "it": "Aruba",
+    "en": "Aruba"
+   },
+   "callingCode": [
+    "+297"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "F"
+   ],
+   "voltage": [
+    "127"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Aruba",
+    "UTC-04:00"
+   ]
+  },
+  "AX": {
+   "iso3": "ALA",
+   "wikidata": "Q5689",
+   "name": {
+    "it": "Isole Åland",
+    "en": "Åland"
+   },
+   "emergency": [
+    "112"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "AZ": {
+   "iso3": "AZE",
+   "wikidata": "Q227",
+   "name": {
+    "it": "Azerbaigian",
+    "en": "Azerbaijan"
+   },
+   "callingCode": [
+    "+994"
+   ],
+   "emergency": [
+    "101",
+    "102",
+    "103",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+04:00"
+   ]
+  },
+  "BA": {
+   "iso3": "BIH",
+   "wikidata": "Q225",
+   "name": {
+    "it": "Bosnia ed Erzegovina",
+    "en": "Bosnia and Herzegovina"
+   },
+   "callingCode": [
+    "+387"
+   ],
+   "emergency": [
+    "112",
+    "122",
+    "123",
+    "124"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Sarajevo",
+    "UTC+01:00",
+    "UTC+02:00"
+   ]
+  },
+  "BB": {
+   "iso3": "BRB",
+   "wikidata": "Q244",
+   "name": {
+    "it": "Barbados",
+    "en": "Barbados"
+   },
+   "callingCode": [
+    "+1246"
+   ],
+   "emergency": [
+    "211",
+    "311",
+    "511",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "115"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Barbados",
+    "UTC-04:00"
+   ]
+  },
+  "BD": {
+   "iso3": "BGD",
+   "wikidata": "Q902",
+   "name": {
+    "it": "Bangladesh",
+    "en": "Bangladesh"
+   },
+   "callingCode": [
+    "+880"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "plugs": [
+    "A",
+    "C",
+    "D",
+    "G",
+    "K"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Dhaka",
+    "UTC+06:00"
+   ]
+  },
+  "BE": {
+   "iso3": "BEL",
+   "wikidata": "Q31",
+   "name": {
+    "it": "Belgio",
+    "en": "Belgium"
+   },
+   "callingCode": [
+    "+32"
+   ],
+   "emergency": [
+    "100",
+    "101",
+    "102",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00",
+    "UTC+02:00"
+   ]
+  },
+  "BF": {
+   "iso3": "BFA",
+   "wikidata": "Q965",
+   "name": {
+    "it": "Burkina Faso",
+    "en": "Burkina Faso"
+   },
+   "callingCode": [
+    "+226"
+   ],
+   "emergency": [
+    "112",
+    "17",
+    "18"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Ouagadougou",
+    "UTC+00:00"
+   ]
+  },
+  "BG": {
+   "iso3": "BGR",
+   "wikidata": "Q219",
+   "name": {
+    "it": "Bulgaria",
+    "en": "Bulgaria"
+   },
+   "callingCode": [
+    "+359"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "BH": {
+   "iso3": "BHR",
+   "wikidata": "Q398",
+   "name": {
+    "it": "Bahrein",
+    "en": "Bahrain"
+   },
+   "callingCode": [
+    "+973"
+   ],
+   "emergency": [
+    "112",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Bahrain",
+    "UTC+03:00"
+   ]
+  },
+  "BI": {
+   "iso3": "BDI",
+   "wikidata": "Q967",
+   "name": {
+    "it": "Burundi",
+    "en": "Burundi"
+   },
+   "callingCode": [
+    "+257"
+   ],
+   "emergency": [
+    "112",
+    "113",
+    "117"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Bujumbura",
+    "UTC+02:00"
+   ]
+  },
+  "BJ": {
+   "iso3": "BEN",
+   "wikidata": "Q962",
+   "name": {
+    "it": "Benin",
+    "en": "Benin"
+   },
+   "callingCode": [
+    "+229"
+   ],
+   "emergency": [
+    "112",
+    "117",
+    "118"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Porto-Novo",
+    "UTC+01:00"
+   ]
+  },
+  "BL": {
+   "iso3": "BLM",
+   "wikidata": "Q25362",
+   "name": {
+    "it": "Saint-Barthélemy",
+    "en": "Saint Barthélemy"
+   },
+   "callingCode": [
+    "+590"
+   ],
+   "driving": "right"
+  },
+  "BM": {
+   "iso3": "BMU",
+   "wikidata": "Q23635",
+   "name": {
+    "it": "Bermuda",
+    "en": "Bermuda"
+   },
+   "callingCode": [
+    "+1441"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "BN": {
+   "iso3": "BRN",
+   "wikidata": "Q921",
+   "name": {
+    "it": "Brunei",
+    "en": "Brunei"
+   },
+   "callingCode": [
+    "+673"
+   ],
+   "emergency": [
+    "991",
+    "993",
+    "995"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Brunei",
+    "UTC+08:00"
+   ]
+  },
+  "BO": {
+   "iso3": "BOL",
+   "wikidata": "Q750",
+   "name": {
+    "it": "Bolivia",
+    "en": "Bolivia"
+   },
+   "callingCode": [
+    "+591"
+   ],
+   "emergency": [
+    "110",
+    "119",
+    "160",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "C"
+   ],
+   "voltage": [
+    "115",
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/La_Paz",
+    "UTC-04:00"
+   ]
+  },
+  "BQ": {
+   "iso3": "BES",
+   "wikidata": "Q27561",
+   "name": {
+    "it": "Paesi Bassi caraibici",
+    "en": "Caribbean Netherlands"
+   },
+   "callingCode": [
+    "+599"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Curacao"
+   ]
+  },
+  "BR": {
+   "iso3": "BRA",
+   "wikidata": "Q155",
+   "name": {
+    "it": "Brasile",
+    "en": "Brazil"
+   },
+   "callingCode": [
+    "+55"
+   ],
+   "emergency": [
+    "188",
+    "190",
+    "192",
+    "193"
+   ],
+   "plugs": [
+    "C",
+    "N"
+   ],
+   "voltage": [
+    "127",
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-04:00",
+    "UTC-03:00",
+    "UTC-02:00"
+   ]
+  },
+  "BS": {
+   "iso3": "BHS",
+   "wikidata": "Q778",
+   "name": {
+    "it": "Bahamas",
+    "en": "The Bahamas"
+   },
+   "callingCode": [
+    "+1242"
+   ],
+   "emergency": [
+    "919"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Nassau"
+   ]
+  },
+  "BT": {
+   "iso3": "BTN",
+   "wikidata": "Q917",
+   "name": {
+    "it": "Bhutan",
+    "en": "Bhutan"
+   },
+   "callingCode": [
+    "+975"
+   ],
+   "emergency": [
+    "110",
+    "112",
+    "113"
+   ],
+   "plugs": [
+    "BS 546",
+    "C",
+    "D",
+    "F",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Thimphu",
+    "UTC+06:00"
+   ]
+  },
+  "BV": {
+   "iso3": "BVT",
+   "wikidata": "Q23408",
+   "name": {
+    "it": "isola Bouvet",
+    "en": "Bouvet Island"
+   }
+  },
+  "BW": {
+   "iso3": "BWA",
+   "wikidata": "Q963",
+   "name": {
+    "it": "Botswana",
+    "en": "Botswana"
+   },
+   "callingCode": [
+    "+267"
+   ],
+   "emergency": [
+    "911",
+    "997",
+    "998",
+    "999"
+   ],
+   "plugs": [
+    "BS 546",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Gaborone",
+    "UTC+02:00"
+   ]
+  },
+  "BY": {
+   "iso3": "BLR",
+   "wikidata": "Q184",
+   "name": {
+    "it": "Bielorussia",
+    "en": "Belarus"
+   },
+   "callingCode": [
+    "+375"
+   ],
+   "emergency": [
+    "101",
+    "102",
+    "103"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Minsk",
+    "UTC+03:00"
+   ]
+  },
+  "BZ": {
+   "iso3": "BLZ",
+   "wikidata": "Q242",
+   "name": {
+    "it": "Belize",
+    "en": "Belize"
+   },
+   "callingCode": [
+    "+501"
+   ],
+   "emergency": [
+    "90",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "G"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Belize",
+    "UTC-06:00"
+   ]
+  },
+  "CA": {
+   "iso3": "CAN",
+   "wikidata": "Q16",
+   "name": {
+    "it": "Canada",
+    "en": "Canada"
+   },
+   "callingCode": [
+    "+1"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-07:00",
+    "UTC-06:00",
+    "UTC-04:00"
+   ]
+  },
+  "CC": {
+   "iso3": "CCK",
+   "wikidata": "Q36004",
+   "name": {
+    "it": "Isole Cocos",
+    "en": "Cocos (Keeling) Islands"
+   },
+   "callingCode": [
+    "+61891"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Indian/Cocos",
+    "UTC+06:30"
+   ]
+  },
+  "CD": {
+   "iso3": "COD",
+   "wikidata": "Q974",
+   "name": {
+    "it": "Repubblica Democratica del Congo",
+    "en": "Democratic Republic of the Congo"
+   },
+   "callingCode": [
+    "+243"
+   ],
+   "emergency": [
+    "113",
+    "114",
+    "118"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00",
+    "UTC+02:00"
+   ]
+  },
+  "CF": {
+   "iso3": "CAF",
+   "wikidata": "Q929",
+   "name": {
+    "it": "Repubblica Centrafricana",
+    "en": "Central African Republic"
+   },
+   "callingCode": [
+    "+236"
+   ],
+   "emergency": [
+    "117",
+    "118",
+    "1220"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Bangui",
+    "UTC+01:00"
+   ]
+  },
+  "CG": {
+   "iso3": "COG",
+   "wikidata": "Q971",
+   "name": {
+    "it": "Repubblica del Congo",
+    "en": "Republic of the Congo"
+   },
+   "callingCode": [
+    "+242"
+   ],
+   "emergency": [
+    "117",
+    "118"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "CH": {
+   "iso3": "CHE",
+   "wikidata": "Q39",
+   "name": {
+    "it": "Svizzera",
+    "en": "Switzerland"
+   },
+   "callingCode": [
+    "+41"
+   ],
+   "emergency": [
+    "112",
+    "117",
+    "118",
+    "140",
+    "1414",
+    "144",
+    "145"
+   ],
+   "plugs": [
+    "C",
+    "J"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "CI": {
+   "iso3": "CIV",
+   "wikidata": "Q1008",
+   "name": {
+    "it": "Costa d'Avorio",
+    "en": "Ivory Coast"
+   },
+   "callingCode": [
+    "+225"
+   ],
+   "emergency": [
+    "110",
+    "111",
+    "170",
+    "180",
+    "185"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Abidjan",
+    "UTC+00:00"
+   ]
+  },
+  "CK": {
+   "iso3": "COK",
+   "wikidata": "Q26988",
+   "name": {
+    "it": "Isole Cook",
+    "en": "Cook Islands"
+   },
+   "callingCode": [
+    "+682"
+   ],
+   "emergency": [
+    "996",
+    "998",
+    "999"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Rarotonga",
+    "UTC-10:00"
+   ]
+  },
+  "CL": {
+   "iso3": "CHL",
+   "wikidata": "Q298",
+   "name": {
+    "it": "Cile",
+    "en": "Chile"
+   },
+   "callingCode": [
+    "+56"
+   ],
+   "emergency": [
+    "130",
+    "131",
+    "132",
+    "133",
+    "134"
+   ],
+   "plugs": [
+    "C",
+    "L"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-06:00",
+    "UTC-04:00",
+    "UTC-03:00"
+   ]
+  },
+  "CM": {
+   "iso3": "CMR",
+   "wikidata": "Q1009",
+   "name": {
+    "it": "Camerun",
+    "en": "Cameroon"
+   },
+   "callingCode": [
+    "+237"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Douala",
+    "UTC+01:00"
+   ]
+  },
+  "CN": {
+   "iso3": "CHN",
+   "wikidata": "Q148",
+   "name": {
+    "it": "Cina",
+    "en": "People's Republic of China"
+   },
+   "callingCode": [
+    "+86"
+   ],
+   "emergency": [
+    "110",
+    "119",
+    "120"
+   ],
+   "plugs": [
+    "A",
+    "C",
+    "I"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Shanghai",
+    "Asia/Urumqi",
+    "UTC+08:00"
+   ]
+  },
+  "CO": {
+   "iso3": "COL",
+   "wikidata": "Q739",
+   "name": {
+    "it": "Colombia",
+    "en": "Colombia"
+   },
+   "callingCode": [
+    "+57"
+   ],
+   "emergency": [
+    "123"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Bogota"
+   ]
+  },
+  "CP": {
+   "wikidata": "Q161258",
+   "name": {
+    "it": "Isola Clipperton",
+    "en": "Clipperton Island"
+   },
+   "emergency": [
+    "112"
+   ],
+   "timeZones": [
+    "UTC-08:00"
+   ]
+  },
+  "CQ": {
+   "iso3": "CRQ",
+   "wikidata": "Q3405693",
+   "name": {
+    "it": "Sark",
+    "en": "Sark"
+   },
+   "driving": "left",
+   "timeZones": [
+    "UTC+00:00"
+   ]
+  },
+  "CR": {
+   "iso3": "CRI",
+   "wikidata": "Q800",
+   "name": {
+    "it": "Costa Rica",
+    "en": "Costa Rica"
+   },
+   "callingCode": [
+    "+506"
+   ],
+   "emergency": [
+    "112",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Costa_Rica",
+    "UTC-06:00"
+   ]
+  },
+  "CU": {
+   "iso3": "CUB",
+   "wikidata": "Q241",
+   "name": {
+    "it": "Cuba",
+    "en": "Cuba"
+   },
+   "callingCode": [
+    "+53"
+   ],
+   "emergency": [
+    "104",
+    "105",
+    "106"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Havana"
+   ]
+  },
+  "CV": {
+   "iso3": "CPV",
+   "wikidata": "Q1011",
+   "name": {
+    "it": "Capo Verde",
+    "en": "Cape Verde"
+   },
+   "callingCode": [
+    "+238"
+   ],
+   "emergency": [
+    "130",
+    "131",
+    "132"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Atlantic/Cape_Verde",
+    "UTC-01:00"
+   ]
+  },
+  "CW": {
+   "iso3": "CUW",
+   "wikidata": "Q25279",
+   "name": {
+    "it": "Curaçao",
+    "en": "Curaçao"
+   },
+   "callingCode": [
+    "+5999"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Curacao"
+   ]
+  },
+  "CX": {
+   "iso3": "CXR",
+   "wikidata": "Q31063",
+   "name": {
+    "it": "Isola di Natale",
+    "en": "Christmas Island"
+   },
+   "driving": "left"
+  },
+  "CY": {
+   "iso3": "CYP",
+   "wikidata": "Q229",
+   "name": {
+    "it": "Cipro",
+    "en": "Cyprus"
+   },
+   "callingCode": [
+    "+357"
+   ],
+   "emergency": [
+    "112",
+    "1400",
+    "199"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "CZ": {
+   "iso3": "CZE",
+   "wikidata": "Q213",
+   "name": {
+    "it": "Repubblica Ceca",
+    "en": "Czech Republic"
+   },
+   "callingCode": [
+    "+420"
+   ],
+   "emergency": [
+    "112",
+    "150",
+    "155",
+    "156",
+    "158"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "DE": {
+   "iso3": "DEU",
+   "wikidata": "Q183",
+   "name": {
+    "it": "Germania",
+    "en": "Germany"
+   },
+   "callingCode": [
+    "+49"
+   ],
+   "emergency": [
+    "110",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00",
+    "UTC+02:00"
+   ]
+  },
+  "DG": {
+   "wikidata": "Q184851",
+   "name": {
+    "it": "Diego Garcia",
+    "en": "Diego Garcia"
+   },
+   "driving": "right"
+  },
+  "DJ": {
+   "iso3": "DJI",
+   "wikidata": "Q977",
+   "name": {
+    "it": "Gibuti",
+    "en": "Djibouti"
+   },
+   "callingCode": [
+    "+253"
+   ],
+   "emergency": [
+    "17",
+    "18",
+    "19"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Djibouti",
+    "UTC+03:00"
+   ]
+  },
+  "DK": {
+   "iso3": "DNK",
+   "wikidata": "Q35",
+   "name": {
+    "it": "Danimarca",
+    "en": "Denmark"
+   },
+   "callingCode": [
+    "+45"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "E",
+    "F",
+    "K"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "DM": {
+   "iso3": "DMA",
+   "wikidata": "Q784",
+   "name": {
+    "it": "Dominica",
+    "en": "Dominica"
+   },
+   "callingCode": [
+    "+1767"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "plugs": [
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Dominica",
+    "UTC-04:00"
+   ]
+  },
+  "DO": {
+   "iso3": "DOM",
+   "wikidata": "Q786",
+   "name": {
+    "it": "Repubblica Dominicana",
+    "en": "Dominican Republic"
+   },
+   "callingCode": [
+    "+1809",
+    "+1829",
+    "+1849"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "DZ": {
+   "iso3": "DZA",
+   "wikidata": "Q262",
+   "name": {
+    "it": "Algeria",
+    "en": "Algeria"
+   },
+   "callingCode": [
+    "+213"
+   ],
+   "emergency": [
+    "1055",
+    "14",
+    "1548",
+    "17"
+   ],
+   "plugs": [
+    "C",
+    "E",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "EC": {
+   "iso3": "ECU",
+   "wikidata": "Q736",
+   "name": {
+    "it": "Ecuador",
+    "en": "Ecuador"
+   },
+   "callingCode": [
+    "+593"
+   ],
+   "emergency": [
+    "101",
+    "102",
+    "131",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Guayaquil",
+    "Pacific/Galapagos",
+    "UTC-06:00"
+   ]
+  },
+  "EE": {
+   "iso3": "EST",
+   "wikidata": "Q191",
+   "name": {
+    "it": "Estonia",
+    "en": "Estonia"
+   },
+   "callingCode": [
+    "+372"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "EG": {
+   "iso3": "EGY",
+   "wikidata": "Q79",
+   "name": {
+    "it": "Egitto",
+    "en": "Egypt"
+   },
+   "callingCode": [
+    "+20"
+   ],
+   "emergency": [
+    "122",
+    "123",
+    "180"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Cairo",
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "EH": {
+   "iso3": "ESH",
+   "wikidata": "Q6250",
+   "name": {
+    "it": "Sahara Occidentale",
+    "en": "Western Sahara"
+   },
+   "callingCode": [
+    "+212"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "ER": {
+   "iso3": "ERI",
+   "wikidata": "Q986",
+   "name": {
+    "it": "Eritrea",
+    "en": "Eritrea"
+   },
+   "callingCode": [
+    "+291"
+   ],
+   "emergency": [
+    "113",
+    "114",
+    "116"
+   ],
+   "plugs": [
+    "C",
+    "L"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Addis_Ababa",
+    "UTC+03:00"
+   ]
+  },
+  "ES": {
+   "iso3": "ESP",
+   "wikidata": "Q29",
+   "name": {
+    "it": "Spagna",
+    "en": "Spain"
+   },
+   "callingCode": [
+    "+34"
+   ],
+   "emergency": [
+    "061",
+    "091",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Madrid",
+    "UTC+00:00",
+    "UTC+01:00",
+    "UTC+02:00"
+   ]
+  },
+  "ET": {
+   "iso3": "ETH",
+   "wikidata": "Q115",
+   "name": {
+    "it": "Etiopia",
+    "en": "Ethiopia"
+   },
+   "callingCode": [
+    "+251"
+   ],
+   "emergency": [
+    "907",
+    "911",
+    "939",
+    "991"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "J",
+    "L"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Asmara",
+    "UTC+03:00"
+   ]
+  },
+  "FI": {
+   "iso3": "FIN",
+   "wikidata": "Q33",
+   "name": {
+    "it": "Finlandia",
+    "en": "Finland"
+   },
+   "callingCode": [
+    "+358"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "FJ": {
+   "iso3": "FJI",
+   "wikidata": "Q712",
+   "name": {
+    "it": "Figi",
+    "en": "Fiji"
+   },
+   "callingCode": [
+    "+679"
+   ],
+   "emergency": [
+    "000",
+    "911",
+    "919"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Fiji",
+    "UTC+12:00"
+   ]
+  },
+  "FK": {
+   "iso3": "FLK",
+   "wikidata": "Q9648",
+   "name": {
+    "it": "Isole Falkland",
+    "en": "Falkland Islands"
+   },
+   "callingCode": [
+    "+500"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC-03:00"
+   ]
+  },
+  "FM": {
+   "iso3": "FSM",
+   "wikidata": "Q702",
+   "name": {
+    "it": "Stati Federati di Micronesia",
+    "en": "Federated States of Micronesia"
+   },
+   "callingCode": [
+    "+691"
+   ],
+   "emergency": [
+    "111",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+10:00",
+    "UTC+11:00"
+   ]
+  },
+  "FO": {
+   "iso3": "FRO",
+   "wikidata": "Q4628",
+   "name": {
+    "it": "Fær Øer",
+    "en": "Faroe Islands"
+   },
+   "callingCode": [
+    "+298"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "E",
+    "F",
+    "K"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+00:00"
+   ]
+  },
+  "FR": {
+   "iso3": "FRA",
+   "wikidata": "Q142",
+   "name": {
+    "it": "Francia",
+    "en": "France"
+   },
+   "callingCode": [
+    "+33"
+   ],
+   "emergency": [
+    "112",
+    "114",
+    "15",
+    "17",
+    "18"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "GA": {
+   "iso3": "GAB",
+   "wikidata": "Q1000",
+   "name": {
+    "it": "Gabon",
+    "en": "Gabon"
+   },
+   "callingCode": [
+    "+241"
+   ],
+   "emergency": [
+    "1300",
+    "1722",
+    "18"
+   ],
+   "plugs": [
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Libreville",
+    "UTC+01:00"
+   ]
+  },
+  "GB": {
+   "iso3": "GBR",
+   "wikidata": "Q145",
+   "name": {
+    "it": "Regno Unito",
+    "en": "United Kingdom"
+   },
+   "callingCode": [
+    "+44"
+   ],
+   "emergency": [
+    "112",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Europe/London"
+   ]
+  },
+  "GD": {
+   "iso3": "GRD",
+   "wikidata": "Q769",
+   "name": {
+    "it": "Grenada",
+    "en": "Grenada"
+   },
+   "callingCode": [
+    "+1473"
+   ],
+   "emergency": [
+    "434",
+    "724",
+    "774",
+    "911"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Grenada",
+    "UTC-04:00"
+   ]
+  },
+  "GE": {
+   "iso3": "GEO",
+   "wikidata": "Q230",
+   "name": {
+    "it": "Georgia",
+    "en": "Georgia"
+   },
+   "callingCode": [
+    "+995"
+   ],
+   "emergency": [
+    "111",
+    "112",
+    "113",
+    "122"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+04:00"
+   ]
+  },
+  "GF": {
+   "iso3": "GUF",
+   "wikidata": "Q3769",
+   "name": {
+    "it": "Guyana francese",
+    "en": "French Guiana"
+   },
+   "callingCode": [
+    "+594"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-03:00"
+   ]
+  },
+  "GG": {
+   "iso3": "GGY",
+   "wikidata": "Q25230",
+   "name": {
+    "it": "Guernsey",
+    "en": "Guernsey"
+   },
+   "callingCode": [
+    "+44"
+   ],
+   "emergency": [
+    "112",
+    "999"
+   ],
+   "plugs": [
+    "C",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Europe/Guernsey"
+   ]
+  },
+  "GH": {
+   "iso3": "GHA",
+   "wikidata": "Q117",
+   "name": {
+    "it": "Ghana",
+    "en": "Ghana"
+   },
+   "callingCode": [
+    "+233"
+   ],
+   "emergency": [
+    "191",
+    "192",
+    "193",
+    "999"
+   ],
+   "plugs": [
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Accra",
+    "UTC+00:00"
+   ]
+  },
+  "GI": {
+   "iso3": "GIB",
+   "wikidata": "Q1410",
+   "name": {
+    "it": "Gibilterra",
+    "en": "Gibraltar"
+   },
+   "callingCode": [
+    "+350"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "GL": {
+   "iso3": "GRL",
+   "wikidata": "Q223",
+   "name": {
+    "it": "Groenlandia",
+    "en": "Greenland"
+   },
+   "callingCode": [
+    "+299"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "E",
+    "F",
+    "K"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-03:00"
+   ]
+  },
+  "GM": {
+   "iso3": "GMB",
+   "wikidata": "Q1005",
+   "name": {
+    "it": "Gambia",
+    "en": "The Gambia"
+   },
+   "callingCode": [
+    "+220"
+   ],
+   "emergency": [
+    "112",
+    "116",
+    "118"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Banjul",
+    "UTC+00:00"
+   ]
+  },
+  "GN": {
+   "iso3": "GIN",
+   "wikidata": "Q1006",
+   "name": {
+    "it": "Guinea",
+    "en": "Guinea"
+   },
+   "callingCode": [
+    "+224"
+   ],
+   "emergency": [
+    "020",
+    "117",
+    "18",
+    "442"
+   ],
+   "plugs": [
+    "C",
+    "F",
+    "K"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Conakry",
+    "UTC+00:00"
+   ]
+  },
+  "GP": {
+   "iso3": "GLP",
+   "wikidata": "Q17012",
+   "name": {
+    "it": "Guadalupa",
+    "en": "Guadeloupe"
+   },
+   "callingCode": [
+    "+590"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "GQ": {
+   "iso3": "GNQ",
+   "wikidata": "Q983",
+   "name": {
+    "it": "Guinea Equatoriale",
+    "en": "Equatorial Guinea"
+   },
+   "callingCode": [
+    "+240"
+   ],
+   "emergency": [
+    "112",
+    "113",
+    "114",
+    "115"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "GR": {
+   "iso3": "GRC",
+   "wikidata": "Q41",
+   "name": {
+    "it": "Grecia",
+    "en": "Greece"
+   },
+   "callingCode": [
+    "+30"
+   ],
+   "emergency": [
+    "100",
+    "112",
+    "166",
+    "199"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "GS": {
+   "iso3": "SGS",
+   "wikidata": "Q35086",
+   "name": {
+    "it": "Georgia del Sud e isole Sandwich meridionali",
+    "en": "South Georgia and the South Sandwich Islands"
+   },
+   "callingCode": [
+    "+500"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC-02:00"
+   ]
+  },
+  "GT": {
+   "iso3": "GTM",
+   "wikidata": "Q774",
+   "name": {
+    "it": "Guatemala",
+    "en": "Guatemala"
+   },
+   "callingCode": [
+    "+502"
+   ],
+   "emergency": [
+    "110",
+    "120",
+    "123",
+    "128"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Guatemala",
+    "UTC-06:00"
+   ]
+  },
+  "GU": {
+   "iso3": "GUM",
+   "wikidata": "Q16635",
+   "name": {
+    "it": "Guam",
+    "en": "Guam"
+   },
+   "callingCode": [
+    "+1671"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+10:00"
+   ]
+  },
+  "GW": {
+   "iso3": "GNB",
+   "wikidata": "Q1007",
+   "name": {
+    "it": "Guinea-Bissau",
+    "en": "Guinea-Bissau"
+   },
+   "callingCode": [
+    "+245"
+   ],
+   "emergency": [
+    "112",
+    "119",
+    "121",
+    "180"
+   ],
+   "plugs": [
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Bissau",
+    "UTC+00:00"
+   ]
+  },
+  "GY": {
+   "iso3": "GUY",
+   "wikidata": "Q734",
+   "name": {
+    "it": "Guyana",
+    "en": "Guyana"
+   },
+   "callingCode": [
+    "+592"
+   ],
+   "emergency": [
+    "911",
+    "912",
+    "913",
+    "999"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Guyana",
+    "UTC-04:00"
+   ]
+  },
+  "HK": {
+   "iso3": "HKG",
+   "wikidata": "Q8646",
+   "name": {
+    "it": "Hong Kong",
+    "en": "Hong Kong"
+   },
+   "callingCode": [
+    "+852"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left"
+  },
+  "HM": {
+   "iso3": "HMD",
+   "wikidata": "Q131198",
+   "name": {
+    "it": "Isole Heard e McDonald",
+    "en": "Heard Island and McDonald Islands"
+   },
+   "timeZones": [
+    "UTC+05:00"
+   ]
+  },
+  "HN": {
+   "iso3": "HND",
+   "wikidata": "Q783",
+   "name": {
+    "it": "Honduras",
+    "en": "Honduras"
+   },
+   "callingCode": [
+    "+504"
+   ],
+   "emergency": [
+    "198",
+    "199"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Tegucigalpa",
+    "UTC-06:00"
+   ]
+  },
+  "HR": {
+   "iso3": "HRV",
+   "wikidata": "Q224",
+   "name": {
+    "it": "Croazia",
+    "en": "Croatia"
+   },
+   "callingCode": [
+    "+385"
+   ],
+   "emergency": [
+    "112",
+    "192",
+    "93",
+    "94"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "HT": {
+   "iso3": "HTI",
+   "wikidata": "Q790",
+   "name": {
+    "it": "Haiti",
+    "en": "Haiti"
+   },
+   "callingCode": [
+    "+509"
+   ],
+   "emergency": [
+    "114",
+    "115",
+    "116",
+    "122"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Port-au-Prince"
+   ]
+  },
+  "HU": {
+   "iso3": "HUN",
+   "wikidata": "Q28",
+   "name": {
+    "it": "Ungheria",
+    "en": "Hungary"
+   },
+   "callingCode": [
+    "+36"
+   ],
+   "emergency": [
+    "104",
+    "105",
+    "107",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "ID": {
+   "iso3": "IDN",
+   "wikidata": "Q252",
+   "name": {
+    "it": "Indonesia",
+    "en": "Indonesia"
+   },
+   "callingCode": [
+    "+62"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "127",
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Jakarta",
+    "Asia/Jayapura",
+    "Asia/Makassar",
+    "Asia/Pontianak"
+   ]
+  },
+  "IE": {
+   "iso3": "IRL",
+   "wikidata": "Q27",
+   "name": {
+    "it": "Irlanda",
+    "en": "Ireland"
+   },
+   "callingCode": [
+    "+353"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC+00:00"
+   ]
+  },
+  "IL": {
+   "iso3": "ISR",
+   "wikidata": "Q801",
+   "name": {
+    "it": "Israele",
+    "en": "Israel"
+   },
+   "callingCode": [
+    "+972"
+   ],
+   "emergency": [
+    "100",
+    "101",
+    "102"
+   ],
+   "plugs": [
+    "BS 546",
+    "C",
+    "H"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Jerusalem",
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "IM": {
+   "iso3": "IMN",
+   "wikidata": "Q9676",
+   "name": {
+    "it": "isola di Man",
+    "en": "Isle of Man"
+   },
+   "callingCode": [
+    "+44"
+   ],
+   "emergency": [
+    "112",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Europe/Isle_of_Man",
+    "UTC+00:00"
+   ]
+  },
+  "IN": {
+   "iso3": "IND",
+   "wikidata": "Q668",
+   "name": {
+    "it": "India",
+    "en": "India"
+   },
+   "callingCode": [
+    "+91"
+   ],
+   "emergency": [
+    "100",
+    "101",
+    "102",
+    "108",
+    "112"
+   ],
+   "plugs": [
+    "BS 546",
+    "C",
+    "D"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Kolkata"
+   ]
+  },
+  "IO": {
+   "iso3": "IOT",
+   "wikidata": "Q43448",
+   "name": {
+    "it": "Territorio Britannico dell'Oceano Indiano",
+    "en": "British Indian Ocean Territory"
+   },
+   "callingCode": [
+    "+246"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+06:00"
+   ]
+  },
+  "IQ": {
+   "iso3": "IRQ",
+   "wikidata": "Q796",
+   "name": {
+    "it": "Iraq",
+    "en": "Iraq"
+   },
+   "callingCode": [
+    "+964"
+   ],
+   "emergency": [
+    "104",
+    "115",
+    "122",
+    "911"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Baghdad",
+    "UTC+03:00"
+   ]
+  },
+  "IR": {
+   "iso3": "IRN",
+   "wikidata": "Q794",
+   "name": {
+    "it": "Iran",
+    "en": "Iran"
+   },
+   "callingCode": [
+    "+98"
+   ],
+   "emergency": [
+    "110",
+    "115",
+    "125"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Tehran",
+    "UTC+03:30"
+   ]
+  },
+  "IS": {
+   "iso3": "ISL",
+   "wikidata": "Q189",
+   "name": {
+    "it": "Islanda",
+    "en": "Iceland"
+   },
+   "callingCode": [
+    "+354"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+00:00"
+   ]
+  },
+  "IT": {
+   "iso3": "ITA",
+   "wikidata": "Q38",
+   "name": {
+    "it": "Italia",
+    "en": "Italy"
+   },
+   "callingCode": [
+    "+39"
+   ],
+   "emergency": [
+    "112",
+    "113",
+    "115",
+    "118"
+   ],
+   "plugs": [
+    "C",
+    "F",
+    "L"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Rome"
+   ]
+  },
+  "JE": {
+   "iso3": "JEY",
+   "wikidata": "Q785",
+   "name": {
+    "it": "Jersey",
+    "en": "Jersey"
+   },
+   "callingCode": [
+    "+44"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC+00:00"
+   ]
+  },
+  "JM": {
+   "iso3": "JAM",
+   "wikidata": "Q766",
+   "name": {
+    "it": "Giamaica",
+    "en": "Jamaica"
+   },
+   "callingCode": [
+    "+1876"
+   ],
+   "emergency": [
+    "110",
+    "112",
+    "119",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "116"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Jamaica"
+   ]
+  },
+  "JO": {
+   "iso3": "JOR",
+   "wikidata": "Q810",
+   "name": {
+    "it": "Giordania",
+    "en": "Jordan"
+   },
+   "callingCode": [
+    "+962"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "J"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Amman",
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "JP": {
+   "iso3": "JPN",
+   "wikidata": "Q17",
+   "name": {
+    "it": "Giappone",
+    "en": "Japan"
+   },
+   "callingCode": [
+    "+81"
+   ],
+   "emergency": [
+    "110",
+    "118",
+    "119"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "100"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Tokyo",
+    "UTC+09:00"
+   ]
+  },
+  "KE": {
+   "iso3": "KEN",
+   "wikidata": "Q114",
+   "name": {
+    "it": "Kenya",
+    "en": "Kenya"
+   },
+   "callingCode": [
+    "+254"
+   ],
+   "emergency": [
+    "112",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Nairobi",
+    "UTC+03:00"
+   ]
+  },
+  "KG": {
+   "iso3": "KGZ",
+   "wikidata": "Q813",
+   "name": {
+    "it": "Kirghizistan",
+    "en": "Kyrgyzstan"
+   },
+   "callingCode": [
+    "+996"
+   ],
+   "emergency": [
+    "101",
+    "102",
+    "103",
+    "161"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+06:00"
+   ]
+  },
+  "KH": {
+   "iso3": "KHM",
+   "wikidata": "Q424",
+   "name": {
+    "it": "Cambogia",
+    "en": "Cambodia"
+   },
+   "callingCode": [
+    "+855"
+   ],
+   "emergency": [
+    "117",
+    "118",
+    "119"
+   ],
+   "plugs": [
+    "A",
+    "C",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Phnom_Penh",
+    "UTC+07:00"
+   ]
+  },
+  "KI": {
+   "iso3": "KIR",
+   "wikidata": "Q710",
+   "name": {
+    "it": "Kiribati",
+    "en": "Kiribati"
+   },
+   "callingCode": [
+    "+686"
+   ],
+   "emergency": [
+    "192",
+    "193",
+    "194",
+    "195",
+    "999"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Kanton",
+    "Pacific/Kiritimati",
+    "Pacific/Tarawa",
+    "UTC+12:00",
+    "UTC+13:00",
+    "UTC+14:00"
+   ]
+  },
+  "KM": {
+   "iso3": "COM",
+   "wikidata": "Q970",
+   "name": {
+    "it": "Comore",
+    "en": "Comoros"
+   },
+   "callingCode": [
+    "+269"
+   ],
+   "emergency": [
+    "03",
+    "17",
+    "18",
+    "73",
+    "772"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Indian/Comoro",
+    "UTC+03:00"
+   ]
+  },
+  "KN": {
+   "iso3": "KNA",
+   "wikidata": "Q763",
+   "name": {
+    "it": "Saint Kitts e Nevis",
+    "en": "Saint Kitts and Nevis"
+   },
+   "callingCode": [
+    "+1869"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/St_Kitts",
+    "UTC-04:00"
+   ]
+  },
+  "KP": {
+   "iso3": "PRK",
+   "wikidata": "Q423",
+   "name": {
+    "it": "Corea del Nord",
+    "en": "North Korea"
+   },
+   "callingCode": [
+    "+850"
+   ],
+   "plugs": [
+    "A",
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "110",
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Pyongyang",
+    "UTC+09:00"
+   ]
+  },
+  "KR": {
+   "iso3": "KOR",
+   "wikidata": "Q884",
+   "name": {
+    "it": "Corea del Sud",
+    "en": "South Korea"
+   },
+   "callingCode": [
+    "+82"
+   ],
+   "emergency": [
+    "112",
+    "113",
+    "119"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Seoul",
+    "UTC+09:00"
+   ]
+  },
+  "KW": {
+   "iso3": "KWT",
+   "wikidata": "Q817",
+   "name": {
+    "it": "Kuwait",
+    "en": "Kuwait"
+   },
+   "callingCode": [
+    "+965"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Kuwait",
+    "UTC+03:00"
+   ]
+  },
+  "KY": {
+   "iso3": "CYM",
+   "wikidata": "Q5785",
+   "name": {
+    "it": "Isole Cayman",
+    "en": "Cayman Islands"
+   },
+   "callingCode": [
+    "+1345"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Cayman"
+   ]
+  },
+  "KZ": {
+   "iso3": "KAZ",
+   "wikidata": "Q232",
+   "name": {
+    "it": "Kazakistan",
+    "en": "Kazakhstan"
+   },
+   "callingCode": [
+    "+7"
+   ],
+   "emergency": [
+    "101",
+    "102",
+    "103",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+05:00"
+   ]
+  },
+  "LA": {
+   "iso3": "LAO",
+   "wikidata": "Q819",
+   "name": {
+    "it": "Laos",
+    "en": "Laos"
+   },
+   "callingCode": [
+    "+856"
+   ],
+   "emergency": [
+    "190",
+    "191",
+    "195"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Vientiane",
+    "UTC+07:00"
+   ]
+  },
+  "LB": {
+   "iso3": "LBN",
+   "wikidata": "Q822",
+   "name": {
+    "it": "Libano",
+    "en": "Lebanon"
+   },
+   "callingCode": [
+    "+961"
+   ],
+   "emergency": [
+    "112",
+    "140",
+    "160",
+    "175"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Beirut",
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "LC": {
+   "iso3": "LCA",
+   "wikidata": "Q760",
+   "name": {
+    "it": "Saint Lucia",
+    "en": "Saint Lucia"
+   },
+   "callingCode": [
+    "+1758"
+   ],
+   "emergency": [
+    "911",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/St_Lucia",
+    "UTC-04:00"
+   ]
+  },
+  "LI": {
+   "iso3": "LIE",
+   "wikidata": "Q347",
+   "name": {
+    "it": "Liechtenstein",
+    "en": "Liechtenstein"
+   },
+   "callingCode": [
+    "+423"
+   ],
+   "emergency": [
+    "112",
+    "117",
+    "118",
+    "144"
+   ],
+   "plugs": [
+    "C",
+    "J"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "LK": {
+   "iso3": "LKA",
+   "wikidata": "Q854",
+   "name": {
+    "it": "Sri Lanka",
+    "en": "Sri Lanka"
+   },
+   "callingCode": [
+    "+94"
+   ],
+   "emergency": [
+    "110",
+    "119"
+   ],
+   "plugs": [
+    "BS 546",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Colombo",
+    "UTC+05:30"
+   ]
+  },
+  "LR": {
+   "iso3": "LBR",
+   "wikidata": "Q1014",
+   "name": {
+    "it": "Liberia",
+    "en": "Liberia"
+   },
+   "callingCode": [
+    "+231"
+   ],
+   "emergency": [
+    "114",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F"
+   ],
+   "voltage": [
+    "120",
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Monrovia",
+    "UTC+00:00"
+   ]
+  },
+  "LS": {
+   "iso3": "LSO",
+   "wikidata": "Q1013",
+   "name": {
+    "it": "Lesotho",
+    "en": "Lesotho"
+   },
+   "callingCode": [
+    "+266"
+   ],
+   "emergency": [
+    "112",
+    "114",
+    "115"
+   ],
+   "plugs": [
+    "BS 546"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Maseru",
+    "UTC+02:00"
+   ]
+  },
+  "LT": {
+   "iso3": "LTU",
+   "wikidata": "Q37",
+   "name": {
+    "it": "Lituania",
+    "en": "Lithuania"
+   },
+   "callingCode": [
+    "+370"
+   ],
+   "emergency": [
+    "02",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "LU": {
+   "iso3": "LUX",
+   "wikidata": "Q32",
+   "name": {
+    "it": "Lussemburgo",
+    "en": "Luxembourg"
+   },
+   "callingCode": [
+    "+352"
+   ],
+   "emergency": [
+    "112",
+    "113"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "LV": {
+   "iso3": "LVA",
+   "wikidata": "Q211",
+   "name": {
+    "it": "Lettonia",
+    "en": "Latvia"
+   },
+   "callingCode": [
+    "+371"
+   ],
+   "emergency": [
+    "110",
+    "112",
+    "113"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "LY": {
+   "iso3": "LBY",
+   "wikidata": "Q1016",
+   "name": {
+    "it": "Libia",
+    "en": "Libya"
+   },
+   "callingCode": [
+    "+218"
+   ],
+   "emergency": [
+    "190",
+    "191",
+    "193"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "F",
+    "L"
+   ],
+   "voltage": [
+    "127",
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Tripoli",
+    "UTC+02:00"
+   ]
+  },
+  "MA": {
+   "iso3": "MAR",
+   "wikidata": "Q1028",
+   "name": {
+    "it": "Marocco",
+    "en": "Morocco"
+   },
+   "callingCode": [
+    "+212"
+   ],
+   "emergency": [
+    "112",
+    "15",
+    "177",
+    "19"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "127",
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Casablanca",
+    "UTC+00:00",
+    "UTC+01:00"
+   ]
+  },
+  "MC": {
+   "iso3": "MCO",
+   "wikidata": "Q235",
+   "name": {
+    "it": "Principato di Monaco",
+    "en": "Monaco"
+   },
+   "callingCode": [
+    "+377"
+   ],
+   "emergency": [
+    "112",
+    "17",
+    "18"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Monaco",
+    "UTC+01:00"
+   ]
+  },
+  "MD": {
+   "iso3": "MDA",
+   "wikidata": "Q217",
+   "name": {
+    "it": "Moldavia",
+    "en": "Moldova"
+   },
+   "callingCode": [
+    "+373"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "ME": {
+   "iso3": "MNE",
+   "wikidata": "Q236",
+   "name": {
+    "it": "Montenegro",
+    "en": "Montenegro"
+   },
+   "callingCode": [
+    "+382"
+   ],
+   "emergency": [
+    "112",
+    "122",
+    "123",
+    "124"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "MF": {
+   "iso3": "MAF",
+   "wikidata": "Q126125",
+   "name": {
+    "it": "Saint-Martin",
+    "en": "Saint-Martin"
+   },
+   "callingCode": [
+    "+590"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "120",
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "MG": {
+   "iso3": "MDG",
+   "wikidata": "Q1019",
+   "name": {
+    "it": "Madagascar",
+    "en": "Madagascar"
+   },
+   "callingCode": [
+    "+261"
+   ],
+   "emergency": [
+    "117",
+    "118",
+    "124"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E",
+    "J",
+    "K"
+   ],
+   "voltage": [
+    "127",
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+03:00"
+   ]
+  },
+  "MH": {
+   "iso3": "MHL",
+   "wikidata": "Q709",
+   "name": {
+    "it": "Isole Marshall",
+    "en": "Marshall Islands"
+   },
+   "callingCode": [
+    "+692"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Pacific/Kwajalein",
+    "Pacific/Majuro",
+    "UTC+12:00"
+   ]
+  },
+  "MK": {
+   "iso3": "MKD",
+   "wikidata": "Q221",
+   "name": {
+    "it": "Macedonia del Nord",
+    "en": "North Macedonia"
+   },
+   "callingCode": [
+    "+389"
+   ],
+   "emergency": [
+    "112",
+    "192",
+    "193",
+    "194"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "ML": {
+   "iso3": "MLI",
+   "wikidata": "Q912",
+   "name": {
+    "it": "Mali",
+    "en": "Mali"
+   },
+   "callingCode": [
+    "+223"
+   ],
+   "emergency": [
+    "112",
+    "15",
+    "17",
+    "18"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Bamako",
+    "UTC+00:00"
+   ]
+  },
+  "MM": {
+   "iso3": "MMR",
+   "wikidata": "Q836",
+   "name": {
+    "it": "Myanmar",
+    "en": "Myanmar"
+   },
+   "callingCode": [
+    "+95"
+   ],
+   "emergency": [
+    "191",
+    "192",
+    "199"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "F",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Yangon",
+    "UTC+06:30"
+   ]
+  },
+  "MN": {
+   "iso3": "MNG",
+   "wikidata": "Q711",
+   "name": {
+    "it": "Mongolia",
+    "en": "Mongolia"
+   },
+   "callingCode": [
+    "+976"
+   ],
+   "emergency": [
+    "101",
+    "102",
+    "103",
+    "105"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Choibalsan",
+    "Asia/Hovd",
+    "Asia/Ulaanbaatar",
+    "UTC+08:00"
+   ]
+  },
+  "MO": {
+   "iso3": "MAC",
+   "wikidata": "Q14773",
+   "name": {
+    "it": "Macao",
+    "en": "Macau"
+   },
+   "callingCode": [
+    "+853"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "plugs": [
+    "BS 546",
+    "D",
+    "F",
+    "G"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left"
+  },
+  "MP": {
+   "iso3": "MNP",
+   "wikidata": "Q16644",
+   "name": {
+    "it": "Isole Marianne Settentrionali",
+    "en": "Northern Mariana Islands"
+   },
+   "callingCode": [
+    "+1670"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Pacific/Saipan",
+    "UTC+10:00"
+   ]
+  },
+  "MQ": {
+   "iso3": "MTQ",
+   "wikidata": "Q17054",
+   "name": {
+    "it": "Martinica",
+    "en": "Martinique"
+   },
+   "callingCode": [
+    "+596"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "MR": {
+   "iso3": "MRT",
+   "wikidata": "Q1025",
+   "name": {
+    "it": "Mauritania",
+    "en": "Mauritania"
+   },
+   "callingCode": [
+    "+222"
+   ],
+   "emergency": [
+    "101",
+    "117",
+    "118"
+   ],
+   "plugs": [
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Nouakchott",
+    "UTC+00:00"
+   ]
+  },
+  "MS": {
+   "iso3": "MSR",
+   "wikidata": "Q13353",
+   "name": {
+    "it": "Montserrat",
+    "en": "Montserrat"
+   },
+   "callingCode": [
+    "+1664"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left"
+  },
+  "MT": {
+   "iso3": "MLT",
+   "wikidata": "Q233",
+   "name": {
+    "it": "Malta",
+    "en": "Malta"
+   },
+   "callingCode": [
+    "+356"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "MU": {
+   "iso3": "MUS",
+   "wikidata": "Q1027",
+   "name": {
+    "it": "Mauritius",
+    "en": "Mauritius"
+   },
+   "callingCode": [
+    "+230"
+   ],
+   "emergency": [
+    "112",
+    "114",
+    "115",
+    "995",
+    "999"
+   ],
+   "plugs": [
+    "C",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Indian/Mauritius",
+    "UTC+04:00"
+   ]
+  },
+  "MV": {
+   "iso3": "MDV",
+   "wikidata": "Q826",
+   "name": {
+    "it": "Maldive",
+    "en": "Maldives"
+   },
+   "callingCode": [
+    "+960"
+   ],
+   "emergency": [
+    "102",
+    "118",
+    "119"
+   ],
+   "plugs": [
+    "A",
+    "C",
+    "D",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Indian/Maldives",
+    "UTC+05:00"
+   ]
+  },
+  "MW": {
+   "iso3": "MWI",
+   "wikidata": "Q1020",
+   "name": {
+    "it": "Malawi",
+    "en": "Malawi"
+   },
+   "callingCode": [
+    "+265"
+   ],
+   "emergency": [
+    "990",
+    "997",
+    "998",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Blantyre",
+    "UTC+02:00"
+   ]
+  },
+  "MX": {
+   "iso3": "MEX",
+   "wikidata": "Q96",
+   "name": {
+    "it": "Messico",
+    "en": "Mexico"
+   },
+   "callingCode": [
+    "+52"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "127"
+   ],
+   "driving": "right"
+  },
+  "MY": {
+   "iso3": "MYS",
+   "wikidata": "Q833",
+   "name": {
+    "it": "Malaysia",
+    "en": "Malaysia"
+   },
+   "callingCode": [
+    "+60"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Kuala_Lumpur",
+    "UTC+08:00"
+   ]
+  },
+  "MZ": {
+   "iso3": "MOZ",
+   "wikidata": "Q1029",
+   "name": {
+    "it": "Mozambico",
+    "en": "Mozambique"
+   },
+   "callingCode": [
+    "+258"
+   ],
+   "emergency": [
+    "117",
+    "119",
+    "198"
+   ],
+   "plugs": [
+    "BS 546",
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Maputo",
+    "UTC+02:00"
+   ]
+  },
+  "NA": {
+   "iso3": "NAM",
+   "wikidata": "Q1030",
+   "name": {
+    "it": "Namibia",
+    "en": "Namibia"
+   },
+   "callingCode": [
+    "+264"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "BS 546",
+    "D"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Windhoek",
+    "UTC+02:00"
+   ]
+  },
+  "NC": {
+   "iso3": "NCL",
+   "wikidata": "Q33788",
+   "name": {
+    "it": "Nuova Caledonia",
+    "en": "New Caledonia"
+   },
+   "callingCode": [
+    "+687"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+11:00"
+   ]
+  },
+  "NE": {
+   "iso3": "NER",
+   "wikidata": "Q1032",
+   "name": {
+    "it": "Niger",
+    "en": "Niger"
+   },
+   "callingCode": [
+    "+227"
+   ],
+   "emergency": [
+    "17",
+    "18"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Niamey",
+    "UTC+01:00"
+   ]
+  },
+  "NF": {
+   "iso3": "NFK",
+   "wikidata": "Q31057",
+   "name": {
+    "it": "Isola Norfolk",
+    "en": "Norfolk Island"
+   },
+   "callingCode": [
+    "+6723"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Norfolk",
+    "UTC+11:30"
+   ]
+  },
+  "NG": {
+   "iso3": "NGA",
+   "wikidata": "Q1033",
+   "name": {
+    "it": "Nigeria",
+    "en": "Nigeria"
+   },
+   "callingCode": [
+    "+234"
+   ],
+   "emergency": [
+    "112",
+    "199"
+   ],
+   "plugs": [
+    "BS 546",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Lagos",
+    "UTC+01:00"
+   ]
+  },
+  "NI": {
+   "iso3": "NIC",
+   "wikidata": "Q811",
+   "name": {
+    "it": "Nicaragua",
+    "en": "Nicaragua"
+   },
+   "callingCode": [
+    "+505"
+   ],
+   "emergency": [
+    "115",
+    "118",
+    "120",
+    "128"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Managua",
+    "UTC-06:00"
+   ]
+  },
+  "NL": {
+   "iso3": "NLD",
+   "wikidata": "Q29999",
+   "name": {
+    "it": "Regno dei Paesi Bassi",
+    "en": "Kingdom of the Netherlands"
+   },
+   "callingCode": [
+    "+31"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Amsterdam"
+   ]
+  },
+  "NO": {
+   "iso3": "NOR",
+   "wikidata": "Q20",
+   "name": {
+    "it": "Norvegia",
+    "en": "Norway"
+   },
+   "callingCode": [
+    "+47"
+   ],
+   "emergency": [
+    "110",
+    "112",
+    "113"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "NP": {
+   "iso3": "NPL",
+   "wikidata": "Q837",
+   "name": {
+    "it": "Nepal",
+    "en": "Nepal"
+   },
+   "callingCode": [
+    "+977"
+   ],
+   "emergency": [
+    "100",
+    "101",
+    "102"
+   ],
+   "plugs": [
+    "BS 546",
+    "C",
+    "D"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Kathmandu",
+    "UTC+05:45"
+   ]
+  },
+  "NR": {
+   "iso3": "NRU",
+   "wikidata": "Q697",
+   "name": {
+    "it": "Nauru",
+    "en": "Nauru"
+   },
+   "callingCode": [
+    "+674"
+   ],
+   "emergency": [
+    "110",
+    "111",
+    "112"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Nauru",
+    "UTC+12:00"
+   ]
+  },
+  "NU": {
+   "iso3": "NIU",
+   "wikidata": "Q34020",
+   "name": {
+    "it": "Niue",
+    "en": "Niue"
+   },
+   "callingCode": [
+    "+683"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Niue",
+    "UTC-11:00"
+   ]
+  },
+  "NZ": {
+   "iso3": "NZL",
+   "wikidata": "Q664",
+   "name": {
+    "it": "Nuova Zelanda",
+    "en": "New Zealand"
+   },
+   "callingCode": [
+    "+64"
+   ],
+   "emergency": [
+    "111"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC+12:00",
+    "UTC+13:00"
+   ]
+  },
+  "OM": {
+   "iso3": "OMN",
+   "wikidata": "Q842",
+   "name": {
+    "it": "Oman",
+    "en": "Oman"
+   },
+   "callingCode": [
+    "+968"
+   ],
+   "emergency": [
+    "112",
+    "968"
+   ],
+   "plugs": [
+    "C",
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Muscat",
+    "UTC+04:00"
+   ]
+  },
+  "PA": {
+   "iso3": "PAN",
+   "wikidata": "Q804",
+   "name": {
+    "it": "Panama",
+    "en": "Panama"
+   },
+   "callingCode": [
+    "+507"
+   ],
+   "emergency": [
+    "103",
+    "104",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Panama"
+   ]
+  },
+  "PE": {
+   "iso3": "PER",
+   "wikidata": "Q419",
+   "name": {
+    "it": "Perù",
+    "en": "Peru"
+   },
+   "callingCode": [
+    "+51"
+   ],
+   "emergency": [
+    "105",
+    "106",
+    "111",
+    "116",
+    "117",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right"
+  },
+  "PF": {
+   "iso3": "PYF",
+   "wikidata": "Q30971",
+   "name": {
+    "it": "Polinesia francese",
+    "en": "French Polynesia"
+   },
+   "callingCode": [
+    "+689"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-10:00"
+   ]
+  },
+  "PG": {
+   "iso3": "PNG",
+   "wikidata": "Q691",
+   "name": {
+    "it": "Papua Nuova Guinea",
+    "en": "Papua New Guinea"
+   },
+   "callingCode": [
+    "+675"
+   ],
+   "emergency": [
+    "110",
+    "111",
+    "112"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Port_Moresby",
+    "UTC+10:00",
+    "UTC+11:00"
+   ]
+  },
+  "PH": {
+   "iso3": "PHL",
+   "wikidata": "Q928",
+   "name": {
+    "it": "Filippine",
+    "en": "Philippines"
+   },
+   "callingCode": [
+    "+63"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Manila"
+   ]
+  },
+  "PK": {
+   "iso3": "PAK",
+   "wikidata": "Q843",
+   "name": {
+    "it": "Pakistan",
+    "en": "Pakistan"
+   },
+   "callingCode": [
+    "+92"
+   ],
+   "emergency": [
+    "1122",
+    "15",
+    "16"
+   ],
+   "plugs": [
+    "BS 546",
+    "C",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Karachi",
+    "UTC+05:00"
+   ]
+  },
+  "PL": {
+   "iso3": "POL",
+   "wikidata": "Q36",
+   "name": {
+    "it": "Polonia",
+    "en": "Poland"
+   },
+   "callingCode": [
+    "+48"
+   ],
+   "emergency": [
+    "112",
+    "986",
+    "997",
+    "998",
+    "999"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00",
+    "UTC+02:00"
+   ]
+  },
+  "PM": {
+   "iso3": "SPM",
+   "wikidata": "Q34617",
+   "name": {
+    "it": "Saint-Pierre e Miquelon",
+    "en": "Saint Pierre and Miquelon"
+   },
+   "callingCode": [
+    "+508"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-03:00"
+   ]
+  },
+  "PN": {
+   "iso3": "PCN",
+   "wikidata": "Q35672",
+   "name": {
+    "it": "Isole Pitcairn",
+    "en": "Pitcairn Islands"
+   },
+   "callingCode": [
+    "+64"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC-08:00"
+   ]
+  },
+  "PR": {
+   "iso3": "PRI",
+   "wikidata": "Q1183",
+   "name": {
+    "it": "Porto Rico",
+    "en": "Puerto Rico"
+   },
+   "callingCode": [
+    "+1787",
+    "+1939"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "PS": {
+   "iso3": "PSE",
+   "wikidata": "Q219060",
+   "name": {
+    "it": "Stato di Palestina",
+    "en": "Palestine"
+   },
+   "callingCode": [
+    "+970"
+   ],
+   "plugs": [
+    "BS 546",
+    "C",
+    "H"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Jerusalem",
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "PT": {
+   "iso3": "PRT",
+   "wikidata": "Q45",
+   "name": {
+    "it": "Portogallo",
+    "en": "Portugal"
+   },
+   "callingCode": [
+    "+351"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+00:00"
+   ]
+  },
+  "PW": {
+   "iso3": "PLW",
+   "wikidata": "Q695",
+   "name": {
+    "it": "Palau",
+    "en": "Palau"
+   },
+   "callingCode": [
+    "+680"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Pacific/Palau",
+    "UTC+09:00"
+   ]
+  },
+  "PY": {
+   "iso3": "PRY",
+   "wikidata": "Q733",
+   "name": {
+    "it": "Paraguay",
+    "en": "Paraguay"
+   },
+   "callingCode": [
+    "+595"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Asuncion",
+    "UTC-04:00",
+    "UTC-03:00"
+   ]
+  },
+  "QA": {
+   "iso3": "QAT",
+   "wikidata": "Q846",
+   "name": {
+    "it": "Qatar",
+    "en": "Qatar"
+   },
+   "callingCode": [
+    "+974"
+   ],
+   "emergency": [
+    "112",
+    "999"
+   ],
+   "plugs": [
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Qatar",
+    "UTC+03:00"
+   ]
+  },
+  "RE": {
+   "iso3": "REU",
+   "wikidata": "Q17070",
+   "name": {
+    "it": "Riunione",
+    "en": "Réunion"
+   },
+   "callingCode": [
+    "+262"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "E"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+04:00"
+   ]
+  },
+  "RO": {
+   "iso3": "ROU",
+   "wikidata": "Q218",
+   "name": {
+    "it": "Romania",
+    "en": "Romania"
+   },
+   "callingCode": [
+    "+40"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "RS": {
+   "iso3": "SRB",
+   "wikidata": "Q403",
+   "name": {
+    "it": "Serbia",
+    "en": "Serbia"
+   },
+   "callingCode": [
+    "+381"
+   ],
+   "emergency": [
+    "192",
+    "193",
+    "194",
+    "92",
+    "93",
+    "94"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "RU": {
+   "iso3": "RUS",
+   "wikidata": "Q159",
+   "name": {
+    "it": "Russia",
+    "en": "Russia"
+   },
+   "callingCode": [
+    "+7"
+   ],
+   "emergency": [
+    "01",
+    "02",
+    "03",
+    "101",
+    "102",
+    "103",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "RW": {
+   "iso3": "RWA",
+   "wikidata": "Q1037",
+   "name": {
+    "it": "Ruanda",
+    "en": "Rwanda"
+   },
+   "callingCode": [
+    "+250"
+   ],
+   "emergency": [
+    "112",
+    "912"
+   ],
+   "plugs": [
+    "C",
+    "E",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Kigali",
+    "UTC+02:00"
+   ]
+  },
+  "SA": {
+   "iso3": "SAU",
+   "wikidata": "Q851",
+   "name": {
+    "it": "Arabia Saudita",
+    "en": "Saudi Arabia"
+   },
+   "callingCode": [
+    "+966"
+   ],
+   "emergency": [
+    "112",
+    "911",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "220",
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Riyadh",
+    "UTC+03:00"
+   ]
+  },
+  "SB": {
+   "iso3": "SLB",
+   "wikidata": "Q685",
+   "name": {
+    "it": "Isole Salomone",
+    "en": "Solomon Islands"
+   },
+   "callingCode": [
+    "+677"
+   ],
+   "emergency": [
+    "911",
+    "988",
+    "999"
+   ],
+   "plugs": [
+    "G",
+    "I"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Guadalcanal",
+    "UTC+11:00"
+   ]
+  },
+  "SC": {
+   "iso3": "SYC",
+   "wikidata": "Q1042",
+   "name": {
+    "it": "Seychelles",
+    "en": "Seychelles"
+   },
+   "callingCode": [
+    "+248"
+   ],
+   "emergency": [
+    "112",
+    "133",
+    "151",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Indian/Mahe",
+    "UTC+04:00"
+   ]
+  },
+  "SD": {
+   "iso3": "SDN",
+   "wikidata": "Q1049",
+   "name": {
+    "it": "Sudan",
+    "en": "Sudan"
+   },
+   "callingCode": [
+    "+249"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "plugs": [
+    "C",
+    "D"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+02:00"
+   ]
+  },
+  "SE": {
+   "iso3": "SWE",
+   "wikidata": "Q34",
+   "name": {
+    "it": "Svezia",
+    "en": "Sweden"
+   },
+   "callingCode": [
+    "+46"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "SG": {
+   "iso3": "SGP",
+   "wikidata": "Q334",
+   "name": {
+    "it": "Singapore",
+    "en": "Singapore"
+   },
+   "callingCode": [
+    "+65"
+   ],
+   "emergency": [
+    "995",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Singapore",
+    "UTC+08:00"
+   ]
+  },
+  "SH": {
+   "iso3": "SHN",
+   "wikidata": "Q192184",
+   "name": {
+    "it": "Sant'Elena, Ascensione e Tristan da Cunha",
+    "en": "Saint Helena, Ascension and Tristan da Cunha"
+   },
+   "callingCode": [
+    "+247",
+    "+27",
+    "+290"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC+00:00"
+   ]
+  },
+  "SI": {
+   "iso3": "SVN",
+   "wikidata": "Q215",
+   "name": {
+    "it": "Slovenia",
+    "en": "Slovenia"
+   },
+   "callingCode": [
+    "+386"
+   ],
+   "emergency": [
+    "112",
+    "113"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "SJ": {
+   "iso3": "SJM",
+   "wikidata": "Q842829",
+   "name": {
+    "it": "Svalbard e Jan Mayen",
+    "en": "Svalbard and Jan Mayen"
+   },
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "SK": {
+   "iso3": "SVK",
+   "wikidata": "Q214",
+   "name": {
+    "it": "Slovacchia",
+    "en": "Slovakia"
+   },
+   "callingCode": [
+    "+421"
+   ],
+   "emergency": [
+    "112",
+    "150",
+    "155",
+    "158"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00",
+    "UTC+02:00"
+   ]
+  },
+  "SL": {
+   "iso3": "SLE",
+   "wikidata": "Q1044",
+   "name": {
+    "it": "Sierra Leone",
+    "en": "Sierra Leone"
+   },
+   "callingCode": [
+    "+232"
+   ],
+   "emergency": [
+    "019",
+    "999"
+   ],
+   "plugs": [
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Freetown",
+    "UTC+00:00"
+   ]
+  },
+  "SM": {
+   "iso3": "SMR",
+   "wikidata": "Q238",
+   "name": {
+    "it": "San Marino",
+    "en": "San Marino"
+   },
+   "callingCode": [
+    "+378"
+   ],
+   "emergency": [
+    "112",
+    "113",
+    "115",
+    "118"
+   ],
+   "plugs": [
+    "C",
+    "F",
+    "L"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/San_Marino"
+   ]
+  },
+  "SN": {
+   "iso3": "SEN",
+   "wikidata": "Q1041",
+   "name": {
+    "it": "Senegal",
+    "en": "Senegal"
+   },
+   "callingCode": [
+    "+221"
+   ],
+   "emergency": [
+    "17",
+    "18"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E",
+    "K"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Dakar",
+    "UTC+00:00"
+   ]
+  },
+  "SO": {
+   "iso3": "SOM",
+   "wikidata": "Q1045",
+   "name": {
+    "it": "Somalia",
+    "en": "Somalia"
+   },
+   "callingCode": [
+    "+252"
+   ],
+   "emergency": [
+    "555",
+    "888",
+    "999"
+   ],
+   "plugs": [
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Mogadishu",
+    "UTC+03:00"
+   ]
+  },
+  "SR": {
+   "iso3": "SUR",
+   "wikidata": "Q730",
+   "name": {
+    "it": "Suriname",
+    "en": "Suriname"
+   },
+   "callingCode": [
+    "+597"
+   ],
+   "emergency": [
+    "110",
+    "111",
+    "112",
+    "113",
+    "115"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "127"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Paramaribo",
+    "UTC-03:00"
+   ]
+  },
+  "SS": {
+   "iso3": "SSD",
+   "wikidata": "Q958",
+   "name": {
+    "it": "Sudan del Sud",
+    "en": "South Sudan"
+   },
+   "callingCode": [
+    "+211"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Juba",
+    "UTC+02:00"
+   ]
+  },
+  "ST": {
+   "iso3": "STP",
+   "wikidata": "Q1039",
+   "name": {
+    "it": "São Tomé e Príncipe",
+    "en": "São Tomé and Príncipe"
+   },
+   "callingCode": [
+    "+239"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Sao_Tome",
+    "UTC+00:00"
+   ]
+  },
+  "SV": {
+   "iso3": "SLV",
+   "wikidata": "Q792",
+   "name": {
+    "it": "El Salvador",
+    "en": "El Salvador"
+   },
+   "callingCode": [
+    "+503"
+   ],
+   "emergency": [
+    "911",
+    "913"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "115"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/El_Salvador",
+    "UTC-06:00"
+   ]
+  },
+  "SX": {
+   "iso3": "SXM",
+   "wikidata": "Q26273",
+   "name": {
+    "it": "Sint Maarten",
+    "en": "Sint Maarten"
+   },
+   "callingCode": [
+    "+1721"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/St_Kitts"
+   ]
+  },
+  "SY": {
+   "iso3": "SYR",
+   "wikidata": "Q858",
+   "name": {
+    "it": "Siria",
+    "en": "Syria"
+   },
+   "callingCode": [
+    "+963"
+   ],
+   "emergency": [
+    "110",
+    "112",
+    "113"
+   ],
+   "plugs": [
+    "C",
+    "E",
+    "L"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Damascus",
+    "UTC+03:00"
+   ]
+  },
+  "SZ": {
+   "iso3": "SWZ",
+   "wikidata": "Q1050",
+   "name": {
+    "it": "Eswatini",
+    "en": "Eswatini"
+   },
+   "callingCode": [
+    "+268"
+   ],
+   "emergency": [
+    "933",
+    "977",
+    "999"
+   ],
+   "plugs": [
+    "BS 546"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Mbabane",
+    "UTC+02:00"
+   ]
+  },
+  "TA": {
+   "wikidata": "Q34625512",
+   "name": {
+    "it": "Tristan da Cunha",
+    "en": "Tristan da Cunha"
+   },
+   "callingCode": [
+    "+2908"
+   ],
+   "driving": "left"
+  },
+  "TC": {
+   "iso3": "TCA",
+   "wikidata": "Q18221",
+   "name": {
+    "it": "Turks e Caicos",
+    "en": "Turks and Caicos Islands"
+   },
+   "callingCode": [
+    "+1649"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "TD": {
+   "iso3": "TCD",
+   "wikidata": "Q657",
+   "name": {
+    "it": "Ciad",
+    "en": "Chad"
+   },
+   "callingCode": [
+    "+235"
+   ],
+   "emergency": [
+    "17",
+    "18",
+    "2251",
+    "4242"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Ndjamena",
+    "UTC+01:00"
+   ]
+  },
+  "TF": {
+   "iso3": "ATF",
+   "wikidata": "Q129003",
+   "name": {
+    "it": "Terre Australi e Antartiche Francesi",
+    "en": "French Southern and Antarctic Lands"
+   },
+   "driving": "right",
+   "timeZones": [
+    "UTC+04:00",
+    "UTC+05:00",
+    "UTC+10:00"
+   ]
+  },
+  "TG": {
+   "iso3": "TGO",
+   "wikidata": "Q945",
+   "name": {
+    "it": "Togo",
+    "en": "Togo"
+   },
+   "callingCode": [
+    "+228"
+   ],
+   "emergency": [
+    "117",
+    "118",
+    "171",
+    "172"
+   ],
+   "plugs": [
+    "C"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Lome",
+    "UTC+00:00"
+   ]
+  },
+  "TH": {
+   "iso3": "THA",
+   "wikidata": "Q869",
+   "name": {
+    "it": "Tailandia",
+    "en": "Thailand"
+   },
+   "callingCode": [
+    "+66"
+   ],
+   "emergency": [
+    "1669",
+    "191",
+    "199"
+   ],
+   "plugs": [
+    "A",
+    "B",
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Bangkok",
+    "UTC+07:00"
+   ]
+  },
+  "TJ": {
+   "iso3": "TJK",
+   "wikidata": "Q863",
+   "name": {
+    "it": "Tagikistan",
+    "en": "Tajikistan"
+   },
+   "callingCode": [
+    "+992"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F",
+    "I"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Dushanbe",
+    "UTC+05:00"
+   ]
+  },
+  "TK": {
+   "iso3": "TKL",
+   "wikidata": "Q36823",
+   "name": {
+    "it": "Tokelau",
+    "en": "Tokelau"
+   },
+   "callingCode": [
+    "+690"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC+12:00",
+    "UTC+13:00"
+   ]
+  },
+  "TL": {
+   "iso3": "TLS",
+   "wikidata": "Q574",
+   "name": {
+    "it": "Timor Est",
+    "en": "Timor-Leste"
+   },
+   "callingCode": [
+    "+670"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "E",
+    "F",
+    "I"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Asia/Dili",
+    "UTC+09:00"
+   ]
+  },
+  "TM": {
+   "iso3": "TKM",
+   "wikidata": "Q874",
+   "name": {
+    "it": "Turkmenistan",
+    "en": "Turkmenistan"
+   },
+   "callingCode": [
+    "+993"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "B",
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Ashgabat",
+    "UTC+05:00"
+   ]
+  },
+  "TN": {
+   "iso3": "TUN",
+   "wikidata": "Q948",
+   "name": {
+    "it": "Tunisia",
+    "en": "Tunisia"
+   },
+   "callingCode": [
+    "+216"
+   ],
+   "emergency": [
+    "190",
+    "193",
+    "197",
+    "198"
+   ],
+   "plugs": [
+    "C",
+    "E"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Africa/Tunis",
+    "UTC+01:00",
+    "UTC+02:00"
+   ]
+  },
+  "TO": {
+   "iso3": "TON",
+   "wikidata": "Q678",
+   "name": {
+    "it": "Tonga",
+    "en": "Tonga"
+   },
+   "callingCode": [
+    "+676"
+   ],
+   "emergency": [
+    "911",
+    "922",
+    "927",
+    "928",
+    "933",
+    "999"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Tongatapu",
+    "UTC+13:00"
+   ]
+  },
+  "TR": {
+   "iso3": "TUR",
+   "wikidata": "Q43",
+   "name": {
+    "it": "Turchia",
+    "en": "Turkey"
+   },
+   "callingCode": [
+    "+36",
+    "+90"
+   ],
+   "emergency": [
+    "112",
+    "177"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Istanbul",
+    "Europe/Istanbul",
+    "UTC+03:00"
+   ]
+  },
+  "TT": {
+   "iso3": "TTO",
+   "wikidata": "Q754",
+   "name": {
+    "it": "Trinidad e Tobago",
+    "en": "Trinidad and Tobago"
+   },
+   "callingCode": [
+    "+1868"
+   ],
+   "emergency": [
+    "811",
+    "911",
+    "990",
+    "999"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "115"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/Port_of_Spain",
+    "UTC-04:00"
+   ]
+  },
+  "TV": {
+   "iso3": "TUV",
+   "wikidata": "Q672",
+   "name": {
+    "it": "Tuvalu",
+    "en": "Tuvalu"
+   },
+   "callingCode": [
+    "+688"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Funafuti",
+    "UTC+12:00"
+   ]
+  },
+  "TW": {
+   "iso3": "TWN",
+   "wikidata": "Q865",
+   "name": {
+    "it": "Taiwan",
+    "en": "Taiwan"
+   },
+   "callingCode": [
+    "+886"
+   ],
+   "emergency": [
+    "110",
+    "112",
+    "119"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Taipei",
+    "UTC+08:00"
+   ]
+  },
+  "TZ": {
+   "iso3": "TZA",
+   "wikidata": "Q924",
+   "name": {
+    "it": "Tanzania",
+    "en": "Tanzania"
+   },
+   "callingCode": [
+    "+255"
+   ],
+   "emergency": [
+    "112",
+    "114",
+    "115"
+   ],
+   "plugs": [
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Dar_es_Salaam",
+    "UTC+03:00"
+   ]
+  },
+  "UA": {
+   "iso3": "UKR",
+   "wikidata": "Q212",
+   "name": {
+    "it": "Ucraina",
+    "en": "Ukraine"
+   },
+   "callingCode": [
+    "+380"
+   ],
+   "emergency": [
+    "101",
+    "102",
+    "103",
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Kyiv",
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "UG": {
+   "iso3": "UGA",
+   "wikidata": "Q1036",
+   "name": {
+    "it": "Uganda",
+    "en": "Uganda"
+   },
+   "callingCode": [
+    "+256"
+   ],
+   "emergency": [
+    "112",
+    "911",
+    "999"
+   ],
+   "plugs": [
+    "G"
+   ],
+   "voltage": [
+    "240"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Kampala",
+    "UTC+03:00"
+   ]
+  },
+  "UM": {
+   "iso3": "UMI",
+   "wikidata": "Q16645",
+   "name": {
+    "it": "Isole minori esterne degli Stati Uniti d'America",
+    "en": "United States Minor Outlying Islands"
+   },
+   "driving": "right"
+  },
+  "US": {
+   "iso3": "USA",
+   "wikidata": "Q30",
+   "name": {
+    "it": "Stati Uniti",
+    "en": "United States"
+   },
+   "callingCode": [
+    "+1"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC-12:00",
+    "UTC-11:00",
+    "UTC-09:00",
+    "UTC-08:00",
+    "UTC-07:00",
+    "UTC-06:00",
+    "UTC-04:00",
+    "UTC+10:00"
+   ]
+  },
+  "UY": {
+   "iso3": "URY",
+   "wikidata": "Q77",
+   "name": {
+    "it": "Uruguay",
+    "en": "Uruguay"
+   },
+   "callingCode": [
+    "+598"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "plugs": [
+    "C",
+    "F",
+    "I",
+    "L"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Montevideo",
+    "UTC-03:00"
+   ]
+  },
+  "UZ": {
+   "iso3": "UZB",
+   "wikidata": "Q265",
+   "name": {
+    "it": "Uzbekistan",
+    "en": "Uzbekistan"
+   },
+   "callingCode": [
+    "+998"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "C",
+    "F",
+    "I"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Samarkand",
+    "Asia/Tashkent",
+    "UTC+05:00"
+   ]
+  },
+  "VA": {
+   "iso3": "VAT",
+   "wikidata": "Q237",
+   "name": {
+    "it": "Città del Vaticano",
+    "en": "Vatican City"
+   },
+   "callingCode": [
+    "+379"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Europe/Vatican",
+    "UTC+01:00"
+   ]
+  },
+  "VC": {
+   "iso3": "VCT",
+   "wikidata": "Q757",
+   "name": {
+    "it": "Saint Vincent e Grenadine",
+    "en": "Saint Vincent and the Grenadines"
+   },
+   "callingCode": [
+    "+1784"
+   ],
+   "emergency": [
+    "911",
+    "999"
+   ],
+   "plugs": [
+    "A",
+    "C",
+    "E",
+    "G",
+    "I",
+    "K"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "America/St_Vincent",
+    "UTC-04:00"
+   ]
+  },
+  "VE": {
+   "iso3": "VEN",
+   "wikidata": "Q717",
+   "name": {
+    "it": "Venezuela",
+    "en": "Venezuela"
+   },
+   "callingCode": [
+    "+58"
+   ],
+   "emergency": [
+    "171",
+    "911"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "120"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "America/Caracas",
+    "UTC-04:00"
+   ]
+  },
+  "VG": {
+   "iso3": "VGB",
+   "wikidata": "Q25305",
+   "name": {
+    "it": "Isole Vergini Britanniche",
+    "en": "British Virgin Islands"
+   },
+   "callingCode": [
+    "+1284"
+   ],
+   "emergency": [
+    "999"
+   ],
+   "plugs": [
+    "A",
+    "B"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "VI": {
+   "iso3": "VIR",
+   "wikidata": "Q11703",
+   "name": {
+    "it": "Isole Vergini degli Stati Uniti",
+    "en": "United States Virgin Islands"
+   },
+   "callingCode": [
+    "+1340"
+   ],
+   "emergency": [
+    "911"
+   ],
+   "voltage": [
+    "110"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "UTC-04:00"
+   ]
+  },
+  "VN": {
+   "iso3": "VNM",
+   "wikidata": "Q881",
+   "name": {
+    "it": "Vietnam",
+    "en": "Vietnam"
+   },
+   "callingCode": [
+    "+84"
+   ],
+   "emergency": [
+    "113",
+    "114",
+    "115"
+   ],
+   "plugs": [
+    "A",
+    "C",
+    "F",
+    "G"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Ho_Chi_Minh",
+    "UTC+07:00"
+   ]
+  },
+  "VU": {
+   "iso3": "VUT",
+   "wikidata": "Q686",
+   "name": {
+    "it": "Vanuatu",
+    "en": "Vanuatu"
+   },
+   "callingCode": [
+    "+678"
+   ],
+   "emergency": [
+    "11",
+    "112",
+    "113"
+   ],
+   "plugs": [
+    "C",
+    "G",
+    "I"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Pacific/Efate",
+    "UTC+11:00"
+   ]
+  },
+  "WF": {
+   "iso3": "WLF",
+   "wikidata": "Q35555",
+   "name": {
+    "it": "Wallis e Futuna",
+    "en": "Wallis and Futuna"
+   },
+   "callingCode": [
+    "+681"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+12:00"
+   ]
+  },
+  "WS": {
+   "iso3": "WSM",
+   "wikidata": "Q683",
+   "name": {
+    "it": "Samoa",
+    "en": "Samoa"
+   },
+   "callingCode": [
+    "+685"
+   ],
+   "emergency": [
+    "994",
+    "995",
+    "996",
+    "999"
+   ],
+   "plugs": [
+    "I"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Pacific/Apia",
+    "UTC+13:00"
+   ]
+  },
+  "XK": {
+   "iso3": "XKS",
+   "wikidata": "Q1246",
+   "name": {
+    "it": "Kosovo",
+    "en": "Kosovo"
+   },
+   "callingCode": [
+    "+383"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "F"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+01:00"
+   ]
+  },
+  "YE": {
+   "iso3": "YEM",
+   "wikidata": "Q805",
+   "name": {
+    "it": "Yemen",
+    "en": "Yemen"
+   },
+   "callingCode": [
+    "+967"
+   ],
+   "emergency": [
+    "199"
+   ],
+   "plugs": [
+    "A",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "Asia/Aden",
+    "UTC+03:00"
+   ]
+  },
+  "YT": {
+   "iso3": "MYT",
+   "wikidata": "Q17063",
+   "name": {
+    "it": "Mayotte",
+    "en": "Mayotte"
+   },
+   "callingCode": [
+    "+262"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "driving": "right",
+   "timeZones": [
+    "UTC+03:00"
+   ]
+  },
+  "ZA": {
+   "iso3": "ZAF",
+   "wikidata": "Q258",
+   "name": {
+    "it": "Sudafrica",
+    "en": "South Africa"
+   },
+   "callingCode": [
+    "+27"
+   ],
+   "emergency": [
+    "112"
+   ],
+   "plugs": [
+    "BS 546",
+    "C",
+    "D",
+    "N"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Johannesburg",
+    "UTC+02:00",
+    "UTC+03:00"
+   ]
+  },
+  "ZM": {
+   "iso3": "ZMB",
+   "wikidata": "Q953",
+   "name": {
+    "it": "Zambia",
+    "en": "Zambia"
+   },
+   "callingCode": [
+    "+260"
+   ],
+   "emergency": [
+    "112",
+    "911",
+    "991",
+    "992",
+    "993",
+    "999"
+   ],
+   "plugs": [
+    "C",
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "230"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Lusaka",
+    "UTC+02:00"
+   ]
+  },
+  "ZW": {
+   "iso3": "ZWE",
+   "wikidata": "Q954",
+   "name": {
+    "it": "Zimbabwe",
+    "en": "Zimbabwe"
+   },
+   "callingCode": [
+    "+263"
+   ],
+   "emergency": [
+    "993",
+    "994",
+    "995",
+    "999"
+   ],
+   "plugs": [
+    "D",
+    "G"
+   ],
+   "voltage": [
+    "220"
+   ],
+   "driving": "left",
+   "timeZones": [
+    "Africa/Harare",
+    "UTC+02:00"
+   ]
+  }
+ }
+}

@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.51.0",
+      "date": "2026-11-25",
+      "it": ["Nuovo in Altro: Info paese. Prefisso, numeri di emergenza, prese e tensione, lato di guida e fusi del paese del viaggio (o di un altro), con la fonte su ogni voce e i link a Viaggiare Sicuri e ai consolati."],
+      "en": ["New in More: Country info. Calling code, emergency numbers, plugs and voltage, driving side and time zones of the trip country (or another one), with the source on every entry and links to Viaggiare Sicuri and the consulates."]
+    },
+    {
       "version": "1.50.0",
       "date": "2026-11-25",
       "it": ["Nuovo in Altro: Meteo. Previsioni per 16 giorni e ora per ora della destinazione, alba e tramonto, pioggia, qualità dell'aria e pollini, clima tipico del periodo, cosa mettere in valigia e il pulsante «Apri su 3B Meteo»."],
