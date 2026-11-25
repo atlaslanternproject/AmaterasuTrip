@@ -110,6 +110,12 @@ class TripMorePage extends StatelessWidget {
         route: '/trips/$tripId/more/weather',
       ),
       _TripMoreItem(
+        title: l10n.tripMoreCountryInfo,
+        subtitle: l10n.tripMoreCountryInfoSubtitle,
+        icon: Icons.public_rounded,
+        route: '/trips/$tripId/more/country-info',
+      ),
+      _TripMoreItem(
         title: l10n.tripMoreSettings,
         subtitle: l10n.tripMoreSettingsSubtitle,
         icon: Icons.settings_rounded,

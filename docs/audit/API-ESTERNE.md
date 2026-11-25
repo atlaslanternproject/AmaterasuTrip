@@ -11,7 +11,7 @@ possono cambiare: ricontrollare prima di ogni nuova funzione.
 | Clima tipico del periodo | Open-Meteo Historical / Climate API | no | Cloud Function, cache lunga (settimane) |
 | Geocoding città → fuso orario IANA | Open-Meteo Geocoding API (restituisce già il fuso) | no | app, solo quando si cerca una città |
 | Cambi valuta | Frankfurter (già in uso) | no | come oggi (app con cache + server per le spese) |
-| Info paese | script in tool/ che rigenera un file dai dati aperti (es. REST Countries / Wikidata) con fonte, licenza e data | no | nessuna chiamata dall'app |
+| Info paese | Wikidata (CC0 1.0) con lo script tool/build_country_info.mjs che rigenera assets/country_info/country_info.json; link ufficiali Viaggiare Sicuri e consolati Farnesina | no | nessuna chiamata dall'app (in uso dalla 1.51.0) |
 | Stato volo | solo link a un sito pubblico (FlightAware / Flightradar24) dal numero volo | no | nessuna API |
 | 3B Meteo | solo link alla pagina della città | no | nessuna API |
 | Orari e prezzo dei ristoranti | Google Places (stessa richiesta dei contatti) | sì (già in uso) | app, solo su "Orari e prezzi" o scegliendo il luogo |
@@ -96,6 +96,26 @@ possono cambiare: ricontrollare prima di ogni nuova funzione.
   italiane: pagina /meteo/<città> (spazi con "+", senza accenti, provato
   su roma, reggio+emilia, forli). Estero: il sito vuole un suo numero per
   città che l'app non conosce, quindi si apre la home con la ricerca.
+
+### Wikidata: Info paese (in uso dalla 1.51.0)
+- Dati CC0 1.0 (nessun obbligo, la fonte si cita comunque su ogni voce).
+  Interrogazione SPARQL pubblica, senza chiave, con limiti di buon uso
+  (tempo massimo per richiesta e User-Agent descrittivo).
+- Chiamata solo dallo script tool/build_country_info.mjs, a mano, da chi
+  sviluppa (7 richieste in tutto): l'app legge solo il file generato.
+- Voci: prefisso, numeri di emergenza, prese (lettera del tipo quando
+  Wikidata la indica, altrimenti il nome dello standard), tensione, lato
+  di guida, fusi. Frequenza, acqua potabile e requisiti d'ingresso non
+  hanno una fonte aperta affidabile: non si mostrano, restano i link
+  ufficiali. Lo script si ferma senza scrivere se i dati sembrano errati.
+- REST Countries (proposta iniziale): la versione libera v3.1 risponde
+  "deprecated" e rimanda alla v5; non usata.
+- Viaggiare Sicuri: la pagina del paese è /find-country/country/<codice
+  ISO a 3 lettere> (verificato nel codice del sito, campo "Codice-3").
+  Consolati: https://serviziconsolari.esteri.it/home/cerca-consolato
+  (collegato dalla home della Farnesina).
+- Fonti: [Wikidata licenza](https://www.wikidata.org/wiki/Wikidata:Licensing),
+  [query service](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service).
 
 ### Open-Meteo Geocoding (fuso orario per città, in uso dalla 1.38.0)
 - Gratuita, senza chiave, uso non commerciale (stessi termini di

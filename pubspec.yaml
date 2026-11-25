@@ -52,6 +52,7 @@ flutter:
     - assets/images/profile/
     - assets/changelog/
     - assets/compliance/
+    - assets/country_info/
 flutter_launcher_icons:
   android: true
   ios: true

@@ -335,7 +335,7 @@ Mappa/Itinerario).
 | Extra H - Verifica finale | fatta (vedi sotto) | docs/verifica-finale | - |
 | Nuova tappa 1a - Converti | fatta (pubblicazione: vedi tappa seguente) | feature/converti | 1.49.0+54 |
 | Nuova tappa 1b - Meteo | fatta | feature/meteo | 1.50.0+56 |
-| Nuova tappa 1c - Info paese | da fare | - | - |
+| Nuova tappa 1c - Info paese | fatta | feature/info-paese | 1.51.0+57 |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1235,3 +1235,29 @@ Prove da fare sul sito:
    3B Meteo" apre la pagina di Roma.
 2. Riaprire la pagina nella stessa sessione non ricarica (nessuna rotella).
 3. Viaggio all'estero: "Apri su 3B Meteo" apre la home con la ricerca.
+
+## Nuova tappa 1c - Info paese
+Valutazione (regola 1): (a) non esisteva nulla sui paesi; esistevano il
+caricamento di file JSON dell'app (Conformità, novità), i blocchi a
+tendina, TripSectionHeader e AmaterasuLinkChip; (b) si riusano identici;
+(c) nessuna regola, nessuna funzione, nessuna API dall'app; un file nuovo
+in assets/country_info/ e lo script tool/build_country_info.mjs. Test:
+file generato (fonte, licenza, data, Italia), pagina, 130 %.
+
+- Dati da Wikidata (CC0 1.0), rigenerati con
+  `node tool/build_country_info.mjs` (serve la rete; lo script non
+  scrive il file se i dati dell'Italia non tornano). 255 paesi.
+- Pagina Altro > Info paese: avviso "verifica sempre su fonti
+  ufficiali", scelta del paese (parte da quello della destinazione),
+  prefisso, emergenze, prese, tensione, lato di guida, fusi, ognuna con
+  "Fonte: Wikidata (CC0 1.0) · dati del ..."; le voci senza dati non
+  compaiono. Schede ufficiali: Viaggiare Sicuri (codice ISO a 3 lettere),
+  consolati Farnesina, scheda Wikidata.
+- Acqua potabile, salute, documenti, visti e requisiti d'ingresso: nessuna
+  fonte aperta affidabile, solo il link ufficiale (come chiede il prompt).
+- REST Countries non usata: la versione libera ora risponde "deprecated".
+
+Prove da fare sul sito:
+1. Altro > Info paese in un viaggio in Giappone: +81, prese tipo A e B,
+   100 V, guida a sinistra; "Viaggiare Sicuri" apre la scheda del paese.
+2. Cambiare paese dalla tendina: le voci cambiano.

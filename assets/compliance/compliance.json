@@ -75,6 +75,15 @@
       }
     },
     {
+      "norm": {"it": "Wikidata (dati aperti CC0 1.0)", "en": "Wikidata (CC0 1.0 open data)"},
+      "ref": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "applies": "yes",
+      "how": {
+        "it": "Usato per Info paese tramite un file rigenerato da uno script (l'app non chiama Wikidata). Fonte, licenza e data sono indicate su ogni voce, con l'avviso di verificare sempre su fonti ufficiali.",
+        "en": "Used for Country info through a file rebuilt by a script (the app does not call Wikidata). Source, licence and date are shown on every entry, with the advice to always check official sources."
+      }
+    },
+    {
       "norm": {"it": "Frankfurter (cambi della Banca Centrale Europea)", "en": "Frankfurter (European Central Bank rates)"},
       "ref": "https://frankfurter.dev/",
       "applies": "yes",
