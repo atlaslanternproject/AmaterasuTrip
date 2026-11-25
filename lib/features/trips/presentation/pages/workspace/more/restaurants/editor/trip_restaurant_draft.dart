@@ -31,6 +31,8 @@ class TripRestaurantDraft {
          text: initial?.partySize?.toString() ?? '',
        ),
        notes = TextEditingController(text: initial?.notes ?? ''),
+       triedRating = initial?.triedRating,
+       triedNote = TextEditingController(text: initial?.triedNote ?? ''),
        allergens = {...?initial?.allergens},
        allergenNotes = TextEditingController(
          text: initial?.allergenNotes ?? '',
@@ -53,6 +55,8 @@ class TripRestaurantDraft {
   String? reservationTime;
   final TextEditingController partySize;
   final TextEditingController notes;
+  int? triedRating;
+  final TextEditingController triedNote;
   final Set<String> allergens;
   final TextEditingController allergenNotes;
   final Set<String> diets;
@@ -79,6 +83,9 @@ class TripRestaurantDraft {
       reservationTime: reservationTime,
       partySize: party == null ? null : (int.tryParse(party) ?? 0),
       notes: text(notes),
+      // Stars and note only once the restaurant has been tried.
+      triedRating: status == TripRestaurantStatus.tried ? triedRating : null,
+      triedNote: status == TripRestaurantStatus.tried ? text(triedNote) : null,
       votes: initial?.votes ?? const {},
       allergens: [
         for (final code in TripRestaurantFood.allergens)
@@ -102,6 +109,7 @@ class TripRestaurantDraft {
       cuisine,
       partySize,
       notes,
+      triedNote,
       allergenNotes,
     ]) {
       c.dispose();

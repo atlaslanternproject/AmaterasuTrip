@@ -1,6 +1,7 @@
 // Pagina Ristoranti del viaggio: filtri per stato e fascia di prezzo,
 // ordine per voti, nome o prenotazione, tre viste ricordate, voti dei
-// viaggiatori nella card, editor, spesa collegata ed eliminazione.
+// viaggiatori nella card, "Orari e prezzi" di Google su richiesta, editor,
+// spesa collegata ed eliminazione.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,6 +24,8 @@ import 'package:amaterasutrip/features/trips/stays/providers/trip_stays_context_
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'editor/trip_restaurant_editor.dart';
 import 'widgets/trip_restaurant_entry.dart';
+import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
+import 'widgets/trip_restaurant_hours_sheet.dart';
 import 'widgets/trip_restaurant_votes_bar.dart';
 
 part 'trip_restaurants_page_filters.dart';
@@ -125,21 +128,40 @@ class _TripRestaurantsPageState extends ConsumerState<TripRestaurantsPage>
                   TripRestaurantLabels.status(r.status, l10n),
                   TripRestaurantLabels.color(r.status),
                 ),
-                extraOf: (r) => TripRestaurantVotesBar(
-                  item: r,
-                  uid: uid,
-                  onVote: (level) => votes
-                      .vote(
-                        tripId: tripId,
-                        restaurantId: r.id,
-                        uid: uid!,
-                        level: level,
-                      )
-                      .catchError(
-                        (_) => messenger.showSnackBar(
-                          SnackBar(content: Text(l10n.sectionsSaveError)),
+                extraOf: (r) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (r.place.placeId != null)
+                      AmaterasuButton.tertiary(
+                        key: Key('restaurant-hours-${r.id}'),
+                        icon: Icons.schedule_rounded,
+                        label: l10n.restaurantHours,
+                        onPressed: () => showTripRestaurantHours(
+                          context,
+                          r,
+                          ref
+                                  .read(tripStaysTripInfoProvider(tripId))
+                                  ?.currency ??
+                              'EUR',
                         ),
                       ),
+                    TripRestaurantVotesBar(
+                      item: r,
+                      uid: uid,
+                      onVote: (level) => votes
+                          .vote(
+                            tripId: tripId,
+                            restaurantId: r.id,
+                            uid: uid!,
+                            level: level,
+                          )
+                          .catchError(
+                            (_) => messenger.showSnackBar(
+                              SnackBar(content: Text(l10n.sectionsSaveError)),
+                            ),
+                          ),
+                    ),
+                  ],
                 ),
                 onEdit: _edit,
                 canDelete: (r) =>

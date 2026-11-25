@@ -8027,6 +8027,72 @@ abstract class AppLocalizations {
   /// **'No'**
   String get restaurantFilterNo;
 
+  /// No description provided for @restaurantTriedRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating after trying it'**
+  String get restaurantTriedRating;
+
+  /// No description provided for @restaurantTriedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'How it was'**
+  String get restaurantTriedNote;
+
+  /// No description provided for @restaurantErrRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Rating: from 1 to 5 stars.'**
+  String get restaurantErrRating;
+
+  /// No description provided for @restaurantHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours and prices'**
+  String get restaurantHours;
+
+  /// No description provided for @restaurantHoursNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Google has no opening hours for this place.'**
+  String get restaurantHoursNone;
+
+  /// No description provided for @restaurantHoursError.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t read the opening hours now. Try again later.'**
+  String get restaurantHoursError;
+
+  /// No description provided for @restaurantHoursSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Google hours and prices, read now and not saved: check them on the place\'s website.'**
+  String get restaurantHoursSource;
+
+  /// No description provided for @restaurantClosedDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning: it looks closed on {date}.'**
+  String restaurantClosedDay(String date);
+
+  /// No description provided for @restaurantClosedTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning: it looks closed on {date} at {time}.'**
+  String restaurantClosedTime(String date, String time);
+
+  /// No description provided for @restaurantGooglePrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicative price per person on Google: {range}'**
+  String restaurantGooglePrice(String range);
+
+  /// No description provided for @restaurantGooglePriceConverted.
+  ///
+  /// In en, this message translates to:
+  /// **'About {range} at today\'s rate'**
+  String restaurantGooglePriceConverted(String range);
+
   /// No description provided for @placesPhotoOpen.
   ///
   /// In en, this message translates to:

@@ -968,10 +968,16 @@ service cloud.firestore {
           'placeLatitude', 'placeLongitude',
           'phone', 'website', 'cuisine', 'priceLevel',
           'reservationDate', 'reservationTime', 'partySize',
-          'notes', 'votes', 'allergens', 'allergenNotes', 'diets'
+          'notes', 'votes', 'allergens', 'allergenNotes', 'diets',
+          'triedRating', 'triedNote'
         ])
           && sectionName(data, 'name', 200)
           && data.status in ['toTry', 'booked', 'tried']
+          // Stars and note once tried (v1.29.0).
+          && (!('triedRating' in data)
+            || (data.triedRating is int
+              && data.triedRating >= 1 && data.triedRating <= 5))
+          && sectionText(data, 'triedNote', 1000)
           // EU allergens to tell the restaurant and diet labels (v1.25.0).
           && (
             data.get('allergens', null) == null

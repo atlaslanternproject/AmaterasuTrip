@@ -1,5 +1,5 @@
 // Parte di trip_restaurant_editor.dart: campo di testo dell'editor e
-// blocco stato, cucina e prezzo.
+// blocco stato (con voto e nota quando è "provato"), cucina e prezzo.
 
 // ignore_for_file: invalid_use_of_protected_member
 part of 'trip_restaurant_editor.dart';
@@ -35,6 +35,28 @@ extension _TripRestaurantEditorParts on _TripRestaurantEditorState {
             selected: d.status,
             onChanged: (s) => setState(() => d.status = s ?? d.status),
           ),
+          if (d.status == TripRestaurantStatus.tried) ...[
+            const SizedBox(height: 12),
+            Text(l10n.restaurantTriedRating),
+            const SizedBox(height: 6),
+            TripSectionChoices<int>(
+              keyPrefix: 'restaurant-rating',
+              values: const [1, 2, 3, 4, 5],
+              codeOf: (r) => '$r',
+              labelOf: tripSectionStars,
+              selected: d.triedRating,
+              allowNone: true,
+              onChanged: (r) => setState(() => d.triedRating = r),
+            ),
+            const SizedBox(height: 8),
+            _text(
+              'tried-note',
+              d.triedNote,
+              l10n.restaurantTriedNote,
+              max: TripRestaurantCodec.triedNoteMax,
+              lines: 2,
+            ),
+          ],
           const SizedBox(height: 8),
           _text('cuisine', d.cuisine, l10n.restaurantCuisine),
           TripSectionChoices<int>(
