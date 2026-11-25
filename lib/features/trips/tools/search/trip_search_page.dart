@@ -1,13 +1,14 @@
-// Pagina "Cerca" di Altro (nuova tappa 2a): campo di ricerca, ricerche
-// recenti, filtro per sezione e risultati a pagine da 20. I dati si
-// leggono alla prima ricerca e restano per la sessione ("Aggiorna" li
-// rilegge); il tocco su un risultato apre la sua sezione.
+// Pagina "Cerca" di Altro (tappa 2): campo, ricerche recenti, filtro per
+// sezione e risultati a pagine da 20; dati letti alla prima ricerca e
+// tenuti per la sessione ("Aggiorna" li rilegge). Il tocco apre la sezione
+// e mette in risalto l'elemento (2b).
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_focus.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_header.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_search_parts.dart';
@@ -57,6 +58,11 @@ class _TripSearchPageState extends ConsumerState<TripSearchPage> {
 
   void _open(TripSearchDoc doc) {
     _remember(_field.text);
+    // Highlighted by the section list (not in stays, an approved module,
+    // nor in checklists, where the list itself opens).
+    if (doc.section.highlights) {
+      ref.read(tripSectionFocusProvider.notifier).set(doc.id);
+    }
     context.go(doc.section.route(widget.tripId, doc.id));
   }
 

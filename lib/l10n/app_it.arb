@@ -1146,6 +1146,7 @@
   "searchError": "Ricerca non disponibile ora.",
   "searchRetry": "Riprova",
   "searchSectionCount": "{section} ({count})",
+  "tripSectionFocusHidden": "L'elemento cercato è nascosto dai filtri attivi: cambia i filtri per vederlo.",
   "settingsSupport": "Assistenza e privacy",
   "settingsSupportSubtitle": "Segnalazioni, idee, stato dell'app e normative",
   "supportTitle": "Assistenza e privacy",

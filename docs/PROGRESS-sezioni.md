@@ -337,6 +337,7 @@ Mappa/Itinerario).
 | Nuova tappa 1b - Meteo | fatta | feature/meteo | 1.50.0+56 |
 | Nuova tappa 1c - Info paese | fatta | feature/info-paese | 1.51.0+57 |
 | Nuova tappa 2a - Cerca nelle sezioni | fatta | feature/cerca-globale | 1.52.0+58 |
+| Nuova tappa 2b - Risalto del risultato | fatta | feature/cerca-evidenzia | 1.53.0+59 |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1317,3 +1318,25 @@ Prove da fare sul sito:
    il risultato apre la sezione giusta.
 2. Una nota privata di un altro viaggiatore non compare mai.
 3. Le ricerche recenti restano dopo aver riaperto la pagina.
+
+### Passo 2b - fatto (1.53.0)
+Valutazione (regola 1): (a) l'elenco comune TripSectionList è usato da
+tutte le sezioni nuove (trasporti, prenotazioni, ristoranti, luoghi,
+note, shopping, checklist, ricordi); (b) il risalto si aggiunge lì una
+volta sola (nessuna pagina cambia): un segno in memoria
+(tripSectionFocusProvider) messo da Cerca, letto e cancellato dall'elenco;
+(c) tocca trip_section_list.dart (diviso con il file part
+trip_section_list_item.dart, la voce spostata senza cambiamenti) e
+trip_section_focus.dart nuovo; test: tutti quelli delle sezioni prima e
+dopo (600 passati) più quelli nuovi.
+
+- L'elenco scorre fino all'elemento (anche se è in fondo: le card si
+  costruiscono man mano), bordo arancio per 3 secondi, poi normale.
+- Se i filtri lo nascondono: avviso "nascosto dai filtri attivi".
+- Alloggi: si apre la pagina senza risalto (modulo approvato: serve il tuo
+  ok per aggiungerlo). Checklist: si apre già la lista.
+
+Prove da fare sul sito:
+1. Cerca un luogo salvato in fondo all'elenco: la pagina scorre fino a lui
+   e lo mostra con il bordo.
+2. Con un filtro attivo che lo nasconde compare l'avviso.

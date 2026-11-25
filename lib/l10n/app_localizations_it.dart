@@ -3242,6 +3242,9 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get tripSectionFocusHidden => 'L\'elemento cercato è nascosto dai filtri attivi: cambia i filtri per vederlo.';
+
+  @override
   String get settingsSupport => 'Assistenza e privacy';
 
   @override

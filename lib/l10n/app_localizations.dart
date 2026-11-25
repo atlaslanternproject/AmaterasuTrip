@@ -6281,6 +6281,12 @@ abstract class AppLocalizations {
   /// **'{section} ({count})'**
   String searchSectionCount(String section, int count);
 
+  /// No description provided for @tripSectionFocusHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'The item you searched for is hidden by the active filters: change the filters to see it.'**
+  String get tripSectionFocusHidden;
+
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:

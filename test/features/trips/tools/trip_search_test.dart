@@ -7,6 +7,7 @@
 
 import 'package:amaterasutrip/features/trips/checklists/models/trip_checklist.dart';
 import 'package:amaterasutrip/features/trips/checklists/models/trip_checklist_codec.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_focus.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_codec.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_extras.dart';
 import 'package:amaterasutrip/features/trips/tools/search/trip_search_page.dart';
@@ -87,6 +88,10 @@ Future<void> type(WidgetTester tester, String text) async {
   await tester.enterText(find.byKey(const Key('search-field')), text);
   await tester.pumpAndSettle();
 }
+
+String? focusOf(WidgetTester tester, String text) => ProviderScope.containerOf(
+  tester.element(find.text(text)),
+).read(tripSectionFocusProvider);
 
 void main() {
   test('searchable text: user fields only, checklist items included', () {
@@ -192,6 +197,17 @@ void main() {
     await tester.tap(find.byKey(const Key('search-result-stays-s1')));
     await tester.pumpAndSettle();
     expect(find.text('page hotels'), findsOneWidget);
+    // Stays are an approved module: no highlight there.
+    expect(focusOf(tester, 'page hotels'), isNull);
+  });
+
+  testWidgets('a transport is marked for the highlight', (tester) async {
+    await open(tester);
+    await type(tester, 'az784');
+    await tester.tap(find.byKey(const Key('search-result-transports-t1')));
+    await tester.pumpAndSettle();
+    expect(find.text('page transport'), findsOneWidget);
+    expect(focusOf(tester, 'page transport'), 't1');
   });
 
   testWidgets('checklist opens its list; recent search is kept', (
