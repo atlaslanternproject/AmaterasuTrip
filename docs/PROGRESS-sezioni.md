@@ -321,7 +321,8 @@ Mappa/Itinerario).
 | Extra C - Fuso orario per città (migrazione non necessaria) | fatta, pubblicata 1.38.0 il 25/11/2026 | feature/fuso-citta | 1.38.0+43 |
 | Extra D - Categorie personalizzate | fatta, pubblicata 1.39.0 il 25/11/2026 | feature/categorie | 1.39.0+44 |
 | Extra D - Filtro per categoria personalizzata | fatta, pubblicata 1.40.0 il 25/11/2026 | feature/filtro-categorie | 1.40.0+45 |
-| Extra E - Aspetto | piano scritto, in attesa di ok (tocca budget e impostazioni) | - | - |
+| Extra E - Aspetto: piano | approvato il 25/11/2026 | - | - |
+| Extra E1 - Preferenze Aspetto (modello e salvataggio) | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e1 | 1.41.0+46 |
 | Extra F-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -914,3 +915,26 @@ Proposta su valuta predefinita e di visualizzazione: tenerle separate
 (una serve per scrivere, l'altra per leggere), ma con la valuta di
 visualizzazione che, se non scelta, segue quella predefinita: così chi ne
 imposta una sola ha già il comportamento atteso.
+
+Decisioni sul piano (25/11/2026): (1) il selettore della pagina spese è
+temporaneo: riparte sempre da Aspetto e non modifica Aspetto; (2) in E7 si
+toglie "Originale: X" a parità di valuta, con tutti i test del budget
+prima e dopo; (3) CSV e PDF restano nella valuta originale, senza colonna
+convertita. Condizione per E6 ed E7: riusare gli importi già convertiti
+dal budget (stessi tassi, stessa logica), non ricalcolare i totali con
+altri tassi, nessun cambio ai calcoli.
+
+## Extra E1 - Preferenze Aspetto (modello e salvataggio)
+Modulo comune lib/core/appearance: AmaterasuAppearance (dimensione del
+testo 100/110/120/130 %, km/miglia, formato data, formato ora, valuta
+predefinita, valuta di visualizzazione che segue la predefinita se non
+scelta) e amaterasuAppearanceProvider (parte dalla copia nel dispositivo,
+legge il profilo una volta sola, salva nel dispositivo e nel profilo).
+Nessuna schermata ancora (arriva in E2).
+
+Impatto sulle regole: il profilo viaggiatori/{uid} accetta un campo in
+più, "appearance", modificabile solo dal proprietario e solo con i valori
+ammessi (test). Nient'altro del profilo cambia; la cancellazione
+dell'account lo elimina con il profilo.
+
+Prove da fare sul sito: nessuna (nessun cambiamento visibile).

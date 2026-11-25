@@ -48,6 +48,23 @@ service cloud.firestore {
     // =========================================================
     // USER PROFILE
     // =========================================================
+    // Appearance preferences of the user (v1.41.0, Extra E): text size,
+    // units, date and time format, default and display currency. Only
+    // display choices: no amount or calculation depends on them.
+    function validAppearance(a) {
+      return a is map
+        && a.keys().hasOnly([
+          'textScale', 'units', 'dateFormat', 'timeFormat',
+          'defaultCurrency', 'displayCurrency'
+        ])
+        && a.get('textScale', 100) in [100, 110, 120, 130]
+        && a.get('units', 'km') in ['km', 'mi']
+        && a.get('dateFormat', 'locale') in ['locale', 'dmy', 'ymd']
+        && a.get('timeFormat', '24') in ['24', '12']
+        && a.get('defaultCurrency', 'EUR').matches('^[A-Z]{3}$')
+        && a.get('displayCurrency', 'EUR').matches('^[A-Z]{3}$');
+    }
+
     match /viaggiatori/{uid} {
       allow get: if isSelf(uid);
       allow list: if false;
@@ -89,8 +106,13 @@ service cloud.firestore {
             'bio',
             'updatedAt',
             'photoUrl',
-            'photoPath'
+            'photoPath',
+            'appearance'
           ])
+        && (
+          !('appearance' in request.resource.data)
+          || validAppearance(request.resource.data.appearance)
+        )
         && (
           (
             !('usernameLower' in resource.data)
