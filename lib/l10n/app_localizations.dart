@@ -5567,6 +5567,138 @@ abstract class AppLocalizations {
   /// **'Add a link'**
   String get commonLinkAdd;
 
+  /// No description provided for @settingsAppearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get settingsAppearance;
+
+  /// No description provided for @settingsAppearanceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Text, units, dates and currencies'**
+  String get settingsAppearanceSubtitle;
+
+  /// No description provided for @appearanceTextSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Text size'**
+  String get appearanceTextSize;
+
+  /// No description provided for @appearanceUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Units'**
+  String get appearanceUnits;
+
+  /// No description provided for @appearanceUnitsKm.
+  ///
+  /// In en, this message translates to:
+  /// **'Kilometres'**
+  String get appearanceUnitsKm;
+
+  /// No description provided for @appearanceUnitsMi.
+  ///
+  /// In en, this message translates to:
+  /// **'Miles'**
+  String get appearanceUnitsMi;
+
+  /// No description provided for @appearanceDateFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Date format'**
+  String get appearanceDateFormat;
+
+  /// No description provided for @appearanceDateLocale.
+  ///
+  /// In en, this message translates to:
+  /// **'Like the language'**
+  String get appearanceDateLocale;
+
+  /// No description provided for @appearanceDateDmy.
+  ///
+  /// In en, this message translates to:
+  /// **'dd/mm/yyyy'**
+  String get appearanceDateDmy;
+
+  /// No description provided for @appearanceDateYmd.
+  ///
+  /// In en, this message translates to:
+  /// **'yyyy-mm-dd'**
+  String get appearanceDateYmd;
+
+  /// No description provided for @appearanceTimeFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Time format'**
+  String get appearanceTimeFormat;
+
+  /// No description provided for @appearanceTime24.
+  ///
+  /// In en, this message translates to:
+  /// **'24 hours'**
+  String get appearanceTime24;
+
+  /// No description provided for @appearanceTime12.
+  ///
+  /// In en, this message translates to:
+  /// **'12 hours (AM/PM)'**
+  String get appearanceTime12;
+
+  /// No description provided for @appearanceCurrencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Currencies'**
+  String get appearanceCurrencies;
+
+  /// No description provided for @appearanceDefaultCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency for new entries'**
+  String get appearanceDefaultCurrency;
+
+  /// No description provided for @appearanceDisplayCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Display currency'**
+  String get appearanceDisplayCurrency;
+
+  /// No description provided for @appearanceCurrencyTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'the trip\'s'**
+  String get appearanceCurrencyTrip;
+
+  /// No description provided for @appearanceDisplayOriginal.
+  ///
+  /// In en, this message translates to:
+  /// **'the original one'**
+  String get appearanceDisplayOriginal;
+
+  /// No description provided for @appearanceDisplayFollows.
+  ///
+  /// In en, this message translates to:
+  /// **'like new entries ({currency})'**
+  String appearanceDisplayFollows(String currency);
+
+  /// No description provided for @appearanceCurrencyAuto.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to the automatic value'**
+  String get appearanceCurrencyAuto;
+
+  /// No description provided for @appearanceOriginalsUnchanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Original amounts stay unchanged: the display currency only changes how you see them.'**
+  String get appearanceOriginalsUnchanged;
+
+  /// No description provided for @appearanceSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Choice saved on this device, but not in the profile. Try again later.'**
+  String get appearanceSaveFailed;
+
   /// No description provided for @sectionsCategories.
   ///
   /// In en, this message translates to:
