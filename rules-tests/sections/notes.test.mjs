@@ -92,10 +92,12 @@ test('notes: a private note is read only by its author', async () => {
 test('notes: only the author edits or deletes a private note', async () => {
   await seedPrivate();
   await assertFails(updateDoc(ref(OTHER_MEMBER, 'private-1'), {
+    updatedByUid: OTHER_MEMBER,
     body: 'x', updatedAt: serverTimestamp(),
   }));
   await assertFails(deleteDoc(ref(OWNER, 'private-1')));
   await assertSucceeds(updateDoc(ref(MEMBER, 'private-1'), {
+    updatedByUid: MEMBER,
     visibility: 'shared', updatedAt: serverTimestamp(),
   }));
   await seedPrivate('private-2');
@@ -105,9 +107,11 @@ test('notes: only the author edits or deletes a private note', async () => {
 test('notes: other members cannot make a shared note private', async () => {
   await assertSucceeds(setDoc(ref(MEMBER, 'shared'), note(MEMBER)));
   await assertFails(updateDoc(ref(OTHER_MEMBER, 'shared'), {
+    updatedByUid: OTHER_MEMBER,
     visibility: 'private', updatedAt: serverTimestamp(),
   }));
   await assertSucceeds(updateDoc(ref(OTHER_MEMBER, 'shared'), {
+    updatedByUid: OTHER_MEMBER,
     checklist: [{text: 'Fatto', done: true}], updatedAt: serverTimestamp(),
   }));
 });

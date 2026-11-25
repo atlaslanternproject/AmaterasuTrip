@@ -33,6 +33,8 @@ const excludedSubcollections = new Set<string>([
   "checklists",
   // Weather cache (v1.50.0): rebuilt by the server for each trip.
   "weatherCache",
+  // Audit Trail (v1.58.0): belongs to the original trip.
+  "auditTrail",
 ]);
 
 const excludedExternalReferenceFields =

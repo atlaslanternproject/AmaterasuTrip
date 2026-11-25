@@ -1,8 +1,10 @@
 // Modifica delle voci di una checklist una alla volta (items.<id>): due
 // persone possono spuntare voci diverse insieme senza sovrascriversi.
-// Azzera spunte e riordino cambiano solo i campi necessari.
+// Azzera spunte e riordino cambiano solo i campi necessari; ogni modifica
+// è firmata con updatedByUid (Audit Trail).
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:amaterasutrip/features/trips/sections/data/trip_section_store.dart';
 import '../models/trip_checklist.dart';
@@ -22,9 +24,11 @@ abstract interface class TripChecklistEntries {
 }
 
 class FirestoreTripChecklistEntries implements TripChecklistEntries {
-  FirestoreTripChecklistEntries(this._firestore);
+  FirestoreTripChecklistEntries(this._firestore, [FirebaseAuth? auth])
+    : _auth = auth ?? FirebaseAuth.instance;
 
   final FirebaseFirestore _firestore;
+  final FirebaseAuth _auth;
 
   DocumentReference<Map<String, dynamic>> _doc(TripChecklist list) =>
       _firestore.doc(
@@ -33,7 +37,11 @@ class FirestoreTripChecklistEntries implements TripChecklistEntries {
       );
 
   Future<void> _update(TripChecklist list, Map<Object, Object?> fields) =>
-      _doc(list).update({...fields, 'updatedAt': FieldValue.serverTimestamp()});
+      _doc(list).update({
+        ...fields,
+        'updatedAt': FieldValue.serverTimestamp(),
+        'updatedByUid': _auth.currentUser?.uid,
+      });
 
   @override
   Future<void> save(TripChecklist list, TripChecklistEntry entry) {

@@ -127,16 +127,31 @@ export function sectionCommonTests(name, path, item, bad, edit,
   test(`${name}: any member edits, keeping author and creation time`, async () => {
     await seed(MEMBER);
     await assertSucceeds(updateDoc(ref(OTHER_MEMBER), {
+      updatedByUid: OTHER_MEMBER,
       ...edit, updatedAt: serverTimestamp(),
     }));
     await assertFails(updateDoc(ref(OTHER_MEMBER), {
+      updatedByUid: OTHER_MEMBER,
       createdByUid: OTHER_MEMBER, updatedAt: serverTimestamp(),
     }));
     await assertFails(updateDoc(ref(OTHER_MEMBER), {
+      updatedByUid: OTHER_MEMBER,
       createdAt: serverTimestamp(), updatedAt: serverTimestamp(),
     }));
     await assertFails(updateDoc(ref(OUTSIDER), {
+      updatedByUid: OUTSIDER,
       ...edit, updatedAt: serverTimestamp(),
+    }));
+    // Audit Trail: the writer must sign the change with their own uid (the
+    // document is now signed by OTHER_MEMBER, so the owner must re-sign).
+    await assertFails(updateDoc(ref(OWNER), {
+      ...edit, updatedAt: serverTimestamp(),
+    }));
+    await assertFails(updateDoc(ref(OWNER), {
+      ...edit, updatedByUid: MEMBER, updatedAt: serverTimestamp(),
+    }));
+    await assertSucceeds(updateDoc(ref(OWNER), {
+      ...edit, updatedByUid: OWNER, updatedAt: serverTimestamp(),
     }));
   });
 
@@ -159,5 +174,6 @@ export function base(uid) {
     createdByUid: uid,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
+    updatedByUid: uid,
   };
 }

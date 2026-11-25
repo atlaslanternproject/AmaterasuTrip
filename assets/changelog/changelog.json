@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.58.0",
+      "date": "2026-11-25",
+      "it": ["Nuovo in Altro: Audit Trail. Il registro di chi ha cambiato cosa e quando nelle sezioni del viaggio, con il valore prima e dopo, filtri per sezione, persona, azione e periodo. Lo scrive solo il server e nessuno può modificarlo; note e checklist private non ci sono mai. Informativa privacy aggiornata."],
+      "en": ["New in More: Audit Trail. The log of who changed what and when in the trip sections, with the value before and after, filters by section, person, action and period. Only the server writes it and nobody can change it; private notes and checklists are never in it. Privacy policy updated."]
+    },
+    {
       "version": "1.57.0",
       "date": "2026-11-25",
       "it": ["Esporta: nuovo PDF del viaggio, un riepilogo di alloggi, trasporti, prenotazioni e ristoranti prenotati in ordine di data, con i link della cartella del viaggio e degli album dei ricordi, da stampare o salvare come PDF."],

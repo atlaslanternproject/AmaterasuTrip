@@ -49,10 +49,12 @@ test('checklists: categories, items and one-item updates', async () => {
     items: items(300),
   })));
   await assertSucceeds(updateDoc(ref(OTHER_MEMBER, 'full'), {
+    updatedByUid: OTHER_MEMBER,
     'items.i3.done': true, updatedAt: serverTimestamp(),
   }));
   // A list already has 300 items: one more is rejected.
   await assertFails(updateDoc(ref(OTHER_MEMBER, 'full'), {
+    updatedByUid: OTHER_MEMBER,
     'items.extra': {text: 'Ombrello', category: 'Vestiti', done: false},
     updatedAt: serverTimestamp(),
   }));
@@ -70,6 +72,7 @@ test('checklists: a personal list is read only by its author', async () => {
   await assertFails(getDoc(ref(OTHER_MEMBER, 'mine')));
   await assertFails(getDoc(ref(OWNER, 'mine')));
   await assertFails(updateDoc(ref(OTHER_MEMBER, 'mine'), {
+    updatedByUid: OTHER_MEMBER,
     title: 'x', updatedAt: serverTimestamp(),
   }));
   await assertFails(deleteDoc(ref(OWNER, 'mine')));
