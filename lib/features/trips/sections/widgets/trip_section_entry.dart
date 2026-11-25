@@ -5,11 +5,19 @@
 import 'package:flutter/material.dart';
 
 class TripSectionLine {
-  const TripSectionLine(this.icon, this.text, {this.key});
+  const TripSectionLine(
+    this.icon,
+    this.text, {
+    this.key,
+    this.formatted = false,
+  });
 
   final IconData icon;
   final String text;
   final Key? key;
+
+  /// Basic formatting of notes: "# " title, "- " list, **bold**.
+  final bool formatted;
 }
 
 class TripSectionEntry {

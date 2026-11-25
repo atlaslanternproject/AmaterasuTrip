@@ -3997,6 +3997,53 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noteErrChecklist => 'The checklist can have at most 100 items.';
 
   @override
+  String get noteTemplatePhrases => 'Use the «Useful phrases» template';
+
+  @override
+  String get noteTemplatePhrasesTitle => 'Useful phrases';
+
+  @override
+  String get noteTemplatePhrasesBody => '# Useful phrases\n- Hello / Good morning: \n- Thank you: \n- Excuse me: \n- How much is it?: \n- Where is the toilet?: \n- The bill, please: \n- I\'m allergic to: \n- Help!: ';
+
+  @override
+  String get noteTemplateContacts => 'Use the «Contacts» template';
+
+  @override
+  String get noteTemplateContactsTitle => 'Contacts';
+
+  @override
+  String get noteTemplateContactsBody => '# Contacts\n- Emergency: 112\n- Embassy or consulate: \n- Accommodation: \n- Travel insurance: \n- Airline: \n- Taxi: \n- Contact at home: ';
+
+  @override
+  String get noteFormatTitle => 'Title (line starting with #)';
+
+  @override
+  String get noteFormatList => 'Bulleted list';
+
+  @override
+  String get noteFormatBold => 'Bold';
+
+  @override
+  String get noteBlockLink => 'Linked to';
+
+  @override
+  String get noteLinkNone => 'No linked element';
+
+  @override
+  String get noteLinkPick => 'Link';
+
+  @override
+  String get noteLinkRemove => 'Remove the link';
+
+  @override
+  String get noteLinkEmpty => 'No stay, transport, booking, restaurant or place in the trip.';
+
+  @override
+  String noteLinkedTo(String name, String section) {
+    return 'Linked to $name ($section)';
+  }
+
+  @override
   String get shoppingTabItems => 'Shopping';
 
   @override

@@ -1,6 +1,7 @@
 // Note nelle viste: icona (fissata, privata o normale), titolo, etichette
-// Privata/Condivisa e Fissata, testo, avanzamento della checklist; nella
-// card grande le voci della checklist si spuntano direttamente.
+// Privata/Condivisa e Fissata, testo formattato, elemento collegato,
+// avanzamento della checklist; nella card grande le voci della checklist
+// si spuntano direttamente. Qui anche nomi e icone delle sezioni collegabili.
 
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,24 @@ import 'package:amaterasutrip/features/trips/notes/models/trip_note.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_chip.dart';
 import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_entry.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+
+abstract final class TripNoteLabels {
+  static String section(String code, AppLocalizations l10n) => switch (code) {
+    'stays' => l10n.tripHotelsTitle,
+    'transports' => l10n.tripTransportTitle,
+    'reservations' => l10n.tripBookingsTitle,
+    'restaurants' => l10n.tripRestaurantsTitle,
+    _ => l10n.tripSavedPlacesTitle,
+  };
+
+  static IconData sectionIcon(String code) => switch (code) {
+    'stays' => Icons.hotel_outlined,
+    'transports' => Icons.flight_takeoff_rounded,
+    'reservations' => Icons.confirmation_number_outlined,
+    'restaurants' => Icons.restaurant_outlined,
+    _ => Icons.bookmark_outline_rounded,
+  };
+}
 
 TripSectionEntry tripNoteEntry(BuildContext context, TripNote note) {
   final l10n = AppLocalizations.of(context)!;
@@ -42,8 +61,17 @@ TripSectionEntry tripNoteEntry(BuildContext context, TripNote note) {
         ),
     ],
     lines: [
+      if (note.link case final link?)
+        TripSectionLine(
+          TripNoteLabels.sectionIcon(link.section),
+          l10n.noteLinkedTo(
+            link.name,
+            TripNoteLabels.section(link.section, l10n),
+          ),
+          key: Key('note-linked-${note.id}'),
+        ),
       if (note.body case final body?)
-        TripSectionLine(Icons.notes_outlined, body),
+        TripSectionLine(Icons.notes_outlined, body, formatted: true),
     ],
   );
 }

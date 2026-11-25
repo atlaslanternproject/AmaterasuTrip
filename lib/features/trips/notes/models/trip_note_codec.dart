@@ -17,7 +17,14 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
   String get collection => 'notes';
 
   @override
-  List<String> get optionalKeys => const ['body', 'pinned', 'checklist'];
+  List<String> get optionalKeys => const [
+    'body',
+    'pinned',
+    'checklist',
+    'linkSection',
+    'linkId',
+    'linkName',
+  ];
 
   @override
   Map<String, dynamic> toMap(TripNote item) => {
@@ -32,6 +39,11 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
         for (final entry in item.checklist)
           {'text': entry.text.trim(), 'done': entry.done},
       ],
+    if (item.link case final link?) ...{
+      'linkSection': link.section,
+      'linkId': link.id,
+      'linkName': link.name.trim(),
+    },
   };
 
   @override
@@ -48,6 +60,9 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
       throw FormatException('Invalid note $id.');
     }
     final raw = data['checklist'];
+    final section = text('linkSection');
+    final linkId = text('linkId');
+    final linkName = text('linkName');
     return TripNote(
       id: id,
       tripId: tripId,
@@ -65,6 +80,12 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
                 done: entry['done'] == true,
               ),
       ],
+      link:
+          TripNoteLink.sections.contains(section) &&
+              linkId != null &&
+              linkName != null
+          ? TripNoteLink(section: section!, id: linkId, name: linkName)
+          : null,
     );
   }
 
@@ -73,7 +94,8 @@ class TripNoteCodec implements TripSectionCodec<TripNote> {
     final c = TripSectionChecks()
       ..required(item.title, 'title')
       ..maxLength(item.title.trim(), TripSectionFields.nameMax, 'title')
-      ..maxLength(item.body, TripSectionFields.notesMax, 'body');
+      ..maxLength(item.body, TripSectionFields.notesMax, 'body')
+      ..maxLength(item.link?.name, TripSectionFields.nameMax, 'linkName');
     c
       ..check(
         item.checklist.length > checklistMax,

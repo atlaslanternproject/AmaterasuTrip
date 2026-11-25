@@ -310,7 +310,8 @@ Mappa/Itinerario).
 | Sezioni v2 - Prenotazioni | fatta, pubblicata 1.28.0 il 25/11/2026 | feature/prenotazioni-v2 | 1.28.0+32 |
 | Sezioni v2 - Ristoranti | fatta, pubblicata 1.29.0 il 25/11/2026 | feature/ristoranti-v2 | 1.29.0+33 |
 | Sezioni v2 - Luoghi salvati | fatta, pubblicata 1.30.0 il 25/11/2026 | feature/luoghi-v2 | 1.30.0+34 |
-| Sezioni v2 - Alloggi (aggiunte facoltative) | fatta (pubblicazione: vedi tappa seguente) | feature/alloggi-v2 | 1.31.0+35 |
+| Sezioni v2 - Alloggi (aggiunte facoltative) | fatta, pubblicata 1.31.0 il 25/11/2026 | feature/alloggi-v2 | 1.31.0+35 |
+| Sezioni v2 - Note | fatta (pubblicazione: vedi tappa seguente) | feature/note-v2 | 1.32.0+36 |
 | Sezioni v2 - Luoghi, Alloggi, Note, Shopping, Link utili | da fare | - | - |
 | Crea spesa dalle sezioni | da fare | - | - |
 | Extra A-H | da fare | - | - |
@@ -545,3 +546,25 @@ Prove da fare sul sito:
 4. Tassa a persona per notte: la card mostra il totale (notti × persone;
    se "persone" è vuoto si usano gli ospiti).
 5. Un alloggio già salvato senza queste aggiunte appare come prima.
+
+## Sezioni v2 - Note
+Valutazione (regola 1): (a) esistevano note private, checklist e il
+modello "Info utili"; (b) la formattazione di base è un modulo comune
+delle sezioni (tripSectionRichText, attivato con TripSectionLine
+formatted) così altre sezioni potranno riusarla; gli elementi da
+collegare si leggono una volta sola con i negozi esistenti, solo
+aprendo "Collega"; (c) tocca il blocco notes delle regole (linkSection,
+linkId, linkName); test di regole, testo formattato, card ed editor.
+
+Commit: dcfdcb9.
+
+"Link utili" nelle note: arriva con la tappa "Link ovunque" (campo comune
+per tutte le sezioni).
+
+Prove da fare sul sito:
+1. Nota nuova: tre modelli (Info utili, Frasi utili, Contatti).
+2. Barra sopra il testo: Titolo, Elenco, Grassetto; nella card il titolo è
+   in grassetto, le righe "- " diventano punti elenco.
+3. "Collegata a" > Collega: compaiono alloggi, trasporti, prenotazioni,
+   ristoranti e luoghi del viaggio; la card mostra "Collegata a …".
+4. Il collegamento si toglie con l'icona accanto.

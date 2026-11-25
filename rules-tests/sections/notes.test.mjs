@@ -40,6 +40,10 @@ const {ref} = sectionCommonTests('notes', 'notes', note, [
   {pinned: 'yes'},
   {checklist: 'pane'},
   {checklist: Array.from({length: 101}, () => ({text: 'x', done: false}))},
+  {linkSection: 'bucket', linkId: 's1', linkName: 'Hotel'},
+  {linkSection: 'stays', linkId: 'a/b', linkName: 'Hotel'},
+  {linkSection: 'stays', linkId: 's1', linkName: ''},
+  {linkSection: 'stays', linkName: 'Hotel'},
 ], {pinned: true, body: 'Password: 1234'}, {wholeList: false});
 
 async function seedPrivate(id = 'private-1') {
@@ -51,6 +55,15 @@ async function seedPrivate(id = 'private-1') {
     });
   });
 }
+
+test('notes: linked to an element of another section', async () => {
+  await assertSucceeds(setDoc(ref(MEMBER, 'linked'), note(MEMBER, {
+    body: '# Check-in\n- Passaporti\n**Codice** 1234',
+    linkSection: 'stays',
+    linkId: 'stay_1',
+    linkName: 'Ryokan Kyoto',
+  })));
+});
 
 test('notes: checklist and pinned are saved', async () => {
   await assertSucceeds(setDoc(ref(MEMBER, 'list'), note(MEMBER, {

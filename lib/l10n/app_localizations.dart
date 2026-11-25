@@ -7625,6 +7625,96 @@ abstract class AppLocalizations {
   /// **'The checklist can have at most 100 items.'**
   String get noteErrChecklist;
 
+  /// No description provided for @noteTemplatePhrases.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the «Useful phrases» template'**
+  String get noteTemplatePhrases;
+
+  /// No description provided for @noteTemplatePhrasesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Useful phrases'**
+  String get noteTemplatePhrasesTitle;
+
+  /// No description provided for @noteTemplatePhrasesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'# Useful phrases\n- Hello / Good morning: \n- Thank you: \n- Excuse me: \n- How much is it?: \n- Where is the toilet?: \n- The bill, please: \n- I\'m allergic to: \n- Help!: '**
+  String get noteTemplatePhrasesBody;
+
+  /// No description provided for @noteTemplateContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the «Contacts» template'**
+  String get noteTemplateContacts;
+
+  /// No description provided for @noteTemplateContactsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get noteTemplateContactsTitle;
+
+  /// No description provided for @noteTemplateContactsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'# Contacts\n- Emergency: 112\n- Embassy or consulate: \n- Accommodation: \n- Travel insurance: \n- Airline: \n- Taxi: \n- Contact at home: '**
+  String get noteTemplateContactsBody;
+
+  /// No description provided for @noteFormatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title (line starting with #)'**
+  String get noteFormatTitle;
+
+  /// No description provided for @noteFormatList.
+  ///
+  /// In en, this message translates to:
+  /// **'Bulleted list'**
+  String get noteFormatList;
+
+  /// No description provided for @noteFormatBold.
+  ///
+  /// In en, this message translates to:
+  /// **'Bold'**
+  String get noteFormatBold;
+
+  /// No description provided for @noteBlockLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked to'**
+  String get noteBlockLink;
+
+  /// No description provided for @noteLinkNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No linked element'**
+  String get noteLinkNone;
+
+  /// No description provided for @noteLinkPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get noteLinkPick;
+
+  /// No description provided for @noteLinkRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove the link'**
+  String get noteLinkRemove;
+
+  /// No description provided for @noteLinkEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No stay, transport, booking, restaurant or place in the trip.'**
+  String get noteLinkEmpty;
+
+  /// No description provided for @noteLinkedTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked to {name} ({section})'**
+  String noteLinkedTo(String name, String section);
+
   /// No description provided for @shoppingTabItems.
   ///
   /// In en, this message translates to:
