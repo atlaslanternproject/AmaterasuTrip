@@ -3,6 +3,7 @@
 // data, costo previsto) e poi la collega; "Collega spesa esistente" sceglie
 // tra le spese condivise.
 
+import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:flutter/material.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
@@ -79,7 +80,11 @@ Future<void> createTripSectionExpense(
   TripSectionExpenseTarget target,
 ) async {
   final hasCost = target.minorUnits != null && target.currency != null;
-  final currency = hasCost ? target.currency! : await api.tripCurrency();
+  // With a cost its currency stays; otherwise Appearance, then the trip.
+  final preferred = amaterasuDefaultEntryCurrency(context);
+  final currency = hasCost
+      ? target.currency!
+      : (preferred ?? await api.tripCurrency());
   if (!context.mounted) return;
   String? createdId;
   await showDialog<bool>(

@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:amaterasutrip/core/links/amaterasu_link_opener.dart';
 import 'package:amaterasutrip/core/places/amaterasu_place_providers.dart';
 import 'package:amaterasutrip/features/trips/sections/editor/trip_section_editor_frame.dart';
@@ -69,6 +70,7 @@ class _TripTransportPageState extends ConsumerState<TripTransportPage>
         memberNames: ref.read(tripStaysMemberNamesProvider(widget.tripId)),
         places: ref.read(amaterasuPlaceSearchProvider),
         defaultCurrency:
+            amaterasuDefaultEntryCurrency(context) ??
             ref.read(tripStaysTripInfoProvider(widget.tripId))?.currency ??
             'EUR',
         initial: initial,

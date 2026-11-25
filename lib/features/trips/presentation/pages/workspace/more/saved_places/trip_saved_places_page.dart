@@ -4,6 +4,7 @@
 // eliminazione (creatore o OWNER). Nessuna spesa.
 
 import 'package:flutter/material.dart';
+import 'package:amaterasutrip/core/appearance/amaterasu_entry_currency.dart';
 import 'package:amaterasutrip/core/appearance/amaterasu_dates.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -66,6 +67,7 @@ class _TripSavedPlacesPageState extends ConsumerState<TripSavedPlacesPage>
         places: ref.read(amaterasuPlaceSearchProvider),
         placeInfo: ref.read(amaterasuPlaceInfoProvider),
         currency:
+            amaterasuDefaultEntryCurrency(context) ??
             ref.read(tripStaysTripInfoProvider(widget.tripId))?.currency ??
             'EUR',
         initial: initial,

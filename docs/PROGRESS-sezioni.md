@@ -325,7 +325,9 @@ Mappa/Itinerario).
 | Extra E1 - Preferenze Aspetto (modello e salvataggio) | fatta, pubblicata 1.41.0 il 25/11/2026 | feature/aspetto-e1 | 1.41.0+46 |
 | Extra E2 - Pagina Impostazioni > Aspetto | fatta, pubblicata 1.42.0 il 25/11/2026 | feature/aspetto-e2 | 1.42.0+47 |
 | Extra E3 - Dimensione del testo in tutta l'app | fatta, pubblicata 1.43.0 il 25/11/2026 | feature/aspetto-e3 | 1.43.0+48 |
-| Extra E4 - Formato di data e ora nelle sezioni nuove | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e4 | 1.44.0+49 |
+| Extra E4 - Formato di data e ora nelle sezioni nuove | fatta, pubblicata 1.44.0 il 25/11/2026 | feature/aspetto-e4 | 1.44.0+49 |
+| Extra E5 - Unità km/miglia | nulla da pubblicare: la scelta è salvata (E1), la useranno Mappa, Itinerario e Converti | - | - |
+| Extra E6 - Valuta per le nuove voci | fatta (pubblicazione: vedi tappa seguente) | feature/aspetto-e6 | 1.45.0+50 |
 | Extra F-H | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
@@ -1000,3 +1002,26 @@ Prove da fare sul sito:
 1. Aspetto > aaaa-mm-gg e 12 ore: una prenotazione mostra
    "2027-04-14 · 2:05 PM".
 2. "Come la lingua" e 24 ore: tutto come prima.
+
+## Extra E5 - Unità km/miglia
+Nessuna schermata mostra oggi distanze: la scelta è già salvata con le
+altre preferenze (E1) e verrà usata da Mappa, Itinerario (distanza in
+linea d'aria) e Converti. Nessun rilascio per questo passo.
+
+## Extra E6 - Valuta per le nuove voci
+Aiuto comune amaterasuDefaultEntryCurrency (lib/core/appearance): la
+valuta di partenza è quella di Aspetto se scelta, altrimenti quella di
+oggi (del viaggio). Usata da: editor di trasporti, prenotazioni,
+ristoranti, luoghi, shopping e alloggi; "Crea spesa" dalle sezioni e
+dagli alloggi; nuova spesa dalla pagina spese. Se la voce ha già un
+costo, "Crea spesa" parte dalla valuta e dall'importo di quel costo, come
+prima. Nel budget cambia solo il valore iniziale del pulsante valuta:
+importi, cambi e calcoli invariati. Test del budget prima e dopo: 277 su
+277 verdi in entrambi i casi.
+
+Prove da fare sul sito:
+1. Aspetto > Valuta per le nuove voci = USD; nuovo trasporto: il costo
+   parte in USD.
+2. "Crea spesa" su un ristorante senza costo: il dialogo parte in USD;
+   su un trasporto con costo in JPY parte in JPY con quell'importo.
+3. Senza scelta in Aspetto tutto come prima (valuta del viaggio).
