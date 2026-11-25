@@ -1,6 +1,7 @@
 // Primo controllo all'avvio: in base allo stato dell'utente mostra
 // il login, la verifica email, la scelta dello username o la home.
 
+import 'package:amaterasutrip/core/web/amaterasu_app_ready.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -77,6 +78,10 @@ class _AuthGateState extends ConsumerState<AuthGate> {
               _signOutScheduled = false;
               _navigationScheduled = false;
 
+              // First real page: the web loading screen can go (Extra G).
+              WidgetsBinding.instance.addPostFrameCallback(
+                (_) => amaterasuAppReady(),
+              );
               return AuthPage(returnTo: widget.returnTo);
             }
 

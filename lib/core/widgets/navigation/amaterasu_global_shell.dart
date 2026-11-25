@@ -1,5 +1,6 @@
 // Contenitore globale delle pagine principali: contenuto più barra in basso.
 
+import 'package:amaterasutrip/core/web/amaterasu_app_ready.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,6 +22,8 @@ class AmaterasuGlobalShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // First real page: the web loading screen can go (Extra G).
+    WidgetsBinding.instance.addPostFrameCallback((_) => amaterasuAppReady());
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: AmaterasuBottomBar(

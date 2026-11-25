@@ -330,8 +330,9 @@ Mappa/Itinerario).
 | Extra E6 - Valuta per le nuove voci | fatta, pubblicata 1.45.0 il 25/11/2026 | feature/aspetto-e6 | 1.45.0+50 |
 | Extra E7 - Valuta di visualizzazione | fatta, pubblicata 1.46.0 il 25/11/2026 | feature/aspetto-e7 | 1.46.0+51 |
 | Extra E8 - TEMA-CHIARO.md | fatta (solo documento, nessun rilascio) | docs/tema-chiaro | - |
-| Extra F - Assistenza e privacy | fatta (pubblicazione: vedi tappa seguente) | feature/assistenza | 1.47.0+52 |
-| Extra G-H | da fare | - | - |
+| Extra F - Assistenza e privacy | fatta, pubblicata 1.47.0 il 25/11/2026 | feature/assistenza | 1.47.0+52 |
+| Extra G - Caricamento con il sole | fatta (pubblicazione: vedi tappa seguente) | feature/caricamento | 1.48.0+53 |
+| Extra H - Verifica finale | da fare | - | - |
 | Nuove tappe 1-4 | da fare | - | - |
 | K - BUDGET-2 (solo analisi) | da fare | - | - |
 | L - MAPPA-ITINERARIO (solo documento) | da fare | - | - |
@@ -1108,3 +1109,17 @@ Prove da fare sul sito:
    console di Firebase compare in feedback.
 2. Il sesto invio dello stesso giorno dice "Hai già inviato 5 messaggi".
 3. Conformità e normative: la tabella si legge in italiano e in inglese.
+
+## Extra G - Caricamento con il sole
+Schermata in web/index.html (CSS in linea, nessuna immagine da scaricare):
+sole con alone e raggi che girano piano, nome dell'app, colori del tema;
+con "riduci animazioni" del sistema resta fermo. Sparisce con una breve
+dissolvenza solo quando l'app chiama amaterasuAppReady
+(lib/core/web/amaterasu_app_ready.dart): alla pagina di accesso, alla
+shell globale (home) o all'apertura di un viaggio; così le rotelline
+intermedie dell'avvio restano coperte. Uscita di sicurezza dopo 15 secondi.
+
+Prove da fare sul sito:
+1. Apri il sito: vedi il sole, poi direttamente la home (o l'accesso),
+   senza rotelline in mezzo.
+2. Apri un link di un viaggio: il sole resta fino al viaggio.
