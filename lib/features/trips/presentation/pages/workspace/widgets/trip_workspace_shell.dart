@@ -1,6 +1,7 @@
 // Contenitore fisso di tutte le pagine di un viaggio:
 // contenuto più barra di navigazione del workspace.
 
+import 'package:amaterasutrip/core/web/amaterasu_app_ready.dart';
 import 'package:flutter/material.dart';
 
 import 'trip_workspace_bottom_bar.dart';
@@ -27,6 +28,8 @@ class TripWorkspaceShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // A trip opened from a link is also a first real page (Extra G).
+    WidgetsBinding.instance.addPostFrameCallback((_) => amaterasuAppReady());
     return Scaffold(
       backgroundColor: _backgroundColor,
       body: child,

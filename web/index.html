@@ -41,8 +41,60 @@
   <script src="amaterasu_time_zone.js"></script>
   <script src="amaterasu_drive_oauth.js"></script>
   <link rel="icon" type="image/png" href="favicon.png?v=19010">
+  <style>
+    /* Loading with the sun (Extra G): shown until the app draws its first
+       page, then it fades out. Light CSS animation, no images to load. */
+    html, body { margin: 0; background: #1A0B08; }
+    #amaterasu-loading {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 18px;
+      background: radial-gradient(circle at 50% 42%, #3A120D 0%, #1A0B08 62%);
+      color: #F2E7D5; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      transition: opacity 0.35s ease; z-index: 10;
+    }
+    #amaterasu-loading.done { opacity: 0; pointer-events: none; }
+    .amaterasu-sun { position: relative; width: 84px; height: 84px; }
+    .amaterasu-sun::before {
+      content: ""; position: absolute; inset: 18px; border-radius: 50%;
+      background: radial-gradient(circle, #E3A66C 0%, #E5482E 70%);
+      box-shadow: 0 0 28px rgba(229, 72, 46, 0.55);
+      animation: amaterasu-glow 2.4s ease-in-out infinite;
+    }
+    .amaterasu-sun::after {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: repeating-conic-gradient(rgba(227, 166, 108, 0.85) 0 6deg, transparent 6deg 30deg);
+      -webkit-mask: radial-gradient(circle, transparent 36px, #000 37px, #000 41px, transparent 42px);
+      mask: radial-gradient(circle, transparent 36px, #000 37px, #000 41px, transparent 42px);
+      animation: amaterasu-turn 9s linear infinite;
+    }
+    .amaterasu-name { font-size: 15px; letter-spacing: 0.08em; color: #B7A99B; }
+    @keyframes amaterasu-glow { 50% { transform: scale(1.06); box-shadow: 0 0 40px rgba(229, 72, 46, 0.75); } }
+    @keyframes amaterasu-turn { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .amaterasu-sun::before, .amaterasu-sun::after { animation: none; }
+    }
+  </style>
 </head>
 <body>
+  <div id="amaterasu-loading" role="progressbar" aria-label="Amaterasu Trip">
+    <div class="amaterasu-sun"></div>
+    <div class="amaterasu-name">AMATERASU TRIP</div>
+  </div>
+  <script>
+    // Hide the sun when the app shows its first real page (sign-in, home or
+    // a trip): initial loading complete. A safety timer removes it anyway.
+    (() => {
+      const hide = () => {
+        const el = document.getElementById('amaterasu-loading');
+        if (!el || el.classList.contains('done')) return;
+        el.classList.add('done');
+        setTimeout(() => el.remove(), 400);
+      };
+      // Called by the app when the first real page is shown.
+      window.amaterasuAppReady = hide;
+      setTimeout(hide, 15000);
+    })();
+  </script>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader

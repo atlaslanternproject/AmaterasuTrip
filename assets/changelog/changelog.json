@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.48.0",
+      "date": "2026-11-25",
+      "it": ["Nuovo caricamento con il sole: all'apertura vedi il sole finché la prima pagina non è pronta, senza rotelline intermedie."],
+      "en": ["New loading with the sun: when opening you see the sun until the first page is ready, without spinners in between."]
+    },
+    {
       "version": "1.47.0",
       "date": "2026-11-25",
       "it": ["Nuova pagina Impostazioni > Assistenza e privacy: segnala un problema, suggerisci un'idea, stato dell'app, informativa privacy e la pagina «Conformità e normative»."],
