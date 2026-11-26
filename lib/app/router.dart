@@ -238,12 +238,6 @@ final amaterasuRouter = GoRouter(
                 GoRoute(
                   path: 'support',
                   builder: (context, state) => const SupportPage(),
-                  routes: [
-                    GoRoute(
-                      path: 'compliance',
-                      builder: (context, state) => const CompliancePage(),
-                    ),
-                  ],
                 ),
                 GoRoute(
                   path: 'account',
@@ -264,6 +258,12 @@ final amaterasuRouter = GoRouter(
                   builder: (context, state) {
                     return const PrivacyPage();
                   },
+                  routes: [
+                    GoRoute(
+                      path: 'compliance',
+                      builder: (context, state) => const CompliancePage(),
+                    ),
+                  ],
                 ),
                 GoRoute(
                   path: 'data',

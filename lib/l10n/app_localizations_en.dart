@@ -207,7 +207,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAccount => 'Account';
 
   @override
-  String get settingsPrivacy => 'Privacy';
+  String get settingsPrivacy => 'Privacy and legal';
 
   @override
   String get settingsDataSync => 'Online/offline data';
@@ -274,13 +274,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsProfileSubtitle => 'Personalize your profile';
 
   @override
-  String get settingsPrivacySubtitle => 'Control your privacy';
+  String get settingsPrivacySubtitle => 'Policy, permissions, consents, export and compliance';
 
   @override
   String get settingsDataSyncSubtitle => 'Manage data and synchronization';
 
   @override
-  String get settingsInformationSubtitle => 'App version, terms and more';
+  String get settingsInformationSubtitle => 'App status, credits and licenses';
 
   @override
   String get confirm => 'Confirm';
@@ -537,7 +537,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountDeleteBlockedByTrips => 'Before deleting your account, leave your trips or delete them.';
 
   @override
-  String get privacyTitle => 'Privacy';
+  String get privacyTitle => 'Privacy and legal';
 
   @override
   String get privacyIntro => 'Learn how Amaterasu manages your data, app permissions and privacy choices.';
@@ -708,28 +708,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profilePhotoRemoveError => 'Unable to remove profile photo.';
 
   @override
-  String get informationApp => 'App';
+  String get informationApp => 'App status';
 
   @override
-  String get informationAppSubtitle => 'Version, build and licences';
+  String get informationAppSubtitle => 'Version with what\'s new and build';
 
   @override
-  String get informationLegal => 'Legal';
+  String get informationCredits => 'Credits and licenses';
 
   @override
-  String get informationLegalSubtitle => 'Terms, privacy and legal information';
-
-  @override
-  String get informationSupport => 'Support';
-
-  @override
-  String get informationSupportSubtitle => 'Help, contact and reporting';
-
-  @override
-  String get informationCredits => 'Credits';
-
-  @override
-  String get informationCreditsSubtitle => 'Credits, services and SDKs used';
+  String get informationCreditsSubtitle => 'Who develops it, technologies and open source licenses';
 
   @override
   String get informationAppName => 'Application name';
@@ -745,29 +733,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get informationOpenSourceLicensesSubtitle => 'View licences for the software used';
-
-  @override
-  String get informationPrivacyPolicy => 'Privacy policy';
-
-  @override
-  String get informationPrivacyPolicySubtitle => 'Read how your personal data is handled';
-
-  @override
-  String get informationContactUs => 'Contact us';
-
-  @override
-  String get informationReportProblem => 'Report a problem';
-
-  @override
-  String get informationReportProblemSubtitle => 'Send a problem report to support';
-
-  @override
-  String get informationReportProblemSubject => 'Amaterasu Trip - Problem report';
-
-  @override
-  String informationReportProblemBody(String version, String build) {
-    return 'Describe the problem:\n\n\n---\nAmaterasu Trip\nVersion: $version\nBuild: $build';
-  }
 
   @override
   String get informationCreditsDevelopedBy => 'Developed by';
@@ -3861,13 +3826,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapRetry => 'Try again';
 
   @override
-  String get settingsSupport => 'Help and privacy';
+  String get settingsSupport => 'Support';
 
   @override
-  String get settingsSupportSubtitle => 'Reports, ideas, app status and rules';
+  String get settingsSupportSubtitle => 'Report a problem, suggest an idea, contacts';
 
   @override
-  String get supportTitle => 'Help and privacy';
+  String get supportTitle => 'Support';
 
   @override
   String get supportReportProblem => 'Report a problem';
@@ -3882,24 +3847,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get supportSuggestIdeaSubtitle => 'What you would like in the app';
 
   @override
-  String get supportAppStatus => 'App status';
-
-  @override
-  String supportAppStatusValue(String version, String date) {
-    return 'Version $version · updated on $date';
-  }
-
-  @override
-  String get supportPrivacy => 'Privacy policy';
-
-  @override
-  String get supportPrivacySubtitle => 'Opens the online page';
-
-  @override
   String get supportCompliance => 'Compliance and rules';
 
   @override
   String get supportComplianceSubtitle => 'The rules we follow and how';
+
+  @override
+  String get supportContacts => 'Contacts';
+
+  @override
+  String get supportContactsSubtitle => 'Write us an email at the support address';
 
   @override
   String get supportNoTracking => 'No automatic error log and no usage statistics: only what you write reaches us.';

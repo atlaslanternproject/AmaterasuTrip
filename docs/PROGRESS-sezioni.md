@@ -1847,3 +1847,10 @@ Dopo il passo 2 serve una nuova pubblicazione (la build legge il client ID). Pro
 ### Riepilogo Giro 1 (1.64.0 - 1.71.0)
 Fatto: 1 Statistiche nella valuta del budget (1.64.0), 2 elenco senza posizione della Mappa (1.65.0), 3 un solo "Posti" nei Trasporti (1.66.0), 4 Altro con barra Cerca e senza Viaggiatori (1.67.0), 5 significato dei numeri di emergenza (1.68.0), 6 Audit Trail unico con filtro Spese e informativa 7.2 (1.69.0), 7 cestino negli Alloggi (1.70.0), 8 formati della data con esempio (1.71.0), 9 diagnosi Drive (sopra).
 Prossimo: Giro 2 Impostazioni, con CHIEDI OK sullo schema finale prima di toccare.
+
+## Giro 2 Impostazioni
+Decisioni del proprietario (26/11): schema con la card Informazioni separata; segnalazioni e idee via email come Supporto (flusso unico, 2c).
+
+### 2a Schema (1.72.0)
+Valutazione (regola 1): (a) c'erano Privacy, Informazioni (App, Legale con la sola informativa, Supporto con email, Crediti) e "Assistenza e privacy" (modulo segnalazioni, stato dell'app, informativa, conformità): informativa, versione e assistenza comparivano due volte; (b) stessi componenti (AmaterasuSettingsCard) e stesse pagine interne, spostate: Conformità in Privacy e legale (/settings/privacy/compliance), Contatti in Assistenza (nuovo modulo condiviso AmaterasuSupportEmail), Informazioni = Stato dell'app + Crediti e licenze (riga comune InformationSubItem estratta da information_app_page, identica); tolte le pagine Legale e Supporto delle Informazioni e le voci doppie; (c) impostazioni (modulo approvato), cosa cambia: solo posizione e titoli delle voci, nessun dato o regola; nuovo test settings_schema_test.dart (ordine, distanza, voci di ogni pagina, 130 %).
+Prova: Impostazioni: l'ordine nuovo; Privacy e legale > Conformità; Assistenza > Contatti apre l'email; Informazioni > Crediti e licenze > Licenze open source.
