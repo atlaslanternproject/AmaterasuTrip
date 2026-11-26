@@ -3967,12 +3967,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appearanceDateLocale => 'Like the language';
 
   @override
-  String get appearanceDateDmy => 'dd/mm/yyyy';
-
-  @override
-  String get appearanceDateYmd => 'yyyy-mm-dd';
-
-  @override
   String get appearanceTimeFormat => 'Time format';
 
   @override

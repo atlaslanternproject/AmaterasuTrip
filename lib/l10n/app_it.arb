@@ -1361,8 +1361,6 @@
   "appearanceUnitsMi": "Miglia",
   "appearanceDateFormat": "Formato della data",
   "appearanceDateLocale": "Come la lingua",
-  "appearanceDateDmy": "gg/mm/aaaa",
-  "appearanceDateYmd": "aaaa-mm-gg",
   "appearanceTimeFormat": "Formato dell'ora",
   "appearanceTime24": "24 ore",
   "appearanceTime12": "12 ore (AM/PM)",

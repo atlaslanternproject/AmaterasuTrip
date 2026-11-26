@@ -97,7 +97,8 @@ service cloud.firestore {
         ])
         && a.get('textScale', 100) in [100, 110, 120, 130]
         && a.get('units', 'km') in ['km', 'mi']
-        && a.get('dateFormat', 'locale') in ['locale', 'dmy', 'ymd']
+        && a.get('dateFormat', 'locale')
+          in ['locale', 'dmy', 'mdy', 'ymd', 'ymdSlash', 'long']
         && a.get('timeFormat', '24') in ['24', '12']
         && a.get('defaultCurrency', 'EUR').matches('^[A-Z]{3}$')
         && a.get('displayCurrency', 'EUR').matches('^[A-Z]{3}$');

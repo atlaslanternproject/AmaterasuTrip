@@ -3967,12 +3967,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get appearanceDateLocale => 'Come la lingua';
 
   @override
-  String get appearanceDateDmy => 'gg/mm/aaaa';
-
-  @override
-  String get appearanceDateYmd => 'aaaa-mm-gg';
-
-  @override
   String get appearanceTimeFormat => 'Formato dell\'ora';
 
   @override

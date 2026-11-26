@@ -12,6 +12,7 @@ import 'package:amaterasutrip/features/trips/reservations/models/trip_reservatio
 import 'package:amaterasutrip/features/trips/reservations/providers/trip_reservations_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -55,6 +56,41 @@ Future<String> render(
 
 void main() {
   final day = DateTime(2027, 4, 9);
+
+  testWidgets('every format, the long one in Italian and English', (
+    tester,
+  ) async {
+    final d = DateTime(2027, 8, 30);
+    final out = <String, String>{};
+    for (final locale in const [Locale('it'), Locale('en')]) {
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: locale,
+          localizationsDelegates: GlobalMaterialLocalizations.delegates,
+          supportedLocales: const [Locale('it'), Locale('en')],
+          home: Builder(
+            builder: (context) {
+              for (final f in AmaterasuAppearance.dateFormats) {
+                out['${locale.languageCode}-$f'] = AmaterasuDates.withFormat(
+                  context,
+                  f,
+                  d,
+                );
+              }
+              return const SizedBox();
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+    }
+    expect(out['it-dmy'], '30/08/2027');
+    expect(out['it-mdy'], '08/30/2027');
+    expect(out['it-ymd'], '2027-08-30');
+    expect(out['it-ymdSlash'], '2027/08/30');
+    expect(out['it-long'], '30 agosto 2027');
+    expect(out['en-long'], 'August 30, 2027');
+  });
 
   testWidgets('day formats and 12-hour time', (tester) async {
     const ymd = AmaterasuAppearance(dateFormat: 'ymd');

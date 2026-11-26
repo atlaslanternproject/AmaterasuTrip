@@ -1434,8 +1434,6 @@
   "appearanceUnitsMi": "Miles",
   "appearanceDateFormat": "Date format",
   "appearanceDateLocale": "Like the language",
-  "appearanceDateDmy": "dd/mm/yyyy",
-  "appearanceDateYmd": "yyyy-mm-dd",
   "appearanceTimeFormat": "Time format",
   "appearanceTime24": "24 hours",
   "appearanceTime12": "12 hours (AM/PM)",
