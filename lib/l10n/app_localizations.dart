@@ -8285,12 +8285,6 @@ abstract class AppLocalizations {
   /// **'Expense'**
   String get staysExpense;
 
-  /// No description provided for @staysMore.
-  ///
-  /// In en, this message translates to:
-  /// **'More actions'**
-  String get staysMore;
-
   /// No description provided for @staysSectionBooking.
   ///
   /// In en, this message translates to:

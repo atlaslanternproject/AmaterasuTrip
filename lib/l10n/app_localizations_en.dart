@@ -4357,9 +4357,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staysExpense => 'Expense';
 
   @override
-  String get staysMore => 'More actions';
-
-  @override
   String get staysSectionBooking => 'Booking';
 
   @override

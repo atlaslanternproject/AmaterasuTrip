@@ -143,9 +143,8 @@ void main() {
     expect(find.byKey(const Key('stay-edit-theirs')), findsOneWidget);
     expect(find.byKey(const Key('stay-menu-theirs')), findsNothing);
 
+    // Only "Elimina" was in the menu: now the bin opens the confirmation.
     await tester.tap(find.byKey(const Key('stay-menu-mine')));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Elimina'));
     await tester.pumpAndSettle();
     expect(find.text('Eliminare questo alloggio?'), findsOneWidget);
     await tester.tap(find.byKey(const Key('stay-delete-confirm')));

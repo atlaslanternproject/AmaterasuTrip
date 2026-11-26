@@ -15,7 +15,7 @@ import 'trip_stay_cancellation_chip.dart';
 import 'trip_stay_card_dates.dart';
 import 'trip_stay_card_details.dart';
 import 'trip_stay_card_links.dart';
-import 'trip_stay_card_menu.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_menu.dart';
 import 'trip_stay_labels.dart';
 import 'trip_stay_status_chip.dart';
 import 'trip_stay_type_chip.dart';
@@ -124,12 +124,10 @@ class TripStayCard extends StatelessWidget {
                         color: AmaterasuColors.accentGold,
                       ),
                     ),
-                  TripStayCardMenu(
-                    stayId: stay.id,
-                    canEdit: false,
-                    canDelete: canDelete && onDelete != null,
-                    onEdit: onEdit,
-                    onDelete: onDelete,
+                  TripSectionMenu(
+                    keyPrefix: 'stay',
+                    id: stay.id,
+                    onDelete: canDelete ? onDelete : null,
                   ),
                 ],
               ),
