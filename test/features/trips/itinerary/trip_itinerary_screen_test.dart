@@ -63,7 +63,7 @@ Future<FakeSectionStore<TripItineraryItem>> open(
         tripMapLoaderProvider.overrideWithValue(
           (id) async => (
             points: const <TripMapPoint>[],
-            withoutPosition: 0,
+            withoutPosition: const <TripItineraryRef>[],
             catalog: itineraryCatalog,
           ),
         ),

@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.65.0",
+      "date": "2026-11-26",
+      "it": ["Mappa: tocca il contatore «N senza posizione» per vedere quali elementi non hanno un luogo (sezione e nome) e aprire la loro sezione."],
+      "en": ["Map: tap the «N without a position» counter to see which items have no place (section and name) and open their section."]
+    },
+    {
       "version": "1.64.0",
       "date": "2026-11-26",
       "it": ["Statistiche: le spese ora sono nella stessa valuta del budget (quella scelta in Impostazioni > Aspetto, altrimenti quella del viaggio), con gli stessi totali."],

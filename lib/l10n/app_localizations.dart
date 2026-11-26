@@ -7325,6 +7325,18 @@ abstract class AppLocalizations {
   /// **'{count, plural, =1{1 without a position} other{{count} without a position}}'**
   String mapWithoutPosition(int count);
 
+  /// No description provided for @mapMissingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Without a position'**
+  String get mapMissingTitle;
+
+  /// No description provided for @mapMissingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'These items are not on the map because they have no place. Tap to open the section and add one.'**
+  String get mapMissingHint;
+
   /// No description provided for @mapError.
   ///
   /// In en, this message translates to:

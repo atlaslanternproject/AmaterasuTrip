@@ -1,6 +1,6 @@
 // Costruzione dei punti della Mappa dagli elementi delle sezioni: un punto
-// solo se c'è la posizione; l'elenco conta gli elementi senza posizione
-// (non compaiono sulla mappa).
+// solo se c'è la posizione; gli elementi senza posizione (non compaiono
+// sulla mappa) restano in un elenco a parte.
 
 import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_item.dart';
 import 'package:amaterasutrip/features/trips/sections/models/trip_booking_status.dart';
@@ -14,14 +14,15 @@ import 'trip_map_point.dart';
 class TripMapPoints {
   final points = <TripMapPoint>[];
   final catalog = <TripItineraryRef>[];
-  var missing = 0;
+  final missing = <TripItineraryRef>[];
 
   /// Adds the element: its points with a position, and [ref] to the
   /// catalog.
   void add(List<TripMapPoint?> places, TripItineraryRef ref) {
     final found = places.whereType<TripMapPoint>().toList();
-    found.isEmpty ? missing++ : points.addAll(found);
-    catalog.add(ref.at(found.firstOrNull?.place));
+    final known = ref.at(found.firstOrNull?.place);
+    found.isEmpty ? missing.add(known) : points.addAll(found);
+    catalog.add(known);
   }
 }
 

@@ -1802,3 +1802,7 @@ tocca solo trip_stats_data.dart; test Statistiche (+1). PDF del riepilogo
 spese usa già la valuta del budget; la Home del viaggio non mostra totali.
 Prova: Aspetto in EUR, viaggio in yen: Statistiche in EUR con gli stessi
 totali del cruscotto del budget.
+
+### Giro 1.2 Mappa: elenco dei luoghi senza posizione (1.65.0)
+Valutazione (regola 1): (a) il contatore c'era, l'elenco no; gli elementi senza posizione sono già nel catalogo letto all'apertura; (b) il conteggio diventa l'elenco stesso (nessuna lettura in più), foglio comune showAmaterasuSheet con la miniatura dell'itinerario e il percorso della sezione (TripSearchSection.route); (c) tocca trip_map_builders/sources/view e il nuovo trip_map_missing.dart; test Mappa aggiornati.
+Prova: Altro > Mappa, tocca "N senza posizione": elenco con sezione e nome; un tocco apre la sezione.

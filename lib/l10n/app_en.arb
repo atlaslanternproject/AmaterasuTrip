@@ -1391,6 +1391,8 @@
   "mapNorth": "North up",
   "mapWithoutPosition": "{count, plural, =1{1 without a position} other{{count} without a position}}",
   "@mapWithoutPosition": {"placeholders":{"count":{"type":"int"}}},
+  "mapMissingTitle": "Without a position",
+  "mapMissingHint": "These items are not on the map because they have no place. Tap to open the section and add one.",
   "mapError": "Map not available now.",
   "mapRetry": "Try again",
   "settingsSupport": "Help and privacy",

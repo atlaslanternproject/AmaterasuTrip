@@ -1320,6 +1320,8 @@
   "mapPlaces": "{count, plural, =1{1 luogo} other{{count} luoghi}}",
   "mapNorth": "Nord in alto",
   "mapWithoutPosition": "{count, plural, =1{1 senza posizione} other{{count} senza posizione}}",
+  "mapMissingTitle": "Senza posizione",
+  "mapMissingHint": "Questi elementi non compaiono sulla mappa perché non hanno un luogo. Tocca per aprire la sezione e aggiungerlo.",
   "mapError": "Mappa non disponibile ora.",
   "mapRetry": "Riprova",
   "settingsSupport": "Assistenza e privacy",
