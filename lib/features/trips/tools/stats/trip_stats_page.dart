@@ -155,9 +155,7 @@ class TripStatsPage extends ConsumerWidget {
                   constraints: const BoxConstraints(maxWidth: 820),
                   child: stats.when(
                     data: (data) => _body(context, data),
-                    loading: () => const Center(
-                      child: AmaterasuLoader(),
-                    ),
+                    loading: () => const Center(child: AmaterasuLoader()),
                     error: (_, _) => Center(
                       child: AmaterasuButton.tertiary(
                         key: const Key('stats-retry'),

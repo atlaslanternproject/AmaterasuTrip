@@ -1785,3 +1785,20 @@ registrate (MAPPA-ITINERARIO sezione 8bis). Prossimo:
 5. Vista mappa dell'itinerario; "Aggiungi all'itinerario" sulle card delle
    sezioni nuove.
 Poi: COERENZA da F2, F3, E, D, B, C con la home, A per ultimo; Budget 2.
+
+## Piano in 9 giri (prompt del 26/11/2026)
+Ordine: giro 1 bug e correzioni piccole (9 punti), 2 Impostazioni, 3
+Itinerario modello dati, 4 Mappa e card, 5 generale card/editor, 6
+Itinerario passi 2-5, 7 Coerenza (D, E, B, C con la Home, A), 8 Budget 2,
+9 audit completo. Fermarsi solo ai "CHIEDI OK", a un test che fallisce o
+ai limiti d'uso. Un rilascio per punto (minor +1), mai 2.0.0.
+
+### Giro 1.1 Statistiche nella valuta del budget (1.64.0)
+Valutazione (regola 1): (a) il budget sceglie la valuta con
+amaterasuShownCurrency (Aspetto, poi viaggio); Statistiche usava sempre la
+valuta del viaggio; (b) stessa scelta nel caricamento delle Statistiche,
+stessi tassi e totali (BudgetCategoryTotals, nessun calcolo nuovo); (c)
+tocca solo trip_stats_data.dart; test Statistiche (+1). PDF del riepilogo
+spese usa già la valuta del budget; la Home del viaggio non mostra totali.
+Prova: Aspetto in EUR, viaggio in yen: Statistiche in EUR con gli stessi
+totali del cruscotto del budget.
