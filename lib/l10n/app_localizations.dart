@@ -9257,12 +9257,6 @@ abstract class AppLocalizations {
   /// **'Number (flight, train…)'**
   String get transportNumber;
 
-  /// No description provided for @transportSeats.
-  ///
-  /// In en, this message translates to:
-  /// **'Seats'**
-  String get transportSeats;
-
   /// No description provided for @transportPassengers.
   ///
   /// In en, this message translates to:

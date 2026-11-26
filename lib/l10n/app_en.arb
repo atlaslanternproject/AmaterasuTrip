@@ -1748,7 +1748,6 @@
   "transportTimeZoneNone": "Not set",
   "transportCarrier": "Company",
   "transportNumber": "Number (flight, train…)",
-  "transportSeats": "Seats",
   "transportPassengers": "Passengers",
   "transportBookedVia": "Booked on",
   "transportBookingLink": "Booking link",

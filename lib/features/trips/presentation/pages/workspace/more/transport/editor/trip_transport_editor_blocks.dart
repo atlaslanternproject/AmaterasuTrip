@@ -133,7 +133,6 @@ extension _TripTransportEditorBlocks on _TripTransportEditorState {
     children: [
       _field('transport-carrier', _draft.carrier, l10n.transportCarrier, 120),
       _field('transport-number', _draft.number, l10n.transportNumber, 120),
-      _field('transport-seats', _draft.seats, l10n.transportSeats, 120),
       Text(l10n.transportPassengers),
       const SizedBox(height: 6),
       TripSectionMembers(

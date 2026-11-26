@@ -4896,9 +4896,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get transportNumber => 'Numero (volo, treno…)';
 
   @override
-  String get transportSeats => 'Posti';
-
-  @override
   String get transportPassengers => 'Passeggeri';
 
   @override
