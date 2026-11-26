@@ -1,10 +1,12 @@
 // Dati delle Statistiche (tappa 3b), letti una volta all'apertura della
 // pagina con le letture esistenti: alloggi, trasporti, ristoranti, luoghi
 // e spese condivise in cui partecipo, con i totali del modulo condiviso
-// del budget (stessi tassi, stessi filtri predefiniti del cruscotto).
+// del budget (stessi tassi, stessi filtri predefiniti del cruscotto) e
+// nella stessa valuta del budget: quella di Aspetto, altrimenti del viaggio.
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:amaterasutrip/core/appearance/amaterasu_appearance_provider.dart';
 import 'package:amaterasutrip/features/trips/budget/data/budget_fx_service.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_totals.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_filters.dart';
@@ -70,7 +72,10 @@ final tripStatsLoaderProvider = Provider<TripStatsLoader>(
     TripStatsExpenses? expenses;
     try {
       final api = ref.read(tripStaysBudgetApiProvider(tripId));
-      final currency = await api.tripCurrency();
+      // Same currency as the budget page (Appearance, else the trip one).
+      final currency =
+          ref.read(amaterasuAppearanceProvider).shownCurrency ??
+          await api.tripCurrency();
       final now = DateTime.now();
       const filters = BudgetExpenseFilters();
       final docs = (await api.sharedExpenses().first).docs

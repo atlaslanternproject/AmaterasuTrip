@@ -5,6 +5,8 @@
 // tipo, ristoranti provati, luoghi visitati); lettura con le spese annullate
 // escluse come nel cruscotto; pagina e 130 %.
 
+import 'package:amaterasutrip/core/appearance/amaterasu_appearance.dart';
+import 'package:amaterasutrip/core/appearance/amaterasu_appearance_provider.dart';
 import 'package:amaterasutrip/features/trips/budget/data/budget_fx_service.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_totals.dart';
 import 'package:amaterasutrip/features/trips/restaurants/models/trip_restaurant.dart';
@@ -29,6 +31,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/appearance/amaterasu_dates_test.dart'
+    show FixedAppearance;
 import '../sections/support/fake_section_store.dart';
 import '../stays/support/fake_trip_stays.dart';
 
@@ -145,9 +149,15 @@ class _NoStays extends FakeTripStaysRepository {
 }
 
 /// The real loader with fake sections and the given budget.
-Future<TripStatsData> statsLoaderForTest(FakeBudgetApi api) async {
+Future<TripStatsData> statsLoaderForTest(
+  FakeBudgetApi api, {
+  AmaterasuAppearance appearance = const AmaterasuAppearance(),
+}) async {
   final container = ProviderContainer(
     overrides: [
+      amaterasuAppearanceProvider.overrideWith(
+        () => FixedAppearance(appearance),
+      ),
       tripStaysRepositoryProvider.overrideWithValue(_NoStays()),
       tripTransportsStoreProvider.overrideWithValue(
         FakeSectionStore<TripTransport>(),
@@ -225,5 +235,27 @@ void main() {
     final data = await statsLoaderForTest(api);
     expect(data.expenses!.totals.total, 1000);
     expect(data.expenses!.names, {'anna': 'Anna'});
+  });
+
+  test('loader: totals in the Appearance currency, like the budget', () async {
+    // Trip in yen, Appearance in euro, expenses in euro: no rate needed.
+    final api = FakeBudgetApi(
+      uid: 'anna',
+      currency: 'JPY',
+      members: const [
+        {'uid': 'anna', 'name': 'Anna'},
+      ],
+      shared: [
+        expense('e1', 'food', 'EUR', {'anna': 1000}),
+      ],
+    );
+    final data = await statsLoaderForTest(
+      api,
+      appearance: const AmaterasuAppearance(displayCurrency: 'EUR'),
+    );
+    expect(data.expenses!.currency, 'EUR');
+    expect(data.expenses!.totals.total, 1000);
+    final trip = await statsLoaderForTest(api);
+    expect(trip.expenses!.currency, 'JPY');
   });
 }

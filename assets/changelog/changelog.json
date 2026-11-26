@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.64.0",
+      "date": "2026-11-26",
+      "it": ["Statistiche: le spese ora sono nella stessa valuta del budget (quella scelta in Impostazioni > Aspetto, altrimenti quella del viaggio), con gli stessi totali."],
+      "en": ["Statistics: expenses are now in the same currency as the budget (the one chosen in Settings > Appearance, otherwise the trip one), with the same totals."]
+    },
+    {
       "version": "1.63.0",
       "date": "2026-11-26",
       "it": ["Itinerario con i dati veri: parte vuoto e lo costruisci tu, voce per voce. Con «+» scegli una voce libera, una giornata libera o un elemento di una sezione (alloggio, trasporto, prenotazione, ristorante, luogo salvato, bucket list) da cercare per nome; poi giorno e ora facoltativa.", "I giorni sono quelli del viaggio; le voci rimaste fuori dalle date compaiono in «Fuori dalle date». Tutti i viaggiatori modificano, elimina solo chi ha aggiunto la voce o il proprietario. Le modifiche finiscono nel Registro attività."],
