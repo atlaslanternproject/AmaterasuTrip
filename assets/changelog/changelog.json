@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.67.0",
+      "date": "2026-11-26",
+      "it": ["Altro: «Cerca» ora è una barra in alto (stessa ricerca in tutte le sezioni) e non più una voce dell'elenco; tolta la pagina «Viaggiatori», che era solo un segnaposto (i viaggiatori restano nelle impostazioni del viaggio)."],
+      "en": ["More: «Search» is now a bar at the top (same search across all sections) instead of a list item; the «Travelers» page, only a placeholder, was removed (travelers stay in the trip settings)."]
+    },
+    {
       "version": "1.66.0",
       "date": "2026-11-26",
       "it": ["Trasporti: nell'editor resta una sola sezione dei posti (quella per passeggero); tolto il campo «Posti» doppio da «Compagnia e passeggeri»."],

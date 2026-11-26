@@ -30,7 +30,6 @@ import '../features/trips/presentation/pages/workspace/widgets/trip_workspace_sh
 
 import '../features/trips/presentation/pages/workspace/map/trip_map_page.dart';
 import '../features/trips/presentation/pages/workspace/expenses/trip_expenses_page.dart';
-import '../features/trips/presentation/pages/workspace/travellers/trip_travellers_page.dart';
 
 import '../features/trips/presentation/pages/workspace/more/restaurants/trip_restaurants_page.dart';
 import '../features/trips/presentation/pages/workspace/more/hotels/trip_hotels_page.dart';
@@ -385,18 +384,6 @@ final amaterasuRouter = GoRouter(
             final tripId = state.pathParameters['tripId']!;
 
             return TripExpensesPage(tripId: tripId);
-          },
-        ),
-
-        // ------------------------------------------------------
-        // ALTRO > VIAGGIATORI
-        // ------------------------------------------------------
-        GoRoute(
-          path: '/trips/:tripId/more/travellers',
-          builder: (context, state) {
-            final tripId = state.pathParameters['tripId']!;
-
-            return TripTravellersPage(tripId: tripId);
           },
         ),
 

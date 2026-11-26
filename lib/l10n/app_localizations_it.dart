@@ -3188,9 +3188,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get tripMoreCountryInfoSubtitle => 'Emergenze, prese, guida, fusi e schede ufficiali';
 
   @override
-  String get tripMoreSearch => 'Cerca';
-
-  @override
   String get tripMoreSearchSubtitle => 'Trova un elemento in tutte le sezioni del viaggio';
 
   @override
