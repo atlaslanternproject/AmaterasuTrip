@@ -1806,3 +1806,7 @@ totali del cruscotto del budget.
 ### Giro 1.2 Mappa: elenco dei luoghi senza posizione (1.65.0)
 Valutazione (regola 1): (a) il contatore c'era, l'elenco no; gli elementi senza posizione sono già nel catalogo letto all'apertura; (b) il conteggio diventa l'elenco stesso (nessuna lettura in più), foglio comune showAmaterasuSheet con la miniatura dell'itinerario e il percorso della sezione (TripSearchSection.route); (c) tocca trip_map_builders/sources/view e il nuovo trip_map_missing.dart; test Mappa aggiornati.
 Prova: Altro > Mappa, tocca "N senza posizione": elenco con sezione e nome; un tocco apre la sezione.
+
+### Giro 1.3 Trasporti: un solo "Posti" (1.66.0)
+Valutazione (regola 1): (a) c'erano due campi: testo "Posti" nel blocco Compagnia e passeggeri e i posti per passeggero (extras); (b) tolto il primo dall'editor, nessun dato cambiato: un testo già salvato resta e si vede sulla card; (c) tocca trip_transport_editor_blocks.dart e la chiave transportSeats; test trasporti 20.
+Prova: Trasporti > Modifica: in "Compagnia e passeggeri" niente più "Posti"; i posti si scrivono per passeggero.

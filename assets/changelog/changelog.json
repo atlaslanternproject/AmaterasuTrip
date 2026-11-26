@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.66.0",
+      "date": "2026-11-26",
+      "it": ["Trasporti: nell'editor resta una sola sezione dei posti (quella per passeggero); tolto il campo «Posti» doppio da «Compagnia e passeggeri»."],
+      "en": ["Transport: the editor keeps a single seats section (per passenger); the duplicate «Seats» field was removed from «Company and passengers»."]
+    },
+    {
       "version": "1.65.0",
       "date": "2026-11-26",
       "it": ["Mappa: tocca il contatore «N senza posizione» per vedere quali elementi non hanno un luogo (sezione e nome) e aprire la loro sezione."],

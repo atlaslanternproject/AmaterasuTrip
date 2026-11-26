@@ -1642,7 +1642,6 @@
   "transportTimeZoneNone": "Non indicato",
   "transportCarrier": "Compagnia",
   "transportNumber": "Numero (volo, treno…)",
-  "transportSeats": "Posti",
   "transportPassengers": "Passeggeri",
   "transportBookedVia": "Prenotato su",
   "transportBookingLink": "Link della prenotazione",
