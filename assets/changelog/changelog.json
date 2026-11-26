@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.73.0",
+      "date": "2026-11-26",
+      "it": ["Impostazioni: stesse spaziature in tutte le pagine-elenco, come in Privacy e legale (Assistenza, Stato dell'app e impostazioni del viaggio)."],
+      "en": ["Settings: the same spacing on every list page, as in Privacy and legal (Support, App status and trip settings)."]
+    },
+    {
       "version": "1.72.0",
       "date": "2026-11-26",
       "it": ["Impostazioni riordinate: Account, Profilo, Lingua, Aspetto, Dati, poi «Privacy e legale» (informativa, permessi, consensi, esportazione e conformità), «Assistenza» (segnala un problema, suggerisci un'idea, contatti) e «Informazioni» (stato dell'app, crediti e licenze). Tolti i doppioni di versione, privacy e assistenza."],
