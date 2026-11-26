@@ -1,4 +1,6 @@
-// Pagina "Altro" del workspace: accesso alle sezioni secondarie del viaggio.
+// Pagina "Altro" del workspace: accesso alle sezioni secondarie del viaggio,
+// con la barra "Cerca" in alto (ricerca in tutte le sezioni, stessa pagina
+// di prima).
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -26,12 +28,6 @@ class TripMorePage extends StatelessWidget {
 
     final items = [
       _TripMoreItem(
-        title: l10n.tripMoreSearch,
-        subtitle: l10n.tripMoreSearchSubtitle,
-        icon: Icons.search_rounded,
-        route: '/trips/$tripId/more/search',
-      ),
-      _TripMoreItem(
         title: l10n.tripMapTitle,
         subtitle: l10n.tripMapSubtitle,
         icon: Icons.map_outlined,
@@ -42,12 +38,6 @@ class TripMorePage extends StatelessWidget {
         subtitle: l10n.tripExpensesSubtitle,
         icon: Icons.receipt_long_outlined,
         route: '/trips/$tripId/more/expenses',
-      ),
-      _TripMoreItem(
-        title: l10n.tripTravellersTitle,
-        subtitle: l10n.tripTravellersSubtitle,
-        icon: Icons.group_outlined,
-        route: '/trips/$tripId/more/travellers',
       ),
       _TripMoreItem(
         title: l10n.tripMoreRestaurants,
@@ -188,6 +178,42 @@ class TripMorePage extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 4),
+              child: Material(
+                color: _surfaceColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AmaterasuRadius.md),
+                  side: const BorderSide(color: _borderColor),
+                ),
+                child: InkWell(
+                  key: const Key('more-search'),
+                  borderRadius: BorderRadius.circular(AmaterasuRadius.md),
+                  onTap: () => context.go('/trips/$tripId/more/search'),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AmaterasuSpacing.md,
+                      vertical: 14,
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.search_rounded, color: _accentColor),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            l10n.tripMoreSearchSubtitle,
+                            style: const TextStyle(
+                              color: _secondaryTextColor,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
             Expanded(

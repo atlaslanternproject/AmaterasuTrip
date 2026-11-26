@@ -1810,3 +1810,7 @@ Prova: Altro > Mappa, tocca "N senza posizione": elenco con sezione e nome; un t
 ### Giro 1.3 Trasporti: un solo "Posti" (1.66.0)
 Valutazione (regola 1): (a) c'erano due campi: testo "Posti" nel blocco Compagnia e passeggeri e i posti per passeggero (extras); (b) tolto il primo dall'editor, nessun dato cambiato: un testo già salvato resta e si vede sulla card; (c) tocca trip_transport_editor_blocks.dart e la chiave transportSeats; test trasporti 20.
 Prova: Trasporti > Modifica: in "Compagnia e passeggeri" niente più "Posti"; i posti si scrivono per passeggero.
+
+### Giro 1.4 Altro: barra Cerca, via Viaggiatori (1.67.0)
+Valutazione (regola 1): (a) "Cerca" era una voce dell'elenco; "Viaggiatori" una pagina segnaposto (TripPlaceholderPage) usata solo da Altro; (b) barra in alto con lo stesso stile delle voci di Altro (stessi colori, bordo e raggio) che apre la stessa pagina /more/search; tolti voce, indirizzo /more/travellers e file della pagina segnaposto; i viaggiatori restano in Impostazioni del viaggio > Viaggiatori (approvata, non toccata); (c) tocca trip_more_page.dart, router.dart e 3 chiavi di testo; nuovo test trip_more_page_test.dart.
+Prova: Altro: barra "Cerca" in alto che apre la ricerca; nell'elenco niente "Cerca" né "Viaggiatori".

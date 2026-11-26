@@ -6197,12 +6197,6 @@ abstract class AppLocalizations {
   /// **'Emergencies, plugs, driving, time zones and official pages'**
   String get tripMoreCountryInfoSubtitle;
 
-  /// No description provided for @tripMoreSearch.
-  ///
-  /// In en, this message translates to:
-  /// **'Search'**
-  String get tripMoreSearch;
-
   /// No description provided for @tripMoreSearchSubtitle.
   ///
   /// In en, this message translates to:

@@ -3188,9 +3188,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripMoreCountryInfoSubtitle => 'Emergencies, plugs, driving, time zones and official pages';
 
   @override
-  String get tripMoreSearch => 'Search';
-
-  @override
   String get tripMoreSearchSubtitle => 'Find an item in all the sections of the trip';
 
   @override
