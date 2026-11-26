@@ -1,14 +1,12 @@
-// Informazioni sull'app: versione e build; toccando la versione si apre
-// l'elenco di tutte le versioni con le novità.
+// Stato dell'app (Informazioni): nome, versione e build; toccando la
+// versione si apre l'elenco di tutte le versioni con le novità.
 
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:amaterasutrip/core/changelog/amaterasu_whats_new.dart';
-import 'information_licenses_page.dart';
+import 'information_sub_item.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
-import 'package:amaterasutrip/core/theme/amaterasu_spacing.dart';
 
 class InformationAppPage extends StatefulWidget {
   const InformationAppPage({super.key});
@@ -44,122 +42,26 @@ class _InformationAppPageState extends State<InformationAppPage> {
 
     return Column(
       children: [
-        _InformationSubItem(
+        InformationSubItem(
           icon: Icons.apps_outlined,
           title: l10n.informationAppName,
           subtitle: 'Amaterasu Trip',
           onTap: () {},
         ),
-        _InformationSubItem(
+        InformationSubItem(
           icon: Icons.new_releases_outlined,
           title: l10n.informationVersion,
           subtitle: _packageInfo?.version ?? '—',
           // Opens every past version with its news (Extra A).
           onTap: () => AmaterasuWhatsNew.showAll(context),
         ),
-        _InformationSubItem(
+        InformationSubItem(
           icon: Icons.tag_outlined,
           title: l10n.informationBuild,
           subtitle: _packageInfo?.buildNumber ?? '—',
           onTap: () {},
         ),
-        _InformationSubItem(
-          icon: Icons.description_outlined,
-          title: l10n.informationOpenSourceLicenses,
-          subtitle: l10n.informationOpenSourceLicensesSubtitle,
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const InformationLicensesPage(),
-              ),
-            );
-          },
-        ),
       ],
-    );
-  }
-}
-
-class _InformationSubItem extends StatelessWidget {
-  const _InformationSubItem({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-
-  static const Color _sectionColor = AmaterasuColors.surface;
-  static const Color _borderColor = AmaterasuColors.borderWarm;
-  static const Color _accentColor = AmaterasuColors.accentSettings;
-  static const Color _titleColor = AmaterasuColors.textPrimary;
-  static const Color _subtitleColor = AmaterasuColors.textMuted;
-  static const Color _chevronColor = AmaterasuColors.textWarm;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Ink(
-          decoration: BoxDecoration(
-            color: _sectionColor,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: _borderColor, width: 1),
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
-          child: Row(
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: _accentColor.withValues(alpha: 0.65),
-                  ),
-                ),
-                child: Icon(icon, color: _accentColor, size: 20),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        color: _titleColor,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: AmaterasuSpacing.xs),
-                    Text(
-                      subtitle,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: _subtitleColor,
-                        fontSize: 12,
-                        height: 1.25,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 10),
-              const Icon(Icons.chevron_right, color: _chevronColor, size: 22),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

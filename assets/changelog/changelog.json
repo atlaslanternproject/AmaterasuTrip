@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.72.0",
+      "date": "2026-11-26",
+      "it": ["Impostazioni riordinate: Account, Profilo, Lingua, Aspetto, Dati, poi «Privacy e legale» (informativa, permessi, consensi, esportazione e conformità), «Assistenza» (segnala un problema, suggerisci un'idea, contatti) e «Informazioni» (stato dell'app, crediti e licenze). Tolti i doppioni di versione, privacy e assistenza."],
+      "en": ["Settings reorganised: Account, Profile, Language, Appearance, Data, then «Privacy and legal» (policy, permissions, consents, export and compliance), «Support» (report a problem, suggest an idea, contacts) and «Information» (app status, credits and licenses). Duplicate version, privacy and support entries removed."]
+    },
+    {
       "version": "1.71.0",
       "date": "2026-11-26",
       "it": ["Impostazioni > Aspetto > Data e ora: più formati della data (30/08/2027, 08/30/2027, 2027-08-30, 2027/08/30, 30 agosto 2027 oppure come la lingua), ognuno con l'esempio calcolato sulla data di oggi."],

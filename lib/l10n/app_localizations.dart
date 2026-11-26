@@ -494,7 +494,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsPrivacy.
   ///
   /// In en, this message translates to:
-  /// **'Privacy'**
+  /// **'Privacy and legal'**
   String get settingsPrivacy;
 
   /// No description provided for @settingsDataSync.
@@ -608,7 +608,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsPrivacySubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Control your privacy'**
+  /// **'Policy, permissions, consents, export and compliance'**
   String get settingsPrivacySubtitle;
 
   /// No description provided for @settingsDataSyncSubtitle.
@@ -620,7 +620,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsInformationSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'App version, terms and more'**
+  /// **'App status, credits and licenses'**
   String get settingsInformationSubtitle;
 
   /// No description provided for @confirm.
@@ -1130,7 +1130,7 @@ abstract class AppLocalizations {
   /// No description provided for @privacyTitle.
   ///
   /// In en, this message translates to:
-  /// **'Privacy'**
+  /// **'Privacy and legal'**
   String get privacyTitle;
 
   /// No description provided for @privacyIntro.
@@ -1472,49 +1472,25 @@ abstract class AppLocalizations {
   /// No description provided for @informationApp.
   ///
   /// In en, this message translates to:
-  /// **'App'**
+  /// **'App status'**
   String get informationApp;
 
   /// No description provided for @informationAppSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Version, build and licences'**
+  /// **'Version with what\'s new and build'**
   String get informationAppSubtitle;
-
-  /// No description provided for @informationLegal.
-  ///
-  /// In en, this message translates to:
-  /// **'Legal'**
-  String get informationLegal;
-
-  /// No description provided for @informationLegalSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Terms, privacy and legal information'**
-  String get informationLegalSubtitle;
-
-  /// No description provided for @informationSupport.
-  ///
-  /// In en, this message translates to:
-  /// **'Support'**
-  String get informationSupport;
-
-  /// No description provided for @informationSupportSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Help, contact and reporting'**
-  String get informationSupportSubtitle;
 
   /// No description provided for @informationCredits.
   ///
   /// In en, this message translates to:
-  /// **'Credits'**
+  /// **'Credits and licenses'**
   String get informationCredits;
 
   /// No description provided for @informationCreditsSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Credits, services and SDKs used'**
+  /// **'Who develops it, technologies and open source licenses'**
   String get informationCreditsSubtitle;
 
   /// No description provided for @informationAppName.
@@ -1546,48 +1522,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View licences for the software used'**
   String get informationOpenSourceLicensesSubtitle;
-
-  /// No description provided for @informationPrivacyPolicy.
-  ///
-  /// In en, this message translates to:
-  /// **'Privacy policy'**
-  String get informationPrivacyPolicy;
-
-  /// No description provided for @informationPrivacyPolicySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Read how your personal data is handled'**
-  String get informationPrivacyPolicySubtitle;
-
-  /// No description provided for @informationContactUs.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact us'**
-  String get informationContactUs;
-
-  /// No description provided for @informationReportProblem.
-  ///
-  /// In en, this message translates to:
-  /// **'Report a problem'**
-  String get informationReportProblem;
-
-  /// No description provided for @informationReportProblemSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Send a problem report to support'**
-  String get informationReportProblemSubtitle;
-
-  /// No description provided for @informationReportProblemSubject.
-  ///
-  /// In en, this message translates to:
-  /// **'Amaterasu Trip - Problem report'**
-  String get informationReportProblemSubject;
-
-  /// No description provided for @informationReportProblemBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Describe the problem:\n\n\n---\nAmaterasu Trip\nVersion: {version}\nBuild: {build}'**
-  String informationReportProblemBody(String version, String build);
 
   /// No description provided for @informationCreditsDevelopedBy.
   ///
@@ -7370,19 +7304,19 @@ abstract class AppLocalizations {
   /// No description provided for @settingsSupport.
   ///
   /// In en, this message translates to:
-  /// **'Help and privacy'**
+  /// **'Support'**
   String get settingsSupport;
 
   /// No description provided for @settingsSupportSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Reports, ideas, app status and rules'**
+  /// **'Report a problem, suggest an idea, contacts'**
   String get settingsSupportSubtitle;
 
   /// No description provided for @supportTitle.
   ///
   /// In en, this message translates to:
-  /// **'Help and privacy'**
+  /// **'Support'**
   String get supportTitle;
 
   /// No description provided for @supportReportProblem.
@@ -7409,30 +7343,6 @@ abstract class AppLocalizations {
   /// **'What you would like in the app'**
   String get supportSuggestIdeaSubtitle;
 
-  /// No description provided for @supportAppStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'App status'**
-  String get supportAppStatus;
-
-  /// No description provided for @supportAppStatusValue.
-  ///
-  /// In en, this message translates to:
-  /// **'Version {version} · updated on {date}'**
-  String supportAppStatusValue(String version, String date);
-
-  /// No description provided for @supportPrivacy.
-  ///
-  /// In en, this message translates to:
-  /// **'Privacy policy'**
-  String get supportPrivacy;
-
-  /// No description provided for @supportPrivacySubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Opens the online page'**
-  String get supportPrivacySubtitle;
-
   /// No description provided for @supportCompliance.
   ///
   /// In en, this message translates to:
@@ -7444,6 +7354,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The rules we follow and how'**
   String get supportComplianceSubtitle;
+
+  /// No description provided for @supportContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get supportContacts;
+
+  /// No description provided for @supportContactsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Write us an email at the support address'**
+  String get supportContactsSubtitle;
 
   /// No description provided for @supportNoTracking.
   ///

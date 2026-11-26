@@ -2,6 +2,7 @@
 // e informativa.
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
@@ -109,6 +110,14 @@ class _PrivacyPageState extends State<PrivacyPage> {
               });
             },
             children: const [PrivacyExportPage()],
+          ),
+          const SizedBox(height: 10),
+          AmaterasuSettingsCard(
+            key: const Key('privacy-compliance'),
+            icon: Icons.gavel_rounded,
+            title: l10n.supportCompliance,
+            subtitle: l10n.supportComplianceSubtitle,
+            onTap: () => context.push('/settings/privacy/compliance'),
           ),
         ],
       ),
