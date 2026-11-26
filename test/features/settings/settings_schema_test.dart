@@ -83,6 +83,12 @@ void main() {
     for (final k in ['status', 'privacy', 'compliance']) {
       expect(find.byKey(Key('support-$k')), findsNothing);
     }
+    // Same gap as Privacy and the main page.
+    double gap(String a, String b) =>
+        tester.getTopLeft(find.byKey(Key('support-$b'))).dy -
+        tester.getBottomLeft(find.byKey(Key('support-$a'))).dy;
+    expect(gap('bug', 'idea'), 10);
+    expect(gap('idea', 'contacts'), 10);
   });
 
   testWidgets('Privacy and legal has Compliance', (tester) async {

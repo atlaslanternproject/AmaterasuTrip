@@ -107,7 +107,7 @@ class TripPrivacySettingsPage extends ConsumerWidget {
 
                   return ListView(
                     physics: const ClampingScrollPhysics(),
-                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
                     children: [
                       _SectionTitle(l10n.tripPrivacyAccessSection),
 

@@ -48,6 +48,7 @@ class _InformationAppPageState extends State<InformationAppPage> {
           subtitle: 'Amaterasu Trip',
           onTap: () {},
         ),
+        const SizedBox(height: 10),
         InformationSubItem(
           icon: Icons.new_releases_outlined,
           title: l10n.informationVersion,
@@ -55,6 +56,7 @@ class _InformationAppPageState extends State<InformationAppPage> {
           // Opens every past version with its news (Extra A).
           onTap: () => AmaterasuWhatsNew.showAll(context),
         ),
+        const SizedBox(height: 10),
         InformationSubItem(
           icon: Icons.tag_outlined,
           title: l10n.informationBuild,

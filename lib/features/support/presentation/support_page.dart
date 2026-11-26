@@ -33,7 +33,7 @@ class SupportPage extends StatelessWidget {
       ),
       body: ListView(
         key: const Key('support-page'),
-        padding: const EdgeInsets.fromLTRB(20, 4, 20, 32),
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
         children: [
           AmaterasuSettingsCard(
             key: const Key('support-bug'),
@@ -42,6 +42,7 @@ class SupportPage extends StatelessWidget {
             subtitle: l10n.supportReportProblemSubtitle,
             onTap: () => showFeedbackSheet(context, FeedbackKind.bug),
           ),
+          const SizedBox(height: 10),
           AmaterasuSettingsCard(
             key: const Key('support-idea'),
             icon: Icons.lightbulb_outline_rounded,
@@ -49,6 +50,7 @@ class SupportPage extends StatelessWidget {
             subtitle: l10n.supportSuggestIdeaSubtitle,
             onTap: () => showFeedbackSheet(context, FeedbackKind.idea),
           ),
+          const SizedBox(height: 10),
           AmaterasuSettingsCard(
             key: const Key('support-contacts'),
             icon: Icons.mail_outline_rounded,
