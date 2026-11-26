@@ -1833,3 +1833,17 @@ Prova: Alloggi: sulle card proprie c'è il cestino rosso (non i tre puntini), su
 ### Giro 1.8 Aspetto: più formati della data con esempio (1.71.0)
 Valutazione (regola 1): (a) AmaterasuDates.day aveva 3 formati (lingua, gg/mm/aaaa, aaaa-mm-gg); (b) una sola funzione AmaterasuDates.withFormat per tutti i formati (nuovi: mdy, ymdSlash, long con intl nella lingua dell'app) usata anche per l'esempio sulla data di oggi nelle scelte di Aspetto (stesse chiavi appearance-date-<codice>); (c) impostazioni (modulo approvato), cosa cambia: solo le scelte di Data e ora; firestore.rules: validAppearance accetta i 3 nuovi valori (impatto solo sulle preferenze di Aspetto dell'utente, nessun'altra regola); test regole e date aggiornati. Applicato dove AmaterasuDates è già usato (sezioni nuove); nei moduli approvati arriva con la COERENZA (giro 7).
 Prova: Impostazioni > Aspetto > Data e ora: le scelte mostrano la data di oggi in ogni formato; scegline uno e controlla le date in Itinerario, Prenotazioni o Note.
+
+### Giro 1.9 Drive: diagnosi (nessuna modifica)
+Errore reale: sul Web il collegamento usa il client OAuth letto alla build da --dart-define GOOGLE_DRIVE_WEB_CLIENT_ID (drive_web_authorization_web.dart). Il file .env.local.json usato dalla pubblicazione contiene solo GOOGLE_MAPS_WEB_API_KEY: il client ID è vuoto, authorizeGoogleDriveWeb lancia "GOOGLE_DRIVE_WEB_CLIENT_ID is not configured" e la pagina dell'archivio (trip_cloud_archive_page.dart, catch generico) mostra "non è stato possibile". Nessuna finestra Google si apre.
+Da fare dal proprietario (console Google Cloud, progetto amaterasutrip):
+1. API e servizi > Libreria: "Google Drive API" abilitata.
+2. Credenziali: un "ID client OAuth" di tipo "Applicazione web" con origini JavaScript autorizzate https://amaterasutrip.web.app e https://amaterasutrip.firebaseapp.com (più http://localhost per le prove). Copiare l'ID (finisce con .apps.googleusercontent.com) in .env.local.json come "GOOGLE_DRIVE_WEB_CLIENT_ID" (file locale, mai nel codice).
+3. Schermata di consenso OAuth: se è "In test" aggiungere ogni account che deve usarlo in "Utenti di test" (altrimenti "accesso bloccato"); ambito .../auth/drive.file (non richiede verifica Google).
+4. Il browser deve permettere il popup di accounts.google.com (la richiesta parte dal tocco su "Google Drive").
+5. Il token dura circa un'ora e non viene salvato: a ogni nuova operazione l'app richiede di nuovo il consenso.
+Dopo il passo 2 serve una nuova pubblicazione (la build legge il client ID). Proposta per dopo: messaggio più preciso quando manca la configurazione (oggi è generico).
+
+### Riepilogo Giro 1 (1.64.0 - 1.71.0)
+Fatto: 1 Statistiche nella valuta del budget (1.64.0), 2 elenco senza posizione della Mappa (1.65.0), 3 un solo "Posti" nei Trasporti (1.66.0), 4 Altro con barra Cerca e senza Viaggiatori (1.67.0), 5 significato dei numeri di emergenza (1.68.0), 6 Audit Trail unico con filtro Spese e informativa 7.2 (1.69.0), 7 cestino negli Alloggi (1.70.0), 8 formati della data con esempio (1.71.0), 9 diagnosi Drive (sopra).
+Prossimo: Giro 2 Impostazioni, con CHIEDI OK sullo schema finale prima di toccare.
