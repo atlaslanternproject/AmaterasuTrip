@@ -173,17 +173,16 @@ void main() {
       );
     }
 
-    testWidgets('trip history opens from the expenses page', (tester) async {
+    // The trip history moved to the single Audit Trail (filter Spese).
+    testWidgets('no separate trip history on the expenses page', (
+      tester,
+    ) async {
       await setScreen(tester, const Size(1280, 900));
       await tester.pumpWidget(
         localized(TripExpensesPage(tripId: 'trip1', api: legacyApi())),
       );
       await tester.pumpAndSettle();
-      await tester.tap(find.byTooltip('Storico del viaggio'));
-      await tester.pumpAndSettle();
-
-      expect(find.text('Storico del viaggio'), findsWidgets);
-      expect(find.text('Anna ha creato la spesa'), findsOneWidget);
+      expect(find.byTooltip('Storico del viaggio'), findsNothing);
       expect(tester.takeException(), isNull);
     });
 

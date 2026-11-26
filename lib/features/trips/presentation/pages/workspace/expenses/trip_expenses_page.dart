@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_api.dart';
-import 'package:amaterasutrip/features/trips/budget/presentation/budget_history_view.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_category_dashboard.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expense_filters.dart';
 import 'package:amaterasutrip/features/trips/budget/presentation/budget_expenses_toolbar.dart';
@@ -85,14 +84,6 @@ class _TripExpensesPageState extends State<TripExpensesPage> {
             tooltip: budgetL10n(it).btPageRefresh,
             onPressed: _refresh,
             icon: const Icon(Icons.refresh_rounded, color: _cream),
-          ),
-          IconButton(
-            tooltip: l10n.b86TripHistory,
-            onPressed: () => showDialog<void>(
-              context: context,
-              builder: (_) => BudgetTripHistoryDialog(api: _api),
-            ),
-            icon: const Icon(Icons.history_rounded, color: _cream),
           ),
           TripExpensesExportButton(api: _api),
           IconButton(

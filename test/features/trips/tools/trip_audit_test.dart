@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../budget/support/fake_budget_api.dart';
 import '../sections/support/fake_section_store.dart';
 
 TripAuditEntry entry(
@@ -72,6 +73,20 @@ Future<FakeAudit> open(
           't1',
         ).overrideWith((ref) => const {'anna': 'Anna', 'gone': null}),
       ],
+      budget: FakeBudgetApi(
+        uid: 'anna',
+        members: const [
+          {'uid': 'anna', 'name': 'Anna'},
+        ],
+        historyResponse: const {
+          'events': [
+            {'type': 'created', 'expenseId': 'e1', 'actorUid': 'anna'},
+          ],
+          'expenses': {
+            'e1': {'title': 'Cena sushi'},
+          },
+        },
+      ),
     ),
   );
   await tester.pumpAndSettle();
@@ -79,7 +94,7 @@ Future<FakeAudit> open(
 }
 
 void main() {
-  testWidgets('names, changes and the link to expenses', (tester) async {
+  testWidgets('names and changes; no separate expenses link', (tester) async {
     await open(tester, [
       entry(0),
       entry(1, actor: 'gone', action: 'create'),
@@ -90,7 +105,24 @@ void main() {
     expect(find.text('Ex viaggiatore ha eliminato «Voce 2»'), findsOneWidget);
     expect(find.text('number: AZ1 → AZ2'), findsOneWidget);
     expect(find.textContaining('Trasporti'), findsWidgets);
+    expect(find.byKey(const Key('audit-expenses')), findsNothing);
+  });
+
+  testWidgets('"Spese" filter shows the budget history, no register read', (
+    tester,
+  ) async {
+    final source = await open(tester, [entry(0)]);
+    await tapKey(tester, 'audit-filters');
+    await tapKey(tester, 'audit-filter-person-anna');
+    await tapKey(tester, 'audit-filter-section-expenses');
+    await tester.tapAt(const Offset(5, 5));
+    await tester.pumpAndSettle();
     expect(find.byKey(const Key('audit-expenses')), findsOneWidget);
+    expect(find.byKey(const Key('audit-expenses-filters')), findsOneWidget);
+    expect(find.textContaining('Cena sushi'), findsOneWidget);
+    expect(find.text('Anna ha modificato «Voce 0»'), findsNothing);
+    // Only the first register page (opening, person filter): none for Spese.
+    expect(source.asked.where((f) => f.section == 'expenses'), isEmpty);
   });
 
   testWidgets('pages of 30 and filters passed to the reading', (tester) async {
@@ -102,7 +134,10 @@ void main() {
     );
     final more = find.byKey(const Key('audit-more'));
     await tester.scrollUntilVisible(more, 600, scrollable: list);
+    await tester.drag(list, const Offset(0, -800));
+    await tester.pumpAndSettle();
     await tester.tap(more);
+    await tester.pumpAndSettle();
     await tester.pumpAndSettle();
     // Second page asked once, then nothing more to load.
     expect(source.asked, hasLength(2));
@@ -124,5 +159,4 @@ void main() {
     expect(find.byKey(const Key('audit-empty')), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
-
 }

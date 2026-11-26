@@ -1,6 +1,7 @@
 // Filtri dell'Audit Trail con il pannello condiviso dei filtri
 // (showAmaterasuFilterSheet, lo stesso delle sezioni): sezione, persona
-// (username dei membri), azione e periodo; "Azzera filtri" li toglie.
+// (username dei membri; "Spese" mostra lo Storico del budget), azione e
+// periodo; "Azzera filtri" li toglie.
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/widgets/filters/amaterasu_filter_sheet.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_audit_data.dart';
+import 'trip_audit_expenses.dart';
 import 'trip_audit_names.dart';
 import 'trip_audit_tile.dart';
 
@@ -68,6 +70,7 @@ Future<void> showTripAuditFilters(
           (null, l10n.auditAll),
           for (final s in tripAuditSections)
             (s, tripAuditSectionLabel(l10n, s)),
+          (tripAuditExpenses, tripAuditSectionLabel(l10n, tripAuditExpenses)),
         ],
         (v) => f.copy(section: () => v),
         update,

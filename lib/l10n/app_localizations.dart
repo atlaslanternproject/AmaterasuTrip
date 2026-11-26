@@ -4037,12 +4037,6 @@ abstract class AppLocalizations {
   /// **'Reason: {reason}'**
   String b86Reason(String reason);
 
-  /// No description provided for @b86TripHistory.
-  ///
-  /// In en, this message translates to:
-  /// **'Trip history'**
-  String get b86TripHistory;
-
   /// No description provided for @b86ExpenseHistory.
   ///
   /// In en, this message translates to:
@@ -6629,23 +6623,17 @@ abstract class AppLocalizations {
   /// **'Register of the changes to the trip sections: who, what and when, with the value before and after. Only the server writes it and nobody can change or delete it. Private notes and checklists are never in it.'**
   String get auditIntro;
 
-  /// No description provided for @auditExpenses.
-  ///
-  /// In en, this message translates to:
-  /// **'Changes to expenses are in the budget History.'**
-  String get auditExpenses;
-
-  /// No description provided for @auditOpenExpenses.
-  ///
-  /// In en, this message translates to:
-  /// **'Open expenses'**
-  String get auditOpenExpenses;
-
   /// No description provided for @auditEmpty.
   ///
   /// In en, this message translates to:
   /// **'No change recorded with these filters.'**
   String get auditEmpty;
+
+  /// No description provided for @auditExpensesFiltersNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Person, action and period do not apply to expenses: here is all the budget history you can see.'**
+  String get auditExpensesFiltersNote;
 
   /// No description provided for @auditMore.
   ///

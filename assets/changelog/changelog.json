@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.69.0",
+      "date": "2026-11-26",
+      "it": ["Audit Trail unico: lo Storico del budget ora si trova nell'Audit Trail con il filtro «Spese» (si carica solo quando lo scegli, con le stesse regole: ognuno vede solo le spese a cui partecipa). Tolto il pulsante separato dalla pagina Spese; lo «Storico della spesa» resta nei dettagli di ogni spesa.","Informativa aggiornata (7.2): nel registro c'è anche l'itinerario e il filtro «Spese»."],
+      "en": ["Single Audit Trail: the budget history is now in the Audit Trail with the «Expenses» filter (loaded only when you choose it, same rules: everyone sees only the expenses they take part in). The separate button was removed from the Expenses page; the «Expense history» stays in each expense details.","Privacy policy updated (7.2): the log also covers the itinerary and the «Expenses» filter."]
+    },
+    {
       "version": "1.68.0",
       "date": "2026-11-26",
       "it": ["Info paese: accanto a ogni numero di emergenza c'è cosa significa (polizia, vigili del fuoco, ambulanza, numero unico di emergenza, guardia costiera…), dai dati aperti di Wikidata. Se il significato non è noto resta solo il numero."],

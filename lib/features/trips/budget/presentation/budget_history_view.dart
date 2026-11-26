@@ -12,7 +12,6 @@ import 'budget_people.dart';
 
 part 'budget_history_view_models.dart';
 part 'budget_history_view_texts.dart';
-part 'budget_history_view_trip_dialog.dart';
 
 /// List of operations of one expense, or of the whole trip when
 /// [expenseId] is null (B8.6). Data comes only from the Cloud Function,

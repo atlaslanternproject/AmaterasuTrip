@@ -2022,9 +2022,6 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get b86TripHistory => 'Storico del viaggio';
-
-  @override
   String get b86ExpenseHistory => 'Storico della spesa';
 
   @override
@@ -3446,13 +3443,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get auditIntro => 'Registro delle modifiche alle sezioni del viaggio: chi, cosa e quando, con il valore prima e dopo. Lo scrive solo il server e nessuno può modificarlo o cancellarlo. Note e checklist private non ci sono mai.';
 
   @override
-  String get auditExpenses => 'Le modifiche alle spese sono nello Storico del budget.';
-
-  @override
-  String get auditOpenExpenses => 'Apri le spese';
-
-  @override
   String get auditEmpty => 'Nessuna modifica registrata con questi filtri.';
+
+  @override
+  String get auditExpensesFiltersNote => 'Persona, azione e periodo non valgono per le spese: qui c\'è tutto lo Storico del budget che puoi vedere.';
 
   @override
   String get auditMore => 'Mostra altre';

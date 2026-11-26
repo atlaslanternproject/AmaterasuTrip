@@ -1,12 +1,12 @@
-// Pagina "Audit Trail" di Altro (v1.58.0): spiegazione, rimando allo
-// Storico del budget per le spese, filtri con il componente condiviso
-// (sezione, persona, azione, periodo) e voci a pagine da 30, lette solo
-// all'apertura, al cambio dei filtri o con "Mostra altre". Sola lettura.
+// Pagina "Audit Trail" di Altro (v1.58.0), registro unico del viaggio:
+// spiegazione, filtri con il componente condiviso (sezione, persona,
+// azione, periodo) e voci a pagine da 30, lette solo all'apertura, al
+// cambio dei filtri o con "Mostra altre". Il filtro "Spese" mostra lo
+// Storico del budget (trip_audit_expenses.dart). Sola lettura.
 
 import 'package:amaterasutrip/core/widgets/common/amaterasu_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/widgets/filters/amaterasu_filter_bar.dart';
@@ -14,6 +14,7 @@ import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_heade
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'package:amaterasutrip/core/widgets/buttons/amaterasu_button.dart';
 import 'trip_audit_data.dart';
+import 'trip_audit_expenses.dart';
 import 'trip_audit_filters.dart';
 import 'trip_audit_names.dart';
 import 'trip_audit_tile.dart';
@@ -47,7 +48,11 @@ class _TripAuditPageState extends ConsumerState<TripAuditPage> {
     super.dispose();
   }
 
+  bool get _expenses => _filters.value.section == tripAuditExpenses;
+
   Future<void> _load({required bool reset}) async {
+    // "Spese": the budget history loads itself, no register page.
+    if (_expenses) return setState(() {});
     setState(() {
       _loading = true;
       _failed = false;
@@ -101,20 +106,6 @@ class _TripAuditPageState extends ConsumerState<TripAuditPage> {
                     children: [
                       Text(l10n.auditIntro, style: muted),
                       const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(l10n.auditExpenses, style: muted),
-                          ),
-                          AmaterasuButton.tertiary(
-                            key: const Key('audit-expenses'),
-                            onPressed: () => context.go(
-                              '/trips/${widget.tripId}/more/expenses',
-                            ),
-                            label: l10n.auditOpenExpenses,
-                          ),
-                        ],
-                      ),
                       ValueListenableBuilder(
                         valueListenable: _filters,
                         builder: (context, f, _) => AmaterasuFilterBar(
@@ -130,34 +121,43 @@ class _TripAuditPageState extends ConsumerState<TripAuditPage> {
                           padding: const EdgeInsets.symmetric(vertical: 8),
                         ),
                       ),
-                      for (final e in _entries)
-                        TripAuditTile(
-                          entry: e,
-                          who: tripAuditName(l10n, members, e.actorUid),
-                        ),
-                      if (_loading)
-                        const Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Center(child: AmaterasuLoader()),
+                      if (_expenses)
+                        TripAuditExpenses(
+                          key: ValueKey(_filters.value),
+                          tripId: widget.tripId,
+                          otherFilters:
+                              tripAuditActiveCount(_filters.value) > 1,
                         )
-                      else if (_failed)
-                        AmaterasuButton.tertiary(
-                          key: const Key('audit-retry'),
-                          onPressed: () => _load(reset: _entries.isEmpty),
-                          label: '${l10n.auditError} ${l10n.auditRetry}',
-                        )
-                      else if (_entries.isEmpty)
-                        Text(
-                          l10n.auditEmpty,
-                          key: const Key('audit-empty'),
-                          style: muted,
-                        )
-                      else if (!_done)
-                        AmaterasuButton.tertiary(
-                          key: const Key('audit-more'),
-                          onPressed: () => _load(reset: false),
-                          label: l10n.auditMore,
-                        ),
+                      else ...[
+                        for (final e in _entries)
+                          TripAuditTile(
+                            entry: e,
+                            who: tripAuditName(l10n, members, e.actorUid),
+                          ),
+                        if (_loading)
+                          const Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Center(child: AmaterasuLoader()),
+                          )
+                        else if (_failed)
+                          AmaterasuButton.tertiary(
+                            key: const Key('audit-retry'),
+                            onPressed: () => _load(reset: _entries.isEmpty),
+                            label: '${l10n.auditError} ${l10n.auditRetry}',
+                          )
+                        else if (_entries.isEmpty)
+                          Text(
+                            l10n.auditEmpty,
+                            key: const Key('audit-empty'),
+                            style: muted,
+                          )
+                        else if (!_done)
+                          AmaterasuButton.tertiary(
+                            key: const Key('audit-more'),
+                            onPressed: () => _load(reset: false),
+                            label: l10n.auditMore,
+                          ),
+                      ],
                     ],
                   ),
                 ),
