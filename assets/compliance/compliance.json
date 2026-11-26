@@ -97,8 +97,8 @@
       "ref": "",
       "applies": "yes",
       "how": {
-        "it": "Si salvano solo il testo scritto, il tipo, la versione e la lingua, al massimo 5 al giorno; nessun registro automatico degli errori e nessuna statistica d'uso. Si cancellano insieme al profilo quando l'utente cancella l'account.",
-        "en": "Only the written text, the type, the version and the language are saved, at most 5 a day; no automatic error log and no usage statistics. They are deleted together with the profile when the user deletes the account."
+        "it": "Dalla 1.74.0 partono per email dall'app di posta dell'utente (oggetto, versione, build e lingua già scritti): l'app non salva nulla su Firebase; nessun registro automatico degli errori e nessuna statistica d'uso. Le vecchie segnalazioni salvate prima si cancellano insieme al profilo quando l'utente cancella l'account.",
+        "en": "Since 1.74.0 they are sent by email from the user's mail app (subject, version, build and language already written): the app saves nothing on Firebase; no automatic error log and no usage statistics. Old reports saved before are deleted together with the profile when the user deletes the account."
       }
     },
     {

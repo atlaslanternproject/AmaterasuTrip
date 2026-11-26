@@ -3859,28 +3859,23 @@ class AppLocalizationsIt extends AppLocalizations {
   String get supportContactsSubtitle => 'Scrivici un\'email all\'indirizzo di assistenza';
 
   @override
+  String get supportEmailBugSubject => 'Amaterasu Trip: segnalazione di un problema';
+
+  @override
+  String get supportEmailIdeaSubject => 'Amaterasu Trip: un\'idea';
+
+  @override
+  String supportEmailBugBody(String version, String build, String language) {
+    return 'Descrivi qui il problema: cosa stavi facendo, cosa ti aspettavi e cosa è successo.\n\n\n---\nVersione $version (build $build) · lingua $language';
+  }
+
+  @override
+  String supportEmailIdeaBody(String version, String build, String language) {
+    return 'Scrivi qui la tua idea: cosa ti piacerebbe fare e in quale sezione.\n\n\n---\nVersione $version (build $build) · lingua $language';
+  }
+
+  @override
   String get supportNoTracking => 'Nessun registro automatico degli errori e nessuna statistica d\'uso: arriva solo ciò che scrivi tu.';
-
-  @override
-  String get supportFeedbackBugHint => 'Cosa stavi facendo, cosa ti aspettavi e cosa è successo. Non scrivere password o dati sensibili.';
-
-  @override
-  String get supportFeedbackIdeaHint => 'Descrivi l\'idea in poche righe. Non scrivere password o dati sensibili.';
-
-  @override
-  String get supportFeedbackSend => 'Invia';
-
-  @override
-  String get supportFeedbackEmpty => 'Scrivi qualcosa prima di inviare.';
-
-  @override
-  String get supportFeedbackSent => 'Grazie! Messaggio inviato.';
-
-  @override
-  String get supportFeedbackLimit => 'Hai già inviato 5 messaggi oggi: riprova domani.';
-
-  @override
-  String get supportFeedbackFailed => 'Invio non riuscito. Riprova più tardi.';
 
   @override
   String get supportComplianceApplies => 'Ci riguarda';
