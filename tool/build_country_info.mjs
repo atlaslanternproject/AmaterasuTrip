@@ -1,6 +1,8 @@
 // Rigenera assets/country_info/country_info.json (Info paese, nuova tappa
 // 1c) dai dati aperti di Wikidata (licenza CC0 1.0): nome, codici ISO,
-// prefisso, numeri di emergenza, prese e tensione, lato di guida, fusi.
+// prefisso, numeri di emergenza con il loro uso (polizia, ambulanza,
+// pompieri...: qualificatore "has use" P366), prese e tensione, lato di
+// guida, fusi.
 // Niente scritto a mano: acqua potabile e requisiti d'ingresso non hanno
 // una fonte aperta affidabile e restano solo come link ufficiali nell'app.
 // Uso: node tool/build_country_info.mjs   (serve la rete; poi controllare
@@ -54,6 +56,38 @@ async function property(prop, extra = '') {
 
 const unique = (list) => [...new Set(list.filter(Boolean))];
 
+/** Use of each emergency number (P2852 with P366), as a few fixed codes. */
+async function emergencyUses() {
+  const rows = await sparql(`SELECT ?c ?vLabel ?useLabel WHERE { ${base}
+    ?c p:P2852 ?st . ?st ps:P2852 ?v .
+    OPTIONAL { ?st pq:P366 ?use } OPTIONAL { ?v wdt:P366 ?use }
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } }`);
+  const code = (use) => {
+    const u = (use ?? '').toLowerCase();
+    if (/coast guard/.test(u)) return 'coastGuard';
+    if (/police|gendarm|carabinieri/.test(u)) return 'police';
+    if (/fire|wildfire/.test(u)) return 'fire';
+    if (/medical|ambulance|magen david/.test(u)) return 'ambulance';
+    if (/deaf/.test(u)) return 'deaf';
+    if (/distress|emergency/.test(u)) return 'general';
+    return undefined;
+  };
+  // Numbers known everywhere as the single emergency number.
+  const general = new Set(['112', '911', '999', '000', '111']);
+  const by = new Map();
+  for (const r of rows) {
+    const qid = r.c.value.split('/').pop();
+    for (const n of r.vLabel?.value.match(/\b\d{2,4}\b/g) ?? []) {
+      const c = code(r.useLabel?.value) ?? (general.has(n) ? 'general' : undefined);
+      if (!c) continue;
+      if (!by.has(qid)) by.set(qid, {});
+      const uses = (by.get(qid)[n] ??= []);
+      if (!uses.includes(c)) uses.push(c);
+    }
+  }
+  return by;
+}
+
 const clean = {
   callingCode: (v) => unique(v.map((x) => x.label.trim())
     .filter((x) => /^\+?[\d ]{1,8}$/.test(x))
@@ -105,13 +139,20 @@ async function main() {
     driving: await property('P1622'),
     timeZones: await property('P421'),
   };
+  const uses = await emergencyUses();
   const result = {};
-  for (const c of list) {
+  // Only two-letter ISO codes (Wikidata also has some like "GB-WLS").
+  for (const c of list.filter((x) => /^[A-Z]{2}$/.test(x.iso))) {
     const entry = {iso3: c.iso3, wikidata: c.qid, name: c.name};
     for (const [key, values] of Object.entries(props)) {
       const value = clean[key](values.get(c.qid) ?? []);
       if (value !== undefined && value.length !== 0) entry[key] = value;
     }
+    const known = Object.fromEntries(Object.entries(uses.get(c.qid) ?? {})
+      .filter(([n]) => entry.emergency?.includes(n))
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([n, u]) => [n, u.sort()]));
+    if (Object.keys(known).length) entry.emergencyUses = known;
     const filled = Object.keys(entry).length;
     // Two items with the same code: keep the one with more data.
     if (!result[c.iso] || Object.keys(result[c.iso]).length < filled) {
@@ -120,7 +161,8 @@ async function main() {
   }
   const it = result.IT;
   if (Object.keys(result).length < 150 || !it?.plugs?.includes('F') ||
-      it.driving !== 'right' || !it.emergency?.includes('112')) {
+      it.driving !== 'right' || !it.emergency?.includes('112') ||
+      !it.emergencyUses?.['113']?.includes('police')) {
     throw new Error('Unexpected data: file not written.');
   }
   const sorted = Object.fromEntries(Object.keys(result).sort()

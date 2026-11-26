@@ -3139,6 +3139,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get countryInfoEmergency => 'Emergency numbers';
 
   @override
+  String get countryInfoUsePolice => 'police';
+
+  @override
+  String get countryInfoUseFire => 'fire brigade';
+
+  @override
+  String get countryInfoUseAmbulance => 'ambulance';
+
+  @override
+  String get countryInfoUseGeneral => 'general emergency number';
+
+  @override
+  String get countryInfoUseCoastGuard => 'coast guard';
+
+  @override
+  String get countryInfoUseDeaf => 'for deaf people';
+
+  @override
   String get countryInfoPlugs => 'Power plugs';
 
   @override

@@ -50,9 +50,7 @@ class _TripCountryInfoPageState extends ConsumerState<TripCountryInfoPage> {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 820),
                   child: book == null
-                      ? const Center(
-                          child: AmaterasuLoader(),
-                        )
+                      ? const Center(child: AmaterasuLoader())
                       : ListView(
                           key: const Key('country-info-page'),
                           padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),

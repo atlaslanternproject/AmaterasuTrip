@@ -6107,6 +6107,42 @@ abstract class AppLocalizations {
   /// **'Emergency numbers'**
   String get countryInfoEmergency;
 
+  /// No description provided for @countryInfoUsePolice.
+  ///
+  /// In en, this message translates to:
+  /// **'police'**
+  String get countryInfoUsePolice;
+
+  /// No description provided for @countryInfoUseFire.
+  ///
+  /// In en, this message translates to:
+  /// **'fire brigade'**
+  String get countryInfoUseFire;
+
+  /// No description provided for @countryInfoUseAmbulance.
+  ///
+  /// In en, this message translates to:
+  /// **'ambulance'**
+  String get countryInfoUseAmbulance;
+
+  /// No description provided for @countryInfoUseGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'general emergency number'**
+  String get countryInfoUseGeneral;
+
+  /// No description provided for @countryInfoUseCoastGuard.
+  ///
+  /// In en, this message translates to:
+  /// **'coast guard'**
+  String get countryInfoUseCoastGuard;
+
+  /// No description provided for @countryInfoUseDeaf.
+  ///
+  /// In en, this message translates to:
+  /// **'for deaf people'**
+  String get countryInfoUseDeaf;
+
   /// No description provided for @countryInfoPlugs.
   ///
   /// In en, this message translates to:

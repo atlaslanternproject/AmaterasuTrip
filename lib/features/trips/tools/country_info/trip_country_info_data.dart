@@ -22,6 +22,7 @@ class TripCountryInfo {
     this.nameEn,
     this.callingCode = const [],
     this.emergency = const [],
+    this.emergencyUses = const {},
     this.plugs = const [],
     this.voltage = const [],
     this.driving,
@@ -38,6 +39,11 @@ class TripCountryInfo {
       nameEn: name['en'] as String?,
       callingCode: _strings(m['callingCode']),
       emergency: _strings(m['emergency']),
+      emergencyUses: {
+        if (m['emergencyUses'] case final Map uses)
+          for (final e in uses.entries)
+            if (e.key is String) e.key as String: _strings(e.value),
+      },
       plugs: _strings(m['plugs']),
       voltage: _strings(m['voltage']),
       driving: m['driving'] as String?,
@@ -49,6 +55,10 @@ class TripCountryInfo {
   final String code;
   final String? iso3, wikidata, nameIt, nameEn;
   final List<String> callingCode, emergency, plugs, voltage, timeZones;
+
+  /// What each emergency number is for (Wikidata "has use"): police,
+  /// fire, ambulance, general, coastGuard, deaf. Missing when unknown.
+  final Map<String, List<String>> emergencyUses;
 
   /// "left" or "right".
   final String? driving;

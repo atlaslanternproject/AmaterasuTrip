@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.68.0",
+      "date": "2026-11-26",
+      "it": ["Info paese: accanto a ogni numero di emergenza c'è cosa significa (polizia, vigili del fuoco, ambulanza, numero unico di emergenza, guardia costiera…), dai dati aperti di Wikidata. Se il significato non è noto resta solo il numero."],
+      "en": ["Country info: each emergency number now says what it is for (police, fire brigade, ambulance, general emergency number, coast guard…), from Wikidata open data. When the meaning is unknown only the number is shown."]
+    },
+    {
       "version": "1.67.0",
       "date": "2026-11-26",
       "it": ["Altro: «Cerca» ora è una barra in alto (stessa ricerca in tutte le sezioni) e non più una voce dell'elenco; tolta la pagina «Viaggiatori», che era solo un segnaposto (i viaggiatori restano nelle impostazioni del viaggio)."],
