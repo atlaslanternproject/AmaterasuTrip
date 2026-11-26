@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.71.0",
+      "date": "2026-11-26",
+      "it": ["Impostazioni > Aspetto > Data e ora: più formati della data (30/08/2027, 08/30/2027, 2027-08-30, 2027/08/30, 30 agosto 2027 oppure come la lingua), ognuno con l'esempio calcolato sulla data di oggi."],
+      "en": ["Settings > Appearance > Date and time: more date formats (30/08/2027, 08/30/2027, 2027-08-30, 2027/08/30, 30 August 2027 or as the language), each with an example on today's date."]
+    },
+    {
       "version": "1.70.0",
       "date": "2026-11-26",
       "it": ["Alloggi: il menu a tre puntini, che conteneva solo «Elimina», è stato sostituito dal cestino come nelle altre sezioni. La doppia conferma è la stessa di prima."],

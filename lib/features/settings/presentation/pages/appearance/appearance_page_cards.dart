@@ -26,11 +26,11 @@ extension _AppearanceCards on _AppearancePageState {
   String _unitLabel(AppLocalizations l10n, String v) =>
       v == 'km' ? l10n.appearanceUnitsKm : l10n.appearanceUnitsMi;
 
-  String _dateLabel(AppLocalizations l10n, String v) => switch (v) {
-    'dmy' => l10n.appearanceDateDmy,
-    'ymd' => l10n.appearanceDateYmd,
-    _ => l10n.appearanceDateLocale,
-  };
+  /// The example of each format, written on today's date.
+  String _dateLabel(AppLocalizations l10n, String v) {
+    final example = AmaterasuDates.withFormat(context, v, DateTime.now());
+    return v == 'locale' ? '${l10n.appearanceDateLocale} ($example)' : example;
+  }
 
   String _timeLabel(AppLocalizations l10n, String v) =>
       v == '24' ? l10n.appearanceTime24 : l10n.appearanceTime12;

@@ -7571,18 +7571,6 @@ abstract class AppLocalizations {
   /// **'Like the language'**
   String get appearanceDateLocale;
 
-  /// No description provided for @appearanceDateDmy.
-  ///
-  /// In en, this message translates to:
-  /// **'dd/mm/yyyy'**
-  String get appearanceDateDmy;
-
-  /// No description provided for @appearanceDateYmd.
-  ///
-  /// In en, this message translates to:
-  /// **'yyyy-mm-dd'**
-  String get appearanceDateYmd;
-
   /// No description provided for @appearanceTimeFormat.
   ///
   /// In en, this message translates to:

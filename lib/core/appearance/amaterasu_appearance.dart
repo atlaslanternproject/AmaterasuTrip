@@ -15,7 +15,14 @@ class AmaterasuAppearance {
 
   static const textScales = [100, 110, 120, 130];
   static const unitsValues = ['km', 'mi'];
-  static const dateFormats = ['locale', 'dmy', 'ymd'];
+  static const dateFormats = [
+    'locale',
+    'dmy',
+    'mdy',
+    'ymd',
+    'ymdSlash',
+    'long',
+  ];
   static const timeFormats = ['24', '12'];
   static final _currency = RegExp(r'^[A-Z]{3}$');
 

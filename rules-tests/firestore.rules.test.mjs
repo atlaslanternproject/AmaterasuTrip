@@ -205,8 +205,11 @@ test('appearance preferences: own profile only, valid values', async () => {
     },
   }));
   await assertSucceeds(updateDoc(ref, {appearance: {textScale: 100}}));
+  for (const dateFormat of ['mdy', 'ymdSlash', 'long']) {
+    await assertSucceeds(updateDoc(ref, {appearance: {dateFormat}}));
+  }
   for (const bad of [
-    {textScale: 150}, {units: 'leghe'}, {dateFormat: 'mdy'},
+    {textScale: 150}, {units: 'leghe'}, {dateFormat: 'dd.mm'},
     {timeFormat: '13'}, {defaultCurrency: 'euro'}, {displayCurrency: 5},
     {theme: 'light'}, 'grande',
   ]) {
