@@ -1858,3 +1858,10 @@ Prova: Impostazioni: l'ordine nuovo; Privacy e legale > Conformità; Assistenza 
 ### 2b Spaziature uniformi (1.73.0)
 Riferimento Privacy: margine 20/12/20/32, 10 tra le card. Diversi e corretti: Assistenza (margine in alto 4, card attaccate), righe di Stato dell'app (attaccate, in Crediti 10), impostazioni del viaggio Gestione e Privacy (margine in alto 8; gestione viaggio è approvata: cambia solo il margine di 4 punti). Account, Dati, Aspetto, Informazioni e pagina principale erano già uguali. Test: distanza 10 controllata anche in Assistenza.
 Prova: Impostazioni > Assistenza e Informazioni > Stato dell'app: distanza uguale tra le voci.
+
+### 2c Segnalazioni e idee in un solo flusso, per email (1.74.0)
+Decisione del proprietario: email come Supporto. Valutazione (regola 1): (a) due flussi: email preparata (Informazioni > Supporto) e modulo con raccolta feedback (Assistenza, Extra F); (b) un solo modulo AmaterasuSupportEmail (Contatti, Segnala, Suggerisci: stessa email, oggetto diverso, versione, build e lingua); tolti feedback_sheet.dart e feedback_repository.dart; (c) firestore.rules: la raccolta feedback non accetta più scritture (impatto: nessun nuovo messaggio nel database); restano elenco ed eliminazione per l'autore, usati dalla cancellazione dell'account, che non cambia e continua a cancellare le vecchie segnalazioni; test regole feedback riscritti (2); informativa 7.1 e conformità aggiornate.
+Prova: Impostazioni > Assistenza > Segnala un problema / Suggerisci un'idea: si apre l'app di posta con oggetto e versione; Contatti: email vuota.
+
+### Riepilogo Giro 2 (1.72.0 - 1.74.0)
+Fatto: schema finale (1.72.0), spaziature (1.73.0), flusso unico per email (1.74.0). Prossimo: Giro 3 Itinerario (modello dati), con CHIEDI OK sullo schema degli Scali dei Trasporti.

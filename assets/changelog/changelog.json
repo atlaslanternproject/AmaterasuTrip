@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.74.0",
+      "date": "2026-11-26",
+      "it": ["Assistenza: «Segnala un problema» e «Suggerisci un'idea» ora funzionano come «Contatti»: aprono la tua app di posta con un'email già pronta (oggetto, versione, build e lingua). L'app non salva più i messaggi su Firebase.","Informativa (7.1) e tabella della conformità aggiornate."],
+      "en": ["Support: «Report a problem» and «Suggest an idea» now work like «Contacts»: they open your mail app with a ready email (subject, version, build and language). The app no longer saves messages on Firebase.","Privacy policy (7.1) and compliance table updated."]
+    },
+    {
       "version": "1.73.0",
       "date": "2026-11-26",
       "it": ["Impostazioni: stesse spaziature in tutte le pagine-elenco, come in Privacy e legale (Assistenza, Stato dell'app e impostazioni del viaggio)."],

@@ -7367,53 +7367,35 @@ abstract class AppLocalizations {
   /// **'Write us an email at the support address'**
   String get supportContactsSubtitle;
 
+  /// No description provided for @supportEmailBugSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu Trip: problem report'**
+  String get supportEmailBugSubject;
+
+  /// No description provided for @supportEmailIdeaSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Amaterasu Trip: an idea'**
+  String get supportEmailIdeaSubject;
+
+  /// No description provided for @supportEmailBugBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the problem here: what you were doing, what you expected and what happened.\n\n\n---\nVersion {version} (build {build}) · language {language}'**
+  String supportEmailBugBody(String version, String build, String language);
+
+  /// No description provided for @supportEmailIdeaBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your idea here: what you would like to do and in which section.\n\n\n---\nVersion {version} (build {build}) · language {language}'**
+  String supportEmailIdeaBody(String version, String build, String language);
+
   /// No description provided for @supportNoTracking.
   ///
   /// In en, this message translates to:
   /// **'No automatic error log and no usage statistics: only what you write reaches us.'**
   String get supportNoTracking;
-
-  /// No description provided for @supportFeedbackBugHint.
-  ///
-  /// In en, this message translates to:
-  /// **'What you were doing, what you expected and what happened. Do not write passwords or sensitive data.'**
-  String get supportFeedbackBugHint;
-
-  /// No description provided for @supportFeedbackIdeaHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Describe the idea in a few lines. Do not write passwords or sensitive data.'**
-  String get supportFeedbackIdeaHint;
-
-  /// No description provided for @supportFeedbackSend.
-  ///
-  /// In en, this message translates to:
-  /// **'Send'**
-  String get supportFeedbackSend;
-
-  /// No description provided for @supportFeedbackEmpty.
-  ///
-  /// In en, this message translates to:
-  /// **'Write something before sending.'**
-  String get supportFeedbackEmpty;
-
-  /// No description provided for @supportFeedbackSent.
-  ///
-  /// In en, this message translates to:
-  /// **'Thank you! Message sent.'**
-  String get supportFeedbackSent;
-
-  /// No description provided for @supportFeedbackLimit.
-  ///
-  /// In en, this message translates to:
-  /// **'You already sent 5 messages today: try again tomorrow.'**
-  String get supportFeedbackLimit;
-
-  /// No description provided for @supportFeedbackFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Sending failed. Try again later.'**
-  String get supportFeedbackFailed;
 
   /// No description provided for @supportComplianceApplies.
   ///

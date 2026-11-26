@@ -3859,28 +3859,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get supportContactsSubtitle => 'Write us an email at the support address';
 
   @override
+  String get supportEmailBugSubject => 'Amaterasu Trip: problem report';
+
+  @override
+  String get supportEmailIdeaSubject => 'Amaterasu Trip: an idea';
+
+  @override
+  String supportEmailBugBody(String version, String build, String language) {
+    return 'Describe the problem here: what you were doing, what you expected and what happened.\n\n\n---\nVersion $version (build $build) · language $language';
+  }
+
+  @override
+  String supportEmailIdeaBody(String version, String build, String language) {
+    return 'Write your idea here: what you would like to do and in which section.\n\n\n---\nVersion $version (build $build) · language $language';
+  }
+
+  @override
   String get supportNoTracking => 'No automatic error log and no usage statistics: only what you write reaches us.';
-
-  @override
-  String get supportFeedbackBugHint => 'What you were doing, what you expected and what happened. Do not write passwords or sensitive data.';
-
-  @override
-  String get supportFeedbackIdeaHint => 'Describe the idea in a few lines. Do not write passwords or sensitive data.';
-
-  @override
-  String get supportFeedbackSend => 'Send';
-
-  @override
-  String get supportFeedbackEmpty => 'Write something before sending.';
-
-  @override
-  String get supportFeedbackSent => 'Thank you! Message sent.';
-
-  @override
-  String get supportFeedbackLimit => 'You already sent 5 messages today: try again tomorrow.';
-
-  @override
-  String get supportFeedbackFailed => 'Sending failed. Try again later.';
 
   @override
   String get supportComplianceApplies => 'Applies to us';

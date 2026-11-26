@@ -1,8 +1,7 @@
-// Test delle regole di "Segnala un problema / Suggerisci un'idea"
-// (feedback, Extra F): al massimo 5 al giorno per utente (id
-// uid_giorno_1..5 con il giorno del server), nessuna modifica, campi
-// controllati; l'autore elenca e cancella solo i propri (cancellazione
-// dell'account), nessun altro li legge.
+// Test delle regole della vecchia raccolta "feedback" (Extra F, fino alla
+// 1.73.0): dalla 1.74.0 segnalazioni e idee partono per email, quindi
+// nessuno può più scrivere; l'autore elenca e cancella solo le proprie
+// vecchie segnalazioni (cancellazione dell'account), nessun altro le legge.
 
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
@@ -38,32 +37,30 @@ const item = (uid, extra = {}) => ({
   language: 'it', createdByUid: uid, createdAt: serverTimestamp(), ...extra,
 });
 
-test('up to 5 a day, no overwrite, nobody reads', async () => {
-  for (let n = 1; n <= 5; n++) {
-    await assertSucceeds(setDoc(doc(db('alice'), 'feedback', `alice_${today}_${n}`), item('alice')));
-  }
-  await assertFails(setDoc(doc(db('alice'), 'feedback', `alice_${today}_6`), item('alice')));
+/** Old messages, written as the app did before 1.74.0. */
+async function seed(entries) {
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    for (const [id, uid, extra] of entries) {
+      await setDoc(doc(ctx.firestore(), 'feedback', id), item(uid, extra));
+    }
+  });
+}
+
+test('nobody can write new messages any more', async () => {
   await assertFails(setDoc(doc(db('alice'), 'feedback', `alice_${today}_1`), item('alice')));
-  await assertFails(getDoc(doc(db('alice'), 'feedback', `alice_${today}_1`)));
-});
-
-test('wrong day, other user, bad fields are refused', async () => {
-  await assertFails(setDoc(doc(db('alice'), 'feedback', `alice_2000-01-01_1`), item('alice')));
-  await assertFails(setDoc(doc(db('alice'), 'feedback', `bob_${today}_1`), item('alice')));
+  await assertFails(setDoc(doc(db('alice'), 'feedback', `alice_${today}_2`), item('alice', {kind: 'idea'})));
   await assertFails(setDoc(doc(env.unauthenticatedContext().firestore(), 'feedback', `x_${today}_1`), item('x')));
-  for (const bad of [
-    {kind: 'spam'}, {text: ''}, {text: 'x'.repeat(2001)}, {appVersion: 'v1'},
-    {language: 'fr'}, {createdByUid: 'bob'}, {email: 'a@b.it'},
-  ]) {
-    await assertFails(setDoc(doc(db('alice'), 'feedback', `alice_${today}_2`), item('alice', bad)));
-  }
-  await assertSucceeds(setDoc(doc(db('alice'), 'feedback', `alice_${today}_2`), item('alice', {kind: 'idea'})));
+  await seed([[`alice_${today}_1`, 'alice']]);
+  await assertFails(getDoc(doc(db('alice'), 'feedback', `alice_${today}_1`)));
+  await assertFails(setDoc(doc(db('alice'), 'feedback', `alice_${today}_1`), item('alice', {text: 'nuovo'})));
 });
 
-test('the author lists and deletes own messages, like account deletion', async () => {
-  await setDoc(doc(db('alice'), 'feedback', `alice_${today}_1`), item('alice'));
-  await setDoc(doc(db('alice'), 'feedback', `alice_${today}_2`), item('alice', {kind: 'idea'}));
-  await setDoc(doc(db('bob'), 'feedback', `bob_${today}_1`), item('bob'));
+test('the author lists and deletes own old messages, like account deletion', async () => {
+  await seed([
+    [`alice_${today}_1`, 'alice'],
+    [`alice_${today}_2`, 'alice', {kind: 'idea'}],
+    [`bob_${today}_1`, 'bob'],
+  ]);
   const alice = db('alice');
   const own = query(collection(alice, 'feedback'), where('createdByUid', '==', 'alice'));
   const snap = await assertSucceeds(getDocs(own));

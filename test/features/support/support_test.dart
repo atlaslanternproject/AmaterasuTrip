@@ -1,68 +1,39 @@
-// Test automatici di "Assistenza e privacy" (Extra F): invio di una
-// segnalazione o di un'idea (inviata, limite giornaliero, testo vuoto),
-// giorno UTC usato dalle regole, tabella della conformità con tutte le
-// righe del file e la frase "non è una certificazione".
-// Casi, ad esempio: "a report is sent", "daily limit is explained".
+// Test automatici di "Assistenza": segnala un problema e suggerisci
+// un'idea preparano la stessa email di supporto (indirizzo, oggetto
+// diverso, versione, build e lingua), nessun modulo nell'app; tabella
+// della conformità con tutte le righe del file e la frase "non è una
+// certificazione".
 
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:amaterasutrip/features/support/data/feedback_repository.dart';
+import 'package:amaterasutrip/features/support/data/amaterasu_support_email.dart';
 import 'package:amaterasutrip/features/support/presentation/compliance_page.dart';
 import 'package:amaterasutrip/features/support/presentation/support_page.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
+import 'package:amaterasutrip/l10n/app_localizations_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-class FakeFeedback implements FeedbackRepository {
-  FakeFeedback(this.result);
-
-  final FeedbackResult result;
-  final sent = <(FeedbackKind, String)>[];
-
-  @override
-  Future<FeedbackResult> send(
-    FeedbackKind kind,
-    String text, {
-    required String appVersion,
-    required String language,
-  }) async {
-    sent.add((kind, text));
-    return result;
-  }
-}
-
-Future<void> open(WidgetTester tester, Widget page, FakeFeedback fake) async {
+Future<void> open(WidgetTester tester, Widget page) async {
   tester.view.physicalSize = const Size(900, 1600);
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
   await tester.pumpWidget(
-    ProviderScope(
-      overrides: [feedbackRepositoryProvider.overrideWithValue(fake)],
-      child: MaterialApp(
-        locale: const Locale('it'),
-        supportedLocales: AppLocalizations.supportedLocales,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        home: page,
-      ),
+    MaterialApp(
+      locale: const Locale('it'),
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      home: page,
     ),
   );
-  await tester.pumpAndSettle();
-}
-
-Future<void> write(WidgetTester tester, String text) async {
-  await tester.tap(find.byKey(const Key('support-bug')));
-  await tester.pumpAndSettle();
-  await tester.enterText(find.byKey(const Key('support-feedback-text')), text);
-  await tester.tap(find.byKey(const Key('support-feedback-send')));
   await tester.pumpAndSettle();
 }
 
@@ -71,40 +42,38 @@ void main() {
     () => PackageInfo.setMockInitialValues(
       appName: 'amaterasutrip',
       packageName: 'amaterasutrip',
-      version: '1.47.0',
-      buildNumber: '52',
+      version: '1.74.0',
+      buildNumber: '83',
       buildSignature: '',
     ),
   );
 
-  test('the id uses the UTC day of the server', () {
-    expect(
-      FirestoreFeedbackRepository.day(DateTime.utc(2027, 1, 5, 23, 30)),
-      '2027-01-05',
+  test('report and idea: same email, own subject, version and build', () {
+    final l10n = AppLocalizationsIt();
+    Uri email(AmaterasuSupportKind kind) => AmaterasuSupportEmail.reportUri(
+      l10n,
+      kind,
+      version: '1.74.0',
+      build: '83',
+      language: 'it',
     );
+    final bug = email(AmaterasuSupportKind.bug);
+    final idea = email(AmaterasuSupportKind.idea);
+    for (final u in [bug, idea]) {
+      expect(u.scheme, 'mailto');
+      expect(u.path, AmaterasuSupportEmail.address);
+      expect(u.queryParameters['body'], contains('Versione 1.74.0 (build 83)'));
+    }
+    expect(bug.queryParameters['subject'], contains('problema'));
+    expect(idea.queryParameters['subject'], contains('idea'));
+    expect(AmaterasuSupportEmail.uri().query, isEmpty);
   });
 
-  testWidgets('a report is sent', (tester) async {
-    final fake = FakeFeedback(FeedbackResult.sent);
-    await open(tester, const SupportPage(), fake);
-    await write(tester, 'La mappa non si apre');
-    expect(fake.sent.single, (FeedbackKind.bug, 'La mappa non si apre'));
-    expect(find.text('Grazie! Messaggio inviato.'), findsOneWidget);
-  });
-
-  testWidgets('daily limit and empty text are explained', (tester) async {
-    final fake = FakeFeedback(FeedbackResult.dailyLimit);
-    await open(tester, const SupportPage(), fake);
-    await write(tester, '');
-    expect(find.text('Scrivi qualcosa prima di inviare.'), findsOneWidget);
-    expect(fake.sent, isEmpty);
-    await tester.enterText(
-      find.byKey(const Key('support-feedback-text')),
-      'Idea',
-    );
-    await tester.tap(find.byKey(const Key('support-feedback-send')));
-    await tester.pumpAndSettle();
-    expect(find.textContaining('5 messaggi oggi'), findsOneWidget);
+  testWidgets('no form inside the app any more', (tester) async {
+    await open(tester, const SupportPage());
+    expect(find.byKey(const Key('support-bug')), findsOneWidget);
+    expect(find.byKey(const Key('support-idea')), findsOneWidget);
+    expect(find.byKey(const Key('support-feedback-text')), findsNothing);
   });
 
   testWidgets('compliance table shows every row of the file', (tester) async {
@@ -114,11 +83,7 @@ void main() {
                 )['rows']
                 as List)
             .length;
-    await open(
-      tester,
-      const CompliancePage(),
-      FakeFeedback(FeedbackResult.sent),
-    );
+    await open(tester, const CompliancePage());
     await tester.runAsync(
       () => Future<void>.delayed(const Duration(milliseconds: 200)),
     );

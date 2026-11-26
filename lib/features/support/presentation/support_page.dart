@@ -1,5 +1,6 @@
 // Pagina "Assistenza" delle Impostazioni globali: segnala un problema,
-// suggerisci un'idea e contatti (email di supporto). Stato dell'app in
+// suggerisci un'idea e contatti, tutti per email (stesso flusso,
+// AmaterasuSupportEmail). Stato dell'app in
 // Informazioni; informativa e conformità in Privacy e legale.
 
 import 'package:flutter/material.dart';
@@ -7,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/core/widgets/settings/amaterasu_settings_card.dart';
 import 'package:amaterasutrip/features/support/data/amaterasu_support_email.dart';
-import 'package:amaterasutrip/features/support/data/feedback_repository.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
-import 'feedback_sheet.dart';
 
 class SupportPage extends StatelessWidget {
   const SupportPage({super.key});
@@ -40,7 +39,8 @@ class SupportPage extends StatelessWidget {
             icon: Icons.bug_report_outlined,
             title: l10n.supportReportProblem,
             subtitle: l10n.supportReportProblemSubtitle,
-            onTap: () => showFeedbackSheet(context, FeedbackKind.bug),
+            onTap: () =>
+                AmaterasuSupportEmail.report(context, AmaterasuSupportKind.bug),
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
@@ -48,7 +48,10 @@ class SupportPage extends StatelessWidget {
             icon: Icons.lightbulb_outline_rounded,
             title: l10n.supportSuggestIdea,
             subtitle: l10n.supportSuggestIdeaSubtitle,
-            onTap: () => showFeedbackSheet(context, FeedbackKind.idea),
+            onTap: () => AmaterasuSupportEmail.report(
+              context,
+              AmaterasuSupportKind.idea,
+            ),
           ),
           const SizedBox(height: 10),
           AmaterasuSettingsCard(
