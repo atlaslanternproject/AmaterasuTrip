@@ -21,7 +21,9 @@ const fakeFile = '''
  "countries": {
   "JP": {"iso3": "JPN", "wikidata": "Q17",
    "name": {"it": "Giappone", "en": "Japan"}, "callingCode": ["+81"],
-   "emergency": ["110", "119"], "plugs": ["A", "B"], "voltage": ["100"],
+   "emergency": ["110", "118", "119"],
+   "emergencyUses": {"110": ["police"], "119": ["fire", "ambulance"]},
+   "plugs": ["A", "B"], "voltage": ["100"],
    "driving": "left", "timeZones": ["Asia/Tokyo"]},
   "XK": {"name": {"it": "Kosovo", "en": "Kosovo"}, "plugs": ["BS 546"]}
  }}''';
@@ -56,6 +58,8 @@ void main() {
     expect(it.iso3, 'ITA');
     expect(it.callingCode, ['+39']);
     expect(it.emergency, contains('112'));
+    expect(it.emergencyUses['113'], ['police']);
+    expect(it.emergencyUses['112'], ['general']);
     expect(it.plugs, containsAll(['C', 'F', 'L']));
     expect(it.driving, 'right');
     expect(book.countries['GB']!.driving, 'left');
@@ -75,7 +79,11 @@ void main() {
     await open(tester);
     expect(find.byKey(const Key('country-info-verify')), findsOneWidget);
     expect(find.text('+81'), findsOneWidget);
-    expect(find.text('110 · 119'), findsOneWidget);
+    // Each number with its meaning; the bare number when it is unknown.
+    expect(
+      find.text('110 · polizia\n118\n119 · vigili del fuoco, ambulanza'),
+      findsOneWidget,
+    );
     expect(find.text('Tipo A, B'), findsOneWidget);
     expect(find.text('100 V'), findsOneWidget);
     expect(find.text('Si guida a sinistra'), findsOneWidget);

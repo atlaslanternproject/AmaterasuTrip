@@ -3139,6 +3139,24 @@ class AppLocalizationsIt extends AppLocalizations {
   String get countryInfoEmergency => 'Numeri di emergenza';
 
   @override
+  String get countryInfoUsePolice => 'polizia';
+
+  @override
+  String get countryInfoUseFire => 'vigili del fuoco';
+
+  @override
+  String get countryInfoUseAmbulance => 'ambulanza';
+
+  @override
+  String get countryInfoUseGeneral => 'numero unico di emergenza';
+
+  @override
+  String get countryInfoUseCoastGuard => 'guardia costiera';
+
+  @override
+  String get countryInfoUseDeaf => 'per persone sorde';
+
+  @override
   String get countryInfoPlugs => 'Prese elettriche';
 
   @override

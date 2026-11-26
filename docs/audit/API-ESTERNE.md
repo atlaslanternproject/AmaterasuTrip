@@ -102,8 +102,10 @@ possono cambiare: ricontrollare prima di ogni nuova funzione.
   Interrogazione SPARQL pubblica, senza chiave, con limiti di buon uso
   (tempo massimo per richiesta e User-Agent descrittivo).
 - Chiamata solo dallo script tool/build_country_info.mjs, a mano, da chi
-  sviluppa (7 richieste in tutto): l'app legge solo il file generato.
-- Voci: prefisso, numeri di emergenza, prese (lettera del tipo quando
+  sviluppa (8 richieste in tutto): l'app legge solo il file generato.
+- Voci: prefisso, numeri di emergenza con il loro uso (qualificatore
+  "has use" P366: polizia, vigili del fuoco, ambulanza, numero unico,
+  guardia costiera, persone sorde; dalla 1.68.0), prese (lettera del tipo quando
   Wikidata la indica, altrimenti il nome dello standard), tensione, lato
   di guida, fusi. Frequenza, acqua potabile e requisiti d'ingresso non
   hanno una fonte aperta affidabile: non si mostrano, restano i link

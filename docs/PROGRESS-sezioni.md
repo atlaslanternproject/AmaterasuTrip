@@ -1814,3 +1814,8 @@ Prova: Trasporti > Modifica: in "Compagnia e passeggeri" niente più "Posti"; i 
 ### Giro 1.4 Altro: barra Cerca, via Viaggiatori (1.67.0)
 Valutazione (regola 1): (a) "Cerca" era una voce dell'elenco; "Viaggiatori" una pagina segnaposto (TripPlaceholderPage) usata solo da Altro; (b) barra in alto con lo stesso stile delle voci di Altro (stessi colori, bordo e raggio) che apre la stessa pagina /more/search; tolti voce, indirizzo /more/travellers e file della pagina segnaposto; i viaggiatori restano in Impostazioni del viaggio > Viaggiatori (approvata, non toccata); (c) tocca trip_more_page.dart, router.dart e 3 chiavi di testo; nuovo test trip_more_page_test.dart.
 Prova: Altro: barra "Cerca" in alto che apre la ricerca; nell'elenco niente "Cerca" né "Viaggiatori".
+
+### Giro 1.5 Info paese: significato dei numeri di emergenza (1.68.0)
+Valutazione (regola 1): (a) i numeri venivano da Wikidata (P2852) senza significato; (b) lo stesso strumento tool/build_country_info.mjs legge anche il qualificatore "has use" (P366) e salva emergencyUses (codici fissi: police, fire, ambulance, general, coastGuard, deaf; 112/911/999/000/111 senza uso = numero unico); testi it/en nell'app; tenuti solo i codici ISO a 2 lettere (Wikidata aveva anche "GB-WLS"); (c) file rigenerato: cambia solo il nuovo campo (226 paesi su 255), nessuna chiamata dall'app; API-ESTERNE aggiornato (8 richieste dello script).
+Nota: il significato è quello di Wikidata (es. Giappone 119 = vigili del fuoco; nella realtà anche ambulanza). Se un numero non ha significato noto, resta il solo numero.
+Prova: Altro > Info paese (Giappone, Italia): ogni numero su una riga con il significato.

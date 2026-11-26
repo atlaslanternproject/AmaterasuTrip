@@ -1,5 +1,5 @@
 // Voci di "Info paese": ogni voce mostra il valore con fonte, licenza e
-// data del file; le voci senza dati non compaiono. Sotto, le schede
+// data del file (numeri di emergenza con il loro significato); le voci senza dati non compaiono. Sotto, le schede
 // ufficiali (Viaggiare Sicuri, consolati, Wikidata) per tutto il resto.
 
 import 'package:flutter/material.dart';
@@ -14,6 +14,27 @@ import 'trip_country_info_data.dart';
 /// Viaggiare Sicuri country page: the site opens "Codice-3" (ISO alpha-3).
 String tripCountryViaggiareSicuri(String iso3) =>
     'https://www.viaggiaresicuri.it/find-country/country/$iso3';
+
+/// "110 polizia", one number per line; the bare number when its use is
+/// not known.
+String tripCountryEmergencyText(AppLocalizations l10n, TripCountryInfo c) {
+  String use(String code) => switch (code) {
+    'police' => l10n.countryInfoUsePolice,
+    'fire' => l10n.countryInfoUseFire,
+    'ambulance' => l10n.countryInfoUseAmbulance,
+    'general' => l10n.countryInfoUseGeneral,
+    'coastGuard' => l10n.countryInfoUseCoastGuard,
+    'deaf' => l10n.countryInfoUseDeaf,
+    _ => code,
+  };
+  return [
+    for (final n in c.emergency)
+      switch (c.emergencyUses[n]) {
+        final uses? when uses.isNotEmpty => '$n · ${uses.map(use).join(', ')}',
+        _ => n,
+      },
+  ].join('\n');
+}
 
 const tripCountryConsulateLink =
     'https://serviziconsolari.esteri.it/home/cerca-consolato';
@@ -51,7 +72,7 @@ class TripCountryInfoEntries extends StatelessWidget {
           'emergency',
           Icons.emergency_outlined,
           l10n.countryInfoEmergency,
-          c.emergency.join(' · '),
+          tripCountryEmergencyText(l10n, c),
         ),
       if (c.plugs.isNotEmpty)
         (

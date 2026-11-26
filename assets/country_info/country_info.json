@@ -5,7 +5,7 @@
   "licence": "CC0 1.0",
   "url": "https://www.wikidata.org"
  },
- "generated": "2026-11-25",
+ "generated": "2026-11-26",
  "countries": {
   "AC": {
    "iso3": "ASC",
@@ -46,7 +46,21 @@
    "timeZones": [
     "Europe/Andorra",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "112": [
+     "general"
+    ],
+    "116": [
+     "ambulance"
+    ],
+    "118": [
+     "ambulance"
+    ]
+   }
   },
   "AE": {
    "iso3": "ARE",
@@ -76,7 +90,21 @@
    "timeZones": [
     "Asia/Dubai",
     "UTC+04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "997": [
+     "fire"
+    ],
+    "998": [
+     "ambulance"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "AF": {
    "iso3": "AFG",
@@ -106,7 +134,21 @@
    "timeZones": [
     "Asia/Kabul",
     "UTC+04:30"
-   ]
+   ],
+   "emergencyUses": {
+    "100": [
+     "police"
+    ],
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "ambulance"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "AG": {
    "iso3": "ATG",
@@ -133,7 +175,19 @@
    "timeZones": [
     "America/Antigua",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "999": [
+     "ambulance",
+     "fire",
+     "police"
+    ]
+   }
   },
   "AI": {
    "iso3": "AIA",
@@ -157,7 +211,12 @@
    "driving": "left",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "AL": {
    "iso3": "ALB",
@@ -185,7 +244,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "127": [
+     "ambulance"
+    ],
+    "128": [
+     "fire"
+    ],
+    "129": [
+     "police"
+    ]
+   }
   },
   "AM": {
    "iso3": "ARM",
@@ -213,7 +286,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "police"
+    ],
+    "103": [
+     "ambulance"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "AO": {
    "iso3": "AGO",
@@ -240,7 +327,18 @@
    "timeZones": [
     "Africa/Luanda",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "113": [
+     "police"
+    ],
+    "115": [
+     "fire"
+    ],
+    "116": [
+     "ambulance"
+    ]
+   }
   },
   "AQ": {
    "iso3": "ATA",
@@ -288,7 +386,18 @@
    ],
    "timeZones": [
     "UTC-03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "100": [
+     "fire"
+    ],
+    "101": [
+     "police"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "AS": {
    "iso3": "ASM",
@@ -316,7 +425,12 @@
    "timeZones": [
     "Pacific/Pago_Pago",
     "UTC-11:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "AT": {
    "iso3": "AUT",
@@ -347,7 +461,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "122": [
+     "fire"
+    ],
+    "133": [
+     "police"
+    ],
+    "144": [
+     "ambulance"
+    ]
+   }
   },
   "AU": {
    "iso3": "AUS",
@@ -371,7 +499,12 @@
    "driving": "left",
    "timeZones": [
     "UTC+10:00"
-   ]
+   ],
+   "emergencyUses": {
+    "000": [
+     "general"
+    ]
+   }
   },
   "AW": {
    "iso3": "ABW",
@@ -398,7 +531,12 @@
    "timeZones": [
     "America/Aruba",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "AX": {
    "iso3": "ALA",
@@ -414,7 +552,12 @@
    "timeZones": [
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "AZ": {
    "iso3": "AZE",
@@ -442,7 +585,18 @@
    "driving": "right",
    "timeZones": [
     "UTC+04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "fire"
+    ],
+    "103": [
+     "ambulance"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "BA": {
    "iso3": "BIH",
@@ -472,7 +626,21 @@
     "Europe/Sarajevo",
     "UTC+01:00",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "122": [
+     "police"
+    ],
+    "123": [
+     "fire"
+    ],
+    "124": [
+     "ambulance"
+    ]
+   }
   },
   "BB": {
    "iso3": "BRB",
@@ -501,7 +669,21 @@
    "timeZones": [
     "America/Barbados",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "211": [
+     "police"
+    ],
+    "311": [
+     "fire"
+    ],
+    "511": [
+     "ambulance"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "BD": {
    "iso3": "BGD",
@@ -530,7 +712,12 @@
    "timeZones": [
     "Asia/Dhaka",
     "UTC+06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "BE": {
    "iso3": "BEL",
@@ -559,7 +746,19 @@
    "timeZones": [
     "UTC+01:00",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "100": [
+     "ambulance",
+     "fire"
+    ],
+    "101": [
+     "police"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "BF": {
    "iso3": "BFA",
@@ -587,7 +786,18 @@
    "timeZones": [
     "Africa/Ouagadougou",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "17": [
+     "police"
+    ],
+    "18": [
+     "fire"
+    ],
+    "112": [
+     "ambulance"
+    ]
+   }
   },
   "BG": {
    "iso3": "BGR",
@@ -612,7 +822,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "BH": {
    "iso3": "BHR",
@@ -638,7 +853,17 @@
    "timeZones": [
     "Asia/Bahrain",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "BI": {
    "iso3": "BDI",
@@ -666,7 +891,18 @@
    "timeZones": [
     "Africa/Bujumbura",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "police"
+    ],
+    "113": [
+     "fire"
+    ],
+    "117": [
+     "ambulance"
+    ]
+   }
   },
   "BJ": {
    "iso3": "BEN",
@@ -694,7 +930,18 @@
    "timeZones": [
     "Africa/Porto-Novo",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "ambulance"
+    ],
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ]
+   }
   },
   "BL": {
    "iso3": "BLM",
@@ -731,7 +978,12 @@
    "driving": "left",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "BN": {
    "iso3": "BRN",
@@ -758,7 +1010,18 @@
    "timeZones": [
     "Asia/Brunei",
     "UTC+08:00"
-   ]
+   ],
+   "emergencyUses": {
+    "991": [
+     "ambulance"
+    ],
+    "993": [
+     "police"
+    ],
+    "995": [
+     "fire"
+    ]
+   }
   },
   "BO": {
    "iso3": "BOL",
@@ -788,7 +1051,21 @@
    "timeZones": [
     "America/La_Paz",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "119": [
+     "fire"
+    ],
+    "160": [
+     "ambulance"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "BQ": {
    "iso3": "BES",
@@ -834,7 +1111,18 @@
     "UTC-04:00",
     "UTC-03:00",
     "UTC-02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "190": [
+     "police"
+    ],
+    "192": [
+     "ambulance"
+    ],
+    "193": [
+     "fire"
+    ]
+   }
   },
   "BS": {
    "iso3": "BHS",
@@ -859,7 +1147,14 @@
    "driving": "left",
    "timeZones": [
     "America/Nassau"
-   ]
+   ],
+   "emergencyUses": {
+    "919": [
+     "ambulance",
+     "fire",
+     "police"
+    ]
+   }
   },
   "BT": {
    "iso3": "BTN",
@@ -890,7 +1185,18 @@
    "timeZones": [
     "Asia/Thimphu",
     "UTC+06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "fire"
+    ],
+    "112": [
+     "ambulance"
+    ],
+    "113": [
+     "police"
+    ]
+   }
   },
   "BV": {
    "iso3": "BVT",
@@ -928,7 +1234,21 @@
    "timeZones": [
     "Africa/Gaborone",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ],
+    "997": [
+     "ambulance"
+    ],
+    "998": [
+     "fire"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "BY": {
    "iso3": "BLR",
@@ -956,7 +1276,18 @@
    "timeZones": [
     "Europe/Minsk",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "police"
+    ],
+    "103": [
+     "ambulance"
+    ]
+   }
   },
   "BZ": {
    "iso3": "BLZ",
@@ -984,7 +1315,17 @@
    "timeZones": [
     "America/Belize",
     "UTC-06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "90": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "CA": {
    "iso3": "CAN",
@@ -1011,7 +1352,12 @@
     "UTC-07:00",
     "UTC-06:00",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "CC": {
    "iso3": "CCK",
@@ -1056,7 +1402,18 @@
    "timeZones": [
     "UTC+01:00",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "113": [
+     "fire"
+    ],
+    "114": [
+     "police"
+    ],
+    "118": [
+     "police"
+    ]
+   }
   },
   "CF": {
    "iso3": "CAF",
@@ -1084,7 +1441,18 @@
    "timeZones": [
     "Africa/Bangui",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ],
+    "1220": [
+     "ambulance"
+    ]
+   }
   },
   "CG": {
    "iso3": "COG",
@@ -1110,7 +1478,15 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ]
+   }
   },
   "CH": {
    "iso3": "CHE",
@@ -1141,7 +1517,24 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ],
+    "144": [
+     "ambulance"
+    ],
+    "1414": [
+     "ambulance"
+    ]
+   }
   },
   "CI": {
    "iso3": "CIV",
@@ -1171,7 +1564,24 @@
    "timeZones": [
     "Africa/Abidjan",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "111": [
+     "police"
+    ],
+    "170": [
+     "police"
+    ],
+    "180": [
+     "fire"
+    ],
+    "185": [
+     "ambulance"
+    ]
+   }
   },
   "CK": {
    "iso3": "COK",
@@ -1198,7 +1608,18 @@
    "timeZones": [
     "Pacific/Rarotonga",
     "UTC-10:00"
-   ]
+   ],
+   "emergencyUses": {
+    "996": [
+     "fire"
+    ],
+    "998": [
+     "ambulance"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "CL": {
    "iso3": "CHL",
@@ -1229,7 +1650,21 @@
     "UTC-06:00",
     "UTC-04:00",
     "UTC-03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "130": [
+     "fire"
+    ],
+    "131": [
+     "ambulance"
+    ],
+    "132": [
+     "fire"
+    ],
+    "134": [
+     "police"
+    ]
+   }
   },
   "CM": {
    "iso3": "CMR",
@@ -1255,7 +1690,12 @@
    "timeZones": [
     "Africa/Douala",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "CN": {
    "iso3": "CHN",
@@ -1285,7 +1725,18 @@
     "Asia/Shanghai",
     "Asia/Urumqi",
     "UTC+08:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "119": [
+     "fire"
+    ],
+    "120": [
+     "ambulance"
+    ]
+   }
   },
   "CO": {
    "iso3": "COL",
@@ -1323,7 +1774,12 @@
    ],
    "timeZones": [
     "UTC-08:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "CQ": {
    "iso3": "CRQ",
@@ -1362,7 +1818,17 @@
    "timeZones": [
     "America/Costa_Rica",
     "UTC-06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "CU": {
    "iso3": "CUB",
@@ -1389,7 +1855,18 @@
    "driving": "right",
    "timeZones": [
     "America/Havana"
-   ]
+   ],
+   "emergencyUses": {
+    "104": [
+     "ambulance"
+    ],
+    "105": [
+     "fire"
+    ],
+    "106": [
+     "police"
+    ]
+   }
   },
   "CV": {
    "iso3": "CPV",
@@ -1417,7 +1894,18 @@
    "timeZones": [
     "Atlantic/Cape_Verde",
     "UTC-01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "130": [
+     "ambulance"
+    ],
+    "131": [
+     "fire"
+    ],
+    "132": [
+     "police"
+    ]
+   }
   },
   "CW": {
    "iso3": "CUW",
@@ -1442,7 +1930,12 @@
    "driving": "right",
    "timeZones": [
     "America/Curacao"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "CX": {
    "iso3": "CXR",
@@ -1477,7 +1970,18 @@
    "driving": "left",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "199": [
+     "fire"
+    ],
+    "1400": [
+     "ambulance"
+    ]
+   }
   },
   "CZ": {
    "iso3": "CZE",
@@ -1506,7 +2010,24 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "150": [
+     "fire"
+    ],
+    "155": [
+     "ambulance"
+    ],
+    "156": [
+     "police"
+    ],
+    "158": [
+     "police"
+    ]
+   }
   },
   "DE": {
    "iso3": "DEU",
@@ -1533,7 +2054,15 @@
    "timeZones": [
     "UTC+01:00",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "DG": {
    "wikidata": "Q184851",
@@ -1569,7 +2098,18 @@
    "timeZones": [
     "Africa/Djibouti",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "17": [
+     "police"
+    ],
+    "18": [
+     "fire"
+    ],
+    "19": [
+     "ambulance"
+    ]
+   }
   },
   "DK": {
    "iso3": "DNK",
@@ -1596,7 +2136,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "DM": {
    "iso3": "DMA",
@@ -1622,7 +2167,12 @@
    "timeZones": [
     "America/Dominica",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "DO": {
    "iso3": "DOM",
@@ -1649,7 +2199,12 @@
    "driving": "right",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "DZ": {
    "iso3": "DZA",
@@ -1678,7 +2233,22 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "14": [
+     "ambulance",
+     "fire"
+    ],
+    "17": [
+     "police"
+    ],
+    "1055": [
+     "police"
+    ],
+    "1548": [
+     "police"
+    ]
+   }
   },
   "EC": {
    "iso3": "ECU",
@@ -1708,7 +2278,21 @@
     "America/Guayaquil",
     "Pacific/Galapagos",
     "UTC-06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "police"
+    ],
+    "102": [
+     "fire"
+    ],
+    "131": [
+     "ambulance"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "EE": {
    "iso3": "EST",
@@ -1733,7 +2317,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "EG": {
    "iso3": "EGY",
@@ -1762,7 +2351,18 @@
     "Africa/Cairo",
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "122": [
+     "police"
+    ],
+    "123": [
+     "ambulance"
+    ],
+    "180": [
+     "fire"
+    ]
+   }
   },
   "EH": {
    "iso3": "ESH",
@@ -1805,7 +2405,18 @@
    "timeZones": [
     "Africa/Addis_Ababa",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "113": [
+     "police"
+    ],
+    "114": [
+     "ambulance"
+    ],
+    "116": [
+     "fire"
+    ]
+   }
   },
   "ES": {
    "iso3": "ESP",
@@ -1835,7 +2446,18 @@
     "UTC+00:00",
     "UTC+01:00",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "061": [
+     "ambulance"
+    ],
+    "091": [
+     "police"
+    ]
+   }
   },
   "ET": {
    "iso3": "ETH",
@@ -1868,7 +2490,21 @@
    "timeZones": [
     "Africa/Asmara",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "907": [
+     "ambulance"
+    ],
+    "911": [
+     "general"
+    ],
+    "939": [
+     "fire"
+    ],
+    "991": [
+     "police"
+    ]
+   }
   },
   "FI": {
    "iso3": "FIN",
@@ -1893,7 +2529,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "FJ": {
    "iso3": "FJI",
@@ -1920,7 +2561,18 @@
    "timeZones": [
     "Pacific/Fiji",
     "UTC+12:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ],
+    "919": [
+     "police"
+    ],
+    "000": [
+     "general"
+    ]
+   }
   },
   "FK": {
    "iso3": "FLK",
@@ -1968,7 +2620,15 @@
    "timeZones": [
     "UTC+10:00",
     "UTC+11:00"
-   ]
+   ],
+   "emergencyUses": {
+    "111": [
+     "ambulance"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "FO": {
    "iso3": "FRO",
@@ -1995,7 +2655,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "FR": {
    "iso3": "FRA",
@@ -2024,7 +2689,24 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "15": [
+     "ambulance"
+    ],
+    "17": [
+     "police"
+    ],
+    "18": [
+     "fire"
+    ],
+    "112": [
+     "general"
+    ],
+    "114": [
+     "deaf"
+    ]
+   }
   },
   "GA": {
    "iso3": "GAB",
@@ -2051,7 +2733,18 @@
    "timeZones": [
     "Africa/Libreville",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "18": [
+     "fire"
+    ],
+    "1300": [
+     "ambulance"
+    ],
+    "1722": [
+     "police"
+    ]
+   }
   },
   "GB": {
    "iso3": "GBR",
@@ -2076,7 +2769,15 @@
    "driving": "left",
    "timeZones": [
     "Europe/London"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "GD": {
    "iso3": "GRD",
@@ -2104,7 +2805,21 @@
    "timeZones": [
     "America/Grenada",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "434": [
+     "ambulance"
+    ],
+    "724": [
+     "ambulance"
+    ],
+    "774": [
+     "ambulance"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "GE": {
    "iso3": "GEO",
@@ -2132,7 +2847,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "111": [
+     "fire"
+    ],
+    "112": [
+     "general"
+    ],
+    "113": [
+     "ambulance"
+    ],
+    "122": [
+     "police"
+    ]
+   }
   },
   "GF": {
    "iso3": "GUF",
@@ -2181,7 +2910,15 @@
    "driving": "left",
    "timeZones": [
     "Europe/Guernsey"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "GH": {
    "iso3": "GHA",
@@ -2210,7 +2947,21 @@
    "timeZones": [
     "Africa/Accra",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "191": [
+     "police"
+    ],
+    "192": [
+     "fire"
+    ],
+    "193": [
+     "ambulance"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "GI": {
    "iso3": "GIB",
@@ -2234,7 +2985,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "GL": {
    "iso3": "GRL",
@@ -2261,7 +3017,12 @@
    "driving": "right",
    "timeZones": [
     "UTC-03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "GM": {
    "iso3": "GMB",
@@ -2288,7 +3049,18 @@
    "timeZones": [
     "Africa/Banjul",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "police"
+    ],
+    "116": [
+     "ambulance"
+    ],
+    "118": [
+     "fire"
+    ]
+   }
   },
   "GN": {
    "iso3": "GIN",
@@ -2318,7 +3090,21 @@
    "timeZones": [
     "Africa/Conakry",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "18": [
+     "fire"
+    ],
+    "117": [
+     "police"
+    ],
+    "442": [
+     "ambulance"
+    ],
+    "020": [
+     "ambulance"
+    ]
+   }
   },
   "GP": {
    "iso3": "GLP",
@@ -2344,7 +3130,12 @@
    "driving": "right",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "GQ": {
    "iso3": "GNQ",
@@ -2372,7 +3163,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "ambulance"
+    ],
+    "113": [
+     "police"
+    ],
+    "114": [
+     "police"
+    ],
+    "115": [
+     "fire"
+    ]
+   }
   },
   "GR": {
    "iso3": "GRC",
@@ -2400,7 +3205,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "100": [
+     "police"
+    ],
+    "112": [
+     "general"
+    ],
+    "166": [
+     "ambulance"
+    ],
+    "199": [
+     "fire"
+    ]
+   }
   },
   "GS": {
    "iso3": "SGS",
@@ -2418,7 +3237,12 @@
    "driving": "left",
    "timeZones": [
     "UTC-02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "GT": {
    "iso3": "GTM",
@@ -2447,7 +3271,21 @@
    "timeZones": [
     "America/Guatemala",
     "UTC-06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "120": [
+     "police"
+    ],
+    "123": [
+     "fire"
+    ],
+    "128": [
+     "ambulance"
+    ]
+   }
   },
   "GU": {
    "iso3": "GUM",
@@ -2472,7 +3310,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+10:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "GW": {
    "iso3": "GNB",
@@ -2500,7 +3343,21 @@
    "timeZones": [
     "Africa/Bissau",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "119": [
+     "ambulance"
+    ],
+    "121": [
+     "police"
+    ],
+    "180": [
+     "fire"
+    ]
+   }
   },
   "GY": {
    "iso3": "GUY",
@@ -2531,7 +3388,21 @@
    "timeZones": [
     "America/Guyana",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "police"
+    ],
+    "912": [
+     "fire"
+    ],
+    "913": [
+     "ambulance"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "HK": {
    "iso3": "HKG",
@@ -2552,7 +3423,12 @@
    "voltage": [
     "220"
    ],
-   "driving": "left"
+   "driving": "left",
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "HM": {
    "iso3": "HMD",
@@ -2590,7 +3466,16 @@
    "timeZones": [
     "America/Tegucigalpa",
     "UTC-06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "198": [
+     "fire"
+    ],
+    "199": [
+     "ambulance",
+     "police"
+    ]
+   }
   },
   "HR": {
    "iso3": "HRV",
@@ -2618,7 +3503,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "93": [
+     "fire"
+    ],
+    "94": [
+     "ambulance"
+    ],
+    "112": [
+     "general"
+    ],
+    "192": [
+     "police"
+    ]
+   }
   },
   "HT": {
    "iso3": "HTI",
@@ -2646,7 +3545,21 @@
    "driving": "right",
    "timeZones": [
     "America/Port-au-Prince"
-   ]
+   ],
+   "emergencyUses": {
+    "114": [
+     "police"
+    ],
+    "115": [
+     "fire"
+    ],
+    "116": [
+     "ambulance"
+    ],
+    "122": [
+     "police"
+    ]
+   }
   },
   "HU": {
    "iso3": "HUN",
@@ -2674,7 +3587,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "104": [
+     "ambulance"
+    ],
+    "105": [
+     "fire"
+    ],
+    "107": [
+     "police"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "ID": {
    "iso3": "IDN",
@@ -2703,7 +3630,12 @@
     "Asia/Jayapura",
     "Asia/Makassar",
     "Asia/Pontianak"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "IE": {
    "iso3": "IRL",
@@ -2727,7 +3659,12 @@
    "driving": "left",
    "timeZones": [
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "IL": {
    "iso3": "ISR",
@@ -2757,7 +3694,18 @@
     "Asia/Jerusalem",
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "100": [
+     "police"
+    ],
+    "101": [
+     "ambulance"
+    ],
+    "102": [
+     "fire"
+    ]
+   }
   },
   "IM": {
    "iso3": "IMN",
@@ -2783,7 +3731,15 @@
    "timeZones": [
     "Europe/Isle_of_Man",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "IN": {
    "iso3": "IND",
@@ -2813,7 +3769,24 @@
    "driving": "left",
    "timeZones": [
     "Asia/Kolkata"
-   ]
+   ],
+   "emergencyUses": {
+    "100": [
+     "police"
+    ],
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "ambulance"
+    ],
+    "108": [
+     "general"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "IO": {
    "iso3": "IOT",
@@ -2858,7 +3831,21 @@
    "timeZones": [
     "Asia/Baghdad",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "104": [
+     "police"
+    ],
+    "115": [
+     "fire"
+    ],
+    "122": [
+     "ambulance"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "IR": {
    "iso3": "IRN",
@@ -2886,7 +3873,18 @@
    "timeZones": [
     "Asia/Tehran",
     "UTC+03:30"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "115": [
+     "ambulance"
+    ],
+    "125": [
+     "fire"
+    ]
+   }
   },
   "IS": {
    "iso3": "ISL",
@@ -2911,7 +3909,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "IT": {
    "iso3": "ITA",
@@ -2940,7 +3943,21 @@
    "driving": "right",
    "timeZones": [
     "Europe/Rome"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "113": [
+     "police"
+    ],
+    "115": [
+     "fire"
+    ],
+    "118": [
+     "ambulance"
+    ]
+   }
   },
   "JE": {
    "iso3": "JEY",
@@ -2961,7 +3978,12 @@
    "driving": "left",
    "timeZones": [
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "JM": {
    "iso3": "JAM",
@@ -2989,7 +4011,23 @@
    "driving": "left",
    "timeZones": [
     "America/Jamaica"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "112": [
+     "police"
+    ],
+    "119": [
+     "police"
+    ],
+    "911": [
+     "police"
+    ]
+   }
   },
   "JO": {
    "iso3": "JOR",
@@ -3020,7 +4058,12 @@
     "Asia/Amman",
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "JP": {
    "iso3": "JPN",
@@ -3048,7 +4091,18 @@
    "timeZones": [
     "Asia/Tokyo",
     "UTC+09:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "118": [
+     "coastGuard"
+    ],
+    "119": [
+     "fire"
+    ]
+   }
   },
   "KE": {
    "iso3": "KEN",
@@ -3074,7 +4128,19 @@
    "timeZones": [
     "Africa/Nairobi",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "999": [
+     "ambulance",
+     "fire",
+     "police"
+    ]
+   }
   },
   "KG": {
    "iso3": "KGZ",
@@ -3102,7 +4168,18 @@
    "driving": "right",
    "timeZones": [
     "UTC+06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "police"
+    ],
+    "103": [
+     "ambulance"
+    ]
+   }
   },
   "KH": {
    "iso3": "KHM",
@@ -3131,7 +4208,18 @@
    "timeZones": [
     "Asia/Phnom_Penh",
     "UTC+07:00"
-   ]
+   ],
+   "emergencyUses": {
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ],
+    "119": [
+     "ambulance"
+    ]
+   }
   },
   "KI": {
    "iso3": "KIR",
@@ -3164,7 +4252,24 @@
     "UTC+12:00",
     "UTC+13:00",
     "UTC+14:00"
-   ]
+   ],
+   "emergencyUses": {
+    "192": [
+     "police"
+    ],
+    "193": [
+     "fire"
+    ],
+    "194": [
+     "ambulance"
+    ],
+    "195": [
+     "ambulance"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "KM": {
    "iso3": "COM",
@@ -3194,7 +4299,24 @@
    "timeZones": [
     "Indian/Comoro",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "17": [
+     "police"
+    ],
+    "18": [
+     "ambulance"
+    ],
+    "73": [
+     "fire"
+    ],
+    "772": [
+     "fire"
+    ],
+    "03": [
+     "fire"
+    ]
+   }
   },
   "KN": {
    "iso3": "KNA",
@@ -3222,7 +4344,12 @@
    "timeZones": [
     "America/St_Kitts",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "KP": {
    "iso3": "PRK",
@@ -3275,7 +4402,16 @@
    "timeZones": [
     "Asia/Seoul",
     "UTC+09:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "police"
+    ],
+    "119": [
+     "ambulance",
+     "fire"
+    ]
+   }
   },
   "KW": {
    "iso3": "KWT",
@@ -3301,7 +4437,12 @@
    "timeZones": [
     "Asia/Kuwait",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "KY": {
    "iso3": "CYM",
@@ -3326,7 +4467,12 @@
    "driving": "left",
    "timeZones": [
     "America/Cayman"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "KZ": {
    "iso3": "KAZ",
@@ -3354,7 +4500,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+05:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "police"
+    ],
+    "103": [
+     "ambulance"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "LA": {
    "iso3": "LAO",
@@ -3385,7 +4545,18 @@
    "timeZones": [
     "Asia/Vientiane",
     "UTC+07:00"
-   ]
+   ],
+   "emergencyUses": {
+    "190": [
+     "fire"
+    ],
+    "191": [
+     "police"
+    ],
+    "195": [
+     "ambulance"
+    ]
+   }
   },
   "LB": {
    "iso3": "LBN",
@@ -3418,7 +4589,21 @@
     "Asia/Beirut",
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "police"
+    ],
+    "140": [
+     "ambulance"
+    ],
+    "160": [
+     "police"
+    ],
+    "175": [
+     "fire"
+    ]
+   }
   },
   "LC": {
    "iso3": "LCA",
@@ -3444,7 +4629,16 @@
    "timeZones": [
     "America/St_Lucia",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "ambulance",
+     "fire"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "LI": {
    "iso3": "LIE",
@@ -3472,7 +4666,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ],
+    "144": [
+     "ambulance"
+    ]
+   }
   },
   "LK": {
    "iso3": "LKA",
@@ -3500,7 +4708,16 @@
    "timeZones": [
     "Asia/Colombo",
     "UTC+05:30"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "ambulance",
+     "fire"
+    ],
+    "119": [
+     "police"
+    ]
+   }
   },
   "LR": {
    "iso3": "LBR",
@@ -3531,7 +4748,15 @@
    "timeZones": [
     "Africa/Monrovia",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "114": [
+     "fire"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "LS": {
    "iso3": "LSO",
@@ -3558,7 +4783,18 @@
    "timeZones": [
     "Africa/Maseru",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "police"
+    ],
+    "114": [
+     "ambulance"
+    ],
+    "115": [
+     "fire"
+    ]
+   }
   },
   "LT": {
    "iso3": "LTU",
@@ -3585,7 +4821,15 @@
    "timeZones": [
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "02": [
+     "police"
+    ]
+   }
   },
   "LU": {
    "iso3": "LUX",
@@ -3611,7 +4855,15 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "113": [
+     "police"
+    ]
+   }
   },
   "LV": {
    "iso3": "LVA",
@@ -3639,7 +4891,18 @@
    "timeZones": [
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "112": [
+     "general"
+    ],
+    "113": [
+     "ambulance"
+    ]
+   }
   },
   "LY": {
    "iso3": "LBY",
@@ -3670,7 +4933,18 @@
    "timeZones": [
     "Africa/Tripoli",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "190": [
+     "fire"
+    ],
+    "191": [
+     "ambulance"
+    ],
+    "193": [
+     "police"
+    ]
+   }
   },
   "MA": {
    "iso3": "MAR",
@@ -3701,7 +4975,22 @@
     "Africa/Casablanca",
     "UTC+00:00",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "15": [
+     "ambulance",
+     "fire"
+    ],
+    "19": [
+     "police"
+    ],
+    "112": [
+     "police"
+    ],
+    "177": [
+     "police"
+    ]
+   }
   },
   "MC": {
    "iso3": "MCO",
@@ -3731,7 +5020,18 @@
    "timeZones": [
     "Europe/Monaco",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "17": [
+     "police"
+    ],
+    "18": [
+     "fire"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "MD": {
    "iso3": "MDA",
@@ -3756,7 +5056,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "ME": {
    "iso3": "MNE",
@@ -3784,7 +5089,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "122": [
+     "police"
+    ],
+    "123": [
+     "fire"
+    ],
+    "124": [
+     "ambulance"
+    ]
+   }
   },
   "MF": {
    "iso3": "MAF",
@@ -3838,7 +5157,18 @@
    "driving": "right",
    "timeZones": [
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ],
+    "124": [
+     "ambulance"
+    ]
+   }
   },
   "MH": {
    "iso3": "MHL",
@@ -3858,7 +5188,12 @@
     "Pacific/Kwajalein",
     "Pacific/Majuro",
     "UTC+12:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "MK": {
    "iso3": "MKD",
@@ -3886,7 +5221,21 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "192": [
+     "police"
+    ],
+    "193": [
+     "fire"
+    ],
+    "194": [
+     "ambulance"
+    ]
+   }
   },
   "ML": {
    "iso3": "MLI",
@@ -3915,7 +5264,21 @@
    "timeZones": [
     "Africa/Bamako",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "15": [
+     "ambulance"
+    ],
+    "17": [
+     "police"
+    ],
+    "18": [
+     "fire"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "MM": {
    "iso3": "MMR",
@@ -3945,7 +5308,18 @@
    "timeZones": [
     "Asia/Yangon",
     "UTC+06:30"
-   ]
+   ],
+   "emergencyUses": {
+    "191": [
+     "fire"
+    ],
+    "192": [
+     "ambulance"
+    ],
+    "199": [
+     "police"
+    ]
+   }
   },
   "MN": {
    "iso3": "MNG",
@@ -3976,7 +5350,18 @@
     "Asia/Hovd",
     "Asia/Ulaanbaatar",
     "UTC+08:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "police"
+    ],
+    "103": [
+     "ambulance"
+    ]
+   }
   },
   "MO": {
    "iso3": "MAC",
@@ -4000,7 +5385,12 @@
    "voltage": [
     "220"
    ],
-   "driving": "left"
+   "driving": "left",
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "MP": {
    "iso3": "MNP",
@@ -4042,7 +5432,12 @@
    "driving": "right",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "MR": {
    "iso3": "MRT",
@@ -4069,7 +5464,18 @@
    "timeZones": [
     "Africa/Nouakchott",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "ambulance"
+    ],
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ]
+   }
   },
   "MS": {
    "iso3": "MSR",
@@ -4112,7 +5518,12 @@
    "driving": "left",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "MU": {
    "iso3": "MUS",
@@ -4142,7 +5553,24 @@
    "timeZones": [
     "Indian/Mauritius",
     "UTC+04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "police"
+    ],
+    "114": [
+     "ambulance"
+    ],
+    "115": [
+     "fire"
+    ],
+    "995": [
+     "fire"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "MV": {
    "iso3": "MDV",
@@ -4175,7 +5603,18 @@
    "timeZones": [
     "Indian/Maldives",
     "UTC+05:00"
-   ]
+   ],
+   "emergencyUses": {
+    "102": [
+     "ambulance"
+    ],
+    "118": [
+     "fire"
+    ],
+    "119": [
+     "police"
+    ]
+   }
   },
   "MW": {
    "iso3": "MWI",
@@ -4203,7 +5642,21 @@
    "timeZones": [
     "Africa/Blantyre",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "990": [
+     "police"
+    ],
+    "997": [
+     "police"
+    ],
+    "998": [
+     "ambulance"
+    ],
+    "999": [
+     "fire"
+    ]
+   }
   },
   "MX": {
    "iso3": "MEX",
@@ -4225,7 +5678,12 @@
    "voltage": [
     "127"
    ],
-   "driving": "right"
+   "driving": "right",
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "MY": {
    "iso3": "MYS",
@@ -4250,7 +5708,14 @@
    "timeZones": [
     "Asia/Kuala_Lumpur",
     "UTC+08:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "ambulance",
+     "fire",
+     "police"
+    ]
+   }
   },
   "MZ": {
    "iso3": "MOZ",
@@ -4279,7 +5744,18 @@
    "timeZones": [
     "Africa/Maputo",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "117": [
+     "fire"
+    ],
+    "119": [
+     "police"
+    ],
+    "198": [
+     "ambulance"
+    ]
+   }
   },
   "NA": {
    "iso3": "NAM",
@@ -4305,7 +5781,12 @@
    "timeZones": [
     "Africa/Windhoek",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "NC": {
    "iso3": "NCL",
@@ -4330,7 +5811,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+11:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "NE": {
    "iso3": "NER",
@@ -4361,7 +5847,15 @@
    "timeZones": [
     "Africa/Niamey",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "17": [
+     "police"
+    ],
+    "18": [
+     "fire"
+    ]
+   }
   },
   "NF": {
    "iso3": "NFK",
@@ -4404,7 +5898,17 @@
    "timeZones": [
     "Africa/Lagos",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "199": [
+     "ambulance",
+     "fire",
+     "police"
+    ]
+   }
   },
   "NI": {
    "iso3": "NIC",
@@ -4433,7 +5937,21 @@
    "timeZones": [
     "America/Managua",
     "UTC-06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "115": [
+     "fire"
+    ],
+    "118": [
+     "police"
+    ],
+    "120": [
+     "fire"
+    ],
+    "128": [
+     "ambulance"
+    ]
+   }
   },
   "NL": {
    "iso3": "NLD",
@@ -4458,7 +5976,12 @@
    "driving": "right",
    "timeZones": [
     "Europe/Amsterdam"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "NO": {
    "iso3": "NOR",
@@ -4485,7 +6008,18 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "fire"
+    ],
+    "112": [
+     "police"
+    ],
+    "113": [
+     "ambulance"
+    ]
+   }
   },
   "NP": {
    "iso3": "NPL",
@@ -4514,7 +6048,18 @@
    "timeZones": [
     "Asia/Kathmandu",
     "UTC+05:45"
-   ]
+   ],
+   "emergencyUses": {
+    "100": [
+     "police"
+    ],
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "ambulance"
+    ]
+   }
   },
   "NR": {
    "iso3": "NRU",
@@ -4541,7 +6086,18 @@
    "timeZones": [
     "Pacific/Nauru",
     "UTC+12:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "police"
+    ],
+    "111": [
+     "ambulance"
+    ],
+    "112": [
+     "fire"
+    ]
+   }
   },
   "NU": {
    "iso3": "NIU",
@@ -4566,7 +6122,12 @@
    "timeZones": [
     "Pacific/Niue",
     "UTC-11:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "NZ": {
    "iso3": "NZL",
@@ -4591,7 +6152,12 @@
    "timeZones": [
     "UTC+12:00",
     "UTC+13:00"
-   ]
+   ],
+   "emergencyUses": {
+    "111": [
+     "general"
+    ]
+   }
   },
   "OM": {
    "iso3": "OMN",
@@ -4618,7 +6184,14 @@
    "timeZones": [
     "Asia/Muscat",
     "UTC+04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "ambulance",
+     "fire",
+     "police"
+    ]
+   }
   },
   "PA": {
    "iso3": "PAN",
@@ -4645,7 +6218,18 @@
    "driving": "right",
    "timeZones": [
     "America/Panama"
-   ]
+   ],
+   "emergencyUses": {
+    "103": [
+     "fire"
+    ],
+    "104": [
+     "police"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "PE": {
    "iso3": "PER",
@@ -4673,7 +6257,27 @@
    "voltage": [
     "220"
    ],
-   "driving": "right"
+   "driving": "right",
+   "emergencyUses": {
+    "105": [
+     "police"
+    ],
+    "106": [
+     "ambulance"
+    ],
+    "111": [
+     "general"
+    ],
+    "116": [
+     "fire"
+    ],
+    "117": [
+     "ambulance"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "PF": {
    "iso3": "PYF",
@@ -4691,7 +6295,12 @@
    "driving": "right",
    "timeZones": [
     "UTC-10:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "PG": {
    "iso3": "PNG",
@@ -4719,7 +6328,18 @@
     "Pacific/Port_Moresby",
     "UTC+10:00",
     "UTC+11:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "fire"
+    ],
+    "111": [
+     "ambulance"
+    ],
+    "112": [
+     "police"
+    ]
+   }
   },
   "PH": {
    "iso3": "PHL",
@@ -4745,7 +6365,12 @@
    "driving": "right",
    "timeZones": [
     "Asia/Manila"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "PK": {
    "iso3": "PAK",
@@ -4775,7 +6400,18 @@
    "timeZones": [
     "Asia/Karachi",
     "UTC+05:00"
-   ]
+   ],
+   "emergencyUses": {
+    "15": [
+     "police"
+    ],
+    "16": [
+     "fire"
+    ],
+    "1122": [
+     "ambulance"
+    ]
+   }
   },
   "PL": {
    "iso3": "POL",
@@ -4805,7 +6441,24 @@
    "timeZones": [
     "UTC+01:00",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "986": [
+     "police"
+    ],
+    "997": [
+     "police"
+    ],
+    "998": [
+     "fire"
+    ],
+    "999": [
+     "ambulance"
+    ]
+   }
   },
   "PM": {
    "iso3": "SPM",
@@ -4823,7 +6476,12 @@
    "driving": "right",
    "timeZones": [
     "UTC-03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "PN": {
    "iso3": "PCN",
@@ -4864,7 +6522,12 @@
    "driving": "right",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "PS": {
    "iso3": "PSE",
@@ -4914,7 +6577,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "PW": {
    "iso3": "PLW",
@@ -4940,7 +6608,12 @@
    "timeZones": [
     "Pacific/Palau",
     "UTC+09:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "PY": {
    "iso3": "PRY",
@@ -4966,7 +6639,12 @@
     "America/Asuncion",
     "UTC-04:00",
     "UTC-03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "QA": {
    "iso3": "QAT",
@@ -4993,7 +6671,17 @@
    "timeZones": [
     "Asia/Qatar",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "RE": {
    "iso3": "REU",
@@ -5017,7 +6705,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "RO": {
    "iso3": "ROU",
@@ -5042,7 +6735,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "RS": {
    "iso3": "SRB",
@@ -5072,7 +6770,27 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "92": [
+     "police"
+    ],
+    "93": [
+     "fire"
+    ],
+    "94": [
+     "ambulance"
+    ],
+    "192": [
+     "police"
+    ],
+    "193": [
+     "fire"
+    ],
+    "194": [
+     "ambulance"
+    ]
+   }
   },
   "RU": {
    "iso3": "RUS",
@@ -5103,7 +6821,30 @@
    "driving": "right",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "police"
+    ],
+    "103": [
+     "ambulance"
+    ],
+    "112": [
+     "general"
+    ],
+    "01": [
+     "fire"
+    ],
+    "02": [
+     "police"
+    ],
+    "03": [
+     "ambulance"
+    ]
+   }
   },
   "RW": {
    "iso3": "RWA",
@@ -5131,7 +6872,16 @@
    "timeZones": [
     "Africa/Kigali",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "fire",
+     "police"
+    ],
+    "912": [
+     "ambulance"
+    ]
+   }
   },
   "SA": {
    "iso3": "SAU",
@@ -5159,7 +6909,19 @@
    "timeZones": [
     "Asia/Riyadh",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "911": [
+     "ambulance",
+     "general"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "SB": {
    "iso3": "SLB",
@@ -5187,7 +6949,18 @@
    "timeZones": [
     "Pacific/Guadalcanal",
     "UTC+11:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "ambulance"
+    ],
+    "988": [
+     "fire"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "SC": {
    "iso3": "SYC",
@@ -5215,7 +6988,21 @@
    "timeZones": [
     "Indian/Mahe",
     "UTC+04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "133": [
+     "police"
+    ],
+    "151": [
+     "ambulance"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "SD": {
    "iso3": "SDN",
@@ -5240,7 +7027,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "SE": {
    "iso3": "SWE",
@@ -5265,7 +7057,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "SG": {
    "iso3": "SGP",
@@ -5291,7 +7088,16 @@
    "timeZones": [
     "Asia/Singapore",
     "UTC+08:00"
-   ]
+   ],
+   "emergencyUses": {
+    "995": [
+     "ambulance",
+     "fire"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "SH": {
    "iso3": "SHN",
@@ -5311,7 +7117,12 @@
    "driving": "left",
    "timeZones": [
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "SI": {
    "iso3": "SVN",
@@ -5337,7 +7148,15 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "113": [
+     "police"
+    ]
+   }
   },
   "SJ": {
    "iso3": "SJM",
@@ -5378,7 +7197,21 @@
    "timeZones": [
     "UTC+01:00",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "150": [
+     "fire"
+    ],
+    "155": [
+     "ambulance"
+    ],
+    "158": [
+     "police"
+    ]
+   }
   },
   "SL": {
    "iso3": "SLE",
@@ -5405,7 +7238,16 @@
    "timeZones": [
     "Africa/Freetown",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "ambulance",
+     "fire"
+    ],
+    "019": [
+     "police"
+    ]
+   }
   },
   "SM": {
    "iso3": "SMR",
@@ -5434,7 +7276,21 @@
    "driving": "right",
    "timeZones": [
     "Europe/San_Marino"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ],
+    "113": [
+     "police"
+    ],
+    "115": [
+     "fire"
+    ],
+    "118": [
+     "ambulance"
+    ]
+   }
   },
   "SN": {
    "iso3": "SEN",
@@ -5463,7 +7319,15 @@
    "timeZones": [
     "Africa/Dakar",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "17": [
+     "police"
+    ],
+    "18": [
+     "fire"
+    ]
+   }
   },
   "SO": {
    "iso3": "SOM",
@@ -5490,7 +7354,18 @@
    "timeZones": [
     "Africa/Mogadishu",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "555": [
+     "ambulance"
+    ],
+    "888": [
+     "police"
+    ],
+    "999": [
+     "fire"
+    ]
+   }
   },
   "SR": {
    "iso3": "SUR",
@@ -5520,7 +7395,24 @@
    "timeZones": [
     "America/Paramaribo",
     "UTC-03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "fire"
+    ],
+    "111": [
+     "police"
+    ],
+    "112": [
+     "general"
+    ],
+    "113": [
+     "ambulance"
+    ],
+    "115": [
+     "police"
+    ]
+   }
   },
   "SS": {
    "iso3": "SSD",
@@ -5539,7 +7431,12 @@
    "timeZones": [
     "Africa/Juba",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "ST": {
    "iso3": "STP",
@@ -5565,7 +7462,12 @@
    "timeZones": [
     "Africa/Sao_Tome",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "SV": {
    "iso3": "SLV",
@@ -5592,7 +7494,17 @@
    "timeZones": [
     "America/El_Salvador",
     "UTC-06:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "913": [
+     "fire"
+    ]
+   }
   },
   "SX": {
    "iso3": "SXM",
@@ -5636,7 +7548,18 @@
    "timeZones": [
     "Asia/Damascus",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "110": [
+     "ambulance"
+    ],
+    "112": [
+     "police"
+    ],
+    "113": [
+     "fire"
+    ]
+   }
   },
   "SZ": {
    "iso3": "SWZ",
@@ -5663,7 +7586,18 @@
    "timeZones": [
     "Africa/Mbabane",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "933": [
+     "fire"
+    ],
+    "977": [
+     "ambulance"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "TA": {
    "wikidata": "Q34625512",
@@ -5699,7 +7633,12 @@
    "driving": "left",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "TD": {
    "iso3": "TCD",
@@ -5730,7 +7669,21 @@
    "timeZones": [
     "Africa/Ndjamena",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "17": [
+     "police"
+    ],
+    "18": [
+     "ambulance"
+    ],
+    "2251": [
+     "fire"
+    ],
+    "4242": [
+     "fire"
+    ]
+   }
   },
   "TF": {
    "iso3": "ATF",
@@ -5772,7 +7725,21 @@
    "timeZones": [
     "Africa/Lome",
     "UTC+00:00"
-   ]
+   ],
+   "emergencyUses": {
+    "117": [
+     "police"
+    ],
+    "118": [
+     "fire"
+    ],
+    "171": [
+     "police"
+    ],
+    "172": [
+     "police"
+    ]
+   }
   },
   "TH": {
    "iso3": "THA",
@@ -5802,7 +7769,18 @@
    "timeZones": [
     "Asia/Bangkok",
     "UTC+07:00"
-   ]
+   ],
+   "emergencyUses": {
+    "191": [
+     "police"
+    ],
+    "199": [
+     "fire"
+    ],
+    "1669": [
+     "ambulance"
+    ]
+   }
   },
   "TJ": {
    "iso3": "TJK",
@@ -5829,7 +7807,12 @@
    "timeZones": [
     "Asia/Dushanbe",
     "UTC+05:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "TK": {
    "iso3": "TKL",
@@ -5873,7 +7856,12 @@
    "timeZones": [
     "Asia/Dili",
     "UTC+09:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "TM": {
    "iso3": "TKM",
@@ -5900,7 +7888,12 @@
    "timeZones": [
     "Asia/Ashgabat",
     "UTC+05:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "TN": {
    "iso3": "TUN",
@@ -5930,7 +7923,18 @@
     "Africa/Tunis",
     "UTC+01:00",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "190": [
+     "ambulance"
+    ],
+    "197": [
+     "police"
+    ],
+    "198": [
+     "fire"
+    ]
+   }
   },
   "TO": {
    "iso3": "TON",
@@ -5960,7 +7964,27 @@
    "timeZones": [
     "Pacific/Tongatapu",
     "UTC+13:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ],
+    "922": [
+     "police"
+    ],
+    "927": [
+     "fire"
+    ],
+    "928": [
+     "fire"
+    ],
+    "933": [
+     "ambulance"
+    ],
+    "999": [
+     "fire"
+    ]
+   }
   },
   "TR": {
    "iso3": "TUR",
@@ -5989,7 +8013,18 @@
     "Asia/Istanbul",
     "Europe/Istanbul",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "coastGuard",
+     "fire",
+     "general",
+     "police"
+    ],
+    "177": [
+     "fire"
+    ]
+   }
   },
   "TT": {
    "iso3": "TTO",
@@ -6018,7 +8053,21 @@
    "timeZones": [
     "America/Port_of_Spain",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "811": [
+     "ambulance"
+    ],
+    "911": [
+     "police"
+    ],
+    "990": [
+     "fire"
+    ],
+    "999": [
+     "police"
+    ]
+   }
   },
   "TV": {
    "iso3": "TUV",
@@ -6043,7 +8092,12 @@
    "timeZones": [
     "Pacific/Funafuti",
     "UTC+12:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "TW": {
    "iso3": "TWN",
@@ -6071,7 +8125,12 @@
    "timeZones": [
     "Asia/Taipei",
     "UTC+08:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "TZ": {
    "iso3": "TZA",
@@ -6099,7 +8158,18 @@
    "timeZones": [
     "Africa/Dar_es_Salaam",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "police"
+    ],
+    "114": [
+     "fire"
+    ],
+    "115": [
+     "ambulance"
+    ]
+   }
   },
   "UA": {
    "iso3": "UKR",
@@ -6129,7 +8199,21 @@
     "Europe/Kyiv",
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "101": [
+     "fire"
+    ],
+    "102": [
+     "police"
+    ],
+    "103": [
+     "ambulance"
+    ],
+    "112": [
+     "general"
+    ]
+   }
   },
   "UG": {
    "iso3": "UGA",
@@ -6156,7 +8240,20 @@
    "timeZones": [
     "Africa/Kampala",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "fire",
+     "police"
+    ],
+    "911": [
+     "ambulance"
+    ],
+    "999": [
+     "fire",
+     "police"
+    ]
+   }
   },
   "UM": {
    "iso3": "UMI",
@@ -6197,7 +8294,12 @@
     "UTC-06:00",
     "UTC-04:00",
     "UTC+10:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "UY": {
    "iso3": "URY",
@@ -6225,7 +8327,12 @@
    "timeZones": [
     "America/Montevideo",
     "UTC-03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "UZ": {
    "iso3": "UZB",
@@ -6253,7 +8360,12 @@
     "Asia/Samarkand",
     "Asia/Tashkent",
     "UTC+05:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "VA": {
    "iso3": "VAT",
@@ -6272,7 +8384,12 @@
    "timeZones": [
     "Europe/Vatican",
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "VC": {
    "iso3": "VCT",
@@ -6303,7 +8420,17 @@
    "timeZones": [
     "America/St_Vincent",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "fire",
+     "police"
+    ],
+    "999": [
+     "fire",
+     "police"
+    ]
+   }
   },
   "VE": {
    "iso3": "VEN",
@@ -6330,7 +8457,17 @@
    "timeZones": [
     "America/Caracas",
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "171": [
+     "ambulance",
+     "fire",
+     "police"
+    ],
+    "911": [
+     "general"
+    ]
+   }
   },
   "VG": {
    "iso3": "VGB",
@@ -6355,7 +8492,12 @@
    "driving": "left",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "999": [
+     "general"
+    ]
+   }
   },
   "VI": {
    "iso3": "VIR",
@@ -6376,7 +8518,12 @@
    "driving": "left",
    "timeZones": [
     "UTC-04:00"
-   ]
+   ],
+   "emergencyUses": {
+    "911": [
+     "general"
+    ]
+   }
   },
   "VN": {
    "iso3": "VNM",
@@ -6406,7 +8553,18 @@
    "timeZones": [
     "Asia/Ho_Chi_Minh",
     "UTC+07:00"
-   ]
+   ],
+   "emergencyUses": {
+    "113": [
+     "police"
+    ],
+    "114": [
+     "fire"
+    ],
+    "115": [
+     "ambulance"
+    ]
+   }
   },
   "VU": {
    "iso3": "VUT",
@@ -6435,7 +8593,18 @@
    "timeZones": [
     "Pacific/Efate",
     "UTC+11:00"
-   ]
+   ],
+   "emergencyUses": {
+    "11": [
+     "police"
+    ],
+    "112": [
+     "general"
+    ],
+    "113": [
+     "fire"
+    ]
+   }
   },
   "WF": {
    "iso3": "WLF",
@@ -6478,7 +8647,21 @@
    "timeZones": [
     "Pacific/Apia",
     "UTC+13:00"
-   ]
+   ],
+   "emergencyUses": {
+    "994": [
+     "fire"
+    ],
+    "995": [
+     "police"
+    ],
+    "996": [
+     "ambulance"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "XK": {
    "iso3": "XKS",
@@ -6502,7 +8685,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+01:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "YE": {
    "iso3": "YEM",
@@ -6529,7 +8717,12 @@
    "timeZones": [
     "Asia/Aden",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "199": [
+     "police"
+    ]
+   }
   },
   "YT": {
    "iso3": "MYT",
@@ -6547,7 +8740,12 @@
    "driving": "right",
    "timeZones": [
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "general"
+    ]
+   }
   },
   "ZA": {
    "iso3": "ZAF",
@@ -6576,7 +8774,14 @@
     "Africa/Johannesburg",
     "UTC+02:00",
     "UTC+03:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "ambulance",
+     "fire",
+     "police"
+    ]
+   }
   },
   "ZM": {
    "iso3": "ZMB",
@@ -6608,7 +8813,25 @@
    "timeZones": [
     "Africa/Lusaka",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "112": [
+     "fire",
+     "police"
+    ],
+    "911": [
+     "police"
+    ],
+    "992": [
+     "ambulance"
+    ],
+    "993": [
+     "fire"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   },
   "ZW": {
    "iso3": "ZWE",
@@ -6637,7 +8860,21 @@
    "timeZones": [
     "Africa/Harare",
     "UTC+02:00"
-   ]
+   ],
+   "emergencyUses": {
+    "993": [
+     "fire"
+    ],
+    "994": [
+     "ambulance"
+    ],
+    "995": [
+     "police"
+    ],
+    "999": [
+     "general"
+    ]
+   }
   }
  }
 }
