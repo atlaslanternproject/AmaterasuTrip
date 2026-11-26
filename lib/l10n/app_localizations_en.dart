@@ -2022,9 +2022,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get b86TripHistory => 'Trip history';
-
-  @override
   String get b86ExpenseHistory => 'Expense history';
 
   @override
@@ -3446,13 +3443,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get auditIntro => 'Register of the changes to the trip sections: who, what and when, with the value before and after. Only the server writes it and nobody can change or delete it. Private notes and checklists are never in it.';
 
   @override
-  String get auditExpenses => 'Changes to expenses are in the budget History.';
-
-  @override
-  String get auditOpenExpenses => 'Open expenses';
-
-  @override
   String get auditEmpty => 'No change recorded with these filters.';
+
+  @override
+  String get auditExpensesFiltersNote => 'Person, action and period do not apply to expenses: here is all the budget history you can see.';
 
   @override
   String get auditMore => 'Show more';
