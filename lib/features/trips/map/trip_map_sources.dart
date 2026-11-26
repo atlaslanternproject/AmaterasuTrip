@@ -23,7 +23,7 @@ import 'trip_map_point.dart';
 
 typedef TripMapData = ({
   List<TripMapPoint> points,
-  int withoutPosition,
+  List<TripItineraryRef> withoutPosition,
   List<TripItineraryRef> catalog,
 });
 

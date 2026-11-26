@@ -1,14 +1,16 @@
 // Vista mappa comune a Mappa e Itinerario: la mappa (o quella finta dei
-// test), il numero dei luoghi mostrati (e di quelli senza posizione) e il
-// riquadro del luogo toccato. Linee tratteggiate per giorno, in ordine.
+// test), il numero dei luoghi mostrati (e di quelli senza posizione, che
+// si toccano per vederne l'elenco) e il riquadro del luogo toccato. Linee tratteggiate per giorno, in ordine.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:amaterasutrip/core/theme/amaterasu_colors.dart';
 import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_logic.dart';
+import 'package:amaterasutrip/features/trips/itinerary/models/trip_itinerary_ref.dart';
 import 'package:amaterasutrip/l10n/app_localizations.dart';
 import 'trip_map_canvas.dart';
+import 'trip_map_missing.dart';
 import 'trip_map_panel.dart';
 import 'trip_map_point.dart';
 
@@ -37,7 +39,7 @@ class TripMapView extends ConsumerStatefulWidget {
     required this.points,
     required this.routes,
     this.dimmed = const {},
-    this.withoutPosition = 0,
+    this.withoutPosition = const [],
   });
 
   final String tripId;
@@ -47,8 +49,8 @@ class TripMapView extends ConsumerStatefulWidget {
   /// Points shown faded (not on the chosen day).
   final Set<String> dimmed;
 
-  /// Elements with no position (not on the map, only counted).
-  final int withoutPosition;
+  /// Elements with no position (not on the map: listed on a tap).
+  final List<TripItineraryRef> withoutPosition;
 
   @override
   ConsumerState<TripMapView> createState() => _TripMapViewState();
@@ -62,6 +64,7 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
     final l10n = AppLocalizations.of(context)!;
     final canvas = ref.watch(tripMapCanvasProvider);
     final selected = _selected;
+    final missing = widget.withoutPosition;
     return Stack(
       children: [
         Positioned.fill(
@@ -78,22 +81,48 @@ class _TripMapViewState extends ConsumerState<TripMapView> {
           right: 64,
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: AmaterasuColors.surfaceCard,
+            child: Material(
+              color: AmaterasuColors.surfaceCard,
+              borderRadius: BorderRadius.circular(12),
+              child: InkWell(
                 borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                [
-                  l10n.mapPlaces(widget.points.length),
-                  if (widget.withoutPosition > 0)
-                    l10n.mapWithoutPosition(widget.withoutPosition),
-                ].join(' · '),
-                key: const Key('map-count'),
-                style: const TextStyle(
-                  color: AmaterasuColors.textPrimary,
-                  fontSize: 12,
+                onTap: missing.isEmpty
+                    ? null
+                    : () => showTripMapMissing(
+                        context,
+                        tripId: widget.tripId,
+                        missing: missing,
+                      ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          [
+                            l10n.mapPlaces(widget.points.length),
+                            if (missing.isNotEmpty)
+                              l10n.mapWithoutPosition(missing.length),
+                          ].join(' · '),
+                          key: const Key('map-count'),
+                          style: const TextStyle(
+                            color: AmaterasuColors.textPrimary,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                      if (missing.isNotEmpty)
+                        const Icon(
+                          Icons.chevron_right_rounded,
+                          size: 16,
+                          color: AmaterasuColors.textMuted,
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),

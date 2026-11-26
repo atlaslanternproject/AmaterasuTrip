@@ -176,7 +176,7 @@ void main() {
       ]),
     );
     expect(d.points.where((p) => p.refId == 'x'), isEmpty);
-    expect(d.withoutPosition, 1);
+    expect(d.withoutPosition.single.refId, 's2');
   });
 
   for (final width in [390.0, 1300.0]) {
@@ -215,6 +215,11 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('5 luoghi · 1 senza posizione'), findsOneWidget);
       expect(find.textContaining('Bozza'), findsNothing);
+      // The counter lists the elements without a position.
+      await tapKey(tester, 'map-count');
+      expect(find.byKey(const Key('map-missing')), findsOneWidget);
+      await tester.tapAt(const Offset(5, 5));
+      await tester.pumpAndSettle();
       await tapKey(tester, 'itinerary-filters');
       await tapKey(tester, 'itinerary-filter-day-10');
       await tester.tapAt(const Offset(5, 5));

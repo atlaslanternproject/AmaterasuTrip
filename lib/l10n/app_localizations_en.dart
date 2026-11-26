@@ -3840,6 +3840,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get mapMissingTitle => 'Without a position';
+
+  @override
+  String get mapMissingHint => 'These items are not on the map because they have no place. Tap to open the section and add one.';
+
+  @override
   String get mapError => 'Map not available now.';
 
   @override
