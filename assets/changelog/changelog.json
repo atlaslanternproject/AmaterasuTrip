@@ -2,6 +2,12 @@
   "_comment": "Novità per gli utenti, una voce per versione, la più recente in alto. A ogni rilascio si aggiunge la voce della nuova versione (it ed en): tool/release lo controlla.",
   "versions": [
     {
+      "version": "1.70.0",
+      "date": "2026-11-26",
+      "it": ["Alloggi: il menu a tre puntini, che conteneva solo «Elimina», è stato sostituito dal cestino come nelle altre sezioni. La doppia conferma è la stessa di prima."],
+      "en": ["Stays: the three-dot menu, which only had «Delete», was replaced by the bin as in the other sections. The double confirmation is the same as before."]
+    },
+    {
       "version": "1.69.0",
       "date": "2026-11-26",
       "it": ["Audit Trail unico: lo Storico del budget ora si trova nell'Audit Trail con il filtro «Spese» (si carica solo quando lo scegli, con le stesse regole: ognuno vede solo le spese a cui partecipa). Tolto il pulsante separato dalla pagina Spese; lo «Storico della spesa» resta nei dettagli di ogni spesa.","Informativa aggiornata (7.2): nel registro c'è anche l'itinerario e il filtro «Spese»."],

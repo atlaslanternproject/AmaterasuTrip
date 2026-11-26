@@ -11,7 +11,7 @@ import 'package:amaterasutrip/features/trips/stays/models/trip_stay.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stay_overlaps.dart';
 import 'package:amaterasutrip/features/trips/stays/models/trip_stays_view.dart';
 import 'trip_stay_card.dart';
-import 'trip_stay_card_menu.dart';
+import 'package:amaterasutrip/features/trips/sections/widgets/trip_section_menu.dart';
 import 'trip_stay_compact_card.dart';
 import 'trip_stay_details_row.dart';
 import 'trip_stay_quick_actions.dart';
@@ -84,11 +84,10 @@ class TripStaysList extends StatelessWidget {
               expense: expenseOf?.call(stay),
               onEdit: edit,
               launch: launch,
-              menu: TripStayCardMenu(
-                stayId: stay.id,
-                canEdit: false,
-                canDelete: canDelete(stay) && remove != null,
-                onDelete: remove,
+              menu: TripSectionMenu(
+                keyPrefix: 'stay',
+                id: stay.id,
+                onDelete: canDelete(stay) ? remove : null,
                 dense: true,
               ),
             );

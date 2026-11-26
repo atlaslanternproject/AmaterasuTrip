@@ -4357,9 +4357,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get staysExpense => 'Spesa';
 
   @override
-  String get staysMore => 'Altre azioni';
-
-  @override
   String get staysSectionBooking => 'Prenotazione';
 
   @override
